@@ -149,3 +149,34 @@
 - [ ] Test discussion forums
 - [ ] Test email automation
 - [ ] Create final checkpoint
+
+## CPD Certificate System
+
+### Database Updates
+- [x] Add cpdHours field to courses table
+- [x] Update certificates table with CPD numbering format
+- [x] Add certificate verification token field
+- [ ] Update certificate generation to include CPD details
+
+### Certificate Generation
+- [x] Enhance PDF generator with CPD accreditation branding
+- [x] Implement CPD certificate number format (e.g., CPD-CLSD-2024-XXXXX)
+- [x] Add CPD hours to certificate display
+- [x] Create multiple certificate formats (standard format with QR code)
+
+### Certificates Gallery
+- [x] Create "My Certificates" page for students
+- [x] Display all earned certificates with preview
+- [x] Add download individual certificate option
+- [x] Implement bundle download (all certificates as single PDF)
+
+### Public Verification
+- [x] Create public certificate verification page
+- [x] Generate unique verification URLs for each certificate
+- [x] Add QR code to certificates linking to verification page
+- [x] Build verification API endpoint
+
+### Admin Features
+- [x] Add CPD hours configuration in admin course editor
+- [ ] View all issued certificates in admin panel (optional)
+- [ ] Certificate analytics dashboard

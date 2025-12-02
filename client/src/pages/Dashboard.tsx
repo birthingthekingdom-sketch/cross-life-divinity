@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { trpc } from "@/lib/trpc";
-import { BookOpen, GraduationCap, LogOut } from "lucide-react";
+import { Award, BookOpen, GraduationCap, LogOut } from "lucide-react";
 import { Link } from "wouter";
 import { useMemo } from "react";
 
@@ -62,6 +62,16 @@ export default function Dashboard() {
                 <p className="font-semibold">{user?.name || "Student"}</p>
                 <p className="text-sm text-primary-foreground/70">{user?.email}</p>
               </div>
+              <Link href="/certificates">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
+                >
+                  <Award className="h-4 w-4 mr-2" />
+                  My Certificates
+                </Button>
+              </Link>
               <Button
                 variant="outline"
                 size="sm"

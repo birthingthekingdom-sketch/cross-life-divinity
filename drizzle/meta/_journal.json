@@ -36,6 +36,13 @@
       "when": 1764651954337,
       "tag": "0004_smiling_the_stranger",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1764653720729,
+      "tag": "0005_lonely_sentry",
+      "breakpoints": true
     }
   ]
 }

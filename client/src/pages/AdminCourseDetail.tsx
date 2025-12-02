@@ -4,8 +4,91 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { trpc } from "@/lib/trpc";
-import { ArrowLeft, Edit, Loader2 } from "lucide-react";
+import { ArrowLeft, Award, Edit, Loader2 } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
+import { useState } from "react";
 import { Link, useParams } from "wouter";
+
+function CPDHoursCard({ course }: { course: any }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [cpdHours, setCpdHours] = useState(course.cpdHours || 0);
+  const utils = trpc.useUtils();
+  const updateCPD = trpc.admin.updateCourseCPDHours.useMutation({
+    onSuccess: () => {
+      toast.success('CPD hours updated successfully');
+      utils.courses.getById.invalidate({ id: course.id });
+      setIsEditing(false);
+    },
+    onError: (error: any) => {
+      toast.error(`Failed to update: ${error.message}`);
+    },
+  });
+
+  const handleSave = () => {
+    updateCPD.mutate({ courseId: course.id, cpdHours });
+  };
+
+  return (
+    <Card className="border-blue-200 bg-gradient-to-br from-white to-blue-50">
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Award className="w-5 h-5 text-blue-700" />
+            <CardTitle>CPD Accreditation</CardTitle>
+          </div>
+          {!isEditing && (
+            <Button variant="outline" size="sm" onClick={() => setIsEditing(true)}>
+              <Edit className="w-4 h-4 mr-1" />
+              Edit
+            </Button>
+          )}
+        </div>
+      </CardHeader>
+      <CardContent>
+        {isEditing ? (
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="cpdHours">CPD Hours</Label>
+              <Input
+                id="cpdHours"
+                type="number"
+                min="0"
+                value={cpdHours}
+                onChange={(e) => setCpdHours(parseInt(e.target.value) || 0)}
+                className="max-w-xs"
+              />
+              <p className="text-sm text-muted-foreground mt-1">
+                Number of CPD hours awarded upon course completion
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <Button onClick={handleSave} disabled={updateCPD.isPending}>
+                {updateCPD.isPending ? 'Saving...' : 'Save'}
+              </Button>
+              <Button variant="outline" onClick={() => {
+                setCpdHours(course.cpdHours || 0);
+                setIsEditing(false);
+              }}>
+                Cancel
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div className="text-3xl font-bold text-blue-900">
+              {course.cpdHours || 0} CPD Hours
+            </div>
+            <p className="text-sm text-muted-foreground mt-1">
+              Awarded upon successful course completion
+            </p>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
 
 export default function AdminCourseDetail() {
   const { user } = useAuth();
@@ -79,6 +162,9 @@ export default function AdminCourseDetail() {
             {course.code} - {course.description}
           </p>
         </div>
+
+        {/* CPD Hours Card */}
+        <CPDHoursCard course={course} />
 
         {/* Lessons Table */}
         <Card>

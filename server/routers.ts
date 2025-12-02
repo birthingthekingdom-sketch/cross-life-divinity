@@ -391,12 +391,19 @@ export const appRouter = router({
           throw new TRPCError({ code: 'BAD_REQUEST', message: 'Course not completed' });
         }
         
-        const certificateNumber = `CLSD-${course.code}-${Date.now()}-${ctx.user.id}`;
+        // Generate CPD-format certificate number
+        const timestamp = Date.now();
+        const certificateNumber = `CPD-CLSD-${new Date().getFullYear()}-${course.code}-${timestamp.toString().slice(-5)}`;
+        
+        // Generate unique verification token
+        const verificationToken = `${timestamp}-${ctx.user.id}-${input.courseId}-${Math.random().toString(36).substring(2, 15)}`;
         
         await db.createCertificate({
           userId: ctx.user.id,
           courseId: input.courseId,
           certificateNumber,
+          verificationToken,
+          cpdHours: course.cpdHours || 0,
           completionDate: new Date(),
         });
         
@@ -406,6 +413,28 @@ export const appRouter = router({
     getMyCertificates: protectedProcedure.query(async ({ ctx }) => {
       return db.getUserCertificates(ctx.user.id);
     }),
+    
+    verify: publicProcedure
+      .input(z.object({ verificationToken: z.string() }))
+      .query(async ({ input }) => {
+        const cert = await db.getCertificateByVerificationToken(input.verificationToken);
+        if (!cert) {
+          throw new TRPCError({ code: 'NOT_FOUND', message: 'Certificate not found' });
+        }
+        
+        const user = await db.getUserById(cert.userId);
+        const course = await db.getCourseById(cert.courseId);
+        
+        return {
+          certificateNumber: cert.certificateNumber,
+          studentName: user?.name || user?.email || 'Student',
+          courseTitle: course?.title || 'Unknown Course',
+          courseCode: course?.code || 'N/A',
+          cpdHours: cert.cpdHours,
+          issuedAt: cert.issuedAt,
+          completionDate: cert.completionDate,
+        };
+      }),
   }),
 
   admin: router({
@@ -450,6 +479,13 @@ export const appRouter = router({
           });
         }
         
+        return { success: true };
+      }),
+    
+    updateCourseCPDHours: adminProcedure
+      .input(z.object({ courseId: z.number(), cpdHours: z.number() }))
+      .mutation(async ({ input }) => {
+        await db.updateCourseCPDHours(input.courseId, input.cpdHours);
         return { success: true };
       }),
     

@@ -76,6 +76,7 @@ export const courses = mysqlTable("courses", {
   description: text("description"),
   colorTheme: varchar("colorTheme", { length: 32 }).notNull(),
   totalLessons: int("totalLessons").default(0).notNull(),
+  cpdHours: int("cpdHours").default(0).notNull(),
   displayOrder: int("displayOrder").default(0).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
@@ -188,6 +189,8 @@ export const certificates = mysqlTable("certificates", {
   userId: int("userId").notNull(),
   courseId: int("courseId").notNull(),
   certificateNumber: varchar("certificateNumber", { length: 50 }).notNull().unique(),
+  verificationToken: varchar("verificationToken", { length: 64 }).notNull().unique(),
+  cpdHours: int("cpdHours").notNull(),
   issuedAt: timestamp("issuedAt").defaultNow().notNull(),
   completionDate: timestamp("completionDate").notNull(),
 });

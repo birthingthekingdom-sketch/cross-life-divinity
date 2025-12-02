@@ -406,11 +406,24 @@ export async function getCertificateByUserAndCourse(userId: number, courseId: nu
   return result[0];
 }
 
-export async function getUserCertificates(userId: number): Promise<Certificate[]> {
+export async function getUserCertificates(userId: number) {
   const db = await getDb();
   if (!db) return [];
   
-  return db.select().from(certificates)
+  return db.select({
+    id: certificates.id,
+    userId: certificates.userId,
+    courseId: certificates.courseId,
+    certificateNumber: certificates.certificateNumber,
+    verificationToken: certificates.verificationToken,
+    cpdHours: certificates.cpdHours,
+    issuedAt: certificates.issuedAt,
+    completionDate: certificates.completionDate,
+    courseTitle: courses.title,
+    courseCode: courses.code,
+  })
+    .from(certificates)
+    .leftJoin(courses, eq(certificates.courseId, courses.id))
     .where(eq(certificates.userId, userId))
     .orderBy(desc(certificates.issuedAt));
 }
@@ -547,4 +560,24 @@ export async function deleteForumReply(id: number) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   await db.delete(forumReplies).where(eq(forumReplies.id, id));
+}
+
+export async function getCertificateByVerificationToken(verificationToken: string): Promise<Certificate | undefined> {
+  const db = await getDb();
+  if (!db) return undefined;
+  
+  const result = await db.select().from(certificates)
+    .where(eq(certificates.verificationToken, verificationToken))
+    .limit(1);
+  
+  return result[0];
+}
+
+export async function updateCourseCPDHours(courseId: number, cpdHours: number): Promise<void> {
+  const db = await getDb();
+  if (!db) return;
+  
+  await db.update(courses)
+    .set({ cpdHours })
+    .where(eq(courses.id, courseId));
 }

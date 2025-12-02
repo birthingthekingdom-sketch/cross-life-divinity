@@ -64,12 +64,14 @@ async function startServer() {
         return res.status(404).json({ error: "Course not found" });
       }
 
-      generateCertificate({
+      await generateCertificate({
         studentName: user.name || user.email || "Student",
         courseName: course.title,
         courseCode: course.code,
         completionDate: certificate.completionDate,
         certificateNumber: certificate.certificateNumber,
+        verificationToken: certificate.verificationToken,
+        cpdHours: certificate.cpdHours || 0,
       }, res);
     } catch (error) {
       console.error("Certificate generation error:", error);

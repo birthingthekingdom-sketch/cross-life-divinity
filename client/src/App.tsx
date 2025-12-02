@@ -16,6 +16,8 @@ import AdminBulkImport from "./pages/AdminBulkImport";
 import CourseForum from "./pages/CourseForum";
 import ForumTopic from "./pages/ForumTopic";
 import AdminEmailSettings from "./pages/AdminEmailSettings";
+import MyCertificates from "./pages/MyCertificates";
+import VerifyCertificate from "./pages/VerifyCertificate";
 
 function Router() {
   return (
@@ -32,6 +34,8 @@ function Router() {
       <Route path="/course/:id/forum" component={CourseForum} />
       <Route path="/forum/topic/:id" component={ForumTopic} />
       <Route path="/admin/email-settings" component={AdminEmailSettings} />
+      <Route path="/certificates" component={MyCertificates} />
+      <Route path="/verify/:token" component={VerifyCertificate} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
