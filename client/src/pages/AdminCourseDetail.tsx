@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { trpc } from "@/lib/trpc";
-import { ArrowLeft, Award, Edit, Loader2 } from "lucide-react";
+import { ArrowLeft, Award, Edit, Loader2, Video } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
@@ -90,6 +90,89 @@ function CPDHoursCard({ course }: { course: any }) {
   );
 }
 
+function IntroVideoCard({ course }: { course: any }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [videoUrl, setVideoUrl] = useState(course.introVideoUrl || '');
+  const utils = trpc.useUtils();
+  const updateVideo = trpc.admin.updateCourseVideo.useMutation({
+    onSuccess: () => {
+      toast.success('Intro video updated successfully');
+      utils.courses.getById.invalidate({ id: course.id });
+      setIsEditing(false);
+    },
+    onError: (error: any) => {
+      toast.error(`Failed to update: ${error.message}`);
+    },
+  });
+
+  const handleSave = () => {
+    updateVideo.mutate({ courseId: course.id, introVideoUrl: videoUrl });
+  };
+
+  return (
+    <Card className="border-purple-200 bg-gradient-to-br from-white to-purple-50">
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Video className="w-5 h-5 text-purple-700" />
+            <CardTitle>Introduction Video</CardTitle>
+          </div>
+          {!isEditing && (
+            <Button variant="outline" size="sm" onClick={() => setIsEditing(true)}>
+              <Edit className="w-4 h-4 mr-1" />
+              Edit
+            </Button>
+          )}
+        </div>
+      </CardHeader>
+      <CardContent>
+        {isEditing ? (
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="videoUrl">Video URL</Label>
+              <Input
+                id="videoUrl"
+                type="text"
+                placeholder="https://www.youtube.com/watch?v=... or https://vimeo.com/..."
+                value={videoUrl}
+                onChange={(e) => setVideoUrl(e.target.value)}
+                className="w-full"
+              />
+              <p className="text-sm text-muted-foreground mt-1">
+                Supported: YouTube, Vimeo, or direct video file URLs (.mp4, .webm, .ogg)
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <Button onClick={handleSave} disabled={updateVideo.isPending}>
+                {updateVideo.isPending ? 'Saving...' : 'Save'}
+              </Button>
+              <Button variant="outline" onClick={() => {
+                setVideoUrl(course.introVideoUrl || '');
+                setIsEditing(false);
+              }}>
+                Cancel
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <div>
+            {course.introVideoUrl ? (
+              <div>
+                <p className="text-sm text-muted-foreground mb-2">Current video URL:</p>
+                <code className="text-xs bg-muted px-2 py-1 rounded block overflow-x-auto">
+                  {course.introVideoUrl}
+                </code>
+              </div>
+            ) : (
+              <p className="text-muted-foreground">No intro video set</p>
+            )}
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
 export default function AdminCourseDetail() {
   const { user } = useAuth();
   const params = useParams<{ id: string }>();
@@ -165,6 +248,9 @@ export default function AdminCourseDetail() {
 
         {/* CPD Hours Card */}
         <CPDHoursCard course={course} />
+
+        {/* Intro Video Card */}
+        <IntroVideoCard course={course} />
 
         {/* Lessons Table */}
         <Card>

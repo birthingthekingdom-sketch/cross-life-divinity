@@ -180,3 +180,44 @@
 - [x] Add CPD hours configuration in admin course editor
 - [ ] View all issued certificates in admin panel (optional)
 - [ ] Certificate analytics dashboard
+
+## New Features - Phase 4
+
+### Student Progress Dashboard
+- [x] Create progress analytics database queries
+- [x] Build progress dashboard page with charts
+- [x] Add completion percentage calculations
+- [x] Display quiz score history
+- [x] Show study time tracking
+- [x] Add course progress visualizations
+
+### Welcome Video
+- [x] Add video URL field to courses table
+- [x] Create video player component
+- [x] Add welcome video to homepage
+- [x] Add course intro videos to course pages
+- [x] Support YouTube and Vimeo embeds
+- [x] Add video upload/management in admin panel
+
+### Progressive Web App (PWA)
+- [x] Create service worker for offline caching
+- [x] Add PWA manifest file
+- [x] Implement offline lesson storage
+- [x] Add install prompt for mobile devices
+- [x] Cache course content for offline access
+- [x] Sync progress when back online
+
+### Live Webinar Integration
+- [ ] Add webinar scheduling database schema
+- [ ] Create webinar management in admin panel
+- [ ] Integrate Zoom/Google Meet links
+- [ ] Add webinar calendar to student dashboard
+- [ ] Send webinar reminder emails
+- [ ] Add recorded webinar playback to lessons
+
+### Testing & Deployment
+- [ ] Test progress dashboard analytics
+- [ ] Test welcome video playback
+- [ ] Test PWA offline functionality
+- [ ] Test webinar scheduling
+- [ ] Create final checkpoint

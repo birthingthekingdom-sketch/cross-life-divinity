@@ -78,6 +78,7 @@ export const courses = mysqlTable("courses", {
   totalLessons: int("totalLessons").default(0).notNull(),
   cpdHours: int("cpdHours").default(0).notNull(),
   displayOrder: int("displayOrder").default(0).notNull(),
+  introVideoUrl: text("introVideoUrl"), // YouTube, Vimeo, or direct video URL
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
@@ -229,3 +230,23 @@ export const forumReplies = mysqlTable("forum_replies", {
 
 export type ForumReply = typeof forumReplies.$inferSelect;
 export type InsertForumReply = typeof forumReplies.$inferInsert;
+
+/**
+ * Live webinars/online sessions
+ */
+export const webinars = mysqlTable("webinars", {
+  id: int("id").autoincrement().primaryKey(),
+  courseId: int("courseId"), // Optional: link to specific course, null for general webinars
+  title: varchar("title", { length: 255 }).notNull(),
+  description: text("description"),
+  meetingUrl: text("meetingUrl").notNull(), // Zoom, Google Meet, or other meeting link
+  scheduledAt: timestamp("scheduledAt").notNull(), // When the webinar is scheduled
+  duration: int("duration").default(60).notNull(), // Duration in minutes
+  recordingUrl: text("recordingUrl"), // Link to recording after webinar ends
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Webinar = typeof webinars.$inferSelect;
+export type InsertWebinar = typeof webinars.$inferInsert;

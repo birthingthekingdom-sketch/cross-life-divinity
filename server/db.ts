@@ -1,4 +1,4 @@
-import { eq, and, desc, inArray } from "drizzle-orm";
+import { eq, and, desc, inArray, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { 
   InsertUser, users, 
@@ -14,7 +14,8 @@ import {
   accessCodeCourses, InsertAccessCodeCourse, AccessCodeCourse,
   courseEnrollments, InsertCourseEnrollment, CourseEnrollment,
   forumTopics, InsertForumTopic, ForumTopic,
-  forumReplies, InsertForumReply, ForumReply
+  forumReplies, InsertForumReply, ForumReply,
+  webinars, InsertWebinar, Webinar
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -580,4 +581,207 @@ export async function updateCourseCPDHours(courseId: number, cpdHours: number): 
   await db.update(courses)
     .set({ cpdHours })
     .where(eq(courses.id, courseId));
+}
+
+export async function updateCourseVideoUrl(courseId: number, introVideoUrl: string): Promise<void> {
+  const db = await getDb();
+  if (!db) return;
+  
+  await db.update(courses)
+    .set({ introVideoUrl })
+    .where(eq(courses.id, courseId));
+}
+
+export async function getStudentProgressSummary(userId: number) {
+  const db = await getDb();
+  if (!db) return {
+    totalCourses: 0,
+    completedCourses: 0,
+    totalLessons: 0,
+    completedLessons: 0,
+    totalCPDHours: 0,
+    earnedCPDHours: 0,
+    averageQuizScore: 0,
+    courseProgress: [],
+    recentActivity: [],
+  };
+  
+  // Get all enrolled courses
+  const enrolledCourses = await db
+    .select({
+      id: courses.id,
+      title: courses.title,
+      code: courses.code,
+      cpdHours: courses.cpdHours,
+      totalLessons: courses.totalLessons,
+    })
+    .from(courseEnrollments)
+    .innerJoin(courses, eq(courseEnrollments.courseId, courses.id))
+    .where(eq(courseEnrollments.userId, userId));
+  
+  // Get all progress for this user
+  const allProgress = await db
+    .select()
+    .from(studentProgress)
+    .where(eq(studentProgress.userId, userId));
+  
+  // Get all quiz submissions
+  const quizSubs = await db
+    .select()
+    .from(quizSubmissions)
+    .where(eq(quizSubmissions.userId, userId));
+  
+  // Calculate overall stats
+  const totalCourses = enrolledCourses.length;
+  const totalLessons = enrolledCourses.reduce((sum, course) => sum + (course.totalLessons || 0), 0);
+  const completedLessons = allProgress.filter(p => p.completed).length;
+  const totalCPDHours = enrolledCourses.reduce((sum, course) => sum + (course.cpdHours || 0), 0);
+  
+  // Calculate course progress
+  const courseProgress = enrolledCourses.map(course => {
+    const courseProgressItems = allProgress.filter(p => p.courseId === course.id);
+    const completedCount = courseProgressItems.filter(p => p.completed).length;
+    const isCompleted = completedCount === course.totalLessons && course.totalLessons > 0;
+    
+    return {
+      id: course.id,
+      title: course.title,
+      code: course.code,
+      cpdHours: course.cpdHours || 0,
+      totalLessons: course.totalLessons || 0,
+      completedLessons: completedCount,
+      isCompleted,
+    };
+  });
+  
+  const completedCourses = courseProgress.filter(c => c.isCompleted).length;
+  const earnedCPDHours = courseProgress
+    .filter(c => c.isCompleted)
+    .reduce((sum, c) => sum + c.cpdHours, 0);
+  
+  // Calculate average quiz score
+  const averageQuizScore = quizSubs.length > 0
+    ? quizSubs.reduce((sum, q) => sum + (q.score || 0), 0) / quizSubs.length
+    : 0;
+  
+  // Get recent activity (last 10 completed lessons)
+  const recentActivity = await db
+    .select({
+      lessonId: studentProgress.lessonId,
+      lessonTitle: lessons.title,
+      courseTitle: courses.title,
+      completedAt: studentProgress.completedAt,
+    })
+    .from(studentProgress)
+    .innerJoin(lessons, eq(studentProgress.lessonId, lessons.id))
+    .innerJoin(courses, eq(studentProgress.courseId, courses.id))
+    .where(and(
+      eq(studentProgress.userId, userId),
+      eq(studentProgress.completed, true)
+    ))
+    .orderBy(desc(studentProgress.completedAt))
+    .limit(10);
+  
+  return {
+    totalCourses,
+    completedCourses,
+    totalLessons,
+    completedLessons,
+    totalCPDHours,
+    earnedCPDHours,
+    averageQuizScore,
+    courseProgress,
+    recentActivity,
+  };
+}
+
+// Webinar functions
+export async function getAllWebinars() {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select().from(webinars).orderBy(desc(webinars.scheduledAt));
+}
+
+export async function getUpcomingWebinars() {
+  const db = await getDb();
+  if (!db) return [];
+  
+  const now = new Date();
+  return db
+    .select()
+    .from(webinars)
+    .where(and(
+      eq(webinars.isActive, true),
+      sql`${webinars.scheduledAt} > ${now.toISOString()}`
+    ))
+    .orderBy(webinars.scheduledAt);
+}
+
+export async function getWebinarById(id: number) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const result = await db.select().from(webinars).where(eq(webinars.id, id)).limit(1);
+  return result[0] || null;
+}
+
+export async function createWebinar(data: {
+  courseId?: number;
+  title: string;
+  description?: string;
+  meetingUrl: string;
+  scheduledAt: Date;
+  duration?: number;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const result = await db.insert(webinars).values({
+    courseId: data.courseId || null,
+    title: data.title,
+    description: data.description || null,
+    meetingUrl: data.meetingUrl,
+    scheduledAt: data.scheduledAt,
+    duration: data.duration || 60,
+    isActive: true,
+  });
+  
+  return Number(result[0].insertId);
+}
+
+export async function updateWebinar(id: number, data: Partial<{
+  title: string;
+  description: string;
+  meetingUrl: string;
+  scheduledAt: Date;
+  duration: number;
+  recordingUrl: string;
+  isActive: boolean;
+}>) {
+  const db = await getDb();
+  if (!db) return;
+  
+  await db.update(webinars).set(data).where(eq(webinars.id, id));
+}
+
+export async function deleteWebinar(id: number) {
+  const db = await getDb();
+  if (!db) return;
+  
+  await db.delete(webinars).where(eq(webinars.id, id));
+}
+
+export async function getWebinarsByCourse(courseId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db
+    .select()
+    .from(webinars)
+    .where(and(
+      eq(webinars.courseId, courseId),
+      eq(webinars.isActive, true)
+    ))
+    .orderBy(webinars.scheduledAt);
 }

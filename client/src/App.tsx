@@ -18,6 +18,7 @@ import ForumTopic from "./pages/ForumTopic";
 import AdminEmailSettings from "./pages/AdminEmailSettings";
 import MyCertificates from "./pages/MyCertificates";
 import VerifyCertificate from "./pages/VerifyCertificate";
+import Progress from "./pages/Progress";
 
 function Router() {
   return (
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/admin/email-settings" component={AdminEmailSettings} />
       <Route path="/certificates" component={MyCertificates} />
       <Route path="/verify/:token" component={VerifyCertificate} />
+      <Route path="/progress" component={Progress} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

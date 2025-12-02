@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { VideoPlayer } from "@/components/VideoPlayer";
 import { trpc } from "@/lib/trpc";
-import { ArrowLeft, Award, BookOpen, CheckCircle2, Circle, Download, MessageSquare } from "lucide-react";
+import { ArrowLeft, Award, BookOpen, CheckCircle2, Circle, Download, MessageSquare, Video } from "lucide-react";
 import { Link, useParams } from "wouter";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
@@ -118,6 +119,24 @@ export default function CoursePage() {
       {/* Lessons List */}
       <div className="container py-8">
         <div className="max-w-4xl mx-auto">
+          {/* Intro Video Section */}
+          {course.introVideoUrl && (
+            <Card className="mb-8">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Video className="h-5 w-5 text-primary" />
+                  Course Introduction Video
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <VideoPlayer 
+                  url={course.introVideoUrl} 
+                  title={`${course.title} Introduction`}
+                />
+              </CardContent>
+            </Card>
+          )}
+
           <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
             <BookOpen className="h-6 w-6 text-primary" />
             Course Lessons

@@ -345,6 +345,10 @@ export const appRouter = router({
         await db.markLessonComplete(ctx.user.id, input.courseId, input.lessonId);
         return { success: true };
       }),
+    
+    getStudentProgress: protectedProcedure.query(async ({ ctx }) => {
+      return db.getStudentProgressSummary(ctx.user.id);
+    }),
   }),
 
   certificates: router({
@@ -489,6 +493,13 @@ export const appRouter = router({
         return { success: true };
       }),
     
+    updateCourseVideo: adminProcedure
+      .input(z.object({ courseId: z.number(), introVideoUrl: z.string() }))
+      .mutation(async ({ input }) => {
+        await db.updateCourseVideoUrl(input.courseId, input.introVideoUrl);
+        return { success: true };
+      }),
+    
     bulkImportLessons: adminProcedure
       .input(z.object({
         courseId: z.number(),
@@ -565,6 +576,74 @@ export const appRouter = router({
           throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Failed to send test email. Check your email configuration.' });
         }
         return { success: true };
+      }),
+    
+    // Webinar management
+    getAllWebinars: adminProcedure.query(async () => {
+      return db.getAllWebinars();
+    }),
+    
+    createWebinar: adminProcedure
+      .input(z.object({
+        courseId: z.number().optional(),
+        title: z.string(),
+        description: z.string().optional(),
+        meetingUrl: z.string().url(),
+        scheduledAt: z.string(),
+        duration: z.number().optional()
+      }))
+      .mutation(async ({ input }) => {
+        const id = await db.createWebinar({
+          ...input,
+          scheduledAt: new Date(input.scheduledAt)
+        });
+        return { success: true, id };
+      }),
+    
+    updateWebinar: adminProcedure
+      .input(z.object({
+        id: z.number(),
+        title: z.string().optional(),
+        description: z.string().optional(),
+        meetingUrl: z.string().url().optional(),
+        scheduledAt: z.string().optional(),
+        duration: z.number().optional(),
+        recordingUrl: z.string().url().optional(),
+        isActive: z.boolean().optional()
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        const updateData: any = { ...data };
+        if (data.scheduledAt) {
+          updateData.scheduledAt = new Date(data.scheduledAt);
+        }
+        await db.updateWebinar(id, updateData);
+        return { success: true };
+      }),
+    
+    deleteWebinar: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await db.deleteWebinar(input.id);
+        return { success: true };
+      }),
+  }),
+  
+  webinars: router({
+    getUpcoming: protectedProcedure.query(async () => {
+      return db.getUpcomingWebinars();
+    }),
+    
+    getById: protectedProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        return db.getWebinarById(input.id);
+      }),
+    
+    getByCourse: protectedProcedure
+      .input(z.object({ courseId: z.number() }))
+      .query(async ({ input }) => {
+        return db.getWebinarsByCourse(input.courseId);
       }),
   }),
 
