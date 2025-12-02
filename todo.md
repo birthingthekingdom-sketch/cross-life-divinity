@@ -365,3 +365,24 @@
 - [ ] Track multiple failed login attempts
 - [ ] Send email alerts for suspicious activity
 - [ ] Add security alert preferences to user settings
+
+## Promotional Materials
+- [x] Create social media graphics (Facebook, Instagram, Twitter)
+- [x] Design promotional flyer PDF
+- [x] Create email marketing templates
+- [x] Design website banner graphics
+- [x] Create student recruitment brochure
+
+## Course Content Population
+- [ ] Add sample lessons to Evangelism & Outreach course
+- [ ] Add sample lessons to Prayer & Intercession course
+- [ ] Create sample quizzes for courses
+- [ ] Add video lesson placeholders
+- [ ] Create downloadable reading materials
+
+## Email Configuration Enhancement
+- [ ] Improve email settings UI in admin panel
+- [ ] Add email template customization
+- [ ] Create email preview functionality
+- [ ] Add test email sending feature
+- [ ] Document SMTP setup process
