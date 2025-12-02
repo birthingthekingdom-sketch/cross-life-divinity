@@ -197,3 +197,94 @@ export async function changePassword(userId: number, oldPassword: string, newPas
 
   return { success: true };
 }
+
+/**
+ * Generate email verification token and update user
+ */
+export async function generateVerificationToken(userId: number): Promise<string> {
+  const dbInstance = await db.getDb();
+  if (!dbInstance) throw new Error('Database not available');
+
+  const { users } = await import('../drizzle/schema');
+  
+  const verificationToken = generateResetToken(); // Reuse token generation
+  const expiryDate = new Date();
+  expiryDate.setHours(expiryDate.getHours() + 24); // 24 hour expiry
+
+  await dbInstance.update(users)
+    .set({
+      emailVerificationToken: verificationToken,
+      emailVerificationExpiry: expiryDate,
+    })
+    .where(eq(users.id, userId));
+
+  return verificationToken;
+}
+
+/**
+ * Verify email using token
+ */
+export async function verifyEmail(token: string) {
+  const dbInstance = await db.getDb();
+  if (!dbInstance) throw new Error('Database not available');
+
+  const { users } = await import('../drizzle/schema');
+  
+  // Find user by verification token
+  const userResult = await dbInstance.select().from(users)
+    .where(eq(users.emailVerificationToken, token))
+    .limit(1);
+
+  if (userResult.length === 0) {
+    throw new Error('Invalid or expired verification token');
+  }
+
+  const user = userResult[0];
+
+  // Check if token has expired
+  if (user.emailVerificationExpiry && new Date() > user.emailVerificationExpiry) {
+    throw new Error('Verification token has expired');
+  }
+
+  // Mark email as verified
+  await dbInstance.update(users)
+    .set({
+      emailVerified: true,
+      emailVerificationToken: null,
+      emailVerificationExpiry: null,
+    })
+    .where(eq(users.id, user.id));
+
+  return user;
+}
+
+/**
+ * Resend verification email
+ */
+export async function resendVerificationEmail(email: string) {
+  const dbInstance = await db.getDb();
+  if (!dbInstance) throw new Error('Database not available');
+
+  const { users } = await import('../drizzle/schema');
+  
+  // Find user by email
+  const userResult = await dbInstance.select().from(users).where(eq(users.email, email)).limit(1);
+  if (userResult.length === 0) {
+    throw new Error('User not found');
+  }
+
+  const user = userResult[0];
+
+  // Check if already verified
+  if (user.emailVerified) {
+    throw new Error('Email is already verified');
+  }
+
+  // Generate new verification token
+  const verificationToken = await generateVerificationToken(user.id);
+
+  return {
+    verificationToken,
+    userName: user.name,
+  };
+}

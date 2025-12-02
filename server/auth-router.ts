@@ -19,11 +19,12 @@ export const authRouter = router({
       try {
         const user = await authService.registerUser(input.email, input.password, input.name);
         
-        // Send welcome email
+        // Generate and send verification email
         try {
-          await emailService.sendWelcomeEmail(user.email!, user.name || 'Student', []);
+          const verificationToken = await authService.generateVerificationToken(user.id);
+          await emailService.sendEmailVerification(user.email!, user.name || 'Student', verificationToken);
         } catch (emailError) {
-          console.error('Failed to send welcome email:', emailError);
+          console.error('Failed to send verification email:', emailError);
           // Don't fail registration if email fails
         }
 
@@ -35,6 +36,7 @@ export const authRouter = router({
             name: user.name,
             role: user.role,
           },
+          message: 'Registration successful! Please check your email to verify your account.',
         };
       } catch (error) {
         if (error instanceof Error) {
@@ -157,6 +159,58 @@ export const authRouter = router({
       email: ctx.user.email,
       name: ctx.user.name,
       role: ctx.user.role,
+      emailVerified: ctx.user.emailVerified,
     };
   }),
+
+  /**
+   * Verify email using token
+   */
+  verifyEmail: publicProcedure
+    .input(
+      z.object({
+        token: z.string().min(1, 'Verification token is required'),
+      })
+    )
+    .mutation(async ({ input }) => {
+      try {
+        await authService.verifyEmail(input.token);
+        return { success: true, message: 'Email verified successfully' };
+      } catch (error) {
+        if (error instanceof Error) {
+          throw new Error(error.message);
+        }
+        throw new Error('Email verification failed');
+      }
+    }),
+
+  /**
+   * Resend verification email
+   */
+  resendVerification: publicProcedure
+    .input(
+      z.object({
+        email: z.string().email('Invalid email address'),
+      })
+    )
+    .mutation(async ({ input }) => {
+      try {
+        const result = await authService.resendVerificationEmail(input.email);
+        
+        if (result.verificationToken) {
+          try {
+            await emailService.sendEmailVerification(input.email, result.userName || 'Student', result.verificationToken);
+          } catch (emailError) {
+            console.error('Failed to send verification email:', emailError);
+          }
+        }
+
+        return { success: true, message: 'Verification email has been sent' };
+      } catch (error) {
+        if (error instanceof Error) {
+          throw new Error(error.message);
+        }
+        throw new Error('Failed to resend verification email');
+      }
+    }),
 });

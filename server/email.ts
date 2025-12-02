@@ -351,3 +351,38 @@ export async function sendPasswordResetEmail(to: string, resetToken: string) {
     return false;
   }
 }
+
+export async function sendEmailVerification(email: string, name: string, verificationToken: string) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  const verificationUrl = `${process.env.VITE_FRONTEND_FORGE_API_URL || 'http://localhost:3000'}/verify-email?token=${verificationToken}`;
+
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to: email,
+      subject: 'Verify Your Email - Cross Life School of Divinity',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #1e40af;">Welcome, ${name}!</h2>
+          <p>Thank you for registering with Cross Life School of Divinity.</p>
+          <p>To complete your registration and access your courses, please verify your email address by clicking the button below:</p>
+          <p style="margin: 30px 0; text-align: center;">
+            <a href="${verificationUrl}" style="background-color: #1e40af; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; display: inline-block;">Verify Email Address</a>
+          </p>
+          <p style="color: #666; font-size: 14px;">Or copy and paste this link into your browser:</p>
+          <p style="color: #666; font-size: 14px; word-break: break-all;">${verificationUrl}</p>
+          <p style="color: #666; font-size: 14px; margin-top: 30px;"><strong>This link will expire in 24 hours.</strong></p>
+          <p style="color: #666; font-size: 14px;">If you didn't create an account, you can safely ignore this email.</p>
+          <br/>
+          <p>Blessings,<br/>Cross Life School of Divinity Team</p>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send email verification:', error);
+    return false;
+  }
+}

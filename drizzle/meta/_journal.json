@@ -71,6 +71,13 @@
       "when": 1764661661107,
       "tag": "0009_clumsy_wiccan",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1764700903940,
+      "tag": "0010_powerful_corsair",
+      "breakpoints": true
     }
   ]
 }

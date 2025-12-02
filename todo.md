@@ -325,3 +325,29 @@
 - [x] Update AuthContext to use custom auth
 - [ ] Remove Manus OAuth dependencies (OAuth still available as fallback)
 - [x] Test registration and login flows
+
+## Email Verification System
+- [x] Add emailVerified and verificationToken fields to users table
+- [x] Create email verification endpoint
+- [x] Send verification email on registration
+- [x] Create email verification page
+- [ ] Prevent unverified users from accessing courses
+- [x] Add resend verification email functionality
+
+## Social Login Integration
+- [ ] Install passport.js and OAuth strategies
+- [ ] Set up Google OAuth configuration
+- [ ] Set up Facebook OAuth configuration
+- [ ] Create social login buttons on login page
+- [ ] Handle OAuth callbacks and user creation
+- [ ] Link social accounts to existing users
+- [ ] Add social login to registration flow
+
+## Account Security Dashboard
+- [ ] Create user settings page
+- [ ] Add password change functionality
+- [ ] Display login history (IP, device, timestamp)
+- [ ] Add two-factor authentication (2FA) setup
+- [ ] Show active sessions with revoke option
+- [ ] Add security notifications preferences
+- [ ] Create account deletion option
