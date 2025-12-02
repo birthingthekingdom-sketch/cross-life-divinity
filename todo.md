@@ -273,3 +273,31 @@
 - [x] Create multiple follow-ups at once
 - [x] Add preview of selected students before creation
 - [ ] Implement bulk status updates
+
+## Scheduled Email Reminders
+- [x] Create cron job scheduler for follow-up reminders
+- [x] Check for follow-ups due within 24 hours
+- [x] Send automated reminder emails to admins
+- [x] Add email reminder settings (frequency, timing)
+- [x] Log reminder email history
+- [x] Add manual trigger for testing reminders
+
+## Student Activity Dashboard
+- [x] Create admin analytics page
+- [x] Track student login patterns and frequency
+- [x] Display course completion rates and trends
+- [x] Show quiz score averages and distributions
+- [x] Identify inactive students (no login in X days)
+- [x] Highlight at-risk students (low scores, incomplete courses)
+- [x] Add engagement metrics visualization (charts)
+- [ ] Export analytics data to CSV
+
+## Course Content Population
+- [ ] Add lesson content editor in admin panel
+- [ ] Support rich text content for lessons
+- [ ] Add video embedding for lesson content
+- [ ] Create quiz builder with multiple question types
+- [ ] Add reading materials upload (PDF, documents)
+- [ ] Implement lesson ordering and organization
+- [ ] Add lesson preview for admins
+- [ ] Bulk content import functionality

@@ -19,7 +19,8 @@ import CourseForum from "./pages/CourseForum";
 import ForumTopic from "./pages/ForumTopic";
 import AdminEmailSettings from "./pages/AdminEmailSettings";
 import AdminFollowUps from "./pages/AdminFollowUps";
-import AdminWebinars from "./pages/AdminWebinars";
+import AdminWebinars from "@/pages/AdminWebinars";
+import AdminAnalytics from "@/pages/AdminAnalytics";
 import Webinars from "./pages/Webinars";
 import MyCertificates from "./pages/MyCertificates";
 import VerifyCertificate from "./pages/VerifyCertificate";
@@ -41,7 +42,8 @@ function Router() {
       <Route path="/forum/topic/:id" component={ForumTopic} />
       <Route path="/admin/email-settings" component={AdminEmailSettings} />
       <Route path="/admin/follow-ups" component={AdminFollowUps} />
-      <Route path="/admin/webinars" component={AdminWebinars} />
+          <Route path="/admin/webinars" component={AdminWebinars} />
+          <Route path="/admin/analytics" component={AdminAnalytics} />
       <Route path="/webinars" component={Webinars} />
       <Route path="/certificates" component={MyCertificates} />
       <Route path="/verify/:token" component={VerifyCertificate} />

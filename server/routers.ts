@@ -5,6 +5,8 @@ import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 import * as db from "./db";
 import * as email from "./email";
+import * as scheduler from "./scheduler";
+import * as analytics from "./analytics";
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -730,6 +732,24 @@ export const appRouter = router({
         await db.deleteFollowUp(input.id);
         return { success: true };
       }),
+    
+    triggerFollowUpReminders: adminProcedure
+      .mutation(async () => {
+        const result = await scheduler.triggerFollowUpReminders();
+        return result;
+      }),
+    
+    getActivityMetrics: adminProcedure.query(async () => {
+      return analytics.getStudentActivityMetrics();
+    }),
+    
+    getStudentEngagement: adminProcedure.query(async () => {
+      return analytics.getStudentEngagementData();
+    }),
+    
+    getCourseCompletionTrends: adminProcedure.query(async () => {
+      return analytics.getCourseCompletionTrends();
+    }),
   }),
   
   webinars: router({
