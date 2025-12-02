@@ -5,7 +5,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { trpc } from "@/lib/trpc";
-import { Users, TrendingUp, AlertTriangle, CheckCircle2, Activity, BarChart3 } from "lucide-react";
+import { Users, TrendingUp, AlertTriangle, CheckCircle2, Activity, BarChart3, Download } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 import { useLocation } from "wouter";
 
 export default function AdminAnalytics() {
@@ -16,6 +18,52 @@ export default function AdminAnalytics() {
   const { data: metrics, isLoading: metricsLoading } = trpc.admin.getActivityMetrics.useQuery();
   const { data: studentEngagement, isLoading: engagementLoading } = trpc.admin.getStudentEngagement.useQuery();
   const { data: courseTrends, isLoading: trendsLoading } = trpc.admin.getCourseCompletionTrends.useQuery();
+  
+  const exportStudentEngagementMutation = trpc.admin.exportStudentEngagementCSV.useQuery(undefined, { enabled: false });
+  const exportCourseCompletionMutation = trpc.admin.exportCourseCompletionCSV.useQuery(undefined, { enabled: false });
+  const exportActivityMetricsMutation = trpc.admin.exportActivityMetricsCSV.useQuery(undefined, { enabled: false });
+  const exportComprehensiveMutation = trpc.admin.exportComprehensiveAnalyticsCSV.useQuery(undefined, { enabled: false });
+  
+  const downloadCSV = (csv: string, filename: string) => {
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', filename);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    toast.success(`Downloaded ${filename}`);
+  };
+  
+  const handleExportStudentEngagement = async () => {
+    const result = await exportStudentEngagementMutation.refetch();
+    if (result.data?.csv) {
+      downloadCSV(result.data.csv, `student-engagement-${new Date().toISOString().split('T')[0]}.csv`);
+    }
+  };
+  
+  const handleExportCourseCompletion = async () => {
+    const result = await exportCourseCompletionMutation.refetch();
+    if (result.data?.csv) {
+      downloadCSV(result.data.csv, `course-completion-${new Date().toISOString().split('T')[0]}.csv`);
+    }
+  };
+  
+  const handleExportActivityMetrics = async () => {
+    const result = await exportActivityMetricsMutation.refetch();
+    if (result.data?.csv) {
+      downloadCSV(result.data.csv, `activity-metrics-${new Date().toISOString().split('T')[0]}.csv`);
+    }
+  };
+  
+  const handleExportComprehensive = async () => {
+    const result = await exportComprehensiveMutation.refetch();
+    if (result.data?.csv) {
+      downloadCSV(result.data.csv, `comprehensive-analytics-${new Date().toISOString().split('T')[0]}.csv`);
+    }
+  };
 
   if (!user || user.role !== 'admin') {
     setLocation('/');
@@ -44,9 +92,22 @@ export default function AdminAnalytics() {
   return (
     <DashboardLayout>
       <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Student Activity Analytics</h1>
-          <p className="text-muted-foreground mt-1">Track engagement, identify at-risk students, and monitor course completion trends</p>
+        <div className="flex items-start justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-foreground">Student Activity Analytics</h1>
+            <p className="text-muted-foreground mt-1">Track engagement, identify at-risk students, and monitor course completion trends</p>
+          </div>
+          
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              onClick={handleExportComprehensive}
+              disabled={exportComprehensiveMutation.isFetching}
+            >
+              <Download className="h-4 w-4 mr-2" />
+              {exportComprehensiveMutation.isFetching ? 'Exporting...' : 'Export All Data'}
+            </Button>
+          </div>
         </div>
 
         {/* View Selector */}
@@ -241,8 +302,21 @@ export default function AdminAnalytics() {
         {selectedView === 'students' && studentEngagement && (
           <Card>
             <CardHeader>
-              <CardTitle>Student Engagement Details</CardTitle>
-              <CardDescription>Detailed engagement metrics for all students</CardDescription>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle>Student Engagement Details</CardTitle>
+                  <CardDescription>Detailed engagement metrics for all students</CardDescription>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleExportStudentEngagement}
+                  disabled={exportStudentEngagementMutation.isFetching}
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  {exportStudentEngagementMutation.isFetching ? 'Exporting...' : 'Export CSV'}
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
@@ -323,11 +397,24 @@ export default function AdminAnalytics() {
         {selectedView === 'courses' && courseTrends && (
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <BarChart3 className="h-5 w-5" />
-                Course Completion Trends
-              </CardTitle>
-              <CardDescription>Enrollment and completion statistics by course</CardDescription>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="flex items-center gap-2">
+                    <BarChart3 className="h-5 w-5" />
+                    Course Completion Trends
+                  </CardTitle>
+                  <CardDescription>Enrollment and completion statistics by course</CardDescription>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleExportCourseCompletion}
+                  disabled={exportCourseCompletionMutation.isFetching}
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  {exportCourseCompletionMutation.isFetching ? 'Exporting...' : 'Export CSV'}
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">

@@ -290,7 +290,7 @@
 - [x] Identify inactive students (no login in X days)
 - [x] Highlight at-risk students (low scores, incomplete courses)
 - [x] Add engagement metrics visualization (charts)
-- [ ] Export analytics data to CSV
+- [x] Export analytics data to CSV
 
 ## Course Content Population
 - [ ] Add lesson content editor in admin panel

@@ -7,6 +7,7 @@ import * as db from "./db";
 import * as email from "./email";
 import * as scheduler from "./scheduler";
 import * as analytics from "./analytics";
+import * as csvExport from "./csv-export";
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -749,6 +750,26 @@ export const appRouter = router({
     
     getCourseCompletionTrends: adminProcedure.query(async () => {
       return analytics.getCourseCompletionTrends();
+    }),
+    
+    exportStudentEngagementCSV: adminProcedure.query(async () => {
+      const csv = await csvExport.exportStudentEngagementCSV();
+      return { csv };
+    }),
+    
+    exportCourseCompletionCSV: adminProcedure.query(async () => {
+      const csv = await csvExport.exportCourseCompletionCSV();
+      return { csv };
+    }),
+    
+    exportActivityMetricsCSV: adminProcedure.query(async () => {
+      const csv = await csvExport.exportActivityMetricsCSV();
+      return { csv };
+    }),
+    
+    exportComprehensiveAnalyticsCSV: adminProcedure.query(async () => {
+      const csv = await csvExport.exportComprehensiveAnalyticsCSV();
+      return { csv };
     }),
   }),
   
