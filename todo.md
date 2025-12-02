@@ -118,3 +118,34 @@
 - [x] Add starter lesson content to each course (3 lessons each)
 - [x] Add quiz questions for each lesson
 - [ ] Update total course count to 10
+
+## New Features - Phase 3
+
+### Bulk Lesson Import
+- [x] Add CSV parsing library
+- [x] Create lesson import database procedure
+- [x] Build admin UI for file upload
+- [x] Add CSV template download
+- [x] Implement validation and error handling
+- [ ] Test bulk import with sample da### Discussion Forums
+- [x] Create database schema for forums (topics, posts, replies)
+- [x] Build forum API endpoints
+- [x] Create forum UI pages
+- [x] Add forum link to course pages
+- [ ] Test forum functionalityImplement moderation features
+- [ ] Add notifications for new replies
+
+### Email Automation
+- [ ] Install email service library
+- [ ] Create email templates (welcome, reminder, certificate)
+- [ ] Set up email configuration
+- [ ] Implement enrollment welcome email
+- [ ] Add course reminder emails
+- [ ] Create certificate earned email
+- [ ] Test email delivery
+
+### Testing & Deployment
+- [ ] Test bulk import feature
+- [ ] Test discussion forums
+- [ ] Test email automation
+- [ ] Create final checkpoint

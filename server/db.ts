@@ -12,7 +12,9 @@ import {
   quizSubmissions, InsertQuizSubmission, QuizSubmission,
   certificates, InsertCertificate, Certificate,
   accessCodeCourses, InsertAccessCodeCourse, AccessCodeCourse,
-  courseEnrollments, InsertCourseEnrollment, CourseEnrollment
+  courseEnrollments, InsertCourseEnrollment, CourseEnrollment,
+  forumTopics, InsertForumTopic, ForumTopic,
+  forumReplies, InsertForumReply, ForumReply
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -100,6 +102,14 @@ export async function getUserByOpenId(openId: string) {
   const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
 
   return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getUserById(id: number) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const result = await db.select().from(users).where(eq(users.id, id)).limit(1);
+  return result.length > 0 ? result[0] : null;
 }
 
 // ============================================
@@ -486,4 +496,55 @@ export async function getEnrolledCourses(userId: number): Promise<Course[]> {
   return db.select().from(courses)
     .where(inArray(courses.id, courseIds))
     .orderBy(courses.displayOrder);
+}
+
+
+// ============================================================================
+// Forum Functions
+// ============================================================================
+
+export async function getForumTopicsByCourse(courseId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(forumTopics).where(eq(forumTopics.courseId, courseId)).orderBy(desc(forumTopics.isPinned), desc(forumTopics.createdAt));
+}
+
+export async function getForumTopicById(id: number) {
+  const db = await getDb();
+  if (!db) return null;
+  const results = await db.select().from(forumTopics).where(eq(forumTopics.id, id)).limit(1);
+  return results[0] || null;
+}
+
+export async function createForumTopic(topic: InsertForumTopic) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.insert(forumTopics).values(topic);
+}
+
+export async function getForumRepliesByTopic(topicId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(forumReplies).where(eq(forumReplies.topicId, topicId)).orderBy(forumReplies.createdAt);
+}
+
+export async function createForumReply(reply: InsertForumReply) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.insert(forumReplies).values(reply);
+}
+
+export async function deleteForumTopic(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  // Delete replies first
+  await db.delete(forumReplies).where(eq(forumReplies.topicId, id));
+  // Then delete topic
+  await db.delete(forumTopics).where(eq(forumTopics.id, id));
+}
+
+export async function deleteForumReply(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.delete(forumReplies).where(eq(forumReplies.id, id));
 }

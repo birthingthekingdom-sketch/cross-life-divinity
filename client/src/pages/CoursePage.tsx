@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { trpc } from "@/lib/trpc";
-import { ArrowLeft, Award, BookOpen, CheckCircle2, Circle, Download } from "lucide-react";
+import { ArrowLeft, Award, BookOpen, CheckCircle2, Circle, Download, MessageSquare } from "lucide-react";
 import { Link, useParams } from "wouter";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
@@ -73,16 +73,28 @@ export default function CoursePage() {
         style={{ backgroundColor: course.colorTheme }}
       >
         <div className="container py-8">
-          <Link href="/dashboard">
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="mb-4 text-white hover:bg-white/20"
-            >
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Dashboard
-            </Button>
-          </Link>
+          <div className="flex items-center gap-2 mb-4">
+            <Link href="/dashboard">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="text-white hover:bg-white/20"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Dashboard
+              </Button>
+            </Link>
+            <Link href={`/course/${courseId}/forum`}>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="text-white hover:bg-white/20"
+              >
+                <MessageSquare className="h-4 w-4 mr-2" />
+                Discussion Forum
+              </Button>
+            </Link>
+          </div>
           
           <div className="flex items-start justify-between gap-4 flex-wrap">
             <div className="flex-1">

@@ -194,3 +194,35 @@ export const certificates = mysqlTable("certificates", {
 
 export type Certificate = typeof certificates.$inferSelect;
 export type InsertCertificate = typeof certificates.$inferInsert;
+
+/**
+ * Discussion forum topics (one per course)
+ */
+export const forumTopics = mysqlTable("forum_topics", {
+  id: int("id").autoincrement().primaryKey(),
+  courseId: int("courseId").notNull(),
+  userId: int("userId").notNull(),
+  title: varchar("title", { length: 255 }).notNull(),
+  content: text("content").notNull(),
+  isPinned: boolean("isPinned").default(false).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ForumTopic = typeof forumTopics.$inferSelect;
+export type InsertForumTopic = typeof forumTopics.$inferInsert;
+
+/**
+ * Discussion forum replies
+ */
+export const forumReplies = mysqlTable("forum_replies", {
+  id: int("id").autoincrement().primaryKey(),
+  topicId: int("topicId").notNull(),
+  userId: int("userId").notNull(),
+  content: text("content").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ForumReply = typeof forumReplies.$inferSelect;
+export type InsertForumReply = typeof forumReplies.$inferInsert;

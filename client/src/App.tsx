@@ -12,6 +12,10 @@ import LessonPage from "./pages/LessonPage";
 import Admin from "./pages/Admin";
 import AdminCourseDetail from "./pages/AdminCourseDetail";
 import AdminEditLesson from "./pages/AdminEditLesson";
+import AdminBulkImport from "./pages/AdminBulkImport";
+import CourseForum from "./pages/CourseForum";
+import ForumTopic from "./pages/ForumTopic";
+import AdminEmailSettings from "./pages/AdminEmailSettings";
 
 function Router() {
   return (
@@ -24,6 +28,10 @@ function Router() {
       <Route path="/admin" component={Admin} />
       <Route path="/admin/course/:id" component={AdminCourseDetail} />
       <Route path="/admin/lesson/:id" component={AdminEditLesson} />
+      <Route path="/admin/bulk-import" component={AdminBulkImport} />
+      <Route path="/course/:id/forum" component={CourseForum} />
+      <Route path="/forum/topic/:id" component={ForumTopic} />
+      <Route path="/admin/email-settings" component={AdminEmailSettings} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

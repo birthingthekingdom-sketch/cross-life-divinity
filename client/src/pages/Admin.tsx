@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { trpc } from "@/lib/trpc";
-import { BookOpen, Code, Edit, GraduationCap, Key, Loader2, Plus, Settings, Users } from "lucide-react";
+import { BookOpen, Code, Edit, GraduationCap, Key, Loader2, Mail, Plus, Settings, Users } from "lucide-react";
 import AssignCoursesDialog from "@/components/AssignCoursesDialog";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -82,6 +82,37 @@ export default function Admin() {
           <p className="text-muted-foreground">
             Manage courses, lessons, and student access
           </p>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          <Link href="/admin/bulk-import">
+            <Card className="hover:shadow-md transition-shadow cursor-pointer">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Plus className="h-5 w-5" />
+                  Bulk Import Lessons
+                </CardTitle>
+                <CardDescription>
+                  Upload multiple lessons at once via CSV
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
+          
+          <Link href="/admin/email-settings">
+            <Card className="hover:shadow-md transition-shadow cursor-pointer">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Mail className="h-5 w-5" />
+                  Email Settings
+                </CardTitle>
+                <CardDescription>
+                  Configure automated email notifications
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
         </div>
 
         {/* Stats Cards */}
@@ -247,10 +278,20 @@ export default function Admin() {
         {/* Courses List */}
         <Card>
           <CardHeader>
-            <CardTitle>Courses</CardTitle>
-            <CardDescription>
-              View and manage course content
-            </CardDescription>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle>Courses</CardTitle>
+                <CardDescription>
+                  View and manage course content
+                </CardDescription>
+              </div>
+              <Link href="/admin/bulk-import">
+                <Button variant="outline">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Bulk Import Lessons
+                </Button>
+              </Link>
+            </div>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">

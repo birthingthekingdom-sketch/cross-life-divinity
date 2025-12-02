@@ -452,6 +452,225 @@ export const appRouter = router({
         
         return { success: true };
       }),
+    
+    bulkImportLessons: adminProcedure
+      .input(z.object({
+        courseId: z.number(),
+        lessons: z.array(z.object({
+          title: z.string(),
+          content: z.string(),
+          order: z.number()
+        }))
+      }))
+      .mutation(async ({ input }) => {
+        let successCount = 0;
+        const errors: string[] = [];
+        
+        for (const lessonData of input.lessons) {
+          try {
+            await db.createLesson({
+              courseId: input.courseId,
+              title: lessonData.title,
+              content: lessonData.content,
+              lessonOrder: lessonData.order
+            });
+            successCount++;
+          } catch (error) {
+            errors.push(`Failed to import "${lessonData.title}": ${error}`);
+          }
+        }
+        
+        // Update course total lessons count
+        const allLessons = await db.getLessonsByCourseId(input.courseId);
+        await db.updateCourse(input.courseId, { totalLessons: allLessons.length });
+        
+        return { 
+          success: errors.length === 0,
+          imported: successCount,
+          errors
+          };
+      }),
+    
+    setEmailConfig: adminProcedure
+      .input(z.object({
+        host: z.string(),
+        port: z.number(),
+        secure: z.boolean(),
+        user: z.string(),
+        pass: z.string()
+      }))
+      .mutation(async ({ input }) => {
+        const { setEmailConfig } = await import('./email');
+        setEmailConfig(input);
+        return { success: true };
+      }),
+    
+    getEmailConfig: adminProcedure
+      .query(async () => {
+        const { getEmailConfig } = await import('./email');
+        const config = getEmailConfig();
+        if (!config) return null;
+        // Don't send password to client
+        return {
+          host: config.host,
+          port: config.port,
+          secure: config.secure,
+          user: config.user,
+          configured: true
+        };
+      }),
+    
+    testEmail: adminProcedure
+      .input(z.object({ to: z.string().email() }))
+      .mutation(async ({ input }) => {
+        const { sendWelcomeEmail } = await import('./email');
+        const success = await sendWelcomeEmail(input.to, 'Test User', ['Test Course']);
+        if (!success) {
+          throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Failed to send test email. Check your email configuration.' });
+        }
+        return { success: true };
+      }),
+  }),
+
+  forum: router({
+    getTopicsByCourse: protectedProcedure
+      .input(z.object({ courseId: z.number() }))
+      .query(async ({ input, ctx }) => {
+        // Check if user is enrolled in the course
+        const isEnrolled = await db.isUserEnrolledInCourse(ctx.user.id, input.courseId);
+        if (!isEnrolled) {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'You must be enrolled in this course to view discussions' });
+        }
+        
+        const topics = await db.getForumTopicsByCourse(input.courseId);
+        
+        // Fetch user info for each topic
+        const topicsWithUsers = await Promise.all(
+          topics.map(async (topic) => {
+            const user = await db.getUserById(topic.userId);
+            return {
+              ...topic,
+              author: user ? { name: user.name, email: user.email } : null
+            };
+          })
+        );
+        
+        return topicsWithUsers;
+      }),
+    
+    getTopic: protectedProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input, ctx }) => {
+        const topic = await db.getForumTopicById(input.id);
+        if (!topic) {
+          throw new TRPCError({ code: 'NOT_FOUND', message: 'Topic not found' });
+        }
+        
+        // Check if user is enrolled
+        const isEnrolled = await db.isUserEnrolledInCourse(ctx.user.id, topic.courseId);
+        if (!isEnrolled) {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Access denied' });
+        }
+        
+        const author = await db.getUserById(topic.userId);
+        const replies = await db.getForumRepliesByTopic(input.id);
+        
+        // Fetch user info for each reply
+        const repliesWithUsers = await Promise.all(
+          replies.map(async (reply) => {
+            const user = await db.getUserById(reply.userId);
+            return {
+              ...reply,
+              author: user ? { name: user.name, email: user.email } : null
+            };
+          })
+        );
+        
+        return {
+          ...topic,
+          author: author ? { name: author.name, email: author.email } : null,
+          replies: repliesWithUsers
+        };
+      }),
+    
+    createTopic: protectedProcedure
+      .input(z.object({
+        courseId: z.number(),
+        title: z.string().min(1),
+        content: z.string().min(1)
+      }))
+      .mutation(async ({ input, ctx }) => {
+        // Check if user is enrolled
+        const isEnrolled = await db.isUserEnrolledInCourse(ctx.user.id, input.courseId);
+        if (!isEnrolled) {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'You must be enrolled to create topics' });
+        }
+        
+        await db.createForumTopic({
+          courseId: input.courseId,
+          userId: ctx.user.id,
+          title: input.title,
+          content: input.content
+        });
+        
+        return { success: true };
+      }),
+    
+    createReply: protectedProcedure
+      .input(z.object({
+        topicId: z.number(),
+        content: z.string().min(1)
+      }))
+      .mutation(async ({ input, ctx }) => {
+        const topic = await db.getForumTopicById(input.topicId);
+        if (!topic) {
+          throw new TRPCError({ code: 'NOT_FOUND', message: 'Topic not found' });
+        }
+        
+        // Check if user is enrolled
+        const isEnrolled = await db.isUserEnrolledInCourse(ctx.user.id, topic.courseId);
+        if (!isEnrolled) {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Access denied' });
+        }
+        
+        await db.createForumReply({
+          topicId: input.topicId,
+          userId: ctx.user.id,
+          content: input.content
+        });
+        
+        return { success: true };
+      }),
+    
+    deleteTopic: protectedProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input, ctx }) => {
+        const topic = await db.getForumTopicById(input.id);
+        if (!topic) {
+          throw new TRPCError({ code: 'NOT_FOUND', message: 'Topic not found' });
+        }
+        
+        // Only author or admin can delete
+        if (topic.userId !== ctx.user.id && ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Access denied' });
+        }
+        
+        await db.deleteForumTopic(input.id);
+        return { success: true };
+      }),
+    
+    deleteReply: protectedProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input, ctx }) => {
+        // For simplicity, only admins can delete replies
+        // You could extend this to allow users to delete their own replies
+        if (ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Admin access required' });
+        }
+        
+        await db.deleteForumReply(input.id);
+        return { success: true };
+      }),
   }),
 });
 
