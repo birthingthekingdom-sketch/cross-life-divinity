@@ -2,6 +2,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { PullToRefresh } from "@/components/PullToRefresh";
 import { trpc } from "@/lib/trpc";
 import { Award, BookOpen, GraduationCap, LogOut, TrendingUp } from "lucide-react";
 import { Link } from "wouter";
@@ -9,8 +10,16 @@ import { useMemo } from "react";
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
+  const utils = trpc.useUtils();
   const { data: courses, isLoading: coursesLoading } = trpc.courses.list.useQuery();
   const { data: allProgress } = trpc.progress.getAll.useQuery();
+  
+  const handleRefresh = async () => {
+    await Promise.all([
+      utils.courses.list.invalidate(),
+      utils.progress.getAll.invalidate()
+    ]);
+  };
 
   // Calculate progress for each course
   const courseProgress = useMemo(() => {
@@ -43,7 +52,8 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">
+    <PullToRefresh onRefresh={handleRefresh}>
+      <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5 pb-20 md:pb-8">
       {/* Header */}
       <header className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-lg">
         <div className="container py-6">
@@ -169,5 +179,6 @@ export default function Dashboard() {
         )}
       </div>
     </div>
+    </PullToRefresh>
   );
 }

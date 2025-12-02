@@ -3,6 +3,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
+import { InstallPrompt } from "./components/InstallPrompt";
+import { MobileNav } from "./components/MobileNav";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
@@ -50,7 +52,9 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
+          <InstallPrompt />
           <Router />
+          <MobileNav />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
