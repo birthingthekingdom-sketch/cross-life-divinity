@@ -40,7 +40,12 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-primary via-primary/90 to-primary/70 flex items-center justify-center p-4">
       <div className="max-w-2xl mx-auto text-center text-white">
         <div className="mb-8 inline-block bg-white/10 backdrop-blur-sm p-6 rounded-full">
-          <GraduationCap className="h-20 w-20" />
+          <img 
+            src="/logo.png" 
+            alt="Cross Life School of Divinity" 
+            className="h-20 w-20 object-contain"
+            style={{ filter: 'brightness(0) invert(1)' }}
+          />
         </div>
         
         <h1 className="text-5xl font-bold mb-4">

@@ -23,9 +23,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <div className="container py-4">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <Link href="/dashboard" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
-              <div className="bg-primary-foreground/20 p-2 rounded-lg">
-                <GraduationCap className="h-6 w-6" />
-              </div>
+              <img 
+                src="/logo.png" 
+                alt="Cross Life School of Divinity" 
+                className="h-12 w-12 object-contain filter brightness-0 invert"
+                style={{ filter: 'brightness(0) invert(1)' }}
+              />
               <div>
                 <h1 className="text-xl font-bold">Cross Life School of Divinity</h1>
               </div>
