@@ -103,3 +103,18 @@
 - [ ] Test full suite enrollment
 - [ ] Test access restrictions
 - [ ] Create final checkpoint
+
+## Convert Lessons to Separate Courses
+
+### Remove Added Lessons
+- [x] Delete Deliverance lesson from DIV104
+- [x] Delete Prophecy lesson from DIV104
+- [x] Delete Fivefold Ministry lesson from DIV106
+- [x] Update course lesson counts
+### Create New Courses
+- [x] Create DIV108: Deliverance Ministry course
+- [x] Create DIV109: The Fivefold Ministry course
+- [x] Create DIV110: Prophecy & Prophetic Office course
+- [x] Add starter lesson content to each course (3 lessons each)
+- [x] Add quiz questions for each lesson
+- [ ] Update total course count to 10
