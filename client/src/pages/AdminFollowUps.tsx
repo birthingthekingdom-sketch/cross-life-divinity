@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { trpc } from "@/lib/trpc";
-import { Plus, CheckCircle2, XCircle, Clock, AlertCircle } from "lucide-react";
+import { Plus, CheckCircle2, XCircle, Clock, AlertCircle, Users } from "lucide-react";
 import { toast } from "sonner";
 import { useLocation } from "wouter";
 
@@ -18,6 +18,8 @@ export default function AdminFollowUps() {
   const { user } = useAuth();
   const [, setLocation] = useLocation();
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+  const [isBulkCreateDialogOpen, setIsBulkCreateDialogOpen] = useState(false);
+  const [selectedStudents, setSelectedStudents] = useState<number[]>([]);
   const [selectedStatus, setSelectedStatus] = useState<'all' | 'pending' | 'completed' | 'cancelled'>('all');
   
   // Form state
@@ -80,6 +82,31 @@ export default function AdminFollowUps() {
     });
   };
 
+  const handleBulkCreate = async () => {
+    if (selectedStudents.length === 0 || !formData.title) {
+      toast.error("Please select students and enter a title");
+      return;
+    }
+
+    try {
+      for (const studentId of selectedStudents) {
+        await createFollowUpMutation.mutateAsync({
+          studentId,
+          title: formData.title,
+          notes: formData.notes || undefined,
+          priority: formData.priority,
+          dueDate: formData.dueDate || undefined
+        });
+      }
+      toast.success(`Created ${selectedStudents.length} follow-ups successfully`);
+      setIsBulkCreateDialogOpen(false);
+      setSelectedStudents([]);
+      resetForm();
+    } catch (error) {
+      // Error already handled by mutation
+    }
+  };
+
   const handleCreateFollowUp = () => {
     if (!formData.studentId || !formData.title) {
       toast.error("Please fill in all required fields");
@@ -132,13 +159,127 @@ export default function AdminFollowUps() {
             <p className="text-muted-foreground mt-1">Track and manage student engagement</p>
           </div>
           
-          <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
-            <DialogTrigger asChild>
-              <Button>
-                <Plus className="h-4 w-4 mr-2" />
-                New Follow-Up
-              </Button>
-            </DialogTrigger>
+          <div className="flex gap-2">
+            <Dialog open={isBulkCreateDialogOpen} onOpenChange={setIsBulkCreateDialogOpen}>
+              <DialogTrigger asChild>
+                <Button variant="outline">
+                  <Users className="h-4 w-4 mr-2" />
+                  Bulk Create
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle>Bulk Create Follow-Ups</DialogTitle>
+                  <DialogDescription>
+                    Select multiple students and create follow-ups for all of them at once
+                  </DialogDescription>
+                </DialogHeader>
+                
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label>Select Students</Label>
+                    <div className="border rounded-lg p-4 max-h-60 overflow-y-auto space-y-2">
+                      {students?.map((student) => (
+                        <label key={student.id} className="flex items-center gap-2 cursor-pointer hover:bg-accent p-2 rounded">
+                          <input
+                            type="checkbox"
+                            checked={selectedStudents.includes(student.id)}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setSelectedStudents([...selectedStudents, student.id]);
+                              } else {
+                                setSelectedStudents(selectedStudents.filter(id => id !== student.id));
+                              }
+                            }}
+                            className="h-4 w-4"
+                          />
+                          <span className="text-sm">
+                            {student.name || student.email}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      {selectedStudents.length} student{selectedStudents.length !== 1 ? 's' : ''} selected
+                    </p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="bulk-title">Follow-Up Title *</Label>
+                    <Input
+                      id="bulk-title"
+                      value={formData.title}
+                      onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                      placeholder="e.g., Check course progress"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="bulk-notes">Notes</Label>
+                    <Textarea
+                      id="bulk-notes"
+                      value={formData.notes}
+                      onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                      placeholder="Add context for this follow-up..."
+                      rows={3}
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="bulk-priority">Priority</Label>
+                      <Select value={formData.priority} onValueChange={(value: any) => setFormData({ ...formData, priority: value })}>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="low">Low</SelectItem>
+                          <SelectItem value="medium">Medium</SelectItem>
+                          <SelectItem value="high">High</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="bulk-dueDate">Due Date (Optional)</Label>
+                      <Input
+                        id="bulk-dueDate"
+                        type="date"
+                        value={formData.dueDate}
+                        onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <DialogFooter>
+                  <Button variant="outline" onClick={() => {
+                    setIsBulkCreateDialogOpen(false);
+                    setSelectedStudents([]);
+                    resetForm();
+                  }}>
+                    Cancel
+                  </Button>
+                  <Button 
+                    onClick={handleBulkCreate}
+                    disabled={selectedStudents.length === 0 || !formData.title || createFollowUpMutation.isPending}
+                  >
+                    {createFollowUpMutation.isPending 
+                      ? `Creating ${selectedStudents.length} follow-ups...` 
+                      : `Create ${selectedStudents.length} Follow-Up${selectedStudents.length !== 1 ? 's' : ''}`
+                    }
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+            
+            <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+              <DialogTrigger asChild>
+                <Button>
+                  <Plus className="h-4 w-4 mr-2" />
+                  New Follow-Up
+                </Button>
+              </DialogTrigger>
             <DialogContent className="max-w-2xl">
               <DialogHeader>
                 <DialogTitle>Create Follow-Up</DialogTitle>
@@ -222,6 +363,7 @@ export default function AdminFollowUps() {
               </DialogFooter>
             </DialogContent>
           </Dialog>
+          </div>
         </div>
 
         {/* Status Filter */}

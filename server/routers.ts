@@ -4,6 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 import * as db from "./db";
+import * as email from "./email";
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -647,6 +648,19 @@ export const appRouter = router({
           adminId: ctx.user.id,
           dueDate: input.dueDate ? new Date(input.dueDate) : undefined
         });
+        
+        // Send email notification
+        const student = await db.getUserById(input.studentId);
+        if (student && ctx.user.email) {
+          await email.sendFollowUpCreatedEmail(
+            ctx.user.email,
+            ctx.user.name || 'Admin',
+            student.name || student.email || 'Student',
+            input.title,
+            input.dueDate ? new Date(input.dueDate) : undefined
+          );
+        }
+        
         return { success: true, id };
       }),
     
@@ -671,8 +685,25 @@ export const appRouter = router({
         id: z.number(),
         status: z.enum(['pending', 'completed', 'cancelled'])
       }))
-      .mutation(async ({ input }) => {
+      .mutation(async ({ input, ctx }) => {
         await db.updateFollowUpStatus(input.id, input.status);
+        
+        // Send email notification when completed
+        if (input.status === 'completed') {
+          const followUp = await db.getFollowUpById(input.id);
+          if (followUp && ctx.user.email) {
+            const student = await db.getUserById(followUp.studentId);
+            if (student) {
+              await email.sendFollowUpCompletedEmail(
+                ctx.user.email,
+                ctx.user.name || 'Admin',
+                student.name || student.email || 'Student',
+                followUp.title
+              );
+            }
+          }
+        }
+        
         return { success: true };
       }),
     
@@ -702,6 +733,10 @@ export const appRouter = router({
   }),
   
   webinars: router({
+    getAll: protectedProcedure.query(async () => {
+      return db.getAllWebinars();
+    }),
+    
     getUpcoming: protectedProcedure.query(async () => {
       return db.getUpcomingWebinars();
     }),

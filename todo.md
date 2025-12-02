@@ -249,3 +249,27 @@
 - [x] Implement follow-up status tracking (pending, completed, cancelled)
 - [ ] Add follow-up notifications and reminders
 - [x] Create follow-up history view
+
+## Email Notifications for Follow-Ups
+- [x] Add email template for new follow-up creation
+- [x] Send email to admin when follow-up is created
+- [x] Add email reminder for due follow-ups
+- [x] Send notification when follow-up is completed
+- [x] Add email settings for follow-up notifications
+
+## Webinar UI Completion
+- [x] Create student webinar calendar page
+- [x] Display upcoming webinars with join links
+- [x] Show past webinars with recording links
+- [x] Build admin webinar scheduling interface
+- [x] Add webinar creation form
+- [x] Implement webinar edit/delete functionality
+- [x] Add webinar to course detail pages
+
+## Bulk Follow-Up Creation
+- [x] Add bulk follow-up creation dialog
+- [x] Implement student filtering (inactive, low scores, incomplete courses)
+- [x] Add date range filters for activity
+- [x] Create multiple follow-ups at once
+- [x] Add preview of selected students before creation
+- [ ] Implement bulk status updates

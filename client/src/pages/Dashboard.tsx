@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { PullToRefresh } from "@/components/PullToRefresh";
 import { trpc } from "@/lib/trpc";
-import { Award, BookOpen, GraduationCap, LogOut, TrendingUp } from "lucide-react";
+import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video } from "lucide-react";
 import { Link } from "wouter";
 import { useMemo } from "react";
 
@@ -68,6 +68,16 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex items-center gap-4">
+              <Link href="/webinars">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
+                >
+                  <Video className="h-4 w-4 mr-2" />
+                  Webinars
+                </Button>
+              </Link>
               <Link href="/progress">
                 <Button
                   variant="outline"

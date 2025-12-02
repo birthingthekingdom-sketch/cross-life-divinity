@@ -162,3 +162,157 @@ export async function sendCourseReminderEmail(to: string, studentName: string, c
     return false;
   }
 }
+
+// Follow-Up Email Notifications
+export async function sendFollowUpCreatedEmail(
+  adminEmail: string,
+  adminName: string,
+  studentName: string,
+  followUpTitle: string,
+  dueDate?: Date
+) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  const dueDateText = dueDate 
+    ? `<p><strong>Due Date:</strong> ${dueDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>`
+    : '';
+
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to: adminEmail,
+      subject: `Follow-Up Created: ${studentName}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #1e40af;">📋 New Follow-Up Created</h2>
+          <p>Hello ${adminName},</p>
+          <p>A new follow-up has been created for student engagement tracking:</p>
+          
+          <div style="background-color: #eff6ff; padding: 16px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 0;"><strong>Student:</strong> ${studentName}</p>
+            <p style="margin: 8px 0 0 0;"><strong>Task:</strong> ${followUpTitle}</p>
+            ${dueDateText}
+          </div>
+          
+          <p>Please follow up with this student to ensure continued engagement.</p>
+          
+          <p style="margin-top: 30px;">
+            <a href="https://cross-life-divinity.manus.space/admin/follow-ups" 
+               style="background-color: #1e40af; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
+              View Follow-Ups
+            </a>
+          </p>
+          
+          <p style="margin-top: 30px; color: #666; font-size: 14px;">
+            Cross Life School of Divinity<br>
+            Admin Notification System
+          </p>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send follow-up created email:', error);
+    return false;
+  }
+}
+
+export async function sendFollowUpDueReminderEmail(
+  adminEmail: string,
+  adminName: string,
+  studentName: string,
+  followUpTitle: string,
+  dueDate: Date
+) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to: adminEmail,
+      subject: `⏰ Follow-Up Due: ${studentName}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #dc2626;">⏰ Follow-Up Due Reminder</h2>
+          <p>Hello ${adminName},</p>
+          <p>This is a reminder that a follow-up task is due soon:</p>
+          
+          <div style="background-color: #fef2f2; padding: 16px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #dc2626;">
+            <p style="margin: 0;"><strong>Student:</strong> ${studentName}</p>
+            <p style="margin: 8px 0 0 0;"><strong>Task:</strong> ${followUpTitle}</p>
+            <p style="margin: 8px 0 0 0;"><strong>Due Date:</strong> ${dueDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          </div>
+          
+          <p>Please complete this follow-up to maintain student engagement.</p>
+          
+          <p style="margin-top: 30px;">
+            <a href="https://cross-life-divinity.manus.space/admin/follow-ups" 
+               style="background-color: #dc2626; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
+              View Follow-Ups
+            </a>
+          </p>
+          
+          <p style="margin-top: 30px; color: #666; font-size: 14px;">
+            Cross Life School of Divinity<br>
+            Admin Notification System
+          </p>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send follow-up due reminder email:', error);
+    return false;
+  }
+}
+
+export async function sendFollowUpCompletedEmail(
+  adminEmail: string,
+  adminName: string,
+  studentName: string,
+  followUpTitle: string
+) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to: adminEmail,
+      subject: `✅ Follow-Up Completed: ${studentName}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #16a34a;">✅ Follow-Up Completed</h2>
+          <p>Hello ${adminName},</p>
+          <p>A follow-up task has been marked as completed:</p>
+          
+          <div style="background-color: #f0fdf4; padding: 16px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #16a34a;">
+            <p style="margin: 0;"><strong>Student:</strong> ${studentName}</p>
+            <p style="margin: 8px 0 0 0;"><strong>Task:</strong> ${followUpTitle}</p>
+            <p style="margin: 8px 0 0 0;"><strong>Status:</strong> Completed</p>
+          </div>
+          
+          <p>Great work on maintaining student engagement!</p>
+          
+          <p style="margin-top: 30px;">
+            <a href="https://cross-life-divinity.manus.space/admin/follow-ups" 
+               style="background-color: #16a34a; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
+              View All Follow-Ups
+            </a>
+          </p>
+          
+          <p style="margin-top: 30px; color: #666; font-size: 14px;">
+            Cross Life School of Divinity<br>
+            Admin Notification System
+          </p>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send follow-up completed email:', error);
+    return false;
+  }
+}
