@@ -351,3 +351,17 @@
 - [ ] Show active sessions with revoke option
 - [ ] Add security notifications preferences
 - [ ] Create account deletion option
+
+## Email Verification Enforcement
+- [x] Add middleware to check email verification status
+- [x] Display verification banner for unverified users
+- [ ] Block course access until email is verified (optional - currently allows access)
+- [x] Add resend verification link to banner
+
+## Automated Security Alerts
+- [ ] Create security alert email templates
+- [ ] Detect new device logins
+- [ ] Monitor unusual login locations
+- [ ] Track multiple failed login attempts
+- [ ] Send email alerts for suspicious activity
+- [ ] Add security alert preferences to user settings
