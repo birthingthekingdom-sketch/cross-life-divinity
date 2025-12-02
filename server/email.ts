@@ -316,3 +316,38 @@ export async function sendFollowUpCompletedEmail(
     return false;
   }
 }
+
+export async function sendPasswordResetEmail(to: string, resetToken: string) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  const resetUrl = `${process.env.VITE_FRONTEND_FORGE_API_URL || 'http://localhost:3000'}/reset-password?token=${resetToken}`;
+
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to,
+      subject: 'Password Reset Request - Cross Life School of Divinity',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #1e40af;">Password Reset Request</h2>
+          <p>You requested to reset your password for Cross Life School of Divinity.</p>
+          <p>Click the button below to reset your password:</p>
+          <p style="margin: 30px 0;">
+            <a href="${resetUrl}" style="background-color: #1e40af; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; display: inline-block;">Reset Password</a>
+          </p>
+          <p style="color: #666; font-size: 14px;">Or copy and paste this link into your browser:</p>
+          <p style="color: #666; font-size: 14px; word-break: break-all;">${resetUrl}</p>
+          <p style="color: #666; font-size: 14px; margin-top: 30px;">This link will expire in 1 hour.</p>
+          <p style="color: #666; font-size: 14px;">If you didn't request this, please ignore this email.</p>
+          <br/>
+          <p>Blessings,<br/>Cross Life School of Divinity Team</p>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send password reset email:', error);
+    return false;
+  }
+}

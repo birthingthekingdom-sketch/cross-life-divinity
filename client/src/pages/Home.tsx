@@ -1,6 +1,6 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { getLoginUrl } from "@/const";
+import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { GraduationCap, Loader2 } from "lucide-react";
 import { useEffect } from "react";
@@ -90,16 +90,28 @@ export default function Home() {
           </ul>
         </div>
 
-        <Button
-          size="lg"
-          className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6"
-          onClick={() => window.location.href = getLoginUrl()}
-        >
-          Sign In to Get Started
-        </Button>
+        <div className="flex gap-4 justify-center">
+          <Link href="/login">
+            <Button
+              size="lg"
+              className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6"
+            >
+              Sign In
+            </Button>
+          </Link>
+          <Link href="/register">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white/10 text-lg px-8 py-6"
+            >
+              Sign Up
+            </Button>
+          </Link>
+        </div>
 
         <p className="mt-6 text-sm text-white/70">
-          You'll need an access code from your administrator to enroll
+          New students will need an access code from your administrator to enroll in courses
         </p>
       </div>
     </div>

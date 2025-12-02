@@ -64,6 +64,13 @@
       "when": 1764657042568,
       "tag": "0008_aberrant_mystique",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1764661661107,
+      "tag": "0009_clumsy_wiccan",
+      "breakpoints": true
     }
   ]
 }

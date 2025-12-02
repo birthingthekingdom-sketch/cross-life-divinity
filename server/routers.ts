@@ -8,6 +8,7 @@ import * as email from "./email";
 import * as scheduler from "./scheduler";
 import * as analytics from "./analytics";
 import * as csvExport from "./csv-export";
+import { authRouter } from "./auth-router";
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -20,8 +21,9 @@ const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
 export const appRouter = router({
   system: systemRouter,
 
+  // Merge custom auth router with existing auth endpoints
   auth: router({
-    me: publicProcedure.query(opts => opts.ctx.user),
+    ...authRouter._def.procedures,
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });

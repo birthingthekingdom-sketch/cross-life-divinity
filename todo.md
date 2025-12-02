@@ -308,3 +308,20 @@
 - [x] Add logo to PWA manifest
 - [x] Update favicon with logo
 - [x] Test logo display across all pages
+
+## Custom Email/Password Authentication
+- [x] Install bcrypt for password hashing
+- [x] Add password field to users table schema
+- [x] Create password reset tokens table
+- [x] Build registration API endpoint
+- [x] Build login API endpoint with JWT
+- [x] Implement password hashing and verification
+- [x] Create registration page UI
+- [x] Create login page UI
+- [x] Add password strength validation
+- [x] Implement "forgot password" flow
+- [x] Create password reset page
+- [ ] Add email verification (optional)
+- [x] Update AuthContext to use custom auth
+- [ ] Remove Manus OAuth dependencies (OAuth still available as fallback)
+- [x] Test registration and login flows
