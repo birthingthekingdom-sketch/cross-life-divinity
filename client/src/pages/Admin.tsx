@@ -113,6 +113,20 @@ export default function Admin() {
               </CardHeader>
             </Card>
           </Link>
+          
+          <Link href="/admin/follow-ups">
+            <Card className="hover:shadow-md transition-shadow cursor-pointer">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Users className="h-5 w-5" />
+                  Student Follow-Ups
+                </CardTitle>
+                <CardDescription>
+                  Track and manage student engagement
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
         </div>
 
         {/* Stats Cards */}

@@ -106,7 +106,7 @@ export default function Dashboard() {
       <div className="container py-8">
         <div className="bg-card border border-border rounded-lg p-6 shadow-sm mb-8">
           <h2 className="text-2xl font-bold text-foreground mb-2">
-            Welcome, {user?.name?.split(' ')[0] || "Student"}!
+            Welcome!
           </h2>
           <p className="text-muted-foreground">
             Continue your theological education journey. Select a course below to begin or continue your studies.

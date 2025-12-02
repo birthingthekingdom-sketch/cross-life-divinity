@@ -250,3 +250,23 @@ export const webinars = mysqlTable("webinars", {
 
 export type Webinar = typeof webinars.$inferSelect;
 export type InsertWebinar = typeof webinars.$inferInsert;
+
+/**
+ * Student follow-ups for tracking engagement and outreach
+ */
+export const followUps = mysqlTable("follow_ups", {
+  id: int("id").autoincrement().primaryKey(),
+  studentId: int("studentId").notNull(), // User ID of the student
+  adminId: int("adminId").notNull(), // User ID of the admin creating the follow-up
+  title: varchar("title", { length: 255 }).notNull(),
+  notes: text("notes"),
+  status: mysqlEnum("status", ["pending", "completed", "cancelled"]).default("pending").notNull(),
+  priority: mysqlEnum("priority", ["low", "medium", "high"]).default("medium").notNull(),
+  dueDate: timestamp("dueDate"),
+  completedAt: timestamp("completedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type FollowUp = typeof followUps.$inferSelect;
+export type InsertFollowUp = typeof followUps.$inferInsert;

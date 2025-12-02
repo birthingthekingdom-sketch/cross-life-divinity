@@ -239,3 +239,13 @@
 - [x] Change "Welcome back" to "Welcome" on Dashboard
 - [x] Remove "Christ Family Network" organization name from header
 - [x] Remove email address from header
+
+## Follow-Up System
+- [x] Remove "Christ" from welcome message (make it generic)
+- [x] Create follow-ups database table (student, admin, status, notes, due date)
+- [x] Add follow-up API endpoints (create, list, update, delete)
+- [x] Build admin follow-up dashboard
+- [x] Add follow-up creation from student profiles
+- [x] Implement follow-up status tracking (pending, completed, cancelled)
+- [ ] Add follow-up notifications and reminders
+- [x] Create follow-up history view

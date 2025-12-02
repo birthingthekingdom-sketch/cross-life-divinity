@@ -15,7 +15,8 @@ import {
   courseEnrollments, InsertCourseEnrollment, CourseEnrollment,
   forumTopics, InsertForumTopic, ForumTopic,
   forumReplies, InsertForumReply, ForumReply,
-  webinars, InsertWebinar, Webinar
+  webinars, InsertWebinar, Webinar,
+  followUps, InsertFollowUp, FollowUp
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -784,4 +785,147 @@ export async function getWebinarsByCourse(courseId: number) {
       eq(webinars.isActive, true)
     ))
     .orderBy(webinars.scheduledAt);
+}
+
+// ============================================================
+// Follow-Ups
+// ============================================================
+
+export async function createFollowUp(data: {
+  studentId: number;
+  adminId: number;
+  title: string;
+  notes?: string;
+  priority?: 'low' | 'medium' | 'high';
+  dueDate?: Date;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const result = await db.insert(followUps).values(data);
+  return Number(result[0].insertId);
+}
+
+export async function getFollowUpById(id: number) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const result = await db
+    .select()
+    .from(followUps)
+    .where(eq(followUps.id, id))
+    .limit(1);
+  return result[0] || null;
+}
+
+export async function getAllFollowUps() {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db
+    .select({
+      id: followUps.id,
+      studentId: followUps.studentId,
+      studentName: users.name,
+      studentEmail: users.email,
+      adminId: followUps.adminId,
+      title: followUps.title,
+      notes: followUps.notes,
+      status: followUps.status,
+      priority: followUps.priority,
+      dueDate: followUps.dueDate,
+      completedAt: followUps.completedAt,
+      createdAt: followUps.createdAt,
+      updatedAt: followUps.updatedAt,
+    })
+    .from(followUps)
+    .leftJoin(users, eq(followUps.studentId, users.id))
+    .orderBy(desc(followUps.createdAt));
+}
+
+export async function getFollowUpsByStudent(studentId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db
+    .select()
+    .from(followUps)
+    .where(eq(followUps.studentId, studentId))
+    .orderBy(desc(followUps.createdAt));
+}
+
+export async function getFollowUpsByStatus(status: 'pending' | 'completed' | 'cancelled') {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db
+    .select({
+      id: followUps.id,
+      studentId: followUps.studentId,
+      studentName: users.name,
+      studentEmail: users.email,
+      adminId: followUps.adminId,
+      title: followUps.title,
+      notes: followUps.notes,
+      status: followUps.status,
+      priority: followUps.priority,
+      dueDate: followUps.dueDate,
+      completedAt: followUps.completedAt,
+      createdAt: followUps.createdAt,
+      updatedAt: followUps.updatedAt,
+    })
+    .from(followUps)
+    .leftJoin(users, eq(followUps.studentId, users.id))
+    .where(eq(followUps.status, status))
+    .orderBy(desc(followUps.createdAt));
+}
+
+export async function updateFollowUpStatus(
+  id: number,
+  status: 'pending' | 'completed' | 'cancelled'
+) {
+  const db = await getDb();
+  if (!db) return;
+  
+  const updateData: any = { status };
+  if (status === 'completed') {
+    updateData.completedAt = new Date();
+  }
+  
+  await db
+    .update(followUps)
+    .set(updateData)
+    .where(eq(followUps.id, id));
+}
+
+export async function updateFollowUp(
+  id: number,
+  data: {
+    title?: string;
+    notes?: string;
+    priority?: 'low' | 'medium' | 'high';
+    dueDate?: Date;
+  }
+) {
+  const db = await getDb();
+  if (!db) return;
+  
+  await db
+    .update(followUps)
+    .set(data)
+    .where(eq(followUps.id, id));
+}
+
+export async function deleteFollowUp(id: number) {
+  const db = await getDb();
+  if (!db) return;
+  
+  await db.delete(followUps).where(eq(followUps.id, id));
+}
+
+export async function getAllUsers() {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select().from(users).orderBy(desc(users.createdAt));
 }

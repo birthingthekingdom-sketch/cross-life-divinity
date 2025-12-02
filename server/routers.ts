@@ -442,6 +442,10 @@ export const appRouter = router({
   }),
 
   admin: router({
+    getAllUsers: adminProcedure.query(async () => {
+      return db.getAllUsers();
+    }),
+    
     getAccessCodes: adminProcedure.query(async () => {
       return db.getAllAccessCodes();
     }),
@@ -625,6 +629,74 @@ export const appRouter = router({
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         await db.deleteWebinar(input.id);
+        return { success: true };
+      }),
+    
+    // Follow-Up Management
+    createFollowUp: adminProcedure
+      .input(z.object({
+        studentId: z.number(),
+        title: z.string(),
+        notes: z.string().optional(),
+        priority: z.enum(['low', 'medium', 'high']).optional(),
+        dueDate: z.string().optional()
+      }))
+      .mutation(async ({ input, ctx }) => {
+        const id = await db.createFollowUp({
+          ...input,
+          adminId: ctx.user.id,
+          dueDate: input.dueDate ? new Date(input.dueDate) : undefined
+        });
+        return { success: true, id };
+      }),
+    
+    getAllFollowUps: adminProcedure.query(async () => {
+      return db.getAllFollowUps();
+    }),
+    
+    getFollowUpsByStatus: adminProcedure
+      .input(z.object({ status: z.enum(['pending', 'completed', 'cancelled']) }))
+      .query(async ({ input }) => {
+        return db.getFollowUpsByStatus(input.status);
+      }),
+    
+    getFollowUpsByStudent: adminProcedure
+      .input(z.object({ studentId: z.number() }))
+      .query(async ({ input }) => {
+        return db.getFollowUpsByStudent(input.studentId);
+      }),
+    
+    updateFollowUpStatus: adminProcedure
+      .input(z.object({
+        id: z.number(),
+        status: z.enum(['pending', 'completed', 'cancelled'])
+      }))
+      .mutation(async ({ input }) => {
+        await db.updateFollowUpStatus(input.id, input.status);
+        return { success: true };
+      }),
+    
+    updateFollowUp: adminProcedure
+      .input(z.object({
+        id: z.number(),
+        title: z.string().optional(),
+        notes: z.string().optional(),
+        priority: z.enum(['low', 'medium', 'high']).optional(),
+        dueDate: z.string().optional()
+      }))
+      .mutation(async ({ input }) => {
+        const { id, dueDate, ...rest } = input;
+        await db.updateFollowUp(id, {
+          ...rest,
+          dueDate: dueDate ? new Date(dueDate) : undefined
+        });
+        return { success: true };
+      }),
+    
+    deleteFollowUp: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await db.deleteFollowUp(input.id);
         return { success: true };
       }),
   }),
