@@ -35,17 +35,41 @@ export const appRouter = router({
           throw new TRPCError({ code: 'BAD_REQUEST', message: 'Invalid or inactive access code' });
         }
         
-        const existing = await db.getUserEnrollment(ctx.user.id);
-        if (existing) {
-          return { success: true, alreadyEnrolled: true };
+        // Get courses linked to this access code
+        const accessCodeCourses = await db.getAccessCodeCourses(code.id);
+        
+        if (accessCodeCourses.length === 0) {
+          throw new TRPCError({ code: 'BAD_REQUEST', message: 'This access code is not linked to any courses' });
         }
         
-        await db.createEnrollment({
-          userId: ctx.user.id,
-          accessCodeId: code.id
-        });
+        // Enroll user in all courses linked to this access code
+        let newEnrollments = 0;
+        for (const acc of accessCodeCourses) {
+          const alreadyEnrolled = await db.isUserEnrolledInCourse(ctx.user.id, acc.courseId);
+          if (!alreadyEnrolled) {
+            await db.createCourseEnrollment({
+              userId: ctx.user.id,
+              courseId: acc.courseId,
+              accessCodeId: code.id
+            });
+            newEnrollments++;
+          }
+        }
         
-        return { success: true, alreadyEnrolled: false };
+        // Also create legacy enrollment record for compatibility
+        const existing = await db.getUserEnrollment(ctx.user.id);
+        if (!existing) {
+          await db.createEnrollment({
+            userId: ctx.user.id,
+            accessCodeId: code.id
+          });
+        }
+        
+        return { 
+          success: true, 
+          coursesEnrolled: accessCodeCourses.length,
+          newEnrollments
+        };
       }),
     
     checkEnrollment: protectedProcedure.query(async ({ ctx }) => {
@@ -55,9 +79,27 @@ export const appRouter = router({
   }),
 
   courses: router({
-    list: protectedProcedure.query(async () => {
+    list: protectedProcedure.query(async ({ ctx }) => {
+      // Admins see all courses, students see only enrolled courses
+      if (ctx.user.role === 'admin') {
+        return db.getAllCourses();
+      }
+      return db.getEnrolledCourses(ctx.user.id);
+    }),
+    
+    listAll: adminProcedure.query(async () => {
       return db.getAllCourses();
     }),
+    
+    checkEnrollment: protectedProcedure
+      .input(z.object({ courseId: z.number() }))
+      .query(async ({ ctx, input }) => {
+        if (ctx.user.role === 'admin') {
+          return { enrolled: true };
+        }
+        const enrolled = await db.isUserEnrolledInCourse(ctx.user.id, input.courseId);
+        return { enrolled };
+      }),
     
     getById: protectedProcedure
       .input(z.object({ id: z.number() }))
@@ -382,6 +424,32 @@ export const appRouter = router({
       .input(z.object({ id: z.number(), isActive: z.boolean() }))
       .mutation(async ({ input }) => {
         await db.updateAccessCode(input.id, input.isActive);
+        return { success: true };
+      }),
+    
+    getAccessCodeCourses: adminProcedure
+      .input(z.object({ accessCodeId: z.number() }))
+      .query(async ({ input }) => {
+        return db.getAccessCodeCourses(input.accessCodeId);
+      }),
+    
+    assignCoursesToAccessCode: adminProcedure
+      .input(z.object({ 
+        accessCodeId: z.number(), 
+        courseIds: z.array(z.number()) 
+      }))
+      .mutation(async ({ input }) => {
+        // Delete existing assignments
+        await db.deleteAccessCodeCourses(input.accessCodeId);
+        
+        // Create new assignments
+        for (const courseId of input.courseIds) {
+          await db.createAccessCodeCourse({
+            accessCodeId: input.accessCodeId,
+            courseId
+          });
+        }
+        
         return { success: true };
       }),
   }),

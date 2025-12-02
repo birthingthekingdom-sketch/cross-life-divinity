@@ -8,7 +8,8 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { trpc } from "@/lib/trpc";
-import { BookOpen, Code, Edit, GraduationCap, Key, Loader2, Plus, Users } from "lucide-react";
+import { BookOpen, Code, Edit, GraduationCap, Key, Loader2, Plus, Settings, Users } from "lucide-react";
+import AssignCoursesDialog from "@/components/AssignCoursesDialog";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Link } from "wouter";
@@ -17,8 +18,10 @@ export default function Admin() {
   const { user } = useAuth();
   const [newAccessCode, setNewAccessCode] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [assignDialogOpen, setAssignDialogOpen] = useState(false);
+  const [selectedAccessCode, setSelectedAccessCode] = useState<{ id: number; code: string } | null>(null);
 
-  const { data: courses } = trpc.courses.list.useQuery();
+  const { data: courses } = trpc.courses.listAll.useQuery();
   const { data: accessCodes, refetch: refetchAccessCodes } = trpc.admin.getAccessCodes.useQuery();
 
   const createAccessCodeMutation = trpc.admin.createAccessCode.useMutation({
@@ -205,20 +208,33 @@ export default function Admin() {
                       {new Date(code.createdAt).toLocaleDateString()}
                     </TableCell>
                     <TableCell className="text-right">
-                      <div className="flex items-center justify-end gap-2">
-                        <Label htmlFor={`toggle-${code.id}`} className="text-sm">
-                          {code.isActive ? "Deactivate" : "Activate"}
-                        </Label>
-                        <Switch
-                          id={`toggle-${code.id}`}
-                          checked={code.isActive}
-                          onCheckedChange={(checked) =>
-                            toggleAccessCodeMutation.mutate({
-                              id: code.id,
-                              isActive: checked,
-                            })
-                          }
-                        />
+                      <div className="flex items-center justify-end gap-3">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            setSelectedAccessCode({ id: code.id, code: code.code });
+                            setAssignDialogOpen(true);
+                          }}
+                        >
+                          <Settings className="h-4 w-4 mr-1" />
+                          Assign Courses
+                        </Button>
+                        <div className="flex items-center gap-2">
+                          <Label htmlFor={`toggle-${code.id}`} className="text-sm">
+                            {code.isActive ? "Deactivate" : "Activate"}
+                          </Label>
+                          <Switch
+                            id={`toggle-${code.id}`}
+                            checked={code.isActive}
+                            onCheckedChange={(checked) =>
+                              toggleAccessCodeMutation.mutate({
+                                id: code.id,
+                                isActive: checked,
+                              })
+                            }
+                          />
+                        </div>
                       </div>
                     </TableCell>
                   </TableRow>
@@ -304,6 +320,17 @@ export default function Admin() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Course Assignment Dialog */}
+      {selectedAccessCode && (
+        <AssignCoursesDialog
+          accessCodeId={selectedAccessCode.id}
+          accessCode={selectedAccessCode.code}
+          open={assignDialogOpen}
+          onOpenChange={setAssignDialogOpen}
+          onSuccess={refetchAccessCodes}
+        />
+      )}
     </DashboardLayout>
   );
 }

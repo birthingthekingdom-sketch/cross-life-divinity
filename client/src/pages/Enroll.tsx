@@ -16,10 +16,10 @@ export default function Enroll() {
   
   const enrollMutation = trpc.auth.enroll.useMutation({
     onSuccess: (data) => {
-      if (data.alreadyEnrolled) {
-        toast.success("You're already enrolled!");
+      if (data.newEnrollments === 0) {
+        toast.success("You're already enrolled in these courses!");
       } else {
-        toast.success("Successfully enrolled! Welcome to Cross Life School of Divinity.");
+        toast.success(`Successfully enrolled in ${data.coursesEnrolled} course${data.coursesEnrolled > 1 ? 's' : ''}!`);
       }
       setLocation("/dashboard");
     },

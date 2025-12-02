@@ -72,3 +72,34 @@
 - [x] Add Prophecy lesson to DIV104
 - [x] Create quiz questions for new lessons
 - [x] Update course totalLessons counts
+
+## Course-Specific Enrollment System
+
+### Database Schema Updates
+- [x] Create course_enrollments table (userId, courseId, enrolledAt)
+- [x] Create access_code_courses table (accessCodeId, courseId) for many-to-many relationship
+- [x] Update access codes to support course-specific or full suite access
+- [x] Push database schema changes
+
+### Backend Logic
+- [x] Update enrollment procedure to link access codes to specific courses
+- [x] Create procedure to check if user is enrolled in a course
+- [x] Update course listing to show only enrolled courses
+- [x] Add admin procedures to assign courses to access codes
+
+### Admin Interface
+- [x] Update access code creation to select which courses to unlock
+- [x] Add UI for assigning courses to existing access codes
+- [x] Display course assignments in access code table
+
+### Student Experience
+- [x] Update dashboard to show only enrolled courses
+- [x] Update enrollment flow to register user for specific courses
+- [x] Add "My Courses" view showing enrolled courses only
+- [x] Prevent access to non-enrolled courses
+
+### Testing
+- [ ] Test individual course enrollment
+- [ ] Test full suite enrollment
+- [ ] Test access restrictions
+- [ ] Create final checkpoint

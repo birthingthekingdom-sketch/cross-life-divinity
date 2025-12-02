@@ -10,7 +10,9 @@ import {
   accessCodes, InsertAccessCode, AccessCode,
   enrollments, InsertEnrollment, Enrollment,
   quizSubmissions, InsertQuizSubmission, QuizSubmission,
-  certificates, InsertCertificate, Certificate
+  certificates, InsertCertificate, Certificate,
+  accessCodeCourses, InsertAccessCodeCourse, AccessCodeCourse,
+  courseEnrollments, InsertCourseEnrollment, CourseEnrollment
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -412,4 +414,76 @@ export async function getCertificateByNumber(certificateNumber: string): Promise
     .limit(1);
   
   return result[0];
+}
+
+// ============================================================================
+// Course Enrollment Functions
+// ============================================================================
+
+export async function createAccessCodeCourse(data: InsertAccessCodeCourse): Promise<void> {
+  const db = await getDb();
+  if (!db) return;
+  
+  await db.insert(accessCodeCourses).values(data);
+}
+
+export async function getAccessCodeCourses(accessCodeId: number): Promise<AccessCodeCourse[]> {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select().from(accessCodeCourses)
+    .where(eq(accessCodeCourses.accessCodeId, accessCodeId));
+}
+
+export async function deleteAccessCodeCourses(accessCodeId: number): Promise<void> {
+  const db = await getDb();
+  if (!db) return;
+  
+  await db.delete(accessCodeCourses)
+    .where(eq(accessCodeCourses.accessCodeId, accessCodeId));
+}
+
+export async function createCourseEnrollment(data: InsertCourseEnrollment): Promise<void> {
+  const db = await getDb();
+  if (!db) return;
+  
+  await db.insert(courseEnrollments).values(data);
+}
+
+export async function getUserEnrollments(userId: number): Promise<CourseEnrollment[]> {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select().from(courseEnrollments)
+    .where(eq(courseEnrollments.userId, userId));
+}
+
+export async function isUserEnrolledInCourse(userId: number, courseId: number): Promise<boolean> {
+  const db = await getDb();
+  if (!db) return false;
+  
+  const result = await db.select().from(courseEnrollments)
+    .where(and(
+      eq(courseEnrollments.userId, userId),
+      eq(courseEnrollments.courseId, courseId)
+    ))
+    .limit(1);
+  
+  return result.length > 0;
+}
+
+export async function getEnrolledCourses(userId: number): Promise<Course[]> {
+  const db = await getDb();
+  if (!db) return [];
+  
+  const enrollments = await db.select().from(courseEnrollments)
+    .where(eq(courseEnrollments.userId, userId));
+  
+  if (enrollments.length === 0) return [];
+  
+  const courseIds = enrollments.map(e => e.courseId);
+  
+  return db.select().from(courses)
+    .where(inArray(courses.id, courseIds))
+    .orderBy(courses.displayOrder);
 }

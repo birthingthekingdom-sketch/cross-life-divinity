@@ -40,6 +40,33 @@ export type AccessCode = typeof accessCodes.$inferSelect;
 export type InsertAccessCode = typeof accessCodes.$inferInsert;
 
 /**
+ * Junction table linking access codes to courses (many-to-many)
+ */
+export const accessCodeCourses = mysqlTable("access_code_courses", {
+  id: int("id").autoincrement().primaryKey(),
+  accessCodeId: int("accessCodeId").notNull(),
+  courseId: int("courseId").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type AccessCodeCourse = typeof accessCodeCourses.$inferSelect;
+export type InsertAccessCodeCourse = typeof accessCodeCourses.$inferInsert;
+
+/**
+ * Student course enrollments
+ */
+export const courseEnrollments = mysqlTable("course_enrollments", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  courseId: int("courseId").notNull(),
+  accessCodeId: int("accessCodeId").notNull(),
+  enrolledAt: timestamp("enrolledAt").defaultNow().notNull(),
+});
+
+export type CourseEnrollment = typeof courseEnrollments.$inferSelect;
+export type InsertCourseEnrollment = typeof courseEnrollments.$inferInsert;
+
+/**
  * Courses table
  */
 export const courses = mysqlTable("courses", {
