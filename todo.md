@@ -234,3 +234,8 @@
 - [x] Improve standalone mode detection and UI
 - [x] Add app shortcuts for quick actions
 - [x] Test installation flow on iOS Safari and Android Chrome
+
+## Header Text Updates
+- [x] Change "Welcome back" to "Welcome" on Dashboard
+- [x] Remove "Christ Family Network" organization name from header
+- [x] Remove email address from header

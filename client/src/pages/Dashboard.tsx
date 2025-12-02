@@ -68,10 +68,6 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <div className="text-right">
-                <p className="font-semibold">{user?.name || "Student"}</p>
-                <p className="text-sm text-primary-foreground/70">{user?.email}</p>
-              </div>
               <Link href="/progress">
                 <Button
                   variant="outline"
@@ -110,7 +106,7 @@ export default function Dashboard() {
       <div className="container py-8">
         <div className="bg-card border border-border rounded-lg p-6 shadow-sm mb-8">
           <h2 className="text-2xl font-bold text-foreground mb-2">
-            Welcome back, {user?.name?.split(' ')[0] || "Student"}!
+            Welcome, {user?.name?.split(' ')[0] || "Student"}!
           </h2>
           <p className="text-muted-foreground">
             Continue your theological education journey. Select a course below to begin or continue your studies.
