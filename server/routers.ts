@@ -164,6 +164,72 @@ export const appRouter = router({
         return db.getQuizQuestionsByLessonId(input.lessonId);
       }),
     
+    submitQuiz: protectedProcedure
+      .input(z.object({
+        lessonId: z.number(),
+        courseId: z.number(),
+        answers: z.array(z.object({
+          questionId: z.number(),
+          answer: z.string(),
+        })),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const questions = await db.getQuizQuestionsByLessonId(input.lessonId);
+        
+        let correctCount = 0;
+        const results = [];
+        
+        for (const answer of input.answers) {
+          const question = questions.find(q => q.id === answer.questionId);
+          if (!question) continue;
+          
+          const isCorrect = answer.answer.toLowerCase().trim() === question.correctAnswer.toLowerCase().trim();
+          if (isCorrect) correctCount++;
+          
+          await db.saveQuizAnswer({
+            userId: ctx.user.id,
+            questionId: answer.questionId,
+            answer: answer.answer,
+            isCorrect,
+          });
+          
+          results.push({
+            questionId: answer.questionId,
+            isCorrect,
+            correctAnswer: question.correctAnswer,
+          });
+        }
+        
+        const score = correctCount;
+        const totalQuestions = questions.length;
+        const passed = (score / totalQuestions) >= 0.7; // 70% passing grade
+        
+        await db.createQuizSubmission({
+          userId: ctx.user.id,
+          lessonId: input.lessonId,
+          score,
+          totalQuestions,
+          passed,
+        });
+        
+        if (passed) {
+          await db.markLessonComplete(ctx.user.id, input.courseId, input.lessonId);
+        }
+        
+        return {
+          score,
+          totalQuestions,
+          passed,
+          results,
+        };
+      }),
+    
+    getSubmission: protectedProcedure
+      .input(z.object({ lessonId: z.number() }))
+      .query(async ({ ctx, input }) => {
+        return db.getQuizSubmissionByUserAndLesson(ctx.user.id, input.lessonId);
+      }),
+    
     submitAnswer: protectedProcedure
       .input(z.object({
         questionId: z.number(),
@@ -237,6 +303,67 @@ export const appRouter = router({
         await db.markLessonComplete(ctx.user.id, input.courseId, input.lessonId);
         return { success: true };
       }),
+  }),
+
+  certificates: router({
+    checkEligibility: protectedProcedure
+      .input(z.object({ courseId: z.number() }))
+      .query(async ({ ctx, input }) => {
+        const existing = await db.getCertificateByUserAndCourse(ctx.user.id, input.courseId);
+        if (existing) {
+          return { eligible: true, certificate: existing };
+        }
+        
+        const course = await db.getCourseById(input.courseId);
+        if (!course) {
+          throw new TRPCError({ code: 'NOT_FOUND', message: 'Course not found' });
+        }
+        
+        const lessons = await db.getLessonsByCourseId(input.courseId);
+        const progress = await db.getUserProgress(ctx.user.id, input.courseId);
+        
+        const completedLessons = progress.filter(p => p.completed).length;
+        const eligible = completedLessons === lessons.length && lessons.length > 0;
+        
+        return { eligible, certificate: null };
+      }),
+    
+    generate: protectedProcedure
+      .input(z.object({ courseId: z.number() }))
+      .mutation(async ({ ctx, input }) => {
+        const existing = await db.getCertificateByUserAndCourse(ctx.user.id, input.courseId);
+        if (existing) {
+          return { certificateNumber: existing.certificateNumber };
+        }
+        
+        const course = await db.getCourseById(input.courseId);
+        if (!course) {
+          throw new TRPCError({ code: 'NOT_FOUND', message: 'Course not found' });
+        }
+        
+        const lessons = await db.getLessonsByCourseId(input.courseId);
+        const progress = await db.getUserProgress(ctx.user.id, input.courseId);
+        const completedLessons = progress.filter(p => p.completed).length;
+        
+        if (completedLessons !== lessons.length || lessons.length === 0) {
+          throw new TRPCError({ code: 'BAD_REQUEST', message: 'Course not completed' });
+        }
+        
+        const certificateNumber = `CLSD-${course.code}-${Date.now()}-${ctx.user.id}`;
+        
+        await db.createCertificate({
+          userId: ctx.user.id,
+          courseId: input.courseId,
+          certificateNumber,
+          completionDate: new Date(),
+        });
+        
+        return { certificateNumber };
+      }),
+    
+    getMyCertificates: protectedProcedure.query(async ({ ctx }) => {
+      return db.getUserCertificates(ctx.user.id);
+    }),
   }),
 
   admin: router({

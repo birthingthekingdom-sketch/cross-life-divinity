@@ -24,13 +24,19 @@ export default function LessonPage() {
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [showResults, setShowResults] = useState(false);
   
-  const markCompleteMutation = trpc.progress.markComplete.useMutation({
-    onSuccess: () => {
-      toast.success("Lesson marked as complete!");
+  const submitQuizMutation = trpc.quizzes.submitQuiz.useMutation({
+    onSuccess: (data) => {
+      setShowResults(true);
+      if (data.passed) {
+        toast.success(`Quiz passed with ${data.score}/${data.totalQuestions} correct! Lesson complete.`);
+      } else {
+        toast.error(`Quiz score: ${data.score}/${data.totalQuestions}. You need 70% to pass.`);
+      }
+    },
+    onError: () => {
+      toast.error("Failed to submit quiz. Please try again.");
     },
   });
-
-  const submitAnswerMutation = trpc.quizzes.submitAnswer.useMutation();
 
   const quizResults = useMemo(() => {
     if (!quizQuestions || !showResults) return null;
@@ -58,32 +64,17 @@ export default function LessonPage() {
       return;
     }
 
-    // Submit all answers
-    for (const question of quizQuestions) {
-      const userAnswer = answers[question.id];
-      const isCorrect = userAnswer.toLowerCase().trim() === question.correctAnswer.toLowerCase().trim();
-      
-      await submitAnswerMutation.mutateAsync({
-        questionId: question.id,
-        answer: userAnswer,
-        isCorrect,
-      });
-    }
+    // Submit quiz with all answers
+    const answerArray = quizQuestions.map(q => ({
+      questionId: q.id,
+      answer: answers[q.id],
+    }));
 
-    setShowResults(true);
-    
-    // Mark lesson as complete if passed (70% or higher)
-    const correctCount = quizQuestions.filter(q => 
-      answers[q.id]?.toLowerCase().trim() === q.correctAnswer.toLowerCase().trim()
-    ).length;
-    const percentage = (correctCount / quizQuestions.length) * 100;
-    
-    if (percentage >= 70) {
-      await markCompleteMutation.mutateAsync({
-        courseId: lesson.courseId,
-        lessonId: lesson.id,
-      });
-    }
+    await submitQuizMutation.mutateAsync({
+      lessonId: lesson.id,
+      courseId: lesson.courseId,
+      answers: answerArray,
+    });
   };
 
   if (lessonLoading) {
@@ -238,9 +229,9 @@ export default function LessonPage() {
                   <Button 
                     onClick={handleSubmitQuiz} 
                     className="w-full"
-                    disabled={submitAnswerMutation.isPending}
+                    disabled={submitQuizMutation.isPending}
                   >
-                    {submitAnswerMutation.isPending ? (
+                    {submitQuizMutation.isPending ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                         Submitting...

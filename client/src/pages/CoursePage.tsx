@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { trpc } from "@/lib/trpc";
-import { ArrowLeft, BookOpen, CheckCircle2, Circle } from "lucide-react";
+import { ArrowLeft, Award, BookOpen, CheckCircle2, Circle, Download } from "lucide-react";
 import { Link, useParams } from "wouter";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { toast } from "sonner";
 
 export default function CoursePage() {
   const params = useParams<{ id: string }>();
@@ -13,6 +14,22 @@ export default function CoursePage() {
   const { data: course, isLoading: courseLoading } = trpc.courses.getById.useQuery({ id: courseId });
   const { data: lessons, isLoading: lessonsLoading } = trpc.lessons.getByCourse.useQuery({ courseId });
   const { data: progress } = trpc.progress.getByCourse.useQuery({ courseId });
+  const { data: certificateEligibility } = trpc.certificates.checkEligibility.useQuery({ courseId });
+  
+  const [generatingCertificate, setGeneratingCertificate] = useState(false);
+  
+  const generateCertificateMutation = trpc.certificates.generate.useMutation({
+    onSuccess: (data) => {
+      // Download the certificate
+      window.open(`/api/certificate/${data.certificateNumber}`, '_blank');
+      toast.success("Certificate generated successfully!");
+      setGeneratingCertificate(false);
+    },
+    onError: () => {
+      toast.error("Failed to generate certificate");
+      setGeneratingCertificate(false);
+    },
+  });
 
   const completedLessons = useMemo(() => {
     if (!progress) return new Set<number>();
@@ -146,6 +163,62 @@ export default function CoursePage() {
                 Lessons for this course will be available soon.
               </p>
             </div>
+          )}
+          
+          {/* Certificate Section */}
+          {certificateEligibility && progressPercent === 100 && (
+            <Card className="mt-8 border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Award className="h-6 w-6 text-primary" />
+                  Course Certificate
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                {certificateEligibility.certificate ? (
+                  <div className="space-y-4">
+                    <p className="text-muted-foreground">
+                      Congratulations! You have completed all lessons in this course.
+                    </p>
+                    <Button
+                      onClick={() => {
+                        window.open(`/api/certificate/${certificateEligibility.certificate!.certificateNumber}`, '_blank');
+                      }}
+                      className="w-full sm:w-auto"
+                    >
+                      <Download className="mr-2 h-4 w-4" />
+                      Download Certificate
+                    </Button>
+                  </div>
+                ) : certificateEligibility.eligible ? (
+                  <div className="space-y-4">
+                    <p className="text-muted-foreground">
+                      Congratulations! You have completed all lessons in this course. Generate your certificate now.
+                    </p>
+                    <Button
+                      onClick={() => {
+                        setGeneratingCertificate(true);
+                        generateCertificateMutation.mutate({ courseId });
+                      }}
+                      disabled={generatingCertificate}
+                      className="w-full sm:w-auto"
+                    >
+                      {generatingCertificate ? (
+                        <>
+                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                          Generating...
+                        </>
+                      ) : (
+                        <>
+                          <Award className="mr-2 h-4 w-4" />
+                          Generate Certificate
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                ) : null}
+              </CardContent>
+            </Card>
           )}
         </div>
       </div>

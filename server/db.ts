@@ -8,7 +8,9 @@ import {
   studentProgress, InsertStudentProgress, StudentProgress,
   quizAnswers, InsertQuizAnswer, QuizAnswer,
   accessCodes, InsertAccessCode, AccessCode,
-  enrollments, InsertEnrollment, Enrollment
+  enrollments, InsertEnrollment, Enrollment,
+  quizSubmissions, InsertQuizSubmission, QuizSubmission,
+  certificates, InsertCertificate, Certificate
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -330,4 +332,84 @@ export async function getUserQuizAnswers(userId: number, questionIds: number[]):
       eq(quizAnswers.userId, userId),
       inArray(quizAnswers.questionId, questionIds)
     ));
+}
+
+// ============================================
+// QUIZ SUBMISSION MANAGEMENT
+// ============================================
+
+export async function createQuizSubmission(submission: InsertQuizSubmission) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  await db.insert(quizSubmissions).values(submission);
+}
+
+export async function getQuizSubmissionByUserAndLesson(userId: number, lessonId: number): Promise<QuizSubmission | undefined> {
+  const db = await getDb();
+  if (!db) return undefined;
+  
+  const result = await db.select().from(quizSubmissions)
+    .where(and(
+      eq(quizSubmissions.userId, userId),
+      eq(quizSubmissions.lessonId, lessonId)
+    ))
+    .orderBy(desc(quizSubmissions.submittedAt))
+    .limit(1);
+  
+  return result[0];
+}
+
+export async function getUserQuizSubmissions(userId: number): Promise<QuizSubmission[]> {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select().from(quizSubmissions)
+    .where(eq(quizSubmissions.userId, userId))
+    .orderBy(desc(quizSubmissions.submittedAt));
+}
+
+// ============================================
+// CERTIFICATE MANAGEMENT
+// ============================================
+
+export async function createCertificate(certificate: InsertCertificate) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  await db.insert(certificates).values(certificate);
+}
+
+export async function getCertificateByUserAndCourse(userId: number, courseId: number): Promise<Certificate | undefined> {
+  const db = await getDb();
+  if (!db) return undefined;
+  
+  const result = await db.select().from(certificates)
+    .where(and(
+      eq(certificates.userId, userId),
+      eq(certificates.courseId, courseId)
+    ))
+    .limit(1);
+  
+  return result[0];
+}
+
+export async function getUserCertificates(userId: number): Promise<Certificate[]> {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select().from(certificates)
+    .where(eq(certificates.userId, userId))
+    .orderBy(desc(certificates.issuedAt));
+}
+
+export async function getCertificateByNumber(certificateNumber: string): Promise<Certificate | undefined> {
+  const db = await getDb();
+  if (!db) return undefined;
+  
+  const result = await db.select().from(certificates)
+    .where(eq(certificates.certificateNumber, certificateNumber))
+    .limit(1);
+  
+  return result[0];
 }

@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { trpc } from "@/lib/trpc";
-import { BookOpen, Code, GraduationCap, Key, Loader2, Plus, Users } from "lucide-react";
+import { BookOpen, Code, Edit, GraduationCap, Key, Loader2, Plus, Users } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Link } from "wouter";
@@ -257,11 +257,19 @@ export default function Admin() {
                       </p>
                     </div>
                   </div>
-                  <Link href={`/course/${course.id}`}>
-                    <Button variant="outline" size="sm">
-                      View Course
-                    </Button>
-                  </Link>
+                  <div className="flex gap-2">
+                    <Link href={`/admin/course/${course.id}`}>
+                      <Button variant="outline" size="sm">
+                        <Edit className="h-4 w-4 mr-1" />
+                        Manage
+                      </Button>
+                    </Link>
+                    <Link href={`/course/${course.id}`}>
+                      <Button variant="ghost" size="sm">
+                        View
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               ))}
             </div>

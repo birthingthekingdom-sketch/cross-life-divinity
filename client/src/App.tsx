@@ -10,6 +10,8 @@ import Enroll from "./pages/Enroll";
 import CoursePage from "./pages/CoursePage";
 import LessonPage from "./pages/LessonPage";
 import Admin from "./pages/Admin";
+import AdminCourseDetail from "./pages/AdminCourseDetail";
+import AdminEditLesson from "./pages/AdminEditLesson";
 
 function Router() {
   return (
@@ -20,6 +22,8 @@ function Router() {
       <Route path="/course/:id" component={CoursePage} />
       <Route path="/lesson/:id" component={LessonPage} />
       <Route path="/admin" component={Admin} />
+      <Route path="/admin/course/:id" component={AdminCourseDetail} />
+      <Route path="/admin/lesson/:id" component={AdminEditLesson} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

@@ -136,3 +136,34 @@ export const enrollments = mysqlTable("enrollments", {
 
 export type Enrollment = typeof enrollments.$inferSelect;
 export type InsertEnrollment = typeof enrollments.$inferInsert;
+
+/**
+ * Quiz submissions (complete quiz attempts with scores)
+ */
+export const quizSubmissions = mysqlTable("quiz_submissions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  lessonId: int("lessonId").notNull(),
+  score: int("score").notNull(),
+  totalQuestions: int("totalQuestions").notNull(),
+  passed: boolean("passed").notNull(),
+  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+});
+
+export type QuizSubmission = typeof quizSubmissions.$inferSelect;
+export type InsertQuizSubmission = typeof quizSubmissions.$inferInsert;
+
+/**
+ * Course completion certificates
+ */
+export const certificates = mysqlTable("certificates", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  courseId: int("courseId").notNull(),
+  certificateNumber: varchar("certificateNumber", { length: 50 }).notNull().unique(),
+  issuedAt: timestamp("issuedAt").defaultNow().notNull(),
+  completionDate: timestamp("completionDate").notNull(),
+});
+
+export type Certificate = typeof certificates.$inferSelect;
+export type InsertCertificate = typeof certificates.$inferInsert;

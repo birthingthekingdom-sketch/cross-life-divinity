@@ -7,6 +7,9 @@ import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
+import { generateCertificate } from "../certificate-generator";
+import * as db from "../db";
+import { sdk } from "./sdk";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -35,6 +38,45 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
+  
+  // Certificate download endpoint
+  app.get("/api/certificate/:certificateNumber", async (req, res) => {
+    try {
+      const user = await sdk.authenticateRequest(req);
+      if (!user) {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
+
+      const certificateNumber = req.params.certificateNumber;
+      const certificate = await db.getCertificateByNumber(certificateNumber);
+
+      if (!certificate) {
+        return res.status(404).json({ error: "Certificate not found" });
+      }
+
+      // Verify the certificate belongs to the requesting user
+      if (certificate.userId !== user.id) {
+        return res.status(403).json({ error: "Access denied" });
+      }
+
+      const course = await db.getCourseById(certificate.courseId);
+      if (!course) {
+        return res.status(404).json({ error: "Course not found" });
+      }
+
+      generateCertificate({
+        studentName: user.name || user.email || "Student",
+        courseName: course.title,
+        courseCode: course.code,
+        completionDate: certificate.completionDate,
+        certificateNumber: certificate.certificateNumber,
+      }, res);
+    } catch (error) {
+      console.error("Certificate generation error:", error);
+      res.status(500).json({ error: "Failed to generate certificate" });
+    }
+  });
+  
   // tRPC API
   app.use(
     "/api/trpc",
