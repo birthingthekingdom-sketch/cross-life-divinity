@@ -282,3 +282,19 @@ export const followUps = mysqlTable("follow_ups", {
 
 export type FollowUp = typeof followUps.$inferSelect;
 export type InsertFollowUp = typeof followUps.$inferInsert;
+
+/**
+ * Login history for security tracking
+ */
+export const loginHistory = mysqlTable("login_history", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  ipAddress: varchar("ipAddress", { length: 45 }), // IPv6 max length
+  userAgent: text("userAgent"), // Browser/device information
+  loginMethod: varchar("loginMethod", { length: 64 }).default("email"),
+  success: boolean("success").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type LoginHistory = typeof loginHistory.$inferSelect;
+export type InsertLoginHistory = typeof loginHistory.$inferInsert;

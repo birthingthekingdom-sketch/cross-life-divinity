@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { publicProcedure, protectedProcedure, router } from './_core/trpc';
 import * as authService from './auth-service';
 import * as emailService from './email';
+import * as db from './db';
 
 export const authRouter = router({
   /**
@@ -183,6 +184,24 @@ export const authRouter = router({
         throw new Error('Email verification failed');
       }
     }),
+
+  /**
+   * Get login history for current user
+   */
+  getLoginHistory: protectedProcedure.query(async ({ ctx }) => {
+    const dbInstance = await db.getDb();
+    if (!dbInstance) throw new Error('Database not available');
+
+    const { loginHistory } = await import('../drizzle/schema');
+    const { eq, desc } = await import('drizzle-orm');
+    
+    const history = await dbInstance.select().from(loginHistory)
+      .where(eq(loginHistory.userId, ctx.user.id))
+      .orderBy(desc(loginHistory.createdAt))
+      .limit(20);
+
+    return history;
+  }),
 
   /**
    * Resend verification email

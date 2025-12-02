@@ -1,6 +1,6 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { GraduationCap, LayoutDashboard, LogOut, Settings } from "lucide-react";
+import { GraduationCap, LayoutDashboard, LogOut, Settings, Shield } from "lucide-react";
 import { Link, useLocation } from "wouter";
 
 interface DashboardLayoutProps {
@@ -33,11 +33,21 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 <h1 className="text-xl font-bold">Cross Life School of Divinity</h1>
               </div>
             </Link>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <div className="text-right hidden sm:block">
                 <p className="font-semibold text-sm">{user?.name || "Student"}</p>
                 <p className="text-xs text-primary-foreground/70">{user?.email}</p>
               </div>
+              <Link href="/account-security">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
+                >
+                  <Shield className="h-4 w-4 sm:mr-2" />
+                  <span className="hidden sm:inline">Security</span>
+                </Button>
+              </Link>
               <Button
                 variant="outline"
                 size="sm"

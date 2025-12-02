@@ -344,9 +344,9 @@
 - [ ] Add social login to registration flow
 
 ## Account Security Dashboard
-- [ ] Create user settings page
-- [ ] Add password change functionality
-- [ ] Display login history (IP, device, timestamp)
+- [x] Create user settings page
+- [x] Add password change functionality
+- [x] Display login history (IP, device, timestamp)
 - [ ] Add two-factor authentication (2FA) setup
 - [ ] Show active sessions with revoke option
 - [ ] Add security notifications preferences

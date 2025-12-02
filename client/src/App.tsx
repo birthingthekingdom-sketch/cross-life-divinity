@@ -30,6 +30,7 @@ import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from './pages/ResetPassword';
 import VerifyEmail from './pages/VerifyEmail';
+import AccountSecurity from './pages/AccountSecurity';
 
 function Router() {
   return (
@@ -40,6 +41,7 @@ function Router() {
       <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/reset-password" component={ResetPassword} />
         <Route path="/verify-email" component={VerifyEmail} />
+        <Route path="/account-security" component={AccountSecurity} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/enroll" component={Enroll} />
       <Route path="/course/:id" component={CoursePage} />
