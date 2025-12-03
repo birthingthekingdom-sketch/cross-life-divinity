@@ -12,18 +12,27 @@ export default function Home() {
   
   const { data: enrollmentStatus, isLoading: enrollmentLoading } = trpc.auth.checkEnrollment.useQuery(
     undefined,
-    { enabled: isAuthenticated }
+    { enabled: isAuthenticated && user?.role !== 'admin' }
   );
 
   useEffect(() => {
-    if (!loading && isAuthenticated && !enrollmentLoading) {
-      if (enrollmentStatus?.enrolled) {
-        setLocation("/dashboard");
-      } else {
-        setLocation("/enroll");
+    if (!loading && isAuthenticated) {
+      // Admin users go directly to admin dashboard
+      if (user?.role === 'admin') {
+        setLocation("/admin");
+        return;
+      }
+      
+      // Regular users check enrollment
+      if (!enrollmentLoading) {
+        if (enrollmentStatus?.enrolled) {
+          setLocation("/dashboard");
+        } else {
+          setLocation("/enroll");
+        }
       }
     }
-  }, [loading, isAuthenticated, enrollmentStatus, enrollmentLoading, setLocation]);
+  }, [loading, isAuthenticated, user, enrollmentStatus, enrollmentLoading, setLocation]);
 
   if (loading || enrollmentLoading) {
     return (

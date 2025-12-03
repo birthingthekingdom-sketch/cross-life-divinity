@@ -1,0 +1,94 @@
+{
+  "query": "SELECT c.code, c.title, c.totalLessons, COUNT(l.id) as actualLessons FROM courses c LEFT JOIN lessons l ON c.id = l.courseId GROUP BY c.id ORDER BY c.displayOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT c.code, c.title, c.totalLessons, COUNT(l.id) as actualLessons FROM courses c LEFT JOIN lessons l ON c.id = l.courseId GROUP BY c.id ORDER BY c.displayOrder;",
+  "rows": [
+    {
+      "code": "TWC001",
+      "title": "Test Webinar Course",
+      "totalLessons": "0",
+      "actualLessons": "0"
+    },
+    {
+      "code": "TWC1764658384543",
+      "title": "Test Webinar Course",
+      "totalLessons": "0",
+      "actualLessons": "0"
+    },
+    {
+      "code": "DIV101",
+      "title": "Evangelism & Outreach",
+      "totalLessons": "8",
+      "actualLessons": "10"
+    },
+    {
+      "code": "TEST1764659008111",
+      "title": "Test Analytics Course",
+      "totalLessons": "5",
+      "actualLessons": "0"
+    },
+    {
+      "code": "CSV1764659293748",
+      "title": "CSV Test Course",
+      "totalLessons": "5",
+      "actualLessons": "0"
+    },
+    {
+      "code": "DIV102",
+      "title": "Prayer & Intercession",
+      "totalLessons": "8",
+      "actualLessons": "9"
+    },
+    {
+      "code": "DIV103",
+      "title": "Church History",
+      "totalLessons": "6",
+      "actualLessons": "6"
+    },
+    {
+      "code": "DIV104",
+      "title": "Spiritual Gifts",
+      "totalLessons": "6",
+      "actualLessons": "6"
+    },
+    {
+      "code": "DIV105",
+      "title": "Christian Apologetics",
+      "totalLessons": "6",
+      "actualLessons": "6"
+    },
+    {
+      "code": "DIV106",
+      "title": "Discipleship & Mentoring",
+      "totalLessons": "6",
+      "actualLessons": "6"
+    },
+    {
+      "code": "DIV107",
+      "title": "Worship & Liturgy",
+      "totalLessons": "6",
+      "actualLessons": "6"
+    },
+    {
+      "code": "DIV108",
+      "title": "Deliverance Ministry",
+      "totalLessons": "3",
+      "actualLessons": "3"
+    },
+    {
+      "code": "DIV109",
+      "title": "The Fivefold Ministry",
+      "totalLessons": "3",
+      "actualLessons": "3"
+    },
+    {
+      "code": "DIV110",
+      "title": "Prophecy & Prophetic Office",
+      "totalLessons": "3",
+      "actualLessons": "3"
+    }
+  ],
+  "messages": [],
+  "stdout": "code\ttitle\ttotalLessons\tactualLessons\nTWC001\tTest Webinar Course\t0\t0\nTWC1764658384543\tTest Webinar Course\t0\t0\nDIV101\tEvangelism & Outreach\t8\t10\nTEST1764659008111\tTest Analytics Course\t5\t0\nCSV1764659293748\tCSV Test Course\t5\t0\nDIV102\tPrayer & Intercession\t8\t9\nDIV103\tChurch History\t6\t6\nDIV104\tSpiritual Gifts\t6\t6\nDIV105\tChristian Apologetics\t6\t6\nDIV106\tDiscipleship & Mentoring\t6\t6\nDIV107\tWorship & Liturgy\t6\t6\nDIV108\tDeliverance Ministry\t3\t3\nDIV109\tThe Fivefold Ministry\t3\t3\nDIV110\tProphecy & Prophetic Office\t3\t3\n",
+  "stderr": "",
+  "execution_time_ms": 170
+}

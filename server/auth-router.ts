@@ -2,7 +2,6 @@ import { z } from 'zod';
 import { publicProcedure, protectedProcedure, router } from './_core/trpc';
 import * as authService from './auth-service';
 import * as emailService from './email';
-import * as db from './db';
 
 export const authRouter = router({
   /**
@@ -57,9 +56,26 @@ export const authRouter = router({
         password: z.string().min(1, 'Password is required'),
       })
     )
-    .mutation(async ({ input }) => {
+    .mutation(async ({ input, ctx }) => {
       try {
         const user = await authService.authenticateUser(input.email, input.password);
+        
+        // Create session token using the SDK
+        const { sdk } = await import('./_core/sdk');
+        const { COOKIE_NAME, ONE_YEAR_MS } = await import('@shared/const');
+        const { getSessionCookieOptions } = await import('./_core/cookies');
+        
+        // Use email as openId for custom auth users if openId doesn't exist
+        const openId = user.openId || `email:${user.email}`;
+        
+        const sessionToken = await sdk.createSessionToken(openId, {
+          name: user.name || '',
+          expiresInMs: ONE_YEAR_MS,
+        });
+        
+        const cookieOptions = getSessionCookieOptions(ctx.req);
+        ctx.res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
+        
         return {
           success: true,
           user: {
@@ -67,7 +83,7 @@ export const authRouter = router({
             email: user.email,
             name: user.name,
             role: user.role,
-            openId: user.openId,
+            openId: openId,
           },
         };
       } catch (error) {
@@ -184,24 +200,6 @@ export const authRouter = router({
         throw new Error('Email verification failed');
       }
     }),
-
-  /**
-   * Get login history for current user
-   */
-  getLoginHistory: protectedProcedure.query(async ({ ctx }) => {
-    const dbInstance = await db.getDb();
-    if (!dbInstance) throw new Error('Database not available');
-
-    const { loginHistory } = await import('../drizzle/schema');
-    const { eq, desc } = await import('drizzle-orm');
-    
-    const history = await dbInstance.select().from(loginHistory)
-      .where(eq(loginHistory.userId, ctx.user.id))
-      .orderBy(desc(loginHistory.createdAt))
-      .limit(20);
-
-    return history;
-  }),
 
   /**
    * Resend verification email

@@ -344,45 +344,22 @@
 - [ ] Add social login to registration flow
 
 ## Account Security Dashboard
-- [x] Create user settings page
-- [x] Add password change functionality
-- [x] Display login history (IP, device, timestamp)
+- [ ] Create user settings page
+- [ ] Add password change functionality
+- [ ] Display login history (IP, device, timestamp)
 - [ ] Add two-factor authentication (2FA) setup
 - [ ] Show active sessions with revoke option
 - [ ] Add security notifications preferences
 - [ ] Create account deletion option
 
-## Email Verification Enforcement
-- [x] Add middleware to check email verification status
-- [x] Display verification banner for unverified users
-- [ ] Block course access until email is verified (optional - currently allows access)
-- [x] Add resend verification link to banner
-
-## Automated Security Alerts
-- [ ] Create security alert email templates
-- [ ] Detect new device logins
-- [ ] Monitor unusual login locations
-- [ ] Track multiple failed login attempts
-- [ ] Send email alerts for suspicious activity
-- [ ] Add security alert preferences to user settings
-
-## Promotional Materials
-- [x] Create social media graphics (Facebook, Instagram, Twitter)
-- [x] Design promotional flyer PDF
-- [x] Create email marketing templates
-- [x] Design website banner graphics
-- [x] Create student recruitment brochure
-
-## Course Content Population
-- [ ] Add sample lessons to Evangelism & Outreach course
-- [ ] Add sample lessons to Prayer & Intercession course
-- [ ] Create sample quizzes for courses
-- [ ] Add video lesson placeholders
-- [ ] Create downloadable reading materials
-
-## Email Configuration Enhancement
-- [ ] Improve email settings UI in admin panel
-- [ ] Add email template customization
-- [ ] Create email preview functionality
-- [ ] Add test email sending feature
-- [ ] Document SMTP setup process
+## Lesson Content Creation
+- [x] Create lessons for Evangelism & Outreach course
+- [x] Create lessons for Prayer & Intercession course
+- [x] Create lessons for Church History & Traditions course
+- [x] Create lessons for Spiritual Gifts & Ministry course
+- [x] Create lessons for Christian Apologetics course
+- [x] Create lessons for Discipleship & Mentoring course
+- [x] Create lessons for Worship & Liturgy course
+- [ ] Create lessons for all remaining courses
+- [ ] Add quizzes to all lessons
+- [ ] Update course totalLessons counts
