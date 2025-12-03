@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { AssignmentGuidelines } from "./AssignmentGuidelines";
 import { Upload, FileText, CheckCircle, Clock, AlertCircle } from "lucide-react";
 import { storagePut } from "../../../server/storage";
 
@@ -128,17 +129,27 @@ export function AssignmentSubmission({ lessonId, lessonTitle, assignmentPrompt }
 
   if (isLoading) {
     return (
-      <Card>
-        <CardHeader>
-          <CardTitle>Assignment Submission</CardTitle>
-          <CardDescription>Loading...</CardDescription>
-        </CardHeader>
-      </Card>
+      <div className="space-y-6">
+        {/* Guidelines Section */}
+        <AssignmentGuidelines assignmentPrompt={assignmentPrompt} />
+        
+        {/* Submission Section */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Assignment Submission</CardTitle>
+            <CardDescription>Loading...</CardDescription>
+          </CardHeader>
+        </Card>
+      </div>
     );
   }
 
   return (
     <div className="space-y-6">
+      {/* Guidelines Section */}
+      <AssignmentGuidelines assignmentPrompt={assignmentPrompt} />
+      
+      {/* Submission Section */}
       <Card>
         <CardHeader>
           <CardTitle>Written Assignment</CardTitle>

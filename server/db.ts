@@ -18,7 +18,10 @@ import {
   webinars, InsertWebinar, Webinar,
   followUps, InsertFollowUp, FollowUp,
   assignmentSubmissions, InsertAssignmentSubmission, AssignmentSubmission,
-  assignmentGrades, InsertAssignmentGrade, AssignmentGrade
+  assignmentGrades, InsertAssignmentGrade, AssignmentGrade,
+  peerReviews, InsertPeerReview, PeerReview,
+  peerReviewFeedback, InsertPeerReviewFeedback, PeerReviewFeedback,
+  assignmentVersions, InsertAssignmentVersion, AssignmentVersion
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -216,7 +219,8 @@ export async function createLesson(lesson: InsertLesson) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   
-  await db.insert(lessons).values(lesson);
+  const [result] = await db.insert(lessons).values(lesson);
+  return result.insertId;
 }
 
 export async function getLessonsByCourseId(courseId: number): Promise<Lesson[]> {
@@ -1082,4 +1086,163 @@ export async function gradeAssignment(data: {
     .update(assignmentSubmissions)
     .set({ status: 'graded' })
     .where(eq(assignmentSubmissions.id, data.submissionId));
+}
+
+
+// Peer Review functions
+export async function assignPeerReviews(lessonId: number, submissionIds: number[]) {
+  const db = await getDb();
+  if (!db || submissionIds.length < 2) return [];
+
+  // Get all user IDs from submissions
+  const submissions = await db
+    .select({ id: assignmentSubmissions.id, userId: assignmentSubmissions.userId })
+    .from(assignmentSubmissions)
+    .where(inArray(assignmentSubmissions.id, submissionIds));
+
+  const assignments: InsertPeerReview[] = [];
+
+  // Assign each student to review another student's work (circular assignment)
+  for (let i = 0; i < submissions.length; i++) {
+    const reviewer = submissions[i];
+    const toReview = submissions[(i + 1) % submissions.length]; // Next student in circle
+
+    // Don't assign self-review
+    if (reviewer.userId !== toReview.userId) {
+      assignments.push({
+        submissionId: toReview.id,
+        reviewerId: reviewer.userId,
+        status: "pending",
+      });
+    }
+  }
+
+  if (assignments.length > 0) {
+    await db.insert(peerReviews).values(assignments);
+  }
+
+  return assignments;
+}
+
+export async function getPeerReviewsForStudent(userId: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  const reviews = await db
+    .select({
+      review: peerReviews,
+      submission: assignmentSubmissions,
+      lesson: lessons,
+      course: courses,
+      feedback: peerReviewFeedback,
+    })
+    .from(peerReviews)
+    .innerJoin(assignmentSubmissions, eq(peerReviews.submissionId, assignmentSubmissions.id))
+    .innerJoin(lessons, eq(assignmentSubmissions.lessonId, lessons.id))
+    .innerJoin(courses, eq(lessons.courseId, courses.id))
+    .leftJoin(peerReviewFeedback, eq(peerReviews.id, peerReviewFeedback.peerReviewId))
+    .where(eq(peerReviews.reviewerId, userId))
+    .orderBy(desc(peerReviews.assignedAt));
+
+  return reviews;
+}
+
+export async function getPeerReviewsForSubmission(submissionId: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  const reviews = await db
+    .select({
+      review: peerReviews,
+      feedback: peerReviewFeedback,
+    })
+    .from(peerReviews)
+    .leftJoin(peerReviewFeedback, eq(peerReviews.id, peerReviewFeedback.peerReviewId))
+    .where(eq(peerReviews.submissionId, submissionId))
+    .orderBy(desc(peerReviews.assignedAt));
+
+  return reviews;
+}
+
+export async function submitPeerReviewFeedback(data: {
+  peerReviewId: number;
+  strengthsComment: string;
+  improvementComment: string;
+  theologicalDepthRating: number;
+  contentQualityRating: number;
+  writingQualityRating: number;
+  overallComment?: string;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+
+  // Insert feedback
+  await db.insert(peerReviewFeedback).values(data);
+
+  // Update peer review status to completed
+  await db
+    .update(peerReviews)
+    .set({ 
+      status: "completed",
+      completedAt: new Date(),
+    })
+    .where(eq(peerReviews.id, data.peerReviewId));
+
+  return { success: true };
+}
+
+
+// Assignment Resubmission functions
+export async function createAssignmentVersion(data: {
+  submissionId: number;
+  fileUrl: string;
+  fileName: string;
+  notes?: string;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+
+  // Get current version count for this submission
+  const versions = await db
+    .select()
+    .from(assignmentVersions)
+    .where(eq(assignmentVersions.submissionId, data.submissionId));
+
+  const versionNumber = versions.length + 1;
+
+  // Insert new version
+  const [result] = await db
+    .insert(assignmentVersions)
+    .values({
+      submissionId: data.submissionId,
+      versionNumber,
+      fileUrl: data.fileUrl,
+      fileName: data.fileName,
+      notes: data.notes,
+    });
+
+  // Update the main submission with latest file
+  await db
+    .update(assignmentSubmissions)
+    .set({
+      fileUrl: data.fileUrl,
+      fileName: data.fileName,
+      updatedAt: new Date(),
+    })
+    .where(eq(assignmentSubmissions.id, data.submissionId));
+
+  return { versionId: result.insertId, versionNumber };
+}
+
+export async function getAssignmentVersions(submissionId: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  const versions = await db
+    .select()
+    .from(assignmentVersions)
+    .where(eq(assignmentVersions.submissionId, submissionId))
+    .orderBy(desc(assignmentVersions.versionNumber));
+
+  return versions;
 }

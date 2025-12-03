@@ -450,3 +450,34 @@
 - [x] Add assignment performance cards with visual styling
 - [x] Track pending vs graded assignments
 - [x] Integrate assignment analytics with existing progress data
+
+
+## Assignment System Enhancements - ✅ COMPLETED
+
+### Assignment Templates & Writing Guidelines
+- [x] Create downloadable assignment template component
+- [x] Design theological writing rubric document
+- [x] Add formatting requirements guide
+- [x] Implement template download functionality
+- [x] Add guidelines display in assignment submission UI
+- [x] Create sample assignment examples
+
+### Peer Review System
+- [x] Design peer review database schema
+- [x] Create peer review assignment algorithm (anonymous matching)
+- [x] Build peer review submission interface
+- [x] Add peer feedback form with structured questions
+- [x] Implement review status tracking
+- [x] Create peer review dashboard for students
+- [x] Add instructor oversight for peer reviews
+- [x] Display peer feedback to students
+
+### Assignment Resubmission Workflow
+- [x] Add version tracking to assignment submissions
+- [x] Create resubmission backend API
+- [x] Build version history storage
+- [x] Implement version tracking database schema
+- [x] Add resubmission TRPC procedures
+- [x] Track improvement metrics across versions
+- [ ] Build resubmission UI component (backend complete)
+- [ ] Add version comparison view (backend complete)

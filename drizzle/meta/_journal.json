@@ -92,6 +92,20 @@
       "when": 1764761994012,
       "tag": "0012_sparkling_lady_mastermind",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "5",
+      "when": 1764762937760,
+      "tag": "0013_big_jack_power",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "5",
+      "when": 1764763574555,
+      "tag": "0014_calm_paladin",
+      "breakpoints": true
     }
   ]
 }

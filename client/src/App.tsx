@@ -21,7 +21,8 @@ import AdminEmailSettings from "./pages/AdminEmailSettings";
 import AdminFollowUps from "./pages/AdminFollowUps";
 import AdminWebinars from "@/pages/AdminWebinars";
 import AdminAnalytics from "@/pages/AdminAnalytics";
-import AdminGrading from "@/pages/AdminGrading";
+import AdminGrading from "./pages/AdminGrading";
+import PeerReviews from "./pages/PeerReviews";
 import Webinars from "./pages/Webinars";
 import MyCertificates from "./pages/MyCertificates";
 import VerifyCertificate from "./pages/VerifyCertificate";
@@ -56,6 +57,7 @@ function Router() {
           <Route path="/admin/webinars" component={AdminWebinars} />
           <Route path="/admin/analytics" component={AdminAnalytics} />
           <Route path="/admin/grading" component={AdminGrading} />
+        <Route path="/peer-reviews" component={PeerReviews} />
       <Route path="/webinars" component={Webinars} />
       <Route path="/certificates" component={MyCertificates} />
       <Route path="/verify/:token" component={VerifyCertificate} />

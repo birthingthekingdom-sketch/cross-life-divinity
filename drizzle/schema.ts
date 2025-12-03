@@ -317,3 +317,54 @@ export const assignmentGrades = mysqlTable("assignment_grades", {
 
 export type AssignmentGrade = typeof assignmentGrades.$inferSelect;
 export type InsertAssignmentGrade = typeof assignmentGrades.$inferInsert;
+
+
+/**
+ * Peer review assignments - tracks which student reviews which submission
+ */
+export const peerReviews = mysqlTable("peer_reviews", {
+  id: int("id").autoincrement().primaryKey(),
+  submissionId: int("submissionId").notNull(), // The submission being reviewed
+  reviewerId: int("reviewerId").notNull(), // Student assigned to review
+  status: mysqlEnum("status", ["pending", "completed"]).default("pending").notNull(),
+  assignedAt: timestamp("assignedAt").defaultNow().notNull(),
+  completedAt: timestamp("completedAt"),
+});
+
+export type PeerReview = typeof peerReviews.$inferSelect;
+export type InsertPeerReview = typeof peerReviews.$inferInsert;
+
+/**
+ * Peer review feedback from students
+ */
+export const peerReviewFeedback = mysqlTable("peer_review_feedback", {
+  id: int("id").autoincrement().primaryKey(),
+  peerReviewId: int("peerReviewId").notNull(), // Links to peer_reviews table
+  strengthsComment: text("strengthsComment").notNull(), // What the student did well
+  improvementComment: text("improvementComment").notNull(), // Areas for improvement
+  theologicalDepthRating: int("theologicalDepthRating").notNull(), // 1-5 rating
+  contentQualityRating: int("contentQualityRating").notNull(), // 1-5 rating
+  writingQualityRating: int("writingQualityRating").notNull(), // 1-5 rating
+  overallComment: text("overallComment"), // Optional overall feedback
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PeerReviewFeedback = typeof peerReviewFeedback.$inferSelect;
+export type InsertPeerReviewFeedback = typeof peerReviewFeedback.$inferInsert;
+
+
+/**
+ * Assignment submission versions for tracking revisions
+ */
+export const assignmentVersions = mysqlTable("assignment_versions", {
+  id: int("id").autoincrement().primaryKey(),
+  submissionId: int("submissionId").notNull(), // Original submission ID
+  versionNumber: int("versionNumber").notNull(), // 1, 2, 3, etc.
+  fileUrl: text("fileUrl").notNull(),
+  fileName: varchar("fileName", { length: 255 }).notNull(),
+  notes: text("notes"), // Student notes about this revision
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type AssignmentVersion = typeof assignmentVersions.$inferSelect;
+export type InsertAssignmentVersion = typeof assignmentVersions.$inferInsert;
