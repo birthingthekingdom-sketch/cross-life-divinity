@@ -1,0 +1,20 @@
+{
+  "query": "SELECT id, title, courseId FROM lessons WHERE id IN (2, 3);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, title, courseId FROM lessons WHERE id IN (2, 3);",
+  "rows": [
+    {
+      "id": "2",
+      "title": "Understanding Your Audience",
+      "courseId": "1"
+    },
+    {
+      "id": "3",
+      "title": "Foundations of Prayer",
+      "courseId": "2"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tcourseId\n2\tUnderstanding Your Audience\t1\n3\tFoundations of Prayer\t2\n",
+  "stderr": "",
+  "execution_time_ms": 567
+}

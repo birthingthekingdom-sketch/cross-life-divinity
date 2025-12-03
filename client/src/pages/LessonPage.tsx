@@ -159,6 +159,36 @@ export default function LessonPage() {
             </CardContent>
           </Card>
 
+          {/* Assignment Section */}
+          {lesson.assignment && (
+            <Card>
+              <CardHeader>
+                <CardTitle>Written Assignment</CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  Complete this assignment to demonstrate mastery of the lesson material.
+                </p>
+              </CardHeader>
+              <CardContent className="prose prose-slate max-w-none">
+                <Streamdown>{lesson.assignment}</Streamdown>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Reading Material Section */}
+          {lesson.readingMaterial && (
+            <Card>
+              <CardHeader>
+                <CardTitle>Required Reading</CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  Complete these readings before attempting the quiz.
+                </p>
+              </CardHeader>
+              <CardContent className="prose prose-slate max-w-none">
+                <Streamdown>{lesson.readingMaterial}</Streamdown>
+              </CardContent>
+            </Card>
+          )}
+
           {/* Quiz Section */}
           {quizQuestions && quizQuestions.length > 0 && (
             <Card>

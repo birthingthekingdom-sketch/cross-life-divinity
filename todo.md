@@ -393,3 +393,30 @@
 - [x] Search for Christian education videos for Worship & Liturgy lessons
 - [x] Update all 46 lesson video URLs in database
 - [x] Test video playback on lesson pages
+
+## Seminary-Level Content Upgrade
+- [ ] Add database field for written assignments
+- [ ] Create comprehensive Scripture passages with commentary for all lessons
+- [ ] Add advanced theological concepts and word studies
+- [ ] Expand quiz questions to 10+ challenging questions per lesson
+- [ ] Create written assignment prompts for each lesson
+- [ ] Add reading requirements and scholarly references
+- [ ] Update lesson display to show assignments section
+- [ ] Test assignment submission functionality
+
+## Lesson Structure Redesign
+- [ ] Create clear lesson template with opening statement
+- [ ] Restructure Lesson 1 with new pedagogical flow
+- [ ] Apply new structure to all 46 lessons
+- [ ] Ensure all Scripture references are written out with commentary
+- [ ] Verify quiz/test submission functionality
+
+## Lessons 2-3 Creation
+- [x] Create Lesson 2 content with opening statement and Scripture commentary
+- [x] Create Lesson 2 quiz (10 questions)
+- [x] Create Lesson 2 written assignment
+- [x] Create Lesson 3 content with opening statement and Scripture commentary
+- [x] Create Lesson 3 quiz (10 questions)
+- [x] Create Lesson 3 written assignment
+- [x] Update database with new lesson content
+- [ ] Generate lesson plan summaries for user review

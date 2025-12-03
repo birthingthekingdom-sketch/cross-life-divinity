@@ -85,6 +85,13 @@
       "when": 1764729720576,
       "tag": "0011_charming_skin",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "5",
+      "when": 1764732825409,
+      "tag": "0012_short_forge",
+      "breakpoints": true
     }
   ]
 }
