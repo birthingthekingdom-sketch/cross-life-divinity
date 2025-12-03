@@ -382,3 +382,14 @@
 - [ ] Test quiz completion and scoring
 - [ ] Verify certificate generation
 - [ ] Test admin follow-up system
+
+## Real Video Content Replacement
+- [x] Search for Christian education videos for Evangelism & Outreach lessons
+- [x] Search for Christian education videos for Prayer & Intercession lessons
+- [x] Search for Christian education videos for Church History lessons
+- [x] Search for Christian education videos for Spiritual Gifts lessons
+- [x] Search for Christian education videos for Apologetics lessons
+- [x] Search for Christian education videos for Discipleship lessons
+- [x] Search for Christian education videos for Worship & Liturgy lessons
+- [x] Update all 46 lesson video URLs in database
+- [x] Test video playback on lesson pages

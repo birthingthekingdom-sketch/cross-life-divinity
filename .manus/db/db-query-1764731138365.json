@@ -1,0 +1,339 @@
+{
+  "query": "SELECT l.id, l.title, c.title as course_title, c.code, l.videoUrl \nFROM lessons l \nJOIN courses c ON l.courseId = c.id \nWHERE l.videoUrl IS NOT NULL \nORDER BY c.id, l.id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT l.id, l.title, c.title as course_title, c.code, l.videoUrl \nFROM lessons l \nJOIN courses c ON l.courseId = c.id \nWHERE l.videoUrl IS NOT NULL \nORDER BY c.id, l.id;",
+  "rows": [
+    {
+      "id": "1",
+      "title": "Introduction to Evangelism",
+      "course_title": "Evangelism & Outreach",
+      "code": "DIV101",
+      "videoUrl": "https://www.youtube.com/watch?v=Vldhn1m-RnE"
+    },
+    {
+      "id": "90001",
+      "title": "Introduction to Evangelism",
+      "course_title": "Evangelism & Outreach",
+      "code": "DIV101",
+      "videoUrl": "https://www.youtube.com/watch?v=Vldhn1m-RnE"
+    },
+    {
+      "id": "90002",
+      "title": "The Gospel Message",
+      "course_title": "Evangelism & Outreach",
+      "code": "DIV101",
+      "videoUrl": "https://www.youtube.com/watch?v=0DcfnbMm8aY"
+    },
+    {
+      "id": "90003",
+      "title": "Personal Testimony",
+      "course_title": "Evangelism & Outreach",
+      "code": "DIV101",
+      "videoUrl": "https://www.youtube.com/watch?v=XmfDzY8-k0o"
+    },
+    {
+      "id": "90004",
+      "title": "Relational Evangelism",
+      "course_title": "Evangelism & Outreach",
+      "code": "DIV101",
+      "videoUrl": "https://www.youtube.com/watch?v=UWt7D0-KYds"
+    },
+    {
+      "id": "90005",
+      "title": "Cultural Sensitivity in Evangelism",
+      "course_title": "Evangelism & Outreach",
+      "code": "DIV101",
+      "videoUrl": "https://www.youtube.com/watch?v=tx-wnK8isWk"
+    },
+    {
+      "id": "90006",
+      "title": "Digital Evangelism",
+      "course_title": "Evangelism & Outreach",
+      "code": "DIV101",
+      "videoUrl": "https://www.youtube.com/watch?v=iNk-_ex3wlY"
+    },
+    {
+      "id": "90007",
+      "title": "Handling Objections",
+      "course_title": "Evangelism & Outreach",
+      "code": "DIV101",
+      "videoUrl": "https://www.youtube.com/watch?v=ZBskvtUNjOw"
+    },
+    {
+      "id": "90008",
+      "title": "Follow-up and Discipleship",
+      "course_title": "Evangelism & Outreach",
+      "code": "DIV101",
+      "videoUrl": "https://www.youtube.com/watch?v=XmfDzY8-k0o"
+    },
+    {
+      "id": "90009",
+      "title": "Introduction to Prayer",
+      "course_title": "Prayer & Intercession",
+      "code": "DIV102",
+      "videoUrl": "https://www.youtube.com/watch?v=jEoTfRiSilg"
+    },
+    {
+      "id": "90010",
+      "title": "The Power of Intercession",
+      "course_title": "Prayer & Intercession",
+      "code": "DIV102",
+      "videoUrl": "https://www.youtube.com/watch?v=vAh6VpeiOkc"
+    },
+    {
+      "id": "90011",
+      "title": "Fasting and Prayer",
+      "course_title": "Prayer & Intercession",
+      "code": "DIV102",
+      "videoUrl": "https://www.youtube.com/watch?v=bdVEXYYDmIg"
+    },
+    {
+      "id": "90012",
+      "title": "Warfare Prayer",
+      "course_title": "Prayer & Intercession",
+      "code": "DIV102",
+      "videoUrl": "https://www.youtube.com/watch?v=56cBISAcTk8"
+    },
+    {
+      "id": "90013",
+      "title": "Praying in the Spirit",
+      "course_title": "Prayer & Intercession",
+      "code": "DIV102",
+      "videoUrl": "https://www.youtube.com/watch?v=jxxcA7wr110"
+    },
+    {
+      "id": "90014",
+      "title": "Corporate Prayer",
+      "course_title": "Prayer & Intercession",
+      "code": "DIV102",
+      "videoUrl": "https://www.youtube.com/watch?v=vAh6VpeiOkc"
+    },
+    {
+      "id": "90015",
+      "title": "Answered Prayer",
+      "course_title": "Prayer & Intercession",
+      "code": "DIV102",
+      "videoUrl": "https://www.youtube.com/watch?v=jEoTfRiSilg"
+    },
+    {
+      "id": "90016",
+      "title": "Building a Prayer Life",
+      "course_title": "Prayer & Intercession",
+      "code": "DIV102",
+      "videoUrl": "https://www.youtube.com/watch?v=bdVEXYYDmIg"
+    },
+    {
+      "id": "90017",
+      "title": "The Early Church (33-313 AD)",
+      "course_title": "Church History",
+      "code": "DIV103",
+      "videoUrl": "https://www.youtube.com/watch?v=C-l5LfTrHIw"
+    },
+    {
+      "id": "90018",
+      "title": "The Age of Constantine and Councils",
+      "course_title": "Church History",
+      "code": "DIV103",
+      "videoUrl": "https://www.youtube.com/watch?v=nMRX4VThjYc"
+    },
+    {
+      "id": "90019",
+      "title": "The Medieval Church",
+      "course_title": "Church History",
+      "code": "DIV103",
+      "videoUrl": "https://www.youtube.com/watch?v=0aVhX8Zg1Yw"
+    },
+    {
+      "id": "90020",
+      "title": "The Protestant Reformation",
+      "course_title": "Church History",
+      "code": "DIV103",
+      "videoUrl": "https://www.youtube.com/watch?v=1o8oIELbNxE"
+    },
+    {
+      "id": "90021",
+      "title": "The Great Awakenings",
+      "course_title": "Church History",
+      "code": "DIV103",
+      "videoUrl": "https://www.youtube.com/watch?v=kPPgFa0MfEw"
+    },
+    {
+      "id": "90022",
+      "title": "Modern Church Movements",
+      "course_title": "Church History",
+      "code": "DIV103",
+      "videoUrl": "https://www.youtube.com/watch?v=xmFCNNfBBM8"
+    },
+    {
+      "id": "90023",
+      "title": "Introduction to Spiritual Gifts",
+      "course_title": "Spiritual Gifts",
+      "code": "DIV104",
+      "videoUrl": "https://www.youtube.com/watch?v=6qNcn7q3yOg"
+    },
+    {
+      "id": "90024",
+      "title": "The Gift of Prophecy",
+      "course_title": "Spiritual Gifts",
+      "code": "DIV104",
+      "videoUrl": "https://www.youtube.com/watch?v=eaqKzYJ151Y"
+    },
+    {
+      "id": "90025",
+      "title": "Gifts of Healing and Miracles",
+      "course_title": "Spiritual Gifts",
+      "code": "DIV104",
+      "videoUrl": "https://www.youtube.com/watch?v=0aVhX8Zg1Yw"
+    },
+    {
+      "id": "90026",
+      "title": "Teaching and Wisdom Gifts",
+      "course_title": "Spiritual Gifts",
+      "code": "DIV104",
+      "videoUrl": "https://www.youtube.com/watch?v=6qNcn7q3yOg"
+    },
+    {
+      "id": "90027",
+      "title": "Serving and Leadership Gifts",
+      "course_title": "Spiritual Gifts",
+      "code": "DIV104",
+      "videoUrl": "https://www.youtube.com/watch?v=eaqKzYJ151Y"
+    },
+    {
+      "id": "90028",
+      "title": "Discovering Your Calling",
+      "course_title": "Spiritual Gifts",
+      "code": "DIV104",
+      "videoUrl": "https://www.youtube.com/watch?v=6qNcn7q3yOg"
+    },
+    {
+      "id": "90029",
+      "title": "Introduction to Apologetics",
+      "course_title": "Christian Apologetics",
+      "code": "DIV105",
+      "videoUrl": "https://www.youtube.com/watch?v=yiJbRiswwlA"
+    },
+    {
+      "id": "90030",
+      "title": "The Existence of God",
+      "course_title": "Christian Apologetics",
+      "code": "DIV105",
+      "videoUrl": "https://www.youtube.com/watch?v=eAvYmE2YYIU"
+    },
+    {
+      "id": "90031",
+      "title": "The Reliability of Scripture",
+      "course_title": "Christian Apologetics",
+      "code": "DIV105",
+      "videoUrl": "https://www.youtube.com/watch?v=G1XJ7DeR5fc"
+    },
+    {
+      "id": "90032",
+      "title": "The Resurrection of Jesus",
+      "course_title": "Christian Apologetics",
+      "code": "DIV105",
+      "videoUrl": "https://www.youtube.com/watch?v=A0iDNLxmWVM"
+    },
+    {
+      "id": "90033",
+      "title": "The Problem of Evil and Suffering",
+      "course_title": "Christian Apologetics",
+      "code": "DIV105",
+      "videoUrl": "https://www.youtube.com/watch?v=vx8ZMkW-HU8"
+    },
+    {
+      "id": "90034",
+      "title": "Comparative Religions",
+      "course_title": "Christian Apologetics",
+      "code": "DIV105",
+      "videoUrl": "https://www.youtube.com/watch?v=yiJbRiswwlA"
+    },
+    {
+      "id": "90035",
+      "title": "The Call to Make Disciples",
+      "course_title": "Discipleship & Mentoring",
+      "code": "DIV106",
+      "videoUrl": "https://www.youtube.com/watch?v=QZ_-Y8ZxPJ0"
+    },
+    {
+      "id": "90036",
+      "title": "Jesus as the Model",
+      "course_title": "Discipleship & Mentoring",
+      "code": "DIV106",
+      "videoUrl": "https://www.youtube.com/watch?v=7qFl8xeH8l0"
+    },
+    {
+      "id": "90037",
+      "title": "Essential Disciplines",
+      "course_title": "Discipleship & Mentoring",
+      "code": "DIV106",
+      "videoUrl": "https://www.youtube.com/watch?v=QZ_-Y8ZxPJ0"
+    },
+    {
+      "id": "90038",
+      "title": "The Art of Mentoring",
+      "course_title": "Discipleship & Mentoring",
+      "code": "DIV106",
+      "videoUrl": "https://www.youtube.com/watch?v=7qFl8xeH8l0"
+    },
+    {
+      "id": "90039",
+      "title": "Discipleship in Different Life Stages",
+      "course_title": "Discipleship & Mentoring",
+      "code": "DIV106",
+      "videoUrl": "https://www.youtube.com/watch?v=QZ_-Y8ZxPJ0"
+    },
+    {
+      "id": "90040",
+      "title": "Multiplying Disciples",
+      "course_title": "Discipleship & Mentoring",
+      "code": "DIV106",
+      "videoUrl": "https://www.youtube.com/watch?v=7qFl8xeH8l0"
+    },
+    {
+      "id": "90041",
+      "title": "The Heart of Worship",
+      "course_title": "Worship & Liturgy",
+      "code": "DIV107",
+      "videoUrl": "https://www.youtube.com/watch?v=Yt-6Xm5pLdA"
+    },
+    {
+      "id": "90042",
+      "title": "Music in Worship",
+      "course_title": "Worship & Liturgy",
+      "code": "DIV107",
+      "videoUrl": "https://www.youtube.com/watch?v=Yt-6Xm5pLdA"
+    },
+    {
+      "id": "90043",
+      "title": "Elements of Corporate Worship",
+      "course_title": "Worship & Liturgy",
+      "code": "DIV107",
+      "videoUrl": "https://www.youtube.com/watch?v=Yt-6Xm5pLdA"
+    },
+    {
+      "id": "90044",
+      "title": "The Sacraments",
+      "course_title": "Worship & Liturgy",
+      "code": "DIV107",
+      "videoUrl": "https://www.youtube.com/watch?v=Yt-6Xm5pLdA"
+    },
+    {
+      "id": "90045",
+      "title": "The Church Calendar",
+      "course_title": "Worship & Liturgy",
+      "code": "DIV107",
+      "videoUrl": "https://www.youtube.com/watch?v=Yt-6Xm5pLdA"
+    },
+    {
+      "id": "90046",
+      "title": "Worship and Mission",
+      "course_title": "Worship & Liturgy",
+      "code": "DIV107",
+      "videoUrl": "https://www.youtube.com/watch?v=Yt-6Xm5pLdA"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tcourse_title\tcode\tvideoUrl\n1\tIntroduction to Evangelism\tEvangelism & Outreach\tDIV101\thttps://www.youtube.com/watch?v=Vldhn1m-RnE\n90001\tIntroduction to Evangelism\tEvangelism & Outreach\tDIV101\thttps://www.youtube.com/watch?v=Vldhn1m-RnE\n90002\tThe Gospel Message\tEvangelism & Outreach\tDIV101\thttps://www.youtube.com/watch?v=0DcfnbMm8aY\n90003\tPersonal Testimony\tEvangelism & Outreach\tDIV101\thttps://www.youtube.com/watch?v=XmfDzY8-k0o\n90004\tRelational Evangelism\tEvangelism & Outreach\tDIV101\thttps://www.youtube.com/watch?v=UWt7D0-KYds\n90005\tCultural Sensitivity in Evangelism\tEvangelism & Outreach\tDIV101\thttps://www.youtube.com/watch?v=tx-wnK8isWk\n90006\tDigital Evangelism\tEvangelism & Outreach\tDIV101\thttps://www.youtube.com/watch?v=iNk-_ex3wlY\n90007\tHandling Objections\tEvangelism & Outreach\tDIV101\thttps://www.youtube.com/watch?v=ZBskvtUNjOw\n90008\tFollow-up and Discipleship\tEvangelism & Outreach\tDIV101\thttps://www.youtube.com/watch?v=XmfDzY8-k0o\n90009\tIntroduction to Prayer\tPrayer & Intercession\tDIV102\thttps://www.youtube.com/watch?v=jEoTfRiSilg\n90010\tThe Power of Intercession\tPrayer & Intercession\tDIV102\thttps://www.youtube.com/watch?v=vAh6VpeiOkc\n90011\tFasting and Prayer\tPrayer & Intercession\tDIV102\thttps://www.youtube.com/watch?v=bdVEXYYDmIg\n90012\tWarfare Prayer\tPrayer & Intercession\tDIV102\thttps://www.youtube.com/watch?v=56cBISAcTk8\n90013\tPraying in the Spirit\tPrayer & Intercession\tDIV102\thttps://www.youtube.com/watch?v=jxxcA7wr110\n90014\tCorporate Prayer\tPrayer & Intercession\tDIV102\thttps://www.youtube.com/watch?v=vAh6VpeiOkc\n90015\tAnswered Prayer\tPrayer & Intercession\tDIV102\thttps://www.youtube.com/watch?v=jEoTfRiSilg\n90016\tBuilding a Prayer Life\tPrayer & Intercession\tDIV102\thttps://www.youtube.com/watch?v=bdVEXYYDmIg\n90017\tThe Early Church (33-313 AD)\tChurch History\tDIV103\thttps://www.youtube.com/watch?v=C-l5LfTrHIw\n90018\tThe Age of Constantine and Councils\tChurch History\tDIV103\thttps://www.youtube.com/watch?v=nMRX4VThjYc\n90019\tThe Medieval Church\tChurch History\tDIV103\thttps://www.youtube.com/watch?v=0aVhX8Zg1Yw\n90020\tThe Protestant Reformation\tChurch History\tDIV103\thttps://www.youtube.com/watch?v=1o8oIELbNxE\n90021\tThe Great Awakenings\tChurch History\tDIV103\thttps://www.youtube.com/watch?v=kPPgFa0MfEw\n90022\tModern Church Movements\tChurch History\tDIV103\thttps://www.youtube.com/watch?v=xmFCNNfBBM8\n90023\tIntroduction to Spiritual Gifts\tSpiritual Gifts\tDIV104\thttps://www.youtube.com/watch?v=6qNcn7q3yOg\n90024\tThe Gift of Prophecy\tSpiritual Gifts\tDIV104\thttps://www.youtube.com/watch?v=eaqKzYJ151Y\n90025\tGifts of Healing and Miracles\tSpiritual Gifts\tDIV104\thttps://www.youtube.com/watch?v=0aVhX8Zg1Yw\n90026\tTeaching and Wisdom Gifts\tSpiritual Gifts\tDIV104\thttps://www.youtube.com/watch?v=6qNcn7q3yOg\n90027\tServing and Leadership Gifts\tSpiritual Gifts\tDIV104\thttps://www.youtube.com/watch?v=eaqKzYJ151Y\n90028\tDiscovering Your Calling\tSpiritual Gifts\tDIV104\thttps://www.youtube.com/watch?v=6qNcn7q3yOg\n90029\tIntroduction to Apologetics\tChristian Apologetics\tDIV105\thttps://www.youtube.com/watch?v=yiJbRiswwlA\n90030\tThe Existence of God\tChristian Apologetics\tDIV105\thttps://www.youtube.com/watch?v=eAvYmE2YYIU\n90031\tThe Reliability of Scripture\tChristian Apologetics\tDIV105\thttps://www.youtube.com/watch?v=G1XJ7DeR5fc\n90032\tThe Resurrection of Jesus\tChristian Apologetics\tDIV105\thttps://www.youtube.com/watch?v=A0iDNLxmWVM\n90033\tThe Problem of Evil and Suffering\tChristian Apologetics\tDIV105\thttps://www.youtube.com/watch?v=vx8ZMkW-HU8\n90034\tComparative Religions\tChristian Apologetics\tDIV105\thttps://www.youtube.com/watch?v=yiJbRiswwlA\n90035\tThe Call to Make Disciples\tDiscipleship & Mentoring\tDIV106\thttps://www.youtube.com/watch?v=QZ_-Y8ZxPJ0\n90036\tJesus as the Model\tDiscipleship & Mentoring\tDIV106\thttps://www.youtube.com/watch?v=7qFl8xeH8l0\n90037\tEssential Disciplines\tDiscipleship & Mentoring\tDIV106\thttps://www.youtube.com/watch?v=QZ_-Y8ZxPJ0\n90038\tThe Art of Mentoring\tDiscipleship & Mentoring\tDIV106\thttps://www.youtube.com/watch?v=7qFl8xeH8l0\n90039\tDiscipleship in Different Life Stages\tDiscipleship & Mentoring\tDIV106\thttps://www.youtube.com/watch?v=QZ_-Y8ZxPJ0\n90040\tMultiplying Disciples\tDiscipleship & Mentoring\tDIV106\thttps://www.youtube.com/watch?v=7qFl8xeH8l0\n90041\tThe Heart of Worship\tWorship & Liturgy\tDIV107\thttps://www.youtube.com/watch?v=Yt-6Xm5pLdA\n90042\tMusic in Worship\tWorship & Liturgy\tDIV107\thttps://www.youtube.com/watch?v=Yt-6Xm5pLdA\n90043\tElements of Corporate Worship\tWorship & Liturgy\tDIV107\thttps://www.youtube.com/watch?v=Yt-6Xm5pLdA\n90044\tThe Sacraments\tWorship & Liturgy\tDIV107\thttps://www.youtube.com/watch?v=Yt-6Xm5pLdA\n90045\tThe Church Calendar\tWorship & Liturgy\tDIV107\thttps://www.youtube.com/watch?v=Yt-6Xm5pLdA\n90046\tWorship and Mission\tWorship & Liturgy\tDIV107\thttps://www.youtube.com/watch?v=Yt-6Xm5pLdA\n",
+  "stderr": "",
+  "execution_time_ms": 148
+}
