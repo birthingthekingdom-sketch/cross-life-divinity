@@ -1,6 +1,6 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { GraduationCap, LayoutDashboard, LogOut, Settings } from "lucide-react";
+import { Calendar as CalendarIcon, Award, TrendingUp, Video, GraduationCap, LayoutDashboard, LogOut, Settings } from "lucide-react";
 import { Link, useLocation } from "wouter";
 
 interface DashboardLayoutProps {
@@ -33,8 +33,49 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 <h1 className="text-xl font-bold">Cross Life School of Divinity</h1>
               </div>
             </Link>
-            <div className="flex items-center gap-4">
-              <div className="text-right hidden sm:block">
+            <div className="flex items-center gap-2">
+              {/* Quick Navigation Buttons */}
+              <Link href="/webinars">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20 hidden md:flex"
+                >
+                  <Video className="h-4 w-4 mr-2" />
+                  Webinars
+                </Button>
+              </Link>
+              <Link href="/calendar">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20 hidden md:flex"
+                >
+                  <CalendarIcon className="h-4 w-4 mr-2" />
+                  Calendar
+                </Button>
+              </Link>
+              <Link href="/progress">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20 hidden md:flex"
+                >
+                  <TrendingUp className="h-4 w-4 mr-2" />
+                  My Progress
+                </Button>
+              </Link>
+              <Link href="/certificates">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20 hidden md:flex"
+                >
+                  <Award className="h-4 w-4 mr-2" />
+                  My Certificates
+                </Button>
+              </Link>
+              <div className="text-right hidden sm:block ml-2">
                 <p className="font-semibold text-sm">{user?.name || "Student"}</p>
                 <p className="text-xs text-primary-foreground/70">{user?.email}</p>
               </div>

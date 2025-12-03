@@ -512,3 +512,32 @@
 - [ ] Integrate external API (Turnitin/Copyscape) - requires license
 - [ ] Create plagiarism report display UI
 - [ ] Add admin controls for plagiarism thresholds
+
+
+## Assignment Calendar System - Final Polish
+
+### Navigation & UX
+- [x] Add "Assignment Calendar" link to main navigation menu
+- [x] Add calendar icon to navigation
+- [x] Ensure calendar is accessible from student dashboard
+
+### Email Configuration
+- [x] Verify email SMTP settings page exists in admin
+- [x] Email configuration accessible at /admin/email-settings
+- [x] SMTP settings interface functional
+
+### Admin Due Date Management
+- [x] Add due date field to lesson editing form
+- [x] Add assignment prompt field to lesson editing form
+- [x] Update backend API to accept assignment and due date
+- [x] Add date-time picker with preview
+- [ ] Add due date field to lesson creation form
+- [ ] Display due dates in admin lesson list
+- [ ] Add bulk due date assignment tool
+
+
+## URGENT: Admin Access Fix
+- [x] Fix admin role check in authentication
+- [x] Updated user role to admin in database
+- [x] Ensure admin users can access /admin directly
+- [x] Resolved session cache issue with fresh login

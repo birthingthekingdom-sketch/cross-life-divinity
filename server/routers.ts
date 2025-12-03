@@ -191,10 +191,16 @@ export const appRouter = router({
         title: z.string().optional(),
         content: z.string().optional(),
         lessonOrder: z.number().optional(),
+        assignment: z.string().optional(),
+        assignmentDueDate: z.string().optional(),
       }))
       .mutation(async ({ input }) => {
-        const { id, ...updates } = input;
-        await db.updateLesson(id, updates);
+        const { id, assignmentDueDate, ...updates } = input;
+        const updateData: any = { ...updates };
+        if (assignmentDueDate !== undefined) {
+          updateData.assignmentDueDate = assignmentDueDate ? new Date(assignmentDueDate) : null;
+        }
+        await db.updateLesson(id, updateData);
         return { success: true };
       }),
     

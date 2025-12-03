@@ -25,11 +25,18 @@ export default function AdminEditLesson() {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [assignment, setAssignment] = useState("");
+  const [assignmentDueDate, setAssignmentDueDate] = useState("");
 
   useEffect(() => {
     if (lesson) {
       setTitle(lesson.title);
       setContent(lesson.content);
+      setAssignment(lesson.assignment || "");
+      if (lesson.assignmentDueDate) {
+        const date = new Date(lesson.assignmentDueDate);
+        setAssignmentDueDate(date.toISOString().slice(0, 16));
+      }
     }
   }, [lesson]);
 
@@ -59,6 +66,8 @@ export default function AdminEditLesson() {
       id: lessonId,
       title: title.trim(),
       content: content.trim(),
+      assignment: assignment.trim() || undefined,
+      assignmentDueDate: assignmentDueDate ? new Date(assignmentDueDate).toISOString() : undefined,
     });
   };
 
@@ -170,6 +179,31 @@ export default function AdminEditLesson() {
                 onChange={setContent}
                 placeholder="Enter lesson content (supports Markdown)..."
               />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="assignment">Assignment Prompt (Optional)</Label>
+              <RichTextEditor
+                content={assignment}
+                onChange={setAssignment}
+                placeholder="Enter assignment instructions (e.g., Write a 500-word reflection on...)..."
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="assignmentDueDate">Assignment Due Date (Optional)</Label>
+              <Input
+                id="assignmentDueDate"
+                type="datetime-local"
+                value={assignmentDueDate}
+                onChange={(e) => setAssignmentDueDate(e.target.value)}
+                placeholder="Select due date and time"
+              />
+              {assignmentDueDate && (
+                <p className="text-sm text-muted-foreground">
+                  Due: {new Date(assignmentDueDate).toLocaleString()}
+                </p>
+              )}
             </div>
           </CardContent>
         </Card>
