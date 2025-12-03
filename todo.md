@@ -420,3 +420,50 @@
 - [x] Create Lesson 3 written assignment
 - [x] Update database with new lesson content
 - [ ] Generate lesson plan summaries for user review
+
+## Complete Seminary-Level Content for All Lessons
+- [x] Create Lesson 4 content (Evangelism & Outreach)
+- [x] Create Lesson 5 content (Evangelism & Outreach)
+- [x] Create Lesson 6 content (Evangelism & Outreach)
+- [x] Create Lesson 7 content (Evangelism & Outreach)
+- [x] Create Lesson 8 content (Evangelism & Outreach)
+- [x] Create Lesson 9 content (Prayer & Intercession)
+- [x] Create Lesson 10 content (Prayer & Intercession)
+- [x] Create Lesson 11 content (Prayer & Intercession)
+- [x] Create Lesson 12 content (Prayer & Intercession)
+- [x] Create Lesson 13 content (Prayer & Intercession)
+- [x] Create Lesson 14 content (Prayer & Intercession)
+- [x] Create Lesson 15 content (Prayer & Intercession)
+- [x] Create Lesson 16 content (Prayer & Intercession)
+- [x] Create remaining 30 lessons with seminary-level content
+- [x] Add 10-question quizzes to all remaining lessons
+- [x] Add written assignments to all remaining lessons
+- [x] Add reading requirements to all remaining lessons
+
+## Assignment Submission System
+- [x] Create assignments table in database schema
+- [x] Add assignment submission API endpoints
+- [ ] Build assignment upload UI component
+- [ ] Add file upload functionality (PDF, Word, etc.)
+- [ ] Display submitted assignments in student dashboard
+- [ ] Show assignment status (pending, graded, returned)
+- [ ] Add assignment resubmission functionality
+- [ ] Test assignment submission workflow
+
+## Grading Rubric System
+- [ ] Create grading_rubrics table in database
+- [ ] Create assignment_grades table for storing grades
+- [ ] Build admin grading interface
+- [ ] Add rubric creation UI
+- [ ] Implement grade calculation based on rubric
+- [ ] Add feedback comment system
+- [ ] Create grade notification emails
+- [ ] Display grades to students
+- [ ] Add grade analytics and reports
+- [ ] Test complete grading workflow
+
+## Reduce Assignment Word Count
+- [x] Update Lesson 1 assignment to 500 words
+- [x] Update Lesson 2 assignment to 500 words
+- [x] Update Lesson 3 assignment to 500 words
+- [x] Create 500-word assignment template for future lessons

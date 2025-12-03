@@ -9,6 +9,7 @@ import * as scheduler from "./scheduler";
 import * as analytics from "./analytics";
 import * as csvExport from "./csv-export";
 import { authRouter } from "./auth-router";
+import { assignmentRouter } from "./assignment-router.js";
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -19,6 +20,7 @@ const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
 });
 
 export const appRouter = router({
+  assignments: assignmentRouter,
   system: systemRouter,
 
   // Merge custom auth router with existing auth endpoints
