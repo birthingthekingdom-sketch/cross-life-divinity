@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress as ProgressBar } from "@/components/ui/progress";
 import { trpc } from "@/lib/trpc";
-import { Award, BookOpen, CheckCircle2, Clock, Loader2, TrendingUp } from "lucide-react";
+import { Award, BookOpen, CheckCircle2, Clock, Loader2, TrendingUp, FileText } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Progress() {
@@ -44,6 +44,9 @@ export default function Progress() {
     totalCPDHours = 0,
     earnedCPDHours = 0,
     averageQuizScore = 0,
+    totalAssignments = 0,
+    gradedAssignments = 0,
+    averageAssignmentGrade = 0,
     courseProgress = [],
     recentActivity = []
   } = progressData || {};
@@ -137,6 +140,60 @@ export default function Progress() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Assignment Metrics */}
+        {totalAssignments > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="border-indigo-200 bg-gradient-to-br from-indigo-50 to-white">
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Assignments</CardTitle>
+                  <FileText className="h-4 w-4 text-indigo-700" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-indigo-900">
+                  {gradedAssignments}/{totalAssignments}
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  Assignments graded
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-rose-200 bg-gradient-to-br from-rose-50 to-white">
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Assignment Average</CardTitle>
+                  <Award className="h-4 w-4 text-rose-700" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-rose-900">{Math.round(averageAssignmentGrade)}%</div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  Average assignment grade
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-teal-200 bg-gradient-to-br from-teal-50 to-white">
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Pending</CardTitle>
+                  <Clock className="h-4 w-4 text-teal-700" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-teal-900">
+                  {totalAssignments - gradedAssignments}
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  Awaiting grading
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         {/* Course Progress Details */}
         <Card>

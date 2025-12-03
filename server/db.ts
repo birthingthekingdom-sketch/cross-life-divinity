@@ -634,6 +634,16 @@ export async function getStudentProgressSummary(userId: number) {
     .from(quizSubmissions)
     .where(eq(quizSubmissions.userId, userId));
   
+  // Get all assignment submissions with grades
+  const assignmentSubs = await db
+    .select({
+      submission: assignmentSubmissions,
+      grade: assignmentGrades,
+    })
+    .from(assignmentSubmissions)
+    .leftJoin(assignmentGrades, eq(assignmentSubmissions.id, assignmentGrades.submissionId))
+    .where(eq(assignmentSubmissions.userId, userId));
+  
   // Calculate overall stats
   const totalCourses = enrolledCourses.length;
   const totalLessons = enrolledCourses.reduce((sum, course) => sum + (course.totalLessons || 0), 0);
@@ -667,6 +677,15 @@ export async function getStudentProgressSummary(userId: number) {
     ? quizSubs.reduce((sum, q) => sum + (q.score || 0), 0) / quizSubs.length
     : 0;
   
+  // Calculate assignment metrics
+  const totalAssignments = assignmentSubs.length;
+  const gradedAssignments = assignmentSubs.filter(a => a.grade !== null).length;
+  const averageAssignmentGrade = gradedAssignments > 0
+    ? assignmentSubs
+        .filter(a => a.grade !== null)
+        .reduce((sum, a) => sum + (a.grade?.grade || 0), 0) / gradedAssignments
+    : 0;
+  
   // Get recent activity (last 10 completed lessons)
   const recentActivity = await db
     .select({
@@ -693,6 +712,9 @@ export async function getStudentProgressSummary(userId: number) {
     totalCPDHours,
     earnedCPDHours,
     averageQuizScore,
+    totalAssignments,
+    gradedAssignments,
+    averageAssignmentGrade,
     courseProgress,
     recentActivity,
   };

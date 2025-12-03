@@ -106,6 +106,7 @@ export const lessons = mysqlTable("lessons", {
   courseId: int("courseId").notNull(),
   title: varchar("title", { length: 255 }).notNull(),
   content: text("content").notNull(),
+  assignment: text("assignment"), // Written assignment prompt
   lessonOrder: int("lessonOrder").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),

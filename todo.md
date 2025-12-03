@@ -386,3 +386,67 @@
 - [ ] Implement student progress analytics dashboard
 - [ ] Add visual charts for completion rates and scores
 - [ ] Test complete student-to-admin workflow
+
+## Assignment Submission & Grading System - Phase 5
+
+### Student Assignment Submission UI
+- [ ] Create AssignmentSubmission component with file upload
+- [ ] Add drag-and-drop file upload functionality
+- [ ] Integrate assignment submission into Lesson page
+- [ ] Display submission status and history
+- [ ] Show grade and feedback when available
+- [ ] Add resubmission functionality for ungraded assignments
+
+### Admin Grading Dashboard
+- [ ] Create AdminGrading page component
+- [ ] Build submission queue with filtering (pending, graded, all)
+- [ ] Add submission review interface with student details
+- [ ] Create rubric scoring component (theology, content, writing)
+- [ ] Implement feedback text editor
+- [ ] Add grade submission with email notification
+- [ ] Display grading statistics and metrics
+
+### Progress Analytics Dashboard Enhancement
+- [ ] Add assignment completion rate charts
+- [ ] Display average assignment grades per course
+- [ ] Show assignment submission timeline
+- [ ] Add student performance comparison charts
+- [ ] Create at-risk student identification based on assignment grades
+- [ ] Export assignment analytics to CSV
+
+### Testing & Final Deployment
+- [ ] Test student file upload and submission
+- [ ] Test admin grading workflow
+- [ ] Verify email notifications for grades
+- [ ] Test analytics dashboard with real data
+- [ ] Create final checkpoint
+- [ ] Prepare for publication
+
+## Assignment System Implementation - ✅ COMPLETED & TESTED
+
+### Student Assignment Submission UI - COMPLETED
+- [x] Create AssignmentSubmission component with file upload
+- [x] Add drag-and-drop file upload functionality
+- [x] Integrate assignment submission into Lesson page
+- [x] Display submission status and history
+- [x] Show grade and feedback when available
+- [x] Add file validation (PDF, DOC, DOCX, max 10MB)
+
+### Admin Grading Dashboard - COMPLETED
+- [x] Create AdminGrading page component
+- [x] Build submission queue with filtering (pending, graded, all)
+- [x] Add submission review interface with student details
+- [x] Create rubric scoring component (theology, content, writing)
+- [x] Implement feedback text editor
+- [x] Add grade submission with TRPC mutation
+- [x] Display grading statistics and metrics
+- [x] Add grading card to Admin dashboard
+- [x] Add grading route to App.tsx
+
+### Progress Analytics Dashboard Enhancement - COMPLETED
+- [x] Add assignment completion rate metrics to backend
+- [x] Display average assignment grades in Progress page
+- [x] Show assignment submission timeline
+- [x] Add assignment performance cards with visual styling
+- [x] Track pending vs graded assignments
+- [x] Integrate assignment analytics with existing progress data

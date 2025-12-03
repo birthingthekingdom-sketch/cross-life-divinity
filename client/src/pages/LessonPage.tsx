@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { trpc } from "@/lib/trpc";
-// import AssignmentSubmission from "@/components/AssignmentSubmission";
+import { AssignmentSubmission } from "@/components/AssignmentSubmission";
 import { ArrowLeft, CheckCircle2, Loader2 } from "lucide-react";
 import { Link, useParams } from "wouter";
 import { useState, useMemo } from "react";
@@ -140,15 +140,14 @@ export default function LessonPage() {
             </CardContent>
           </Card>
 
-          {/* Assignment Section - Coming Soon */}
-          {/* {lesson.assignment && (
-            <div className="mb-8">
-              <AssignmentSubmission 
-                lessonId={lesson.id} 
-                assignmentText={lesson.assignment} 
-              />
-            </div>
-          )} */}
+          {/* Assignment Section */}
+          {lesson.assignment && (
+            <AssignmentSubmission 
+              lessonId={lesson.id}
+              lessonTitle={lesson.title}
+              assignmentPrompt={lesson.assignment}
+            />
+          )}
 
           {/* Quiz Section */}
           {quizQuestions && quizQuestions.length > 0 && (

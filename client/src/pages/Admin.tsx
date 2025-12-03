@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { trpc } from "@/lib/trpc";
-import { BookOpen, Code, Edit, GraduationCap, Key, Loader2, Mail, Plus, Settings, Users, Video, BarChart3 } from "lucide-react";
+import { BookOpen, Code, Edit, GraduationCap, Key, Loader2, Mail, Plus, Settings, Users, Video, BarChart3, FileCheck } from "lucide-react";
 import AssignCoursesDialog from "@/components/AssignCoursesDialog";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -151,6 +151,20 @@ export default function Admin() {
                 </CardTitle>
                 <CardDescription>
                   Track engagement and identify at-risk students
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
+          
+          <Link href="/admin/grading">
+            <Card className="hover:shadow-md transition-shadow cursor-pointer">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <FileCheck className="h-5 w-5" />
+                  Assignment Grading
+                </CardTitle>
+                <CardDescription>
+                  Review and grade student assignment submissions
                 </CardDescription>
               </CardHeader>
             </Card>
