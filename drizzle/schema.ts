@@ -106,6 +106,8 @@ export const lessons = mysqlTable("lessons", {
   courseId: int("courseId").notNull(),
   title: varchar("title", { length: 255 }).notNull(),
   content: text("content").notNull(),
+  videoUrl: text("videoUrl"), // YouTube, Vimeo, or direct video URL
+  readingMaterial: text("readingMaterial"), // Scripture references or reading assignments
   lessonOrder: int("lessonOrder").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),

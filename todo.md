@@ -363,3 +363,13 @@
 - [ ] Create lessons for all remaining courses
 - [ ] Add quizzes to all lessons
 - [ ] Update course totalLessons counts
+
+## Video and Quiz Enhancement
+- [x] Add educational videos to all lessons
+- [x] Create quiz questions for Evangelism & Outreach lessons
+- [x] Create quiz questions for Prayer & Intercession lessons
+- [x] Create quiz questions for Church History lessons
+- [x] Create quiz questions for Spiritual Gifts lessons
+- [x] Create quiz questions for Christian Apologetics lessons
+- [x] Create quiz questions for Discipleship & Mentoring lessons
+- [x] Create quiz questions for Worship & Liturgy lessons
