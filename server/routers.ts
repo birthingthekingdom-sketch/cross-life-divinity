@@ -9,6 +9,7 @@ import * as scheduler from "./scheduler";
 import * as analytics from "./analytics";
 import * as csvExport from "./csv-export";
 import { authRouter } from "./auth-router";
+import { assignmentRouter } from "./assignment-router";
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -937,6 +938,9 @@ export const appRouter = router({
         return { success: true };
       }),
   }),
+
+  // Assignment submission and grading
+  assignments: assignmentRouter,
 });
 
 export type AppRouter = typeof appRouter;

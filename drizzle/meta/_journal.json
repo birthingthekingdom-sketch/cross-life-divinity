@@ -78,6 +78,13 @@
       "when": 1764700903940,
       "tag": "0010_powerful_corsair",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "5",
+      "when": 1764761113223,
+      "tag": "0011_stale_eternity",
+      "breakpoints": true
     }
   ]
 }

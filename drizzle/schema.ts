@@ -282,3 +282,37 @@ export const followUps = mysqlTable("follow_ups", {
 
 export type FollowUp = typeof followUps.$inferSelect;
 export type InsertFollowUp = typeof followUps.$inferInsert;
+
+/**
+ * Assignment submissions from students
+ */
+export const assignmentSubmissions = mysqlTable("assignment_submissions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  lessonId: int("lessonId").notNull(),
+  fileUrl: text("fileUrl").notNull(), // URL to uploaded file (PDF/Word)
+  fileName: varchar("fileName", { length: 255 }).notNull(),
+  notes: text("notes"), // Optional student notes
+  status: mysqlEnum("status", ["submitted", "graded", "returned"]).default("submitted").notNull(),
+  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type AssignmentSubmission = typeof assignmentSubmissions.$inferSelect;
+export type InsertAssignmentSubmission = typeof assignmentSubmissions.$inferInsert;
+
+/**
+ * Grades and feedback for assignment submissions
+ */
+export const assignmentGrades = mysqlTable("assignment_grades", {
+  id: int("id").autoincrement().primaryKey(),
+  submissionId: int("submissionId").notNull(),
+  grade: int("grade").notNull(), // 0-100
+  feedback: text("feedback").notNull(), // Detailed feedback from grader
+  rubricScores: text("rubricScores"), // JSON string of rubric scores
+  gradedBy: int("gradedBy").notNull(), // Admin user ID who graded
+  gradedAt: timestamp("gradedAt").defaultNow().notNull(),
+});
+
+export type AssignmentGrade = typeof assignmentGrades.$inferSelect;
+export type InsertAssignmentGrade = typeof assignmentGrades.$inferInsert;

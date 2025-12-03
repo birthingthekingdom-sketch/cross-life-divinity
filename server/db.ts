@@ -16,7 +16,9 @@ import {
   forumTopics, InsertForumTopic, ForumTopic,
   forumReplies, InsertForumReply, ForumReply,
   webinars, InsertWebinar, Webinar,
-  followUps, InsertFollowUp, FollowUp
+  followUps, InsertFollowUp, FollowUp,
+  assignmentSubmissions, InsertAssignmentSubmission, AssignmentSubmission,
+  assignmentGrades, InsertAssignmentGrade, AssignmentGrade
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -928,4 +930,134 @@ export async function getAllUsers() {
   if (!db) return [];
   
   return db.select().from(users).orderBy(desc(users.createdAt));
+}
+
+
+// Assignment Submissions
+export async function createAssignmentSubmission(data: {
+  userId: number;
+  lessonId: number;
+  fileUrl: string;
+  fileName: string;
+  notes?: string;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [result] = await db
+    .insert(assignmentSubmissions)
+    .values({
+      ...data,
+      status: 'submitted',
+      submittedAt: new Date(),
+    });
+  
+  return result.insertId;
+}
+
+export async function getAssignmentSubmissionsByUser(userId: number, lessonId?: number) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  const conditions = [eq(assignmentSubmissions.userId, userId)];
+  if (lessonId) {
+    conditions.push(eq(assignmentSubmissions.lessonId, lessonId));
+  }
+  
+  return db
+    .select({
+      submission: assignmentSubmissions,
+      lesson: lessons,
+      course: courses,
+      grade: assignmentGrades,
+    })
+    .from(assignmentSubmissions)
+    .leftJoin(lessons, eq(assignmentSubmissions.lessonId, lessons.id))
+    .leftJoin(courses, eq(lessons.courseId, courses.id))
+    .leftJoin(assignmentGrades, eq(assignmentSubmissions.id, assignmentGrades.submissionId))
+    .where(and(...conditions))
+    .orderBy(desc(assignmentSubmissions.submittedAt));
+}
+
+export async function getAllAssignmentSubmissions(filters?: {
+  lessonId?: number;
+  courseId?: number;
+  status?: 'submitted' | 'graded' | 'returned';
+}) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  const baseQuery = db
+    .select({
+      submission: assignmentSubmissions,
+      student: users,
+      lesson: lessons,
+      course: courses,
+      grade: assignmentGrades,
+    })
+    .from(assignmentSubmissions)
+    .leftJoin(users, eq(assignmentSubmissions.userId, users.id))
+    .leftJoin(lessons, eq(assignmentSubmissions.lessonId, lessons.id))
+    .leftJoin(courses, eq(lessons.courseId, courses.id))
+    .leftJoin(assignmentGrades, eq(assignmentSubmissions.id, assignmentGrades.submissionId));
+  
+  // Apply filters if provided
+  const conditions = [];
+  if (filters?.lessonId) conditions.push(eq(assignmentSubmissions.lessonId, filters.lessonId));
+  if (filters?.courseId) conditions.push(eq(courses.id, filters.courseId));
+  if (filters?.status) conditions.push(eq(assignmentSubmissions.status, filters.status));
+  
+  const finalQuery = conditions.length > 0 
+    ? baseQuery.where(and(...conditions))
+    : baseQuery;
+  
+  return finalQuery.orderBy(desc(assignmentSubmissions.submittedAt));
+}
+
+export async function gradeAssignment(data: {
+  submissionId: number;
+  grade: number;
+  feedback: string;
+  rubricScores?: Record<string, number>;
+  gradedBy: number;
+}) {
+  const db = await getDb();
+  if (!db) return;
+  
+  // Check if grade exists
+  const existing = await db
+    .select()
+    .from(assignmentGrades)
+    .where(eq(assignmentGrades.submissionId, data.submissionId))
+    .limit(1);
+  
+  if (existing.length > 0) {
+    // Update existing grade
+    await db
+      .update(assignmentGrades)
+      .set({
+        grade: data.grade,
+        feedback: data.feedback,
+        rubricScores: data.rubricScores ? JSON.stringify(data.rubricScores) : null,
+        gradedBy: data.gradedBy,
+        gradedAt: new Date(),
+      })
+      .where(eq(assignmentGrades.submissionId, data.submissionId));
+  } else {
+    // Insert new grade
+    await db.insert(assignmentGrades).values({
+      submissionId: data.submissionId,
+      grade: data.grade,
+      feedback: data.feedback,
+      rubricScores: data.rubricScores ? JSON.stringify(data.rubricScores) : null,
+      gradedBy: data.gradedBy,
+      gradedAt: new Date(),
+    });
+  }
+  
+  // Update submission status
+  await db
+    .update(assignmentSubmissions)
+    .set({ status: 'graded' })
+    .where(eq(assignmentSubmissions.id, data.submissionId));
 }
