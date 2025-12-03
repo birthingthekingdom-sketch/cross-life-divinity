@@ -129,6 +129,26 @@ export default function LessonPage() {
 
       <div className="container py-8">
         <div className="max-w-4xl mx-auto space-y-8">
+          {/* Video Player */}
+          {lesson.videoUrl && (
+            <Card>
+              <CardHeader>
+                <CardTitle>Lesson Video</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="aspect-video w-full">
+                  <iframe
+                    src={lesson.videoUrl.replace('watch?v=', 'embed/')}
+                    className="w-full h-full rounded-lg"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title={lesson.title}
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           {/* Lesson Content */}
           <Card>
             <CardHeader>
