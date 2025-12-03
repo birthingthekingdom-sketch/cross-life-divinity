@@ -23,6 +23,7 @@ import AdminWebinars from "@/pages/AdminWebinars";
 import AdminAnalytics from "@/pages/AdminAnalytics";
 import AdminGrading from "./pages/AdminGrading";
 import PeerReviews from "./pages/PeerReviews";
+import { AssignmentCalendar } from "./pages/AssignmentCalendar";
 import Webinars from "./pages/Webinars";
 import MyCertificates from "./pages/MyCertificates";
 import VerifyCertificate from "./pages/VerifyCertificate";
@@ -58,6 +59,7 @@ function Router() {
           <Route path="/admin/analytics" component={AdminAnalytics} />
           <Route path="/admin/grading" component={AdminGrading} />
         <Route path="/peer-reviews" component={PeerReviews} />
+        <Route path="/calendar" component={AssignmentCalendar} />
       <Route path="/webinars" component={Webinars} />
       <Route path="/certificates" component={MyCertificates} />
       <Route path="/verify/:token" component={VerifyCertificate} />

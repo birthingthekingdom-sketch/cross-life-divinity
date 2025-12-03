@@ -2,6 +2,7 @@ import { protectedProcedure, router } from "./_core/trpc";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import * as db from "./db";
+import { sendAssignmentGradedEmail, sendPeerReviewAssignedEmail, sendPeerFeedbackReceivedEmail, sendAssignmentResubmittedEmail } from "./email-assignments";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
   if (ctx.user.role !== 'admin') {
@@ -60,6 +61,30 @@ export const assignmentRouter = router({
         rubricScores: input.rubricScores,
         gradedBy: ctx.user.id,
       });
+      
+      // Send email notification to student
+      try {
+        const submission = await db.getAssignmentSubmissionById(input.submissionId);
+        if (submission) {
+          const student = await db.getUserById(submission.userId);
+          const lesson = await db.getLessonById(submission.lessonId);
+          const course = lesson ? await db.getCourseById(lesson.courseId) : null;
+          
+          if (student && student.email && lesson && course) {
+            await sendAssignmentGradedEmail(
+              student.email,
+              student.name || 'Student',
+              course.title,
+              lesson.title,
+              input.grade,
+              input.feedback
+            );
+          }
+        }
+      } catch (error) {
+        console.error('[Assignment] Failed to send grade notification email:', error);
+      }
+      
       return { success: true };
     }),
   
@@ -71,6 +96,29 @@ export const assignmentRouter = router({
     }))
     .mutation(async ({ input }) => {
       const assignments = await db.assignPeerReviews(input.lessonId, input.submissionIds);
+      
+      // Send email notifications to students assigned peer reviews
+      try {
+        const lesson = await db.getLessonById(input.lessonId);
+        const course = lesson ? await db.getCourseById(lesson.courseId) : null;
+        
+        if (lesson && course) {
+          for (const assignment of assignments) {
+            const reviewer = await db.getUserById(assignment.reviewerId);
+            if (reviewer && reviewer.email) {
+              await sendPeerReviewAssignedEmail(
+                reviewer.email,
+                reviewer.name || 'Student',
+                course.title,
+                lesson.title
+              );
+            }
+          }
+        }
+      } catch (error) {
+        console.error('[Assignment] Failed to send peer review assignment emails:', error);
+      }
+      
       return { success: true, assignments };
     }),
   
@@ -117,6 +165,36 @@ export const assignmentRouter = router({
       }
       
       await db.submitPeerReviewFeedback(input);
+      
+      // Send email notification to submission owner about feedback received
+      try {
+        const submission = await db.getAssignmentSubmissionById(assignedReview.submission.id);
+        if (submission) {
+          const student = await db.getUserById(submission.userId);
+          const lesson = await db.getLessonById(submission.lessonId);
+          const course = lesson ? await db.getCourseById(lesson.courseId) : null;
+          
+          // Calculate average rating
+          const avgRating = (
+            input.theologicalDepthRating +
+            input.contentQualityRating +
+            input.writingQualityRating
+          ) / 3;
+          
+          if (student && student.email && lesson && course) {
+            await sendPeerFeedbackReceivedEmail(
+              student.email,
+              student.name || 'Student',
+              course.title,
+              lesson.title,
+              avgRating
+            );
+          }
+        }
+      } catch (error) {
+        console.error('[Assignment] Failed to send peer feedback notification email:', error);
+      }
+      
       return { success: true };
     }),
   
@@ -153,5 +231,11 @@ export const assignmentRouter = router({
       }
       
       return db.getAssignmentVersions(input.submissionId);
+    }),
+  
+  // Calendar view procedure
+  getCalendarAssignments: protectedProcedure
+    .query(async ({ ctx }) => {
+      return db.getCalendarAssignments(ctx.user.id);
     }),
 });

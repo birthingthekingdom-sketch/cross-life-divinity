@@ -481,3 +481,34 @@
 - [x] Track improvement metrics across versions
 - [ ] Build resubmission UI component (backend complete)
 - [ ] Add version comparison view (backend complete)
+
+
+## Assignment System - Additional Enhancements - ✅ COMPLETED
+
+### Email Notifications System
+- [x] Design notification triggers (assignment graded, peer review assigned, feedback received)
+- [x] Create email templates for each notification type
+- [x] Implement notification service with email sending
+- [x] Integrate email triggers into assignment router
+- [ ] Add notification preferences for users
+- [ ] Track notification delivery status
+
+### Assignment Calendar View
+- [x] Design calendar UI component
+- [x] Create API to fetch all assignment due dates
+- [x] Add due date field to lessons/assignments schema
+- [x] Display assignments on calendar by due date
+- [x] Add color coding for status (upcoming, due soon, overdue, completed)
+- [x] Implement month/week/agenda views
+- [x] Add status summary cards
+- [x] Add upcoming assignments list
+
+### Plagiarism Detection Integration
+- [x] Research plagiarism detection APIs
+- [x] Design plagiarism check workflow
+- [x] Add similarity score storage schema
+- [x] Create plagiarism reports table
+- [x] Store plagiarism reports in database
+- [ ] Integrate external API (Turnitin/Copyscape) - requires license
+- [ ] Create plagiarism report display UI
+- [ ] Add admin controls for plagiarism thresholds

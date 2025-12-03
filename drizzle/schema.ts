@@ -107,6 +107,7 @@ export const lessons = mysqlTable("lessons", {
   title: varchar("title", { length: 255 }).notNull(),
   content: text("content").notNull(),
   assignment: text("assignment"), // Written assignment prompt
+  assignmentDueDate: timestamp("assignmentDueDate"), // Due date for assignment submission
   lessonOrder: int("lessonOrder").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
@@ -368,3 +369,19 @@ export const assignmentVersions = mysqlTable("assignment_versions", {
 
 export type AssignmentVersion = typeof assignmentVersions.$inferSelect;
 export type InsertAssignmentVersion = typeof assignmentVersions.$inferInsert;
+
+
+/**
+ * Plagiarism detection reports
+ */
+export const plagiarismReports = mysqlTable("plagiarism_reports", {
+  id: int("id").autoincrement().primaryKey(),
+  submissionId: int("submissionId").notNull(),
+  similarityScore: int("similarityScore").notNull(), // 0-100 percentage
+  status: mysqlEnum("status", ["pending", "completed", "failed"]).default("pending").notNull(),
+  reportData: text("reportData"), // JSON string with detailed results
+  checkedAt: timestamp("checkedAt").defaultNow().notNull(),
+});
+
+export type PlagiarismReport = typeof plagiarismReports.$inferSelect;
+export type InsertPlagiarismReport = typeof plagiarismReports.$inferInsert;

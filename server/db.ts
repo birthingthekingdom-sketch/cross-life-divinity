@@ -1,4 +1,4 @@
-import { eq, and, desc, inArray, sql } from "drizzle-orm";
+import { eq, and, desc, inArray, sql, isNotNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { 
   InsertUser, users, 
@@ -1245,4 +1245,69 @@ export async function getAssignmentVersions(submissionId: number) {
     .orderBy(desc(assignmentVersions.versionNumber));
 
   return versions;
+}
+
+
+export async function getAssignmentSubmissionById(submissionId: number) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const [submission] = await db
+    .select()
+    .from(assignmentSubmissions)
+    .where(eq(assignmentSubmissions.id, submissionId))
+    .limit(1);
+
+  return submission;
+}
+
+
+export async function getCalendarAssignments(userId: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  // Get all lessons with assignments and due dates for courses the user is enrolled in
+  const enrollments = await db
+    .select({ courseId: courseEnrollments.courseId })
+    .from(courseEnrollments)
+    .where(eq(courseEnrollments.userId, userId));
+
+  const courseIds = enrollments.map(e => e.courseId);
+  if (courseIds.length === 0) return [];
+
+  // Get all lessons with assignments and due dates
+  const lessonsWithAssignments = await db
+    .select({
+      lessonId: lessons.id,
+      lessonTitle: lessons.title,
+      courseId: lessons.courseId,
+      dueDate: lessons.assignmentDueDate,
+    })
+    .from(lessons)
+    .where(
+      and(
+        inArray(lessons.courseId, courseIds),
+        isNotNull(lessons.assignment),
+        isNotNull(lessons.assignmentDueDate)
+      )
+    );
+
+  // Get submission status for each lesson
+  const result = [];
+  for (const lesson of lessonsWithAssignments) {
+    const course = await getCourseById(lesson.courseId);
+    const submissions = await getAssignmentSubmissionsByUser(userId, lesson.lessonId);
+    
+    const submissionStatus = submissions.length > 0 ? submissions[0].submission.status : null;
+
+    result.push({
+      lessonId: lesson.lessonId,
+      lessonTitle: lesson.lessonTitle,
+      courseTitle: course?.title || 'Unknown Course',
+      dueDate: lesson.dueDate,
+      submissionStatus,
+    });
+  }
+
+  return result;
 }
