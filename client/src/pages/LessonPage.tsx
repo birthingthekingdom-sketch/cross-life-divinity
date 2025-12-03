@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { trpc } from "@/lib/trpc";
+// import AssignmentSubmission from "@/components/AssignmentSubmission";
 import { ArrowLeft, CheckCircle2, Loader2 } from "lucide-react";
 import { Link, useParams } from "wouter";
 import { useState, useMemo } from "react";
@@ -129,26 +130,6 @@ export default function LessonPage() {
 
       <div className="container py-8">
         <div className="max-w-4xl mx-auto space-y-8">
-          {/* Video Player */}
-          {lesson.videoUrl && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Lesson Video</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="aspect-video w-full">
-                  <iframe
-                    src={lesson.videoUrl.replace('watch?v=', 'embed/')}
-                    className="w-full h-full rounded-lg"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    title={lesson.title}
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
           {/* Lesson Content */}
           <Card>
             <CardHeader>
@@ -159,35 +140,15 @@ export default function LessonPage() {
             </CardContent>
           </Card>
 
-          {/* Assignment Section */}
-          {lesson.assignment && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Written Assignment</CardTitle>
-                <p className="text-sm text-muted-foreground">
-                  Complete this assignment to demonstrate mastery of the lesson material.
-                </p>
-              </CardHeader>
-              <CardContent className="prose prose-slate max-w-none">
-                <Streamdown>{lesson.assignment}</Streamdown>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Reading Material Section */}
-          {lesson.readingMaterial && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Required Reading</CardTitle>
-                <p className="text-sm text-muted-foreground">
-                  Complete these readings before attempting the quiz.
-                </p>
-              </CardHeader>
-              <CardContent className="prose prose-slate max-w-none">
-                <Streamdown>{lesson.readingMaterial}</Streamdown>
-              </CardContent>
-            </Card>
-          )}
+          {/* Assignment Section - Coming Soon */}
+          {/* {lesson.assignment && (
+            <div className="mb-8">
+              <AssignmentSubmission 
+                lessonId={lesson.id} 
+                assignmentText={lesson.assignment} 
+              />
+            </div>
+          )} */}
 
           {/* Quiz Section */}
           {quizQuestions && quizQuestions.length > 0 && (

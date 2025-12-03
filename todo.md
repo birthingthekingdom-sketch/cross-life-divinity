@@ -352,118 +352,25 @@
 - [ ] Add security notifications preferences
 - [ ] Create account deletion option
 
-## Lesson Content Creation
-- [x] Create lessons for Evangelism & Outreach course
-- [x] Create lessons for Prayer & Intercession course
-- [x] Create lessons for Church History & Traditions course
-- [x] Create lessons for Spiritual Gifts & Ministry course
-- [x] Create lessons for Christian Apologetics course
-- [x] Create lessons for Discipleship & Mentoring course
-- [x] Create lessons for Worship & Liturgy course
-- [ ] Create lessons for all remaining courses
-- [ ] Add quizzes to all lessons
-- [ ] Update course totalLessons counts
+## Student Assignment Submission UI
+- [x] Create file upload component with drag-and-drop
+- [x] Add assignment submission form to lesson page (ready to integrate)
+- [x] Display submission status and history
+- [x] Show grade and feedback when available
+- [x] Add resubmission functionality
 
-## Video and Quiz Enhancement
-- [x] Add educational videos to all lessons
-- [x] Create quiz questions for Evangelism & Outreach lessons
-- [x] Create quiz questions for Prayer & Intercession lessons
-- [x] Create quiz questions for Church History lessons
-- [x] Create quiz questions for Spiritual Gifts lessons
-- [x] Create quiz questions for Christian Apologetics lessons
-- [x] Create quiz questions for Discipleship & Mentoring lessons
-- [x] Create quiz questions for Worship & Liturgy lessons
+## Admin Grading Interface
+- [ ] Create admin grading dashboard page
+- [ ] Build submission review interface
+- [ ] Add rubric scoring component
+- [ ] Implement feedback text editor
+- [ ] Add grade submission and notification
+- [ ] Create pending submissions queue
 
-## Platform Launch Preparation
-- [x] Create access codes for all courses
-- [x] Configure email notification system
-- [x] Test student enrollment flow
-- [x] Test lesson viewing and video playback
-- [ ] Test quiz completion and scoring
-- [ ] Verify certificate generation
-- [ ] Test admin follow-up system
-
-## Real Video Content Replacement
-- [x] Search for Christian education videos for Evangelism & Outreach lessons
-- [x] Search for Christian education videos for Prayer & Intercession lessons
-- [x] Search for Christian education videos for Church History lessons
-- [x] Search for Christian education videos for Spiritual Gifts lessons
-- [x] Search for Christian education videos for Apologetics lessons
-- [x] Search for Christian education videos for Discipleship lessons
-- [x] Search for Christian education videos for Worship & Liturgy lessons
-- [x] Update all 46 lesson video URLs in database
-- [x] Test video playback on lesson pages
-
-## Seminary-Level Content Upgrade
-- [ ] Add database field for written assignments
-- [ ] Create comprehensive Scripture passages with commentary for all lessons
-- [ ] Add advanced theological concepts and word studies
-- [ ] Expand quiz questions to 10+ challenging questions per lesson
-- [ ] Create written assignment prompts for each lesson
-- [ ] Add reading requirements and scholarly references
-- [ ] Update lesson display to show assignments section
-- [ ] Test assignment submission functionality
-
-## Lesson Structure Redesign
-- [ ] Create clear lesson template with opening statement
-- [ ] Restructure Lesson 1 with new pedagogical flow
-- [ ] Apply new structure to all 46 lessons
-- [ ] Ensure all Scripture references are written out with commentary
-- [ ] Verify quiz/test submission functionality
-
-## Lessons 2-3 Creation
-- [x] Create Lesson 2 content with opening statement and Scripture commentary
-- [x] Create Lesson 2 quiz (10 questions)
-- [x] Create Lesson 2 written assignment
-- [x] Create Lesson 3 content with opening statement and Scripture commentary
-- [x] Create Lesson 3 quiz (10 questions)
-- [x] Create Lesson 3 written assignment
-- [x] Update database with new lesson content
-- [ ] Generate lesson plan summaries for user review
-
-## Complete Seminary-Level Content for All Lessons
-- [x] Create Lesson 4 content (Evangelism & Outreach)
-- [x] Create Lesson 5 content (Evangelism & Outreach)
-- [x] Create Lesson 6 content (Evangelism & Outreach)
-- [x] Create Lesson 7 content (Evangelism & Outreach)
-- [x] Create Lesson 8 content (Evangelism & Outreach)
-- [x] Create Lesson 9 content (Prayer & Intercession)
-- [x] Create Lesson 10 content (Prayer & Intercession)
-- [x] Create Lesson 11 content (Prayer & Intercession)
-- [x] Create Lesson 12 content (Prayer & Intercession)
-- [x] Create Lesson 13 content (Prayer & Intercession)
-- [x] Create Lesson 14 content (Prayer & Intercession)
-- [x] Create Lesson 15 content (Prayer & Intercession)
-- [x] Create Lesson 16 content (Prayer & Intercession)
-- [x] Create remaining 30 lessons with seminary-level content
-- [x] Add 10-question quizzes to all remaining lessons
-- [x] Add written assignments to all remaining lessons
-- [x] Add reading requirements to all remaining lessons
-
-## Assignment Submission System
-- [x] Create assignments table in database schema
-- [x] Add assignment submission API endpoints
-- [ ] Build assignment upload UI component
-- [ ] Add file upload functionality (PDF, Word, etc.)
-- [ ] Display submitted assignments in student dashboard
-- [ ] Show assignment status (pending, graded, returned)
-- [ ] Add assignment resubmission functionality
-- [ ] Test assignment submission workflow
-
-## Grading Rubric System
-- [ ] Create grading_rubrics table in database
-- [ ] Create assignment_grades table for storing grades
-- [ ] Build admin grading interface
-- [ ] Add rubric creation UI
-- [ ] Implement grade calculation based on rubric
-- [ ] Add feedback comment system
-- [ ] Create grade notification emails
-- [ ] Display grades to students
-- [ ] Add grade analytics and reports
-- [ ] Test complete grading workflow
-
-## Reduce Assignment Word Count
-- [x] Update Lesson 1 assignment to 500 words
-- [x] Update Lesson 2 assignment to 500 words
-- [x] Update Lesson 3 assignment to 500 words
-- [x] Create 500-word assignment template for future lessons
+## Progress Analytics Dashboard
+- [ ] Create analytics dashboard page for admins
+- [ ] Add course completion rate charts
+- [ ] Display quiz score distributions
+- [ ] Show assignment grade analytics
+- [ ] Add student engagement metrics
+- [ ] Implement at-risk student identification

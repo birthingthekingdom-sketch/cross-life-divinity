@@ -106,9 +106,6 @@ export const lessons = mysqlTable("lessons", {
   courseId: int("courseId").notNull(),
   title: varchar("title", { length: 255 }).notNull(),
   content: text("content").notNull(),
-  videoUrl: text("videoUrl"), // YouTube, Vimeo, or direct video URL
-  readingMaterial: text("readingMaterial"), // Scripture references or reading assignments
-  assignment: text("assignment"), // Written assignment prompts and requirements
   lessonOrder: int("lessonOrder").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
@@ -196,41 +193,6 @@ export const quizSubmissions = mysqlTable("quiz_submissions", {
 
 export type QuizSubmission = typeof quizSubmissions.$inferSelect;
 export type InsertQuizSubmission = typeof quizSubmissions.$inferInsert;
-
-/**
- * Assignment submissions by students
- */
-export const assignmentSubmissions = mysqlTable("assignment_submissions", {
-  id: int("id").autoincrement().primaryKey(),
-  userId: int("userId").notNull(),
-  lessonId: int("lessonId").notNull(),
-  fileUrl: text("fileUrl").notNull(), // URL to uploaded file (PDF, Word, etc.)
-  fileName: varchar("fileName", { length: 255 }).notNull(),
-  fileSize: int("fileSize").notNull(), // in bytes
-  status: mysqlEnum("status", ["pending", "graded", "returned", "resubmitted"]).default("pending").notNull(),
-  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
-});
-
-export type AssignmentSubmission = typeof assignmentSubmissions.$inferSelect;
-export type InsertAssignmentSubmission = typeof assignmentSubmissions.$inferInsert;
-
-/**
- * Grades for assignment submissions
- */
-export const assignmentGrades = mysqlTable("assignment_grades", {
-  id: int("id").autoincrement().primaryKey(),
-  submissionId: int("submissionId").notNull().unique(),
-  gradedBy: int("gradedBy").notNull(), // admin user ID
-  score: int("score").notNull(), // 0-100
-  feedback: text("feedback"), // instructor comments
-  rubricScores: text("rubricScores"), // JSON object with rubric category scores
-  gradedAt: timestamp("gradedAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
-});
-
-export type AssignmentGrade = typeof assignmentGrades.$inferSelect;
-export type InsertAssignmentGrade = typeof assignmentGrades.$inferInsert;
 
 /**
  * Course completion certificates

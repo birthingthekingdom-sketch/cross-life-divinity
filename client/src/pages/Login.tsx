@@ -15,15 +15,10 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const loginMutation = trpc.auth.login.useMutation({
-    onSuccess: async (data) => {
+    onSuccess: async () => {
       toast.success("Login successful!");
       await refresh();
-      // Redirect based on user role
-      if (data.user.role === 'admin') {
-        setLocation("/admin");
-      } else {
-        setLocation("/dashboard");
-      }
+      setLocation("/dashboard");
     },
     onError: (error) => {
       toast.error(error.message || "Login failed");
