@@ -541,3 +541,16 @@
 - [x] Updated user role to admin in database
 - [x] Ensure admin users can access /admin directly
 - [x] Resolved session cache issue with fresh login
+
+
+## Admin URL Redirect Issue - URGENT
+- [ ] Fix /admin redirecting to /dashboard
+- [ ] Identify redirect logic in routing
+- [ ] Ensure admin users can access /admin directly
+- [ ] Test admin URL shows admin dashboard not student dashboard
+
+
+## Registration Page Redirect Issue - CRITICAL
+- [ ] Fix /register redirecting to OAuth instead of showing form
+- [ ] Ensure students can access registration form
+- [ ] Test student registration and enrollment flow with access codes
