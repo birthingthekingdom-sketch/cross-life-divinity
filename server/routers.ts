@@ -781,6 +781,15 @@ export const appRouter = router({
       const csv = await csvExport.exportComprehensiveAnalyticsCSV();
       return { csv };
     }),
+    
+    // Payment & Subscription Management
+    getAllSubscriptions: adminProcedure.query(async () => {
+      return db.getAllSubscriptions();
+    }),
+    
+    getAllPurchases: adminProcedure.query(async () => {
+      return db.getAllCoursePurchases();
+    }),
   }),
   
   webinars: router({

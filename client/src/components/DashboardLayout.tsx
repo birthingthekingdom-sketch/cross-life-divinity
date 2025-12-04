@@ -1,6 +1,6 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { Calendar as CalendarIcon, Award, TrendingUp, Video, GraduationCap, LayoutDashboard, LogOut, Settings } from "lucide-react";
+import { Calendar as CalendarIcon, Award, TrendingUp, Video, GraduationCap, LayoutDashboard, LogOut, Settings, CreditCard, DollarSign } from "lucide-react";
 import { Link, useLocation } from "wouter";
 
 interface DashboardLayoutProps {
@@ -73,6 +73,26 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 >
                   <Award className="h-4 w-4 mr-2" />
                   My Certificates
+                </Button>
+              </Link>
+              <Link href="/subscription">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20 hidden lg:flex"
+                >
+                  <CreditCard className="h-4 w-4 mr-2" />
+                  Subscription
+                </Button>
+              </Link>
+              <Link href="/pricing">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-amber-500/20 border-amber-400/30 text-primary-foreground hover:bg-amber-500/30 hidden lg:flex"
+                >
+                  <DollarSign className="h-4 w-4 mr-2" />
+                  Pricing
                 </Button>
               </Link>
               <div className="text-right hidden sm:block ml-2">

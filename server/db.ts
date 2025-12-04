@@ -1520,3 +1520,23 @@ export async function getCoursePurchaseByPaymentIntent(stripePaymentIntentId: st
 
   return result.length > 0 ? result[0] : null;
 }
+
+/**
+ * Get all subscriptions (admin)
+ */
+export async function getAllSubscriptions() {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select().from(subscriptions).orderBy(desc(subscriptions.createdAt));
+}
+
+/**
+ * Get all course purchases (admin)
+ */
+export async function getAllCoursePurchases() {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select().from(coursePurchases).orderBy(desc(coursePurchases.purchasedAt));
+}

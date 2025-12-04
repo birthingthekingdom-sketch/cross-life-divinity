@@ -39,6 +39,7 @@ import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentCancel from './pages/PaymentCancel';
 import Upgrade from './pages/Upgrade';
 import Subscription from './pages/Subscription';
+import AdminRevenue from './pages/AdminRevenue';
 
 function Router() {
   return (
@@ -63,6 +64,7 @@ function Router() {
       <Route path="/admin/follow-ups" component={AdminFollowUps} />
           <Route path="/admin/webinars" component={AdminWebinars} />
           <Route path="/admin/analytics" component={AdminAnalytics} />
+      <Route path="/admin/revenue" component={AdminRevenue} />
           <Route path="/admin/grading" component={AdminGrading} />
         <Route path="/peer-reviews" component={PeerReviews} />
         <Route path="/calendar" component={AssignmentCalendar} />
