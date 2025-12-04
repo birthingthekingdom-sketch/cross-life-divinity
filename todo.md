@@ -624,3 +624,7 @@
 - [x] Add quick action buttons (mark complete, snooze)
 - [ ] Create automated follow-up triggers for inactive students
 - [ ] Add student-facing "My Action Items" page
+
+## Remove Email Verification
+- [x] Disable email verification requirement in registration
+- [x] Set all new users as verified by default

@@ -44,13 +44,14 @@ export async function registerUser(email: string, password: string, name: string
   // Hash password
   const hashedPassword = await hashPassword(password);
 
-  // Create user
+  // Create user with email already verified
   const result = await dbInstance.insert(users).values({
     email,
     password: hashedPassword,
     name,
     loginMethod: 'email',
     role: 'user',
+    emailVerified: true, // Auto-verify all new users
   });
 
   const userId = Number(result[0].insertId);

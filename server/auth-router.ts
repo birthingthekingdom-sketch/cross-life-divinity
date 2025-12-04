@@ -19,15 +19,8 @@ export const authRouter = router({
       try {
         const user = await authService.registerUser(input.email, input.password, input.name);
         
-        // Generate and send verification email
-        try {
-          const verificationToken = await authService.generateVerificationToken(user.id);
-          await emailService.sendEmailVerification(user.email!, user.name || 'Student', verificationToken);
-        } catch (emailError) {
-          console.error('Failed to send verification email:', emailError);
-          // Don't fail registration if email fails
-        }
-
+        // Email verification disabled - users are auto-verified
+        
         return {
           success: true,
           user: {
@@ -36,7 +29,7 @@ export const authRouter = router({
             name: user.name,
             role: user.role,
           },
-          message: 'Registration successful! Please check your email to verify your account.',
+          message: 'Registration successful! You can now log in.',
         };
       } catch (error) {
         if (error instanceof Error) {
