@@ -554,3 +554,66 @@
 - [ ] Fix /register redirecting to OAuth instead of showing form
 - [ ] Ensure students can access registration form
 - [ ] Test student registration and enrollment flow with access codes
+
+
+## Payment & Enrollment System - NEW FEATURE
+- [ ] Set up Stripe payment integration
+- [ ] Configure one-time payments for individual courses ($89)
+- [ ] Configure recurring subscriptions ($49/month, 6-month minimum)
+- [ ] Add ACH payment method for subscriptions
+- [ ] Build pricing comparison page
+- [ ] Create course selection interface
+- [ ] Implement checkout flow
+- [ ] Auto-generate access codes on purchase
+- [ ] Automatic full access for subscribers
+- [ ] Subscription status tracking and auto-renewal
+- [ ] Access revocation on cancellation
+- [ ] Upgrade system with credit calculation
+- [ ] Student dashboard with subscription management
+- [ ] Admin revenue tracking and analytics
+- [ ] Payment method management
+- [ ] Test complete payment flows
+
+## Payment & Subscription System (Stripe Integration)
+
+### Backend Implementation
+- [x] Add payment tables to database schema (subscriptions, course_purchases, stripe_customers)
+- [x] Create Stripe product configuration ($89 individual, $49/month subscription)
+- [x] Build payment router with checkout session creation
+- [x] Implement subscription management endpoints
+- [x] Add course purchase endpoints
+- [x] Create upgrade path from individual to subscription with credit
+- [x] Build Stripe webhook handler for payment events
+- [x] Add database helper functions for payment operations
+- [x] Write comprehensive payment tests (17 tests passing)
+
+### Frontend Implementation
+- [x] Create pricing page with side-by-side comparison
+- [x] Build individual course checkout flow
+- [x] Build subscription checkout flow
+- [x] Add subscription status display to student dashboard
+- [x] Create upgrade to subscription interface with credit calculation
+- [x] Build payment success/cancel pages
+- [x] Add subscription management (view status, cancel)
+- [x] Display purchased courses vs subscription access
+- [ ] Create admin revenue tracking dashboard
+- [ ] Add admin subscription management tools
+
+### Integration & Testing
+- [ ] Register webhook endpoint with Stripe
+- [ ] Test individual course purchase flow
+- [ ] Test subscription signup flow
+- [ ] Test upgrade from individual to subscription
+- [ ] Test ACH payment method for subscriptions
+- [ ] Test 6-month minimum commitment logic
+- [ ] Test auto-renewal after 6 months
+- [ ] Verify course access after purchase
+- [ ] Verify full access after subscription
+- [ ] Test subscription cancellation
+- [ ] Create final checkpoint with payment system
+
+### Documentation
+- [ ] Document pricing model for users
+- [ ] Create payment troubleshooting guide
+- [ ] Add Stripe setup instructions for admin
+- [ ] Document upgrade credit calculation

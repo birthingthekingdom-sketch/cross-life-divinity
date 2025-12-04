@@ -33,6 +33,12 @@ import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from './pages/ResetPassword';
 import VerifyEmail from './pages/VerifyEmail';
+import Pricing from './pages/Pricing';
+import Courses from './pages/Courses';
+import PaymentSuccess from './pages/PaymentSuccess';
+import PaymentCancel from './pages/PaymentCancel';
+import Upgrade from './pages/Upgrade';
+import Subscription from './pages/Subscription';
 
 function Router() {
   return (
@@ -64,6 +70,12 @@ function Router() {
       <Route path="/certificates" component={MyCertificates} />
       <Route path="/verify/:token" component={VerifyCertificate} />
       <Route path="/progress" component={Progress} />
+      <Route path="/pricing" component={Pricing} />
+      <Route path="/courses" component={Courses} />
+      <Route path="/payment/success" component={PaymentSuccess} />
+      <Route path="/payment/cancel" component={PaymentCancel} />
+      <Route path="/upgrade" component={Upgrade} />
+      <Route path="/subscription" component={Subscription} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

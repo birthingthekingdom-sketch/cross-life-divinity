@@ -21,7 +21,10 @@ import {
   assignmentGrades, InsertAssignmentGrade, AssignmentGrade,
   peerReviews, InsertPeerReview, PeerReview,
   peerReviewFeedback, InsertPeerReviewFeedback, PeerReviewFeedback,
-  assignmentVersions, InsertAssignmentVersion, AssignmentVersion
+  assignmentVersions, InsertAssignmentVersion, AssignmentVersion,
+  subscriptions, InsertSubscription, Subscription,
+  coursePurchases, InsertCoursePurchase, CoursePurchase,
+  stripeCustomers, InsertStripeCustomer, StripeCustomer
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -1310,4 +1313,210 @@ export async function getCalendarAssignments(userId: number) {
   }
 
   return result;
+}
+
+// ============================================================================
+// Payment & Subscription Functions
+// ============================================================================
+
+/**
+ * Get or create Stripe customer for a user
+ */
+export async function getOrCreateStripeCustomer(userId: number, stripeCustomerId: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const existing = await db
+    .select()
+    .from(stripeCustomers)
+    .where(eq(stripeCustomers.userId, userId))
+    .limit(1);
+
+  if (existing.length > 0) {
+    return existing[0];
+  }
+
+  await db.insert(stripeCustomers).values({
+    userId,
+    stripeCustomerId,
+  });
+
+  // Fetch the newly created record
+  const result = await db
+    .select()
+    .from(stripeCustomers)
+    .where(eq(stripeCustomers.userId, userId))
+    .limit(1);
+
+  return result[0];
+}
+
+/**
+ * Get Stripe customer by user ID
+ */
+export async function getStripeCustomerByUserId(userId: number) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const result = await db
+    .select()
+    .from(stripeCustomers)
+    .where(eq(stripeCustomers.userId, userId))
+    .limit(1);
+
+  return result.length > 0 ? result[0] : null;
+}
+
+/**
+ * Create subscription record
+ */
+export async function createSubscription(data: InsertSubscription) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db.insert(subscriptions).values(data);
+  
+  // Return the ID by fetching the newly created record
+  const result = await db
+    .select()
+    .from(subscriptions)
+    .where(eq(subscriptions.stripeSubscriptionId, data.stripeSubscriptionId))
+    .limit(1);
+  
+  return result[0]?.id || 0;
+}
+
+/**
+ * Get active subscription for user
+ */
+export async function getActiveSubscription(userId: number) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const result = await db
+    .select()
+    .from(subscriptions)
+    .where(
+      and(
+        eq(subscriptions.userId, userId),
+        eq(subscriptions.status, "active")
+      )
+    )
+    .limit(1);
+
+  return result.length > 0 ? result[0] : null;
+}
+
+/**
+ * Update subscription
+ */
+export async function updateSubscription(id: number, data: Partial<Subscription>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db
+    .update(subscriptions)
+    .set(data)
+    .where(eq(subscriptions.id, id));
+}
+
+/**
+ * Create course purchase record
+ */
+export async function createCoursePurchase(data: InsertCoursePurchase) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db.insert(coursePurchases).values(data);
+  
+  // Return the ID by fetching the newly created record
+  const result = await db
+    .select()
+    .from(coursePurchases)
+    .where(
+      and(
+        eq(coursePurchases.userId, data.userId),
+        eq(coursePurchases.courseId, data.courseId)
+      )
+    )
+    .orderBy(coursePurchases.id)
+    .limit(1);
+  
+  return result[0]?.id || 0;
+}
+
+/**
+ * Get course purchases for user
+ */
+export async function getCoursePurchasesByUserId(userId: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return await db
+    .select()
+    .from(coursePurchases)
+    .where(eq(coursePurchases.userId, userId));
+}
+
+/**
+ * Get completed course purchases for user (for upgrade credit calculation)
+ */
+export async function getCompletedCoursePurchases(userId: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return await db
+    .select()
+    .from(coursePurchases)
+    .where(
+      and(
+        eq(coursePurchases.userId, userId),
+        eq(coursePurchases.status, "completed")
+      )
+    );
+}
+
+/**
+ * Update course purchase
+ */
+export async function updateCoursePurchase(id: number, data: Partial<CoursePurchase>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db
+    .update(coursePurchases)
+    .set(data)
+    .where(eq(coursePurchases.id, id));
+}
+
+/**
+ * Get subscription by Stripe subscription ID
+ */
+export async function getSubscriptionByStripeId(stripeSubscriptionId: string) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const result = await db
+    .select()
+    .from(subscriptions)
+    .where(eq(subscriptions.stripeSubscriptionId, stripeSubscriptionId))
+    .limit(1);
+
+  return result.length > 0 ? result[0] : null;
+}
+
+/**
+ * Get course purchase by Stripe payment intent ID
+ */
+export async function getCoursePurchaseByPaymentIntent(stripePaymentIntentId: string) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const result = await db
+    .select()
+    .from(coursePurchases)
+    .where(eq(coursePurchases.stripePaymentIntentId, stripePaymentIntentId))
+    .limit(1);
+
+  return result.length > 0 ? result[0] : null;
 }

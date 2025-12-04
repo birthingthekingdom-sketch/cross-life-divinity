@@ -10,6 +10,7 @@ import * as analytics from "./analytics";
 import * as csvExport from "./csv-export";
 import { authRouter } from "./auth-router";
 import { assignmentRouter } from "./assignment-router";
+import { paymentRouter } from "./payment-router";
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -947,6 +948,9 @@ export const appRouter = router({
 
   // Assignment submission and grading
   assignments: assignmentRouter,
+
+  // Payment and subscription management
+  payments: paymentRouter,
 });
 
 export type AppRouter = typeof appRouter;
