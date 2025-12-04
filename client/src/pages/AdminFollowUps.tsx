@@ -406,8 +406,13 @@ export default function AdminFollowUps() {
           </div>
         ) : filteredFollowUps && filteredFollowUps.length > 0 ? (
           <div className="grid gap-4">
-            {filteredFollowUps.map((followUp) => (
-              <Card key={followUp.id}>
+            {filteredFollowUps.map((followUp) => {
+              const isOverdue = followUp.status === 'pending' && followUp.dueDate && new Date(followUp.dueDate) < new Date();
+              return (
+              <Card 
+                key={followUp.id}
+                className={isOverdue ? 'border-l-4 border-l-red-500 bg-red-50/50 dark:bg-red-950/10' : ''}
+              >
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
@@ -424,8 +429,10 @@ export default function AdminFollowUps() {
                       <CardDescription>
                         Student: {followUp.studentName || followUp.studentEmail}
                         {followUp.dueDate && (
-                          <span className="ml-4">
+                          <span className={`ml-4 ${isOverdue ? 'text-red-600 dark:text-red-400 font-semibold' : ''}`}>
+                            {isOverdue && '⚠️ '}
                             Due: {new Date(followUp.dueDate).toLocaleDateString()}
+                            {isOverdue && ' (OVERDUE)'}
                           </span>
                         )}
                       </CardDescription>
@@ -472,7 +479,8 @@ export default function AdminFollowUps() {
                   </CardContent>
                 )}
               </Card>
-            ))}
+              );
+            })}
           </div>
         ) : (
           <Card>

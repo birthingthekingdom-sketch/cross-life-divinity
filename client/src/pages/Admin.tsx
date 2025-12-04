@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { trpc } from "@/lib/trpc";
-import { BookOpen, Code, Edit, GraduationCap, Key, Loader2, Mail, Plus, Settings, Users, Video, BarChart3, FileCheck } from "lucide-react";
+import { BookOpen, Code, Edit, GraduationCap, Key, Loader2, Mail, Plus, Settings, Users, Video, BarChart3, FileCheck, AlertCircle, CheckCircle2, Clock, DollarSign } from "lucide-react";
 import AssignCoursesDialog from "@/components/AssignCoursesDialog";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -23,6 +23,18 @@ export default function Admin() {
 
   const { data: courses } = trpc.courses.listAll.useQuery();
   const { data: accessCodes, refetch: refetchAccessCodes } = trpc.admin.getAccessCodes.useQuery();
+  const { data: allFollowUps } = trpc.admin.getAllFollowUps.useQuery();
+  
+  // Calculate follow-up metrics
+  const now = new Date();
+  const pendingFollowUps = allFollowUps?.filter(f => f.status === 'pending') || [];
+  const overdueFollowUps = pendingFollowUps.filter(f => f.dueDate && new Date(f.dueDate) < now);
+  const completedThisWeek = allFollowUps?.filter(f => {
+    if (f.status !== 'completed' || !f.completedAt) return false;
+    const completedDate = new Date(f.completedAt);
+    const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+    return completedDate >= weekAgo;
+  }) || [];
 
   const createAccessCodeMutation = trpc.admin.createAccessCode.useMutation({
     onSuccess: () => {
@@ -169,6 +181,20 @@ export default function Admin() {
               </CardHeader>
             </Card>
           </Link>
+          
+          <Link href="/admin/revenue">
+            <Card className="hover:shadow-md transition-shadow cursor-pointer border-l-4 border-l-green-500">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <DollarSign className="h-5 w-5" />
+                  Revenue & Payments
+                </CardTitle>
+                <CardDescription>
+                  Monitor subscriptions, purchases, and revenue metrics
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
         </div>
 
         {/* Stats Cards */}
@@ -210,6 +236,69 @@ export default function Admin() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Follow-Ups Summary Widget */}
+        <Card className="border-l-4 border-l-blue-500">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="flex items-center gap-2">
+                  <Users className="h-5 w-5" />
+                  Student Follow-Ups
+                </CardTitle>
+                <CardDescription>
+                  Track student engagement and pending actions
+                </CardDescription>
+              </div>
+              <Link href="/admin/follow-ups">
+                <Button variant="outline" size="sm">
+                  View All
+                </Button>
+              </Link>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="flex items-center gap-3 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
+                <div className="p-2 bg-blue-500 rounded-full">
+                  <Clock className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">{pendingFollowUps.length}</p>
+                  <p className="text-sm text-muted-foreground">Pending</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-3 p-4 bg-red-50 dark:bg-red-950/20 rounded-lg">
+                <div className="p-2 bg-red-500 rounded-full">
+                  <AlertCircle className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">{overdueFollowUps.length}</p>
+                  <p className="text-sm text-muted-foreground">Overdue</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-3 p-4 bg-green-50 dark:bg-green-950/20 rounded-lg">
+                <div className="p-2 bg-green-500 rounded-full">
+                  <CheckCircle2 className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">{completedThisWeek.length}</p>
+                  <p className="text-sm text-muted-foreground">Completed This Week</p>
+                </div>
+              </div>
+            </div>
+            
+            {overdueFollowUps.length > 0 && (
+              <div className="mt-4 p-3 bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg">
+                <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
+                  ⚠️ You have {overdueFollowUps.length} overdue follow-up{overdueFollowUps.length !== 1 ? 's' : ''} that need attention
+                </p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
 
         {/* Access Codes Management */}
         <Card>

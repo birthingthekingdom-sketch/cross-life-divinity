@@ -617,3 +617,10 @@
 - [ ] Create payment troubleshooting guide
 - [ ] Add Stripe setup instructions for admin
 - [ ] Document upgrade credit calculation
+
+## Follow-Ups Feature Enhancements
+- [x] Add follow-ups dashboard widget to admin home
+- [x] Highlight overdue follow-ups with visual indicators
+- [x] Add quick action buttons (mark complete, snooze)
+- [ ] Create automated follow-up triggers for inactive students
+- [ ] Add student-facing "My Action Items" page
