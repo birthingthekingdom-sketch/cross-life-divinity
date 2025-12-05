@@ -640,3 +640,64 @@
 - [ ] Add CTA button to homepage hero
 - [x] Fix Upgrade page TypeScript errors
 - [ ] Test all changes
+
+## Course Content Expansion
+- [ ] Add 8-10 lessons to New Testament Theology
+- [ ] Add 8-10 lessons to Systematic Theology
+- [ ] Add lessons to remaining 11 courses
+
+## Stripe Integration
+- [ ] Create Stripe webhook configuration guide in admin settings
+- [ ] Document webhook endpoint URL and required events
+
+## Student Onboarding
+- [ ] Build welcome email sequence
+- [ ] Create first-login tutorial/walkthrough
+- [ ] Add platform navigation guide
+
+## Course Lesson Population (Seminary-Quality Content)
+
+### Completed Courses with Full Lessons
+- [x] Old Testament Survey - 10 comprehensive lessons
+- [x] Systematic Theology - 10 comprehensive lessons
+- [x] Biblical Hermeneutics - 10 comprehensive lessons
+- [x] New Testament Survey - 10 comprehensive lessons
+- [x] Fundamentals of Apologetics - 10 comprehensive lessons
+- [x] Homiletics - 10 comprehensive lessons
+
+### Remaining Courses to Populate
+- [x] Evangelism and Discipleship - 10 comprehensive lessons
+- [x] Discipleship Training - 10 comprehensive lessons
+- [x] Prayer and Intercession - 10 comprehensive lessons
+- [x] Christian Leadership - 10 comprehensive lessons
+- [x] Biblical Worship - 10 comprehensive lessons
+- [x] Pastoral Counseling - 10 comprehensive lessons
+- [x] Church Administration - 10 comprehensive lessons
+- [x] Discovering Spiritual Gifts - 10 comprehensive lessons
+
+**ALL 14 COURSES NOW HAVE COMPLETE SEMINARY-QUALITY CONTENT!**
+**Total: 140 comprehensive lessons across all courses**
+
+### Lesson Content Requirements
+- Opening statement with theological context
+- Key Scripture passages with Greek/Hebrew word studies
+- Comprehensive theological exposition
+- Practical application principles
+- Reading assignments from theological works
+- 8-10 lessons per course for thorough coverage
+
+## Platform Readiness Tasks
+
+### Stripe Webhook Configuration
+- [ ] Create admin settings page for Stripe webhook documentation
+- [ ] Document webhook endpoint URL
+- [ ] List required Stripe events to subscribe to
+- [ ] Add testing instructions for webhook verification
+- [ ] Create troubleshooting guide for common webhook issues
+
+### Student Onboarding Flow
+- [ ] Design welcome email template for new students
+- [ ] Create first-login tutorial/walkthrough
+- [ ] Build onboarding checklist (complete profile, explore courses, etc.)
+- [ ] Add platform orientation video
+- [ ] Create getting started guide document
