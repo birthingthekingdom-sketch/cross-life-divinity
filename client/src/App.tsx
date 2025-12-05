@@ -41,6 +41,7 @@ import Upgrade from './pages/Upgrade';
 import Subscription from './pages/Subscription';
 import AdminRevenue from './pages/AdminRevenue';
 import ToggleRole from './pages/ToggleRole';
+import Landing from './pages/Landing';
 
 function Router() {
   return (
@@ -80,6 +81,7 @@ function Router() {
       <Route path="/upgrade" component={Upgrade} />
       <Route path="/subscription" component={Subscription} />
       <Route path="/toggle-role" component={ToggleRole} />
+      <Route path="/landing" component={Landing} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

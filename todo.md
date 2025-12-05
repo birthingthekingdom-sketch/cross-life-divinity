@@ -701,3 +701,14 @@
 - [ ] Build onboarding checklist (complete profile, explore courses, etc.)
 - [ ] Add platform orientation video
 - [ ] Create getting started guide document
+
+
+## Documentation
+- [x] Stripe webhook configuration guide created (STRIPE_WEBHOOK_SETUP.md)
+
+
+## Payment Updates
+- [x] Update subscription payment method to ACH (bank transfer)
+- [x] Configure Stripe checkout to accept ACH payments
+- [x] Update payment success/failure handling for ACH
+- [x] Test ACH payment flow

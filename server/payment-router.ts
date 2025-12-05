@@ -40,7 +40,7 @@ export const paymentRouter = router({
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       mode: "subscription",
-      payment_method_types: ["card", "us_bank_account"],
+      payment_method_types: ["us_bank_account"],
       line_items: [
         {
           price_data: {
@@ -233,7 +233,7 @@ export const paymentRouter = router({
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       mode: "subscription",
-      payment_method_types: ["card", "us_bank_account"],
+      payment_method_types: ["us_bank_account"],
       line_items: [
         {
           price_data: {
