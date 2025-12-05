@@ -628,3 +628,8 @@
 ## Remove Email Verification
 - [x] Disable email verification requirement in registration
 - [x] Set all new users as verified by default
+
+## Complete Course Catalog
+- [x] Create 14 seminary-quality courses with uniform introductions
+- [x] Replace database with complete course catalog
+- [x] Verify all courses display correctly
