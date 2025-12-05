@@ -628,3 +628,7 @@
 ## Remove Email Verification
 - [x] Disable email verification requirement in registration
 - [x] Set all new users as verified by default
+
+## Course Content Update
+- [x] Replace test courses with 10 professional theology courses
+- [x] Update course descriptions and details
