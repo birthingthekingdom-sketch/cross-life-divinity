@@ -10,7 +10,8 @@ import * as analytics from "./analytics";
 import * as csvExport from "./csv-export";
 import { authRouter } from "./auth-router";
 import { assignmentRouter } from "./assignment-router";
-import { paymentRouter } from "./payment-router";
+import { paymentRouter } from './payment-router';
+import { toggleAdminRouter } from './toggle-admin-router';
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -959,7 +960,8 @@ export const appRouter = router({
   assignments: assignmentRouter,
 
   // Payment and subscription management
-  payments: paymentRouter,
+   payment: paymentRouter,
+  toggleAdmin: toggleAdminRouter,
 });
 
 export type AppRouter = typeof appRouter;

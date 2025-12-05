@@ -17,13 +17,16 @@ export default function Home() {
 
   useEffect(() => {
     if (!loading && isAuthenticated && !enrollmentLoading) {
-      if (enrollmentStatus?.enrolled) {
+      // Redirect admins to admin panel
+      if (user?.role === 'admin') {
+        setLocation("/admin");
+      } else if (enrollmentStatus?.enrolled) {
         setLocation("/dashboard");
       } else {
         setLocation("/enroll");
       }
     }
-  }, [loading, isAuthenticated, enrollmentStatus, enrollmentLoading, setLocation]);
+  }, [loading, isAuthenticated, user, enrollmentStatus, enrollmentLoading, setLocation]);
 
   if (loading || enrollmentLoading) {
     return (

@@ -1,6 +1,6 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { Calendar as CalendarIcon, Award, TrendingUp, Video, GraduationCap, LayoutDashboard, LogOut, Settings, CreditCard, DollarSign } from "lucide-react";
+import { Calendar as CalendarIcon, Award, TrendingUp, Video, GraduationCap, LayoutDashboard, LogOut, Settings, CreditCard, DollarSign, RefreshCw } from "lucide-react";
 import { Link, useLocation } from "wouter";
 
 interface DashboardLayoutProps {
@@ -93,6 +93,17 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 >
                   <DollarSign className="h-4 w-4 mr-2" />
                   Pricing
+                </Button>
+              </Link>
+              <Link href="/toggle-role">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-blue-500/20 border-blue-400/30 text-primary-foreground hover:bg-blue-500/30"
+                  title={`Switch to ${user?.role === 'admin' ? 'Student' : 'Admin'} View`}
+                >
+                  <RefreshCw className="h-4 w-4 mr-2" />
+                  <span className="hidden md:inline">{user?.role === 'admin' ? 'Student' : 'Admin'} View</span>
                 </Button>
               </Link>
               <div className="text-right hidden sm:block ml-2">

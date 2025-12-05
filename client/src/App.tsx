@@ -40,6 +40,7 @@ import PaymentCancel from './pages/PaymentCancel';
 import Upgrade from './pages/Upgrade';
 import Subscription from './pages/Subscription';
 import AdminRevenue from './pages/AdminRevenue';
+import ToggleRole from './pages/ToggleRole';
 
 function Router() {
   return (
@@ -78,6 +79,7 @@ function Router() {
       <Route path="/payment/cancel" component={PaymentCancel} />
       <Route path="/upgrade" component={Upgrade} />
       <Route path="/subscription" component={Subscription} />
+      <Route path="/toggle-role" component={ToggleRole} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
