@@ -712,3 +712,9 @@
 - [x] Configure Stripe checkout to accept ACH payments
 - [x] Update payment success/failure handling for ACH
 - [x] Test ACH payment flow
+
+
+## Publishing Preparation
+- [ ] Create final checkpoint before publishing
+- [ ] Document URLs for website integration
+- [ ] Provide publishing instructions to user
