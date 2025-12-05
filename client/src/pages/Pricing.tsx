@@ -31,20 +31,20 @@ export default function Pricing() {
   const [loading, setLoading] = useState<"subscription" | "course" | null>(null);
 
   const { data: courses } = trpc.courses.listAll.useQuery();
-  const { data: subscription } = trpc.payments.getSubscriptionStatus.useQuery(undefined, {
+  const { data: subscription } = trpc.payment.getSubscriptionStatus.useQuery(undefined, {
     enabled: isAuthenticated,
   });
-  const { data: purchases } = trpc.payments.getCoursePurchases.useQuery(undefined, {
+  const { data: purchases } = trpc.payment.getCoursePurchases.useQuery(undefined, {
     enabled: isAuthenticated,
   });
 
-  const createSubscriptionCheckout = trpc.payments.createSubscriptionCheckout.useMutation({
-    onSuccess: (data) => {
+  const createSubscriptionCheckout = trpc.payment.createSubscriptionCheckout.useMutation({
+    onSuccess: (data: any) => {
       if (data.url) {
         window.location.href = data.url;
       }
     },
-    onError: (error) => {
+    onError: (error: any) => {
       toast.error(error.message || "Failed to create checkout session");
       setLoading(null);
     },

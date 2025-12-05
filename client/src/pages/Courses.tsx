@@ -15,23 +15,23 @@ export default function Courses() {
   const [purchasingCourseId, setPurchasingCourseId] = useState<number | null>(null);
 
   const { data: courses, isLoading } = trpc.courses.listAll.useQuery();
-  const { data: purchases } = trpc.payments.getCoursePurchases.useQuery(undefined, {
+  const { data: purchases } = trpc.payment.getCoursePurchases.useQuery(undefined, {
     enabled: isAuthenticated,
   });
-  const { data: subscription } = trpc.payments.getSubscriptionStatus.useQuery(undefined, {
+  const { data: subscription } = trpc.payment.getSubscriptionStatus.useQuery(undefined, {
     enabled: isAuthenticated,
   });
   const { data: enrollments } = trpc.courses.list.useQuery(undefined, {
     enabled: isAuthenticated,
   });
 
-  const createCoursePurchaseCheckout = trpc.payments.createCourseCheckout.useMutation({
-    onSuccess: (data) => {
+  const createCoursePurchaseCheckout = trpc.payment.createCourseCheckout.useMutation({
+    onSuccess: (data: any) => {
       if (data.url) {
         window.location.href = data.url;
       }
     },
-    onError: (error) => {
+    onError: (error: any) => {
       toast.error(error.message || "Failed to create checkout session");
       setPurchasingCourseId(null);
     },
@@ -49,7 +49,7 @@ export default function Courses() {
   };
 
   const isPurchased = (courseId: number) => {
-    return purchases?.some(p => p.courseId === courseId && p.status === "completed");
+    return purchases?.some((p: any) => p.courseId === courseId && p.status === "completed");
   };
 
   const isEnrolled = (courseId: number) => {

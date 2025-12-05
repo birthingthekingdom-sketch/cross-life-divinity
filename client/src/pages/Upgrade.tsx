@@ -14,20 +14,20 @@ export default function Upgrade() {
   const { isAuthenticated } = useAuth();
   const [loading, setLoading] = useState(false);
 
-  const { data: purchases } = trpc.payments.getCoursePurchases.useQuery(undefined, {
+  const { data: purchases } = trpc.payment.getCoursePurchases.useQuery(undefined, {
     enabled: isAuthenticated,
   });
-  const { data: subscription } = trpc.payments.getSubscriptionStatus.useQuery(undefined, {
+  const { data: subscription } = trpc.payment.getSubscriptionStatus.useQuery(undefined, {
     enabled: isAuthenticated,
   });
 
-  const upgradeToSubscription = trpc.payments.upgradeToSubscription.useMutation({
-    onSuccess: (data) => {
+  const upgradeToSubscription = trpc.payment.upgradeToSubscription.useMutation({
+    onSuccess: (data: any) => {
       if (data.url) {
         window.location.href = data.url;
       }
     },
-    onError: (error) => {
+    onError: (error: any) => {
       toast.error(error.message || "Failed to create upgrade checkout");
       setLoading(false);
     },
@@ -76,8 +76,8 @@ export default function Upgrade() {
     );
   }
 
-  const completedPurchases = purchases?.filter(p => p.status === "completed") || [];
-  const totalSpent = completedPurchases.reduce((sum, p) => sum + p.amount, 0);
+  const completedPurchases = purchases?.filter((p: any) => p.status === "completed") || [];
+  const totalSpent = completedPurchases.reduce((sum: number, p: any) => sum + p.amount, 0);
   const creditAmount = totalSpent / 100; // Convert cents to dollars
   const subscriptionPrice = 49;
   const minimumCommitment = 294; // 6 months * $49

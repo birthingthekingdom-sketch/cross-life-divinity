@@ -633,3 +633,10 @@
 - [x] Create 14 seminary-quality courses with uniform introductions
 - [x] Replace database with complete course catalog
 - [x] Verify all courses display correctly
+
+## Implementation Tasks
+- [x] Create 8-10 lessons for Old Testament Survey
+- [x] Upload promotional graphics to homepage
+- [ ] Add CTA button to homepage hero
+- [x] Fix Upgrade page TypeScript errors
+- [ ] Test all changes

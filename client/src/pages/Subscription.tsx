@@ -25,22 +25,22 @@ export default function Subscription() {
   const [showCancelDialog, setShowCancelDialog] = useState(false);
   const [canceling, setCanceling] = useState(false);
 
-  const { data: subscription, refetch: refetchSubscription } = trpc.payments.getSubscriptionStatus.useQuery(
+  const { data: subscription, refetch: refetchSubscription } = trpc.payment.getSubscriptionStatus.useQuery(
     undefined,
     { enabled: isAuthenticated }
   );
-  const { data: purchases } = trpc.payments.getCoursePurchases.useQuery(undefined, {
+  const { data: purchases } = trpc.payment.getCoursePurchases.useQuery(undefined, {
     enabled: isAuthenticated,
   });
 
-  const cancelSubscription = trpc.payments.cancelSubscription.useMutation({
+  const cancelSubscription = trpc.payment.cancelSubscription.useMutation({
     onSuccess: () => {
       toast.success("Subscription cancelled successfully");
       setShowCancelDialog(false);
       setCanceling(false);
       refetchSubscription();
     },
-    onError: (error) => {
+    onError: (error: any) => {
       toast.error(error.message || "Failed to cancel subscription");
       setCanceling(false);
     },
@@ -72,7 +72,7 @@ export default function Subscription() {
   }
 
   const hasActiveSubscription = subscription && subscription.status === "active";
-  const completedPurchases = purchases?.filter(p => p.status === "completed") || [];
+  const completedPurchases = purchases?.filter((p: any) => p.status === "completed") || [];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
@@ -185,7 +185,7 @@ export default function Subscription() {
                     <Alert className="bg-purple-900/30 border-purple-700">
                       <DollarSign className="w-4 h-4 text-purple-400" />
                       <AlertDescription className="text-purple-200">
-                        You have ${(completedPurchases.reduce((sum, p) => sum + p.amount, 0) / 100).toFixed(2)} in
+                        You have ${(completedPurchases.reduce((sum: number, p: any) => sum + p.amount, 0) / 100).toFixed(2)} in
                         credit from previous purchases. Upgrade now to apply it!
                       </AlertDescription>
                     </Alert>
@@ -221,7 +221,7 @@ export default function Subscription() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    {completedPurchases.map((purchase) => (
+                    {completedPurchases.map((purchase: any) => (
                       <div
                         key={purchase.id}
                         className="flex items-center justify-between p-4 bg-slate-900/30 rounded-lg"
@@ -245,7 +245,7 @@ export default function Subscription() {
                     <div className="flex justify-between text-slate-300">
                       <span>Total Spent:</span>
                       <span className="text-white font-semibold text-lg">
-                        ${(completedPurchases.reduce((sum, p) => sum + p.amount, 0) / 100).toFixed(2)}
+                        ${(completedPurchases.reduce((sum: number, p: any) => sum + p.amount, 0) / 100).toFixed(2)}
                       </span>
                     </div>
                   </div>
