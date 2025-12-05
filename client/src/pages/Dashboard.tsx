@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { PullToRefresh } from "@/components/PullToRefresh";
 import { trpc } from "@/lib/trpc";
-import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video } from "lucide-react";
+import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, RefreshCw, Settings } from "lucide-react";
 import { Link } from "wouter";
 import { useMemo } from "react";
 
@@ -96,6 +96,29 @@ export default function Dashboard() {
                 >
                   <Award className="h-4 w-4 mr-2" />
                   My Certificates
+                </Button>
+              </Link>
+              {user?.role === 'admin' && (
+                <Link href="/admin">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="bg-green-500/20 border-green-400/30 text-primary-foreground hover:bg-green-500/30"
+                  >
+                    <Settings className="h-4 w-4 mr-2" />
+                    Admin
+                  </Button>
+                </Link>
+              )}
+              <Link href="/toggle-role">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-blue-500/20 border-blue-400/30 text-primary-foreground hover:bg-blue-500/30"
+                  title={`Switch to ${user?.role === 'admin' ? 'Student' : 'Admin'} View`}
+                >
+                  <RefreshCw className="h-4 w-4 mr-2" />
+                  {user?.role === 'admin' ? 'Student' : 'Admin'} View
                 </Button>
               </Link>
               <Button
