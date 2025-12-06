@@ -865,3 +865,7 @@
 - [x] Add cohort creation and management features
 - [x] Build cohort discussion and messaging system
 - [x] Test all new features
+
+
+## Bug Fixes
+- [x] Fix landing page redirecting to login page (should be publicly accessible)

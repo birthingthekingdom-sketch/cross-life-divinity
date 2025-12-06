@@ -8,6 +8,7 @@ import { MobileNav } from "./components/MobileNav";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
+import Landing from './pages/Landing';
 import Enroll from "./pages/Enroll";
 import CoursePage from "./pages/CoursePage";
 import LessonPage from "./pages/LessonPage";
@@ -41,7 +42,6 @@ import Upgrade from './pages/Upgrade';
 import Subscription from './pages/Subscription';
 import AdminRevenue from './pages/AdminRevenue';
 import ToggleRole from './pages/ToggleRole';
-import Landing from './pages/Landing';
 import LearningPaths from './pages/LearningPaths';
 import AdminBundles from './pages/AdminBundles';
 import AdminLearningPaths from './pages/AdminLearningPaths';
@@ -55,7 +55,8 @@ import CohortGroups from './pages/CohortGroups';
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Home} />
+      <Route path="/" component={Landing} />
+      <Route path="/home" component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/forgot-password" component={ForgotPassword} />
@@ -99,7 +100,6 @@ function Router() {
       <Route path="/upgrade" component={Upgrade} />
       <Route path="/subscription" component={Subscription} />
       <Route path="/toggle-role" component={ToggleRole} />
-      <Route path="/landing" component={Landing} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
