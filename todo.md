@@ -869,3 +869,5 @@
 
 ## Bug Fixes
 - [x] Fix landing page redirecting to login page (should be publicly accessible)
+
+- [x] Fix catalog and pricing links on landing page (redirecting instead of navigating)
