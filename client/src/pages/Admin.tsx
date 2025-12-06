@@ -112,15 +112,15 @@ export default function Admin() {
             </Card>
           </Link>
           
-          <Link href="/admin/email-settings">
+          <Link href="/admin/email-config">
             <Card className="hover:shadow-md transition-shadow cursor-pointer">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Mail className="h-5 w-5" />
-                  Email Settings
+                  Email Configuration
                 </CardTitle>
                 <CardDescription>
-                  Configure automated email notifications
+                  Configure SMTP server for email notifications
                 </CardDescription>
               </CardHeader>
             </Card>

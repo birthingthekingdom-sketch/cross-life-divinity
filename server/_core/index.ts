@@ -103,6 +103,15 @@ async function startServer() {
 
   server.listen(port, () => {
     console.log(`Server running on http://localhost:${port}/`);
+    
+    // Register scheduled email jobs
+    import('../scheduled-emails')
+      .then(({ registerScheduledEmailJobs }) => {
+        registerScheduledEmailJobs();
+      })
+      .catch((error) => {
+        console.error('[Server] Failed to register scheduled email jobs:', error);
+      });
   });
 }
 

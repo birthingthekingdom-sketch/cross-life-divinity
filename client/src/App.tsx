@@ -48,6 +48,8 @@ import AdminLearningPaths from './pages/AdminLearningPaths';
 import Catalog from './pages/Catalog';
 import PathCertificate from './pages/PathCertificate';
 import EmailSettings from './pages/EmailSettings';
+import AdminEmailConfig from './pages/AdminEmailConfig';
+import AdminEmailNotifications from './pages/AdminEmailNotifications';
 
 function Router() {
   return (
@@ -75,6 +77,8 @@ function Router() {
       <Route path="/admin/revenue" component={AdminRevenue} />
       <Route path="/admin/bundles" component={AdminBundles} />
       <Route path="/admin/learning-paths" component={AdminLearningPaths} />
+      <Route path="/admin/email-config" component={AdminEmailConfig} />
+      <Route path="/admin/email-notifications" component={AdminEmailNotifications} />
           <Route path="/admin/grading" component={AdminGrading} />
         <Route path="/peer-reviews" component={PeerReviews} />
         <Route path="/calendar" component={AssignmentCalendar} />

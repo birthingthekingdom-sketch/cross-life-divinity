@@ -123,6 +123,120 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Learning Paths Section */}
+      <section className="py-16 bg-gradient-to-b from-background to-primary/5">
+        <div className="container max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Structured Learning Paths</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Follow our expertly designed learning paths that guide you from foundational knowledge to advanced theological mastery
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Beginner Path */}
+            <div className="bg-card border-2 border-blue-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-blue-500/40">
+              <div className="bg-blue-500/10 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                <BookOpen className="h-8 w-8 text-blue-600" />
+              </div>
+              <div className="mb-4">
+                <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">Beginner</span>
+                <h3 className="text-2xl font-bold mt-1">New Believer Foundation</h3>
+              </div>
+              <p className="text-muted-foreground mb-6 leading-relaxed">
+                Perfect for new believers and those seeking to establish a solid biblical foundation. This path introduces essential Christian doctrines, biblical interpretation basics, and foundational spiritual disciplines that every believer needs.
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Duration:</strong> 3-4 months at recommended pace</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Courses:</strong> Introduction to Theology, Biblical Hermeneutics, Christian Ethics</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Ideal For:</strong> New Christians, seekers, and those wanting to strengthen their faith foundation</span>
+                </div>
+              </div>
+              <Link href="/learning-paths">
+                <Button className="w-full bg-blue-600 hover:bg-blue-700">Explore Beginner Path</Button>
+              </Link>
+            </div>
+
+            {/* Intermediate Path */}
+            <div className="bg-card border-2 border-purple-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-purple-500/40">
+              <div className="bg-purple-500/10 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                <Award className="h-8 w-8 text-purple-600" />
+              </div>
+              <div className="mb-4">
+                <span className="text-sm font-semibold text-purple-600 uppercase tracking-wide">Intermediate</span>
+                <h3 className="text-2xl font-bold mt-1">Ministry Preparation Track</h3>
+              </div>
+              <p className="text-muted-foreground mb-6 leading-relaxed">
+                Designed for aspiring ministry leaders and those actively serving in church roles. This comprehensive path equips you with practical ministry skills, deeper biblical knowledge, and leadership principles essential for effective kingdom service.
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Duration:</strong> 6-8 months at recommended pace</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Courses:</strong> Christian Leadership, Fivefold Ministry, Prayer & Intercession, Church Administration</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Ideal For:</strong> Emerging leaders, small group facilitators, worship team members, and ministry volunteers</span>
+                </div>
+              </div>
+              <Link href="/learning-paths">
+                <Button className="w-full bg-purple-600 hover:bg-purple-700">Explore Ministry Track</Button>
+              </Link>
+            </div>
+
+            {/* Advanced Path */}
+            <div className="bg-card border-2 border-amber-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-amber-500/40">
+              <div className="bg-amber-500/10 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                <Users className="h-8 w-8 text-amber-600" />
+              </div>
+              <div className="mb-4">
+                <span className="text-sm font-semibold text-amber-600 uppercase tracking-wide">Advanced</span>
+                <h3 className="text-2xl font-bold mt-1">Theological Studies</h3>
+              </div>
+              <p className="text-muted-foreground mb-6 leading-relaxed">
+                For seasoned ministry leaders and scholars pursuing theological depth. This rigorous path covers systematic theology, advanced biblical studies, and specialized ministry topics that prepare you for senior leadership and teaching roles in the church.
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Duration:</strong> 8-12 months at recommended pace</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Courses:</strong> Systematic Theology, Old & New Testament Survey, Deliverance Ministry, Understanding Prophecy</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Ideal For:</strong> Pastors, teachers, ministry directors, and those pursuing formal theological education</span>
+                </div>
+              </div>
+              <Link href="/learning-paths">
+                <Button className="w-full bg-amber-600 hover:bg-amber-700">Explore Advanced Path</Button>
+              </Link>
+            </div>
+          </div>
+          <div className="mt-12 text-center">
+            <p className="text-muted-foreground mb-4">
+              Each learning path includes progress tracking, completion certificates, and personalized recommendations
+            </p>
+            <Link href="/catalog">
+              <Button variant="outline" size="lg">View All Courses</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-16">
         <div className="container max-w-7xl mx-auto px-4">
