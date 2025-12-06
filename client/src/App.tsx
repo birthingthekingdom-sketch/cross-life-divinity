@@ -48,6 +48,7 @@ import AdminLearningPaths from './pages/AdminLearningPaths';
 import Catalog from './pages/Catalog';
 import PathCertificate from './pages/PathCertificate';
 import EmailSettings from './pages/EmailSettings';
+import Referrals from './pages/Referrals';
 import AdminEmailConfig from './pages/AdminEmailConfig';
 import AdminEmailNotifications from './pages/AdminEmailNotifications';
 import CohortGroups from './pages/CohortGroups';
@@ -89,7 +90,8 @@ function Router() {
       <Route path="/certificates" component={MyCertificates} />
       <Route path="/verify/:token" component={VerifyCertificate} />
       <Route path="/path-certificate/:pathId" component={PathCertificate} />
-      <Route path="/email-settings" component={EmailSettings} />
+          <Route path="/email-settings" component={EmailSettings} />
+          <Route path="/referrals" component={Referrals} />
       <Route path="/progress" component={Progress} />
       <Route path="/learning-paths" component={LearningPaths} />
       <Route path="/cohorts" component={CohortGroups} />

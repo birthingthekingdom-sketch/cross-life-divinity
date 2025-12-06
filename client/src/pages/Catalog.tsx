@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { trpc } from "@/lib/trpc";
 import { BookOpen, GraduationCap, Clock, Award, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "wouter";
+import { Footer } from "@/components/Footer";
 
 export default function Catalog() {
   const { data: bundles, isLoading: bundlesLoading } = trpc.bundles.getActiveBundles.useQuery();
@@ -267,6 +268,8 @@ export default function Catalog() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

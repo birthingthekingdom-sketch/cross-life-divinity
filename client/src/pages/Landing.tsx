@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
+import { Footer } from "@/components/Footer";
 import { Check, BookOpen, Award, Users, Clock } from "lucide-react";
 
 export default function Landing() {
@@ -433,6 +434,8 @@ export default function Landing() {
           </p>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
+import { Footer } from "@/components/Footer";
 import { Award, BookOpen, Users, Target, Heart, Globe, ArrowRight } from "lucide-react";
 
 export default function About() {
@@ -180,6 +181,8 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

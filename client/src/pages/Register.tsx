@@ -17,10 +17,26 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  
+  // Capture referral code from URL
+  const referralCode = new URLSearchParams(window.location.search).get('ref');
+
+  const trackReferralMutation = trpc.referrals.trackReferral.useMutation();
 
   const registerMutation = trpc.auth.register.useMutation({
-    onSuccess: async () => {
+    onSuccess: async (data) => {
       toast.success("Registration successful! Logging you in...");
+      
+      // Track referral if code exists
+      if (referralCode) {
+        try {
+          await trackReferralMutation.mutateAsync({ referralCode });
+        } catch (error) {
+          // Silently fail - don't block registration
+          console.error('Referral tracking failed:', error);
+        }
+      }
+      
       await refresh();
       setLocation("/dashboard");
     },

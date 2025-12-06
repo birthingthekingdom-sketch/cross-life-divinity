@@ -898,12 +898,16 @@
 - [x] Update Landing page pricing section with limited-time offer
 - [x] Add "Lock in this rate forever" messaging
 - [x] Create referral system database schema
-- [ ] Add referral tracking API endpoints
-- [ ] Create referral dashboard for users
-- [ ] Add unique referral link generation
-- [ ] Implement $50 credit system
+- [x] Add referral tracking API endpoints to routers.ts
+- [x] Create referral dashboard page at /referrals
+- [x] Add unique referral link generation and display
+- [x] Implement $50 credit system display
 - [ ] Add referral registration tracking
+- [ ] Integrate referral code capture in registration flow
 
 
 ## Bug Fixes
 - [x] Fix nested <a> tag error on landing page (Link wrapping Button)
+
+- [ ] Update landing page Login button to direct to student/client registration
+- [ ] Ensure proper distinction between admin and student login flows

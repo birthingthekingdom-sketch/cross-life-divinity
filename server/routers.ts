@@ -20,6 +20,7 @@ import { cohortRouter } from './cohort-router';
 import { bundlePurchaseRouter } from './bundle-purchase-router';
 import { emailNotificationRouter } from './email-notification-router';
 import { adminEmailRouter } from './admin-email-router';
+import * as referralSystem from './referral-router.js';
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -1128,6 +1129,30 @@ export const appRouter = router({
   // Payment and subscription management
    payment: paymentRouter,
   toggleAdmin: toggleAdminRouter,
+
+  // Referral System
+  referrals: router({
+    getMyReferralCode: protectedProcedure.query(async ({ ctx }) => {
+      const code = await referralSystem.getReferralCode(ctx.user.id);
+      const baseUrl = process.env.VITE_FRONTEND_URL || 'http://localhost:3000';
+      return { code, referralUrl: `${baseUrl}/register?ref=${code}` };
+    }),
+
+    getMyCredits: protectedProcedure.query(async ({ ctx }) => {
+      return await referralSystem.getUserCredits(ctx.user.id);
+    }),
+
+    getMyReferrals: protectedProcedure.query(async ({ ctx }) => {
+      return await referralSystem.getUserReferrals(ctx.user.id);
+    }),
+
+    trackReferral: protectedProcedure
+      .input(z.object({ referralCode: z.string() }))
+      .mutation(async ({ input, ctx }) => {
+        await referralSystem.trackReferral(input.referralCode, ctx.user.id);
+        return { success: true };
+      }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;

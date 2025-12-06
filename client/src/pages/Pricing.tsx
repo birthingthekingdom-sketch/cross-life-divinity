@@ -7,6 +7,7 @@ import { Check, CreditCard, DollarSign, Calendar, Sparkles, BookOpen, Award, Clo
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { toast } from "sonner";
+import { Footer } from "@/components/Footer";
 // Price display data
 const priceDisplay = {
   subscription: {
@@ -356,6 +357,8 @@ export default function Pricing() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }
