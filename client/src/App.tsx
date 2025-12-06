@@ -50,6 +50,7 @@ import PathCertificate from './pages/PathCertificate';
 import EmailSettings from './pages/EmailSettings';
 import AdminEmailConfig from './pages/AdminEmailConfig';
 import AdminEmailNotifications from './pages/AdminEmailNotifications';
+import CohortGroups from './pages/CohortGroups';
 
 function Router() {
   return (
@@ -89,6 +90,7 @@ function Router() {
       <Route path="/email-settings" component={EmailSettings} />
       <Route path="/progress" component={Progress} />
       <Route path="/learning-paths" component={LearningPaths} />
+      <Route path="/cohorts" component={CohortGroups} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/courses" component={Courses} />
       <Route path="/catalog" component={Catalog} />

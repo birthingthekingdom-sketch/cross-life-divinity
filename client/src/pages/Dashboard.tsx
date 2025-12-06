@@ -13,6 +13,7 @@ export default function Dashboard() {
   const { user, logout } = useAuth();
   const utils = trpc.useUtils();
   const { data: courses, isLoading: coursesLoading } = trpc.courses.list.useQuery();
+  const { data: recommendations } = trpc.courses.getRecommendations.useQuery();
   const { data: allProgress } = trpc.progress.getAll.useQuery();
   const { data: bundles } = trpc.bundles.getActiveBundles.useQuery();
   const { data: paths } = trpc.bundles.getActiveLearningPaths.useQuery();
@@ -149,6 +150,44 @@ export default function Dashboard() {
             Continue your theological education journey. Select a course below to begin or continue your studies.
           </p>
         </div>
+
+        {/* Course Recommendations */}
+        {recommendations && recommendations.length > 0 && (
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+              Recommended for You
+            </h2>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {recommendations.slice(0, 3).map((rec: any) => (
+                <Card key={rec.id} className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
+                  <CardHeader className="bg-gradient-to-br from-yellow-50 to-orange-50">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <CardTitle className="text-lg mb-2">{rec.title}</CardTitle>
+                        <Badge variant="outline" className="text-xs bg-white">
+                          {rec.reason}
+                        </Badge>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="pt-4">
+                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                      {rec.description}
+                    </p>
+                    <Link href="/courses">
+                      <Button variant="default" size="sm" className="w-full">
+                        Explore Course →
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Active Learning Path Section */}
         {myEnrolledPaths && myEnrolledPaths.length > 0 && paths && (

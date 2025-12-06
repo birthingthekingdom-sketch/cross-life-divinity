@@ -853,3 +853,15 @@
 - [x] Add download roadmap buttons to Learning Paths page (via API)
 - [x] Add "Why This Order?" explanations to Learning Paths page
 - [x] Test all new features
+
+
+## Advanced Learning Features - Diagrams, Recommendations & Cohorts
+- [x] Create visual course dependency diagram component
+- [x] Add interactive flowchart to Learning Paths page
+- [x] Build course recommendation algorithm
+- [x] Add recommendation API endpoints
+- [x] Display course recommendations on Dashboard
+- [x] Create student cohort groups database schema
+- [x] Add cohort creation and management features
+- [x] Build cohort discussion and messaging system
+- [x] Test all new features

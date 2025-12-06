@@ -6,6 +6,7 @@ import { trpc } from "@/lib/trpc";
 import { ArrowLeft, BookOpen, CheckCircle2, Clock, GraduationCap, Target } from "lucide-react";
 import { Link } from "wouter";
 import { toast } from "sonner";
+import { CourseDependencyDiagram } from "@/components/CourseDependencyDiagram";
 
 export default function LearningPaths() {
   const utils = trpc.useUtils();
@@ -185,6 +186,18 @@ export default function LearningPaths() {
                 </CardHeader>
 
                 <CardContent className="pt-6">
+                  {/* Course Dependency Diagram */}
+                  <div className="mb-6">
+                    <CourseDependencyDiagram 
+                      courses={path.courses}
+                      completedCourseIds={enrolledCourses?.filter((c: any) => {
+                        const progress = allProgress?.filter((p: any) => p.courseId === c.id && p.completed);
+                        return progress?.length === c.totalLessons && c.totalLessons > 0;
+                      }).map((c: any) => c.id) || []}
+                      level={path.level}
+                    />
+                  </div>
+
                   {/* Why This Order? Explanation */}
                   <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
                     <h3 className="text-base font-semibold mb-2 flex items-center gap-2 text-blue-900 dark:text-blue-100">

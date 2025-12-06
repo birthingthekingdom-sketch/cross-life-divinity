@@ -10,11 +10,13 @@ import * as scheduler from "./scheduler";
 import * as analytics from "./analytics";
 import * as csvExport from "./csv-export";
 import * as prerequisites from "./prerequisites";
+import * as courseRecommendations from "./course-recommendations";
 import { authRouter } from "./auth-router";
 import { assignmentRouter } from "./assignment-router";
 import { paymentRouter } from './payment-router';
 import { toggleAdminRouter } from './toggle-admin-router';
 import { bundlesRouter } from './bundles-router';
+import { cohortRouter } from './cohort-router';
 import { bundlePurchaseRouter } from './bundle-purchase-router';
 import { emailNotificationRouter } from './email-notification-router';
 import { adminEmailRouter } from './admin-email-router';
@@ -30,6 +32,7 @@ const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
 export const appRouter = router({
   system: systemRouter,
   bundles: bundlesRouter,
+  cohorts: cohortRouter,
   bundlePurchase: bundlePurchaseRouter,
   emailNotifications: emailNotificationRouter,
 
@@ -158,6 +161,11 @@ export const appRouter = router({
       .input(z.object({ courseId: z.number() }))
       .query(async ({ input, ctx }) => {
         return prerequisites.checkPrerequisites(ctx.user.id, input.courseId);
+      }),
+    
+    getRecommendations: protectedProcedure
+      .query(async ({ ctx }) => {
+        return courseRecommendations.getCourseRecommendations(ctx.user.id);
       }),
     
     create: adminProcedure
