@@ -5,6 +5,59 @@ import { Check, BookOpen, Award, Users } from "lucide-react";
 export default function Landing() {
   return (
     <div className="min-h-screen bg-background">
+      {/* Navigation Header */}
+      <nav className="bg-white border-b border-border sticky top-0 z-50 shadow-sm">
+        <div className="container max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <Link href="/">
+              <div className="flex items-center gap-2 cursor-pointer">
+                <Award className="h-8 w-8 text-primary" />
+                <span className="text-xl font-bold text-primary">Cross Life School of Divinity</span>
+              </div>
+            </Link>
+            
+            {/* Navigation Links */}
+            <div className="hidden md:flex items-center gap-6">
+              <Link href="/catalog">
+                <a className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                  Courses
+                </a>
+              </Link>
+              <Link href="/learning-paths">
+                <a className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                  Learning Paths
+                </a>
+              </Link>
+              <Link href="/pricing">
+                <a className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                  Pricing
+                </a>
+              </Link>
+              <Link href="/about">
+                <a className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                  About
+                </a>
+              </Link>
+            </div>
+            
+            {/* Auth Buttons */}
+            <div className="flex items-center gap-3">
+              <Link href="/login">
+                <Button variant="ghost" className="font-medium">
+                  Login
+                </Button>
+              </Link>
+              <Link href="/register">
+                <Button className="bg-primary hover:bg-primary/90 font-medium">
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
       {/* Hero Section with Promotional Image */}
       <section className="relative h-[500px] overflow-hidden">
         <img 
@@ -269,6 +322,86 @@ export default function Landing() {
                 Connect with a global community of ministry leaders pursuing excellence
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-16 bg-accent/5">
+        <div className="container max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-4">What Our Students Say</h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg">Hear from ministry leaders who have transformed their understanding and impact</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Testimonial 1 */}
+            <div className="bg-card border border-border rounded-lg p-6 shadow-sm hover:shadow-lg transition-shadow">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center flex-shrink-0">
+                  <Users className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-lg">Pastor James Mitchell</h4>
+                  <p className="text-sm text-muted-foreground">Senior Pastor, Grace Community Church</p>
+                </div>
+              </div>
+              <p className="text-muted-foreground italic leading-relaxed">
+                "The Systematic Theology course completely transformed my preaching. The depth of content combined with practical application has equipped me to teach with greater confidence and clarity. Highly recommend for any pastor seeking theological excellence."
+              </p>
+              <div className="mt-4 flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Award key={i} className="h-4 w-4 text-amber-500 fill-amber-500" />
+                ))}
+              </div>
+            </div>
+
+            {/* Testimonial 2 */}
+            <div className="bg-card border border-border rounded-lg p-6 shadow-sm hover:shadow-lg transition-shadow">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center flex-shrink-0">
+                  <Users className="h-8 w-8 text-accent" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-lg">Sarah Thompson</h4>
+                  <p className="text-sm text-muted-foreground">Worship Leader & Ministry Coordinator</p>
+                </div>
+              </div>
+              <p className="text-muted-foreground italic leading-relaxed">
+                "As a worship leader, the Fivefold Ministry course opened my eyes to my calling and how to operate in my gifts. The flexible schedule allowed me to study while serving full-time in ministry. This platform is a game-changer for busy ministry leaders!"
+              </p>
+              <div className="mt-4 flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Award key={i} className="h-4 w-4 text-amber-500 fill-amber-500" />
+                ))}
+              </div>
+            </div>
+
+            {/* Testimonial 3 */}
+            <div className="bg-card border border-border rounded-lg p-6 shadow-sm hover:shadow-lg transition-shadow">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center flex-shrink-0">
+                  <Users className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-lg">Rev. David Okonkwo</h4>
+                  <p className="text-sm text-muted-foreground">Missionary & Church Planter, Nigeria</p>
+                </div>
+              </div>
+              <p className="text-muted-foreground italic leading-relaxed">
+                "The Biblical Hermeneutics course equipped me with tools I use daily in sermon preparation and Bible study leadership. The CPD accreditation adds credibility to my ministry credentials. Worth every penny—actually, the subscription model makes it incredibly affordable!"
+              </p>
+              <div className="mt-4 flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Award key={i} className="h-4 w-4 text-amber-500 fill-amber-500" />
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="mt-12 text-center">
+            <p className="text-muted-foreground mb-4">
+              Join 500+ ministry leaders already enrolled in our courses
+            </p>
+            <Link href="/register">
+              <Button size="lg" className="bg-accent hover:bg-accent/90">Start Your Journey Today</Button>
+            </Link>
           </div>
         </div>
       </section>

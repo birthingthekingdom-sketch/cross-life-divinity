@@ -871,3 +871,13 @@
 - [x] Fix landing page redirecting to login page (should be publicly accessible)
 
 - [x] Fix catalog and pricing links on landing page (redirecting instead of navigating)
+
+- [ ] Verify course catalog displays all 17 courses correctly
+
+
+## Landing Page Enhancements
+- [x] Add navigation header to landing page with Login/Sign Up buttons
+- [x] Add links to Catalog, Pricing, Learning Paths in navigation
+- [x] Create About Us page
+- [x] Add student testimonials section to landing page
+- [x] Test all new features
