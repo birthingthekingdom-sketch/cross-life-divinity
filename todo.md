@@ -715,6 +715,23 @@
 
 
 ## Publishing Preparation
-- [ ] Create final checkpoint before publishing
-- [ ] Document URLs for website integration
-- [ ] Provide publishing instructions to user
+- [x] Create final checkpoint before publishing
+- [x] Document URLs for website integration
+- [x] Provide publishing instructions to user
+
+
+## Shareable Links & Custom Domain
+- [x] Find published platform URL
+- [x] Create shareable landing page link for prospective students
+- [x] Set up custom domain (learn.crosslifeschoolofdivinity.org)
+- [x] Configure DNS in GoDaddy
+- [x] Provide final URLs for GoDaddy website integration
+
+
+## New Courses Addition
+- [x] Create Understanding Prophecy course
+- [x] Create Deliverance Ministry course
+- [x] Create Fivefold Ministry course
+- [x] Add 10 lessons to Understanding Prophecy
+- [x] Add 10 lessons to Deliverance Ministry
+- [x] Add 10 lessons to Fivefold Ministry
