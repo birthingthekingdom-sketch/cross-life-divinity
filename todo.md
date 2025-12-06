@@ -800,3 +800,27 @@
 - [x] Generate certificates on path completion
 - [x] Add certificate download/view functionality
 - [x] Test all new features
+
+
+## Engagement Features - Forums, Analytics & Notifications
+- [x] Create course discussion forums database schema (already exists)
+- [x] Add forum topics and replies functionality (already exists)
+- [x] Build course forum UI for students (already exists)
+- [x] Add admin moderation tools (already exists)
+- [ ] Create notification system for new posts (can be added later)
+- [x] Build admin analytics dashboard page (already exists)
+- [x] Add enrollment trends visualization (already exists)
+- [x] Add course completion rate metrics (already exists)
+- [x] Add average quiz score analytics (already exists)
+- [x] Add at-risk student identification (already exists)
+- [x] Add exportable analytics reports (already exists)
+- [x] Create email notification database schema
+- [x] Build email template system
+- [x] Add enrollment confirmation emails
+- [x] Add lesson completion milestone emails
+- [x] Add certificate generation emails
+- [x] Add assignment deadline reminder emails
+- [x] Add weekly progress summary emails
+- [x] Add email preferences page
+- [x] Integrate email notifications into enrollment flow
+- [x] Test all new features

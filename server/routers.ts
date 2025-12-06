@@ -14,6 +14,7 @@ import { paymentRouter } from './payment-router';
 import { toggleAdminRouter } from './toggle-admin-router';
 import { bundlesRouter } from './bundles-router';
 import { bundlePurchaseRouter } from './bundle-purchase-router';
+import { emailNotificationRouter } from './email-notification-router';
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -27,6 +28,7 @@ export const appRouter = router({
   system: systemRouter,
   bundles: bundlesRouter,
   bundlePurchase: bundlePurchaseRouter,
+  emailNotifications: emailNotificationRouter,
 
   // Merge custom auth router with existing auth endpoints
   auth: router({
@@ -76,6 +78,19 @@ export const appRouter = router({
             userId: ctx.user.id,
             accessCodeId: code.id
           });
+        }
+        
+        // Send enrollment emails for new enrollments
+        const emailNotifications = await import('./email-notifications');
+        for (const acc of accessCodeCourses) {
+          const course = await db.getCourseById(acc.courseId);
+          if (course) {
+            try {
+              await emailNotifications.sendEnrollmentEmail(ctx.user.id, course.title, course.id);
+            } catch (error) {
+              console.error(`Failed to send enrollment email for course ${course.id}:`, error);
+            }
+          }
         }
         
         return { 
