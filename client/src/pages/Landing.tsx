@@ -152,7 +152,7 @@ export default function Landing() {
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-sm"><strong>Courses:</strong> Introduction to Theology, Biblical Hermeneutics, Christian Ethics, Prayer & Intercession, Spiritual Warfare</span>
+                  <span className="text-sm"><strong>Courses:</strong> Introduction to Theology, Biblical Hermeneutics, Christian Ethics, Prayer & Intercession, Spiritual Warfare, Evangelism</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />

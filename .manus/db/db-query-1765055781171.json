@@ -1,0 +1,13 @@
+{
+  "query": "SELECT \n  GROUP_CONCAT(c.title ORDER BY lpc.orderIndex SEPARATOR ', ') as courses\nFROM learning_paths lp\nLEFT JOIN learning_path_courses lpc ON lp.id = lpc.pathId\nLEFT JOIN courses c ON lpc.courseId = c.id\nWHERE lp.id = 1",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT \n  GROUP_CONCAT(c.title ORDER BY lpc.orderIndex SEPARATOR ', ') as courses\nFROM learning_paths lp\nLEFT JOIN learning_path_courses lpc ON lp.id = lpc.pathId\nLEFT JOIN courses c ON lpc.courseId = c.id\nWHERE lp.id = 1",
+  "rows": [
+    {
+      "courses": "Biblical Hermeneutics, Prayer and Intercession, Evangelism and Discipleship"
+    }
+  ],
+  "messages": [],
+  "stdout": "courses\nBiblical Hermeneutics, Prayer and Intercession, Evangelism and Discipleship\n",
+  "stderr": "",
+  "execution_time_ms": 59
+}
