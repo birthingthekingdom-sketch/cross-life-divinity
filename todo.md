@@ -839,3 +839,5 @@
 - [x] Test all new features
 
 - [x] Add detailed descriptive information for each learning path on landing page
+
+- [x] Add discipleship and spiritual growth courses to Beginner learning path

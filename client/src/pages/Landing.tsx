@@ -143,16 +143,16 @@ export default function Landing() {
                 <h3 className="text-2xl font-bold mt-1">New Believer Foundation</h3>
               </div>
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                Perfect for new believers and those seeking to establish a solid biblical foundation. This path introduces essential Christian doctrines, biblical interpretation basics, and foundational spiritual disciplines that every believer needs.
+                Perfect for new believers and those seeking to establish a solid biblical foundation. This path introduces essential Christian doctrines, biblical interpretation basics, foundational spiritual disciplines, and practical tools for spiritual growth and discipleship.
               </p>
               <div className="space-y-3 mb-6">
                 <div className="flex items-start gap-2">
                   <Check className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-sm"><strong>Duration:</strong> 3-4 months at recommended pace</span>
+                  <span className="text-sm"><strong>Duration:</strong> 5-6 months at recommended pace</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-sm"><strong>Courses:</strong> Introduction to Theology, Biblical Hermeneutics, Christian Ethics</span>
+                  <span className="text-sm"><strong>Courses:</strong> Introduction to Theology, Biblical Hermeneutics, Christian Ethics, Prayer & Intercession, Spiritual Warfare</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
