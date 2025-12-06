@@ -13,6 +13,8 @@ export default function Dashboard() {
   const utils = trpc.useUtils();
   const { data: courses, isLoading: coursesLoading } = trpc.courses.list.useQuery();
   const { data: allProgress } = trpc.progress.getAll.useQuery();
+  const { data: bundles } = trpc.bundles.getActiveBundles.useQuery();
+  const { data: paths } = trpc.bundles.getActiveLearningPaths.useQuery();
   
   const handleRefresh = async () => {
     await Promise.all([
@@ -146,7 +148,123 @@ export default function Dashboard() {
           </p>
         </div>
 
-        {/* Courses Grid */}
+        {/* Learning Paths Section */}
+        {paths && paths.length > 0 && (
+          <div className="mb-12">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold text-foreground">Learning Paths</h2>
+              <Link href="/learning-paths">
+                <Button variant="outline" size="sm">
+                  View All Paths →
+                </Button>
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {paths.slice(0, 3).map((path: any) => (
+                <Link key={path.id} href="/learning-paths">
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer border-2 hover:border-primary/50">
+                    <CardHeader className="bg-gradient-to-br from-purple-50 to-blue-50">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="p-2 bg-primary/10 rounded-lg">
+                          <GraduationCap className="h-5 w-5 text-primary" />
+                        </div>
+                        <span className="text-xs font-semibold text-primary uppercase">
+                          {path.level}
+                        </span>
+                      </div>
+                      <CardTitle className="text-lg">{path.name}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-4">
+                      <CardDescription className="text-sm mb-3 line-clamp-2">
+                        {path.description}
+                      </CardDescription>
+                      <div className="text-sm text-muted-foreground">
+                        {path.courses.length} courses • {path.duration}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Course Bundles Section */}
+        {bundles && bundles.length > 0 && (
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-6">Course Bundles</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {bundles.map((bundle: any) => {
+                // Calculate bundle progress
+                const bundleCourseIds = bundle.courses.map((c: any) => c.id);
+                const enrolledBundleCourses = courses?.filter((c: any) => bundleCourseIds.includes(c.id)) || [];
+                let totalLessons = 0;
+                let completedLessons = 0;
+                
+                enrolledBundleCourses.forEach((course: any) => {
+                  totalLessons += course.totalLessons || 0;
+                  const courseCompleted = allProgress?.filter(
+                    (p: any) => p.courseId === course.id && p.completed
+                  ).length || 0;
+                  completedLessons += courseCompleted;
+                });
+                
+                const bundleProgress = totalLessons > 0 ? (completedLessons / totalLessons) * 100 : 0;
+
+                return (
+                  <Card key={bundle.id} className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50">
+                    <CardHeader className="bg-gradient-to-br from-primary/5 to-accent/5">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="p-2 bg-primary/10 rounded-lg">
+                          <BookOpen className="h-5 w-5 text-primary" />
+                        </div>
+                        <span className="text-xs font-semibold text-primary uppercase">Bundle</span>
+                      </div>
+                      <CardTitle className="text-lg">{bundle.name}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-4">
+                      <CardDescription className="text-sm mb-4 line-clamp-2">
+                        {bundle.description}
+                      </CardDescription>
+                      <div className="space-y-3">
+                        <div className="text-sm text-muted-foreground">
+                          {bundle.courses.length} courses included
+                        </div>
+                        {bundleProgress > 0 && (
+                          <div>
+                            <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                              <span>Bundle Progress</span>
+                              <span>{Math.round(bundleProgress)}%</span>
+                            </div>
+                            <Progress value={bundleProgress} className="h-2" />
+                          </div>
+                        )}
+                        <div className="space-y-1">
+                          {bundle.courses.slice(0, 3).map((course: any) => (
+                            <Link key={course.id} href={`/course/${course.id}`}>
+                              <div className="text-xs text-muted-foreground hover:text-primary transition-colors cursor-pointer flex items-center gap-1">
+                                <span>→</span>
+                                <span className="line-clamp-1">{course.title}</span>
+                              </div>
+                            </Link>
+                          ))}
+                          {bundle.courses.length > 3 && (
+                            <div className="text-xs text-muted-foreground">
+                              + {bundle.courses.length - 3} more courses
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* All Courses Grid */}
+        <h2 className="text-2xl font-bold text-foreground mb-6">All Courses</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses?.map((course) => {
             const progress = courseProgress[course.id] || { completed: 0, total: course.totalLessons };

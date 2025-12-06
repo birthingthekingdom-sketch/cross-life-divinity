@@ -42,6 +42,7 @@ import Subscription from './pages/Subscription';
 import AdminRevenue from './pages/AdminRevenue';
 import ToggleRole from './pages/ToggleRole';
 import Landing from './pages/Landing';
+import LearningPaths from './pages/LearningPaths';
 
 function Router() {
   return (
@@ -74,6 +75,7 @@ function Router() {
       <Route path="/certificates" component={MyCertificates} />
       <Route path="/verify/:token" component={VerifyCertificate} />
       <Route path="/progress" component={Progress} />
+      <Route path="/learning-paths" component={LearningPaths} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/courses" component={Courses} />
       <Route path="/payment/success" component={PaymentSuccess} />

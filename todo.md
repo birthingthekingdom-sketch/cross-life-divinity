@@ -753,3 +753,18 @@
 - [x] Create video player component for course intros (VideoPlayer component exists)
 - [x] Update course pages to display intro videos (already integrated in CoursePage)
 - [x] Test all new features
+
+
+## UI Enhancements - Learning Paths & Bundles Display
+- [x] Create Learning Paths page component
+- [x] Add route for /learning-paths
+- [x] Display 3 learning paths with course lists
+- [x] Add progress visualization for learning paths
+- [x] Add bundle cards to student Dashboard
+- [x] Show bundle progress across courses
+- [x] Add navigation link to Learning Paths page
+- [x] Populate video URLs for Old Testament Survey
+- [x] Populate video URLs for Systematic Theology
+- [x] Populate video URLs for Fivefold Ministry
+- [x] Populate video URLs for all 17 courses
+- [x] Test all new UI features
