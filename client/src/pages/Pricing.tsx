@@ -10,11 +10,13 @@ import { toast } from "sonner";
 // Price display data
 const priceDisplay = {
   subscription: {
+    originalPrice: "$79",
     monthly: "$49",
     minimumTotal: "$294",
     minimumMonths: 6,
   },
   individualCourse: {
+    originalPrice: "$129",
     price: "$89",
     total10Courses: "$890",
   },
@@ -78,9 +80,9 @@ export default function Pricing() {
       {/* Header */}
       <div className="container mx-auto px-4 py-12">
         <div className="text-center mb-16">
-          <Badge className="mb-4 bg-amber-500 text-slate-900 hover:bg-amber-400">
-            <Sparkles className="w-3 h-3 mr-1" />
-            Choose Your Path
+          <Badge className="mb-4 bg-red-500 text-white hover:bg-red-600 text-lg px-4 py-2">
+            <Clock className="w-4 h-4 mr-2" />
+            Limited-Time Offer - Lock In This Rate Forever!
           </Badge>
           <h1 className="text-5xl font-bold text-white mb-4">
             Seminary-Level Theological Education
@@ -107,9 +109,13 @@ export default function Pricing() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="flex items-baseline gap-2">
-                <span className="text-5xl font-bold text-white">{priceDisplay.individualCourse.price}</span>
-                <span className="text-slate-400">per course</span>
+              <div className="flex flex-col gap-2">
+                <div className="flex items-baseline gap-3">
+                  <span className="text-3xl text-slate-500 line-through">{priceDisplay.individualCourse.originalPrice}</span>
+                  <span className="text-5xl font-bold text-white">{priceDisplay.individualCourse.price}</span>
+                  <span className="text-slate-400">per course</span>
+                </div>
+                <p className="text-sm text-green-400 font-semibold">Save $40 per course!</p>
               </div>
 
               <div className="space-y-3">
@@ -181,9 +187,13 @@ export default function Pricing() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="flex items-baseline gap-2">
-                <span className="text-5xl font-bold text-white">{priceDisplay.subscription.monthly}</span>
-                <span className="text-slate-400">/month</span>
+              <div className="flex flex-col gap-2">
+                <div className="flex items-baseline gap-3">
+                  <span className="text-3xl text-slate-500 line-through">{priceDisplay.subscription.originalPrice}</span>
+                  <span className="text-5xl font-bold text-white">{priceDisplay.subscription.monthly}</span>
+                  <span className="text-slate-400">/month</span>
+                </div>
+                <p className="text-sm text-green-400 font-semibold">Save $30/month - Lock in this rate forever!</p>
               </div>
 
               <div className="bg-amber-900/30 border border-amber-700 rounded-lg p-4">

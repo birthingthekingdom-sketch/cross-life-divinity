@@ -881,3 +881,25 @@
 - [x] Create About Us page
 - [x] Add student testimonials section to landing page
 - [x] Test all new features
+
+
+## Footer Component
+- [ ] Create footer component with CLSOD branding
+- [ ] Add footer to Landing page
+- [ ] Add footer to Catalog page
+- [ ] Add footer to Pricing page
+- [ ] Add footer to About page
+- [ ] Add footer to Learning Paths page
+- [ ] Remove "Made by Manus" branding
+- [ ] Test footer on all pages
+
+- [x] Update Pricing page with limited-time offer messaging
+- [x] Add strikethrough pricing ($79 → $49, $129 → $89)
+- [x] Update Landing page pricing section with limited-time offer
+- [x] Add "Lock in this rate forever" messaging
+- [x] Create referral system database schema
+- [ ] Add referral tracking API endpoints
+- [ ] Create referral dashboard for users
+- [ ] Add unique referral link generation
+- [ ] Implement $50 credit system
+- [ ] Add referral registration tracking

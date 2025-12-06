@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
-import { Check, BookOpen, Award, Users } from "lucide-react";
+import { Check, BookOpen, Award, Users, Clock } from "lucide-react";
 
 export default function Landing() {
   return (
@@ -103,8 +104,18 @@ export default function Landing() {
               />
             </div>
             <div>
+              <div className="mb-4">
+                <Badge className="bg-red-500 text-white hover:bg-red-600 mb-3">
+                  <Clock className="w-3 h-3 mr-1" />
+                  Limited-Time Offer
+                </Badge>
+              </div>
               <h2 className="text-4xl font-bold mb-6">All-Access Subscription</h2>
-              <div className="text-5xl font-bold text-accent mb-4">$49<span className="text-2xl text-muted-foreground">/month</span></div>
+              <div className="flex items-baseline gap-3 mb-2">
+                <span className="text-3xl text-muted-foreground line-through">$79</span>
+                <div className="text-5xl font-bold text-accent">$49<span className="text-2xl text-muted-foreground">/month</span></div>
+              </div>
+              <p className="text-green-600 font-semibold mb-4">Save $30/month - Lock in this rate forever!</p>
               <p className="text-xl text-muted-foreground mb-6">
                 Get unlimited access to all 17 seminary-quality courses with one affordable subscription
               </p>
