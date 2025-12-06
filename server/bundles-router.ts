@@ -366,4 +366,122 @@ export const bundlesRouter = router({
       const rows = Array.isArray(result) ? result : (result.rows || []);
       return { enrolled: rows.length > 0 };
     }),
+
+  // ============ Learning Path Certificates ============
+
+  checkPathCertificateEligibility: protectedProcedure
+    .input(z.object({ learningPathId: z.number() }))
+    .query(async ({ input, ctx }) => {
+      const dbConn = await db.getDb();
+      if (!dbConn) throw new Error("Database not available");
+
+      // Check if certificate already exists
+      const existing: any = await dbConn.execute(
+        sql`SELECT * FROM learning_path_certificates 
+            WHERE userId = ${ctx.user.id} AND learningPathId = ${input.learningPathId}`
+      );
+      const certificates = Array.isArray(existing) ? existing : (existing.rows || []);
+      
+      if (certificates.length > 0) {
+        return { eligible: true, certificate: certificates[0] };
+      }
+
+      // Get learning path and its courses
+      const path = await bundlesDb.getLearningPathById(input.learningPathId);
+      if (!path) {
+        throw new Error("Learning path not found");
+      }
+
+      const pathCourses = await bundlesDb.getPathCourses(input.learningPathId);
+      const requiredCourses = pathCourses.filter(pc => pc.isRequired);
+
+      // Check if all required courses are completed
+      let allCompleted = true;
+      for (const pc of requiredCourses) {
+        const course = await db.getCourseById(pc.courseId);
+        if (!course) continue;
+
+        const lessons = await db.getLessonsByCourseId(pc.courseId);
+        const progress = await db.getUserProgress(ctx.user.id, pc.courseId);
+        const completedLessons = progress.filter(p => p.completed).length;
+
+        if (completedLessons !== lessons.length || lessons.length === 0) {
+          allCompleted = false;
+          break;
+        }
+      }
+
+      return { eligible: allCompleted, certificate: null };
+    }),
+
+  generatePathCertificate: protectedProcedure
+    .input(z.object({ learningPathId: z.number() }))
+    .mutation(async ({ input, ctx }) => {
+      const dbConn = await db.getDb();
+      if (!dbConn) throw new Error("Database not available");
+
+      // Check if certificate already exists
+      const existing: any = await dbConn.execute(
+        sql`SELECT * FROM learning_path_certificates 
+            WHERE userId = ${ctx.user.id} AND learningPathId = ${input.learningPathId}`
+      );
+      const certificates = Array.isArray(existing) ? existing : (existing.rows || []);
+      
+      if (certificates.length > 0) {
+        return { certificateNumber: certificates[0].certificateNumber };
+      }
+
+      // Verify eligibility
+      const path = await bundlesDb.getLearningPathById(input.learningPathId);
+      if (!path) {
+        throw new Error("Learning path not found");
+      }
+
+      const pathCourses = await bundlesDb.getPathCourses(input.learningPathId);
+      const requiredCourses = pathCourses.filter(pc => pc.isRequired);
+
+      // Verify all required courses are completed
+      for (const pc of requiredCourses) {
+        const lessons = await db.getLessonsByCourseId(pc.courseId);
+        const progress = await db.getUserProgress(ctx.user.id, pc.courseId);
+        const completedLessons = progress.filter(p => p.completed).length;
+
+        if (completedLessons !== lessons.length || lessons.length === 0) {
+          throw new Error("Not all required courses completed");
+        }
+      }
+
+      // Generate certificate number
+      const timestamp = Date.now();
+      const pathName = path.name.replace(/[^A-Z0-9]/gi, '').substring(0, 10).toUpperCase();
+      const certificateNumber = `CPD-PATH-${new Date().getFullYear()}-${pathName}-${timestamp.toString().slice(-5)}`;
+
+      // Generate verification token
+      const verificationToken = `${timestamp}-${ctx.user.id}-${input.learningPathId}-${Math.random().toString(36).substring(2, 15)}`;
+
+      // Create certificate
+      await dbConn.execute(
+        sql`INSERT INTO learning_path_certificates 
+            (userId, learningPathId, certificateNumber, verificationToken, completionDate)
+            VALUES (${ctx.user.id}, ${input.learningPathId}, ${certificateNumber}, ${verificationToken}, CURDATE())`
+      );
+
+      return { certificateNumber };
+    }),
+
+  getMyPathCertificates: protectedProcedure
+    .query(async ({ ctx }) => {
+      const dbConn = await db.getDb();
+      if (!dbConn) throw new Error("Database not available");
+
+      const certificates: any = await dbConn.execute(
+        sql`SELECT lpc.*, lp.name, lp.description, lp.level
+            FROM learning_path_certificates lpc
+            JOIN learning_paths lp ON lpc.learningPathId = lp.id
+            WHERE lpc.userId = ${ctx.user.id}
+            ORDER BY lpc.issuedAt DESC`
+      );
+      
+      return Array.isArray(certificates) ? certificates : (certificates.rows || []);
+    }),
 });

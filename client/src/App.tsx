@@ -46,6 +46,7 @@ import LearningPaths from './pages/LearningPaths';
 import AdminBundles from './pages/AdminBundles';
 import AdminLearningPaths from './pages/AdminLearningPaths';
 import Catalog from './pages/Catalog';
+import PathCertificate from './pages/PathCertificate';
 
 function Router() {
   return (
@@ -79,6 +80,7 @@ function Router() {
       <Route path="/webinars" component={Webinars} />
       <Route path="/certificates" component={MyCertificates} />
       <Route path="/verify/:token" component={VerifyCertificate} />
+      <Route path="/path-certificate/:pathId" component={PathCertificate} />
       <Route path="/progress" component={Progress} />
       <Route path="/learning-paths" component={LearningPaths} />
       <Route path="/pricing" component={Pricing} />

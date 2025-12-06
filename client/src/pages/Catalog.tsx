@@ -162,9 +162,23 @@ export default function Catalog() {
                           </div>
                         ))}
                       </div>
+                      {bundle.price > 0 && (
+                        <div className="pt-3 border-t">
+                          <div className="flex items-center justify-between mb-2">
+                            <div>
+                              <div className="text-2xl font-bold text-primary">${(bundle.price / 100).toFixed(0)}</div>
+                              {bundle.discountPercentage > 0 && (
+                                <div className="text-xs text-muted-foreground">
+                                  Save {bundle.discountPercentage}% vs individual courses
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      )}
                       <Link href="/register">
                         <Button variant="outline" className="w-full mt-2">
-                          View Bundle
+                          Purchase Bundle
                           <ArrowRight className="h-4 w-4 ml-2" />
                         </Button>
                       </Link>

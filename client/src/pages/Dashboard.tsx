@@ -1,5 +1,6 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { PullToRefresh } from "@/components/PullToRefresh";
@@ -150,40 +151,108 @@ export default function Dashboard() {
         </div>
 
         {/* Active Learning Path Section */}
-        {myEnrolledPaths && myEnrolledPaths.length > 0 && (
+        {myEnrolledPaths && myEnrolledPaths.length > 0 && paths && (
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-foreground mb-6">My Active Learning Path</h2>
-            <Card className="border-2 border-primary/30 bg-gradient-to-r from-primary/5 to-accent/5">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle className="text-xl">{myEnrolledPaths[0].name}</CardTitle>
-                    <CardDescription className="mt-2">{myEnrolledPaths[0].description}</CardDescription>
-                  </div>
-                  <Link href="/learning-paths">
-                    <Button variant="outline">
-                      View Details →
-                    </Button>
-                  </Link>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-1">
-                    <GraduationCap className="h-4 w-4" />
-                    {myEnrolledPaths[0].level}
-                  </div>
-                  <div>•</div>
-                  <div>{myEnrolledPaths[0].duration}</div>
-                  {myEnrolledPaths[0].goal && (
-                    <>
-                      <div>•</div>
-                      <div className="flex-1">{myEnrolledPaths[0].goal}</div>
-                    </>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
+            {(() => {
+              const enrolledPath = paths.find((p: any) => p.id === myEnrolledPaths[0].learningPathId);
+              if (!enrolledPath) return null;
+              
+              const pathCourses = enrolledPath.courses || [];
+              const completedCourses = pathCourses.filter((c: any) => {
+                const progress = allProgress?.find((p: any) => p.courseId === c.id);
+                return progress?.completed;
+              });
+              const inProgressCourses = pathCourses.filter((c: any) => {
+                const progress = allProgress?.find((p: any) => p.courseId === c.id);
+                return progress && !progress.completed;
+              });
+              const notStartedCourses = pathCourses.filter((c: any) => {
+                const progress = allProgress?.find((p: any) => p.courseId === c.id);
+                return !progress;
+              });
+              const completionPercentage = pathCourses.length > 0 
+                ? Math.round((completedCourses.length / pathCourses.length) * 100) 
+                : 0;
+              const nextCourse = inProgressCourses[0] || notStartedCourses[0];
+              
+              return (
+                <Card className="border-2 border-primary/30 bg-gradient-to-r from-primary/5 to-accent/5">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <CardTitle className="text-xl">{enrolledPath.name}</CardTitle>
+                          <Badge variant="secondary">
+                            {completedCourses.length} / {pathCourses.length} completed
+                          </Badge>
+                        </div>
+                        <CardDescription className="mt-2">{enrolledPath.description}</CardDescription>
+                      </div>
+                      <Link href="/learning-paths">
+                        <Button variant="outline">
+                          View Details →
+                        </Button>
+                      </Link>
+                    </div>
+                    <div className="mt-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium">Overall Progress</span>
+                        <span className="text-sm font-semibold text-primary">{completionPercentage}%</span>
+                      </div>
+                      <Progress value={completionPercentage} className="h-3" />
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid md:grid-cols-3 gap-4 mb-4">
+                      <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
+                        <div className="text-2xl font-bold text-green-700">{completedCourses.length}</div>
+                        <div className="text-sm text-green-600">Completed</div>
+                      </div>
+                      <div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
+                        <div className="text-2xl font-bold text-blue-700">{inProgressCourses.length}</div>
+                        <div className="text-sm text-blue-600">In Progress</div>
+                      </div>
+                      <div className="text-center p-3 bg-gray-50 rounded-lg border border-gray-200">
+                        <div className="text-2xl font-bold text-gray-700">{notStartedCourses.length}</div>
+                        <div className="text-sm text-gray-600">Not Started</div>
+                      </div>
+                    </div>
+                    {nextCourse && (
+                      <div className="p-4 bg-accent/10 rounded-lg border border-accent/20">
+                        <div className="text-sm font-semibold text-accent mb-2">Next Recommended Course</div>
+                        <Link href={`/course/${nextCourse.id}`}>
+                          <div className="flex items-center justify-between hover:bg-accent/5 p-2 rounded transition-colors cursor-pointer">
+                            <div>
+                              <div className="font-medium">{nextCourse.title}</div>
+                              <div className="text-sm text-muted-foreground">{nextCourse.code}</div>
+                            </div>
+                            <Button size="sm">
+                              {inProgressCourses.includes(nextCourse) ? 'Continue' : 'Start'} →
+                            </Button>
+                          </div>
+                        </Link>
+                      </div>
+                    )}
+                    {completionPercentage === 100 && (
+                      <div className="p-4 bg-green-50 rounded-lg border border-green-200 mt-4">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <div className="text-sm font-semibold text-green-700 mb-1">Congratulations!</div>
+                            <div className="text-sm text-green-600">You've completed this learning path</div>
+                          </div>
+                          <Link href={`/path-certificate/${enrolledPath.id}`}>
+                            <Button size="sm" className="bg-green-600 hover:bg-green-700">
+                              View Certificate
+                            </Button>
+                          </Link>
+                        </div>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              );
+            })()}
           </div>
         )}
 

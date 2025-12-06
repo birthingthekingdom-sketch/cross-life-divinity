@@ -785,3 +785,18 @@
 - [x] Organize catalog by bundles and paths
 - [x] Add catalog navigation links
 - [x] Test all new features
+
+
+## Enhancement Features - Progress, Bundles & Certificates
+- [x] Add detailed progress tracking for learning paths
+- [x] Display completion percentage for enrolled paths
+- [x] Show next recommended course in learning path
+- [x] Add visual progress indicators on dashboard
+- [x] Create bundle purchase database schema
+- [x] Add Stripe products for course bundles
+- [x] Build bundle purchase flow
+- [x] Add bundle discount pricing logic
+- [x] Create learning path certificates table
+- [x] Generate certificates on path completion
+- [x] Add certificate download/view functionality
+- [x] Test all new features
