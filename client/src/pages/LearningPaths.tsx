@@ -185,6 +185,25 @@ export default function LearningPaths() {
                 </CardHeader>
 
                 <CardContent className="pt-6">
+                  {/* Why This Order? Explanation */}
+                  <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                    <h3 className="text-base font-semibold mb-2 flex items-center gap-2 text-blue-900 dark:text-blue-100">
+                      <BookOpen className="h-5 w-5" />
+                      Why This Order?
+                    </h3>
+                    <p className="text-sm text-blue-800 dark:text-blue-200 leading-relaxed">
+                      {path.level === 'beginner' && (
+                        "This path is carefully sequenced to build your foundation progressively. You'll start with core theological concepts, then learn to interpret Scripture accurately, followed by practical applications of Christian ethics. The path concludes with essential spiritual disciplines like prayer, spiritual warfare, and evangelism—equipping you to grow personally and share your faith effectively."
+                      )}
+                      {path.level === 'intermediate' && (
+                        "This ministry preparation track follows a strategic progression. You'll begin with leadership principles, then explore the fivefold ministry gifts, develop your prayer life, and finally learn church administration. This sequence ensures you understand your calling before learning how to lead and manage ministry effectively."
+                      )}
+                      {path.level === 'advanced' && (
+                        "This advanced path is designed for deep theological study and specialized ministry training. Starting with systematic theology provides the doctrinal framework, followed by comprehensive biblical surveys for scriptural mastery. The path concludes with specialized ministries—deliverance and prophecy—building on your solid theological and biblical foundation."
+                      )}
+                    </p>
+                  </div>
+
                   {/* Required Courses */}
                   <div className="mb-6">
                     <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">

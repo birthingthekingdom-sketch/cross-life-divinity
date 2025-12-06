@@ -843,3 +843,13 @@
 - [x] Add discipleship and spiritual growth courses to Beginner learning path
 
 - [x] Add evangelism/sharing faith course to Beginner learning path
+
+
+## Learning Path Enhancements - Prerequisites & Roadmaps
+- [x] Create course prerequisites database schema
+- [x] Add prerequisite checking logic to enrollment
+- [x] Display prerequisite requirements on course pages (via API)
+- [x] Create PDF generation for learning path roadmaps
+- [x] Add download roadmap buttons to Learning Paths page (via API)
+- [x] Add "Why This Order?" explanations to Learning Paths page
+- [x] Test all new features

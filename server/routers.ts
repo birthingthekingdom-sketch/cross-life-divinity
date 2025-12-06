@@ -9,6 +9,7 @@ import * as email from "./email";
 import * as scheduler from "./scheduler";
 import * as analytics from "./analytics";
 import * as csvExport from "./csv-export";
+import * as prerequisites from "./prerequisites";
 import { authRouter } from "./auth-router";
 import { assignmentRouter } from "./assignment-router";
 import { paymentRouter } from './payment-router';
@@ -133,12 +134,30 @@ export const appRouter = router({
     
     getById: protectedProcedure
       .input(z.object({ id: z.number() }))
-      .query(async ({ input }) => {
+      .query(async ({ input, ctx }) => {
         const course = await db.getCourseById(input.id);
         if (!course) {
           throw new TRPCError({ code: 'NOT_FOUND', message: 'Course not found' });
         }
-        return course;
+        
+        // Get prerequisites for this course
+        const coursePrerequisites = await prerequisites.getCoursePrerequisites(input.id);
+        
+        // Check if user can enroll (has completed prerequisites)
+        const prerequisiteCheck = await prerequisites.checkPrerequisites(ctx.user.id, input.id);
+        
+        return {
+          ...course,
+          prerequisites: coursePrerequisites,
+          canEnroll: prerequisiteCheck.canEnroll,
+          missingPrerequisites: prerequisiteCheck.missingPrerequisites
+        };
+      }),
+    
+    checkPrerequisites: protectedProcedure
+      .input(z.object({ courseId: z.number() }))
+      .query(async ({ input, ctx }) => {
+        return prerequisites.checkPrerequisites(ctx.user.id, input.courseId);
       }),
     
     create: adminProcedure

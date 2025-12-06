@@ -3,6 +3,7 @@ import { sql } from "drizzle-orm";
 import { router, protectedProcedure, publicProcedure } from "./_core/trpc";
 import * as bundlesDb from "./bundles-db";
 import * as db from "./db";
+import { generateLearningPathPDF } from './learning-path-pdf';
 
 export const bundlesRouter = router({
   // ============ Course Bundles ============
@@ -308,6 +309,17 @@ export const bundlesRouter = router({
     .mutation(async ({ input }) => {
       await bundlesDb.deleteLearningPath(input.id);
       return { success: true };
+    }),
+
+  // Download learning path roadmap PDF
+  downloadPathRoadmap: protectedProcedure
+    .input(z.object({ pathId: z.number() }))
+    .query(async ({ input }) => {
+      const pdfBuffer = await generateLearningPathPDF(input.pathId);
+      return {
+        pdf: pdfBuffer.toString('base64'),
+        filename: `learning-path-${input.pathId}-roadmap.pdf`
+      };
     }),
 
   // ============ Learning Path Enrollment ============
