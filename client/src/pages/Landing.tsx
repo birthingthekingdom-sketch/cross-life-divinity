@@ -2,9 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { Footer } from "@/components/Footer";
-import { Check, BookOpen, Award, Users, Clock } from "lucide-react";
+import { Check, BookOpen, Award, Users, Clock, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 export default function Landing() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation Header */}
@@ -35,8 +38,16 @@ export default function Landing() {
               </Link>
             </div>
             
-            {/* Auth Buttons */}
-            <div className="flex items-center gap-3">
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 hover:bg-accent/10 rounded-lg transition-colors"
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+
+            {/* Auth Buttons - Desktop */}
+            <div className="hidden md:flex items-center gap-3">
               <Link href="/login">
                 <Button variant="ghost" className="font-medium">
                   Login
@@ -49,6 +60,51 @@ export default function Landing() {
               </Link>
             </div>
           </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden border-t border-border bg-white">
+              <div className="py-4 space-y-2">
+                <Link href="/catalog">
+                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    Courses
+                  </div>
+                </Link>
+                <Link href="/learning-paths">
+                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    Learning Paths
+                  </div>
+                </Link>
+                <Link href="/pricing">
+                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    Pricing
+                  </div>
+                </Link>
+                <Link href="/about">
+                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    About
+                  </div>
+                </Link>
+                <Link href="/faq">
+                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    FAQ
+                  </div>
+                </Link>
+                <div className="px-4 pt-4 pb-2 border-t border-border space-y-2">
+                  <Link href="/login">
+                    <Button variant="ghost" className="w-full justify-start font-medium" onClick={() => setMobileMenuOpen(false)}>
+                      Login
+                    </Button>
+                  </Link>
+                  <Link href="/register">
+                    <Button className="w-full bg-primary hover:bg-primary/90 font-medium" onClick={() => setMobileMenuOpen(false)}>
+                      Sign Up
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
       
