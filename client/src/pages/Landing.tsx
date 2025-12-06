@@ -6,7 +6,7 @@ export default function Landing() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section with Promotional Image */}
-      <section className="relative h-[600px] overflow-hidden">
+      <section className="relative h-[500px] overflow-hidden">
         <img 
           src="/promo-hero.png" 
           alt="Study Theology at Your Own Pace" 
@@ -15,10 +15,10 @@ export default function Landing() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center">
           <div className="container max-w-7xl mx-auto px-4">
             <div className="max-w-2xl">
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
                 Transform Your Ministry Through Biblical Excellence
               </h1>
-              <p className="text-xl text-white/90 mb-8">
+              <p className="text-lg md:text-xl text-white/90 mb-6">
                 CPD-accredited courses designed for ministry leaders. Study at your own pace with expert instruction.
               </p>
               <div className="flex gap-4">
@@ -53,7 +53,7 @@ export default function Landing() {
               <h2 className="text-4xl font-bold mb-6">All-Access Subscription</h2>
               <div className="text-5xl font-bold text-accent mb-4">$49<span className="text-2xl text-muted-foreground">/month</span></div>
               <p className="text-xl text-muted-foreground mb-6">
-                Get unlimited access to all 14 seminary-quality courses with one affordable subscription
+                Get unlimited access to all 17 seminary-quality courses with one affordable subscription
               </p>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-3">
@@ -78,6 +78,46 @@ export default function Landing() {
                   Get Started Today
                 </Button>
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* New Courses Highlight */}
+      <section className="py-16 bg-accent/5">
+        <div className="container max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-4">New Courses Added</h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg">Expand your ministry with our latest seminary-quality courses</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
+              <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                <BookOpen className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-3">Understanding Prophecy</h3>
+              <p className="text-muted-foreground mb-4">
+                Explore the prophetic office and gift, learn to test prophecies, and understand the role of prophecy in the believer's life and church ministry.
+              </p>
+              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CPD Hours</div>
+            </div>
+            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
+              <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                <BookOpen className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-3">Deliverance Ministry</h3>
+              <p className="text-muted-foreground mb-4">
+                Master the biblical foundations of deliverance, understand spiritual and natural bondages, and learn practical methods for setting captives free.
+              </p>
+              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CPD Hours</div>
+            </div>
+            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
+              <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                <BookOpen className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-3">The Fivefold Ministry</h3>
+              <p className="text-muted-foreground mb-4">
+                Study the five ministry gifts from Ephesians 4:11 - apostle, prophet, evangelist, pastor, and teacher - and their function in building the church.
+              </p>
+              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CPD Hours</div>
             </div>
           </div>
         </div>

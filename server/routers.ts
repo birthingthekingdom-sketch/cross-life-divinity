@@ -12,6 +12,7 @@ import { authRouter } from "./auth-router";
 import { assignmentRouter } from "./assignment-router";
 import { paymentRouter } from './payment-router';
 import { toggleAdminRouter } from './toggle-admin-router';
+import { bundlesRouter } from './bundles-router';
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -23,6 +24,7 @@ const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
 
 export const appRouter = router({
   system: systemRouter,
+  bundles: bundlesRouter,
 
   // Merge custom auth router with existing auth endpoints
   auth: router({

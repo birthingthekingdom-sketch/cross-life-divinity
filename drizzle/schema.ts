@@ -214,6 +214,74 @@ export type Certificate = typeof certificates.$inferSelect;
 export type InsertCertificate = typeof certificates.$inferInsert;
 
 /**
+ * Course bundles (grouped courses for thematic learning)
+ */
+export const courseBundles = mysqlTable("course_bundles", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  icon: varchar("icon", { length: 64 }).default("BookOpen"),
+  colorTheme: varchar("colorTheme", { length: 32 }).default("blue"),
+  displayOrder: int("displayOrder").default(0).notNull(),
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type CourseBundle = typeof courseBundles.$inferSelect;
+export type InsertCourseBundle = typeof courseBundles.$inferInsert;
+
+/**
+ * Junction table linking bundles to courses (many-to-many)
+ */
+export const bundleCourses = mysqlTable("bundle_courses", {
+  id: int("id").autoincrement().primaryKey(),
+  bundleId: int("bundleId").notNull(),
+  courseId: int("courseId").notNull(),
+  courseOrder: int("courseOrder").default(0).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BundleCourse = typeof bundleCourses.$inferSelect;
+export type InsertBundleCourse = typeof bundleCourses.$inferInsert;
+
+/**
+ * Learning paths (recommended course sequences for specific goals)
+ */
+export const learningPaths = mysqlTable("learning_paths", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  goal: text("goal"), // What the student will achieve
+  duration: varchar("duration", { length: 64 }), // e.g., "3 months", "6 weeks"
+  level: mysqlEnum("level", ["beginner", "intermediate", "advanced"]).default("beginner"),
+  icon: varchar("icon", { length: 64 }).default("Map"),
+  colorTheme: varchar("colorTheme", { length: 32 }).default("purple"),
+  displayOrder: int("displayOrder").default(0).notNull(),
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type LearningPath = typeof learningPaths.$inferSelect;
+export type InsertLearningPath = typeof learningPaths.$inferInsert;
+
+/**
+ * Junction table linking learning paths to courses (many-to-many with order)
+ */
+export const pathCourses = mysqlTable("path_courses", {
+  id: int("id").autoincrement().primaryKey(),
+  pathId: int("pathId").notNull(),
+  courseId: int("courseId").notNull(),
+  courseOrder: int("courseOrder").notNull(), // Order in the learning path
+  isRequired: boolean("isRequired").default(true).notNull(), // Required or optional course
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PathCourse = typeof pathCourses.$inferSelect;
+export type InsertPathCourse = typeof pathCourses.$inferInsert;
+
+/**
  * Discussion forum topics (one per course)
  */
 export const forumTopics = mysqlTable("forum_topics", {

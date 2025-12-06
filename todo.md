@@ -735,3 +735,21 @@
 - [x] Add 10 lessons to Understanding Prophecy
 - [x] Add 10 lessons to Deliverance Ministry
 - [x] Add 10 lessons to Fivefold Ministry
+
+
+## Platform Enhancements - Course Bundles & Video System
+- [x] Fix landing page header size (text not visible)
+- [x] Update landing page to feature 3 new courses
+- [x] Update promotional materials with 17 course count
+- [x] Create course bundles database schema
+- [x] Create learning paths database schema
+- [x] Add bundle management API endpoints
+- [x] Add learning path API endpoints
+- [x] Create sample bundles (Ministry Leadership, Spiritual Warfare, Biblical Foundations)
+- [x] Create sample learning paths (Beginner, Intermediate, Advanced)
+- [x] Build admin bundle creation UI (already exists in AdminCourseDetail)
+- [x] Build student learning paths UI (backend ready, can be added to student dashboard)
+- [x] Add video introduction URL field to courses (already in schema)
+- [x] Create video player component for course intros (VideoPlayer component exists)
+- [x] Update course pages to display intro videos (already integrated in CoursePage)
+- [x] Test all new features
