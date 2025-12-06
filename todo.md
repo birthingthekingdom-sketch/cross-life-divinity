@@ -903,3 +903,7 @@
 - [ ] Add unique referral link generation
 - [ ] Implement $50 credit system
 - [ ] Add referral registration tracking
+
+
+## Bug Fixes
+- [x] Fix nested <a> tag error on landing page (Link wrapping Button)

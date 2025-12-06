@@ -20,25 +20,17 @@ export default function Landing() {
             
             {/* Navigation Links */}
             <div className="hidden md:flex items-center gap-6">
-              <Link href="/catalog">
-                <a className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
-                  Courses
-                </a>
+              <Link href="/catalog" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                Courses
               </Link>
-              <Link href="/learning-paths">
-                <a className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
-                  Learning Paths
-                </a>
+              <Link href="/learning-paths" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                Learning Paths
               </Link>
-              <Link href="/pricing">
-                <a className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
-                  Pricing
-                </a>
+              <Link href="/pricing" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                Pricing
               </Link>
-              <Link href="/about">
-                <a className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
-                  About
-                </a>
+              <Link href="/about" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                About
               </Link>
             </div>
             
