@@ -5,11 +5,38 @@ import { Progress } from "@/components/ui/progress";
 import { trpc } from "@/lib/trpc";
 import { ArrowLeft, BookOpen, CheckCircle2, Clock, GraduationCap, Target } from "lucide-react";
 import { Link } from "wouter";
+import { toast } from "sonner";
 
 export default function LearningPaths() {
+  const utils = trpc.useUtils();
   const { data: paths, isLoading } = trpc.bundles.getActiveLearningPaths.useQuery();
   const { data: enrolledCourses } = trpc.courses.list.useQuery();
   const { data: allProgress } = trpc.progress.getAll.useQuery();
+  const { data: myEnrolledPaths } = trpc.bundles.getMyEnrolledPaths.useQuery();
+
+  const enrollMutation = trpc.bundles.enrollInPath.useMutation({
+    onSuccess: () => {
+      toast.success("Successfully enrolled in learning path!");
+      utils.bundles.getMyEnrolledPaths.invalidate();
+    },
+    onError: (error) => {
+      toast.error(`Failed to enroll: ${error.message}`);
+    },
+  });
+
+  const unenrollMutation = trpc.bundles.unenrollFromPath.useMutation({
+    onSuccess: () => {
+      toast.success("Successfully unenrolled from learning path");
+      utils.bundles.getMyEnrolledPaths.invalidate();
+    },
+    onError: (error) => {
+      toast.error(`Failed to unenroll: ${error.message}`);
+    },
+  });
+
+  const isEnrolled = (pathId: number) => {
+    return myEnrolledPaths?.some((ep: any) => ep.learningPathId === pathId);
+  };
 
   const getLevelColor = (level: string) => {
     switch (level) {
@@ -113,6 +140,24 @@ export default function LearningPaths() {
                       </div>
                       <CardTitle className="text-2xl mb-2">{path.name}</CardTitle>
                       <CardDescription className="text-base">{path.description}</CardDescription>
+                    </div>
+                    <div className="flex-shrink-0">
+                      {isEnrolled(path.id) ? (
+                        <Button
+                          variant="outline"
+                          onClick={() => unenrollMutation.mutate({ learningPathId: path.id })}
+                          disabled={unenrollMutation.isPending}
+                        >
+                          {unenrollMutation.isPending ? "Unenrolling..." : "Unenroll"}
+                        </Button>
+                      ) : (
+                        <Button
+                          onClick={() => enrollMutation.mutate({ learningPathId: path.id })}
+                          disabled={enrollMutation.isPending}
+                        >
+                          {enrollMutation.isPending ? "Enrolling..." : "Start This Path"}
+                        </Button>
+                      )}
                     </div>
                   </div>
                   

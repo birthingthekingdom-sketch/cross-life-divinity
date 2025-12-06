@@ -43,6 +43,9 @@ import AdminRevenue from './pages/AdminRevenue';
 import ToggleRole from './pages/ToggleRole';
 import Landing from './pages/Landing';
 import LearningPaths from './pages/LearningPaths';
+import AdminBundles from './pages/AdminBundles';
+import AdminLearningPaths from './pages/AdminLearningPaths';
+import Catalog from './pages/Catalog';
 
 function Router() {
   return (
@@ -68,6 +71,8 @@ function Router() {
           <Route path="/admin/webinars" component={AdminWebinars} />
           <Route path="/admin/analytics" component={AdminAnalytics} />
       <Route path="/admin/revenue" component={AdminRevenue} />
+      <Route path="/admin/bundles" component={AdminBundles} />
+      <Route path="/admin/learning-paths" component={AdminLearningPaths} />
           <Route path="/admin/grading" component={AdminGrading} />
         <Route path="/peer-reviews" component={PeerReviews} />
         <Route path="/calendar" component={AssignmentCalendar} />
@@ -78,6 +83,7 @@ function Router() {
       <Route path="/learning-paths" component={LearningPaths} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/courses" component={Courses} />
+      <Route path="/catalog" component={Catalog} />
       <Route path="/payment/success" component={PaymentSuccess} />
       <Route path="/payment/cancel" component={PaymentCancel} />
       <Route path="/upgrade" component={Upgrade} />

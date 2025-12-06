@@ -195,6 +195,34 @@ export default function Admin() {
               </CardHeader>
             </Card>
           </Link>
+          
+          <Link href="/admin/bundles">
+            <Card className="hover:shadow-md transition-shadow cursor-pointer border-l-4 border-l-blue-500">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <BookOpen className="h-5 w-5" />
+                  Course Bundles
+                </CardTitle>
+                <CardDescription>
+                  Manage thematic course groupings and collections
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
+          
+          <Link href="/admin/learning-paths">
+            <Card className="hover:shadow-md transition-shadow cursor-pointer border-l-4 border-l-purple-500">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <GraduationCap className="h-5 w-5" />
+                  Learning Paths
+                </CardTitle>
+                <CardDescription>
+                  Create and manage structured course sequences
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
         </div>
 
         {/* Stats Cards */}

@@ -768,3 +768,20 @@
 - [x] Populate video URLs for Fivefold Ministry
 - [x] Populate video URLs for all 17 courses
 - [x] Test all new UI features
+
+
+## Advanced Features - Admin Management & Catalog
+- [x] Create admin bundles management page
+- [x] Create admin learning paths management page
+- [x] Add bundle creation/edit forms
+- [x] Add learning path creation/edit forms
+- [x] Add course selection UI for bundles/paths
+- [x] Add navigation links in admin dashboard
+- [x] Add learning path enrollment database schema
+- [x] Add enrollment tracking API endpoints
+- [x] Add "Start This Path" button to learning paths
+- [x] Show active path on student dashboard
+- [x] Create public course catalog page
+- [x] Organize catalog by bundles and paths
+- [x] Add catalog navigation links
+- [x] Test all new features

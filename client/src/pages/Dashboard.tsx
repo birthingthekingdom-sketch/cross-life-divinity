@@ -15,6 +15,7 @@ export default function Dashboard() {
   const { data: allProgress } = trpc.progress.getAll.useQuery();
   const { data: bundles } = trpc.bundles.getActiveBundles.useQuery();
   const { data: paths } = trpc.bundles.getActiveLearningPaths.useQuery();
+  const { data: myEnrolledPaths } = trpc.bundles.getMyEnrolledPaths.useQuery();
   
   const handleRefresh = async () => {
     await Promise.all([
@@ -147,6 +148,44 @@ export default function Dashboard() {
             Continue your theological education journey. Select a course below to begin or continue your studies.
           </p>
         </div>
+
+        {/* Active Learning Path Section */}
+        {myEnrolledPaths && myEnrolledPaths.length > 0 && (
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-6">My Active Learning Path</h2>
+            <Card className="border-2 border-primary/30 bg-gradient-to-r from-primary/5 to-accent/5">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="text-xl">{myEnrolledPaths[0].name}</CardTitle>
+                    <CardDescription className="mt-2">{myEnrolledPaths[0].description}</CardDescription>
+                  </div>
+                  <Link href="/learning-paths">
+                    <Button variant="outline">
+                      View Details →
+                    </Button>
+                  </Link>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1">
+                    <GraduationCap className="h-4 w-4" />
+                    {myEnrolledPaths[0].level}
+                  </div>
+                  <div>•</div>
+                  <div>{myEnrolledPaths[0].duration}</div>
+                  {myEnrolledPaths[0].goal && (
+                    <>
+                      <div>•</div>
+                      <div className="flex-1">{myEnrolledPaths[0].goal}</div>
+                    </>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         {/* Learning Paths Section */}
         {paths && paths.length > 0 && (

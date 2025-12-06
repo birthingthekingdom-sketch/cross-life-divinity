@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { sql } from "drizzle-orm";
 import { router, protectedProcedure, publicProcedure } from "./_core/trpc";
 import * as bundlesDb from "./bundles-db";
 import * as db from "./db";
@@ -307,5 +308,62 @@ export const bundlesRouter = router({
     .mutation(async ({ input }) => {
       await bundlesDb.deleteLearningPath(input.id);
       return { success: true };
+    }),
+
+  // ============ Learning Path Enrollment ============
+
+  enrollInPath: protectedProcedure
+    .input(z.object({ learningPathId: z.number() }))
+    .mutation(async ({ input, ctx }) => {
+      const dbConn = await db.getDb();
+      if (!dbConn) throw new Error("Database not available");
+      await dbConn.execute(
+        sql`INSERT INTO learning_path_enrollments (userId, learningPathId, isActive) 
+            VALUES (${ctx.user.id}, ${input.learningPathId}, true)
+            ON DUPLICATE KEY UPDATE isActive = true, enrolledAt = CURRENT_TIMESTAMP`
+      );
+      return { success: true };
+    }),
+
+  unenrollFromPath: protectedProcedure
+    .input(z.object({ learningPathId: z.number() }))
+    .mutation(async ({ input, ctx }) => {
+      const dbConn = await db.getDb();
+      if (!dbConn) throw new Error("Database not available");
+      await dbConn.execute(
+        sql`UPDATE learning_path_enrollments 
+            SET isActive = false 
+            WHERE userId = ${ctx.user.id} AND learningPathId = ${input.learningPathId}`
+      );
+      return { success: true };
+    }),
+
+  getMyEnrolledPaths: protectedProcedure
+    .query(async ({ ctx }) => {
+      const dbConn = await db.getDb();
+      if (!dbConn) throw new Error("Database not available");
+      const enrollments: any = await dbConn.execute(
+        sql`SELECT lpe.*, lp.name, lp.description, lp.level, lp.duration, lp.goal
+            FROM learning_path_enrollments lpe
+            JOIN learning_paths lp ON lpe.learningPathId = lp.id
+            WHERE lpe.userId = ${ctx.user.id} AND lpe.isActive = true AND lp.isActive = true
+            ORDER BY lpe.enrolledAt DESC`
+      );
+      return Array.isArray(enrollments) ? enrollments : (enrollments.rows || []);
+    }),
+
+  checkPathEnrollment: protectedProcedure
+    .input(z.object({ learningPathId: z.number() }))
+    .query(async ({ input, ctx }) => {
+      const dbConn = await db.getDb();
+      if (!dbConn) throw new Error("Database not available");
+      const result: any = await dbConn.execute(
+        sql`SELECT * FROM learning_path_enrollments 
+            WHERE userId = ${ctx.user.id} 
+            AND learningPathId = ${input.learningPathId} 
+            AND isActive = true`
+      );
+      const rows = Array.isArray(result) ? result : (result.rows || []);
+      return { enrolled: rows.length > 0 };
     }),
 });

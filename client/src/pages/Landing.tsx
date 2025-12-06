@@ -27,9 +27,9 @@ export default function Landing() {
                     View Pricing
                   </Button>
                 </Link>
-                <Link href="/courses">
+                <Link href="/catalog">
                   <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8 py-6">
-                    Browse Courses
+                    Course Catalog
                   </Button>
                 </Link>
               </div>
