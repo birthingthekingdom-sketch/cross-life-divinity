@@ -1028,4 +1028,15 @@
 - [x] Add quiz questions for Lesson 12 (Sharing Your Faith) - 5 questions added
 - [x] Create assignment prompt for Lesson 11 (Personal Discipleship Plan)
 - [x] Create assignment prompt for Lesson 12 (Personal Testimony Development)
+- [x] Save checkpoint
+
+## Phase 12: Video Content, Blog Posts & Certificate
+
+- [x] Fix header size again (reduced to 350px with max-height constraint)
+- [ ] Add video URLs for Lesson 11 (Discipleship Principles)
+- [ ] Add video URLs for Lesson 12 (Sharing Your Faith)
+- [ ] Create blog post 1: "5 Keys to Effective Discipleship"
+- [ ] Create blog post 2: "Overcoming Fear in Evangelism"
+- [ ] Create blog post 3: "The Power of Your Personal Testimony"
+- [x] Generate sample certificate for Larry Fisher
 - [ ] Save checkpoint
