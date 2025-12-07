@@ -110,12 +110,12 @@ export default function Landing() {
       </nav>
       
       {/* Hero Section with Promotional Image */}
-      <section className="relative overflow-hidden" style={{maxHeight: '400px'}}>
+      <section className="relative overflow-hidden" style={{maxHeight: '450px'}}>
         <img 
           src="/promo-hero-new.webp" 
           alt="Study Theology at Your Own Pace - CPD Accredited Courses" 
-          className="w-full h-full object-cover object-center"
-          style={{minHeight: '400px', maxHeight: '400px'}}
+          className="w-full h-full object-cover"
+          style={{minHeight: '450px', maxHeight: '450px', objectPosition: 'center 30%'}}
         />
       </section>
 
