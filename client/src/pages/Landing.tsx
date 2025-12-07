@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { Footer } from "@/components/Footer";
+import { ChatWidget } from "@/components/ChatWidget";
 import { Check, BookOpen, Award, Users, Clock, Menu, X } from "lucide-react";
 import { useState } from "react";
 
@@ -492,6 +493,7 @@ export default function Landing() {
       </section>
 
       <Footer />
+      <ChatWidget />
     </div>
   );
 }

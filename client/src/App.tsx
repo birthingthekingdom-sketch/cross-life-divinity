@@ -54,6 +54,10 @@ import AdminEmailNotifications from './pages/AdminEmailNotifications';
 import CohortGroups from './pages/CohortGroups';
 import About from './pages/About';
 import FAQ from './pages/FAQ';
+import SuccessStories from './pages/SuccessStories';
+import Resources from './pages/Resources';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 
 function Router() {
   return (
@@ -98,6 +102,10 @@ function Router() {
       <Route path="/cohorts" component={CohortGroups} />
       <Route path="/about" component={About} />
       <Route path="/faq" component={FAQ} />
+      <Route path="/success-stories" component={SuccessStories} />
+      <Route path="/resources" component={Resources} />
+      <Route path="/blog" component={Blog} />
+      <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/courses" component={Courses} />
       <Route path="/catalog" component={Catalog} />
