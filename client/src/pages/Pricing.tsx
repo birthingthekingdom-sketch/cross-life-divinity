@@ -92,7 +92,7 @@ export default function Pricing() {
             Seminary-Level Theological Education
           </h1>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-            Choose between individual course purchases or unlimited access to all 10+ courses with our All-Access Subscription
+            Choose between individual course purchases or unlimited access to all 17 courses and 170 lessons with our All-Access Subscription
           </p>
         </div>
 
@@ -187,7 +187,7 @@ export default function Pricing() {
               </div>
               <CardTitle className="text-3xl text-white">All-Access Subscription</CardTitle>
               <CardDescription className="text-slate-300 text-lg">
-                Unlimited access to all courses
+                Unlimited access to all 17 courses and 170 lessons
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -214,7 +214,7 @@ export default function Pricing() {
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                   <span className="text-slate-300">
-                    <strong className="text-white">Unlimited access to all 10+ courses</strong>
+                    <strong className="text-white">Unlimited access to all 17 courses and 170 lessons</strong>
                   </span>
                 </div>
                 <div className="flex items-start gap-3">
