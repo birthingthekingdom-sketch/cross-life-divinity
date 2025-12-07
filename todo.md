@@ -1054,4 +1054,33 @@
 
 - [x] Reduce header to 250px
 - [x] Test and verify header size
-- [ ] Save checkpoint
+- [x] Save checkpoint
+
+## Phase 15: CPD Certificate
+
+- [x] Regenerate certificate with CPD accreditation mention
+- [x] Deliver to user
+
+## Phase 16: Resize CPD Badge
+
+- [x] Regenerate certificate with smaller CPD badge
+- [x] Deliver to user
+
+## Phase 17: Add Date to Certificate
+
+- [x] Regenerate certificate with completion date (December 7, 2025)
+- [x] Deliver to user
+
+## Phase 18: Final Certificate with Best Design
+
+- [x] Regenerate with ornate gold border (like earlier version)
+- [x] Use small gold CPD seal (not blue banner)
+- [x] Include completion date December 7, 2025
+- [x] Deliver to user
+
+## Phase 19: Swap Seal Positions
+
+- [x] Move CPD seal to bottom center
+- [x] Move lion/cross seal to top-right
+- [x] Only two seals total
+- [x] Deliver to user

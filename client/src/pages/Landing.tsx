@@ -167,7 +167,7 @@ export default function Landing() {
               </div>
               <p className="text-green-600 font-semibold mb-4">Save $30/month - Lock in this rate forever!</p>
               <p className="text-xl text-muted-foreground mb-6">
-                Get unlimited access to all 17 seminary-quality courses with one affordable subscription
+                Get unlimited access to all 17 courses and 170 lessons with one affordable subscription
               </p>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-3">
@@ -345,7 +345,7 @@ export default function Landing() {
               Each learning path includes progress tracking, completion certificates, and personalized recommendations
             </p>
             <Link href="/catalog">
-              <Button variant="outline" size="lg">View All Courses</Button>
+              <Button variant="outline" size="lg" className="text-lg px-10 py-7 font-semibold">View All Courses</Button>
             </Link>
           </div>
         </div>
@@ -378,7 +378,7 @@ export default function Landing() {
               <div className="inline-block bg-accent/10 p-4 rounded-full mb-4">
                 <Users className="h-12 w-12 text-accent" />
               </div>
-              <h3 className="text-2xl font-semibold mb-3">Join Thousands of Leaders</h3>
+              <h3 className="text-2xl font-semibold mb-3">Join with Other Leaders</h3>
               <p className="text-muted-foreground">
                 Connect with a global community of ministry leaders pursuing excellence
               </p>
