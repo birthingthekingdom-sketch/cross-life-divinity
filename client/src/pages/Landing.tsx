@@ -115,7 +115,7 @@ export default function Landing() {
           src="/promo-hero-new.webp" 
           alt="Study Theology at Your Own Pace - CPD Accredited Courses" 
           className="w-full h-full object-cover"
-          style={{minHeight: '450px', maxHeight: '450px', objectPosition: 'center 30%'}}
+          style={{minHeight: '450px', maxHeight: '450px', objectPosition: 'center top'}}
         />
       </section>
 
