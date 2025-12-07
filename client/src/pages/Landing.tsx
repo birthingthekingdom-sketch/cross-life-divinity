@@ -110,36 +110,12 @@ export default function Landing() {
       </nav>
       
       {/* Hero Section with Promotional Image */}
-      <section className="relative h-[120px] md:h-[120px] overflow-hidden" style={{minHeight: '120px', maxHeight: '120px'}}>
+      <section className="relative h-auto overflow-hidden">
         <img 
-          src="/promo-hero.png" 
-          alt="Study Theology at Your Own Pace" 
-          className="w-full h-full object-cover"
+          src="/promo-hero-new.webp" 
+          alt="Study Theology at Your Own Pace - CPD Accredited Courses" 
+          className="w-full h-auto object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center">
-          <div className="container max-w-7xl mx-auto px-4">
-            <div className="max-w-2xl">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                Transform Your Ministry Through Biblical Excellence
-              </h1>
-              <p className="text-lg md:text-xl text-white/90 mb-6">
-                CPD-accredited courses designed for ministry leaders. Study at your own pace with expert instruction.
-              </p>
-              <div className="flex gap-4">
-                <Link href="/pricing">
-                  <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6">
-                    View Pricing
-                  </Button>
-                </Link>
-                <Link href="/catalog">
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8 py-6">
-                    Course Catalog
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* Pricing Highlight Section */}
