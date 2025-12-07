@@ -1019,4 +1019,13 @@
 - [x] Add discipleship lesson to beginner course (Lesson 11: Discipleship Principles)
 - [x] Add faith-sharing lesson to beginner course (Lesson 12: Sharing Your Faith)
 - [x] Update database with new content
+- [x] Save checkpoint
+
+## Phase 11: Header Fix & Lesson Enhancements
+
+- [x] Fix header graphic size on landing page (reduced from 500px to 400px)
+- [x] Add quiz questions for Lesson 11 (Discipleship Principles) - 5 questions added
+- [x] Add quiz questions for Lesson 12 (Sharing Your Faith) - 5 questions added
+- [x] Create assignment prompt for Lesson 11 (Personal Discipleship Plan)
+- [x] Create assignment prompt for Lesson 12 (Personal Testimony Development)
 - [ ] Save checkpoint
