@@ -458,7 +458,7 @@ export default function Landing() {
           </div>
           <div className="mt-12 text-center">
             <p className="text-muted-foreground mb-4">
-              Join 500+ ministry leaders already enrolled in our courses
+              Join the many ministry leaders already enrolled in our courses
             </p>
             <Link href="/register">
               <Button size="lg" className="bg-accent hover:bg-accent/90">Start Your Journey Today</Button>

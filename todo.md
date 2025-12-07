@@ -960,5 +960,11 @@
 - [x] Ensure admin users can manually navigate to /admin when needed
 - [x] Test with logged out user (incognito) to verify landing page shows (dev server working)
 - [x] Test with logged in admin to verify landing page stays on landing
-- [ ] Save checkpoint after fix
+- [x] Save checkpoint after fix
 - [ ] Republish site to apply fix to learn.crosslifeschoolofdivinity.org
+
+## Landing Page Copy Update
+
+- [x] Remove "500+" enrollment number from testimonial section
+- [x] Change to "Join the many ministry leaders already enrolled in our courses"
+- [ ] Save checkpoint after update
