@@ -1010,5 +1010,13 @@
 ### Testing & Deployment
 - [x] Test mobile navigation on all public pages (component created and integrated)
 - [x] Test admin chat dashboard functionality (route and UI created)
-- [ ] Save final checkpoint
-- [ ] Republish site to learn.crosslifeschoolofdivinity.org
+- [x] Save final checkpoint
+- [ ] Republish site to learn.crosslifeschoolofdivinity.org (user action required)
+
+## Phase 10: Update Beginner Learning Path
+
+- [x] Update beginner learning path description to include discipleship and faith-sharing
+- [x] Add discipleship lesson to beginner course (Lesson 11: Discipleship Principles)
+- [x] Add faith-sharing lesson to beginner course (Lesson 12: Sharing Your Faith)
+- [x] Update database with new content
+- [ ] Save checkpoint

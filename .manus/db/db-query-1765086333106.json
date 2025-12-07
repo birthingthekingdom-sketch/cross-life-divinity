@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE learning_paths \nSET description = 'Perfect for those new to theological study. Build a strong foundation in biblical knowledge, discipleship principles, and learn to confidently share your faith with others.',\n    goal = 'Master the fundamentals of Christian theology, develop discipleship skills, and gain confidence in evangelism and faith-sharing'\nWHERE level = 'beginner';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute UPDATE learning_paths \nSET description = 'Perfect for those new to theological study. Build a strong foundation in biblical knowledge, discipleship principles, and learn to confidently share your faith with others.',\n    goal = 'Master the fundamentals of Christian theology, develop discipleship skills, and gain confidence in evangelism and faith-sharing'\nWHERE level = 'beginner';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 58
+}
