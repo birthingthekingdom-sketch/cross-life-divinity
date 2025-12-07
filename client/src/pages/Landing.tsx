@@ -17,8 +17,8 @@ export default function Landing() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/">
-              <div className="flex items-center gap-2 cursor-pointer">
-                <Award className="h-8 w-8 text-primary" />
+              <div className="flex items-center gap-3 cursor-pointer">
+                <img src="/logo.png" alt="Cross Life School of Divinity" className="h-10 w-10 object-contain" />
                 <span className="text-xl font-bold text-primary">Cross Life School of Divinity</span>
               </div>
             </Link>
@@ -110,7 +110,7 @@ export default function Landing() {
       </nav>
       
       {/* Hero Section with Promotional Image */}
-      <section className="relative h-[350px] max-h-[350px] overflow-hidden">
+      <section className="relative h-[300px] min-h-[300px] max-h-[300px] overflow-hidden">
         <img 
           src="/promo-hero.png" 
           alt="Study Theology at Your Own Pace" 

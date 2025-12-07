@@ -1039,4 +1039,13 @@
 - [ ] Create blog post 2: "Overcoming Fear in Evangelism"
 - [ ] Create blog post 3: "The Power of Your Personal Testimony"
 - [x] Generate sample certificate for Larry Fisher
+- [x] Save checkpoint
+
+## Phase 13: Logo Integration & Header Fix
+
+- [x] Find lion/bible/cross logo file submitted by user
+- [x] Add logo to website header/navigation (Landing and PublicNav)
+- [x] Add logo to footer (already present with white filter)
+- [x] Regenerate certificate with logo (includes lion/cross at top and in seal)
+- [x] Fix header size permanently (reduced to 300px with min/max constraints)
 - [ ] Save checkpoint

@@ -23,8 +23,8 @@ export function PublicNav({ currentPage }: PublicNavProps) {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/">
-            <div className="flex items-center gap-2 cursor-pointer">
-              <Award className="h-8 w-8 text-primary" />
+            <div className="flex items-center gap-3 cursor-pointer">
+              <img src="/logo.png" alt="Cross Life School of Divinity" className="h-10 w-10 object-contain" />
               <span className="text-xl font-bold text-primary">Cross Life School of Divinity</span>
             </div>
           </Link>
