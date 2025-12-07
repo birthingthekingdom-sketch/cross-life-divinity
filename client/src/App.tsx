@@ -13,6 +13,7 @@ import Enroll from "./pages/Enroll";
 import CoursePage from "./pages/CoursePage";
 import LessonPage from "./pages/LessonPage";
 import Admin from "./pages/Admin";
+import AdminChat from "./pages/AdminChat";
 import AdminCourseDetail from "./pages/AdminCourseDetail";
 import AdminEditLesson from "./pages/AdminEditLesson";
 import AdminBulkImport from "./pages/AdminBulkImport";
@@ -73,6 +74,7 @@ function Router() {
       <Route path="/course/:id" component={CoursePage} />
       <Route path="/lesson/:id" component={LessonPage} />
       <Route path="/admin" component={Admin} />
+      <Route path="/admin/chat" component={AdminChat} />
       <Route path="/admin/course/:id" component={AdminCourseDetail} />
       <Route path="/admin/lesson/:id" component={AdminEditLesson} />
       <Route path="/admin/bulk-import" component={AdminBulkImport} />

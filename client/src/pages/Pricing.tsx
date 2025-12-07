@@ -8,6 +8,7 @@ import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { toast } from "sonner";
 import { Footer } from "@/components/Footer";
+import { PublicNav } from "@/components/PublicNav";
 // Price display data
 const priceDisplay = {
   subscription: {
@@ -78,39 +79,7 @@ export default function Pricing() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-      {/* Navigation Header */}
-      <nav className="bg-white border-b border-border sticky top-0 z-50 shadow-sm">
-        <div className="container max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/">
-              <div className="flex items-center gap-2 cursor-pointer">
-                <Award className="h-8 w-8 text-primary" />
-                <span className="text-xl font-bold text-primary">Cross Life School of Divinity</span>
-              </div>
-            </Link>
-            <div className="flex items-center gap-6">
-              <Link href="/catalog" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
-                Courses
-              </Link>
-              <Link href="/learning-paths" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
-                Learning Paths
-              </Link>
-              <Link href="/pricing" className="text-primary transition-colors cursor-pointer font-medium">
-                Pricing
-              </Link>
-              <Link href="/about" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
-                About
-              </Link>
-              <Link href="/login">
-                <Button variant="ghost">Login</Button>
-              </Link>
-              <Link href="/register">
-                <Button>Sign Up</Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <PublicNav currentPage="pricing" />
       
       {/* Header */}
       <div className="container mx-auto px-4 py-12">
