@@ -967,4 +967,23 @@
 
 - [x] Remove "500+" enrollment number from testimonial section
 - [x] Change to "Join the many ministry leaders already enrolled in our courses"
-- [ ] Save checkpoint after update
+- [x] Save checkpoint after update
+
+## Email Delivery Issue
+
+- [x] Investigate why password reset emails are not being received (email verification required)
+- [ ] Disable email verification temporarily for testing
+- [ ] Test signup flow without email verification
+- [ ] Re-enable email verification after testing (optional)
+
+## Navigation Fixes
+
+- [x] Remove "Return to Dashboard" button from Learning Paths page
+- [x] Add navigation bar to Course Catalog page
+- [x] Add navigation bar to About page
+- [x] Add navigation bar to Pricing page
+- [x] Fix /home route to show landing page instead of admin dashboard (removed /home route entirely)
+- [x] Add phone number 312-300-3295 to footer
+- [x] Add phone number to contact sections (footer is main contact section)
+- [x] Test all navigation changes
+- [ ] Save checkpoint after fixes

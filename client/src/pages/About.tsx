@@ -7,6 +7,40 @@ import { Award, BookOpen, Users, Target, Heart, Globe, ArrowRight } from "lucide
 export default function About() {
   return (
     <div className="min-h-screen bg-background">
+      {/* Navigation Header */}
+      <nav className="bg-white border-b border-border sticky top-0 z-50 shadow-sm">
+        <div className="container max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            <Link href="/">
+              <div className="flex items-center gap-2 cursor-pointer">
+                <Award className="h-8 w-8 text-primary" />
+                <span className="text-xl font-bold text-primary">Cross Life School of Divinity</span>
+              </div>
+            </Link>
+            <div className="flex items-center gap-6">
+              <Link href="/catalog" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                Courses
+              </Link>
+              <Link href="/learning-paths" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                Learning Paths
+              </Link>
+              <Link href="/pricing" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                Pricing
+              </Link>
+              <Link href="/about" className="text-primary transition-colors cursor-pointer font-medium">
+                About
+              </Link>
+              <Link href="/login">
+                <Button variant="ghost">Login</Button>
+              </Link>
+              <Link href="/register">
+                <Button>Sign Up</Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
       {/* Header */}
       <section className="bg-gradient-to-r from-primary to-primary/80 text-white py-20">
         <div className="container max-w-6xl mx-auto px-4">

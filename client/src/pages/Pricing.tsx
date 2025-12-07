@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -78,6 +78,40 @@ export default function Pricing() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+      {/* Navigation Header */}
+      <nav className="bg-white border-b border-border sticky top-0 z-50 shadow-sm">
+        <div className="container max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            <Link href="/">
+              <div className="flex items-center gap-2 cursor-pointer">
+                <Award className="h-8 w-8 text-primary" />
+                <span className="text-xl font-bold text-primary">Cross Life School of Divinity</span>
+              </div>
+            </Link>
+            <div className="flex items-center gap-6">
+              <Link href="/catalog" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                Courses
+              </Link>
+              <Link href="/learning-paths" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                Learning Paths
+              </Link>
+              <Link href="/pricing" className="text-primary transition-colors cursor-pointer font-medium">
+                Pricing
+              </Link>
+              <Link href="/about" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                About
+              </Link>
+              <Link href="/login">
+                <Button variant="ghost">Login</Button>
+              </Link>
+              <Link href="/register">
+                <Button>Sign Up</Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
       {/* Header */}
       <div className="container mx-auto px-4 py-12">
         <div className="text-center mb-16">
