@@ -19,6 +19,16 @@ const redirectToLoginIfUnauthorized = (error: unknown) => {
 
   if (!isUnauthorized) return;
 
+  // Don't redirect to login if user is on a public page
+  const publicPaths = ['/', '/blog', '/about', '/faq', '/success-stories', '/resources', '/pricing', '/catalog', '/courses', '/learning-paths', '/cohorts'];
+  const currentPath = window.location.pathname;
+  const isPublicPage = publicPaths.some(path => currentPath === path || currentPath.startsWith('/blog/'));
+  
+  if (isPublicPage) {
+    // On public pages, silently ignore auth errors instead of redirecting
+    return;
+  }
+
   window.location.href = getLoginUrl();
 };
 

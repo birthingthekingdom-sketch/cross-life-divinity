@@ -951,4 +951,14 @@
 - [x] Test blog creation and publishing
 - [x] Test chat widget functionality
 - [x] Verify mobile responsiveness
-- [ ] Save checkpoint with all new features
+- [x] Save checkpoint with all new features
+## Routing Fix - Phase 7
+
+- [x] Investigate why learn.crosslifeschoolofdivinity.org redirects to admin page (found: auth redirect in Landing page or App.tsx)
+- [x] Remove authentication requirement from public pages (Landing, Blog, About, FAQ, etc.)
+- [x] Fix Landing page to not auto-redirect logged-in users
+- [x] Ensure admin users can manually navigate to /admin when needed
+- [x] Test with logged out user (incognito) to verify landing page shows (dev server working)
+- [x] Test with logged in admin to verify landing page stays on landing
+- [ ] Save checkpoint after fix
+- [ ] Republish site to apply fix to learn.crosslifeschoolofdivinity.org
