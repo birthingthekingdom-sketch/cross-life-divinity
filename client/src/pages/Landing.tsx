@@ -110,7 +110,7 @@ export default function Landing() {
       </nav>
       
       {/* Hero Section with Promotional Image */}
-      <section className="relative h-[250px] min-h-[250px] max-h-[250px] overflow-hidden">
+      <section className="relative h-[150px] md:h-[150px] overflow-hidden" style={{minHeight: '150px', maxHeight: '150px'}}>
         <img 
           src="/promo-hero.png" 
           alt="Study Theology at Your Own Pace" 
