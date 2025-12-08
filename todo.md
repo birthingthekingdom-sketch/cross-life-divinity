@@ -43,3 +43,8 @@
 - [ ] Expand Church Administration (10 lessons)
 - [ ] Expand Homiletics (10 lessons)
 - [ ] Expand Spiritual Gifts (10 lessons)
+
+## Quiz Questions for New Testament Survey
+- [x] Create 50 quiz questions for New Testament Survey (5 per lesson × 10 lessons)
+- [x] Import quiz questions into database
+- [ ] Test quiz functionality with sample student account

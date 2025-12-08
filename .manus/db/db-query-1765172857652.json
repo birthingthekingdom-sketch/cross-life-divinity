@@ -1,0 +1,90 @@
+{
+  "query": "SELECT c.id as courseId, c.code, c.title as courseTitle, l.id as lessonId, l.title as lessonTitle, l.lessonOrder FROM courses c JOIN lessons l ON c.id = l.courseId WHERE c.code = 'NEW_TESTAMENT_SURVEY' ORDER BY l.lessonOrder",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT c.id as courseId, c.code, c.title as courseTitle, l.id as lessonId, l.title as lessonTitle, l.lessonOrder FROM courses c JOIN lessons l ON c.id = l.courseId WHERE c.code = 'NEW_TESTAMENT_SURVEY' ORDER BY l.lessonOrder",
+  "rows": [
+    {
+      "courseId": "150002",
+      "code": "NEW_TESTAMENT_SURVEY",
+      "courseTitle": "New Testament Survey",
+      "lessonId": "330001",
+      "lessonTitle": "Introduction to the New Testament Canon and Historical Context",
+      "lessonOrder": "1"
+    },
+    {
+      "courseId": "150002",
+      "code": "NEW_TESTAMENT_SURVEY",
+      "courseTitle": "New Testament Survey",
+      "lessonId": "330002",
+      "lessonTitle": "The Synoptic Gospels - Matthew, Mark, and Luke",
+      "lessonOrder": "2"
+    },
+    {
+      "courseId": "150002",
+      "code": "NEW_TESTAMENT_SURVEY",
+      "courseTitle": "New Testament Survey",
+      "lessonId": "330003",
+      "lessonTitle": "The Gospel According to John - The Theological Gospel",
+      "lessonOrder": "3"
+    },
+    {
+      "courseId": "150002",
+      "code": "NEW_TESTAMENT_SURVEY",
+      "courseTitle": "New Testament Survey",
+      "lessonId": "330004",
+      "lessonTitle": "The Acts of the Apostles - The Church's Mission Empowered by the Holy Spirit",
+      "lessonOrder": "4"
+    },
+    {
+      "courseId": "150002",
+      "code": "NEW_TESTAMENT_SURVEY",
+      "courseTitle": "New Testament Survey",
+      "lessonId": "330005",
+      "lessonTitle": "Pauline Theology - The Apostle to the Gentiles",
+      "lessonOrder": "5"
+    },
+    {
+      "courseId": "150002",
+      "code": "NEW_TESTAMENT_SURVEY",
+      "courseTitle": "New Testament Survey",
+      "lessonId": "330006",
+      "lessonTitle": "Romans - The Gospel of God's Righteousness",
+      "lessonOrder": "6"
+    },
+    {
+      "courseId": "150002",
+      "code": "NEW_TESTAMENT_SURVEY",
+      "courseTitle": "New Testament Survey",
+      "lessonId": "330007",
+      "lessonTitle": "The Corinthian Correspondence - Addressing Church Dysfunction",
+      "lessonOrder": "7"
+    },
+    {
+      "courseId": "150002",
+      "code": "NEW_TESTAMENT_SURVEY",
+      "courseTitle": "New Testament Survey",
+      "lessonId": "330008",
+      "lessonTitle": "The Prison Epistles - Ephesians, Philippians, Colossians, Philemon",
+      "lessonOrder": "8"
+    },
+    {
+      "courseId": "150002",
+      "code": "NEW_TESTAMENT_SURVEY",
+      "courseTitle": "New Testament Survey",
+      "lessonId": "330009",
+      "lessonTitle": "The Pastoral Epistles and Hebrews",
+      "lessonOrder": "9"
+    },
+    {
+      "courseId": "150002",
+      "code": "NEW_TESTAMENT_SURVEY",
+      "courseTitle": "New Testament Survey",
+      "lessonId": "330010",
+      "lessonTitle": "The General Epistles and Revelation",
+      "lessonOrder": "10"
+    }
+  ],
+  "messages": [],
+  "stdout": "courseId\tcode\tcourseTitle\tlessonId\tlessonTitle\tlessonOrder\n150002\tNEW_TESTAMENT_SURVEY\tNew Testament Survey\t330001\tIntroduction to the New Testament Canon and Historical Context\t1\n150002\tNEW_TESTAMENT_SURVEY\tNew Testament Survey\t330002\tThe Synoptic Gospels - Matthew, Mark, and Luke\t2\n150002\tNEW_TESTAMENT_SURVEY\tNew Testament Survey\t330003\tThe Gospel According to John - The Theological Gospel\t3\n150002\tNEW_TESTAMENT_SURVEY\tNew Testament Survey\t330004\tThe Acts of the Apostles - The Church's Mission Empowered by the Holy Spirit\t4\n150002\tNEW_TESTAMENT_SURVEY\tNew Testament Survey\t330005\tPauline Theology - The Apostle to the Gentiles\t5\n150002\tNEW_TESTAMENT_SURVEY\tNew Testament Survey\t330006\tRomans - The Gospel of God's Righteousness\t6\n150002\tNEW_TESTAMENT_SURVEY\tNew Testament Survey\t330007\tThe Corinthian Correspondence - Addressing Church Dysfunction\t7\n150002\tNEW_TESTAMENT_SURVEY\tNew Testament Survey\t330008\tThe Prison Epistles - Ephesians, Philippians, Colossians, Philemon\t8\n150002\tNEW_TESTAMENT_SURVEY\tNew Testament Survey\t330009\tThe Pastoral Epistles and Hebrews\t9\n150002\tNEW_TESTAMENT_SURVEY\tNew Testament Survey\t330010\tThe General Epistles and Revelation\t10\n",
+  "stderr": "",
+  "execution_time_ms": 731
+}
