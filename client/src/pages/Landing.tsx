@@ -18,7 +18,8 @@ export default function Landing() {
             {/* Logo */}
             <Link href="/">
               <div className="flex items-center gap-3 cursor-pointer">
-                <img src="/logo.png" alt="Cross Life School of Divinity" className="h-50 w-50 object-contain" />
+                <img src="/logo.png" alt="Cross Life School of Divinity" className="h-10 w-10 object-contain" />
+                <span className="text-xl font-bold text-primary">Cross Life School of Divinity</span>
               </div>
             </Link>
             
