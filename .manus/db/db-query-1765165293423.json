@@ -1,0 +1,112 @@
+{
+  "query": "SELECT id, code, title, totalLessons FROM courses ORDER BY displayOrder LIMIT 20",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code, title, totalLessons FROM courses ORDER BY displayOrder LIMIT 20",
+  "rows": [
+    {
+      "id": "180003",
+      "code": "MIN-301",
+      "title": "The Fivefold Ministry",
+      "totalLessons": "10"
+    },
+    {
+      "id": "180001",
+      "code": "PROP-101",
+      "title": "Understanding Prophecy",
+      "totalLessons": "10"
+    },
+    {
+      "id": "180002",
+      "code": "DEL-101",
+      "title": "Deliverance Ministry",
+      "totalLessons": "10"
+    },
+    {
+      "id": "150001",
+      "code": "OLD_TESTAMENT_SURVEY",
+      "title": "Old Testament Survey",
+      "totalLessons": "10"
+    },
+    {
+      "id": "150002",
+      "code": "NEW_TESTAMENT_SURVEY",
+      "title": "New Testament Survey",
+      "totalLessons": "10"
+    },
+    {
+      "id": "150003",
+      "code": "SYSTEMATIC_THEOLOGY",
+      "title": "Systematic Theology",
+      "totalLessons": "10"
+    },
+    {
+      "id": "150004",
+      "code": "BIBLICAL_HERMENEUTICS",
+      "title": "Biblical Hermeneutics",
+      "totalLessons": "10"
+    },
+    {
+      "id": "150005",
+      "code": "FUNDAMENTALS_OF_APOLOGETICS",
+      "title": "Fundamentals of Apologetics",
+      "totalLessons": "10"
+    },
+    {
+      "id": "150006",
+      "code": "EVANGELISM_AND_DISCIPLESHIP",
+      "title": "Evangelism and Discipleship",
+      "totalLessons": "10"
+    },
+    {
+      "id": "150007",
+      "code": "DISCIPLESHIP_TRAINING",
+      "title": "Discipleship Training",
+      "totalLessons": "10"
+    },
+    {
+      "id": "150008",
+      "code": "PRAYER_AND_INTERCESSION",
+      "title": "Prayer and Intercession",
+      "totalLessons": "10"
+    },
+    {
+      "id": "150009",
+      "code": "CHRISTIAN_LEADERSHIP",
+      "title": "Christian Leadership",
+      "totalLessons": "10"
+    },
+    {
+      "id": "150010",
+      "code": "BIBLICAL_WORSHIP",
+      "title": "Biblical Worship",
+      "totalLessons": "10"
+    },
+    {
+      "id": "150011",
+      "code": "PASTORAL_COUNSELING",
+      "title": "Pastoral Counseling",
+      "totalLessons": "10"
+    },
+    {
+      "id": "150012",
+      "code": "CHURCH_ADMINISTRATION",
+      "title": "Church Administration",
+      "totalLessons": "10"
+    },
+    {
+      "id": "150013",
+      "code": "HOMILETICS",
+      "title": "Homiletics",
+      "totalLessons": "10"
+    },
+    {
+      "id": "150014",
+      "code": "DISCOVERING_SPIRITUAL_GIFTS",
+      "title": "Discovering Spiritual Gifts",
+      "totalLessons": "10"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\ttotalLessons\n180003\tMIN-301\tThe Fivefold Ministry\t10\n180001\tPROP-101\tUnderstanding Prophecy\t10\n180002\tDEL-101\tDeliverance Ministry\t10\n150001\tOLD_TESTAMENT_SURVEY\tOld Testament Survey\t10\n150002\tNEW_TESTAMENT_SURVEY\tNew Testament Survey\t10\n150003\tSYSTEMATIC_THEOLOGY\tSystematic Theology\t10\n150004\tBIBLICAL_HERMENEUTICS\tBiblical Hermeneutics\t10\n150005\tFUNDAMENTALS_OF_APOLOGETICS\tFundamentals of Apologetics\t10\n150006\tEVANGELISM_AND_DISCIPLESHIP\tEvangelism and Discipleship\t10\n150007\tDISCIPLESHIP_TRAINING\tDiscipleship Training\t10\n150008\tPRAYER_AND_INTERCESSION\tPrayer and Intercession\t10\n150009\tCHRISTIAN_LEADERSHIP\tChristian Leadership\t10\n150010\tBIBLICAL_WORSHIP\tBiblical Worship\t10\n150011\tPASTORAL_COUNSELING\tPastoral Counseling\t10\n150012\tCHURCH_ADMINISTRATION\tChurch Administration\t10\n150013\tHOMILETICS\tHomiletics\t10\n150014\tDISCOVERING_SPIRITUAL_GIFTS\tDiscovering Spiritual Gifts\t10\n",
+  "stderr": "",
+  "execution_time_ms": 51
+}
