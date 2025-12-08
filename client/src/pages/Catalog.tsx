@@ -205,8 +205,7 @@ export default function Catalog() {
               {courses?.map((course: any) => (
                 <Card key={course.id} className="hover:shadow-xl transition-all">
                   <CardHeader 
-                    className="text-white min-h-[140px]"
-                    style={{ backgroundColor: course.colorTheme }}
+                    className="bg-primary text-white min-h-[140px]"
                   >
                     <div className="flex items-start justify-between mb-2">
                       <Badge className="bg-white/20 text-white">{course.code}</Badge>

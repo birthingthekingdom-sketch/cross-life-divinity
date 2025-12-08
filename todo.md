@@ -1084,3 +1084,11 @@
 - [x] Move lion/cross seal to top-right
 - [x] Only two seals total
 - [x] Deliver to user
+
+## Phase 21: Remove Course Card Color Coding
+
+- [x] Remove colorTheme from course card headers
+- [x] Use consistent professional color for all course cards
+- [x] Enlarge logo 5x (h-10 to h-50)
+- [x] Test catalog page display
+- [ ] Create checkpoint
