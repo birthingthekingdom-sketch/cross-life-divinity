@@ -1,9 +1,0 @@
-{
-  "query": "SELECT COUNT(*) as total, l.title as lessonTitle FROM quiz_questions q JOIN lessons l ON q.lessonId = l.id WHERE l.courseId = (SELECT id FROM courses WHERE code = 'NEW_TESTAMENT_SURVEY') GROUP BY l.id ORDER BY l.lessonOrder",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT COUNT(*) as total, l.title as lessonTitle FROM quiz_questions q JOIN lessons l ON q.lessonId = l.id WHERE l.courseId = (SELECT id FROM courses WHERE code = 'NEW_TESTAMENT_SURVEY') GROUP BY l.id ORDER BY l.lessonOrder",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 52
-}

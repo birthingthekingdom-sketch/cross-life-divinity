@@ -338,7 +338,7 @@ export default function Landing() {
               </div>
               <h3 className="text-2xl font-semibold mb-3">Seminary-Quality Education</h3>
               <p className="text-muted-foreground">
-                Comprehensive courses developed by experienced theologians and ministry leaders
+                Nearly 1,000,000 words of comprehensive theological content developed by experienced theologians and ministry leaders
               </p>
             </div>
             <div className="text-center p-6">
