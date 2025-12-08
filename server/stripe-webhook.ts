@@ -93,6 +93,35 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
         }
       }
     }
+  } else if (type === "bundle_purchase") {
+    // Handle 3-course bundle purchase
+    const courseIds = session.metadata?.courseIds?.split(",").map(id => parseInt(id)) || [];
+    
+    if (courseIds.length === 3) {
+      // Create purchase record for bundle
+      for (const courseId of courseIds) {
+        await db.createCoursePurchase({
+          userId,
+          courseId,
+          stripeCustomerId: session.customer as string,
+          stripePaymentIntentId: session.payment_intent as string,
+          amount: 9967, // $99.67 per course in bundle
+          status: "completed",
+        });
+
+        // Enroll user in each course
+        const isEnrolled = await db.isUserEnrolledInCourse(userId, courseId);
+        if (!isEnrolled) {
+          await db.createCourseEnrollment({
+            userId,
+            courseId,
+            accessCodeId: 0, // Bundle purchase enrollment
+          });
+        }
+      }
+
+      console.log(`Bundle purchase completed: user ${userId}, courses ${courseIds.join(", ")}`);
+    }
   } else if (type === "course_purchase") {
     // Handle one-time course purchase
     const courseId = parseInt(session.metadata?.courseId || "0");

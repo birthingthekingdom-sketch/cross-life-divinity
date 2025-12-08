@@ -1101,3 +1101,21 @@
 - [x] Add purple styling to differentiate bundle
 - [x] Include "Choose Your 3 Courses" CTA button
 - [ ] Create checkpoint
+
+## Phase 23: Simplify Catalog & Build Bundle Checkout
+
+- [x] Remove Learning Paths tab from catalog page
+- [x] Remove Course Bundles tab from catalog page
+- [x] Keep only "All Courses" section
+- [x] Fix lesson counts in database (showing 0 lessons)
+- [x] Create BundleSelection page component
+- [x] Add course selection UI with checkboxes (limit 3)
+- [x] Build bundle checkout API endpoint
+- [x] Integrate Stripe checkout for bundle
+- [x] Add bundle purchase webhook handling
+- [x] Update pricing page button to link to bundle selection
+- [x] Add route to App.tsx
+- [ ] Grant course access after successful payment
+- [ ] Update pricing page bundle button to link to selection page
+- [ ] Test complete bundle purchase flow
+- [ ] Create checkpoint

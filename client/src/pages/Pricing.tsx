@@ -155,7 +155,7 @@ export default function Pricing() {
             </CardContent>
             <CardFooter>
               <Button
-                onClick={handleBrowseCourses}
+                onClick={() => navigate("/bundle-select")}
                 className="w-full bg-purple-600 hover:bg-purple-700 text-white"
                 size="lg"
               >

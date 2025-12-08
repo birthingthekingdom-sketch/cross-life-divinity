@@ -59,6 +59,7 @@ import SuccessStories from './pages/SuccessStories';
 import Resources from './pages/Resources';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import BundleSelection from './pages/BundleSelection';
 
 function Router() {
   return (
@@ -110,6 +111,7 @@ function Router() {
       <Route path="/pricing" component={Pricing} />
       <Route path="/courses" component={Courses} />
       <Route path="/catalog" component={Catalog} />
+      <Route path="/bundle-select" component={BundleSelection} />
       <Route path="/payment/success" component={PaymentSuccess} />
       <Route path="/payment/cancel" component={PaymentCancel} />
       <Route path="/upgrade" component={Upgrade} />
