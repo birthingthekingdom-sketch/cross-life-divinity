@@ -97,7 +97,74 @@ export default function Pricing() {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
+        <div className="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto mb-16">
+          {/* 3-Course Bundle */}
+          <Card className="relative border-2 border-purple-600 bg-gradient-to-br from-purple-900/20 to-slate-800/50 backdrop-blur">
+            <CardHeader>
+              <div className="flex items-center justify-between mb-2">
+                <Sparkles className="w-8 h-8 text-purple-400" />
+                <Badge variant="outline" className="text-purple-300 border-purple-600">
+                  Popular Choice
+                </Badge>
+              </div>
+              <CardTitle className="text-3xl text-white">3-Course Bundle</CardTitle>
+              <CardDescription className="text-slate-300 text-lg">
+                Choose any 3 courses from our catalog
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-baseline gap-3">
+                  <span className="text-3xl text-slate-500 line-through">$387</span>
+                  <span className="text-5xl font-bold text-white">$299</span>
+                </div>
+                <p className="text-sm text-green-400 font-semibold">Save $88 - One-time payment!</p>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">
+                    <strong className="text-white">Pick any 3 courses</strong> from 17 available
+                  </span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">Lifetime access to your chosen courses</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">All lessons, quizzes, and assignments</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">CPD certificates for completed courses</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">One-time payment, no recurring fees</span>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-purple-700/50">
+                <div className="flex items-center gap-2 text-purple-300">
+                  <DollarSign className="w-5 h-5" />
+                  <span className="font-semibold">$99.67 per course</span>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button
+                onClick={handleBrowseCourses}
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                size="lg"
+              >
+                <Sparkles className="w-4 h-4 mr-2" />
+                Choose Your 3 Courses
+              </Button>
+            </CardFooter>
+          </Card>
+
           {/* Individual Courses */}
           <Card className="relative border-2 border-slate-700 bg-slate-800/50 backdrop-blur">
             <CardHeader>

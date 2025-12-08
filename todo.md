@@ -1092,3 +1092,12 @@
 - [x] Enlarge logo 5x (h-10 to h-50)
 - [x] Test catalog page display
 - [ ] Create checkpoint
+
+## Phase 22: Add 3-Course Bundle Pricing Option
+
+- [x] Add 3-course bundle card to pricing page
+- [x] Set pricing at $299 (save $88 from $387)
+- [x] Change layout to 3-column grid
+- [x] Add purple styling to differentiate bundle
+- [x] Include "Choose Your 3 Courses" CTA button
+- [ ] Create checkpoint
