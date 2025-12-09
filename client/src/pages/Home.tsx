@@ -89,7 +89,7 @@ export default function Home() {
               <h2 className="text-4xl font-bold mb-6">All-Access Subscription</h2>
               <div className="text-5xl font-bold text-accent mb-4">$49<span className="text-2xl text-muted-foreground">/month</span></div>
               <p className="text-xl text-muted-foreground mb-6">
-                Get unlimited access to all 14 seminary-quality courses with one affordable subscription
+                Get unlimited access to all 18 seminary-quality courses with one affordable subscription
               </p>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-3">

@@ -1182,21 +1182,28 @@ Students who enroll deserve consistent, high-quality content from day one. It wo
 - [ ] Add marketing materials download section
 
 ### Frontend - Admin Affiliate Management
-- [ ] Create admin affiliate overview page
+- [ ] Create admin affiliate management page at /admin/affiliates
 - [ ] Build affiliate approval/rejection interface
+- [ ] Add suspend/reactivate affiliate functionality
 - [ ] Add commission management tools
 - [ ] Create payout processing dashboard
 - [ ] Implement affiliate performance analytics
+- [ ] Add route to App.tsx and admin navigation
 
 ### Integration
-- [ ] Add affiliate tracking to signup flow
+- [ ] Implement cookie-based referral tracking middleware
+- [ ] Add affiliate tracking to signup flow (capture referral code from URL)
+- [ ] Track affiliate clicks in database
 - [ ] Integrate commission calculation with payment system
 - [ ] Add affiliate attribution to user records
 - [ ] Create automated commission recording on purchases
 - [ ] Build monthly payout automation
 
 ### Marketing Materials
-- [ ] Create affiliate program landing page
+- [x] Create 12-slide PowerPoint presentation for churches/ministries
+- [ ] Add "Become an Affiliate" link to website footer
+- [ ] Add affiliate program link to About page
+- [ ] Add affiliate program link to public navigation
 - [ ] Design email templates for affiliates
 - [ ] Build social media post templates
 - [ ] Create banner ads and graphics
@@ -1214,3 +1221,19 @@ Students who enroll deserve consistent, high-quality content from day one. It wo
 - [ ] Include commission structure details
 - [ ] Add revenue projection examples
 - [ ] Show affiliate dashboard mockup
+
+
+## Chaplain's Training Course Addition
+- [x] Create Chaplain's Training course in database
+- [x] Add course description and CPD hours (30 hours)
+- [x] Create 10 comprehensive lessons covering chaplaincy ministry
+- [x] Add quiz questions (5 per lesson, 50 total)
+- [x] Create assignment prompts for each lesson
+- [x] Add intro video URL for course
+- [x] Update landing page to show 18 courses
+- [x] Update pricing page to show 18 courses
+- [x] Link course to all access codes for subscription access
+- [x] Verify course appears in dashboard and catalog
+- [ ] Create checkpoint
+
+Note: Course detail page has a pre-existing loading issue affecting all courses (not specific to CHAP101)
