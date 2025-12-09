@@ -141,6 +141,13 @@
       "when": 1765066410231,
       "tag": "0019_sparkling_mad_thinker",
       "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "5",
+      "when": 1765267223162,
+      "tag": "0020_heavy_puff_adder",
+      "breakpoints": true
     }
   ]
 }
