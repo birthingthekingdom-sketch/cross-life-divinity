@@ -126,7 +126,7 @@ export const appRouter = router({
       return db.getEnrolledCourses(ctx.user.id);
     }),
     
-    listAll: adminProcedure.query(async () => {
+    listAll: publicProcedure.query(async () => {
       return db.getAllCourses();
     }),
     
