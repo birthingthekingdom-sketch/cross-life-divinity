@@ -343,7 +343,8 @@ export const bundlesRouter = router({
       );
       
       // Enroll user in all courses in the path
-      for (const course of pathCourses.rows as any[]) {
+      const rows = Array.isArray(pathCourses) ? pathCourses : (pathCourses as any).rows || [];
+      for (const course of rows as any[]) {
         await dbConn.execute(
           sql`INSERT INTO course_enrollments (userId, courseId, enrolledAt) 
               VALUES (${ctx.user.id}, ${course.courseId}, CURRENT_TIMESTAMP)
