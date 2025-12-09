@@ -329,11 +329,28 @@ export const bundlesRouter = router({
     .mutation(async ({ input, ctx }) => {
       const dbConn = await db.getDb();
       if (!dbConn) throw new Error("Database not available");
+      
+      // Enroll in learning path
       await dbConn.execute(
         sql`INSERT INTO learning_path_enrollments (userId, learningPathId, isActive) 
             VALUES (${ctx.user.id}, ${input.learningPathId}, true)
             ON DUPLICATE KEY UPDATE isActive = true, enrolledAt = CURRENT_TIMESTAMP`
       );
+      
+      // Get all courses in this learning path
+      const pathCourses = await dbConn.execute(
+        sql`SELECT courseId FROM learning_path_courses WHERE learningPathId = ${input.learningPathId}`
+      );
+      
+      // Enroll user in all courses in the path
+      for (const course of pathCourses.rows as any[]) {
+        await dbConn.execute(
+          sql`INSERT INTO course_enrollments (userId, courseId, enrolledAt) 
+              VALUES (${ctx.user.id}, ${course.courseId}, CURRENT_TIMESTAMP)
+              ON DUPLICATE KEY UPDATE enrolledAt = enrolledAt`
+        );
+      }
+      
       return { success: true };
     }),
 
