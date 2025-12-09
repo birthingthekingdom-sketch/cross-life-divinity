@@ -115,17 +115,6 @@ export default function Dashboard() {
                   </Button>
                 </Link>
               )}
-              <Link href="/toggle-role">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-blue-500/20 border-blue-400/30 text-primary-foreground hover:bg-blue-500/30"
-                  title={`Switch to ${user?.role === 'admin' ? 'Student' : 'Admin'} View`}
-                >
-                  <RefreshCw className="h-4 w-4 mr-2" />
-                  {user?.role === 'admin' ? 'Student' : 'Admin'} View
-                </Button>
-              </Link>
               <Button
                 variant="outline"
                 size="sm"

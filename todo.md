@@ -1148,3 +1148,5 @@ Students who enroll deserve consistent, high-quality content from day one. It wo
 - [ ] Create 600 quiz questions for remaining 12 courses (5 per lesson)
 - Current: 250 questions complete (5 courses)
 - Target: 850 total questions (17 courses)
+
+- [x] Fix learning path course associations - showing 'Required Courses (0)'

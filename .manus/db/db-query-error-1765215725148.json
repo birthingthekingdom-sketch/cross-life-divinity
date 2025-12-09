@@ -1,0 +1,8 @@
+{
+  "query": "INSERT INTO users (name, email, password, emailVerified, role, loginMethod, createdAt, updatedAt, lastSignedIn) \nVALUES ('Test Student', 'student@test.com', '$2a$10$YourHashedPasswordHere', true, 'user', 'email', NOW(), NOW(), NOW())",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO users (name, email, password, emailVerified, role, loginMethod, createdAt, updatedAt, lastSignedIn) \nVALUES ('Test Student', 'student@test.com', '$2a$10$YourHashedPasswordHere', true, 'user', 'email', NOW(), NOW(), NOW())",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1062 (23000) at line 1: Duplicate entry '?' for key 'users.users_email_unique'"
+  ]
+}

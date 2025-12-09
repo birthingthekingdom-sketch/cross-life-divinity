@@ -60,12 +60,14 @@ import Resources from './pages/Resources';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import BundleSelection from './pages/BundleSelection';
+import Logout from './pages/Logout';
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Landing} />
       <Route path="/login" component={Login} />
+      <Route path="/logout" component={Logout} />
       <Route path="/register" component={Register} />
       <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/reset-password" component={ResetPassword} />

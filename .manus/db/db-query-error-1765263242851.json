@@ -1,0 +1,8 @@
+{
+  "query": "INSERT INTO learning_path_courses (pathId, courseId, orderIndex) VALUES\n(2, 1, 1),  -- Old Testament Survey\n(2, 2, 2),  -- New Testament Survey  \n(2, 3, 3),  -- Systematic Theology\n(2, 4, 4);  -- Biblical Hermeneutics",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO learning_path_courses (pathId, courseId, orderIndex) VALUES\n(2, 1, 1),  -- Old Testament Survey\n(2, 2, 2),  -- New Testament Survey  \n(2, 3, 3),  -- Systematic Theology\n(2, 4, 4);  -- Biblical Hermeneutics",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1452 (23000) at line 1: Cannot add or update a child row: a foreign key constraint fails (`p2dpw9mqsmxzduqcfgjv6b`.`learning_path_courses`, CONSTRAINT `fk_2` FOREIGN KEY (`courseId`) REFERENCES `courses` (`id`) ON DELETE CASCADE)"
+  ]
+}

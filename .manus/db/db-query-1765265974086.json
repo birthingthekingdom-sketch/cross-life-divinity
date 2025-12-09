@@ -1,0 +1,17 @@
+{
+  "query": "SELECT id, email, name, role, emailVerified FROM users WHERE email = 'student@test.com'",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, email, name, role, emailVerified FROM users WHERE email = 'student@test.com'",
+  "rows": [
+    {
+      "id": "240033",
+      "email": "student@test.com",
+      "name": "Test Student",
+      "role": "user",
+      "emailVerified": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\tname\trole\temailVerified\n240033\tstudent@test.com\tTest Student\tuser\t1\n",
+  "stderr": "",
+  "execution_time_ms": 63
+}
