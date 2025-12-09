@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `affiliate_commissions` (\n  `id` int AUTO_INCREMENT NOT NULL,\n  `affiliateId` int NOT NULL,\n  `referralId` int NOT NULL,\n  `orderId` varchar(255),\n  `amount` int NOT NULL,\n  `type` enum('subscription', 'course', 'bundle') NOT NULL,\n  `status` enum('pending', 'approved', 'paid', 'cancelled') DEFAULT 'pending' NOT NULL,\n  `description` text,\n  `createdAt` timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,\n  `approvedAt` timestamp NULL,\n  `paidAt` timestamp NULL,\n  CONSTRAINT `affiliate_commissions_id` PRIMARY KEY(`id`)\n)",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute CREATE TABLE IF NOT EXISTS `affiliate_commissions` (\n  `id` int AUTO_INCREMENT NOT NULL,\n  `affiliateId` int NOT NULL,\n  `referralId` int NOT NULL,\n  `orderId` varchar(255),\n  `amount` int NOT NULL,\n  `type` enum('subscription', 'course', 'bundle') NOT NULL,\n  `status` enum('pending', 'approved', 'paid', 'cancelled') DEFAULT 'pending' NOT NULL,\n  `description` text,\n  `createdAt` timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,\n  `approvedAt` timestamp NULL,\n  `paidAt` timestamp NULL,\n  CONSTRAINT `affiliate_commissions_id` PRIMARY KEY(`id`)\n)",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 187
+}

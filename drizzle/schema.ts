@@ -589,3 +589,113 @@ export const emailSettings = mysqlTable("email_settings", {
 
 export type EmailSettings = typeof emailSettings.$inferSelect;
 export type InsertEmailSettings = typeof emailSettings.$inferInsert;
+
+/**
+ * Affiliate Program Tables
+ */
+
+/**
+ * Affiliates - Partners who refer students
+ */
+export const affiliates = mysqlTable("affiliates", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(), // Links to users table
+  affiliateCode: varchar("affiliateCode", { length: 50 }).notNull().unique(),
+  organizationName: varchar("organizationName", { length: 255 }),
+  organizationType: mysqlEnum("organizationType", ["church", "ministry", "nonprofit", "individual", "other"]),
+  website: varchar("website", { length: 500 }),
+  description: text("description"),
+  expectedReferrals: varchar("expectedReferrals", { length: 255 }),
+  paymentDetails: text("paymentDetails"),
+  rejectionReason: text("rejectionReason"),
+  suspensionReason: text("suspensionReason"),
+  status: mysqlEnum("status", ["pending", "active", "suspended", "inactive", "rejected"]).default("pending").notNull(),
+  subscriptionCommissionRate: int("subscriptionCommissionRate").default(25).notNull(), // Percentage (e.g., 25 = 25%)
+  courseCommissionRate: int("courseCommissionRate").default(35).notNull(), // Percentage (e.g., 35 = 35%)
+  payoutEmail: varchar("payoutEmail", { length: 320 }),
+  payoutMethod: mysqlEnum("payoutMethod", ["paypal", "bank_transfer", "check"]).default("paypal"),
+  totalEarnings: int("totalEarnings").default(0).notNull(), // In cents
+  pendingEarnings: int("pendingEarnings").default(0).notNull(), // In cents
+  paidEarnings: int("paidEarnings").default(0).notNull(), // In cents
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  approvedAt: timestamp("approvedAt"),
+});
+
+export type Affiliate = typeof affiliates.$inferSelect;
+export type InsertAffiliate = typeof affiliates.$inferInsert;
+
+/**
+ * Affiliate Referrals - Tracks which users were referred by affiliates
+ */
+export const affiliateReferrals = mysqlTable("affiliate_referrals", {
+  id: int("id").autoincrement().primaryKey(),
+  affiliateId: int("affiliateId").notNull(),
+  referredUserId: int("referredUserId").notNull(),
+  referralCode: varchar("referralCode", { length: 50 }).notNull(), // The affiliate code used
+  status: mysqlEnum("status", ["pending", "converted", "cancelled"]).default("pending").notNull(),
+  referralDate: timestamp("referralDate").defaultNow().notNull(),
+  conversionDate: timestamp("conversionDate"),
+  ipAddress: varchar("ipAddress", { length: 45 }),
+  userAgent: text("userAgent"),
+});
+
+export type AffiliateReferral = typeof affiliateReferrals.$inferSelect;
+export type InsertAffiliateReferral = typeof affiliateReferrals.$inferInsert;
+
+/**
+ * Affiliate Commissions - Individual commission records
+ */
+export const affiliateCommissions = mysqlTable("affiliate_commissions", {
+  id: int("id").autoincrement().primaryKey(),
+  affiliateId: int("affiliateId").notNull(),
+  referralId: int("referralId").notNull(),
+  orderId: varchar("orderId", { length: 255 }), // Stripe payment ID or subscription ID
+  amount: int("amount").notNull(), // Commission amount in cents
+  type: mysqlEnum("type", ["subscription", "course", "bundle"]).notNull(),
+  status: mysqlEnum("status", ["pending", "approved", "paid", "cancelled"]).default("pending").notNull(),
+  description: text("description"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  approvedAt: timestamp("approvedAt"),
+  paidAt: timestamp("paidAt"),
+});
+
+export type AffiliateCommission = typeof affiliateCommissions.$inferSelect;
+export type InsertAffiliateCommission = typeof affiliateCommissions.$inferInsert;
+
+/**
+ * Affiliate Payouts - Batch payments to affiliates
+ */
+export const affiliatePayouts = mysqlTable("affiliate_payouts", {
+  id: int("id").autoincrement().primaryKey(),
+  affiliateId: int("affiliateId").notNull(),
+  amount: int("amount").notNull(), // Payout amount in cents
+  payoutMethod: mysqlEnum("payoutMethod", ["paypal", "bank_transfer", "check"]).notNull(),
+  payoutEmail: varchar("payoutEmail", { length: 320 }),
+  status: mysqlEnum("status", ["pending", "processing", "completed", "failed"]).default("pending").notNull(),
+  transactionId: varchar("transactionId", { length: 255 }), // PayPal transaction ID, check number, etc.
+  notes: text("notes"),
+  requestedAt: timestamp("requestedAt").defaultNow().notNull(),
+  processedAt: timestamp("processedAt"),
+  completedAt: timestamp("completedAt"),
+});
+
+export type AffiliatePayout = typeof affiliatePayouts.$inferSelect;
+export type InsertAffiliatePayout = typeof affiliatePayouts.$inferInsert;
+
+/**
+ * Affiliate Clicks - Track affiliate link clicks for analytics
+ */
+export const affiliateClicks = mysqlTable("affiliate_clicks", {
+  id: int("id").autoincrement().primaryKey(),
+  affiliateId: int("affiliateId").notNull(),
+  affiliateCode: varchar("affiliateCode", { length: 50 }).notNull(),
+  ipAddress: varchar("ipAddress", { length: 45 }),
+  userAgent: text("userAgent"),
+  referrerUrl: text("referrerUrl"),
+  landingPage: text("landingPage"),
+  clickedAt: timestamp("clickedAt").defaultNow().notNull(),
+});
+
+export type AffiliateClick = typeof affiliateClicks.$inferSelect;
+export type InsertAffiliateClick = typeof affiliateClicks.$inferInsert;

@@ -1150,3 +1150,67 @@ Students who enroll deserve consistent, high-quality content from day one. It wo
 - Target: 850 total questions (17 courses)
 
 - [x] Fix learning path course associations - showing 'Required Courses (0)'
+
+## Affiliate Program System
+
+### Database Schema
+- [x] Create affiliates table (userId, affiliateCode, status, commissionRate, payoutEmail)
+- [x] Create affiliate_referrals table (affiliateId, referredUserId, referralDate, status)
+- [x] Create affiliate_commissions table (affiliateId, referralId, amount, type, status, paidDate)
+- [x] Create affiliate_payouts table (affiliateId, amount, payoutDate, payoutMethod, status)
+- [x] Create affiliate_clicks table for analytics
+- [x] Push database schema changes
+
+### Backend API
+- [x] Create affiliate registration endpoint
+- [x] Build unique affiliate code generation system
+- [ ] Implement referral tracking (cookie-based, 60-day window)
+- [ ] Create commission calculation engine (25% recurring, 35% one-time)
+- [x] Build affiliate dashboard data endpoints
+- [x] Add payout management procedures
+- [x] Create affiliate analytics endpoints
+- [x] Add admin affiliate management endpoints (approve, reject, suspend)
+
+### Frontend - Affiliate Dashboard
+- [x] Create affiliate application page
+- [x] Build affiliate dashboard with stats (referrals, earnings, pending commissions)
+- [x] Add affiliate link copying functionality
+- [x] Display referrals and commissions history
+- [ ] Add referral link generator with copy button
+- [ ] Create earnings history table
+- [ ] Build payout request interface
+- [ ] Add marketing materials download section
+
+### Frontend - Admin Affiliate Management
+- [ ] Create admin affiliate overview page
+- [ ] Build affiliate approval/rejection interface
+- [ ] Add commission management tools
+- [ ] Create payout processing dashboard
+- [ ] Implement affiliate performance analytics
+
+### Integration
+- [ ] Add affiliate tracking to signup flow
+- [ ] Integrate commission calculation with payment system
+- [ ] Add affiliate attribution to user records
+- [ ] Create automated commission recording on purchases
+- [ ] Build monthly payout automation
+
+### Marketing Materials
+- [ ] Create affiliate program landing page
+- [ ] Design email templates for affiliates
+- [ ] Build social media post templates
+- [ ] Create banner ads and graphics
+- [ ] Write affiliate program terms and conditions
+
+### Testing
+- [ ] Test affiliate registration flow
+- [ ] Test referral tracking and attribution
+- [ ] Test commission calculations
+- [ ] Test payout processing
+- [ ] Create checkpoint
+
+### Presentation Update
+- [ ] Add affiliate program slide to existing presentation
+- [ ] Include commission structure details
+- [ ] Add revenue projection examples
+- [ ] Show affiliate dashboard mockup

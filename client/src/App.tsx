@@ -61,6 +61,8 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import BundleSelection from './pages/BundleSelection';
 import Logout from './pages/Logout';
+import AffiliateApply from './pages/AffiliateApply';
+import AffiliateDashboard from './pages/AffiliateDashboard';
 
 function Router() {
   return (
@@ -68,6 +70,8 @@ function Router() {
       <Route path="/" component={Landing} />
       <Route path="/login" component={Login} />
       <Route path="/logout" component={Logout} />
+      <Route path="/affiliate/apply" component={AffiliateApply} />
+      <Route path="/affiliate/dashboard" component={AffiliateDashboard} />
       <Route path="/register" component={Register} />
       <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/reset-password" component={ResetPassword} />
