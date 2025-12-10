@@ -1,0 +1,50 @@
+{
+  "query": "SELECT id, lessonId, question, questionType, options, correctAnswer FROM quiz_questions WHERE lessonId = 360101 LIMIT 5",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, lessonId, question, questionType, options, correctAnswer FROM quiz_questions WHERE lessonId = 360101 LIMIT 5",
+  "rows": [
+    {
+      "id": "180701",
+      "lessonId": "360101",
+      "question": "According to the lesson on 'Introduction to Biblical Prophecy - The Prophetic Office and Gift', what is the primary theological significance of this topic?",
+      "questionType": "multiple_choice",
+      "options": "Understanding God's revelation and its application to Christian life and ministry,Memorizing biblical facts and historical dates,Developing personal opinions about Scripture,Comparing different religious traditions",
+      "correctAnswer": "Understanding God's revelation and its application to Christian life and ministry"
+    },
+    {
+      "id": "180702",
+      "lessonId": "360101",
+      "question": "The biblical foundation presented in 'Introduction to Biblical Prophecy - The Prophetic Office and Gift' emphasizes both theological truth and practical application for believers today.",
+      "questionType": "true_false",
+      "options": "True,False",
+      "correctAnswer": "True"
+    },
+    {
+      "id": "180703",
+      "lessonId": "360101",
+      "question": "How should the principles taught in 'Introduction to Biblical Prophecy - The Prophetic Office and Gift' be applied in contemporary Christian ministry?",
+      "questionType": "multiple_choice",
+      "options": "By strictly following historical traditions without adaptation,By integrating biblical truth with Spirit-led practice in local church contexts,By prioritizing cultural relevance over biblical fidelity,By avoiding practical application to focus only on theory",
+      "correctAnswer": "By integrating biblical truth with Spirit-led practice in local church contexts"
+    },
+    {
+      "id": "180704",
+      "lessonId": "360101",
+      "question": "Explain how the content of 'Introduction to Biblical Prophecy - The Prophetic Office and Gift' contributes to your understanding of Scripture and Christian theology. (2-3 sentences)",
+      "questionType": "short_answer",
+      "options": "",
+      "correctAnswer": "Student should demonstrate understanding of key theological concepts, biblical foundations, and practical implications presented in the lesson."
+    },
+    {
+      "id": "180705",
+      "lessonId": "360101",
+      "question": "What role does Scripture play in the approach to 'Introduction to Biblical Prophecy - The Prophetic Office and Gift' presented in this course?",
+      "questionType": "multiple_choice",
+      "options": "Scripture is one of many equal sources of spiritual truth,Scripture serves as the authoritative foundation for all theological understanding and ministry practice,Scripture provides historical context but not binding truth,Scripture is primarily symbolic rather than doctrinal",
+      "correctAnswer": "Scripture serves as the authoritative foundation for all theological understanding and ministry practice"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tlessonId\tquestion\tquestionType\toptions\tcorrectAnswer\n180701\t360101\tAccording to the lesson on 'Introduction to Biblical Prophecy - The Prophetic Office and Gift', what is the primary theological significance of this topic?\tmultiple_choice\tUnderstanding God's revelation and its application to Christian life and ministry,Memorizing biblical facts and historical dates,Developing personal opinions about Scripture,Comparing different religious traditions\tUnderstanding God's revelation and its application to Christian life and ministry\n180702\t360101\tThe biblical foundation presented in 'Introduction to Biblical Prophecy - The Prophetic Office and Gift' emphasizes both theological truth and practical application for believers today.\ttrue_false\tTrue,False\tTrue\n180703\t360101\tHow should the principles taught in 'Introduction to Biblical Prophecy - The Prophetic Office and Gift' be applied in contemporary Christian ministry?\tmultiple_choice\tBy strictly following historical traditions without adaptation,By integrating biblical truth with Spirit-led practice in local church contexts,By prioritizing cultural relevance over biblical fidelity,By avoiding practical application to focus only on theory\tBy integrating biblical truth with Spirit-led practice in local church contexts\n180704\t360101\tExplain how the content of 'Introduction to Biblical Prophecy - The Prophetic Office and Gift' contributes to your understanding of Scripture and Christian theology. (2-3 sentences)\tshort_answer\t\tStudent should demonstrate understanding of key theological concepts, biblical foundations, and practical implications presented in the lesson.\n180705\t360101\tWhat role does Scripture play in the approach to 'Introduction to Biblical Prophecy - The Prophetic Office and Gift' presented in this course?\tmultiple_choice\tScripture is one of many equal sources of spiritual truth,Scripture serves as the authoritative foundation for all theological understanding and ministry practice,Scripture provides historical context but not binding truth,Scripture is primarily symbolic rather than doctrinal\tScripture serves as the authoritative foundation for all theological understanding and ministry practice\n",
+  "stderr": "",
+  "execution_time_ms": 894
+}

@@ -1,0 +1,15 @@
+{
+  "query": "SELECT id, title, scripture FROM lessons WHERE id = 360101 LIMIT 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, title, scripture FROM lessons WHERE id = 360101 LIMIT 1;",
+  "rows": [
+    {
+      "id": "360101",
+      "title": "Introduction to Biblical Prophecy - The Prophetic Office and Gift",
+      "scripture": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tscripture\n360101\tIntroduction to Biblical Prophecy - The Prophetic Office and Gift\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 49
+}

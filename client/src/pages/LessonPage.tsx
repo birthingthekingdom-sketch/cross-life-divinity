@@ -140,6 +140,21 @@ export default function LessonPage() {
             </CardContent>
           </Card>
 
+          {/* Scripture References */}
+          {lesson.scripture && (
+            <Card className="border-l-4 border-l-primary">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                  Scripture References
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground italic">{lesson.scripture}</p>
+              </CardContent>
+            </Card>
+          )}
+
           {/* Assignment Section */}
           {lesson.assignment && (
             <AssignmentSubmission 
@@ -170,30 +185,73 @@ export default function LessonPage() {
                         <div className="flex-1">
                           <p className="font-medium mb-3">{question.question}</p>
                           
-                          {question.questionType === "multiple_choice" && question.options && (
-                            <RadioGroup
-                              value={userAnswer || ""}
-                              onValueChange={(value) => setAnswers({ ...answers, [question.id]: value })}
-                              disabled={showResults}
-                            >
-                              {(() => {
+                          {question.questionType === "multiple_choice" && question.options && (() => {
+                            try {
+                              let optionsArray: string[] = [];
+                              
+                              if (typeof question.options === 'string') {
+                                // Try JSON parse first
                                 try {
-                                  const options = typeof question.options === 'string' ? JSON.parse(question.options) : question.options;
-                                  return Array.isArray(options) ? options : [];
-                                } catch (e) {
-                                  console.error('Failed to parse quiz options:', e);
-                                  return [];
+                                  const parsed = JSON.parse(question.options);
+                                  optionsArray = Array.isArray(parsed) ? parsed : [];
+                                } catch {
+                                  // If JSON parse fails, split by comma (legacy format)
+                                  optionsArray = question.options.split(',').map(opt => opt.trim()).filter(opt => opt.length > 0);
                                 }
-                              })().map((option: string, optIndex: number) => (
-                                <div key={optIndex} className="flex items-center space-x-2">
-                                  <RadioGroupItem value={option} id={`q${question.id}-opt${optIndex}`} />
-                                  <Label htmlFor={`q${question.id}-opt${optIndex}`} className="cursor-pointer">
-                                    {option}
-                                  </Label>
+                              } else if (Array.isArray(question.options)) {
+                                optionsArray = question.options;
+                              }
+                              
+                              if (optionsArray.length === 0) {
+                                // Fallback: show text input if options can't be parsed
+                                return (
+                                  <div>
+                                    <p className="text-sm text-muted-foreground mb-2">Enter your answer:</p>
+                                    <input
+                                      type="text"
+                                      className="w-full p-2 border rounded"
+                                      value={userAnswer || ""}
+                                      onChange={(e) => setAnswers({ ...answers, [question.id]: e.target.value })}
+                                      disabled={showResults}
+                                      placeholder="Type your answer here"
+                                    />
+                                  </div>
+                                );
+                              }
+                              
+                              return (
+                                <RadioGroup
+                                  value={userAnswer || ""}
+                                  onValueChange={(value) => setAnswers({ ...answers, [question.id]: value })}
+                                  disabled={showResults}
+                                >
+                                  {optionsArray.map((option: string, optIndex: number) => (
+                                    <div key={optIndex} className="flex items-center space-x-2">
+                                      <RadioGroupItem value={option} id={`q${question.id}-opt${optIndex}`} />
+                                      <Label htmlFor={`q${question.id}-opt${optIndex}`} className="cursor-pointer">
+                                        {option}
+                                      </Label>
+                                    </div>
+                                  ))}
+                                </RadioGroup>
+                              );
+                            } catch (e) {
+                              console.error('Failed to parse quiz options:', e);
+                              return (
+                                <div>
+                                  <p className="text-sm text-muted-foreground mb-2">Enter your answer:</p>
+                                  <input
+                                    type="text"
+                                    className="w-full p-2 border rounded"
+                                    value={userAnswer || ""}
+                                    onChange={(e) => setAnswers({ ...answers, [question.id]: e.target.value })}
+                                    disabled={showResults}
+                                    placeholder="Type your answer here"
+                                  />
                                 </div>
-                              ))}
-                            </RadioGroup>
-                          )}
+                              );
+                            }
+                          })()}
                           
                           {question.questionType === "true_false" && (
                             <RadioGroup

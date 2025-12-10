@@ -109,6 +109,7 @@ export const lessons = mysqlTable("lessons", {
   courseId: int("courseId").notNull(),
   title: varchar("title", { length: 255 }).notNull(),
   content: text("content").notNull(),
+  scripture: text("scripture"), // Scripture references for the lesson
   assignment: text("assignment"), // Written assignment prompt
   assignmentDueDate: timestamp("assignmentDueDate"), // Due date for assignment submission
   lessonOrder: int("lessonOrder").notNull(),

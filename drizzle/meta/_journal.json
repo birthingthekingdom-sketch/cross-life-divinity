@@ -176,6 +176,13 @@
       "when": 1765332451250,
       "tag": "0024_brief_maximus",
       "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "5",
+      "when": 1765337165000,
+      "tag": "0025_eminent_tigra",
+      "breakpoints": true
     }
   ]
 }

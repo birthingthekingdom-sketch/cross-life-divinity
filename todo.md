@@ -1323,4 +1323,19 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
   - Tested CHAP101 course page loads instantly
   - Verified all 10 lessons display with Start buttons
   - Confirmed admin can access all course content
-- [ ] Create final checkpoint
+- [x] Create final checkpoint
+
+
+## URGENT: Quiz Display Bug
+- [ ] Fix quiz answer options not rendering on lesson pages
+- [ ] Verify quiz questions display with selectable answers
+- [ ] Test quiz submission and scoring
+
+## URGENT: Lesson Content Overhaul - Add Scripture References
+- [x] Update Understanding Prophecy Lesson 1 (25+ Scripture references)
+- [ ] Update Understanding Prophecy Lessons 2-10
+- [ ] Update Chaplain's Training (CHAP101) - 10 lessons  
+- [ ] Update remaining 16 courses - 160 lessons
+- [ ] Verify all lessons have 10-15+ Scripture references
+- [ ] Ensure biblical exegesis and theological depth
+- [ ] Create checkpoint after completion
