@@ -52,6 +52,7 @@ import EmailSettings from './pages/EmailSettings';
 import Referrals from './pages/Referrals';
 import AdminEmailConfig from './pages/AdminEmailConfig';
 import AdminEmailNotifications from './pages/AdminEmailNotifications';
+import AdminEmailExport from './pages/AdminEmailExport';
 import CohortGroups from './pages/CohortGroups';
 import About from './pages/About';
 import FAQ from './pages/FAQ';
@@ -82,6 +83,7 @@ function Router() {
       <Route path="/lesson/:id" component={LessonPage} />
       <Route path="/admin" component={Admin} />
       <Route path="/admin/chat" component={AdminChat} />
+      <Route path="/admin/email-export" component={AdminEmailExport} />
       <Route path="/admin/course/:id" component={AdminCourseDetail} />
       <Route path="/admin/lesson/:id" component={AdminEditLesson} />
       <Route path="/admin/bulk-import" component={AdminBulkImport} />

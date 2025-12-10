@@ -13,6 +13,7 @@ export default function CoursePage() {
   const courseId = parseInt(params.id || "0");
 
   const { data: course, isLoading: courseLoading } = trpc.courses.getById.useQuery({ id: courseId });
+  const { data: enrollmentCheck } = trpc.courses.checkEnrollment.useQuery({ courseId });
   const { data: lessons, isLoading: lessonsLoading } = trpc.lessons.getByCourse.useQuery({ courseId });
   const { data: progress } = trpc.progress.getByCourse.useQuery({ courseId });
   const { data: certificateEligibility } = trpc.certificates.checkEligibility.useQuery({ courseId });
@@ -62,6 +63,32 @@ export default function CoursePage() {
             <Button className="mt-4">Back to Dashboard</Button>
           </Link>
         </div>
+      </div>
+    );
+  }
+
+  // Check if user is enrolled
+  if (enrollmentCheck && !enrollmentCheck.enrolled) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5 flex items-center justify-center">
+        <Card className="max-w-md">
+          <CardHeader>
+            <CardTitle>Enrollment Required</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground">
+              You need to enroll in this course to access the lessons and content.
+            </p>
+            <div className="flex gap-2">
+              <Link href="/pricing">
+                <Button className="flex-1">View Pricing</Button>
+              </Link>
+              <Link href="/dashboard">
+                <Button variant="outline" className="flex-1">Back to Dashboard</Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     );
   }

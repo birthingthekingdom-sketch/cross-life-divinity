@@ -415,51 +415,70 @@ export default function Dashboard() {
         {/* All Courses Grid */}
         <h2 className="text-2xl font-bold text-foreground mb-6">All Courses</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {courses?.map((course) => {
+          {courses?.map((course: any) => {
             const progress = courseProgress[course.id] || { completed: 0, total: course.totalLessons };
             const progressPercent = progress.total > 0 ? (progress.completed / progress.total) * 100 : 0;
+            const isEnrolled = course.isEnrolled;
 
             return (
-              <Link key={course.id} href={`/course/${course.id}`}>
-                <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer border-2 hover:border-primary/50">
-                  <CardHeader 
-                    className="text-card-foreground min-h-[140px] relative overflow-hidden"
-                    style={{ backgroundColor: course.colorTheme }}
-                  >
-                    <div className="absolute top-3 right-3 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold">
-                      {course.code}
+              <Card key={course.id} className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50">
+                <CardHeader 
+                  className="text-card-foreground min-h-[140px] relative overflow-hidden"
+                  style={{ backgroundColor: course.colorTheme }}
+                >
+                  <div className="absolute top-3 right-3 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold">
+                    {course.code}
+                  </div>
+                  {!isEnrolled && (
+                    <div className="absolute top-3 left-3 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      Not Enrolled
                     </div>
-                    <CardTitle className="text-white text-xl mb-2 pr-20">{course.title}</CardTitle>
-                    {progress.total > 0 && (
-                      <div className="mt-auto">
-                        <div className="flex justify-between text-xs text-white/90 mb-1">
-                          <span>Progress</span>
-                          <span>{progress.completed} / {progress.total} lessons</span>
-                        </div>
-                        <Progress value={progressPercent} className="h-2 bg-white/30" />
+                  )}
+                  <CardTitle className="text-white text-xl mb-2 pr-20">{course.title}</CardTitle>
+                  {isEnrolled && progress.total > 0 && (
+                    <div className="mt-auto">
+                      <div className="flex justify-between text-xs text-white/90 mb-1">
+                        <span>Progress</span>
+                        <span>{progress.completed} / {progress.total} lessons</span>
                       </div>
-                    )}
-                  </CardHeader>
-                  <CardContent className="pt-4">
-                    <CardDescription className="text-sm mb-4 line-clamp-2">
-                      {course.description}
-                    </CardDescription>
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <div className="flex items-center gap-2">
-                        <BookOpen className="h-4 w-4" />
-                        <span>{course.totalLessons} lessons</span>
-                      </div>
-                      {progressPercent === 100 ? (
+                      <Progress value={progressPercent} className="h-2 bg-white/30" />
+                    </div>
+                  )}
+                </CardHeader>
+                <CardContent className="pt-4">
+                  <CardDescription className="text-sm mb-4 line-clamp-2">
+                    {course.description}
+                  </CardDescription>
+                  <div className="flex items-center justify-between text-sm mb-3">
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <BookOpen className="h-4 w-4" />
+                      <span>{course.totalLessons} lessons</span>
+                    </div>
+                    {isEnrolled && (
+                      progressPercent === 100 ? (
                         <span className="text-green-600 font-semibold">✓ Completed</span>
                       ) : progressPercent > 0 ? (
                         <span className="text-primary font-semibold">In Progress</span>
                       ) : (
                         <span className="text-muted-foreground">Not Started</span>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
+                      )
+                    )}
+                  </div>
+                  {isEnrolled ? (
+                    <Link href={`/course/${course.id}`}>
+                      <Button className="w-full">
+                        {progressPercent > 0 ? 'Continue Learning' : 'Start Course'} →
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Link href="/pricing">
+                      <Button className="w-full" variant="outline">
+                        Enroll Now
+                      </Button>
+                    </Link>
+                  )}
+                </CardContent>
+              </Card>
             );
           })}
         </div>

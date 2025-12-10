@@ -1273,3 +1273,59 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Include key features (30 CPD Hours, Hospital/Military Training, Crisis Intervention, Certification)
 - [x] Test and verify display on homepage
 - [x] Position section prominently between All-Access Subscription and New Courses
+
+## Course Access Bug - URGENT
+
+- [ ] Fix enrolled students unable to view courses
+- [ ] Check course enrollment verification in backend
+- [ ] Update course access permissions
+- [ ] Test with enrolled student account
+
+
+## Phase 14: Course Catalog, Bundles & Email Export - URGENT
+
+### Course Catalog Access
+- [ ] Update course listing to show all courses to logged-in users
+- [ ] Add enrollment status indicator on course cards
+- [ ] Show 'Enroll Now' button for non-enrolled courses
+- [ ] Show 'Continue Learning' button for enrolled courses
+- [ ] Prevent access to lesson content for non-enrolled courses
+- [ ] Test course browsing and enrollment flow
+
+### Bundle Feature Fix
+- [ ] Review bundle purchase implementation
+- [ ] Test bundle checkout flow
+- [ ] Verify bundle courses are properly assigned after purchase
+- [ ] Test bundle enrollment automation
+- [ ] Add bundle purchase confirmation
+
+### Admin Email Export
+- [ ] Create admin email export page
+- [ ] Add 'Export Emails' button to admin dashboard
+- [ ] Generate CSV with enrolled student emails
+- [ ] Add filters (all students, active only, by course)
+- [ ] Include student name and enrollment date in export
+- [ ] Test email export functionality
+
+
+## Phase 14 Completion Status
+
+### Course Catalog Access - COMPLETED
+- [x] Update course listing to show all courses to logged-in users
+- [x] Add enrollment status indicator on course cards
+- [x] Show 'Enroll Now' button for non-enrolled courses
+- [x] Show 'Continue Learning' button for enrolled courses
+- [x] Prevent access to lesson content for non-enrolled courses
+
+### Bundle Feature - VERIFIED
+- [x] Bundle purchase implementation verified
+- [x] Bundle checkout flow working
+- [x] Bundle courses properly assigned after purchase
+- [x] Bundle enrollment automation functional
+
+### Admin Email Export - COMPLETED
+- [x] Create admin email export page
+- [x] Add 'Export Emails' button to admin dashboard
+- [x] Generate CSV with enrolled student emails
+- [x] Add filters (all students, active only, by course)
+- [x] Include student name and enrollment date in export

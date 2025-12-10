@@ -121,11 +121,22 @@ export const appRouter = router({
 
   courses: router({
     list: protectedProcedure.query(async ({ ctx }) => {
-      // Admins see all courses, students see only enrolled courses
+      // Return all courses with enrollment status
+      const allCourses = await db.getAllCourses();
+      
       if (ctx.user.role === 'admin') {
-        return db.getAllCourses();
+        return allCourses.map(course => ({ ...course, isEnrolled: true }));
       }
-      return db.getEnrolledCourses(ctx.user.id);
+      
+      // For students, check enrollment status for each course
+      const coursesWithEnrollment = await Promise.all(
+        allCourses.map(async (course) => {
+          const isEnrolled = await db.isUserEnrolledInCourse(ctx.user.id, course.id);
+          return { ...course, isEnrolled };
+        })
+      );
+      
+      return coursesWithEnrollment;
     }),
     
     listAll: publicProcedure.query(async () => {
@@ -963,6 +974,71 @@ export const appRouter = router({
           console.error("Failed to retry email:", error);
           throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: error.message });
         }
+      }),
+    
+    // Student Email Export
+    getStudentEmails: adminProcedure
+      .input(z.object({
+        filterType: z.string(),
+        courseId: z.number().optional()
+      }))
+      .query(async ({ input }) => {
+        const dbConn = await db.getDb();
+        if (!dbConn) return [];
+        
+        let query;
+        
+        if (input.filterType === 'all') {
+          // Get all enrolled students
+          query = sql`
+            SELECT DISTINCT
+              u.id,
+              u.name,
+              u.email,
+              MIN(ce.enrolledAt) as enrolledAt,
+              COUNT(DISTINCT ce.courseId) as courseCount
+            FROM users u
+            INNER JOIN course_enrollments ce ON u.id = ce.userId
+            WHERE u.role = 'student'
+            GROUP BY u.id, u.name, u.email
+            ORDER BY u.name
+          `;
+        } else if (input.filterType === 'course' && input.courseId) {
+          // Get students enrolled in specific course
+          query = sql`
+            SELECT DISTINCT
+              u.id,
+              u.name,
+              u.email,
+              ce.enrolledAt,
+              COUNT(DISTINCT ce2.courseId) as courseCount
+            FROM users u
+            INNER JOIN course_enrollments ce ON u.id = ce.userId
+            LEFT JOIN course_enrollments ce2 ON u.id = ce2.userId
+            WHERE u.role = 'student' AND ce.courseId = ${input.courseId}
+            GROUP BY u.id, u.name, u.email, ce.enrolledAt
+            ORDER BY u.name
+          `;
+        } else {
+          // Active students (logged in within last 30 days)
+          query = sql`
+            SELECT DISTINCT
+              u.id,
+              u.name,
+              u.email,
+              MIN(ce.enrolledAt) as enrolledAt,
+              COUNT(DISTINCT ce.courseId) as courseCount
+            FROM users u
+            INNER JOIN course_enrollments ce ON u.id = ce.userId
+            WHERE u.role = 'student' 
+              AND u.lastSignedIn >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+            GROUP BY u.id, u.name, u.email
+            ORDER BY u.name
+          `;
+        }
+        
+        const result: any = await dbConn.execute(query);
+        return Array.isArray(result) ? result : result.rows || [];
       }),
   }),
   

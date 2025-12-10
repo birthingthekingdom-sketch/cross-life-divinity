@@ -126,6 +126,20 @@ export default function Admin() {
             </Card>
           </Link>
           
+          <Link href="/admin/email-export">
+            <Card className="hover:shadow-md transition-shadow cursor-pointer border-l-4 border-l-green-500">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Mail className="h-5 w-5" />
+                  Export Student Emails
+                </CardTitle>
+                <CardDescription>
+                  Download student emails for marketing campaigns
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
+          
           <Link href="/admin/chat">
             <Card className="hover:shadow-md transition-shadow cursor-pointer border-l-4 border-l-blue-500">
               <CardHeader>
