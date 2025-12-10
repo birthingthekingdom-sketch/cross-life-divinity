@@ -24,6 +24,7 @@ import * as referralSystem from './referral-router.js';
 import { blogRouter } from './blog-router';
 import { chatRouter } from './chat-router';
 import { affiliateRouter } from './affiliate-router';
+import { chaplaincy } from './routers/chaplaincy';
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -42,6 +43,7 @@ export const appRouter = router({
   blog: blogRouter,
   chat: chatRouter,
   affiliate: affiliateRouter,
+  chaplaincy: chaplaincy,
 
   // Merge custom auth router with existing auth endpoints
   auth: router({

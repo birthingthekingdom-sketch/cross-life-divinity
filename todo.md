@@ -1234,6 +1234,35 @@ Students who enroll deserve consistent, high-quality content from day one. It wo
 - [x] Update pricing page to show 18 courses
 - [x] Link course to all access codes for subscription access
 - [x] Verify course appears in dashboard and catalog
-- [ ] Create checkpoint
+- [x] Create checkpoint
 
 Note: Course detail page has a pre-existing loading issue affecting all courses (not specific to CHAP101)
+
+
+## Chaplain's Training Pricing Configuration
+- [x] Remove CHAP101 from all access codes (not included in subscription)
+- [x] Set course price to $350 in database
+- [x] Add background check requirement flag to course
+- [x] Create background check fee structure ($50)
+- [ ] Update course catalog to show $350 + $50 background check pricing
+- [ ] Update pricing page to clarify CHAP101 is separate from subscription
+- [ ] Add special badge/indicator for courses requiring background checks
+- [ ] Test individual course purchase flow for CHAP101
+- [ ] Create checkpoint
+
+
+## Chaplaincy Application Form System
+- [x] Create chaplaincy_applications database table
+- [x] Add application form fields (personal info, ministry experience, references, background check consent)
+- [x] Build ChaplainApplicationForm component
+- [x] Create API endpoint for submitting applications
+- [x] Create API endpoint for checking application status
+- [x] Add route to App.tsx for /apply/chaplaincy
+- [x] Build admin application review page at /admin/chaplaincy-applications
+- [x] Add approve/reject functionality for admins
+- [x] Update course catalog to show "Apply Now" button for CHAP101
+- [x] Update course purchase flow to check for approved application
+- [x] Add application status indicator on course card
+- [ ] Send email notifications on application status changes (future enhancement)
+- [x] Test complete application workflow
+- [ ] Create checkpoint

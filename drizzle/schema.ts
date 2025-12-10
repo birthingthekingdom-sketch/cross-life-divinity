@@ -91,6 +91,9 @@ export const courses = mysqlTable("courses", {
   cpdHours: int("cpdHours").default(0).notNull(),
   displayOrder: int("displayOrder").default(0).notNull(),
   introVideoUrl: text("introVideoUrl"), // YouTube, Vimeo, or direct video URL
+  price: int("price").default(89).notNull(), // Price in dollars (default $89 for individual purchase)
+  requiresBackgroundCheck: boolean("requiresBackgroundCheck").default(false).notNull(),
+  backgroundCheckFee: int("backgroundCheckFee").default(0).notNull(), // Additional background check fee in dollars
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
@@ -699,3 +702,62 @@ export const affiliateClicks = mysqlTable("affiliate_clicks", {
 
 export type AffiliateClick = typeof affiliateClicks.$inferSelect;
 export type InsertAffiliateClick = typeof affiliateClicks.$inferInsert;
+
+
+/**
+ * Chaplaincy Applications - Applications for Chaplain's Training course
+ */
+export const chaplaincy_applications = mysqlTable("chaplaincy_applications", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  
+  // Personal Information
+  fullName: varchar("fullName", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  phone: varchar("phone", { length: 50 }).notNull(),
+  address: text("address").notNull(),
+  dateOfBirth: varchar("dateOfBirth", { length: 20 }).notNull(),
+  
+  // Ministry Experience
+  currentMinistryRole: varchar("currentMinistryRole", { length: 255 }),
+  yearsInMinistry: int("yearsInMinistry").notNull(),
+  ordainedStatus: mysqlEnum("ordainedStatus", ["ordained", "licensed", "not_ordained"]).notNull(),
+  denominationAffiliation: varchar("denominationAffiliation", { length: 255 }),
+  ministryExperienceDescription: text("ministryExperienceDescription").notNull(),
+  
+  // Chaplaincy Interest
+  chaplaincy_interest: mysqlEnum("chaplaincy_interest", ["healthcare", "military", "correctional", "corporate", "educational", "other"]).notNull(),
+  chaplaincy_interest_other: varchar("chaplaincy_interest_other", { length: 255 }),
+  motivationStatement: text("motivationStatement").notNull(),
+  
+  // References (2 required)
+  reference1Name: varchar("reference1Name", { length: 255 }).notNull(),
+  reference1Email: varchar("reference1Email", { length: 320 }).notNull(),
+  reference1Phone: varchar("reference1Phone", { length: 50 }).notNull(),
+  reference1Relationship: varchar("reference1Relationship", { length: 255 }).notNull(),
+  
+  reference2Name: varchar("reference2Name", { length: 255 }).notNull(),
+  reference2Email: varchar("reference2Email", { length: 320 }).notNull(),
+  reference2Phone: varchar("reference2Phone", { length: 50 }).notNull(),
+  reference2Relationship: varchar("reference2Relationship", { length: 255 }).notNull(),
+  
+  // Background Check Consent
+  backgroundCheckConsent: boolean("backgroundCheckConsent").notNull(),
+  backgroundCheckCompleted: boolean("backgroundCheckCompleted").default(false).notNull(),
+  backgroundCheckDate: timestamp("backgroundCheckDate"),
+  backgroundCheckStatus: mysqlEnum("backgroundCheckStatus", ["pending", "clear", "review_required", "failed"]).default("pending"),
+  
+  // Application Status
+  status: mysqlEnum("status", ["pending", "under_review", "approved", "rejected"]).default("pending").notNull(),
+  reviewedBy: int("reviewedBy"), // Admin user ID who reviewed
+  reviewNotes: text("reviewNotes"),
+  rejectionReason: text("rejectionReason"),
+  
+  // Timestamps
+  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+  reviewedAt: timestamp("reviewedAt"),
+  approvedAt: timestamp("approvedAt"),
+});
+
+export type ChaplainApplication = typeof chaplaincy_applications.$inferSelect;
+export type InsertChaplainApplication = typeof chaplaincy_applications.$inferInsert;
