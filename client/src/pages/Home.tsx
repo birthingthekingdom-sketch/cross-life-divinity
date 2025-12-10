@@ -15,18 +15,7 @@ export default function Home() {
     { enabled: isAuthenticated }
   );
 
-  useEffect(() => {
-    if (!loading && isAuthenticated && !enrollmentLoading) {
-      // Redirect admins to admin panel
-      if (user?.role === 'admin') {
-        setLocation("/admin");
-      } else if (enrollmentStatus?.enrolled) {
-        setLocation("/dashboard");
-      } else {
-        setLocation("/enroll");
-      }
-    }
-  }, [loading, isAuthenticated, user, enrollmentStatus, enrollmentLoading, setLocation]);
+  // Removed auto-redirect to allow all users to see homepage content
 
   if (loading || enrollmentLoading) {
     return (
@@ -114,6 +103,58 @@ export default function Home() {
                   Get Started Today
                 </Button>
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Chaplain's Training Promotional Section - UPDATED */}
+      <section className="py-16 bg-gradient-to-br from-accent/10 to-accent/5">
+        <div className="container max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold mb-6 text-primary">Chaplain's Training Program</h2>
+              <p className="text-xl text-muted-foreground mb-6">
+                Pastor / Minister you've been waiting long enough; now is the time!
+              </p>
+              <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-4xl font-bold text-accent">$79</span>
+                  <span className="text-2xl text-muted-foreground line-through">$149</span>
+                  <span className="bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">47% OFF</span>
+                </div>
+                <p className="text-muted-foreground">Special introductory pricing - Limited time offer</p>
+              </div>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-start gap-3">
+                  <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-lg">30 CPD Hours of Professional Certification</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-lg">Hospital, Military & Institutional Ministry Training</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-lg">Crisis Intervention & Pastoral Care Skills</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-lg">Professional Chaplaincy Certification</span>
+                </li>
+              </ul>
+              <Link href="/courses">
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6">
+                  Enroll in Chaplain's Training
+                </Button>
+              </Link>
+            </div>
+            <div>
+              <img 
+                src="/chaplain-promo.png" 
+                alt="Chaplain's Training - Pastor / Minister you've been waiting long enough; now is the time!" 
+                className="rounded-lg shadow-2xl w-full"
+              />
             </div>
           </div>
         </div>

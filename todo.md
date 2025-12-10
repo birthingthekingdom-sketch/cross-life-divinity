@@ -1256,3 +1256,20 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Create rigorous quiz questions for all lessons (900+ total)
 - [x] Verify all content meets M.Div. academic standards
 - [x] Test sample lessons - quality confirmed
+
+## Chaplain Promotional Updates - In Progress
+
+- [ ] Add Chaplain promotional graphic to landing page
+- [ ] Display special pricing for Chaplain's Training course
+- [ ] Ensure graphic is prominently featured on homepage
+- [ ] Test pricing display on course page
+
+## Chaplain Promotional Updates - COMPLETED ✅
+
+- [x] Create Chaplain promotional graphic with compelling messaging
+- [x] Add Chaplain promotional section to landing page
+- [x] Display special pricing ($79, was $149, 47% OFF) 
+- [x] Add call-to-action text ("Pastor / Minister you've been waiting long enough; now is the time!")
+- [x] Include key features (30 CPD Hours, Hospital/Military Training, Crisis Intervention, Certification)
+- [x] Test and verify display on homepage
+- [x] Position section prominently between All-Access Subscription and New Courses
