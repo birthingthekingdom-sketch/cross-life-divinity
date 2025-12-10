@@ -147,16 +147,22 @@ export const appRouter = router({
     getById: protectedProcedure
       .input(z.object({ id: z.number() }))
       .query(async ({ input, ctx }) => {
+        console.log('[courses.getById] Starting query for course:', input.id);
         const course = await db.getCourseById(input.id);
+        console.log('[courses.getById] Course fetched:', course ? 'found' : 'not found');
         if (!course) {
           throw new TRPCError({ code: 'NOT_FOUND', message: 'Course not found' });
         }
         
         // Get prerequisites for this course
+        console.log('[courses.getById] Fetching prerequisites...');
         const coursePrerequisites = await prerequisites.getCoursePrerequisites(input.id);
+        console.log('[courses.getById] Prerequisites fetched:', coursePrerequisites.length);
         
         // Check if user can enroll (has completed prerequisites)
-        const prerequisiteCheck = await prerequisites.checkPrerequisites(ctx.user.id, input.id);
+        console.log('[courses.getById] Checking prerequisite completion...');
+        const prerequisiteCheck = await prerequisites.checkPrerequisites(ctx.user.id, input.id, ctx.user.role === 'admin');
+        console.log('[courses.getById] Prerequisite check complete');
         
         return {
           ...course,

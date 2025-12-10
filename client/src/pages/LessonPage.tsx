@@ -176,7 +176,15 @@ export default function LessonPage() {
                               onValueChange={(value) => setAnswers({ ...answers, [question.id]: value })}
                               disabled={showResults}
                             >
-                              {JSON.parse(question.options).map((option: string, optIndex: number) => (
+                              {(() => {
+                                try {
+                                  const options = typeof question.options === 'string' ? JSON.parse(question.options) : question.options;
+                                  return Array.isArray(options) ? options : [];
+                                } catch (e) {
+                                  console.error('Failed to parse quiz options:', e);
+                                  return [];
+                                }
+                              })().map((option: string, optIndex: number) => (
                                 <div key={optIndex} className="flex items-center space-x-2">
                                   <RadioGroupItem value={option} id={`q${question.id}-opt${optIndex}`} />
                                   <Label htmlFor={`q${question.id}-opt${optIndex}`} className="cursor-pointer">

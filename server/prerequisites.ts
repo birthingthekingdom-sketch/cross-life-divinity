@@ -4,10 +4,15 @@ import { sql } from 'drizzle-orm';
 /**
  * Check if a user has completed all prerequisites for a course
  */
-export async function checkPrerequisites(userId: number, courseId: number): Promise<{
+export async function checkPrerequisites(userId: number, courseId: number, isAdmin: boolean = false): Promise<{
   canEnroll: boolean;
   missingPrerequisites: Array<{ id: number; title: string }>;
 }> {
+  // Admins can always enroll
+  if (isAdmin) {
+    return { canEnroll: true, missingPrerequisites: [] };
+  }
+  
   const dbConn = await db.getDb();
   if (!dbConn) {
     throw new Error('Database not available');
@@ -30,29 +35,29 @@ export async function checkPrerequisites(userId: number, courseId: number): Prom
     return { canEnroll: true, missingPrerequisites: [] };
   }
 
-  // Check which prerequisites the user has completed
-  const missingPrerequisites = [];
+  // Check which prerequisites the user has completed using a single query
+  const prerequisiteIds = prerequisites.map((p: any) => p.id);
   
-  for (const prereq of prerequisites) {
-    const completedResult: any = await dbConn.execute(
-      sql`SELECT ce.id
-          FROM course_enrollments ce
-          WHERE ce.userId = ${userId} 
-            AND ce.courseId = ${prereq.id}
-            AND ce.completed = true`
-    );
-
-    const completed = Array.isArray(completedResult) 
-      ? completedResult.length > 0
-      : (completedResult.rows || []).length > 0;
-
-    if (!completed) {
-      missingPrerequisites.push({
-        id: prereq.id,
-        title: prereq.title
-      });
-    }
+  if (prerequisiteIds.length === 0) {
+    return { canEnroll: true, missingPrerequisites: [] };
   }
+  
+  const completedResult: any = await dbConn.execute(
+    sql`SELECT courseId
+        FROM course_enrollments
+        WHERE userId = ${userId} 
+          AND courseId IN (${sql.join(prerequisiteIds, sql`, `)})
+          AND completed = true`
+  );
+
+  const completedIds = new Set(
+    (Array.isArray(completedResult) ? completedResult : (completedResult.rows || []))
+      .map((row: any) => row.courseId)
+  );
+  
+  const missingPrerequisites = prerequisites
+    .filter((prereq: any) => !completedIds.has(prereq.id))
+    .map((prereq: any) => ({ id: prereq.id, title: prereq.title }));
 
   return {
     canEnroll: missingPrerequisites.length === 0,
