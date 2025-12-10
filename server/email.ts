@@ -388,3 +388,170 @@ export async function sendEmailVerification(email: string, name: string, verific
 }
 
 
+
+
+/**
+ * Send email when chaplaincy application is received
+ */
+export async function sendChaplainApplicationReceivedEmail(to: string, applicantName: string) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to,
+      subject: 'Chaplaincy Application Received - Cross Life School of Divinity',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #1e40af;">Application Received</h2>
+          <p>Dear ${applicantName},</p>
+          <p>Thank you for applying to the <strong>Chaplain's Training Program</strong> at Cross Life School of Divinity.</p>
+          <p>We have received your application and it is currently under review by our admissions team. You will receive an email notification once your application status changes.</p>
+          
+          <div style="background-color: #f3f4f6; padding: 15px; border-radius: 5px; margin: 20px 0;">
+            <h3 style="margin-top: 0; color: #374151;">What Happens Next?</h3>
+            <ol style="color: #4b5563;">
+              <li>Our team will review your application and references</li>
+              <li>You'll be notified of your application status via email</li>
+              <li>If approved, you'll receive instructions for the background check ($50) and course enrollment ($350)</li>
+            </ol>
+          </div>
+
+          <p>If you have any questions, please don't hesitate to contact us.</p>
+          <p>Blessings,<br><strong>Cross Life School of Divinity Admissions Team</strong></p>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send chaplain application received email:', error);
+    return false;
+  }
+}
+
+/**
+ * Send email when chaplaincy application is under review
+ */
+export async function sendChaplainApplicationUnderReviewEmail(to: string, applicantName: string) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to,
+      subject: 'Chaplaincy Application Under Review - Cross Life School of Divinity',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #1e40af;">Application Under Review</h2>
+          <p>Dear ${applicantName},</p>
+          <p>Your application for the <strong>Chaplain's Training Program</strong> is now under active review by our admissions committee.</p>
+          <p>We are carefully evaluating your ministry experience, references, and qualifications for chaplaincy ministry. This process typically takes 3-5 business days.</p>
+          <p>You will receive another email once a decision has been made.</p>
+          <p>Thank you for your patience.</p>
+          <p>Blessings,<br><strong>Cross Life School of Divinity Admissions Team</strong></p>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send chaplain application under review email:', error);
+    return false;
+  }
+}
+
+/**
+ * Send email when chaplaincy application is approved
+ */
+export async function sendChaplainApplicationApprovedEmail(to: string, applicantName: string, reviewNotes?: string) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to,
+      subject: 'Congratulations! Chaplaincy Application Approved - Cross Life School of Divinity',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #16a34a;">Application Approved! 🎉</h2>
+          <p>Dear ${applicantName},</p>
+          <p>Congratulations! We are pleased to inform you that your application for the <strong>Chaplain's Training Program</strong> has been <strong>approved</strong>.</p>
+          
+          ${reviewNotes ? `
+          <div style="background-color: #f0fdf4; padding: 15px; border-left: 4px solid #16a34a; margin: 20px 0;">
+            <p style="margin: 0; color: #166534;"><strong>Admissions Note:</strong> ${reviewNotes}</p>
+          </div>
+          ` : ''}
+
+          <div style="background-color: #f3f4f6; padding: 15px; border-radius: 5px; margin: 20px 0;">
+            <h3 style="margin-top: 0; color: #374151;">Next Steps</h3>
+            <ol style="color: #4b5563;">
+              <li><strong>Visit the course page</strong> and click "Purchase Course"</li>
+              <li><strong>Complete payment</strong> of $400 total ($350 course + $50 background check)</li>
+              <li><strong>Background check</strong> will be initiated after payment</li>
+              <li><strong>Course access</strong> will be granted upon background check clearance</li>
+            </ol>
+          </div>
+
+          <p style="text-align: center; margin: 30px 0;">
+            <a href="${ENV.baseUrl}/courses" 
+               style="background-color: #1e40af; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
+              Enroll Now
+            </a>
+          </p>
+
+          <p>We look forward to supporting you in your chaplaincy training journey!</p>
+          <p>Blessings,<br><strong>Cross Life School of Divinity Admissions Team</strong></p>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send chaplain application approved email:', error);
+    return false;
+  }
+}
+
+/**
+ * Send email when chaplaincy application is rejected
+ */
+export async function sendChaplainApplicationRejectedEmail(to: string, applicantName: string, rejectionReason: string) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to,
+      subject: 'Chaplaincy Application Decision - Cross Life School of Divinity',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #dc2626;">Application Decision</h2>
+          <p>Dear ${applicantName},</p>
+          <p>Thank you for your interest in the <strong>Chaplain's Training Program</strong> at Cross Life School of Divinity.</p>
+          <p>After careful review, we regret to inform you that we are unable to approve your application at this time.</p>
+          
+          <div style="background-color: #fef2f2; padding: 15px; border-left: 4px solid #dc2626; margin: 20px 0;">
+            <p style="margin: 0; color: #991b1b;"><strong>Reason:</strong> ${rejectionReason}</p>
+          </div>
+
+          <p>We encourage you to:</p>
+          <ul style="color: #4b5563;">
+            <li>Consider addressing the areas mentioned above</li>
+            <li>Explore our other ministry training courses</li>
+            <li>Reapply in the future when circumstances have changed</li>
+          </ul>
+
+          <p>If you have questions about this decision, please feel free to contact our admissions team.</p>
+          <p>Blessings on your ministry journey,<br><strong>Cross Life School of Divinity Admissions Team</strong></p>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send chaplain application rejected email:', error);
+    return false;
+  }
+}

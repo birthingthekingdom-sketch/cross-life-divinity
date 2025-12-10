@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { router, protectedProcedure } from "../_core/trpc";
 import { getDb } from "../db";
+import * as email from "../email";
 import { chaplaincy_applications, users } from "../../drizzle/schema";
 import { eq, and, desc } from "drizzle-orm";
 import { TRPCError } from "@trpc/server";
@@ -73,7 +74,7 @@ export const chaplaincy = router({
       }
 
       // Insert new application
-      await db.insert(chaplaincy_applications).values({
+      const result = await db.insert(chaplaincy_applications).values({
         userId: ctx.user.id,
         fullName: input.fullName,
         email: input.email,
@@ -101,6 +102,13 @@ export const chaplaincy = router({
         status: "pending",
         submittedAt: new Date(),
       });
+
+      // Send confirmation email
+      try {
+        await email.sendChaplainApplicationReceivedEmail(input.email, input.fullName);
+      } catch (error) {
+        console.error('[Chaplaincy] Failed to send application received email:', error);
+      }
 
       return { success: true, message: "Application submitted successfully" };
     }),
@@ -221,12 +229,37 @@ export const chaplaincy = router({
         updateData.approvedAt = new Date();
       }
 
+      // Get applicant info for email
+      const application = await db
+        .select()
+        .from(chaplaincy_applications)
+        .where(eq(chaplaincy_applications.id, input.id))
+        .limit(1);
+
+      if (application.length === 0) {
+        throw new TRPCError({ code: "NOT_FOUND", message: "Application not found" });
+      }
+
+      const applicant = application[0];
+
+      // Update status
       await db
         .update(chaplaincy_applications)
         .set(updateData)
         .where(eq(chaplaincy_applications.id, input.id));
 
-      // TODO: Send email notification to applicant
+      // Send email notification based on status
+      try {
+        if (input.status === "under_review") {
+          await email.sendChaplainApplicationUnderReviewEmail(applicant.email, applicant.fullName);
+        } else if (input.status === "approved") {
+          await email.sendChaplainApplicationApprovedEmail(applicant.email, applicant.fullName, input.reviewNotes);
+        } else if (input.status === "rejected" && input.rejectionReason) {
+          await email.sendChaplainApplicationRejectedEmail(applicant.email, applicant.fullName, input.rejectionReason);
+        }
+      } catch (error) {
+        console.error('[Chaplaincy] Failed to send status update email:', error);
+      }
 
       return { success: true, message: "Application status updated" };
     }),

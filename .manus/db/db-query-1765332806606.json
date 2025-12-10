@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO course_bundles (name, description, icon, colorTheme, displayOrder, isActive) VALUES ('Professional Chaplaincy Certification', 'Comprehensive training for professional chaplaincy ministry across healthcare, military, correctional, and corporate settings. This certification track combines foundational chaplaincy training with advanced pastoral counseling skills, equipping you to provide spiritual care in diverse institutional contexts. Earn 65 CPD hours upon completion.', 'Heart', 'blue', 1, true);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO course_bundles (name, description, icon, colorTheme, displayOrder, isActive) VALUES ('Professional Chaplaincy Certification', 'Comprehensive training for professional chaplaincy ministry across healthcare, military, correctional, and corporate settings. This certification track combines foundational chaplaincy training with advanced pastoral counseling skills, equipping you to provide spiritual care in diverse institutional contexts. Earn 65 CPD hours upon completion.', 'Heart', 'blue', 1, true);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 68
+}
