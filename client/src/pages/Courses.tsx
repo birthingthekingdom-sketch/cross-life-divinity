@@ -3,7 +3,7 @@ import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, ShoppingCart, Check, Clock, Award, ArrowLeft, FileText, AlertCircle } from "lucide-react";
+import { BookOpen, ShoppingCart, Check, Clock, Award, ArrowLeft } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { toast } from "sonner";
@@ -22,10 +22,6 @@ export default function Courses() {
     enabled: isAuthenticated,
   });
   const { data: enrollments } = trpc.courses.list.useQuery(undefined, {
-    enabled: isAuthenticated,
-  });
-
-  const { data: chaplainApplication } = trpc.chaplaincy.getMyApplication.useQuery(undefined, {
     enabled: isAuthenticated,
   });
 
@@ -159,128 +155,43 @@ export default function Courses() {
                   </div>
 
                   <div className="pt-4 border-t border-slate-700">
-                    {course.code === "CHAP101" ? (
-                      <>
-                        <div className="flex items-baseline gap-2 mb-2">
-                          <span className="text-3xl font-bold text-white">$400</span>
-                          <span className="text-slate-400">total</span>
-                        </div>
-                        <div className="space-y-1 text-sm text-slate-300 mb-3">
-                          <div className="flex items-start gap-2">
-                            <Award className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                            <span>$350 course + $50 background check</span>
-                          </div>
-                          <div className="flex items-start gap-2">
-                            <FileText className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                            <span>Application required</span>
-                          </div>
-                        </div>
-                        {chaplainApplication && (
-                          <Badge 
-                            variant={chaplainApplication.status === "approved" ? "default" : "secondary"}
-                            className="w-full justify-center"
-                          >
-                            {chaplainApplication.status === "pending" && "Application Pending"}
-                            {chaplainApplication.status === "under_review" && "Under Review"}
-                            {chaplainApplication.status === "approved" && "Application Approved"}
-                            {chaplainApplication.status === "rejected" && "Application Rejected"}
-                          </Badge>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        <div className="flex items-baseline gap-2 mb-2">
-                          <span className="text-3xl font-bold text-white">$89</span>
-                          <span className="text-slate-400">one-time</span>
-                        </div>
-                        <div className="flex items-start gap-2 text-sm text-slate-300">
-                          <Award className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                          <span>Includes CPD certificate</span>
-                        </div>
-                      </>
-                    )}
+                    <div className="flex items-baseline gap-2 mb-2">
+                      <span className="text-3xl font-bold text-white">$89</span>
+                      <span className="text-slate-400">one-time</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-sm text-slate-300">
+                      <Award className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                      <span>Includes CPD certificate</span>
+                    </div>
                   </div>
                 </CardContent>
                 <CardFooter>
-                  {course.code === "CHAP101" ? (
-                    // Chaplaincy course requires application
-                    chaplainApplication ? (
-                      chaplainApplication.status === "approved" ? (
-                        canPurchase ? (
-                          <Button
-                            onClick={() => handlePurchaseCourse(course.id)}
-                            disabled={purchasingCourseId === course.id}
-                            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                          >
-                            {purchasingCourseId === course.id ? (
-                              <>
-                                <Clock className="w-4 h-4 mr-2 animate-spin" />
-                                Processing...
-                              </>
-                            ) : (
-                              <>
-                                <ShoppingCart className="w-4 h-4 mr-2" />
-                                Purchase Course
-                              </>
-                            )}
-                          </Button>
-                        ) : (
-                          <Button
-                            onClick={() => navigate(`/course/${course.id}`)}
-                            className="w-full bg-green-600 hover:bg-green-700 text-white"
-                          >
-                            <BookOpen className="w-4 h-4 mr-2" />
-                            Go to Course
-                          </Button>
-                        )
+                  {canPurchase ? (
+                    <Button
+                      onClick={() => handlePurchaseCourse(course.id)}
+                      disabled={purchasingCourseId === course.id}
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                    >
+                      {purchasingCourseId === course.id ? (
+                        <>
+                          <Clock className="w-4 h-4 mr-2 animate-spin" />
+                          Processing...
+                        </>
                       ) : (
-                        <Button
-                          disabled
-                          className="w-full"
-                          variant="secondary"
-                        >
-                          <AlertCircle className="w-4 h-4 mr-2" />
-                          {chaplainApplication.status === "rejected" ? "Application Rejected" : "Awaiting Approval"}
-                        </Button>
-                      )
-                    ) : (
-                      <Button
-                        onClick={() => navigate("/apply/chaplaincy")}
-                        className="w-full bg-primary hover:bg-primary/90 text-white"
-                      >
-                        <FileText className="w-4 h-4 mr-2" />
-                        Apply Now
-                      </Button>
-                    )
+                        <>
+                          <ShoppingCart className="w-4 h-4 mr-2" />
+                          Purchase Course
+                        </>
+                      )}
+                    </Button>
                   ) : (
-                    // Regular courses
-                    canPurchase ? (
-                      <Button
-                        onClick={() => handlePurchaseCourse(course.id)}
-                        disabled={purchasingCourseId === course.id}
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                      >
-                        {purchasingCourseId === course.id ? (
-                          <>
-                            <Clock className="w-4 h-4 mr-2 animate-spin" />
-                            Processing...
-                          </>
-                        ) : (
-                          <>
-                            <ShoppingCart className="w-4 h-4 mr-2" />
-                            Purchase Course
-                          </>
-                        )}
-                      </Button>
-                    ) : (
-                      <Button
-                        onClick={() => navigate(`/course/${course.id}`)}
-                        className="w-full bg-green-600 hover:bg-green-700 text-white"
-                      >
-                        <BookOpen className="w-4 h-4 mr-2" />
-                        Go to Course
-                      </Button>
-                    )
+                    <Button
+                      onClick={() => navigate(`/course/${course.id}`)}
+                      className="w-full bg-green-600 hover:bg-green-700 text-white"
+                    >
+                      <BookOpen className="w-4 h-4 mr-2" />
+                      Go to Course
+                    </Button>
                   )}
                 </CardFooter>
               </Card>

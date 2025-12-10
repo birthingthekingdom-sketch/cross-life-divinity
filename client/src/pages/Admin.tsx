@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { trpc } from "@/lib/trpc";
-import { BookOpen, Code, Edit, GraduationCap, Key, Loader2, Mail, Plus, Settings, Users, Video, BarChart3, FileCheck, AlertCircle, CheckCircle2, Clock, DollarSign, MessageCircle, Heart } from "lucide-react";
+import { BookOpen, Code, Edit, GraduationCap, Key, Loader2, Mail, Plus, Settings, Users, Video, BarChart3, FileCheck, AlertCircle, CheckCircle2, Clock, DollarSign, MessageCircle } from "lucide-react";
 import AssignCoursesDialog from "@/components/AssignCoursesDialog";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -24,7 +24,6 @@ export default function Admin() {
   const { data: courses } = trpc.courses.listAll.useQuery();
   const { data: accessCodes, refetch: refetchAccessCodes } = trpc.admin.getAccessCodes.useQuery();
   const { data: allFollowUps } = trpc.admin.getAllFollowUps.useQuery();
-  const { data: chaplainApplications } = trpc.chaplaincy.getAllApplications.useQuery({ status: 'all' });
   
   // Calculate follow-up metrics
   const now = new Date();
@@ -150,25 +149,6 @@ export default function Admin() {
                 </CardTitle>
                 <CardDescription>
                   Track and manage student engagement
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </Link>
-          
-          <Link href="/admin/chaplaincy-applications">
-            <Card className="hover:shadow-md transition-shadow cursor-pointer border-l-4 border-l-blue-500">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Heart className="h-5 w-5" />
-                  Chaplaincy Applications
-                  {chaplainApplications && chaplainApplications.filter((a: any) => a.status === 'pending').length > 0 && (
-                    <span className="ml-2 px-2 py-0.5 text-xs font-semibold bg-blue-100 text-blue-800 rounded-full">
-                      {chaplainApplications.filter((a: any) => a.status === 'pending').length}
-                    </span>
-                  )}
-                </CardTitle>
-                <CardDescription>
-                  Review and approve chaplaincy program applications
                 </CardDescription>
               </CardHeader>
             </Card>

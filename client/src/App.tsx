@@ -63,8 +63,6 @@ import BundleSelection from './pages/BundleSelection';
 import Logout from './pages/Logout';
 import AffiliateApply from './pages/AffiliateApply';
 import AffiliateDashboard from './pages/AffiliateDashboard';
-import ChaplainApplicationForm from './pages/ChaplainApplicationForm';
-import AdminChaplainApplications from './pages/AdminChaplainApplications';
 
 function Router() {
   return (
@@ -74,7 +72,6 @@ function Router() {
       <Route path="/logout" component={Logout} />
       <Route path="/affiliate/apply" component={AffiliateApply} />
       <Route path="/affiliate/dashboard" component={AffiliateDashboard} />
-      <Route path="/apply/chaplaincy" component={ChaplainApplicationForm} />
       <Route path="/register" component={Register} />
       <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/reset-password" component={ResetPassword} />
@@ -94,7 +91,6 @@ function Router() {
       <Route path="/admin/follow-ups" component={AdminFollowUps} />
           <Route path="/admin/webinars" component={AdminWebinars} />
           <Route path="/admin/analytics" component={AdminAnalytics} />
-      <Route path="/admin/chaplaincy-applications" component={AdminChaplainApplications} />
       <Route path="/admin/revenue" component={AdminRevenue} />
       <Route path="/admin/bundles" component={AdminBundles} />
       <Route path="/admin/learning-paths" component={AdminLearningPaths} />
