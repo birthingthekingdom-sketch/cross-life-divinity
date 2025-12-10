@@ -1309,5 +1309,18 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Fix the lesson loading problem (added admin bypass to prerequisites)
 - [x] Fix JSON parsing error in quiz options
 - [x] Test lesson viewing works for admin
-- [ ] Test lesson viewing works for regular students
-- [ ] Create checkpoint
+- [ ] Test lesson viewing works for regular students (future: verify non-admin users can view enrolled courses)
+- [x] Create checkpoint
+
+
+## Follow-up Improvements
+- [x] Fix quiz question options format (safe parsing implemented, future: regenerate quiz data with proper JSON)
+- [ ] Test student view lesson access (verify non-admin enrollment works)
+- [x] Add database indexes for prerequisite queries optimization
+  - Added idx_enrollments_user_course on course_enrollments(userId, courseId)
+  - Added idx_prerequisites_course on course_prerequisites(courseId)
+- [x] Verify all improvements work correctly
+  - Tested CHAP101 course page loads instantly
+  - Verified all 10 lessons display with Start buttons
+  - Confirmed admin can access all course content
+- [ ] Create final checkpoint
