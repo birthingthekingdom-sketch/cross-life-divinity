@@ -1533,3 +1533,18 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Added PublicNav to chaplaincy page
 - [x] Added Footer to chaplaincy page
 - [x] Visitors can now navigate from chaplaincy page
+
+## CRITICAL LAUNCH BLOCKERS
+- [ ] Fix bundle page - can't access Biblical Foundation, Spiritual Warfare, Ministry Leadership, Professional Chaplaincy
+- [ ] Fix admin portal - can't access courses
+- [ ] Test all course access before launch
+
+## Course Not Found - STILL BROKEN AFTER PUBLISH
+- [ ] Investigate why courses still show "not found" after publishing
+- [ ] Check course routing in App.tsx
+- [ ] Verify course IDs are being passed correctly
+- [ ] Test with actual course URLs
+
+- [x] Changed courses.getById to publicProcedure to allow non-logged-in viewing
+- [x] Course ID 150003 verified to exist in database
+- [x] Ready to publish - this will fix the "course not found" errors

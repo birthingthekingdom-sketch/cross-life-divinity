@@ -1,0 +1,82 @@
+{
+  "query": "SELECT id, title FROM courses ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, title FROM courses ORDER BY id;",
+  "rows": [
+    {
+      "id": "150001",
+      "title": "Old Testament Survey"
+    },
+    {
+      "id": "150002",
+      "title": "New Testament Survey"
+    },
+    {
+      "id": "150003",
+      "title": "Systematic Theology"
+    },
+    {
+      "id": "150004",
+      "title": "Biblical Hermeneutics"
+    },
+    {
+      "id": "150005",
+      "title": "Fundamentals of Apologetics"
+    },
+    {
+      "id": "150006",
+      "title": "Evangelism and Discipleship"
+    },
+    {
+      "id": "150007",
+      "title": "Discipleship Training"
+    },
+    {
+      "id": "150008",
+      "title": "Prayer and Intercession"
+    },
+    {
+      "id": "150009",
+      "title": "Christian Leadership"
+    },
+    {
+      "id": "150010",
+      "title": "Biblical Worship"
+    },
+    {
+      "id": "150011",
+      "title": "Pastoral Counseling"
+    },
+    {
+      "id": "150012",
+      "title": "Church Administration"
+    },
+    {
+      "id": "150013",
+      "title": "Homiletics"
+    },
+    {
+      "id": "150014",
+      "title": "Discovering Spiritual Gifts"
+    },
+    {
+      "id": "180001",
+      "title": "Understanding Prophecy"
+    },
+    {
+      "id": "180002",
+      "title": "Deliverance Ministry"
+    },
+    {
+      "id": "180003",
+      "title": "The Fivefold Ministry"
+    },
+    {
+      "id": "240001",
+      "title": "Chaplain's Training"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\n150001\tOld Testament Survey\n150002\tNew Testament Survey\n150003\tSystematic Theology\n150004\tBiblical Hermeneutics\n150005\tFundamentals of Apologetics\n150006\tEvangelism and Discipleship\n150007\tDiscipleship Training\n150008\tPrayer and Intercession\n150009\tChristian Leadership\n150010\tBiblical Worship\n150011\tPastoral Counseling\n150012\tChurch Administration\n150013\tHomiletics\n150014\tDiscovering Spiritual Gifts\n180001\tUnderstanding Prophecy\n180002\tDeliverance Ministry\n180003\tThe Fivefold Ministry\n240001\tChaplain's Training\n",
+  "stderr": "",
+  "execution_time_ms": 57
+}
