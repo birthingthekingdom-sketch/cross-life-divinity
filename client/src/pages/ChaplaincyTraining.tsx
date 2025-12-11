@@ -9,6 +9,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
+import { PublicNav } from "@/components/PublicNav";
+import { Footer } from "@/components/Footer";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY!);
 
@@ -84,6 +86,7 @@ export default function ChaplaincyTraining() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">
+      <PublicNav />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-20">
         <div className="container">
@@ -421,6 +424,7 @@ export default function ChaplaincyTraining() {
           </Button>
         </section>
       </div>
+      <Footer />
     </div>
   );
 }

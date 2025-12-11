@@ -1519,3 +1519,17 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Visitors can now view course details without logging in
 - [x] Enrollment status still tracked for logged-in users
 - [x] Prerequisites check only runs for logged-in users
+
+## Chaplaincy Page Navigation - URGENT
+- [ ] Add navigation bar to chaplaincy page
+- [ ] Ensure visitors can navigate to other pages
+
+## URGENT FIXES
+- [ ] Add navigation bar to chaplaincy page
+- [ ] Fix course overview still showing "course not found"
+- [ ] Test published site after fixes
+
+## Chaplaincy Navigation - COMPLETED
+- [x] Added PublicNav to chaplaincy page
+- [x] Added Footer to chaplaincy page
+- [x] Visitors can now navigate from chaplaincy page
