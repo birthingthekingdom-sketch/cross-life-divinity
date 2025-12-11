@@ -223,11 +223,13 @@ export default function Landing() {
               </Link>
             </div>
             <div>
-              <img 
-                src="/chaplain-promo.png" 
-                alt="Chaplain's Training - Pastor / Minister you've been waiting long enough; now is the time!" 
-                className="rounded-lg shadow-2xl w-full"
-              />
+              <Link href="/chaplaincy-training">
+                <img 
+                  src="/chaplain-promo.png" 
+                  alt="Chaplain's Training - Pastor / Minister you've been waiting long enough; now is the time!" 
+                  className="rounded-lg shadow-2xl w-full cursor-pointer hover:opacity-90 transition-opacity"
+                />
+              </Link>
             </div>
           </div>
         </div>

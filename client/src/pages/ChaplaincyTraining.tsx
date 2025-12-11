@@ -87,7 +87,8 @@ export default function ChaplaincyTraining() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-20">
         <div className="container">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          <div className="text-center md:text-left">
             <Badge className="mb-4 bg-primary-foreground/20 text-primary-foreground border-primary-foreground/30">
               Professional Certification Program
             </Badge>
@@ -112,6 +113,14 @@ export default function ChaplaincyTraining() {
                 {createPaymentMutation.isPending ? "Loading..." : "Enroll Now"} <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
+          </div>
+          <div className="hidden md:block">
+            <img 
+              src="/chaplain-promo.png" 
+              alt="Chaplaincy Training Certification" 
+              className="rounded-lg shadow-2xl w-full"
+            />
+          </div>
           </div>
         </div>
       </section>

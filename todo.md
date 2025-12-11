@@ -1414,3 +1414,11 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Add CTA on homepage with correct pricing
 - [x] Add prominent section in pricing page
 - [x] Mobile navigation included
+
+## Chaplaincy Graphics Fix
+- [ ] Make chaplaincy image on landing page clickable (link to /chaplaincy-training)
+- [ ] Add chaplaincy graphic to chaplaincy training page hero section
+
+## Chaplaincy Graphics Fix - COMPLETED
+- [x] Make chaplaincy image on landing page clickable (link to /chaplaincy-training)
+- [x] Add chaplaincy graphic to chaplaincy training page hero section
