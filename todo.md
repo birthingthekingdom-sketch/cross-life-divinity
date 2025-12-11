@@ -1508,3 +1508,14 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 ## Chaplaincy Graphic Fix - COMPLETED
 - [x] Fixed chaplaincy graphic to display on all devices (removed mobile hide)
 - [x] Image now visible on mobile, tablet, and desktop
+
+## Course Viewing Bug - CRITICAL
+- [ ] Fix "course not found" error when non-logged-in visitors try to view course details
+- [ ] Allow public course browsing without requiring login
+- [ ] Visitors should see course descriptions and details before signing up
+
+## Course Viewing Bug - FIXED
+- [x] Changed getById endpoint from protected to public procedure
+- [x] Visitors can now view course details without logging in
+- [x] Enrollment status still tracked for logged-in users
+- [x] Prerequisites check only runs for logged-in users

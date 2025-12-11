@@ -157,7 +157,7 @@ export const appRouter = router({
         return { enrolled };
       }),
     
-    getById: protectedProcedure
+    getById: publicProcedure
       .input(z.object({ id: z.number() }))
       .query(async ({ input, ctx }) => {
         const course = await db.getCourseById(input.id);
@@ -168,14 +168,24 @@ export const appRouter = router({
         // Get prerequisites for this course
         const coursePrerequisites = await prerequisites.getCoursePrerequisites(input.id);
         
-        // Check if user can enroll (has completed prerequisites)
-        const prerequisiteCheck = await prerequisites.checkPrerequisites(ctx.user.id, input.id);
+        // If user is logged in, check prerequisites and enrollment
+        let canEnroll = true;
+        let missingPrerequisites: any[] = [];
+        let isEnrolled = false;
+        
+        if (ctx.user) {
+          const prerequisiteCheck = await prerequisites.checkPrerequisites(ctx.user.id, input.id);
+          canEnroll = prerequisiteCheck.canEnroll;
+          missingPrerequisites = prerequisiteCheck.missingPrerequisites;
+          isEnrolled = await db.isUserEnrolledInCourse(ctx.user.id, input.id);
+        }
         
         return {
           ...course,
           prerequisites: coursePrerequisites,
-          canEnroll: prerequisiteCheck.canEnroll,
-          missingPrerequisites: prerequisiteCheck.missingPrerequisites
+          canEnroll,
+          missingPrerequisites,
+          isEnrolled
         };
       }),
     
