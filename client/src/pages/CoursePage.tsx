@@ -22,7 +22,10 @@ export default function CoursePage() {
     { enabled: isAuthenticated }
   );
   
-  const { data: lessons, isLoading: lessonsLoading } = trpc.lessons.getByCourse.useQuery({ courseId });
+  const { data: lessons, isLoading: lessonsLoading } = trpc.lessons.getByCourse.useQuery(
+    { courseId },
+    { enabled: isAuthenticated }
+  );
   
   // Only fetch progress if user is logged in
   const { data: progress } = trpc.progress.getByCourse.useQuery(
@@ -60,7 +63,8 @@ export default function CoursePage() {
     return (completedLessons.size / lessons.length) * 100;
   }, [lessons, completedLessons]);
 
-  if (courseLoading || lessonsLoading) {
+  // Only show loading if course is loading (lessons query might be disabled)
+  if (courseLoading || (isAuthenticated && lessonsLoading)) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5 flex items-center justify-center">
         <div className="text-center">

@@ -1562,3 +1562,10 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Added Sign Up/Log In buttons for non-authenticated visitors
 - [x] Server restarted successfully with no errors
 - [x] Ready to publish and test on live site
+
+## URGENT - Course Page "Course not found" Issue
+- [x] Debug why logged-in student sees "Course not found" on published site
+- [x] Verify course data is being returned by API
+- [x] Check if enrollment check is blocking course display
+- [x] Fix course page loading condition to handle disabled queries
+- [x] Exclude Chaplaincy course from bundle selection
