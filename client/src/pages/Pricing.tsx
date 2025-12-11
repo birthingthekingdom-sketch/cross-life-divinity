@@ -348,6 +348,86 @@ export default function Pricing() {
           </Card>
         </div>
 
+        {/* Chaplaincy Training - Special Offer */}
+        <div className="max-w-5xl mx-auto mb-16">
+          <Card className="bg-gradient-to-br from-emerald-900/30 to-slate-800/50 border-2 border-emerald-500/50 shadow-2xl">
+            <CardHeader>
+              <div className="flex items-center justify-between mb-2">
+                <Badge className="bg-emerald-500 text-white px-4 py-1">
+                  Professional Certification
+                </Badge>
+                <Badge variant="outline" className="text-emerald-300 border-emerald-600">
+                  Standalone Course
+                </Badge>
+              </div>
+              <CardTitle className="text-3xl text-white">Chaplaincy Training & Certification</CardTitle>
+              <CardDescription className="text-slate-300 text-lg">
+                Become a certified chaplain - serve in hospitals, military, correctional facilities, and corporate settings
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-3xl text-slate-500 line-through">$400</span>
+                    <span className="text-5xl font-bold text-emerald-400">$275</span>
+                  </div>
+                  <p className="text-sm text-emerald-300 font-semibold">Save $125 - Includes background check!</p>
+                  
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-300">CPD-accredited certification</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-300">Background check included ($50 value)</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-300">Crisis intervention training</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-300">Multi-faith pastoral care</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-300">Lifetime access to materials</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="bg-emerald-900/30 border border-emerald-700 rounded-lg p-6">
+                  <h4 className="text-white font-semibold mb-3">Career Opportunities:</h4>
+                  <ul className="space-y-2 text-slate-300 text-sm">
+                    <li>• Healthcare Chaplain (hospitals, hospice)</li>
+                    <li>• Military Chaplain (armed forces, VA)</li>
+                    <li>• Correctional Chaplain (prisons, jails)</li>
+                    <li>• Corporate Chaplain (workplace support)</li>
+                  </ul>
+                  <div className="mt-4 pt-4 border-t border-emerald-700">
+                    <p className="text-xs text-emerald-200">
+                      <strong>Note:</strong> This is a separate course, not included in bundles or subscriptions
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Link href="/chaplaincy-training" className="w-full">
+                <Button
+                  className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold"
+                  size="lg"
+                >
+                  <Award className="w-4 h-4 mr-2" />
+                  Learn More & Enroll
+                </Button>
+              </Link>
+            </CardFooter>
+          </Card>
+        </div>
+
         {/* Upgrade Option */}
         {purchasedCount > 0 && !hasActiveSub && (
           <Card className="max-w-4xl mx-auto bg-gradient-to-r from-purple-900/30 to-blue-900/30 border-purple-500/50">

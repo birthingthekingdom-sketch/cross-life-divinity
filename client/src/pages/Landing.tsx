@@ -31,6 +31,9 @@ export default function Landing() {
               <Link href="/learning-paths" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
                 Learning Paths
               </Link>
+              <Link href="/chaplaincy-training" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                Chaplaincy
+              </Link>
               <Link href="/pricing" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
                 Pricing
               </Link>
@@ -74,6 +77,11 @@ export default function Landing() {
                 <Link href="/learning-paths">
                   <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
                     Learning Paths
+                  </div>
+                </Link>
+                <Link href="/chaplaincy-training">
+                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    Chaplaincy Training
                   </div>
                 </Link>
                 <Link href="/pricing">
@@ -184,11 +192,11 @@ export default function Landing() {
               </p>
               <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
                 <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-4xl font-bold text-accent">$79</span>
-                  <span className="text-2xl text-muted-foreground line-through">$149</span>
-                  <span className="bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">47% OFF</span>
+                  <span className="text-4xl font-bold text-accent">$275</span>
+                  <span className="text-2xl text-muted-foreground line-through">$400</span>
+                  <span className="bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">Save $125</span>
                 </div>
-                <p className="text-muted-foreground">Special introductory pricing - Limited time offer</p>
+                <p className="text-muted-foreground">Includes $50 background check - One-time payment</p>
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-3">
@@ -208,9 +216,9 @@ export default function Landing() {
                   <span className="text-lg">Professional Chaplaincy Certification</span>
                 </li>
               </ul>
-              <Link href="/courses">
+              <Link href="/chaplaincy-training">
                 <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6">
-                  Enroll in Chaplain's Training
+                  Learn More & Enroll
                 </Button>
               </Link>
             </div>

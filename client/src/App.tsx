@@ -64,6 +64,7 @@ import BundleSelection from './pages/BundleSelection';
 import Logout from './pages/Logout';
 import AffiliateApply from './pages/AffiliateApply';
 import AffiliateDashboard from './pages/AffiliateDashboard';
+import ChaplaincyTraining from './pages/ChaplaincyTraining';
 
 function Router() {
   return (
@@ -73,6 +74,7 @@ function Router() {
       <Route path="/logout" component={Logout} />
       <Route path="/affiliate/apply" component={AffiliateApply} />
       <Route path="/affiliate/dashboard" component={AffiliateDashboard} />
+      <Route path="/chaplaincy-training" component={ChaplaincyTraining} />
       <Route path="/register" component={Register} />
       <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/reset-password" component={ResetPassword} />

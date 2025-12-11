@@ -1329,3 +1329,88 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Generate CSV with enrolled student emails
 - [x] Add filters (all students, active only, by course)
 - [x] Include student name and enrollment date in export
+
+## Phase 15: Chaplaincy Training Standalone Course - URGENT
+
+### Chaplaincy Landing Page
+- [ ] Create dedicated /chaplaincy-training page
+- [ ] Highlight chaplaincy certification benefits
+- [ ] Show pricing: $275 (discounted from $400)
+- [ ] Include background check information ($50 included)
+- [ ] Add testimonials and career outcomes
+- [ ] Professional design matching brand
+
+### Payment Integration
+- [ ] Use existing Stripe payment flow
+- [ ] Set special pricing: $275 (27500 cents)
+- [ ] Create chaplaincy course record in database
+- [ ] Auto-enroll after successful payment
+- [ ] Send confirmation email with background check instructions
+
+### Navigation & Marketing
+- [ ] Add "Chaplaincy Training" to main navigation
+- [ ] Add CTA on homepage
+- [ ] Add link in pricing page
+- [ ] Create prominent banner/section
+
+## Phase 16: 6-Month Installment Plan for $299 Bundle - URGENT
+
+### Database Schema
+- [ ] Create payment_plans table (userId, bundleId, totalAmount, monthlyAmount, paymentsTotal, paymentsCompleted, status, startDate, nextPaymentDate)
+- [ ] Create payment_plan_transactions table (planId, amount, status, paymentDate, stripePaymentIntentId, failureReason)
+- [ ] Add indexes for efficient querying
+
+### Backend Implementation
+- [ ] Create installment plan router
+- [ ] Implement createInstallmentPlan mutation ($299 / 6 = $49.83/month)
+- [ ] Set up Stripe ACH recurring payments
+- [ ] Create webhook handler for monthly payments
+- [ ] Implement payment retry logic for failed payments
+- [ ] Auto-enroll in bundle courses after first payment
+- [ ] Send payment confirmation emails
+- [ ] Send payment failure notifications
+
+### Admin Dashboard
+- [ ] Add payment plans overview page
+- [ ] Show active/completed/failed plans
+- [ ] Display upcoming payments calendar
+- [ ] Add manual payment processing option
+- [ ] Show payment history per student
+- [ ] Add plan cancellation feature
+
+### Student Features
+- [ ] Add "Pay Over Time" option on bundle page
+- [ ] Show payment schedule before enrollment
+- [ ] Create "My Payment Plan" page in dashboard
+- [ ] Display next payment date and amount
+- [ ] Show payment history
+- [ ] Add payment method update option
+- [ ] Email reminders 3 days before payment
+
+### Pricing Page Updates
+- [ ] Add installment plan option to $299 bundle
+- [ ] Show "6 payments of $49.83/month" prominently
+- [ ] Compare one-time vs installment pricing
+- [ ] Add FAQ about payment plans
+
+## Phase 15: Chaplaincy Training - COMPLETED
+
+### Chaplaincy Landing Page - COMPLETED
+- [x] Create dedicated /chaplaincy-training page
+- [x] Highlight chaplaincy certification benefits
+- [x] Show pricing: $275 (discounted from $400)
+- [x] Include background check information ($50 included)
+- [x] Add career outcomes and opportunities
+- [x] Professional design matching brand
+
+### Payment Integration - COMPLETED
+- [x] Use existing Stripe payment flow
+- [x] Set special pricing: $275 (27500 cents)
+- [x] Create chaplaincy router in backend
+- [x] Auto-enroll after successful payment
+
+### Navigation & Marketing - COMPLETED
+- [x] Add "Chaplaincy Training" to main navigation
+- [x] Add CTA on homepage with correct pricing
+- [x] Add prominent section in pricing page
+- [x] Mobile navigation included
