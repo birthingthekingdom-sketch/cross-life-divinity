@@ -1,6 +1,7 @@
 import { router, publicProcedure, protectedProcedure } from "./_core/trpc";
 import { z } from "zod";
 import * as chat from "./chat";
+import * as email from "./email";
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -30,12 +31,31 @@ export const chatRouter = router({
       message: z.string().min(1),
     }))
     .mutation(async ({ ctx, input }) => {
-      return await chat.createChatMessage({
+      const result = await chat.createChatMessage({
         sessionId: input.sessionId,
         senderId: ctx.user?.id,
         senderType: "visitor",
         message: input.message,
       });
+
+      // Send email notification to support
+      try {
+        const session = await chat.getChatSession(input.sessionId);
+        await email.sendWelcomeEmail(
+          'studio6817@yahoo.com',
+          'Support Team',
+          [
+            `New chat message from ${session?.visitorName || 'Visitor'}`,
+            `Message: ${input.message}`,
+            `Session ID: ${input.sessionId}`,
+            `View in admin dashboard: /admin/chat/${input.sessionId}`
+          ]
+        );
+      } catch (err) {
+        console.error('Failed to send chat notification email:', err);
+      }
+
+      return result;
     }),
 
   getMessages: publicProcedure

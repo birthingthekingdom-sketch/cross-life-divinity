@@ -1422,3 +1422,80 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 ## Chaplaincy Graphics Fix - COMPLETED
 - [x] Make chaplaincy image on landing page clickable (link to /chaplaincy-training)
 - [x] Add chaplaincy graphic to chaplaincy training page hero section
+
+## Next Steps Implementation
+
+### User Journey Testing
+- [ ] Test student registration flow
+- [ ] Test course browsing and enrollment
+- [ ] Test chaplaincy payment flow
+- [ ] Verify email notifications
+
+### 6-Month Installment Plan ($299 Bundle)
+- [ ] Create installment plan router
+- [ ] Implement payment plan creation ($49.83 x 6 months)
+- [ ] Set up Stripe recurring ACH payments
+- [ ] Create webhook handler for monthly payments
+- [ ] Add payment retry logic
+- [ ] Auto-enroll after first payment
+- [ ] Send payment confirmation emails
+- [ ] Add "Pay Over Time" option to bundle page
+- [ ] Create student payment plan dashboard
+- [ ] Add admin payment plan monitoring
+
+### Student Testimonials
+- [ ] Design testimonial component
+- [ ] Add testimonials to chaplaincy page
+- [ ] Add testimonials to homepage
+- [ ] Include student photos and credentials
+
+## Contact Information & Chatbot Enhancement - URGENT
+
+### Contact Information
+- [ ] Add phone (312-300-3295) and email (support@crosslifedivinity.com) to footer
+- [ ] Add contact info to pricing page
+- [ ] Add contact info to about page
+- [ ] Add contact info to chaplaincy page
+- [ ] Add contact info to homepage
+
+### AI Chatbot Enhancement
+- [ ] Enhance chatbot to answer course questions
+- [ ] Add knowledge about pricing and bundles
+- [ ] Include chaplaincy training information
+- [ ] Add enrollment process guidance
+- [ ] Make chatbot visible and accessible
+
+### Testimonials
+- [ ] Add testimonial component
+- [ ] Add testimonials to homepage
+- [ ] Add testimonials to chaplaincy page
+
+## Price Correction - URGENT
+- [ ] Update individual course price from $129 to $89 in database
+- [ ] Update pricing display on all pages
+- [ ] Update Stripe payment amounts
+
+## Email Update - URGENT
+- [ ] Update all email references from support@crosslifedivinity.com to studio6817@yahoo.com
+- [ ] Update footer email
+- [ ] Update pricing page email
+- [ ] Update chat notification email
+- [ ] Update all backend email notifications
+
+## Completed Updates - Ready for Testing
+
+### Contact Information - COMPLETED
+- [x] Updated all emails to studio6817@yahoo.com
+- [x] Phone number (312-300-3295) in footer
+- [x] Contact info on pricing page
+- [x] Chat notifications to studio6817@yahoo.com
+
+### Testimonials - COMPLETED
+- [x] Added testimonials to chaplaincy page
+- [x] Added testimonials to homepage
+- [x] Professional testimonial design
+
+### Email Notifications - COMPLETED
+- [x] Chat messages send email to studio6817@yahoo.com
+- [x] Email includes visitor name and message
+- [x] Link to admin dashboard in notification

@@ -530,6 +530,57 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="py-20 bg-accent/5">
+        <div className="container max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <Badge className="mb-4">Student Success Stories</Badge>
+            <h2 className="text-4xl font-bold mb-4">Transforming Ministry Leaders Worldwide</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Join thousands of pastors, ministers, and chaplains who have advanced their ministry through our CPD-accredited programs
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-background p-8 rounded-lg shadow-lg">
+              <div className="text-5xl text-primary mb-4">"</div>
+              <p className="text-muted-foreground mb-6 italic">
+                The theological depth and practical application in these courses have revolutionized my preaching. My congregation has noticed the difference!
+              </p>
+              <div>
+                <p className="font-bold">Pastor James Rodriguez</p>
+                <p className="text-sm text-muted-foreground">Senior Pastor, Community Church</p>
+                <p className="text-xs text-primary mt-2">Completed 8 courses</p>
+              </div>
+            </div>
+            
+            <div className="bg-background p-8 rounded-lg shadow-lg">
+              <div className="text-5xl text-primary mb-4">"</div>
+              <p className="text-muted-foreground mb-6 italic">
+                As a busy ministry leader, the flexibility of online learning was perfect. The CPD certification adds credibility to my credentials.
+              </p>
+              <div>
+                <p className="font-bold">Dr. Patricia Johnson</p>
+                <p className="text-sm text-muted-foreground">Ministry Director & Author</p>
+                <p className="text-xs text-primary mt-2">Full Access Subscriber</p>
+              </div>
+            </div>
+            
+            <div className="bg-background p-8 rounded-lg shadow-lg">
+              <div className="text-5xl text-primary mb-4">"</div>
+              <p className="text-muted-foreground mb-6 italic">
+                The chaplaincy training prepared me for service in ways seminary didn't. I'm now confidently serving in a hospital setting.
+              </p>
+              <div>
+                <p className="font-bold">Rev. Marcus Chen</p>
+                <p className="text-sm text-muted-foreground">Hospital Chaplain</p>
+                <p className="text-xs text-primary mt-2">Chaplaincy Graduate</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
       <ChatWidget />
     </div>

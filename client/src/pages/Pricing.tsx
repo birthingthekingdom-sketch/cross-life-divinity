@@ -3,7 +3,7 @@ import { useLocation, Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, CreditCard, DollarSign, Calendar, Sparkles, BookOpen, Award, Clock } from "lucide-react";
+import { Check, CreditCard, DollarSign, Calendar, Sparkles, BookOpen, Award, Clock, Phone, Mail } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { toast } from "sonner";
@@ -505,6 +505,35 @@ export default function Pricing() {
               </CardContent>
             </Card>
           </div>
+
+          {/* Contact Section */}
+          <Card className="bg-slate-800/50 border-slate-700 mt-8">
+            <CardHeader>
+              <CardTitle className="text-white text-center">Have Questions?</CardTitle>
+            </CardHeader>
+            <CardContent className="text-center">
+              <p className="text-slate-300 mb-4">
+                Our support team is here to help you choose the right learning path.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a 
+                  href="tel:+13123003295" 
+                  className="flex items-center gap-2 text-white hover:text-primary transition-colors"
+                >
+                  <Phone className="h-5 w-5" />
+                  (312) 300-3295
+                </a>
+                <span className="hidden sm:inline text-slate-600">|</span>
+                <a 
+                  href="mailto:studio6817@yahoo.com" 
+                  className="flex items-center gap-2 text-white hover:text-primary transition-colors"
+                >
+                  <Mail className="h-5 w-5" />
+                  studio6817@yahoo.com
+                </a>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
 

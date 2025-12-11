@@ -317,6 +317,56 @@ export default function ChaplaincyTraining() {
           </div>
         </section>
 
+        {/* Testimonials Section */}
+        <section className="py-16 bg-accent/5">
+          <div className="container">
+            <h2 className="text-3xl font-bold text-center mb-4">What Our Graduates Say</h2>
+            <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+              Hear from certified chaplains who have completed our program
+            </p>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-4xl mb-4">"</div>
+                  <p className="text-muted-foreground mb-6 italic">
+                    This program prepared me for real-world chaplaincy in ways I never expected. The practical training and biblical foundation gave me confidence to serve in a hospital setting.
+                  </p>
+                  <div>
+                    <p className="font-semibold">Rev. Michael Thompson</p>
+                    <p className="text-sm text-muted-foreground">Hospital Chaplain, Chicago</p>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-4xl mb-4">"</div>
+                  <p className="text-muted-foreground mb-6 italic">
+                    The flexibility of online learning allowed me to complete the program while serving full-time in ministry. The certification opened doors I didn't know existed.
+                  </p>
+                  <div>
+                    <p className="font-semibold">Pastor Sarah Williams</p>
+                    <p className="text-sm text-muted-foreground">Correctional Facility Chaplain</p>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-4xl mb-4">"</div>
+                  <p className="text-muted-foreground mb-6 italic">
+                    Outstanding program! The instructors are experienced chaplains who provide real-world insights. I'm now serving as a military chaplain thanks to this training.
+                  </p>
+                  <div>
+                    <p className="font-semibold">Chaplain David Martinez</p>
+                    <p className="text-sm text-muted-foreground">U.S. Military Chaplain</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section>
           <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
