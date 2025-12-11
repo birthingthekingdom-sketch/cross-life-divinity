@@ -114,7 +114,7 @@ export default function ChaplaincyTraining() {
               </Button>
             </div>
           </div>
-          <div className="hidden md:block">
+          <div>
             <img 
               src="/chaplain-promo.png" 
               alt="Chaplaincy Training Certification" 

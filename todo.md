@@ -1499,3 +1499,12 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Chat messages send email to studio6817@yahoo.com
 - [x] Email includes visitor name and message
 - [x] Link to admin dashboard in notification
+
+## Chaplaincy Graphic Fix - URGENT
+- [ ] Fix chaplaincy graphic not displaying on chaplaincy page
+- [ ] Verify image path is correct
+- [ ] Test on published site
+
+## Chaplaincy Graphic Fix - COMPLETED
+- [x] Fixed chaplaincy graphic to display on all devices (removed mobile hide)
+- [x] Image now visible on mobile, tablet, and desktop
