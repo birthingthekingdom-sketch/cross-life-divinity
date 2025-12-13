@@ -1664,3 +1664,9 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [ ] Fix course bundles showing "no access" - enrollment logic issue
 - [x] Update all course cards to blue color on student portal
 - [ ] Add course preview functionality for each course
+
+## Database Cleanup - December 2025
+- [x] Delete empty Chaplain course
+- [x] Populate Biblical Foundations bundle with courses
+- [x] Populate Spiritual Warfare & Deliverance bundle with courses
+- [x] Populate Ministry Leadership Track bundle with courses

@@ -1,0 +1,100 @@
+{
+  "query": "SELECT id, code, title FROM courses ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code, title FROM courses ORDER BY id;",
+  "rows": [
+    {
+      "id": "150001",
+      "code": "OLD_TESTAMENT_SURVEY",
+      "title": "Old Testament Survey"
+    },
+    {
+      "id": "150002",
+      "code": "NEW_TESTAMENT_SURVEY",
+      "title": "New Testament Survey"
+    },
+    {
+      "id": "150003",
+      "code": "SYSTEMATIC_THEOLOGY",
+      "title": "Systematic Theology"
+    },
+    {
+      "id": "150004",
+      "code": "BIBLICAL_HERMENEUTICS",
+      "title": "Biblical Hermeneutics"
+    },
+    {
+      "id": "150005",
+      "code": "FUNDAMENTALS_OF_APOLOGETICS",
+      "title": "Fundamentals of Apologetics"
+    },
+    {
+      "id": "150006",
+      "code": "EVANGELISM_AND_DISCIPLESHIP",
+      "title": "Evangelism and Discipleship"
+    },
+    {
+      "id": "150007",
+      "code": "DISCIPLESHIP_TRAINING",
+      "title": "Discipleship Training"
+    },
+    {
+      "id": "150008",
+      "code": "PRAYER_AND_INTERCESSION",
+      "title": "Prayer and Intercession"
+    },
+    {
+      "id": "150009",
+      "code": "CHRISTIAN_LEADERSHIP",
+      "title": "Christian Leadership"
+    },
+    {
+      "id": "150010",
+      "code": "BIBLICAL_WORSHIP",
+      "title": "Biblical Worship"
+    },
+    {
+      "id": "150011",
+      "code": "PASTORAL_COUNSELING",
+      "title": "Pastoral Counseling"
+    },
+    {
+      "id": "150012",
+      "code": "CHURCH_ADMINISTRATION",
+      "title": "Church Administration"
+    },
+    {
+      "id": "150013",
+      "code": "HOMILETICS",
+      "title": "Homiletics"
+    },
+    {
+      "id": "150014",
+      "code": "DISCOVERING_SPIRITUAL_GIFTS",
+      "title": "Discovering Spiritual Gifts"
+    },
+    {
+      "id": "180001",
+      "code": "PROP-101",
+      "title": "Understanding Prophecy"
+    },
+    {
+      "id": "180002",
+      "code": "DEL-101",
+      "title": "Deliverance Ministry"
+    },
+    {
+      "id": "180003",
+      "code": "MIN-301",
+      "title": "The Fivefold Ministry"
+    },
+    {
+      "id": "240001",
+      "code": "CHAP101",
+      "title": "Chaplain's Training"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\n150001\tOLD_TESTAMENT_SURVEY\tOld Testament Survey\n150002\tNEW_TESTAMENT_SURVEY\tNew Testament Survey\n150003\tSYSTEMATIC_THEOLOGY\tSystematic Theology\n150004\tBIBLICAL_HERMENEUTICS\tBiblical Hermeneutics\n150005\tFUNDAMENTALS_OF_APOLOGETICS\tFundamentals of Apologetics\n150006\tEVANGELISM_AND_DISCIPLESHIP\tEvangelism and Discipleship\n150007\tDISCIPLESHIP_TRAINING\tDiscipleship Training\n150008\tPRAYER_AND_INTERCESSION\tPrayer and Intercession\n150009\tCHRISTIAN_LEADERSHIP\tChristian Leadership\n150010\tBIBLICAL_WORSHIP\tBiblical Worship\n150011\tPASTORAL_COUNSELING\tPastoral Counseling\n150012\tCHURCH_ADMINISTRATION\tChurch Administration\n150013\tHOMILETICS\tHomiletics\n150014\tDISCOVERING_SPIRITUAL_GIFTS\tDiscovering Spiritual Gifts\n180001\tPROP-101\tUnderstanding Prophecy\n180002\tDEL-101\tDeliverance Ministry\n180003\tMIN-301\tThe Fivefold Ministry\n240001\tCHAP101\tChaplain's Training\n",
+  "stderr": "",
+  "execution_time_ms": 787
+}

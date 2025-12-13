@@ -1,0 +1,26 @@
+{
+  "query": "SELECT id, name FROM course_bundles ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, name FROM course_bundles ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Ministry Leadership Track"
+    },
+    {
+      "id": "2",
+      "name": "Spiritual Warfare & Deliverance"
+    },
+    {
+      "id": "3",
+      "name": "Biblical Foundations"
+    },
+    {
+      "id": "30001",
+      "name": "Professional Chaplaincy Certification"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\n1\tMinistry Leadership Track\n2\tSpiritual Warfare & Deliverance\n3\tBiblical Foundations\n30001\tProfessional Chaplaincy Certification\n",
+  "stderr": "",
+  "execution_time_ms": 51
+}
