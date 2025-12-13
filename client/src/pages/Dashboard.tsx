@@ -424,7 +424,7 @@ export default function Dashboard() {
               <Card key={course.id} className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50">
                 <CardHeader 
                   className="text-card-foreground min-h-[140px] relative overflow-hidden"
-                  style={{ backgroundColor: course.colorTheme }}
+                  style={{ backgroundColor: '#1e40af' }}
                 >
                   <div className="absolute top-3 right-3 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold">
                     {course.code}

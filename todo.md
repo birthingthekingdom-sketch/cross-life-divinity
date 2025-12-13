@@ -1658,3 +1658,9 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Investigate why signup page redirects instantly instead of showing form
 - [x] No redirect logic found in Register component - likely testing while logged in
 - [ ] User needs to test in incognito/private window after publishing
+
+## Student Experience Fixes - December 2025
+- [ ] Fix "Start This Path" button in Learning Paths - not enrolling users
+- [ ] Fix course bundles showing "no access" - enrollment logic issue
+- [x] Update all course cards to blue color on student portal
+- [ ] Add course preview functionality for each course
