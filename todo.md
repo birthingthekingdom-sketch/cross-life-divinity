@@ -1587,4 +1587,21 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Identify pages with white/low-contrast cards
 - [x] Update all cards to use consistent readable background colors
 - [x] Test readability across all pages (Landing, About updated)
-- [ ] Save checkpoint with color fixes
+- [x] Save checkpoint with color fixes
+
+## Navigation and Course Display Issues
+- [x] Fix admin green button showing for non-admin users in nav bar
+- [ ] Fix Chaplain course appearing at bottom of pages (should be excluded)
+- [ ] Test with non-admin user login
+- [ ] Save checkpoint with fixes
+
+## Admin Access and Role Management
+- [x] Identify current admin account setup
+- [x] Update newest user account to admin role
+- [x] User can now access admin panel
+
+## Catalog Page Fixes
+- [x] Remove Chaplain course from Catalog/All Courses page
+- [x] Fix white cards on Catalog page (apply blue backgrounds)
+- [x] Test Catalog page - verified Chaplaincy not showing, cards have blue backgrounds
+- [ ] Save checkpoint with all fixes

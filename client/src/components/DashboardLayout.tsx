@@ -95,17 +95,19 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                   Pricing
                 </Button>
               </Link>
-              <Link href="/toggle-role">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-blue-500/20 border-blue-400/30 text-primary-foreground hover:bg-blue-500/30"
-                  title={`Switch to ${user?.role === 'admin' ? 'Student' : 'Admin'} View`}
-                >
-                  <RefreshCw className="h-4 w-4 mr-2" />
-                  <span className="hidden md:inline">{user?.role === 'admin' ? 'Student' : 'Admin'} View</span>
-                </Button>
-              </Link>
+              {user?.role === 'admin' && (
+                <Link href="/toggle-role">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="bg-blue-500/20 border-blue-400/30 text-primary-foreground hover:bg-blue-500/30"
+                    title="Switch to Student View"
+                  >
+                    <RefreshCw className="h-4 w-4 mr-2" />
+                    <span className="hidden md:inline">Student View</span>
+                  </Button>
+                </Link>
+              )}
               <div className="text-right hidden sm:block ml-2">
                 <p className="font-semibold text-sm">{user?.name || "Student"}</p>
                 <p className="text-xs text-primary-foreground/70">{user?.email}</p>

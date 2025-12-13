@@ -55,12 +55,12 @@ export default function Catalog() {
         <div className="text-center max-w-3xl mx-auto mb-8">
           <h2 className="text-3xl font-bold mb-3">All Courses</h2>
           <p className="text-muted-foreground text-lg">
-            Browse our complete catalog of {courses?.length || 0} theological courses covering essential ministry topics.
+            Browse our complete catalog of {courses?.filter((c: any) => !c.code.startsWith('CHAP')).length || 0} theological courses covering essential ministry topics.
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {courses?.map((course: any) => (
-            <Card key={course.id} className="hover:shadow-xl transition-all">
+          {courses?.filter((course: any) => !course.code.startsWith('CHAP')).map((course: any) => (
+            <Card key={course.id} className="hover:shadow-xl transition-all bg-blue-50 border-blue-200">
               <CardHeader 
                 className="bg-primary text-white min-h-[140px]"
               >
@@ -76,7 +76,7 @@ export default function Catalog() {
                 <CardTitle className="text-white text-lg">{course.title}</CardTitle>
               </CardHeader>
               <CardContent className="pt-4">
-                <CardDescription className="text-sm mb-4 line-clamp-2">
+                <CardDescription className="text-sm mb-4 line-clamp-2 text-foreground/80">
                   {course.description}
                 </CardDescription>
                 <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
