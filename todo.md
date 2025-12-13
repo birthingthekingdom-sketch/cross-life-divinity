@@ -1681,3 +1681,9 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Update individual course price from $89 to $199
 - [ ] Add Learning Paths pricing option to pricing page
 - [ ] Update pricing calculations and displays
+
+## Complete Pricing Structure - December 2025
+- [x] Add Learning Paths pricing card ($199) to pricing page
+- [x] Add Chaplain course pricing card ($275) to pricing page
+- [ ] Update bundles pricing to $299 (discounted from $387)
+- [ ] Recreate Chaplain course in database
