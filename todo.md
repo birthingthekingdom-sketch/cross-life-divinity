@@ -1633,4 +1633,11 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Fix lesson preview auto-redirecting to login after a few seconds (changed getById to publicProcedure)
 - [x] Implement "Start This Path" button functionality on Learning Paths page
 - [x] Test both fixes (need incognito test after publish)
+- [x] Save checkpoint (version 618f6e3f)
+
+## Signup Page Auto-Redirect Issue
+- [x] Investigate why signup page redirects to OAuth login instead of showing form
+- [x] Fixed /signup route (was missing, added as alias to /register)
+- [x] Fixed Learning Paths button to use /register
+- [x] Test signup flow from Learning Paths - form displays correctly
 - [ ] Save checkpoint

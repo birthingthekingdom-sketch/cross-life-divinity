@@ -156,7 +156,7 @@ export default function LearningPaths() {
                         <Button
                           onClick={() => {
                             if (!isAuthenticated) {
-                              setLocation('/signup');
+                              setLocation('/register');
                             } else {
                               enrollMutation.mutate({ learningPathId: path.id });
                             }
