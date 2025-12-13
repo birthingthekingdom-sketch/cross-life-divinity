@@ -18,13 +18,13 @@ const priceDisplay = {
     minimumMonths: 6,
   },
   individualCourse: {
-    originalPrice: "$129",
-    price: "$89",
-    total10Courses: "$890",
+    originalPrice: "$299",
+    price: "$199",
+    total10Courses: "$1990",
   },
   savings: {
-    amount: "$596",
-    percentage: 67,
+    amount: "$1696",
+    percentage: 85,
   },
 };
 

@@ -1670,3 +1670,14 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Populate Biblical Foundations bundle with courses
 - [x] Populate Spiritual Warfare & Deliverance bundle with courses
 - [x] Populate Ministry Leadership Track bundle with courses
+
+## Paid Learning Paths - December 2025
+- [x] Change "Start This Path" button to redirect to pricing page
+- [x] Add $199 price display to learning path cards
+- [ ] Add price field to learning_paths database table
+- [ ] Update enrollment logic to require payment verification
+
+## Pricing Updates - December 2025
+- [x] Update individual course price from $89 to $199
+- [ ] Add Learning Paths pricing option to pricing page
+- [ ] Update pricing calculations and displays

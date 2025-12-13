@@ -139,6 +139,9 @@ export default function LearningPaths() {
                             {path.duration}
                           </Badge>
                         )}
+                        <Badge className="bg-green-600 hover:bg-green-700 text-white">
+                          $199
+                        </Badge>
                       </div>
                       <CardTitle className="text-2xl mb-2">{path.name}</CardTitle>
                       <CardDescription className="text-base">{path.description}</CardDescription>
@@ -154,16 +157,9 @@ export default function LearningPaths() {
                         </Button>
                       ) : (
                         <Button
-                          onClick={() => {
-                            if (!isAuthenticated) {
-                              setLocation('/register');
-                            } else {
-                              enrollMutation.mutate({ learningPathId: path.id });
-                            }
-                          }}
-                          disabled={enrollMutation.isPending}
+                          onClick={() => setLocation('/pricing')}
                         >
-                          {enrollMutation.isPending ? "Enrolling..." : isAuthenticated ? "Start This Path" : "Sign Up to Start"}
+                          Start This Path - $199
                         </Button>
                       )}
                     </div>
