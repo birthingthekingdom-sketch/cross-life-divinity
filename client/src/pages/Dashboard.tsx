@@ -6,6 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { PullToRefresh } from "@/components/PullToRefresh";
 import { trpc } from "@/lib/trpc";
 import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, RefreshCw, Settings } from "lucide-react";
+import { Fragment } from "react";
 import { Link } from "wouter";
 import { useMemo } from "react";
 
@@ -73,70 +74,82 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <Link href="/webinars">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
-                >
-                  <Video className="h-4 w-4 mr-2" />
-                  Webinars
-                </Button>
-              </Link>
-              <Link href="/progress">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
-                >
-                  <TrendingUp className="h-4 w-4 mr-2" />
-                  My Progress
-                </Button>
-              </Link>
-              <Link href="/certificates">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
-                >
-                  <Award className="h-4 w-4 mr-2" />
-                  My Certificates
-                </Button>
-              </Link>
-              {user?.role === 'admin' && (
-                <Link href="/admin">
+              <Fragment key="webinars-btn">
+                <Link href="/webinars">
                   <Button
                     variant="outline"
                     size="sm"
-                    className="bg-green-500/20 border-green-400/30 text-primary-foreground hover:bg-green-500/30"
+                    className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
                   >
-                    <Settings className="h-4 w-4 mr-2" />
-                    Admin
+                    <Video className="h-4 w-4 mr-2" />
+                    Webinars
                   </Button>
                 </Link>
+              </Fragment>
+              <Fragment key="progress-btn">
+                <Link href="/progress">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
+                  >
+                    <TrendingUp className="h-4 w-4 mr-2" />
+                    My Progress
+                  </Button>
+                </Link>
+              </Fragment>
+              <Fragment key="certificates-btn">
+                <Link href="/certificates">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
+                  >
+                    <Award className="h-4 w-4 mr-2" />
+                    My Certificates
+                  </Button>
+                </Link>
+              </Fragment>
+              {user?.role === 'admin' && (
+                <Fragment key="admin-btn">
+                  <Link href="/admin">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="bg-green-500/20 border-green-400/30 text-primary-foreground hover:bg-green-500/30"
+                    >
+                      <Settings className="h-4 w-4 mr-2" />
+                      Admin
+                    </Button>
+                  </Link>
+                </Fragment>
               )}
               {user?.email === 'birthingthekingdom@gmail.com' && (
-                <Link href="/toggle-role">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="bg-blue-500/20 border-blue-400/30 text-primary-foreground hover:bg-blue-500/30"
-                    title={`Switch to ${user?.role === 'admin' ? 'Student' : 'Admin'} View`}
-                  >
-                    <RefreshCw className="h-4 w-4 mr-2" />
-                    {user?.role === 'admin' ? 'Student' : 'Admin'} View
-                  </Button>
-                </Link>
+                <Fragment key="toggle-btn">
+                  <Link href="/toggle-role">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="bg-blue-500/20 border-blue-400/30 text-primary-foreground hover:bg-blue-500/30"
+                      title={`Switch to ${user?.role === 'admin' ? 'Student' : 'Admin'} View`}
+                    >
+                      <RefreshCw className="h-4 w-4 mr-2" />
+                      {user?.role === 'admin' ? 'Student' : 'Admin'} View
+                    </Button>
+                  </Link>
+                </Fragment>
               )}
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => logout()}
-                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
-              >
-                <LogOut className="h-4 w-4 mr-2" />
-                Logout
-              </Button>
+              <Fragment key="logout-btn">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => logout()}
+                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
+                >
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Logout
+                </Button>
+              </Fragment>
             </div>
           </div>
         </div>
