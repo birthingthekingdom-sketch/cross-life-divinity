@@ -245,7 +245,7 @@ export const appRouter = router({
         return db.getLessonsByCourseId(input.courseId);
       }),
     
-    getById: protectedProcedure
+    getById: publicProcedure
       .input(z.object({ id: z.number() }))
       .query(async ({ input }) => {
         const lesson = await db.getLessonById(input.id);

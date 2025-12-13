@@ -8,8 +8,12 @@ import { Link } from "wouter";
 import { toast } from "sonner";
 import { CourseDependencyDiagram } from "@/components/CourseDependencyDiagram";
 import { PublicNav } from "@/components/PublicNav";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { useLocation } from "wouter";
 
 export default function LearningPaths() {
+  const { isAuthenticated } = useAuth();
+  const [, setLocation] = useLocation();
   const utils = trpc.useUtils();
   const { data: paths, isLoading } = trpc.bundles.getActiveLearningPaths.useQuery();
   const { data: enrolledCourses } = trpc.courses.list.useQuery();
@@ -150,10 +154,16 @@ export default function LearningPaths() {
                         </Button>
                       ) : (
                         <Button
-                          onClick={() => enrollMutation.mutate({ learningPathId: path.id })}
+                          onClick={() => {
+                            if (!isAuthenticated) {
+                              setLocation('/signup');
+                            } else {
+                              enrollMutation.mutate({ learningPathId: path.id });
+                            }
+                          }}
                           disabled={enrollMutation.isPending}
                         >
-                          {enrollMutation.isPending ? "Enrolling..." : "Start This Path"}
+                          {enrollMutation.isPending ? "Enrolling..." : isAuthenticated ? "Start This Path" : "Sign Up to Start"}
                         </Button>
                       )}
                     </div>

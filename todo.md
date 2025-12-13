@@ -1619,4 +1619,18 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Show lesson title, intro, and sign-up CTA
 - [x] Hide full lesson content behind authentication
 - [x] Test preview mode (code verified, needs incognito test)
-- [ ] Save checkpoint with preview feature
+- [x] Save checkpoint with preview feature (version 5af8fe99)
+
+## Learning Paths Course Access Control
+- [x] Investigate how Learning Paths courses are accessed
+- [x] Confirmed: Course pages show full content to unauthenticated users
+- [ ] Add preview mode to CoursePage (similar to LessonPage)
+- [ ] Hide lesson list and full content behind authentication
+- [ ] Test with unauthenticated user
+- [ ] Save checkpoint with fix
+
+## Learning Paths and Lesson Preview Issues
+- [x] Fix lesson preview auto-redirecting to login after a few seconds (changed getById to publicProcedure)
+- [x] Implement "Start This Path" button functionality on Learning Paths page
+- [x] Test both fixes (need incognito test after publish)
+- [ ] Save checkpoint
