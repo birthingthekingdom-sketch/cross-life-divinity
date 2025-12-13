@@ -1569,3 +1569,15 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Check if enrollment check is blocking course display
 - [x] Fix course page loading condition to handle disabled queries
 - [x] Exclude Chaplaincy course from bundle selection
+
+## Password Reset for Testing
+- [ ] Reset admin password to allow login testing
+- [ ] Verify course pages load correctly after login
+- [ ] Confirm Chaplaincy exclusion from bundles
+
+## CRITICAL - Course Not Found Still Occurring
+- [ ] Diagnose why published site still shows "Course not found"
+- [ ] Verify CoursePage component logic is correct
+- [ ] Check if courses.getById API is working
+- [ ] Implement verified fix and test thoroughly
+- [ ] Publish and confirm resolution on live site
