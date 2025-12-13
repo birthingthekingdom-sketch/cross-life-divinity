@@ -1612,4 +1612,11 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Add authentication checks to lesson pages
 - [x] Redirect unauthenticated users to login/register
 - [x] Test with logged-out user - verified redirect to login works
-- [ ] Save checkpoint with security fixes
+- [x] Save checkpoint with security fixes (version d428fd60)
+
+## Lesson Preview for Conversion
+- [x] Change lesson page to show preview instead of redirect for unauthenticated users
+- [x] Show lesson title, intro, and sign-up CTA
+- [x] Hide full lesson content behind authentication
+- [x] Test preview mode (code verified, needs incognito test)
+- [ ] Save checkpoint with preview feature
