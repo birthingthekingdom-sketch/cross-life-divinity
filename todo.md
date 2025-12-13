@@ -1640,4 +1640,10 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Fixed /signup route (was missing, added as alias to /register)
 - [x] Fixed Learning Paths button to use /register
 - [x] Test signup flow from Learning Paths - form displays correctly
+- [x] Save checkpoint (version 9c0e68a1)
+
+## Course Page SQL Error
+- [x] Fix learning_path_courses query with undefined pathId parameter
+- [x] Add proper null/undefined check before querying
+- [x] Test course page /course/150003 - loads without errors
 - [ ] Save checkpoint
