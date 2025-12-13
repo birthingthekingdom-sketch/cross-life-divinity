@@ -1582,3 +1582,9 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Implement verified fix - Made lessons.getByCourse publicProcedure and always enabled
 - [x] Fixed SQL query parsing in prerequisites.ts
 - [ ] Publish and confirm resolution on live site
+
+## Card Color Contrast Fix
+- [x] Identify pages with white/low-contrast cards
+- [x] Update all cards to use consistent readable background colors
+- [x] Test readability across all pages (Landing, About updated)
+- [ ] Save checkpoint with color fixes

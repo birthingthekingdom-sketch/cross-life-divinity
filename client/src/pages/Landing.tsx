@@ -196,7 +196,7 @@ export default function Landing() {
                   <span className="text-2xl text-muted-foreground line-through">$400</span>
                   <span className="bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">Save $125</span>
                 </div>
-                <p className="text-muted-foreground">Includes $50 background check - One-time payment</p>
+                <p className="text-foreground/80">Includes $50 background check - One-time payment</p>
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-3">
@@ -241,32 +241,32 @@ export default function Landing() {
           <h2 className="text-4xl font-bold text-center mb-4">New Courses Added</h2>
           <p className="text-center text-muted-foreground mb-12 text-lg">Expand your ministry with our latest seminary-quality courses</p>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
                 <BookOpen className="h-8 w-8 text-accent" />
               </div>
               <h3 className="text-2xl font-semibold mb-3">Understanding Prophecy</h3>
-              <p className="text-muted-foreground mb-4">
+              <p className="text-foreground/80 mb-4">
                 Explore the prophetic office and gift, learn to test prophecies, and understand the role of prophecy in the believer's life and church ministry.
               </p>
               <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CPD Hours</div>
             </div>
-            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
                 <BookOpen className="h-8 w-8 text-accent" />
               </div>
               <h3 className="text-2xl font-semibold mb-3">Deliverance Ministry</h3>
-              <p className="text-muted-foreground mb-4">
+              <p className="text-foreground/80 mb-4">
                 Master the biblical foundations of deliverance, understand spiritual and natural bondages, and learn practical methods for setting captives free.
               </p>
               <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CPD Hours</div>
             </div>
-            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
                 <BookOpen className="h-8 w-8 text-accent" />
               </div>
               <h3 className="text-2xl font-semibold mb-3">The Fivefold Ministry</h3>
-              <p className="text-muted-foreground mb-4">
+              <p className="text-foreground/80 mb-4">
                 Study the five ministry gifts from Ephesians 4:11 - apostle, prophet, evangelist, pastor, and teacher - and their function in building the church.
               </p>
               <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CPD Hours</div>
@@ -286,7 +286,7 @@ export default function Landing() {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {/* Beginner Path */}
-            <div className="bg-card border-2 border-blue-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-blue-500/40">
+            <div className="bg-blue-50 border-2 border-blue-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-blue-500/40">
               <div className="bg-blue-500/10 rounded-full w-16 h-16 flex items-center justify-center mb-6">
                 <BookOpen className="h-8 w-8 text-blue-600" />
               </div>
@@ -294,7 +294,7 @@ export default function Landing() {
                 <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">Beginner</span>
                 <h3 className="text-2xl font-bold mt-1">New Believer Foundation</h3>
               </div>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
+              <p className="text-foreground/80 mb-6 leading-relaxed">
                 Perfect for new believers and those seeking to establish a solid biblical foundation. This path introduces essential Christian doctrines, biblical interpretation basics, foundational spiritual disciplines, and practical tools for spiritual growth and discipleship.
               </p>
               <div className="space-y-3 mb-6">
@@ -317,7 +317,7 @@ export default function Landing() {
             </div>
 
             {/* Intermediate Path */}
-            <div className="bg-card border-2 border-purple-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-purple-500/40">
+            <div className="bg-blue-50 border-2 border-purple-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-purple-500/40">
               <div className="bg-purple-500/10 rounded-full w-16 h-16 flex items-center justify-center mb-6">
                 <Award className="h-8 w-8 text-purple-600" />
               </div>
@@ -325,7 +325,7 @@ export default function Landing() {
                 <span className="text-sm font-semibold text-purple-600 uppercase tracking-wide">Intermediate</span>
                 <h3 className="text-2xl font-bold mt-1">Ministry Preparation Track</h3>
               </div>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
+              <p className="text-foreground/80 mb-6 leading-relaxed">
                 Designed for aspiring ministry leaders and those actively serving in church roles. This comprehensive path equips you with practical ministry skills, deeper biblical knowledge, and leadership principles essential for effective kingdom service.
               </p>
               <div className="space-y-3 mb-6">
@@ -347,16 +347,14 @@ export default function Landing() {
               </Link>
             </div>
 
-            {/* Advanced Path */}
-            <div className="bg-card border-2 border-amber-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-amber-500/40">
-              <div className="bg-amber-500/10 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+            {/* Advanced Path */}            <div className="bg-blue-50 border-2 border-orange-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-orange-500/40">              <div className="bg-amber-500/10 rounded-full w-16 h-16 flex items-center justify-center mb-6">
                 <Users className="h-8 w-8 text-amber-600" />
               </div>
               <div className="mb-4">
                 <span className="text-sm font-semibold text-amber-600 uppercase tracking-wide">Advanced</span>
                 <h3 className="text-2xl font-bold mt-1">Theological Studies</h3>
               </div>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
+              <p className="text-foreground/80 mb-6 leading-relaxed">
                 For seasoned ministry leaders and scholars pursuing theological depth. This rigorous path covers systematic theology, advanced biblical studies, and specialized ministry topics that prepare you for senior leadership and teaching roles in the church.
               </p>
               <div className="space-y-3 mb-6">
@@ -399,7 +397,7 @@ export default function Landing() {
                 <BookOpen className="h-12 w-12 text-accent" />
               </div>
               <h3 className="text-2xl font-semibold mb-3">Seminary-Quality Education</h3>
-              <p className="text-muted-foreground">
+              <p className="text-foreground/80">
                 Nearly 1,000,000 words of comprehensive theological content developed by experienced theologians and ministry leaders
               </p>
             </div>
@@ -408,7 +406,7 @@ export default function Landing() {
                 <Award className="h-12 w-12 text-accent" />
               </div>
               <h3 className="text-2xl font-semibold mb-3">CPD Accredited</h3>
-              <p className="text-muted-foreground">
+              <p className="text-foreground/80">
                 Earn recognized certificates that demonstrate your commitment to professional development
               </p>
             </div>
@@ -417,7 +415,7 @@ export default function Landing() {
                 <Users className="h-12 w-12 text-accent" />
               </div>
               <h3 className="text-2xl font-semibold mb-3">Join with Other Leaders</h3>
-              <p className="text-muted-foreground">
+              <p className="text-foreground/80">
                 Connect with a global community of ministry leaders pursuing excellence
               </p>
             </div>
