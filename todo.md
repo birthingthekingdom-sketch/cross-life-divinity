@@ -1687,3 +1687,18 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Add Chaplain course pricing card ($275) to pricing page
 - [ ] Update bundles pricing to $299 (discounted from $387)
 - [ ] Recreate Chaplain course in database
+
+## Stripe Payment Integration - December 2025
+- [x] Create Stripe product for Learning Paths ($199)
+- [x] Create Stripe product for 3-Course Bundle ($299)
+- [x] Create Stripe product for Chaplain Course ($275)
+- [x] Add checkout endpoints for new products
+- [ ] Integrate checkout buttons on pricing page
+- [ ] Test complete payment flow
+
+## Fix Stripe Integration (Express) - December 2025
+- [ ] Revert incorrect TRPC payment router changes
+- [ ] Find Express payment routes
+- [ ] Add Learning Path checkout to Express
+- [ ] Add Chaplain checkout to Express
+- [ ] Update pricing page buttons to use Express endpoints
