@@ -1604,4 +1604,12 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Remove Chaplain course from Catalog/All Courses page
 - [x] Fix white cards on Catalog page (apply blue backgrounds)
 - [x] Test Catalog page - verified Chaplaincy not showing, cards have blue backgrounds
-- [ ] Save checkpoint with all fixes
+- [x] Save checkpoint with all fixes (version 02faeecd)
+
+## Authentication & Access Control Issue
+- [x] Investigate learning paths and course access for unauthenticated users
+- [x] Add authentication checks to course detail pages (already had them)
+- [x] Add authentication checks to lesson pages
+- [x] Redirect unauthenticated users to login/register
+- [x] Test with logged-out user - verified redirect to login works
+- [ ] Save checkpoint with security fixes

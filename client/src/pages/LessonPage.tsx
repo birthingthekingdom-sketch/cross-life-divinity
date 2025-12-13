@@ -6,16 +6,29 @@ import { Textarea } from "@/components/ui/textarea";
 import { trpc } from "@/lib/trpc";
 import { AssignmentSubmission } from "@/components/AssignmentSubmission";
 import { ArrowLeft, CheckCircle2, Loader2 } from "lucide-react";
-import { Link, useParams } from "wouter";
-import { useState, useMemo } from "react";
+import { Link, useParams, useLocation } from "wouter";
+import { useState, useMemo, useEffect } from "react";
 import { toast } from "sonner";
 import { Streamdown } from "streamdown";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 export default function LessonPage() {
   const params = useParams<{ id: string }>();
   const lessonId = parseInt(params.id || "0");
+  const { isAuthenticated } = useAuth();
+  const [, setLocation] = useLocation();
 
-  const { data: lesson, isLoading: lessonLoading } = trpc.lessons.getById.useQuery({ id: lessonId });
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setLocation(`/login?redirect=/lesson/${lessonId}`);
+    }
+  }, [isAuthenticated, lessonId, setLocation]);
+
+  const { data: lesson, isLoading: lessonLoading } = trpc.lessons.getById.useQuery(
+    { id: lessonId },
+    { enabled: isAuthenticated }
+  );
   const { data: course } = trpc.courses.getById.useQuery(
     { id: lesson?.courseId || 0 },
     { enabled: !!lesson }
@@ -78,12 +91,13 @@ export default function LessonPage() {
     });
   };
 
-  if (lessonLoading) {
+  // Show loading while checking authentication or loading lesson
+  if (!isAuthenticated || lessonLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Loading lesson...</p>
+          <p className="text-muted-foreground">{!isAuthenticated ? 'Redirecting to login...' : 'Loading lesson...'}</p>
         </div>
       </div>
     );
