@@ -16,9 +16,9 @@ export default function LearningPaths() {
   const [, setLocation] = useLocation();
   const utils = trpc.useUtils();
   const { data: paths, isLoading } = trpc.bundles.getActiveLearningPaths.useQuery();
-  const { data: enrolledCourses } = trpc.courses.list.useQuery();
-  const { data: allProgress } = trpc.progress.getAll.useQuery();
-  const { data: myEnrolledPaths } = trpc.bundles.getMyEnrolledPaths.useQuery();
+  const { data: enrolledCourses } = trpc.courses.list.useQuery(undefined, { enabled: isAuthenticated });
+  const { data: allProgress } = trpc.progress.getAll.useQuery(undefined, { enabled: isAuthenticated });
+  const { data: myEnrolledPaths } = trpc.bundles.getMyEnrolledPaths.useQuery(undefined, { enabled: isAuthenticated });
 
   const enrollMutation = trpc.bundles.enrollInPath.useMutation({
     onSuccess: () => {
