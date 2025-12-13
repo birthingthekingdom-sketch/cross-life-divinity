@@ -22,10 +22,7 @@ export default function CoursePage() {
     { enabled: isAuthenticated }
   );
   
-  const { data: lessons, isLoading: lessonsLoading } = trpc.lessons.getByCourse.useQuery(
-    { courseId },
-    { enabled: isAuthenticated }
-  );
+  const { data: lessons, isLoading: lessonsLoading } = trpc.lessons.getByCourse.useQuery({ courseId });
   
   // Only fetch progress if user is logged in
   const { data: progress } = trpc.progress.getByCourse.useQuery(

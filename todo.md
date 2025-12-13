@@ -1576,8 +1576,9 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [ ] Confirm Chaplaincy exclusion from bundles
 
 ## CRITICAL - Course Not Found Still Occurring
-- [ ] Diagnose why published site still shows "Course not found"
-- [ ] Verify CoursePage component logic is correct
-- [ ] Check if courses.getById API is working
-- [ ] Implement verified fix and test thoroughly
+- [x] Diagnose why published site still shows "Course not found" - Found root cause: lessons query disabled but referenced
+- [x] Verify CoursePage component logic is correct - Fixed undefined lessons reference
+- [x] Check if courses.getById API is working - API works correctly
+- [x] Implement verified fix - Made lessons.getByCourse publicProcedure and always enabled
+- [x] Fixed SQL query parsing in prerequisites.ts
 - [ ] Publish and confirm resolution on live site

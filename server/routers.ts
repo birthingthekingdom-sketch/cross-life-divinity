@@ -239,7 +239,7 @@ export const appRouter = router({
   }),
 
   lessons: router({
-    getByCourse: protectedProcedure
+    getByCourse: publicProcedure
       .input(z.object({ courseId: z.number() }))
       .query(async ({ input }) => {
         return db.getLessonsByCourseId(input.courseId);
