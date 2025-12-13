@@ -8,6 +8,11 @@ export async function checkPrerequisites(userId: number, courseId: number): Prom
   canEnroll: boolean;
   missingPrerequisites: Array<{ id: number; title: string }>;
 }> {
+  // Validate courseId
+  if (!courseId || isNaN(courseId)) {
+    return { canEnroll: true, missingPrerequisites: [] };
+  }
+
   const dbConn = await db.getDb();
   if (!dbConn) {
     throw new Error('Database not available');
@@ -77,6 +82,11 @@ export async function checkPrerequisites(userId: number, courseId: number): Prom
  * Get all prerequisites for a course
  */
 export async function getCoursePrerequisites(courseId: number): Promise<Array<{ id: number; title: string; required: boolean }>> {
+  // Validate courseId
+  if (!courseId || isNaN(courseId)) {
+    return [];
+  }
+
   const dbConn = await db.getDb();
   if (!dbConn) {
     throw new Error('Database not available');

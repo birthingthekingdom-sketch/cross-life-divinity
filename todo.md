@@ -1646,4 +1646,15 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Fix learning_path_courses query with undefined pathId parameter
 - [x] Add proper null/undefined check before querying
 - [x] Test course page /course/150003 - loads without errors
+- [x] Save checkpoint (version dfd40838)
+
+## Learning Paths Prerequisites SQL Error
+- [x] Fix course_prerequisites query with undefined courseId parameter
+- [x] Add proper null/undefined check before querying (both checkPrerequisites and getCoursePrerequisites)
+- [x] Test Learning Paths page - loads without SQL errors
 - [ ] Save checkpoint
+
+## Signup Page Instant Redirect Issue
+- [x] Investigate why signup page redirects instantly instead of showing form
+- [x] No redirect logic found in Register component - likely testing while logged in
+- [ ] User needs to test in incognito/private window after publishing
