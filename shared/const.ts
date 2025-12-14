@@ -12,21 +12,21 @@ export const PRICING = {
   PAYMENT_PLAN_MONTHS: 6,
 } as const;
 
-// Payment Plan Calculations
+// Payment Plan Calculations (amounts in cents for Stripe)
 export const PAYMENT_PLANS = {
   LEARNING_PATH: {
-    total: PRICING.LEARNING_PATH,
-    monthly: Number((PRICING.LEARNING_PATH / PRICING.PAYMENT_PLAN_MONTHS).toFixed(2)),
+    total: Math.round(PRICING.LEARNING_PATH * 100), // cents
+    monthly: Math.round((PRICING.LEARNING_PATH / PRICING.PAYMENT_PLAN_MONTHS) * 100), // cents
     months: PRICING.PAYMENT_PLAN_MONTHS,
   },
   BUNDLE_3_COURSE: {
-    total: PRICING.BUNDLE_3_COURSE,
-    monthly: Number((PRICING.BUNDLE_3_COURSE / PRICING.PAYMENT_PLAN_MONTHS).toFixed(2)),
+    total: Math.round(PRICING.BUNDLE_3_COURSE * 100), // cents
+    monthly: Math.round((PRICING.BUNDLE_3_COURSE / PRICING.PAYMENT_PLAN_MONTHS) * 100), // cents
     months: PRICING.PAYMENT_PLAN_MONTHS,
   },
   CHAPLAINCY_TRAINING: {
-    total: PRICING.CHAPLAINCY_TRAINING,
-    monthly: Number((PRICING.CHAPLAINCY_TRAINING / PRICING.PAYMENT_PLAN_MONTHS).toFixed(2)),
+    total: Math.round(PRICING.CHAPLAINCY_TRAINING * 100), // cents
+    monthly: Math.round((PRICING.CHAPLAINCY_TRAINING / PRICING.PAYMENT_PLAN_MONTHS) * 100), // cents
     months: PRICING.PAYMENT_PLAN_MONTHS,
   },
 } as const;

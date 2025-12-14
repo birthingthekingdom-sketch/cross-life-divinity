@@ -1794,3 +1794,45 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [ ] Test early payoff
 - [ ] Test refund processing
 - [ ] Create checkpoint
+
+## Stripe Payment Plan Implementation - Current Session
+
+### Backend tRPC Procedures
+- [x] Create paymentPlan.enroll procedure for creating payment plans
+- [x] Create paymentPlan.getStatus procedure for checking plan status
+- [x] Create paymentPlan.getHistory procedure for payment history
+- [x] Create paymentPlan.payOffEarly procedure for early payoff
+- [x] Create paymentPlan.cancel procedure for cancellation
+
+### Stripe Subscription Integration
+- [x] Create Stripe subscription checkout endpoint for payment plans
+- [x] Implement first payment collection
+- [x] Set up recurring monthly billing
+- [x] Create Stripe webhook endpoint
+- [x] Handle subscription.created event
+- [x] Handle invoice.payment_succeeded event
+- [x] Handle invoice.payment_failed event
+- [x] Handle customer.subscription.deleted event
+
+### Payment Plan Checkout Pages
+- [x] Create /checkout/payment-plan/[type] page
+- [x] Add payment method selector (Full / Plan)
+- [x] Display TuitionAgreement component
+- [x] Integrate Stripe checkout redirect
+- [ ] Create success/cancel return pages
+
+### Student Payment Dashboard
+- [x] Create /my-payments page
+- [x] Display active payment plans
+- [x] Show payment history table
+- [x] Add next payment due date
+- [x] Show remaining balance
+- [x] Add "Pay Off Early" button
+
+### Testing
+- [x] Test payment plan enrollment
+- [x] Test first payment collection
+- [x] Test webhook payment processing
+- [x] Test failed payment handling
+- [x] Test early payoff
+- [ ] Create checkpoint

@@ -65,6 +65,8 @@ import Logout from './pages/Logout';
 import AffiliateApply from './pages/AffiliateApply';
 import AffiliateDashboard from './pages/AffiliateDashboard';
 import ChaplaincyTraining from './pages/ChaplaincyTraining';
+import { PaymentPlanCheckout } from './pages/PaymentPlanCheckout';
+import MyPayments from './pages/MyPayments';
 
 function Router() {
   return (
@@ -125,6 +127,8 @@ function Router() {
       <Route path="/bundle-select" component={BundleSelection} />
       <Route path="/payment/success" component={PaymentSuccess} />
       <Route path="/payment/cancel" component={PaymentCancel} />
+      <Route path="/checkout/payment-plan" component={PaymentPlanCheckout} />
+      <Route path="/my-payments" component={MyPayments} />
       <Route path="/upgrade" component={Upgrade} />
       <Route path="/subscription" component={Subscription} />
       <Route path="/toggle-role" component={ToggleRole} />
