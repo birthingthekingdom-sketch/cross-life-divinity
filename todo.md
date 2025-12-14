@@ -1862,3 +1862,34 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [ ] Verify webhook processing
 - [ ] Test student dashboard
 - [ ] Create final checkpoint
+
+## Next Steps - Payment System Testing & Enhancements
+
+### Stripe Checkout Testing
+- [x] Test Learning Paths checkout with test card (4242 4242 4242 4242)
+- [x] Test Chaplaincy checkout with test card
+- [x] Test Bundle checkout flow (selector → payment plan checkout)
+- [x] Verify payment plan enrollment after successful payment
+- [x] Test webhook processing for invoice.payment_succeeded
+- [x] Verify email notifications are sent (enrollment confirmation)
+- [ ] Test failed payment scenario with declined card
+- [ ] Verify access to courses after enrollment
+
+### Bundle Selector Page
+- [x] Create /bundle-select page component
+- [x] Add course selection UI with checkboxes
+- [x] Implement 3-course selection limit
+- [x] Display course cards with descriptions
+- [x] Add "Continue to Checkout" button
+- [x] Wire to payment plan checkout flow
+- [x] Pass selected course IDs to checkout
+- [x] Test complete bundle selection flow
+
+### Payment Dashboard Navigation
+- [x] Add "My Payments" link to student dashboard header
+- [ ] Add "My Payments" card to student dashboard
+- [x] Test navigation to /my-payments page
+- [x] Verify payment history displays correctly
+- [x] Test "Pay Off Early" button functionality
+- [x] Add payment status badges (Active, Completed, Overdue)
+- [ ] Test on mobile devices

@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { PullToRefresh } from "@/components/PullToRefresh";
 import { trpc } from "@/lib/trpc";
-import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, RefreshCw, Settings } from "lucide-react";
+import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, RefreshCw, Settings, CreditCard } from "lucide-react";
 import { Fragment } from "react";
 import { Link } from "wouter";
 import { useMemo } from "react";
@@ -107,6 +107,18 @@ export default function Dashboard() {
                   >
                     <Award className="h-4 w-4 mr-2" />
                     My Certificates
+                  </Button>
+                </Link>
+              </Fragment>
+              <Fragment key="payments-btn">
+                <Link href="/my-payments">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
+                  >
+                    <CreditCard className="h-4 w-4 mr-2" />
+                    My Payments
                   </Button>
                 </Link>
               </Fragment>

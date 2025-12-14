@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { trpc } from "@/lib/trpc";
 import { BookOpen, Clock, Award, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
-import { Link, useLocation } from "wouter";
+import { useLocation } from "wouter";
 import { Footer } from "@/components/Footer";
 import { PublicNav } from "@/components/PublicNav";
 import { useToast } from "@/hooks/use-toast";
@@ -15,20 +15,6 @@ export default function BundleSelection() {
   const { toast } = useToast();
   const [selectedCourses, setSelectedCourses] = useState<number[]>([]);
   const { data: courses, isLoading } = trpc.courses.listAll.useQuery();
-  const createCheckout = trpc.payment.createBundleCheckout.useMutation({
-    onSuccess: (data) => {
-      if (data.url) {
-        window.location.href = data.url;
-      }
-    },
-    onError: (error) => {
-      toast({
-        title: "Checkout Error",
-        description: error.message,
-        variant: "destructive",
-      });
-    },
-  });
 
   const toggleCourse = (courseId: number) => {
     if (selectedCourses.includes(courseId)) {
@@ -54,9 +40,9 @@ export default function BundleSelection() {
       return;
     }
 
-    createCheckout.mutate({
-      courseIds: selectedCourses,
-    });
+    // Store selected courses in sessionStorage and navigate to payment plan checkout
+    sessionStorage.setItem('bundleCourseIds', JSON.stringify(selectedCourses));
+    setLocation(`/checkout/payment-plan?type=BUNDLE`);
   };
 
   if (isLoading) {
@@ -86,7 +72,7 @@ export default function BundleSelection() {
             <div className="flex items-center gap-6 text-white/90">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5" />
-                <span>One-time payment</span>
+                <span>Payment plans available</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5" />
@@ -126,13 +112,14 @@ export default function BundleSelection() {
               <div className="text-right">
                 <div className="text-sm text-muted-foreground line-through">$387</div>
                 <div className="text-2xl font-bold text-primary">$299</div>
+                <div className="text-xs text-muted-foreground">or $49.83/mo × 6</div>
               </div>
               <Button 
                 size="lg"
-                disabled={selectedCourses.length !== 3 || createCheckout.isPending}
+                disabled={selectedCourses.length !== 3}
                 onClick={handleCheckout}
               >
-                {createCheckout.isPending ? "Processing..." : "Proceed to Checkout"}
+                Proceed to Checkout
                 <ArrowRight className="h-5 w-5 ml-2" />
               </Button>
             </div>
@@ -214,15 +201,15 @@ export default function BundleSelection() {
                 {selectedCourses.length === 3 ? 'Ready to complete your purchase?' : `Select ${3 - selectedCourses.length} more course${3 - selectedCourses.length !== 1 ? 's' : ''}`}
               </div>
               <div className="text-sm text-muted-foreground">
-                Save $88 with this bundle • Lifetime access • CPD certificates included
+                Save $88 with this bundle • Payment plans available • CPD certificates included
               </div>
             </div>
             <Button 
               size="lg"
-              disabled={selectedCourses.length !== 3 || createCheckout.isPending}
+              disabled={selectedCourses.length !== 3}
               onClick={handleCheckout}
             >
-              {createCheckout.isPending ? "Processing..." : "Checkout - $299"}
+              Checkout - $299
               <ArrowRight className="h-5 w-5 ml-2" />
             </Button>
           </div>

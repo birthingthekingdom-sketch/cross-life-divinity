@@ -180,7 +180,9 @@ function CheckoutForm({ planType, paymentMethod, itemId, onBack }: CheckoutFormP
 export function PaymentPlanCheckout() {
   const [location] = useLocation();
   const params = new URLSearchParams(window.location.search);
-  const planType = params.get('type') as PlanType;
+  const rawType = params.get('type');
+  // Map URL parameter to internal type
+  const planType = (rawType === 'BUNDLE' ? 'BUNDLE_3_COURSE' : rawType) as PlanType;
   const itemId = params.get('itemId') ? parseInt(params.get('itemId')!) : undefined;
 
   const [paymentMethod, setPaymentMethod] = useState<'full' | 'plan'>('plan');
