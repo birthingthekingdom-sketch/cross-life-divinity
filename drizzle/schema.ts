@@ -699,3 +699,54 @@ export const affiliateClicks = mysqlTable("affiliate_clicks", {
 
 export type AffiliateClick = typeof affiliateClicks.$inferSelect;
 export type InsertAffiliateClick = typeof affiliateClicks.$inferInsert;
+
+
+/**
+ * Payment Plans - Cross Life Tuition Assistance
+ */
+export const paymentPlans = mysqlTable("payment_plans", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  planType: mysqlEnum("planType", ["LEARNING_PATH", "BUNDLE_3_COURSE", "CHAPLAINCY_TRAINING"]).notNull(),
+  bundleId: int("bundleId"), // Reference to bundle if applicable
+  learningPathId: int("learningPathId"), // Reference to learning path if applicable
+  totalAmount: int("totalAmount").notNull(), // Total amount in cents
+  monthlyAmount: int("monthlyAmount").notNull(), // Monthly payment in cents
+  paymentsTotal: int("paymentsTotal").default(6).notNull(), // Total number of payments (6 months)
+  paymentsCompleted: int("paymentsCompleted").default(0).notNull(), // Number of completed payments
+  paymentsRemaining: int("paymentsRemaining").default(6).notNull(), // Remaining payments
+  nextPaymentDate: timestamp("nextPaymentDate").notNull(),
+  status: mysqlEnum("status", ["active", "paused", "completed", "cancelled"]).default("active").notNull(),
+  stripeSubscriptionId: varchar("stripeSubscriptionId", { length: 255 }).unique(),
+  stripeCustomerId: varchar("stripeCustomerId", { length: 255 }).notNull(),
+  agreementAcceptedAt: timestamp("agreementAcceptedAt").notNull(), // When user accepted tuition agreement
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  completedAt: timestamp("completedAt"), // When plan was fully paid
+  cancelledAt: timestamp("cancelledAt"), // When plan was cancelled
+});
+
+export type PaymentPlan = typeof paymentPlans.$inferSelect;
+export type InsertPaymentPlan = typeof paymentPlans.$inferInsert;
+
+/**
+ * Payment History - Track all payment transactions
+ */
+export const paymentHistory = mysqlTable("payment_history", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  paymentPlanId: int("paymentPlanId"), // Null for one-time payments
+  amount: int("amount").notNull(), // Amount in cents
+  paymentNumber: int("paymentNumber"), // Which payment in the plan (1-6)
+  paymentDate: timestamp("paymentDate").defaultNow().notNull(),
+  status: mysqlEnum("status", ["succeeded", "failed", "refunded", "pending"]).default("pending").notNull(),
+  stripePaymentIntentId: varchar("stripePaymentIntentId", { length: 255 }).unique(),
+  stripeInvoiceId: varchar("stripeInvoiceId", { length: 255 }),
+  failureReason: text("failureReason"), // Reason if payment failed
+  refundedAt: timestamp("refundedAt"), // When refund was processed
+  refundAmount: int("refundAmount"), // Refund amount in cents
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PaymentHistory = typeof paymentHistory.$inferSelect;
+export type InsertPaymentHistory = typeof paymentHistory.$inferInsert;

@@ -9,6 +9,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { toast } from "sonner";
 import { Footer } from "@/components/Footer";
 import { PublicNav } from "@/components/PublicNav";
+import { FinanceOptionsChart } from "@/components/FinanceOptionsChart";
 // Price display data
 const priceDisplay = {
   subscription: {
@@ -372,10 +373,10 @@ export default function Pricing() {
             <CardContent className="space-y-6">
               <div className="flex flex-col gap-2">
                 <div className="flex items-baseline gap-3">
-                  <span className="text-3xl text-slate-500 line-through">$445</span>
-                  <span className="text-5xl font-bold text-white">$199</span>
+                  <span className="text-3xl text-slate-500 line-through">$534</span>
+                  <span className="text-5xl font-bold text-white">$399</span>
                 </div>
-                <p className="text-sm text-green-400 font-semibold">Save $246 - Best value for structured learning!</p>
+                <p className="text-sm text-green-400 font-semibold">Save $135 - Best value for structured learning!</p>
               </div>
 
               <div className="space-y-3">
@@ -406,7 +407,7 @@ export default function Pricing() {
               <div className="pt-4 border-t border-green-700/50">
                 <div className="flex items-center gap-2 text-green-300">
                   <DollarSign className="w-5 h-5" />
-                  <span className="font-semibold">~$40 per course</span>
+                  <span className="font-semibold">~$66-80 per course</span>
                 </div>
               </div>
             </CardContent>
@@ -422,7 +423,77 @@ export default function Pricing() {
             </CardFooter>
           </Card>
 
+          {/* Chaplaincy Training */}
+          <Card className="relative border-2 border-blue-600 bg-gradient-to-br from-blue-900/20 to-slate-800/50 backdrop-blur">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+              <Badge className="bg-blue-500 text-white px-6 py-1 text-sm font-bold">
+                PROFESSIONAL CERTIFICATION
+              </Badge>
+            </div>
+            <CardHeader className="pt-8">
+              <div className="flex items-center justify-between mb-2">
+                <Award className="w-8 h-8 text-blue-400" />
+                <Badge variant="outline" className="text-blue-300 border-blue-600">
+                  65 CPD Hours
+                </Badge>
+              </div>
+              <CardTitle className="text-3xl text-white">Chaplaincy Training</CardTitle>
+              <CardDescription className="text-slate-300 text-lg">
+                Professional chaplaincy certification program
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-baseline gap-3">
+                  <span className="text-3xl text-slate-500 line-through">$350</span>
+                  <span className="text-5xl font-bold text-white">$275</span>
+                </div>
+                <p className="text-sm text-green-400 font-semibold">Save $75 - Comprehensive certification!</p>
+              </div>
 
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">
+                    <strong className="text-white">Complete chaplaincy training</strong> program
+                  </span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">Healthcare, military, correctional, corporate settings</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">Advanced pastoral counseling skills</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">Professional certification upon completion</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">Earn 65 CPD hours</span>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-blue-700/50">
+                <div className="flex items-center gap-2 text-blue-300">
+                  <Award className="w-5 h-5" />
+                  <span className="font-semibold">Professional Chaplaincy Certification</span>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button
+                onClick={() => navigate("/chaplaincy")}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                size="lg"
+              >
+                <Award className="w-4 h-4 mr-2" />
+                Learn More & Enroll
+              </Button>
+            </CardFooter>
+          </Card>
         </div>
 
         {/* Upgrade Option */}
@@ -460,11 +531,14 @@ export default function Pricing() {
           </Card>
         )}
 
-        {/* FAQ Section */}
-        <div className="max-w-4xl mx-auto mt-16">
-          <h2 className="text-3xl font-bold text-white text-center mb-8">
-            Frequently Asked Questions
-          </h2>
+               {/* Finance Options Chart */}
+          <div className="max-w-6xl mx-auto mb-16">
+            <FinanceOptionsChart />
+          </div>
+
+          {/* FAQ Section */}
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-white text-center mb-8">Frequently Asked Questions</h2>
           <div className="grid gap-6">
             <Card className="bg-slate-800/50 border-slate-700">
               <CardHeader>

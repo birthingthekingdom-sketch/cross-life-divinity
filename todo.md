@@ -1702,3 +1702,95 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [ ] Add Learning Path checkout to Express
 - [ ] Add Chaplain checkout to Express
 - [ ] Update pricing page buttons to use Express endpoints
+
+## Cross Life Tuition Assistance Payment Plan System
+
+### Pricing Updates
+- [x] Update Learning Paths price from $199 to $399
+- [x] Keep 3-Course Bundles at $299
+- [x] Keep Chaplaincy Training at $275
+- [x] Keep single courses as one-time payment only
+
+### Database Schema
+- [x] Create payment_plans table (userId, planType, totalAmount, monthlyAmount, paymentsRemaining, nextPaymentDate, status)
+- [x] Create payment_history table (userId, planId, amount, paymentDate, status, stripePaymentId)
+- [x] Add payment plan fields to enrollments table
+- [x] Push database schema changes
+
+### Finance Options Chart Component
+- [x] Create FinanceOptionsChart component
+- [x] Display full payment vs payment plan comparison
+- [x] Show monthly amounts for 6-month plans
+- [x] Calculate and display total savings (interest-free)
+- [x] Add payment schedule breakdown
+
+### Tuition Assistance Agreement
+- [x] Create TuitionAgreement component with legal terms
+- [x] Include payment schedule and amounts
+- [x] Add access pause terms for missed payments
+- [x] Include refund policy (no refunds after 7 days)
+- [x] Add early payoff clause (no penalty)
+- [x] Implement checkbox acceptance requirement
+- [x] Add electronic signature capture
+
+### Pricing Page Updates
+- [x] Update all pricing displays with new amounts
+- [x] Add finance options chart to pricing page
+- [ ] Update pricing cards with payment plan options
+- [ ] Add "Choose Payment Plan" buttons
+
+### Checkout Flow
+- [ ] Create payment method selector (Full Payment / Payment Plan)
+- [ ] Build payment plan checkout page
+- [ ] Display tuition agreement with checkbox
+- [ ] Integrate Stripe subscription for payment plans
+- [ ] Collect first month payment upfront
+- [ ] Set up automated monthly billing
+- [ ] Add finance chart to checkout page
+
+### Student Payment Dashboard
+- [ ] Create "My Payments" page
+- [ ] Display current payment plan status
+- [ ] Show payment history table
+- [ ] Display next payment due date
+- [ ] Add account status indicator
+- [ ] Show remaining balance
+- [ ] Add "Pay Off Early" option
+- [ ] Display payment receipts
+
+### Backend Payment Plan Logic
+- [ ] Create payment plan enrollment procedure
+- [ ] Implement monthly payment processing
+- [ ] Add missed payment detection
+- [ ] Build access pause/resume logic
+- [ ] Create early payoff procedure
+- [ ] Add payment plan cancellation handling
+- [ ] Implement refund logic (7-day window)
+
+### Stripe Integration
+- [ ] Set up Stripe subscription products for each plan type
+- [ ] Create subscription checkout sessions
+- [ ] Implement webhook handlers for payment events
+- [ ] Handle successful payments
+- [ ] Handle failed payments (pause access)
+- [ ] Process subscription cancellations
+- [ ] Implement early payoff via Stripe
+
+### Email Notifications
+- [ ] Send payment plan enrollment confirmation
+- [ ] Send monthly payment receipts
+- [ ] Send payment reminder (3 days before due)
+- [ ] Send failed payment notification
+- [ ] Send access paused notification
+- [ ] Send early payoff confirmation
+- [ ] Send payment plan completion email
+
+### Testing
+- [ ] Test full payment checkout flow
+- [ ] Test payment plan enrollment
+- [ ] Test monthly payment processing
+- [ ] Test missed payment handling
+- [ ] Test access pause/resume
+- [ ] Test early payoff
+- [ ] Test refund processing
+- [ ] Create checkpoint
