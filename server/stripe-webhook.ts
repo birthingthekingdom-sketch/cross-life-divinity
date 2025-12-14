@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Stripe from "stripe";
 import { sql } from "drizzle-orm";
 import * as db from "./db";
+import { sendMonthlyPaymentReceiptEmail, sendFailedPaymentNotificationEmail, sendPaymentPlanCompletionEmail } from './email';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-11-17.clover",
@@ -302,9 +303,40 @@ async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
      WHERE id = ${plan.id}`
   );
 
-  // If plan is completed, cancel subscription
+  // If plan is completed, cancel subscription and send completion email
   if (newStatus === 'completed') {
     await stripe.subscriptions.cancel(subscription);
+    
+    // Get user email
+    const userResult: any = await dbConn.execute(
+      sql`SELECT email, name FROM users WHERE id = ${plan.userId}`
+    );
+    const users = Array.isArray(userResult) ? userResult : (userResult.rows || []);
+    if (users.length > 0) {
+      await sendPaymentPlanCompletionEmail(
+        users[0].email,
+        users[0].name,
+        plan.planType,
+        plan.totalAmount / 100
+      );
+    }
+  } else {
+    // Send monthly payment receipt
+    const userResult: any = await dbConn.execute(
+      sql`SELECT email, name FROM users WHERE id = ${plan.userId}`
+    );
+    const users = Array.isArray(userResult) ? userResult : (userResult.rows || []);
+    if (users.length > 0) {
+      await sendMonthlyPaymentReceiptEmail(
+        users[0].email,
+        users[0].name,
+        plan.planType,
+        plan.monthlyAmount / 100,
+        new Date(),
+        newPaymentsRemaining,
+        nextPaymentDate
+      );
+    }
   }
 
   console.log(`Payment plan payment succeeded: plan ${plan.id}, payment ${newPaymentsCompleted}/${plan.paymentsTotal}`);
@@ -345,5 +377,18 @@ async function handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
 
   console.log(`Payment plan payment failed: plan ${plan.id} - access paused`);
   
-  // TODO: Send email notification to user
+  // Send failed payment notification email
+  const userResult: any = await dbConn.execute(
+    sql`SELECT email, name FROM users WHERE id = ${plan.userId}`
+  );
+  const users = Array.isArray(userResult) ? userResult : (userResult.rows || []);
+  if (users.length > 0) {
+    await sendFailedPaymentNotificationEmail(
+      users[0].email,
+      users[0].name,
+      plan.planType,
+      plan.monthlyAmount / 100,
+      'Payment method declined'
+    );
+  }
 }

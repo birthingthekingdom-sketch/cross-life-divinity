@@ -213,12 +213,16 @@ export const paymentPlanRouter = router({
         }
       }
 
-      // Send confirmation email
+      // Send payment plan enrollment confirmation email
       if (ctx.user.email) {
-        await email.sendWelcomeEmail(
+        await email.sendPaymentPlanEnrollmentEmail(
           ctx.user.email,
           ctx.user.name || 'Student',
-          [`Payment Plan Activated: First payment of $${(plan.monthlyAmount / 100).toFixed(2)} processed. Next payment: ${plan.nextPaymentDate}`]
+          plan.planType,
+          plan.totalAmount / 100,
+          plan.monthlyAmount / 100,
+          plan.paymentsTotal,
+          new Date()
         );
       }
 

@@ -86,7 +86,7 @@ export function FinanceOptionsChart() {
                   </td>
                   <td className="p-4 text-center">
                     <div className="text-2xl font-bold text-primary">
-                      ${option.monthlyPrice.toFixed(2)}
+                      ${(option.monthlyPrice / 100).toFixed(2)}
                       <span className="text-sm text-muted-foreground">/mo</span>
                     </div>
                     <div className="text-xs text-muted-foreground mt-1">

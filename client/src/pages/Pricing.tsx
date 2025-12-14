@@ -413,12 +413,12 @@ export default function Pricing() {
             </CardContent>
             <CardFooter>
               <Button
-                onClick={() => navigate("/learning-paths")}
+                onClick={() => navigate("/checkout/payment-plan?type=LEARNING_PATH")}
                 className="w-full bg-green-600 hover:bg-green-700 text-white"
                 size="lg"
               >
                 <GraduationCap className="w-4 h-4 mr-2" />
-                View Learning Paths
+                Enroll in Learning Paths
               </Button>
             </CardFooter>
           </Card>
@@ -485,12 +485,12 @@ export default function Pricing() {
             </CardContent>
             <CardFooter>
               <Button
-                onClick={() => navigate("/chaplaincy")}
+                onClick={() => navigate("/checkout/payment-plan?type=CHAPLAINCY_TRAINING")}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                 size="lg"
               >
                 <Award className="w-4 h-4 mr-2" />
-                Learn More & Enroll
+                Enroll in Chaplaincy Training
               </Button>
             </CardFooter>
           </Card>

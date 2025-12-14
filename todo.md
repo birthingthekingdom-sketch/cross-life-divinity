@@ -1836,3 +1836,29 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Test failed payment handling
 - [x] Test early payoff
 - [ ] Create checkpoint
+
+## Payment Plan System - Final Steps
+
+### Wire Pricing Page Buttons
+- [x] Connect Learning Paths "View Learning Paths" button to checkout
+- [x] Connect Chaplaincy "Learn More & Enroll" button to checkout
+- [x] Connect Bundle "Choose 3 Courses" button to bundle selection
+- [x] Update button URLs to include plan type parameter
+
+### Test Stripe Checkout Flow
+- [x] Test Learning Paths payment plan enrollment
+- [x] Test Chaplaincy Training payment plan enrollment
+- [ ] Test Bundle payment plan enrollment
+- [ ] Verify Stripe test card processing
+- [ ] Verify enrollment after successful payment
+- [ ] Test payment dashboard d### Email Notifications
+- [x] Create payment plan enrollment confirmation email
+- [x] Create monthly payment receipt email
+- [x] Create failed payment notification email
+- [x] Create payment plan completion email
+- [x] Integrate emails into webhook handlers
+- [x] Integrate enrollment email into confirmPlan procedure
+- [ ] End-to-end payment flow test
+- [ ] Verify webhook processing
+- [ ] Test student dashboard
+- [ ] Create final checkpoint

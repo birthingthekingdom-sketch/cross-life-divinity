@@ -101,11 +101,11 @@ function CheckoutForm({ planType, paymentMethod, itemId, onBack }: CheckoutFormP
             <>
               <div className="flex justify-between text-slate-300">
                 <span>First Payment (Today):</span>
-                <span className="font-semibold text-white">${config.monthly.toFixed(2)}</span>
+                <span className="font-semibold text-white">${(config.monthly / 100).toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-slate-300">
                 <span>Monthly Payment:</span>
-                <span className="font-semibold text-white">${config.monthly.toFixed(2)} × {config.months} months</span>
+                <span className="font-semibold text-white">${(config.monthly / 100).toFixed(2)} × {config.months} months</span>
               </div>
               <div className="flex justify-between text-lg font-bold text-white pt-4 border-t border-slate-700">
                 <span>Total:</span>
@@ -127,7 +127,7 @@ function CheckoutForm({ planType, paymentMethod, itemId, onBack }: CheckoutFormP
         <TuitionAgreement
           programName={planType.replace(/_/g, ' ')}
           totalAmount={pricing}
-          monthlyAmount={config.monthly}
+          monthlyAmount={config.monthly / 100}
           months={config.months}
           onAcceptChange={setAgreedToTerms}
           accepted={agreedToTerms}
@@ -168,7 +168,7 @@ function CheckoutForm({ planType, paymentMethod, itemId, onBack }: CheckoutFormP
           ) : (
             <>
               <CreditCard className="w-4 h-4 mr-2" />
-              {paymentMethod === 'plan' ? `Pay First Month ($${config.monthly.toFixed(2)})` : `Pay $${pricing.toFixed(2)}`}
+              {paymentMethod === 'plan' ? `Pay First Month ($${(config.monthly / 100).toFixed(2)})` : `Pay $${pricing.toFixed(2)}`}
             </>
           )}
         </Button>
@@ -179,7 +179,7 @@ function CheckoutForm({ planType, paymentMethod, itemId, onBack }: CheckoutFormP
 
 export function PaymentPlanCheckout() {
   const [location] = useLocation();
-  const params = new URLSearchParams(location.split('?')[1]);
+  const params = new URLSearchParams(window.location.search);
   const planType = params.get('type') as PlanType;
   const itemId = params.get('itemId') ? parseInt(params.get('itemId')!) : undefined;
 
@@ -262,7 +262,7 @@ export function PaymentPlanCheckout() {
                           <span className="text-xs bg-green-600 text-white px-2 py-1 rounded">0% Interest</span>
                         </div>
                         <p className="text-slate-300 mb-2">
-                          ${config.monthly.toFixed(2)}/month for {config.months} months
+                          ${(config.monthly / 100).toFixed(2)}/month for {config.months} months
                         </p>
                         <p className="text-sm text-slate-400">
                           First payment due today, then monthly. No interest, no hidden fees.

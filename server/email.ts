@@ -388,3 +388,333 @@ export async function sendEmailVerification(email: string, name: string, verific
 }
 
 
+
+// Payment Plan Email Functions
+
+export async function sendPaymentPlanEnrollmentEmail(
+  to: string,
+  studentName: string,
+  planType: string,
+  totalAmount: number,
+  monthlyAmount: number,
+  months: number,
+  firstPaymentDate: Date
+) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  const planName = planType.replace(/_/g, ' ');
+  
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to,
+      subject: 'Payment Plan Enrollment Confirmation - Cross Life School of Divinity',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #16a34a;">Payment Plan Enrollment Confirmed!</h2>
+          <p>Dear ${studentName},</p>
+          <p>Thank you for enrolling in the <strong>${planName}</strong> through our Cross Life Tuition Assistance program.</p>
+          
+          <div style="background-color: #f0fdf4; border-left: 4px solid #16a34a; padding: 16px; margin: 20px 0;">
+            <h3 style="color: #16a34a; margin-top: 0;">Payment Plan Details</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr>
+                <td style="padding: 8px 0;"><strong>Program:</strong></td>
+                <td style="padding: 8px 0;">${planName}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0;"><strong>Total Amount:</strong></td>
+                <td style="padding: 8px 0;">$${totalAmount.toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0;"><strong>Monthly Payment:</strong></td>
+                <td style="padding: 8px 0;">$${monthlyAmount.toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0;"><strong>Number of Payments:</strong></td>
+                <td style="padding: 8px 0;">${months} months</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0;"><strong>First Payment:</strong></td>
+                <td style="padding: 8px 0;">${firstPaymentDate.toLocaleDateString()}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0;"><strong>Interest Rate:</strong></td>
+                <td style="padding: 8px 0; color: #16a34a;"><strong>0% - Interest Free!</strong></td>
+              </tr>
+            </table>
+          </div>
+          
+          <p><strong>What's Next?</strong></p>
+          <ul style="line-height: 1.8;">
+            <li>Your first payment of $${monthlyAmount.toFixed(2)} has been processed</li>
+            <li>You now have immediate access to all course materials</li>
+            <li>Monthly payments will be automatically charged on the same day each month</li>
+            <li>You can pay off early at any time without penalty</li>
+          </ul>
+          
+          <p style="margin-top: 30px;">
+            <a href="https://cross-life-divinity.manus.space/my-payments" 
+               style="background-color: #16a34a; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
+              View Payment History
+            </a>
+          </p>
+          
+          <p style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #666; font-size: 14px;">
+            <strong>Important Reminders:</strong><br>
+            • No refunds after 7 days from enrollment<br>
+            • Missed payments will pause course access until current<br>
+            • Contact support for any payment questions
+          </p>
+          
+          <p style="margin-top: 20px; color: #666; font-size: 14px;">
+            Blessings on your learning journey,<br>
+            Cross Life School of Divinity Team
+          </p>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send payment plan enrollment email:', error);
+    return false;
+  }
+}
+
+export async function sendMonthlyPaymentReceiptEmail(
+  to: string,
+  studentName: string,
+  planType: string,
+  paymentAmount: number,
+  paymentDate: Date,
+  paymentsRemaining: number,
+  nextPaymentDate: Date
+) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  const planName = planType.replace(/_/g, ' ');
+  
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to,
+      subject: 'Payment Receipt - Cross Life School of Divinity',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #1e40af;">Payment Received - Thank You!</h2>
+          <p>Dear ${studentName},</p>
+          <p>Your monthly payment has been successfully processed.</p>
+          
+          <div style="background-color: #eff6ff; border-left: 4px solid #1e40af; padding: 16px; margin: 20px 0;">
+            <h3 style="color: #1e40af; margin-top: 0;">Payment Details</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr>
+                <td style="padding: 8px 0;"><strong>Program:</strong></td>
+                <td style="padding: 8px 0;">${planName}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0;"><strong>Payment Amount:</strong></td>
+                <td style="padding: 8px 0;">$${paymentAmount.toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0;"><strong>Payment Date:</strong></td>
+                <td style="padding: 8px 0;">${paymentDate.toLocaleDateString()}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0;"><strong>Payments Remaining:</strong></td>
+                <td style="padding: 8px 0;">${paymentsRemaining} ${paymentsRemaining === 1 ? 'payment' : 'payments'}</td>
+              </tr>
+              ${paymentsRemaining > 0 ? `
+              <tr>
+                <td style="padding: 8px 0;"><strong>Next Payment Due:</strong></td>
+                <td style="padding: 8px 0;">${nextPaymentDate.toLocaleDateString()}</td>
+              </tr>
+              ` : ''}
+            </table>
+          </div>
+          
+          ${paymentsRemaining === 0 ? `
+          <div style="background-color: #f0fdf4; border: 2px solid #16a34a; padding: 16px; margin: 20px 0; text-align: center;">
+            <h3 style="color: #16a34a; margin-top: 0;">🎉 Congratulations!</h3>
+            <p style="font-size: 16px; margin: 0;">You've completed your payment plan! Your course access remains active forever.</p>
+          </div>
+          ` : ''}
+          
+          <p style="margin-top: 30px;">
+            <a href="https://cross-life-divinity.manus.space/my-payments" 
+               style="background-color: #1e40af; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
+              View Payment History
+            </a>
+          </p>
+          
+          <p style="margin-top: 30px; color: #666; font-size: 14px;">
+            Questions about your payment? Contact our support team anytime.
+          </p>
+          
+          <p style="margin-top: 20px; color: #666; font-size: 14px;">
+            Blessings,<br>
+            Cross Life School of Divinity Team
+          </p>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send monthly payment receipt email:', error);
+    return false;
+  }
+}
+
+export async function sendFailedPaymentNotificationEmail(
+  to: string,
+  studentName: string,
+  planType: string,
+  paymentAmount: number,
+  failureReason: string
+) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  const planName = planType.replace(/_/g, ' ');
+  
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to,
+      subject: 'Payment Failed - Action Required',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #dc2626;">Payment Failed - Action Required</h2>
+          <p>Dear ${studentName},</p>
+          <p>We were unable to process your monthly payment for the <strong>${planName}</strong>.</p>
+          
+          <div style="background-color: #fef2f2; border-left: 4px solid #dc2626; padding: 16px; margin: 20px 0;">
+            <h3 style="color: #dc2626; margin-top: 0;">Payment Details</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr>
+                <td style="padding: 8px 0;"><strong>Program:</strong></td>
+                <td style="padding: 8px 0;">${planName}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0;"><strong>Payment Amount:</strong></td>
+                <td style="padding: 8px 0;">$${paymentAmount.toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0;"><strong>Reason:</strong></td>
+                <td style="padding: 8px 0;">${failureReason}</td>
+              </tr>
+            </table>
+          </div>
+          
+          <div style="background-color: #fffbeb; border: 1px solid #fbbf24; padding: 16px; margin: 20px 0;">
+            <p style="margin: 0;"><strong>⚠️ Important:</strong> Your course access has been paused until payment is current.</p>
+          </div>
+          
+          <p><strong>What to do next:</strong></p>
+          <ol style="line-height: 1.8;">
+            <li>Check that your payment method is valid and has sufficient funds</li>
+            <li>Update your payment method if needed</li>
+            <li>Contact your bank if you believe this is an error</li>
+            <li>Reach out to our support team for assistance</li>
+          </ol>
+          
+          <p style="margin-top: 30px;">
+            <a href="https://cross-life-divinity.manus.space/my-payments" 
+               style="background-color: #dc2626; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
+              Update Payment Method
+            </a>
+          </p>
+          
+          <p style="margin-top: 30px; color: #666; font-size: 14px;">
+            Need help? Contact us at studio6817@yahoo.com or (312) 300-3295
+          </p>
+          
+          <p style="margin-top: 20px; color: #666; font-size: 14px;">
+            Cross Life School of Divinity Team
+          </p>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send failed payment notification email:', error);
+    return false;
+  }
+}
+
+export async function sendPaymentPlanCompletionEmail(
+  to: string,
+  studentName: string,
+  planType: string,
+  totalPaid: number
+) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  const planName = planType.replace(/_/g, ' ');
+  
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to,
+      subject: 'Payment Plan Complete - Congratulations!',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="text-align: center; padding: 30px 0;">
+            <h1 style="color: #16a34a; font-size: 32px; margin: 0;">🎉 Congratulations!</h1>
+            <h2 style="color: #1e40af; margin-top: 10px;">Payment Plan Complete</h2>
+          </div>
+          
+          <p>Dear ${studentName},</p>
+          <p>We're thrilled to inform you that you've successfully completed your payment plan for the <strong>${planName}</strong>!</p>
+          
+          <div style="background-color: #f0fdf4; border: 2px solid #16a34a; padding: 20px; margin: 30px 0; text-align: center;">
+            <p style="font-size: 18px; margin: 0;"><strong>Total Paid:</strong></p>
+            <p style="font-size: 32px; color: #16a34a; font-weight: bold; margin: 10px 0;">$${totalPaid.toFixed(2)}</p>
+            <p style="font-size: 14px; color: #16a34a; margin: 0;">✓ 0% Interest - You saved money!</p>
+          </div>
+          
+          <p><strong>What this means for you:</strong></p>
+          <ul style="line-height: 1.8;">
+            <li>✓ Your course access remains active <strong>forever</strong></li>
+            <li>✓ No more monthly payments</li>
+            <li>✓ You've earned your CPD certificates</li>
+            <li>✓ You can continue learning at your own pace</li>
+          </ul>
+          
+          <div style="background-color: #eff6ff; padding: 20px; margin: 30px 0; border-radius: 8px;">
+            <h3 style="color: #1e40af; margin-top: 0;">Continue Your Journey</h3>
+            <p>Interested in expanding your theological education? Check out our other programs:</p>
+            <ul>
+              <li>Additional Learning Paths</li>
+              <li>Chaplaincy Training Certification</li>
+              <li>Individual Course Purchases</li>
+            </ul>
+          </div>
+          
+          <p style="margin-top: 30px;">
+            <a href="https://cross-life-divinity.manus.space/pricing" 
+               style="background-color: #1e40af; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
+              Explore More Courses
+            </a>
+          </p>
+          
+          <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+            Thank you for being part of the Cross Life School of Divinity community. Your dedication to theological education inspires us!
+          </p>
+          
+          <p style="margin-top: 20px; color: #666; font-size: 14px;">
+            Blessings,<br>
+            Cross Life School of Divinity Team
+          </p>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send payment plan completion email:', error);
+    return false;
+  }
+}
