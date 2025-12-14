@@ -1,254 +1,95 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
-import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { TuitionAgreement } from "@/components/TuitionAgreement";
-import { FinanceOptionsChart } from "@/components/FinanceOptionsChart";
-import { Loader2, CreditCard, Calendar } from "lucide-react";
-import { toast } from "sonner";
+import { Loader2, CreditCard, DollarSign, CheckCircle2 } from "lucide-react";
 import { PAYMENT_PLANS, PRICING } from "@shared/const";
-
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY!);
+import { toast } from "sonner";
 
 type PlanType = 'LEARNING_PATH' | 'BUNDLE_3_COURSE' | 'CHAPLAINCY_TRAINING';
 
-interface CheckoutFormProps {
-  planType: PlanType;
-  paymentMethod: 'full' | 'plan';
-  itemId?: number;
-  onBack: () => void;
-}
-
-function CheckoutForm({ planType, paymentMethod, itemId, onBack }: CheckoutFormProps) {
-  const stripe = useStripe();
-  const elements = useElements();
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
-  // Navigation handled by Stripe redirect
-
-  const createPlan = trpc.paymentPlan.createPlan.useMutation();
-  const confirmPlan = trpc.paymentPlan.confirmPlan.useMutation();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!stripe || !elements) {
-      return;
-    }
-
-    if (!agreedToTerms) {
-      toast.error("Please accept the Tuition Assistance Agreement");
-      return;
-    }
-
-    setIsProcessing(true);
-
-    try {
-      if (paymentMethod === 'plan') {
-        // Create payment plan with Stripe subscription
-        const result = await createPlan.mutateAsync({
-          planType,
-          bundleId: planType === 'BUNDLE_3_COURSE' ? itemId : undefined,
-          learningPathId: planType === 'LEARNING_PATH' ? itemId : undefined,
-        });
-
-        // Confirm payment with Stripe
-        const { error } = await stripe.confirmPayment({
-          elements,
-          confirmParams: {
-            return_url: `${window.location.origin}/payment-success?planId=${result.planId}`,
-          },
-        });
-
-        if (error) {
-          toast.error(error.message || "Payment failed");
-          setIsProcessing(false);
-        }
-      } else {
-        // Handle full payment (existing flow)
-        toast.info("Full payment flow not yet implemented");
-        setIsProcessing(false);
-      }
-    } catch (error: any) {
-      toast.error(error.message || "Failed to process payment");
-      setIsProcessing(false);
-    }
-  };
-
-  const config = PAYMENT_PLANS[planType];
-  const pricing = planType === 'LEARNING_PATH' ? PRICING.LEARNING_PATH :
-                  planType === 'BUNDLE_3_COURSE' ? PRICING.BUNDLE_3_COURSE :
-                  PRICING.CHAPLAINCY_TRAINING;
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Payment Summary */}
-      <Card className="bg-slate-800/50 border-slate-700">
-        <CardHeader>
-          <CardTitle className="text-white">Payment Summary</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex justify-between text-slate-300">
-            <span>Plan Type:</span>
-            <span className="font-semibold text-white">{planType.replace(/_/g, ' ')}</span>
-          </div>
-          {paymentMethod === 'plan' ? (
-            <>
-              <div className="flex justify-between text-slate-300">
-                <span>First Payment (Today):</span>
-                <span className="font-semibold text-white">${(config.monthly / 100).toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between text-slate-300">
-                <span>Monthly Payment:</span>
-                <span className="font-semibold text-white">${(config.monthly / 100).toFixed(2)} × {config.months} months</span>
-              </div>
-              <div className="flex justify-between text-lg font-bold text-white pt-4 border-t border-slate-700">
-                <span>Total:</span>
-                <span>${pricing.toFixed(2)}</span>
-              </div>
-              <p className="text-sm text-green-400">✓ 0% Interest - No hidden fees</p>
-            </>
-          ) : (
-            <div className="flex justify-between text-lg font-bold text-white pt-4 border-t border-slate-700">
-              <span>Total Due Today:</span>
-              <span>${pricing.toFixed(2)}</span>
-            </div>
-          )}
-        </CardContent>
-      </Card>
-
-      {/* Tuition Agreement */}
-      {paymentMethod === 'plan' && (
-        <TuitionAgreement
-          programName={planType.replace(/_/g, ' ')}
-          totalAmount={pricing}
-          monthlyAmount={config.monthly / 100}
-          months={config.months}
-          onAcceptChange={setAgreedToTerms}
-          accepted={agreedToTerms}
-        />
-      )}
-
-      {/* Stripe Payment Element */}
-      <Card className="bg-slate-800/50 border-slate-700">
-        <CardHeader>
-          <CardTitle className="text-white">Payment Information</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <PaymentElement />
-        </CardContent>
-      </Card>
-
-      {/* Action Buttons */}
-      <div className="flex gap-4">
-        <Button
-          type="button"
-          variant="outline"
-          onClick={onBack}
-          disabled={isProcessing}
-          className="flex-1"
-        >
-          Back
-        </Button>
-        <Button
-          type="submit"
-          disabled={!stripe || isProcessing || (paymentMethod === 'plan' && !agreedToTerms)}
-          className="flex-1 bg-green-600 hover:bg-green-700"
-        >
-          {isProcessing ? (
-            <>
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              Processing...
-            </>
-          ) : (
-            <>
-              <CreditCard className="w-4 h-4 mr-2" />
-              {paymentMethod === 'plan' ? `Pay First Month ($${(config.monthly / 100).toFixed(2)})` : `Pay $${pricing.toFixed(2)}`}
-            </>
-          )}
-        </Button>
-      </div>
-    </form>
-  );
-}
-
 export function PaymentPlanCheckout() {
-  console.log('🚀🚀🚀 PaymentPlanCheckout component LOADED 🚀🚀🚀');
-  const [location] = useLocation();
+  const [location, navigate] = useLocation();
   const params = new URLSearchParams(window.location.search);
   const rawType = params.get('type');
+  
   // Map URL parameter to internal type
   const planType = (rawType === 'BUNDLE' ? 'BUNDLE_3_COURSE' : rawType) as PlanType;
   const itemId = params.get('itemId') ? parseInt(params.get('itemId')!) : undefined;
+  
+  const [paymentMethod, setPaymentMethod] = useState<'payment_plan' | 'full_payment'>('payment_plan');
+  const [isProcessing, setIsProcessing] = useState(false);
 
-  const [paymentMethod, setPaymentMethod] = useState<'full' | 'plan'>('plan');
-  const [clientSecret, setClientSecret] = useState<string | null>(null);
-  const [showCheckout, setShowCheckout] = useState(false);
+  // Get selected course IDs from sessionStorage for bundle purchases
+  const selectedCourseIds = planType === 'BUNDLE_3_COURSE' 
+    ? JSON.parse(sessionStorage.getItem('selectedCourseIds') || '[]')
+    : [];
 
-  const createPlan = trpc.paymentPlan.createPlan.useMutation({
+  const createCheckoutSession = trpc.paymentPlan.createCheckoutSession.useMutation({
     onSuccess: (data) => {
-      console.log('✅ Payment plan created successfully:', data);
-      console.log('Client secret:', data.clientSecret);
-      setClientSecret(data.clientSecret);
-      setShowCheckout(true);
-      toast.success('Payment plan created! Loading checkout...');
+      console.log('✅ Checkout session created:', data);
+      // Redirect to Stripe Checkout
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        toast.error("Failed to create checkout session");
+        setIsProcessing(false);
+      }
     },
     onError: (error) => {
-      console.error('❌ Payment plan creation failed:', error);
-      console.error('Error message:', error.message);
-      console.error('Error code:', error.data?.code);
-      toast.error(error.message);
+      console.error('❌ Checkout session creation failed:', error);
+      toast.error(error.message || "Failed to create checkout session");
+      setIsProcessing(false);
     },
   });
 
+  useEffect(() => {
+    if (!planType || !['LEARNING_PATH', 'BUNDLE_3_COURSE', 'CHAPLAINCY_TRAINING'].includes(planType)) {
+      navigate("/pricing");
+    }
+  }, [planType, navigate]);
+
   if (!planType) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex items-center justify-center">
-        <Card className="bg-slate-800/50 border-slate-700 max-w-md">
-          <CardHeader>
-            <CardTitle className="text-white">Invalid Checkout</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-slate-300">Missing plan type. Please return to the pricing page.</p>
-          </CardContent>
-        </Card>
-      </div>
-    );
+    return null;
   }
 
-  const config = PAYMENT_PLANS[planType];
+  const planConfig = PAYMENT_PLANS[planType];
   const pricing = planType === 'LEARNING_PATH' ? PRICING.LEARNING_PATH :
                   planType === 'BUNDLE_3_COURSE' ? PRICING.BUNDLE_3_COURSE :
                   PRICING.CHAPLAINCY_TRAINING;
 
-  const handleContinue = () => {
-    alert('handleContinue called!');
-    console.log('🔵 handleContinue called');
+  const handleContinueToPayment = () => {
+    console.log('🔵 handleContinueToPayment called');
     console.log('Payment method:', paymentMethod);
     console.log('Plan type:', planType);
     console.log('Item ID:', itemId);
+    console.log('Selected course IDs:', selectedCourseIds);
     
-    if (paymentMethod === 'plan') {
-      console.log('🟢 Creating payment plan...');
-      const mutationInput = {
-        planType,
-        bundleId: planType === 'BUNDLE_3_COURSE' ? itemId : undefined,
-        learningPathId: planType === 'LEARNING_PATH' ? itemId : undefined,
-      };
-      console.log('Mutation input:', mutationInput);
-      
-      createPlan.mutate(mutationInput);
-      console.log('🟡 Mutation called, isPending:', createPlan.isPending);
-    } else {
-      console.log('🔴 Full payment selected');
-      // For full payment, navigate to existing checkout
-      toast.info("Full payment checkout coming soon");
+    setIsProcessing(true);
+
+    // Prepare input based on plan type
+    const input: any = {
+      planType,
+      paymentMethod,
+    };
+
+    // Add item IDs based on plan type
+    if (planType === 'BUNDLE_3_COURSE') {
+      input.bundleId = itemId;
+      if (selectedCourseIds.length > 0) {
+        input.selectedCourseIds = selectedCourseIds;
+      }
+    } else if (planType === 'LEARNING_PATH') {
+      input.learningPathId = itemId;
     }
+
+    console.log('Creating checkout session with input:', input);
+
+    // Create Stripe Checkout Session
+    createCheckoutSession.mutate(input);
   };
 
   return (
@@ -258,95 +99,107 @@ export function PaymentPlanCheckout() {
           Complete Your Purchase
         </h1>
 
-        {!showCheckout ? (
-          <div className="space-y-6">
-            {/* Payment Method Selection */}
-            <Card className="bg-slate-800/50 border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-white">Choose Payment Method</CardTitle>
-                <CardDescription className="text-slate-300">
-                  Select how you'd like to pay for your {planType.replace(/_/g, ' ').toLowerCase()}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <RadioGroup value={paymentMethod} onValueChange={(v) => setPaymentMethod(v as 'full' | 'plan')}>
-                  <div className="space-y-4">
-                    {/* Payment Plan Option */}
-                    <div className={`flex items-start space-x-3 p-4 rounded-lg border-2 cursor-pointer transition-colors ${
-                      paymentMethod === 'plan' ? 'border-green-500 bg-green-900/20' : 'border-slate-700 hover:border-slate-600'
-                    }`} onClick={() => setPaymentMethod('plan')}>
-                      <RadioGroupItem value="plan" id="plan" className="mt-1" />
-                      <Label htmlFor="plan" className="flex-1 cursor-pointer">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Calendar className="w-5 h-5 text-green-400" />
-                          <span className="font-semibold text-white text-lg">6-Month Payment Plan</span>
-                          <span className="text-xs bg-green-600 text-white px-2 py-1 rounded">0% Interest</span>
-                        </div>
-                        <p className="text-slate-300 mb-2">
-                          ${(config.monthly / 100).toFixed(2)}/month for {config.months} months
-                        </p>
-                        <p className="text-sm text-slate-400">
-                          First payment due today, then monthly. No interest, no hidden fees.
-                        </p>
-                      </Label>
+        <div className="space-y-6">
+          {/* Plan Summary */}
+          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+            <CardHeader>
+              <CardTitle className="text-white text-2xl">
+                {planType === 'LEARNING_PATH' && 'Learning Path'}
+                {planType === 'BUNDLE_3_COURSE' && '3-Course Bundle'}
+                {planType === 'CHAPLAINCY_TRAINING' && 'Chaplaincy Training'}
+              </CardTitle>
+              <CardDescription className="text-gray-300">
+                Choose your payment option
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex justify-between items-center text-white">
+                <span className="text-lg">Total Price:</span>
+                <span className="text-2xl font-bold">${pricing}</span>
+              </div>
+              {planType === 'BUNDLE_3_COURSE' && selectedCourseIds.length > 0 && (
+                <div className="text-sm text-gray-300">
+                  <p className="font-semibold mb-1">Selected Courses:</p>
+                  <p>{selectedCourseIds.length} courses selected</p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Payment Method Selection */}
+          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+            <CardHeader>
+              <CardTitle className="text-white">Select Payment Method</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <RadioGroup value={paymentMethod} onValueChange={(value: any) => setPaymentMethod(value)}>
+                {/* Payment Plan Option */}
+                <div className="flex items-start space-x-3 p-4 rounded-lg border-2 border-white/20 hover:border-blue-400 transition-colors cursor-pointer bg-white/5 mb-4">
+                  <RadioGroupItem value="payment_plan" id="payment_plan" className="mt-1" />
+                  <Label htmlFor="payment_plan" className="flex-1 cursor-pointer">
+                    <div className="flex items-center gap-2 mb-2">
+                      <CreditCard className="h-5 w-5 text-blue-400" />
+                      <span className="text-white font-semibold text-lg">
+                        Payment Plan - ${planConfig.monthly}/month
+                      </span>
                     </div>
-
-                    {/* Full Payment Option */}
-                    <div className={`flex items-start space-x-3 p-4 rounded-lg border-2 cursor-pointer transition-colors ${
-                      paymentMethod === 'full' ? 'border-blue-500 bg-blue-900/20' : 'border-slate-700 hover:border-slate-600'
-                    }`} onClick={() => setPaymentMethod('full')}>
-                      <RadioGroupItem value="full" id="full" className="mt-1" />
-                      <Label htmlFor="full" className="flex-1 cursor-pointer">
-                        <div className="flex items-center gap-2 mb-2">
-                          <CreditCard className="w-5 h-5 text-blue-400" />
-                          <span className="font-semibold text-white text-lg">Pay in Full</span>
-                        </div>
-                        <p className="text-slate-300 mb-2">
-                          ${pricing.toFixed(2)} one-time payment
-                        </p>
-                        <p className="text-sm text-slate-400">
-                          Complete your purchase today with a single payment.
-                        </p>
-                      </Label>
+                    <p className="text-gray-300 text-sm mb-2">
+                      {planConfig.months} monthly payments • 0% interest
+                    </p>
+                    <div className="flex items-center gap-2 text-green-400 text-sm">
+                      <CheckCircle2 className="h-4 w-4" />
+                      <span>No credit check required</span>
                     </div>
-                  </div>
-                </RadioGroup>
-              </CardContent>
-            </Card>
+                  </Label>
+                </div>
 
-            {/* Finance Options Chart */}
-            <FinanceOptionsChart />
+                {/* Full Payment Option */}
+                <div className="flex items-start space-x-3 p-4 rounded-lg border-2 border-white/20 hover:border-blue-400 transition-colors cursor-pointer bg-white/5">
+                  <RadioGroupItem value="full_payment" id="full_payment" className="mt-1" />
+                  <Label htmlFor="full_payment" className="flex-1 cursor-pointer">
+                    <div className="flex items-center gap-2 mb-2">
+                      <DollarSign className="h-5 w-5 text-green-400" />
+                      <span className="text-white font-semibold text-lg">
+                        Pay in Full - ${pricing}
+                      </span>
+                    </div>
+                    <p className="text-gray-300 text-sm">
+                      One-time payment • Immediate access
+                    </p>
+                  </Label>
+                </div>
+              </RadioGroup>
+            </CardContent>
+          </Card>
 
-            {/* Continue Button */}
+          {/* Continue Button */}
+          <div className="flex justify-center pt-4">
             <Button
-              type="button"
-              onClick={() => {
-                alert('BUTTON CLICKED!');
-                handleContinue();
-              }}
-              disabled={createPlan.isPending}
-              className="w-full bg-green-600 hover:bg-green-700 text-lg py-6"
+              onClick={handleContinueToPayment}
+              disabled={isProcessing}
+              size="lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-12 py-6 text-lg font-semibold"
             >
-              {createPlan.isPending ? (
+              {isProcessing ? (
                 <>
-                  <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                  Loading...
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  Redirecting to Stripe...
                 </>
               ) : (
-                `Continue to Payment`
+                <>
+                  Continue to Payment
+                </>
               )}
             </Button>
           </div>
-        ) : clientSecret ? (
-          <Elements stripe={stripePromise} options={{ clientSecret }}>
-            <CheckoutForm
-              planType={planType}
-              paymentMethod={paymentMethod}
-              itemId={itemId}
-              onBack={() => setShowCheckout(false)}
-            />
-          </Elements>
-        ) : null}
+
+          {/* Security Notice */}
+          <div className="text-center text-gray-300 text-sm">
+            <p>🔒 Secure payment powered by Stripe</p>
+            <p className="mt-2">Your payment information is encrypted and secure</p>
+            <p className="mt-2 text-xs">You will be redirected to Stripe's secure checkout page</p>
+          </div>
+        </div>
       </div>
     </div>
   );

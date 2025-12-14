@@ -30,7 +30,113 @@ const PLAN_CONFIG = {
 };
 
 export const paymentPlanRouter = router({
-  // Create a new payment plan
+  // NEW: Create Stripe Checkout Session (replaces embedded form)
+  createCheckoutSession: protectedProcedure
+    .input(z.object({
+      planType: z.enum(['LEARNING_PATH', 'BUNDLE_3_COURSE', 'CHAPLAINCY_TRAINING']),
+      paymentMethod: z.enum(['payment_plan', 'full_payment']),
+      bundleId: z.number().optional(),
+      learningPathId: z.number().optional(),
+      selectedCourseIds: z.array(z.number()).optional(), // For bundle selection
+    }))
+    .mutation(async ({ input, ctx }) => {
+      const dbConn = await db.getDb();
+      if (!dbConn) throw new Error("Database not available");
+
+      const config = PLAN_CONFIG[input.planType];
+      const baseUrl = process.env.VITE_APP_URL || 'http://localhost:3000';
+
+      // Create or get Stripe customer
+      let stripeCustomerId = (ctx.user as any).stripeCustomerId;
+      if (!stripeCustomerId) {
+        const customer = await stripe.customers.create({
+          email: ctx.user.email || undefined,
+          name: ctx.user.name || undefined,
+          metadata: {
+            userId: ctx.user.id.toString(),
+          },
+        });
+        stripeCustomerId = customer.id;
+        
+        await dbConn.execute(
+          sql`UPDATE users SET stripeCustomerId = ${stripeCustomerId} WHERE id = ${ctx.user.id}`
+        );
+      }
+
+      // Store selected course IDs in sessionStorage for bundle purchases
+      const metadata: any = {
+        userId: ctx.user.id.toString(),
+        planType: input.planType,
+        paymentMethod: input.paymentMethod,
+        bundleId: input.bundleId?.toString() || '',
+        learningPathId: input.learningPathId?.toString() || '',
+      };
+
+      // Add selected course IDs to metadata if provided
+      if (input.selectedCourseIds && input.selectedCourseIds.length > 0) {
+        metadata.selectedCourseIds = JSON.stringify(input.selectedCourseIds);
+      }
+
+      if (input.paymentMethod === 'payment_plan') {
+        // Create subscription checkout for payment plan
+        const session = await stripe.checkout.sessions.create({
+          customer: stripeCustomerId,
+          payment_method_types: ['card'],
+          mode: 'subscription',
+          line_items: [{
+            price_data: {
+              currency: 'usd',
+              product_data: {
+                name: `${input.planType.replace(/_/g, ' ')} - Payment Plan`,
+                description: `${config.months} monthly payments of $${(config.monthlyAmount / 100).toFixed(2)}`,
+              },
+              unit_amount: config.monthlyAmount,
+              recurring: {
+                interval: 'month',
+                interval_count: 1,
+              },
+            },
+            quantity: 1,
+          }],
+          success_url: `${baseUrl}/payment-success?session_id={CHECKOUT_SESSION_ID}&plan_type=${input.planType}`,
+          cancel_url: `${baseUrl}/payment-cancel`,
+          metadata,
+        });
+
+        return {
+          sessionId: session.id,
+          url: session.url,
+        };
+      } else {
+        // Create one-time payment checkout for full payment
+        const session = await stripe.checkout.sessions.create({
+          customer: stripeCustomerId,
+          payment_method_types: ['card'],
+          mode: 'payment',
+          line_items: [{
+            price_data: {
+              currency: 'usd',
+              product_data: {
+                name: `${input.planType.replace(/_/g, ' ')} - Full Payment`,
+                description: 'One-time payment - Full access',
+              },
+              unit_amount: config.totalAmount,
+            },
+            quantity: 1,
+          }],
+          success_url: `${baseUrl}/payment-success?session_id={CHECKOUT_SESSION_ID}&plan_type=${input.planType}`,
+          cancel_url: `${baseUrl}/payment-cancel`,
+          metadata,
+        });
+
+        return {
+          sessionId: session.id,
+          url: session.url,
+        };
+      }
+    }),
+
+  // Create a new payment plan (LEGACY - keeping for backward compatibility)
   createPlan: protectedProcedure
     .input(z.object({
       planType: z.enum(['LEARNING_PATH', 'BUNDLE_3_COURSE', 'CHAPLAINCY_TRAINING']),
@@ -249,70 +355,27 @@ export const paymentPlanRouter = router({
 
   // Get payment history
   getPaymentHistory: protectedProcedure
-    .input(z.object({ planId: z.number() }))
+    .input(z.object({
+      planId: z.number(),
+    }))
     .query(async ({ input, ctx }) => {
       const dbConn = await db.getDb();
       if (!dbConn) return [];
 
-      // Verify plan belongs to user
-      const planCheck: any = await dbConn.execute(
-        sql`SELECT * FROM payment_plans WHERE id = ${input.planId} AND userId = ${ctx.user.id}`
-      );
-      const plans = Array.isArray(planCheck) ? planCheck : (planCheck.rows || []);
-      
-      if (plans.length === 0) {
-        throw new Error("Payment plan not found");
-      }
-
       const result: any = await dbConn.execute(
-        sql`SELECT * FROM payment_history 
-            WHERE paymentPlanId = ${input.planId}
+        sql`SELECT * FROM payment_history
+            WHERE paymentPlanId = ${input.planId} AND userId = ${ctx.user.id}
             ORDER BY paymentDate DESC`
       );
 
       return Array.isArray(result) ? result : (result.rows || []);
     }),
 
-  // Pay off early
-  payOffEarly: protectedProcedure
-    .input(z.object({ planId: z.number() }))
-    .mutation(async ({ input, ctx }) => {
-      const dbConn = await db.getDb();
-      if (!dbConn) throw new Error("Database not available");
-
-      // Get plan details
-      const planResult: any = await dbConn.execute(
-        sql`SELECT * FROM payment_plans WHERE id = ${input.planId} AND userId = ${ctx.user.id}`
-      );
-      const plans = Array.isArray(planResult) ? planResult : (planResult.rows || []);
-      
-      if (plans.length === 0) {
-        throw new Error("Payment plan not found");
-      }
-
-      const plan = plans[0];
-      const remainingAmount = plan.monthlyAmount * plan.paymentsRemaining;
-
-      // Create payment intent for remaining balance
-      const paymentIntent = await stripe.paymentIntents.create({
-        amount: remainingAmount,
-        currency: "usd",
-        customer: plan.stripeCustomerId,
-        metadata: {
-          planId: input.planId.toString(),
-          type: 'early_payoff',
-        },
-      });
-
-      return {
-        clientSecret: paymentIntent.client_secret,
-        amount: remainingAmount,
-      };
-    }),
-
   // Cancel payment plan
   cancelPlan: protectedProcedure
-    .input(z.object({ planId: z.number() }))
+    .input(z.object({
+      planId: z.number(),
+    }))
     .mutation(async ({ input, ctx }) => {
       const dbConn = await db.getDb();
       if (!dbConn) throw new Error("Database not available");
@@ -341,6 +404,49 @@ export const paymentPlanRouter = router({
             WHERE id = ${input.planId}`
       );
 
-      return { success: true };
+      return {
+        success: true,
+        message: "Payment plan cancelled successfully",
+      };
+    }),
+
+  // Pay off remaining balance early
+  payOffEarly: protectedProcedure
+    .input(z.object({
+      planId: z.number(),
+    }))
+    .mutation(async ({ input, ctx }) => {
+      const dbConn = await db.getDb();
+      if (!dbConn) throw new Error("Database not available");
+
+      // Get plan details
+      const planResult: any = await dbConn.execute(
+        sql`SELECT * FROM payment_plans WHERE id = ${input.planId} AND userId = ${ctx.user.id}`
+      );
+      const plans = Array.isArray(planResult) ? planResult : (planResult.rows || []);
+      
+      if (plans.length === 0) {
+        throw new Error("Payment plan not found");
+      }
+
+      const plan = plans[0];
+      const remainingAmount = plan.monthlyAmount * plan.paymentsRemaining;
+
+      // Create payment intent for remaining balance
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: remainingAmount,
+        currency: 'usd',
+        customer: plan.stripeCustomerId,
+        metadata: {
+          userId: ctx.user.id.toString(),
+          planId: input.planId.toString(),
+          type: 'early_payoff',
+        },
+      });
+
+      return {
+        clientSecret: paymentIntent.client_secret,
+        amount: remainingAmount,
+      };
     }),
 });

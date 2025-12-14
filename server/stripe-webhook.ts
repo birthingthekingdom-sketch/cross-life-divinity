@@ -78,10 +78,130 @@ export async function handleStripeWebhook(req: Request, res: Response) {
 async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) {
   const userId = parseInt(session.metadata?.userId || "0");
   const type = session.metadata?.type;
+  const planType = session.metadata?.planType;
+  const paymentMethod = session.metadata?.paymentMethod;
 
   if (!userId) {
     console.error("No userId in checkout session metadata");
     return;
+  }
+
+  // Handle new payment plan checkout sessions
+  if (planType && paymentMethod) {
+    console.log(`Payment plan checkout completed: user ${userId}, plan ${planType}, method ${paymentMethod}`);
+    
+    const dbConn = await db.getDb();
+    if (!dbConn) {
+      console.error("Database not available");
+      return;
+    }
+
+    // Get pricing config
+    const PLAN_CONFIG: any = {
+      LEARNING_PATH: { totalAmount: 39900, monthlyAmount: 6650, months: 6 },
+      BUNDLE_3_COURSE: { totalAmount: 29900, monthlyAmount: 4983, months: 6 },
+      CHAPLAINCY_TRAINING: { totalAmount: 27500, monthlyAmount: 4583, months: 6 },
+    };
+    const config = PLAN_CONFIG[planType];
+
+    if (paymentMethod === 'payment_plan') {
+      // Create payment plan record for subscription
+      const subscriptionId = session.subscription as string;
+      const nextPaymentDate = new Date();
+      nextPaymentDate.setMonth(nextPaymentDate.getMonth() + 1);
+
+      await dbConn.execute(
+        sql`INSERT INTO payment_plans 
+            (userId, planType, bundleId, learningPathId, totalAmount, monthlyAmount, 
+             paymentsTotal, paymentsCompleted, paymentsRemaining, nextPaymentDate, 
+             status, stripeSubscriptionId, stripeCustomerId, agreementAcceptedAt)
+            VALUES (${userId}, ${planType}, ${session.metadata?.bundleId || null}, 
+                    ${session.metadata?.learningPathId || null}, ${config.totalAmount}, ${config.monthlyAmount}, 
+                    ${config.months}, 1, ${config.months - 1}, ${nextPaymentDate}, 
+                    'active', ${subscriptionId}, ${session.customer as string}, ${new Date()})`
+      );
+
+      // Record first payment
+      await dbConn.execute(
+        sql`INSERT INTO payment_history 
+            (userId, paymentPlanId, amount, paymentNumber, paymentDate, status, stripePaymentIntentId)
+            SELECT ${userId}, LAST_INSERT_ID(), ${config.monthlyAmount}, 1, ${new Date()}, 
+                   'succeeded', ${session.payment_intent as string}`
+      );
+    }
+
+    // Enroll user in courses based on plan type
+    if (planType === 'BUNDLE_3_COURSE') {
+      // Get selected course IDs from metadata
+      const selectedCourseIds = session.metadata?.selectedCourseIds 
+        ? JSON.parse(session.metadata.selectedCourseIds) 
+        : [];
+      
+      for (const courseId of selectedCourseIds) {
+        const existing: any = await dbConn.execute(
+          sql`SELECT * FROM course_enrollments 
+              WHERE userId = ${userId} AND courseId = ${courseId}`
+        );
+        const enrollments = Array.isArray(existing) ? existing : (existing.rows || []);
+        
+        if (enrollments.length === 0) {
+          await dbConn.execute(
+            sql`INSERT INTO course_enrollments (userId, courseId, enrolledAt) 
+                VALUES (${userId}, ${courseId}, NOW())`
+          );
+        }
+      }
+      console.log(`Enrolled user ${userId} in bundle courses: ${selectedCourseIds.join(', ')}`);
+    } else if (planType === 'LEARNING_PATH') {
+      const learningPathId = parseInt(session.metadata?.learningPathId || '0');
+      if (learningPathId) {
+        const pathCourses: any = await dbConn.execute(
+          sql`SELECT courseId FROM learning_path_courses WHERE learningPathId = ${learningPathId}`
+        );
+        const courses = Array.isArray(pathCourses) ? pathCourses : (pathCourses.rows || []);
+
+        for (const course of courses) {
+          const existing: any = await dbConn.execute(
+            sql`SELECT * FROM course_enrollments 
+                WHERE userId = ${userId} AND courseId = ${course.courseId}`
+          );
+          const enrollments = Array.isArray(existing) ? existing : (existing.rows || []);
+          
+          if (enrollments.length === 0) {
+            await dbConn.execute(
+              sql`INSERT INTO course_enrollments (userId, courseId, enrolledAt) 
+                  VALUES (${userId}, ${course.courseId}, NOW())`
+            );
+          }
+        }
+        console.log(`Enrolled user ${userId} in learning path ${learningPathId} courses`);
+      }
+    } else if (planType === 'CHAPLAINCY_TRAINING') {
+      // Find chaplaincy course
+      const chaplainCourse: any = await dbConn.execute(
+        sql`SELECT id FROM courses WHERE courseCode = 'CHAP-501' LIMIT 1`
+      );
+      const courses = Array.isArray(chaplainCourse) ? chaplainCourse : (chaplainCourse.rows || []);
+      
+      if (courses.length > 0) {
+        const courseId = courses[0].id;
+        const existing: any = await dbConn.execute(
+          sql`SELECT * FROM course_enrollments 
+              WHERE userId = ${userId} AND courseId = ${courseId}`
+        );
+        const enrollments = Array.isArray(existing) ? existing : (existing.rows || []);
+        
+        if (enrollments.length === 0) {
+          await dbConn.execute(
+            sql`INSERT INTO course_enrollments (userId, courseId, enrolledAt) 
+                VALUES (${userId}, ${courseId}, NOW())`
+          );
+        }
+        console.log(`Enrolled user ${userId} in chaplaincy training`);
+      }
+    }
+
+    return; // Exit after handling payment plan checkout
   }
 
   if (type === "subscription" || type === "subscription_upgrade") {
