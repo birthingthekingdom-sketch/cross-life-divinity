@@ -178,6 +178,7 @@ function CheckoutForm({ planType, paymentMethod, itemId, onBack }: CheckoutFormP
 }
 
 export function PaymentPlanCheckout() {
+  console.log('🚀🚀🚀 PaymentPlanCheckout component LOADED 🚀🚀🚀');
   const [location] = useLocation();
   const params = new URLSearchParams(window.location.search);
   const rawType = params.get('type');
@@ -191,10 +192,16 @@ export function PaymentPlanCheckout() {
 
   const createPlan = trpc.paymentPlan.createPlan.useMutation({
     onSuccess: (data) => {
+      console.log('✅ Payment plan created successfully:', data);
+      console.log('Client secret:', data.clientSecret);
       setClientSecret(data.clientSecret);
       setShowCheckout(true);
+      toast.success('Payment plan created! Loading checkout...');
     },
     onError: (error) => {
+      console.error('❌ Payment plan creation failed:', error);
+      console.error('Error message:', error.message);
+      console.error('Error code:', error.data?.code);
       toast.error(error.message);
     },
   });
@@ -220,13 +227,25 @@ export function PaymentPlanCheckout() {
                   PRICING.CHAPLAINCY_TRAINING;
 
   const handleContinue = () => {
+    alert('handleContinue called!');
+    console.log('🔵 handleContinue called');
+    console.log('Payment method:', paymentMethod);
+    console.log('Plan type:', planType);
+    console.log('Item ID:', itemId);
+    
     if (paymentMethod === 'plan') {
-      createPlan.mutate({
+      console.log('🟢 Creating payment plan...');
+      const mutationInput = {
         planType,
         bundleId: planType === 'BUNDLE_3_COURSE' ? itemId : undefined,
         learningPathId: planType === 'LEARNING_PATH' ? itemId : undefined,
-      });
+      };
+      console.log('Mutation input:', mutationInput);
+      
+      createPlan.mutate(mutationInput);
+      console.log('🟡 Mutation called, isPending:', createPlan.isPending);
     } else {
+      console.log('🔴 Full payment selected');
       // For full payment, navigate to existing checkout
       toast.info("Full payment checkout coming soon");
     }
@@ -300,7 +319,11 @@ export function PaymentPlanCheckout() {
 
             {/* Continue Button */}
             <Button
-              onClick={handleContinue}
+              type="button"
+              onClick={() => {
+                alert('BUTTON CLICKED!');
+                handleContinue();
+              }}
               disabled={createPlan.isPending}
               className="w-full bg-green-600 hover:bg-green-700 text-lg py-6"
             >

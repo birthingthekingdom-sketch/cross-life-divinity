@@ -1902,3 +1902,56 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Ensure responsive sizing on mobile
 - [x] Adjusted navigation height to accommodate larger logo
 - [x] Save checkpoint
+
+## Stripe Payment Setup & Testing
+
+- [ ] Verify Stripe test mode credentials are configured
+- [ ] Test payment flow with test card (4242 4242 4242 4242)
+- [ ] Verify successful payment creates enrollment
+- [ ] Test webhook processing for invoice.payment_succeeded
+- [ ] Verify email notifications are sent
+- [ ] Test failed payment scenario
+- [ ] Document Stripe setup for production
+- [ ] Provide instructions for switching to live mode
+
+## Stripe Payment Testing - December 14, 2024
+
+- [x] Verify Stripe API connection works
+- [x] Test Stripe customer creation
+- [x] Test Stripe subscription creation
+- [x] Verify backend payment-plan-router is mounted correctly
+- [x] Verify tRPC middleware is configured
+- [x] Test bundle selection flow
+- [x] Test payment plan checkout page display
+- [ ] **FIX: "Continue to Payment" button not triggering API call**
+- [ ] Debug frontend tRPC mutation in PaymentPlanCheckout.tsx
+- [ ] Add error handling and loading states
+- [ ] Test complete payment flow with Stripe test card (4242 4242 4242 4242)
+- [ ] Verify webhook processing after payment
+- [ ] Test course enrollment after successful payment
+
+**See STRIPE_PAYMENT_TEST_STATUS.md for detailed findings and next steps**
+
+## PaymentPlanCheckout Button Fix - In Progress
+
+- [ ] Add console.log debugging to PaymentPlanCheckout.tsx
+- [ ] Test button click and track mutation flow
+- [ ] Identify why createPlan mutation isn't triggering
+- [ ] Fix the button handler issue
+- [ ] Test complete payment flow with Stripe test card
+- [ ] Verify Stripe payment form displays
+- [ ] Complete test payment with 4242 4242 4242 4242
+- [ ] Save checkpoint with working payment system
+
+## PaymentPlanCheckout Button Debug - INVESTIGATED
+
+- [x] Add debugging logs to PaymentPlanCheckout component
+- [x] Test button click and identify failure point
+- [x] Root cause identified: onClick handler not attached to DOM by React
+- [x] Attempted multiple fixes (all failed)
+- [x] Created comprehensive debug report (PAYMENT_BUTTON_DEBUG_REPORT.md)
+- [ ] Implement recommended solution (Option 2: Stripe Checkout Sessions)
+- [ ] Test complete payment flow with Stripe test card
+- [ ] Remove all debugging code after fix
+
+**Status:** onClick handler is NULL in DOM despite correct React code. Comprehensive investigation documented in PAYMENT_BUTTON_DEBUG_REPORT.md with 3 recommended solutions.
