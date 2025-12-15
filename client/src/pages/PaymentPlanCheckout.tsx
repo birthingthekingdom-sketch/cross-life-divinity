@@ -61,14 +61,17 @@ export function PaymentPlanCheckout() {
                   planType === 'BUNDLE_3_COURSE' ? PRICING.BUNDLE_3_COURSE :
                   PRICING.CHAPLAINCY_TRAINING;
   
-  // Convert cents to dollars and format
-  const monthlyPrice = (planConfig.monthly / 100).toFixed(2);
+  // Convert cents to dollars and format - EXPLICIT CONVERSION
+  const monthlyCents = planConfig?.monthly || 0;
+  const monthlyPrice = Number((monthlyCents / 100).toFixed(2));
+  const monthlyPriceDisplay = `${monthlyPrice.toFixed(2)}`;
+  
   console.log('💰 Payment Plan Debug:', {
     planType,
-    monthlyCents: planConfig.monthly,
-    monthlyDollars: monthlyPrice,
-    totalCents: planConfig.total,
-    totalDollars: (planConfig.total / 100).toFixed(2)
+    planConfig,
+    monthlyCents,
+    monthlyPrice,
+    monthlyPriceDisplay
   });
 
   const handleContinueToPayment = () => {
@@ -151,7 +154,7 @@ export function PaymentPlanCheckout() {
                     <div className="flex items-center gap-2 mb-2">
                       <CreditCard className="h-5 w-5 text-blue-400" />
                       <span className="text-white font-semibold text-lg">
-                        Payment Plan - ${monthlyPrice}/month
+                        Payment Plan - ${monthlyPriceDisplay}/month
                       </span>
                     </div>
                     <p className="text-gray-300 text-sm mb-2">

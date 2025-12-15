@@ -13,13 +13,25 @@ export default function Login() {
   const { refresh, isAuthenticated, loading } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [hasInteracted, setHasInteracted] = useState(false);
 
-  // Redirect if already logged in
+  // Redirect if already logged in (but only on initial load, not during form interaction)
   useEffect(() => {
-    if (!loading && isAuthenticated) {
+    if (!loading && isAuthenticated && !hasInteracted) {
       setLocation("/dashboard");
     }
-  }, [isAuthenticated, loading, setLocation]);
+  }, [isAuthenticated, loading, hasInteracted, setLocation]);
+  
+  // Mark as interacted when user starts typing
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setHasInteracted(true);
+    setEmail(e.target.value);
+  };
+  
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setHasInteracted(true);
+    setPassword(e.target.value);
+  };
 
   const loginMutation = trpc.auth.login.useMutation({
     onSuccess: async () => {
@@ -83,7 +95,7 @@ export default function Login() {
                   type="email"
                   placeholder="your.email@example.com"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={handleEmailChange}
                   required
                   autoComplete="email"
                 />
@@ -101,7 +113,7 @@ export default function Login() {
                   type="password"
                   placeholder="••••••••"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={handlePasswordChange}
                   required
                   autoComplete="current-password"
                 />
