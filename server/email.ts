@@ -718,3 +718,115 @@ export async function sendPaymentPlanCompletionEmail(
     return false;
   }
 }
+
+// Full Payment Receipt Email (for one-time purchases)
+export async function sendFullPaymentReceiptEmail(
+  to: string,
+  studentName: string,
+  planType: string,
+  amount: number,
+  paymentDate: Date,
+  transactionId: string
+) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  const planName = planType.replace(/_/g, ' ');
+  const formattedDate = paymentDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+  
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to,
+      subject: `Payment Receipt - ${planName}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="text-align: center; padding: 30px 0; background-color: #1e40af; color: white; border-radius: 8px 8px 0 0;">
+            <h1 style="margin: 0; font-size: 28px;">✓ Payment Successful</h1>
+            <p style="margin: 10px 0 0 0; font-size: 16px;">Thank you for your purchase!</p>
+          </div>
+          
+          <div style="padding: 30px; background-color: #f9fafb;">
+            <p>Dear ${studentName},</p>
+            <p>Your payment has been successfully processed. You now have <strong>lifetime access</strong> to your courses!</p>
+            
+            <div style="background-color: white; border: 2px solid #e5e7eb; padding: 20px; margin: 30px 0; border-radius: 8px;">
+              <h3 style="color: #1e40af; margin-top: 0; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">Payment Details</h3>
+              
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 10px 0; color: #6b7280;">Program:</td>
+                  <td style="padding: 10px 0; text-align: right; font-weight: bold;">${planName}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 0; color: #6b7280;">Amount Paid:</td>
+                  <td style="padding: 10px 0; text-align: right; font-weight: bold; color: #16a34a; font-size: 20px;">$${amount.toFixed(2)}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 0; color: #6b7280;">Payment Date:</td>
+                  <td style="padding: 10px 0; text-align: right; font-weight: bold;">${formattedDate}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 0; color: #6b7280;">Transaction ID:</td>
+                  <td style="padding: 10px 0; text-align: right; font-family: monospace; font-size: 12px;">${transactionId}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 0; color: #6b7280;">Payment Method:</td>
+                  <td style="padding: 10px 0; text-align: right; font-weight: bold;">One-Time Payment</td>
+                </tr>
+              </table>
+            </div>
+            
+            <div style="background-color: #eff6ff; padding: 20px; margin: 30px 0; border-radius: 8px; border-left: 4px solid #1e40af;">
+              <h3 style="color: #1e40af; margin-top: 0;">What's Next?</h3>
+              <ul style="line-height: 1.8; margin: 10px 0;">
+                <li>✓ <strong>Immediate Access:</strong> Your courses are ready to start</li>
+                <li>✓ <strong>Lifetime Access:</strong> No expiration, learn at your pace</li>
+                <li>✓ <strong>CPD Certificates:</strong> Earn certificates upon completion</li>
+                <li>✓ <strong>Full Support:</strong> Access to discussion forums and support</li>
+              </ul>
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+              <a href="https://cross-life-divinity.manus.space/dashboard" 
+                 style="background-color: #1e40af; color: white; padding: 14px 32px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold; font-size: 16px;">
+                Start Learning Now →
+              </a>
+            </div>
+            
+            <div style="background-color: white; padding: 20px; margin: 30px 0; border-radius: 8px; border: 1px solid #e5e7eb;">
+              <p style="margin: 0; font-size: 14px; color: #6b7280;">
+                <strong>Need Help?</strong><br>
+                If you have any questions about your purchase or courses, contact us at 
+                <a href="mailto:studio6817@yahoo.com" style="color: #1e40af;">studio6817@yahoo.com</a> 
+                or call <a href="tel:+13123003295" style="color: #1e40af;">(312) 300-3295</a>
+              </p>
+            </div>
+            
+            <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 14px;">
+              This is an automated receipt for your records. Please save this email for your records.
+            </p>
+            
+            <p style="margin-top: 20px; color: #666; font-size: 14px;">
+              Blessings on your theological journey,<br>
+              <strong>Cross Life School of Divinity Team</strong>
+            </p>
+          </div>
+          
+          <div style="text-align: center; padding: 20px; background-color: #f3f4f6; color: #6b7280; font-size: 12px; border-radius: 0 0 8px 8px;">
+            <p style="margin: 0;">Cross Life School of Divinity</p>
+            <p style="margin: 5px 0 0 0;">Seminary-Level Theological Education</p>
+          </div>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send full payment receipt email:', error);
+    return false;
+  }
+}

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Stripe from "stripe";
 import { sql } from "drizzle-orm";
 import * as db from "./db";
-import { sendMonthlyPaymentReceiptEmail, sendFailedPaymentNotificationEmail, sendPaymentPlanCompletionEmail } from './email';
+import { sendMonthlyPaymentReceiptEmail, sendFailedPaymentNotificationEmail, sendPaymentPlanCompletionEmail, sendPaymentPlanEnrollmentEmail, sendFullPaymentReceiptEmail } from './email';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-11-17.clover",
@@ -198,6 +198,40 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
           );
         }
         console.log(`Enrolled user ${userId} in chaplaincy training`);
+      }
+    }
+
+    // Send email notification based on payment method
+    const user: any = await dbConn.execute(
+      sql`SELECT name, email FROM users WHERE id = ${userId}`
+    );
+    const users = Array.isArray(user) ? user : (user.rows || []);
+    
+    if (users.length > 0 && users[0].email) {
+      const userName = users[0].name || 'Student';
+      const userEmail = users[0].email;
+      
+      if (paymentMethod === 'payment_plan') {
+        // Send payment plan enrollment email
+        await sendPaymentPlanEnrollmentEmail(
+          userEmail,
+          userName,
+          planType,
+          config.totalAmount / 100,
+          config.monthlyAmount / 100,
+          config.months,
+          new Date()
+        );
+      } else if (paymentMethod === 'full_payment') {
+        // Send full payment receipt email
+        await sendFullPaymentReceiptEmail(
+          userEmail,
+          userName,
+          planType,
+          config.totalAmount / 100,
+          new Date(),
+          session.payment_intent as string || session.id
+        );
       }
     }
 
