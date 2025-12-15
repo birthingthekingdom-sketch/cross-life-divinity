@@ -2038,3 +2038,4 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Replace all CPD references with CLAC throughout website
 - [x] Update landing page hero image to replace CPD with CLAC
 - [x] Add badge/icon next to Accreditation link in navigation
+- [x] Add Accreditation link with badge to footer

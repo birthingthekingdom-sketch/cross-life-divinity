@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin, ShieldCheck } from "lucide-react";
 
 export function Footer() {
   return (
@@ -17,9 +17,13 @@ export function Footer() {
               />
               <h3 className="font-bold text-lg">CLSOD</h3>
             </div>
-            <p className="text-white/80 text-sm">
+            <p className="text-white/80 text-sm mb-4">
               CLAC-accredited theological education for ministry leaders. Transform your ministry through biblical excellence.
             </p>
+            <Link href="/accreditation" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 transition-colors px-3 py-2 rounded-md text-sm">
+              <ShieldCheck className="h-4 w-4 text-accent" />
+              <span>CLAC Accredited</span>
+            </Link>
           </div>
 
           {/* Quick Links */}
@@ -44,6 +48,12 @@ export function Footer() {
               <li>
                 <Link href="/about" className="text-white/80 hover:text-white transition-colors">
                   About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/accreditation" className="text-white/80 hover:text-white transition-colors flex items-center gap-1">
+                  <ShieldCheck className="h-3 w-3" />
+                  Accreditation
                 </Link>
               </li>
             </ul>
