@@ -23,7 +23,8 @@ import {
   ExternalLink,
   Mail,
   Phone,
-  ArrowRight
+  ArrowRight,
+  Building2
 } from "lucide-react";
 import { PublicNav } from "@/components/PublicNav";
 import { useState } from "react";
@@ -482,6 +483,167 @@ export default function Accreditation() {
                 </p>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Transfer Credit Pathways Section */}
+      <section className="py-16 bg-blue-50">
+        <div className="container max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Building2 className="h-10 w-10 text-primary" />
+              <h2 className="text-4xl font-bold">Pathways to Higher Education</h2>
+            </div>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              While CLSD credits may not automatically transfer, several accredited Christian colleges and universities 
+              have policies for accepting credits from non-accredited institutions. Here are examples of schools that 
+              may accept CLSD coursework:
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {/* Liberty University */}
+            <Card className="border-primary/20 hover:shadow-lg transition-shadow">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <GraduationCap className="h-5 w-5 text-primary" />
+                  Liberty University
+                </CardTitle>
+                <p className="text-sm text-muted-foreground">Lynchburg, VA • SACSCOC Accredited</p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Maintains an "Approved Unaccredited Institutions" list with pre-approved course equivalencies. 
+                  One of the largest Christian universities accepting non-accredited credits.
+                </p>
+                <a href="https://www.liberty.edu" target="_blank" rel="noopener noreferrer" 
+                   className="text-primary text-sm flex items-center gap-1 hover:underline">
+                  Visit Website <ExternalLink className="h-3 w-3" />
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* Global Christian University */}
+            <Card className="border-primary/20 hover:shadow-lg transition-shadow">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <GraduationCap className="h-5 w-5 text-primary" />
+                  Global Christian University
+                </CardTitle>
+                <p className="text-sm text-muted-foreground">Dallas, TX • ABHE Accredited</p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Accepts up to 25% of degree units from non-accredited programs. Has formal agreements 
+                  with several non-accredited ministry schools.
+                </p>
+                <a href="https://globalcu.edu" target="_blank" rel="noopener noreferrer" 
+                   className="text-primary text-sm flex items-center gap-1 hover:underline">
+                  Visit Website <ExternalLink className="h-3 w-3" />
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* Calvary University */}
+            <Card className="border-primary/20 hover:shadow-lg transition-shadow">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <GraduationCap className="h-5 w-5 text-primary" />
+                  Calvary University
+                </CardTitle>
+                <p className="text-sm text-muted-foreground">Kansas City, MO • HLC & ABHE Accredited</p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Accepts Bible language courses from non-accredited institutions after proficiency exam. 
+                  Other courses evaluated case-by-case.
+                </p>
+                <a href="https://calvary.edu" target="_blank" rel="noopener noreferrer" 
+                   className="text-primary text-sm flex items-center gap-1 hover:underline">
+                  Visit Website <ExternalLink className="h-3 w-3" />
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* Trinity Bible College */}
+            <Card className="border-primary/20 hover:shadow-lg transition-shadow">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <GraduationCap className="h-5 w-5 text-primary" />
+                  Trinity Bible College
+                </CardTitle>
+                <p className="text-sm text-muted-foreground">Ellendale, ND • ABHE Accredited</p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Accepts limited credits from non-accredited institutions after students demonstrate 
+                  satisfactory academic performance.
+                </p>
+                <a href="https://trinitybiblecollege.edu" target="_blank" rel="noopener noreferrer" 
+                   className="text-primary text-sm flex items-center gap-1 hover:underline">
+                  Visit Website <ExternalLink className="h-3 w-3" />
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* Carolina Christian College */}
+            <Card className="border-primary/20 hover:shadow-lg transition-shadow">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <GraduationCap className="h-5 w-5 text-primary" />
+                  Carolina Christian College
+                </CardTitle>
+                <p className="text-sm text-muted-foreground">Winston-Salem, NC • TRACS Accredited</p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Accepts credits from unaccredited schools on a case-by-case basis. 
+                  Submit course syllabi for evaluation.
+                </p>
+                <a href="https://carolina.edu" target="_blank" rel="noopener noreferrer" 
+                   className="text-primary text-sm flex items-center gap-1 hover:underline">
+                  Visit Website <ExternalLink className="h-3 w-3" />
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* Southern Baptist Theological Seminary */}
+            <Card className="border-primary/20 hover:shadow-lg transition-shadow">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <GraduationCap className="h-5 w-5 text-primary" />
+                  Southern Baptist Seminary
+                </CardTitle>
+                <p className="text-sm text-muted-foreground">Louisville, KY • ATS & SACSCOC Accredited</p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Considers credits from non-accredited institutions on a case-by-case basis. 
+                  Submit detailed course documentation for evaluation.
+                </p>
+                <a href="https://sbts.edu" target="_blank" rel="noopener noreferrer" 
+                   className="text-primary text-sm flex items-center gap-1 hover:underline">
+                  Visit Website <ExternalLink className="h-3 w-3" />
+                </a>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="bg-white rounded-lg p-6 shadow-sm border border-primary/20">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="h-5 w-5 text-amber-600 mt-1 flex-shrink-0" />
+              <div>
+                <p className="font-semibold text-foreground mb-2">Important Note About Transfer Credits</p>
+                <p className="text-sm text-muted-foreground">
+                  Transfer credit acceptance is always at the discretion of the receiving institution. 
+                  We strongly recommend contacting your intended transfer school directly to inquire about their 
+                  specific policies for accepting credits from non-accredited institutions. CLSD is actively 
+                  pursuing formal articulation agreements with these and other institutions to create clear 
+                  transfer pathways for our graduates.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
