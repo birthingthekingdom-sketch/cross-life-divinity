@@ -60,6 +60,9 @@ export function PaymentPlanCheckout() {
   const pricing = planType === 'LEARNING_PATH' ? PRICING.LEARNING_PATH :
                   planType === 'BUNDLE_3_COURSE' ? PRICING.BUNDLE_3_COURSE :
                   PRICING.CHAPLAINCY_TRAINING;
+  
+  // Convert cents to dollars and format
+  const monthlyPrice = (planConfig.monthly / 100).toFixed(2);
 
   const handleContinueToPayment = () => {
     console.log('🔵 handleContinueToPayment called');
@@ -79,7 +82,8 @@ export function PaymentPlanCheckout() {
     // Add item IDs based on plan type
     if (planType === 'BUNDLE_3_COURSE') {
       input.bundleId = itemId;
-      if (selectedCourseIds.length > 0) {
+      // Only add selectedCourseIds if they exist (optional for bundle)
+      if (selectedCourseIds && selectedCourseIds.length > 0) {
         input.selectedCourseIds = selectedCourseIds;
       }
     } else if (planType === 'LEARNING_PATH') {
@@ -140,7 +144,7 @@ export function PaymentPlanCheckout() {
                     <div className="flex items-center gap-2 mb-2">
                       <CreditCard className="h-5 w-5 text-blue-400" />
                       <span className="text-white font-semibold text-lg">
-                        Payment Plan - ${planConfig.monthly}/month
+                        Payment Plan - ${monthlyPrice}/month
                       </span>
                     </div>
                     <p className="text-gray-300 text-sm mb-2">

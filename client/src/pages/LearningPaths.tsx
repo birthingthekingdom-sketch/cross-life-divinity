@@ -159,7 +159,7 @@ export default function LearningPaths() {
                         <Button
                           onClick={() => setLocation('/pricing')}
                         >
-                          Start This Path - $199
+                          Start This Path
                         </Button>
                       )}
                     </div>

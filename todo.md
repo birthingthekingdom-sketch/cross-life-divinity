@@ -1966,3 +1966,45 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Configure email notifications for payment receipts
 - [x] Add payment confirmation emails
 - [x] Create Stripe webhook setup documentation
+
+## Production Deployment - Next Steps
+- [ ] Configure Stripe webhook endpoint in Stripe Dashboard
+- [ ] Add webhook signing secret to environment variables
+- [ ] Set up SMTP email settings in Admin Panel
+- [ ] Test complete payment flow with Stripe test card
+- [ ] Verify automatic course enrollment works
+- [ ] Verify email notifications are sent correctly
+- [ ] Publish site to production
+
+## Stripe Checkout Link Issue Fix
+- [ ] Disable Stripe Link in checkout session configuration
+- [ ] Show card payment form by default
+- [ ] Test payment with test card 4242 4242 4242 4242
+
+## Payment Plan Amount Fixes - CRITICAL
+- [x] Fix all payment plan amounts across entire site (showing cents instead of dollars)
+- [x] Fix Pricing page payment plan amounts  
+- [x] Fix Checkout page payment plan amounts
+- [x] Remove price from Start This Path button
+- [ ] Test all payment flows with correct amounts
+
+## Navigation Improvements
+- [x] Add Home button to navigation bar
+- [x] Ensure navigation bar appears on all pages
+- [x] Update PublicNav component
+- [x] Add PublicNav to Home page
+- [x] Test navigation across all pages
+
+## Payment Checkout Credit Card Display
+- [x] Fix Stripe checkout to show credit card options
+- [x] Ensure all payment methods are available (card, Link, etc.)
+- [x] Test payment checkout displays correctly
+
+## Payment Checkout Display Fix - URGENT
+- [ ] Fix payment plan amount showing $6650 instead of $66.50 on checkout page
+- [ ] Verify all payment amounts display correctly with proper decimal places
+
+## Failed Query Error - URGENT
+- [ ] Fix "failed query" error on payment checkout page
+- [ ] Check server logs for database error details
+- [ ] Verify database queries are working correctly

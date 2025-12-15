@@ -5,6 +5,7 @@ import { trpc } from "@/lib/trpc";
 import { GraduationCap, Loader2, Check, BookOpen, Award, Users } from "lucide-react";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
+import { PublicNav } from "@/components/PublicNav";
 
 export default function Home() {
   const { user, loading, isAuthenticated } = useAuth();
@@ -30,6 +31,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
+      <PublicNav currentPage="home" />
       {/* Hero Section with Promotional Image */}
       <section className="relative h-[600px] overflow-hidden">
         <img 

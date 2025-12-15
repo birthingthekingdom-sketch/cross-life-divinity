@@ -4,13 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Award, Menu, X } from "lucide-react";
 
 interface PublicNavProps {
-  currentPage?: "courses" | "learning-paths" | "pricing" | "about";
+  currentPage?: "home" | "courses" | "learning-paths" | "pricing" | "about";
 }
 
 export function PublicNav({ currentPage }: PublicNavProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
+    { href: "/", label: "Home", key: "home" },
     { href: "/catalog", label: "Courses", key: "courses" },
     { href: "/learning-paths", label: "Learning Paths", key: "learning-paths" },
     { href: "/pricing", label: "Pricing", key: "pricing" },
