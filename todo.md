@@ -2013,3 +2013,15 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Fix login page redirecting before user can finish typing
 - [x] Check for auto-redirect logic in Login component
 - [x] Ensure user can complete login form without interruption
+
+## Payment Query Failure - CRITICAL
+- [ ] Fix "failed query" error when clicking Continue to Payment
+- [ ] Check payment-plan-router for database query issues
+- [ ] Verify Stripe customer creation query
+- [ ] Test complete payment flow from checkout to Stripe
+
+## Stripe Amount Display CRITICAL - URGENT
+- [x] Fix Stripe showing $6,650/month instead of $66.50/month
+- [x] Check unit_amount in payment-plan-router Stripe session creation
+- [x] Verify cents are being sent correctly to Stripe API
+- [ ] Cancel test subscription created with wrong amount

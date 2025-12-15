@@ -13,18 +13,18 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 // Plan type configuration
 const PLAN_CONFIG = {
   LEARNING_PATH: {
-    totalAmount: PRICING.LEARNING_PATH * 100, // Convert to cents
-    monthlyAmount: Math.round(PAYMENT_PLANS.LEARNING_PATH.monthly * 100),
+    totalAmount: PAYMENT_PLANS.LEARNING_PATH.total, // Already in cents
+    monthlyAmount: PAYMENT_PLANS.LEARNING_PATH.monthly, // Already in cents
     months: PAYMENT_PLANS.LEARNING_PATH.months,
   },
   BUNDLE_3_COURSE: {
-    totalAmount: PRICING.BUNDLE_3_COURSE * 100,
-    monthlyAmount: Math.round(PAYMENT_PLANS.BUNDLE_3_COURSE.monthly * 100),
+    totalAmount: PAYMENT_PLANS.BUNDLE_3_COURSE.total, // Already in cents
+    monthlyAmount: PAYMENT_PLANS.BUNDLE_3_COURSE.monthly, // Already in cents
     months: PAYMENT_PLANS.BUNDLE_3_COURSE.months,
   },
   CHAPLAINCY_TRAINING: {
-    totalAmount: PRICING.CHAPLAINCY_TRAINING * 100,
-    monthlyAmount: Math.round(PAYMENT_PLANS.CHAPLAINCY_TRAINING.monthly * 100),
+    totalAmount: PAYMENT_PLANS.CHAPLAINCY_TRAINING.total, // Already in cents
+    monthlyAmount: PAYMENT_PLANS.CHAPLAINCY_TRAINING.monthly, // Already in cents
     months: PAYMENT_PLANS.CHAPLAINCY_TRAINING.months,
   },
 };
