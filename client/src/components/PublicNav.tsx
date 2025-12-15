@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Award, Menu, X } from "lucide-react";
+import { Award, Menu, X, ShieldCheck } from "lucide-react";
 
 interface PublicNavProps {
   currentPage?: "home" | "courses" | "learning-paths" | "pricing" | "about" | "accreditation";
@@ -16,7 +16,7 @@ export function PublicNav({ currentPage }: PublicNavProps) {
     { href: "/learning-paths", label: "Learning Paths", key: "learning-paths" },
     { href: "/pricing", label: "Pricing", key: "pricing" },
     { href: "/about", label: "About", key: "about" },
-    { href: "/accreditation", label: "Accreditation", key: "accreditation" },
+    { href: "/accreditation", label: "Accreditation", key: "accreditation", icon: true },
   ];
 
   return (
@@ -37,12 +37,13 @@ export function PublicNav({ currentPage }: PublicNavProps) {
               <Link
                 key={link.key}
                 href={link.href}
-                className={`transition-colors cursor-pointer font-medium ${
+                className={`transition-colors cursor-pointer font-medium flex items-center gap-1 ${
                   currentPage === link.key
                     ? "text-primary"
                     : "text-foreground hover:text-primary"
                 }`}
               >
+                {link.icon && <ShieldCheck className="h-4 w-4 text-accent" />}
                 {link.label}
               </Link>
             ))}
@@ -71,13 +72,14 @@ export function PublicNav({ currentPage }: PublicNavProps) {
               <Link
                 key={link.key}
                 href={link.href}
-                className={`block py-2 px-4 rounded-md transition-colors cursor-pointer font-medium ${
+                className={`flex items-center gap-2 py-2 px-4 rounded-md transition-colors cursor-pointer font-medium ${
                   currentPage === link.key
                     ? "bg-primary/10 text-primary"
                     : "text-foreground hover:bg-accent/10"
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
+                {link.icon && <ShieldCheck className="h-4 w-4 text-accent" />}
                 {link.label}
               </Link>
             ))}
