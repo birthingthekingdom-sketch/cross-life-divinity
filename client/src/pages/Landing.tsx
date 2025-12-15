@@ -535,7 +535,7 @@ export default function Landing() {
             <Badge className="mb-4">Student Success Stories</Badge>
             <h2 className="text-4xl font-bold mb-4">Transforming Ministry Leaders Worldwide</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Join thousands of pastors, ministers, and chaplains who have advanced their ministry through our CLAC-accredited programs
+              Join pastors, ministers and chaplains who are advancing their ministries through our CLAC-accredited programs
             </p>
           </div>
           

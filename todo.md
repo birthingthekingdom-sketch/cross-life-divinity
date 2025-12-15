@@ -2048,3 +2048,4 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Create dedicated Financial Aid page with application forms and eligibility requirements
 - [x] Add Financial Aid Calculator for cost estimation
 - [ ] Add "Need Help Paying?" banner on Pricing page linking to financial aid
+- [x] Update landing page tagline to: Join pastors, ministers and chaplains who are advancing their ministries through our CLAC-accredited programs
