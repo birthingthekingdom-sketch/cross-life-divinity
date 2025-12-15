@@ -2031,3 +2031,7 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Check PaymentSuccess component for errors
 - [x] Verify success_url redirect is correct
 - [x] Test complete payment flow end-to-end
+
+
+## Accreditation Page
+- [x] Add Accreditation page with CLAC transparency content

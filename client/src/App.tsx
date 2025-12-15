@@ -65,6 +65,7 @@ import Logout from './pages/Logout';
 import AffiliateApply from './pages/AffiliateApply';
 import AffiliateDashboard from './pages/AffiliateDashboard';
 import ChaplaincyTraining from './pages/ChaplaincyTraining';
+import Accreditation from './pages/Accreditation';
 import { PaymentPlanCheckout } from './pages/PaymentPlanCheckout';
 import MyPayments from './pages/MyPayments';
 
@@ -116,6 +117,7 @@ function Router() {
       <Route path="/learning-paths" component={LearningPaths} />
       <Route path="/cohorts" component={CohortGroups} />
       <Route path="/about" component={About} />
+      <Route path="/accreditation" component={Accreditation} />
       <Route path="/faq" component={FAQ} />
       <Route path="/success-stories" component={SuccessStories} />
       <Route path="/resources" component={Resources} />
