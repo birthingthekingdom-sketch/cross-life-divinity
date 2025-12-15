@@ -90,7 +90,7 @@ export default function MyPayments() {
                       <div className="flex items-start justify-between">
                         <div>
                           <CardTitle className="text-white text-xl">
-                            {plan.planType.replace(/_/g, ' ')}
+                            {plan.planType ? plan.planType.replace(/_/g, ' ') : 'Payment Plan'}
                           </CardTitle>
                           <CardDescription className="text-slate-400">
                             Started {formatDate(plan.createdAt)}

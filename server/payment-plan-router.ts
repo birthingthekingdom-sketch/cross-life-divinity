@@ -87,7 +87,7 @@ export const paymentPlanRouter = router({
             price_data: {
               currency: 'usd',
               product_data: {
-                name: `${input.planType.replace(/_/g, ' ')} - Payment Plan`,
+                name: `Cross Life School of Divinity - ${input.planType.replace(/_/g, ' ')}`,
                 description: `${config.months} monthly payments of $${(config.monthlyAmount / 100).toFixed(2)}`,
               },
               unit_amount: config.monthlyAmount,
@@ -117,7 +117,7 @@ export const paymentPlanRouter = router({
             price_data: {
               currency: 'usd',
               product_data: {
-                name: `${input.planType.replace(/_/g, ' ')} - Full Payment`,
+                name: `Cross Life School of Divinity - ${input.planType.replace(/_/g, ' ')}`,
                 description: 'One-time payment - Full access',
               },
               unit_amount: config.totalAmount,
