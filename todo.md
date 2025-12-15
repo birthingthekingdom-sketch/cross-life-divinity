@@ -2040,3 +2040,4 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Add badge/icon next to Accreditation link in navigation
 - [x] Add Accreditation link with badge to footer
 - [x] Add transfer credit institutions section to Accreditation page
+- [x] Add certificate upgrade promise messaging to Accreditation page

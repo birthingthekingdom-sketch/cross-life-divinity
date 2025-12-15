@@ -293,11 +293,15 @@ export default function Accreditation() {
     },
     {
       question: "Is a CLSD certificate worth anything?",
-      answer: "The value of any credential depends on how you use it. CLSD certificates demonstrate completion of rigorous theological coursework, knowledge of biblical and theological content, and commitment to ministry preparation. Many employers, churches, and ministry organizations value demonstrated knowledge and commitment regardless of accreditation status."
+      answer: "The value of any credential depends on how you use it. CLSD certificates demonstrate completion of rigorous theological coursework, knowledge of biblical and theological content, and commitment to ministry preparation. Many employers, churches, and ministry organizations value demonstrated knowledge and commitment regardless of accreditation status. Plus, when CLSD achieves national accreditation, your certificate can be upgraded to reflect our new status at no additional cost."
     },
     {
       question: "Will CLSD ever become nationally accredited?",
       answer: "Yes, pursuing national accreditation is part of our strategic plan. We are building the institutional infrastructure, documentation, and track record necessary to apply for recognition by a national accrediting agency. Our target is to begin the application process within 3-5 years."
+    },
+    {
+      question: "Will my certificate be upgraded when CLSD achieves national accreditation?",
+      answer: "Yes! We are committed to our students' long-term success. When CLSD achieves national accreditation, all prior students who completed courses under CLAC standards will be eligible to have their certificates upgraded to reflect our nationally accredited status. This is our promise to you: your investment in theological education today will be recognized and honored when we achieve national accreditation. We maintain complete records of all student achievements specifically for this purpose."
     },
     {
       question: "What if I have a complaint?",
@@ -371,6 +375,26 @@ export default function Accreditation() {
       <section className="py-16">
         <div className="container max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">What We DO Offer</h2>
+          {/* Certificate Upgrade Promise - Featured */}
+          <Card className="mb-8 bg-gradient-to-r from-primary/10 to-accent/10 border-2 border-primary">
+            <CardContent className="pt-6">
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="bg-primary rounded-full p-4">
+                  <TrendingUp className="h-10 w-10 text-white" />
+                </div>
+                <div className="text-center md:text-left flex-1">
+                  <h3 className="text-xl font-bold text-primary mb-2">Certificate Upgrade Promise</h3>
+                  <p className="text-muted-foreground">
+                    <strong>Your investment is protected.</strong> When CLSD achieves national accreditation, 
+                    all prior students will be eligible to have their certificates upgraded to reflect our 
+                    nationally accredited status—<strong>at no additional cost</strong>. We maintain complete 
+                    records of all student achievements specifically for this purpose.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="text-center bg-green-50 border-green-200">
               <CardContent className="pt-6">
