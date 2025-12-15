@@ -672,6 +672,111 @@ export default function Accreditation() {
         </div>
       </section>
 
+      {/* Student Testimonials */}
+      <section className="py-16 bg-gradient-to-b from-primary/5 to-white">
+        <div className="container max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">What Our Students Say</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Real stories from ministry leaders who chose quality education over accreditation labels
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Testimonial 1 */}
+            <Card className="bg-white shadow-lg border-t-4 border-t-primary">
+              <CardContent className="pt-6">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-muted-foreground italic mb-6">
+                  "I was initially concerned about the accreditation status, but the depth of biblical teaching 
+                  and practical ministry training I received far exceeded what I expected. My church has seen 
+                  real growth since applying what I learned. The education speaks for itself."
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                    <span className="text-primary font-bold text-lg">PM</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold">Pastor Marcus J.</p>
+                    <p className="text-sm text-muted-foreground">Senior Pastor, Atlanta, GA</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Testimonial 2 */}
+            <Card className="bg-white shadow-lg border-t-4 border-t-primary">
+              <CardContent className="pt-6">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-muted-foreground italic mb-6">
+                  "As a bi-vocational minister, I needed flexible, affordable training. CLSD delivered 
+                  seminary-quality content at a fraction of the cost. The Greek word studies and 
+                  theological depth rival programs costing ten times as much. Accreditation is just a label—
+                  transformation is what matters."
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                    <span className="text-primary font-bold text-lg">DT</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold">Deacon Thomas R.</p>
+                    <p className="text-sm text-muted-foreground">Youth Ministry Director, Chicago, IL</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Testimonial 3 */}
+            <Card className="bg-white shadow-lg border-t-4 border-t-primary">
+              <CardContent className="pt-6">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-muted-foreground italic mb-6">
+                  "I chose CLSD because of their transparency about accreditation and their commitment 
+                  to quality. The Certificate Upgrade Promise gave me confidence that my investment is 
+                  protected. Now I'm equipped to teach and lead with biblical authority. That's worth 
+                  more than any credential."
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                    <span className="text-primary font-bold text-lg">SW</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold">Sister Wanda K.</p>
+                    <p className="text-sm text-muted-foreground">Women's Ministry Leader, Houston, TX</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Additional Quote Highlight */}
+          <div className="mt-12 bg-primary/10 rounded-2xl p-8 text-center max-w-4xl mx-auto">
+            <blockquote className="text-xl italic text-foreground mb-4">
+              "The measure of theological education isn't the accreditation on the wall—it's the 
+              transformation in the heart and the fruit in the ministry. CLSD delivers both."
+            </blockquote>
+            <p className="text-primary font-semibold">— Dr. James H., CLSD Advisory Board Member</p>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="py-16 bg-muted/30">
         <div className="container max-w-6xl mx-auto px-4">

@@ -2041,3 +2041,4 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Add Accreditation link with badge to footer
 - [x] Add transfer credit institutions section to Accreditation page
 - [x] Add certificate upgrade promise messaging to Accreditation page
+- [x] Add student testimonials to Accreditation page - quotes valuing education regardless of accreditation status
