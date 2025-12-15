@@ -63,6 +63,13 @@ export function PaymentPlanCheckout() {
   
   // Convert cents to dollars and format
   const monthlyPrice = (planConfig.monthly / 100).toFixed(2);
+  console.log('💰 Payment Plan Debug:', {
+    planType,
+    monthlyCents: planConfig.monthly,
+    monthlyDollars: monthlyPrice,
+    totalCents: planConfig.total,
+    totalDollars: (planConfig.total / 100).toFixed(2)
+  });
 
   const handleContinueToPayment = () => {
     console.log('🔵 handleContinueToPayment called');
