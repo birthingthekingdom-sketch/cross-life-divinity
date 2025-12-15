@@ -13,9 +13,14 @@ export default function PaymentSuccess() {
     // Get payment type from URL params
     const params = new URLSearchParams(window.location.search);
     const type = params.get("type");
+    const planType = params.get("plan_type");
     
+    // Handle both old format (type) and new format (plan_type)
     if (type === "subscription" || type === "course") {
       setPaymentType(type);
+    } else if (planType) {
+      // Payment plans are subscription-based
+      setPaymentType("subscription");
     }
   }, []);
 
