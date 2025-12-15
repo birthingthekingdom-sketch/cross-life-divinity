@@ -3,7 +3,7 @@ import { useLocation, Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, CreditCard, DollarSign, Calendar, Sparkles, BookOpen, Award, Clock, Phone, Mail, GraduationCap } from "lucide-react";
+import { Check, CreditCard, DollarSign, Calendar, Sparkles, BookOpen, Award, Clock, Phone, Mail, GraduationCap, Heart, ArrowRight } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { toast } from "sonner";
@@ -605,6 +605,42 @@ export default function Pricing() {
               </div>
             </CardContent>
           </Card>
+        </div>
+      </div>
+
+      {/* Financial Aid Banner */}
+      <div className="bg-gradient-to-r from-green-600 to-emerald-600 py-12">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Heart className="h-10 w-10 text-white" />
+              <h2 className="text-3xl font-bold text-white">Need Help Paying?</h2>
+            </div>
+            <p className="text-xl text-white/90 mb-6">
+              While federal financial aid (FAFSA) is not available, CLSD offers <strong>internal financial aid</strong> through 
+              the Cross Life Accreditation Council (CLAC) for qualified students.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
+              <div className="bg-white/20 rounded-lg px-4 py-2">
+                <span className="text-white font-semibold">0% Interest Payment Plans</span>
+              </div>
+              <div className="bg-white/20 rounded-lg px-4 py-2">
+                <span className="text-white font-semibold">Ministry Scholarships</span>
+              </div>
+              <div className="bg-white/20 rounded-lg px-4 py-2">
+                <span className="text-white font-semibold">Need-Based Aid</span>
+              </div>
+              <div className="bg-white/20 rounded-lg px-4 py-2">
+                <span className="text-white font-semibold">Church Partnership Discounts</span>
+              </div>
+            </div>
+            <Link href="/financial-aid">
+              <Button size="lg" variant="secondary" className="text-lg px-8 py-6 bg-white text-green-700 hover:bg-white/90">
+                Explore Financial Aid Options
+                <ArrowRight className="h-5 w-5 ml-2" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
 

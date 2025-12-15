@@ -2043,3 +2043,8 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Add certificate upgrade promise messaging to Accreditation page
 - [x] Add student testimonials to Accreditation page - quotes valuing education regardless of accreditation status
 - [x] Add CLAC internal financial aid information to Accreditation page
+
+## Financial Aid Enhancement
+- [x] Create dedicated Financial Aid page with application forms and eligibility requirements
+- [x] Add Financial Aid Calculator for cost estimation
+- [ ] Add "Need Help Paying?" banner on Pricing page linking to financial aid
