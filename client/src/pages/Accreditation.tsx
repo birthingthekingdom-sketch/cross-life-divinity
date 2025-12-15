@@ -281,7 +281,11 @@ export default function Accreditation() {
     },
     {
       question: "Can I get federal financial aid (FAFSA)?",
-      answer: "No. Federal financial aid is only available at institutions accredited by agencies recognized by the U.S. Department of Education. CLSD is not eligible for federal financial aid programs."
+      answer: "No. Federal financial aid (FAFSA) is only available at institutions accredited by agencies recognized by the U.S. Department of Education. CLSD is not eligible for federal financial aid programs. However, CLSD offers internal financial aid through CLAC for qualified students—see below."
+    },
+    {
+      question: "What financial aid options does CLSD offer?",
+      answer: "While federal financial aid is not available, CLSD offers comprehensive internal financial aid through the Cross Life Accreditation Council (CLAC). Our tuition assistance program includes: (1) Payment Plans - spread your tuition over 6 months with 0% interest, (2) Ministry Scholarships - partial tuition assistance for active ministry workers, (3) Need-Based Aid - financial assistance based on demonstrated financial need, and (4) Church Partnership Discounts - reduced rates for students sponsored by partner churches. Contact financialaid@crosslifeschoolofdivinity.org to learn about your options and apply for assistance."
     },
     {
       question: "Why isn't CLSD nationally accredited?",
@@ -363,6 +367,28 @@ export default function Accreditation() {
                   <div className="flex items-start gap-2">
                     <XCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
                     <span>Some graduate schools may not accept CLSD credits</span>
+                  </div>
+                </div>
+
+                {/* Internal Financial Aid Notice */}
+                <div className="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="h-6 w-6 text-green-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-green-800 font-semibold text-lg mb-2">
+                        CLAC Internal Financial Aid Available
+                      </p>
+                      <p className="text-green-700">
+                        While federal financial aid (FAFSA) is not available, <strong>CLSD offers internal financial aid 
+                        through the Cross Life Accreditation Council for qualified students</strong>. Our tuition assistance 
+                        program includes payment plans, ministry scholarships, and need-based aid to help make theological 
+                        education accessible to those called to serve.
+                      </p>
+                      <p className="text-green-700 mt-2">
+                        <strong>Contact us</strong> at <a href="mailto:financialaid@crosslifeschoolofdivinity.org" className="underline hover:text-green-900">financialaid@crosslifeschoolofdivinity.org</a> to 
+                        learn about your financial aid options.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

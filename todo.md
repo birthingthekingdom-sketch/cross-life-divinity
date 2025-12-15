@@ -2042,3 +2042,4 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Add transfer credit institutions section to Accreditation page
 - [x] Add certificate upgrade promise messaging to Accreditation page
 - [x] Add student testimonials to Accreditation page - quotes valuing education regardless of accreditation status
+- [x] Add CLAC internal financial aid information to Accreditation page
