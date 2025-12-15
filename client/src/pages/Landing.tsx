@@ -120,7 +120,7 @@ export default function Landing() {
       {/* Hero Section with Promotional Image */}
       <section className="relative overflow-hidden">
         <img 
-          src="/promo-hero-new.webp" 
+          src="/promo-hero-clac.png" 
           alt="Study Theology at Your Own Pace - CLAC Accredited Courses" 
           className="w-full h-auto object-cover"
         />
