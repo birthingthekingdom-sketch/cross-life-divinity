@@ -2035,3 +2035,4 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 
 ## Accreditation Page
 - [x] Add Accreditation page with CLAC transparency content
+- [x] Replace all CPD references with CLAC throughout website

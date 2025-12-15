@@ -121,7 +121,7 @@ export default function Landing() {
       <section className="relative overflow-hidden">
         <img 
           src="/promo-hero-new.webp" 
-          alt="Study Theology at Your Own Pace - CPD Accredited Courses" 
+          alt="Study Theology at Your Own Pace - CLAC Accredited Courses" 
           className="w-full h-auto object-cover"
         />
       </section>
@@ -160,7 +160,7 @@ export default function Landing() {
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-lg">CPD-accredited certificates upon completion</span>
+                  <span className="text-lg">CLAC-accredited certificates upon completion</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
@@ -201,7 +201,7 @@ export default function Landing() {
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-3">
                   <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-lg">30 CPD Hours of Professional Certification</span>
+                  <span className="text-lg">30 CLAC Hours of Professional Certification</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
@@ -249,7 +249,7 @@ export default function Landing() {
               <p className="text-foreground/80 mb-4">
                 Explore the prophetic office and gift, learn to test prophecies, and understand the role of prophecy in the believer's life and church ministry.
               </p>
-              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CPD Hours</div>
+              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CLAC Hours</div>
             </div>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
@@ -259,7 +259,7 @@ export default function Landing() {
               <p className="text-foreground/80 mb-4">
                 Master the biblical foundations of deliverance, understand spiritual and natural bondages, and learn practical methods for setting captives free.
               </p>
-              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CPD Hours</div>
+              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CLAC Hours</div>
             </div>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
@@ -269,7 +269,7 @@ export default function Landing() {
               <p className="text-foreground/80 mb-4">
                 Study the five ministry gifts from Ephesians 4:11 - apostle, prophet, evangelist, pastor, and teacher - and their function in building the church.
               </p>
-              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CPD Hours</div>
+              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CLAC Hours</div>
             </div>
           </div>
         </div>
@@ -405,7 +405,7 @@ export default function Landing() {
               <div className="inline-block bg-accent/10 p-4 rounded-full mb-4">
                 <Award className="h-12 w-12 text-accent" />
               </div>
-              <h3 className="text-2xl font-semibold mb-3">CPD Accredited</h3>
+              <h3 className="text-2xl font-semibold mb-3">CLAC Accredited</h3>
               <p className="text-foreground/80">
                 Earn recognized certificates that demonstrate your commitment to professional development
               </p>
@@ -483,7 +483,7 @@ export default function Landing() {
                 </div>
               </div>
               <p className="text-muted-foreground italic leading-relaxed">
-                "The Biblical Hermeneutics course equipped me with tools I use daily in sermon preparation and Bible study leadership. The CPD accreditation adds credibility to my ministry credentials. Worth every penny—actually, the subscription model makes it incredibly affordable!"
+                "The Biblical Hermeneutics course equipped me with tools I use daily in sermon preparation and Bible study leadership. The CLAC accreditation adds credibility to my ministry credentials. Worth every penny—actually, the subscription model makes it incredibly affordable!"
               </p>
               <div className="mt-4 flex gap-1">
                 {[...Array(5)].map((_, i) => (
@@ -535,7 +535,7 @@ export default function Landing() {
             <Badge className="mb-4">Student Success Stories</Badge>
             <h2 className="text-4xl font-bold mb-4">Transforming Ministry Leaders Worldwide</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Join thousands of pastors, ministers, and chaplains who have advanced their ministry through our CPD-accredited programs
+              Join thousands of pastors, ministers, and chaplains who have advanced their ministry through our CLAC-accredited programs
             </p>
           </div>
           
@@ -555,7 +555,7 @@ export default function Landing() {
             <div className="bg-background p-8 rounded-lg shadow-lg">
               <div className="text-5xl text-primary mb-4">"</div>
               <p className="text-muted-foreground mb-6 italic">
-                As a busy ministry leader, the flexibility of online learning was perfect. The CPD certification adds credibility to my credentials.
+                As a busy ministry leader, the flexibility of online learning was perfect. The CLAC certification adds credibility to my credentials.
               </p>
               <div>
                 <p className="font-bold">Dr. Patricia Johnson</p>

@@ -11,13 +11,13 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { Link, useParams } from "wouter";
 
-function CPDHoursCard({ course }: { course: any }) {
+function CLACHoursCard({ course }: { course: any }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [cpdHours, setCpdHours] = useState(course.cpdHours || 0);
+  const [clacHours, setClacHours] = useState(course.cpdHours || 0);
   const utils = trpc.useUtils();
-  const updateCPD = trpc.admin.updateCourseCPDHours.useMutation({
+  const updateCLAC = trpc.admin.updateCourseCPDHours.useMutation({
     onSuccess: () => {
-      toast.success('CPD hours updated successfully');
+      toast.success('CLAC hours updated successfully');
       utils.courses.getById.invalidate({ id: course.id });
       setIsEditing(false);
     },
@@ -27,7 +27,7 @@ function CPDHoursCard({ course }: { course: any }) {
   });
 
   const handleSave = () => {
-    updateCPD.mutate({ courseId: course.id, cpdHours });
+    updateCLAC.mutate({ courseId: course.id, cpdHours: clacHours });
   };
 
   return (
@@ -36,7 +36,7 @@ function CPDHoursCard({ course }: { course: any }) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Award className="w-5 h-5 text-blue-700" />
-            <CardTitle>CPD Accreditation</CardTitle>
+            <CardTitle>CLAC Accreditation</CardTitle>
           </div>
           {!isEditing && (
             <Button variant="outline" size="sm" onClick={() => setIsEditing(true)}>
@@ -50,25 +50,25 @@ function CPDHoursCard({ course }: { course: any }) {
         {isEditing ? (
           <div className="space-y-4">
             <div>
-              <Label htmlFor="cpdHours">CPD Hours</Label>
+              <Label htmlFor="clacHours">CLAC Hours</Label>
               <Input
-                id="cpdHours"
+                id="clacHours"
                 type="number"
                 min="0"
-                value={cpdHours}
-                onChange={(e) => setCpdHours(parseInt(e.target.value) || 0)}
+                value={clacHours}
+                onChange={(e) => setClacHours(parseInt(e.target.value) || 0)}
                 className="max-w-xs"
               />
               <p className="text-sm text-muted-foreground mt-1">
-                Number of CPD hours awarded upon course completion
+                Number of CLAC hours awarded upon course completion
               </p>
             </div>
             <div className="flex gap-2">
-              <Button onClick={handleSave} disabled={updateCPD.isPending}>
-                {updateCPD.isPending ? 'Saving...' : 'Save'}
+              <Button onClick={handleSave} disabled={updateCLAC.isPending}>
+                {updateCLAC.isPending ? 'Saving...' : 'Save'}
               </Button>
               <Button variant="outline" onClick={() => {
-                setCpdHours(course.cpdHours || 0);
+                setClacHours(course.cpdHours || 0);
                 setIsEditing(false);
               }}>
                 Cancel
@@ -78,7 +78,7 @@ function CPDHoursCard({ course }: { course: any }) {
         ) : (
           <div>
             <div className="text-3xl font-bold text-blue-900">
-              {course.cpdHours || 0} CPD Hours
+              {course.cpdHours || 0} CLAC Hours
             </div>
             <p className="text-sm text-muted-foreground mt-1">
               Awarded upon successful course completion
@@ -246,8 +246,8 @@ export default function AdminCourseDetail() {
           </p>
         </div>
 
-        {/* CPD Hours Card */}
-        <CPDHoursCard course={course} />
+        {/* CLAC Hours Card */}
+        <CLACHoursCard course={course} />
 
         {/* Intro Video Card */}
         <IntroVideoCard course={course} />
