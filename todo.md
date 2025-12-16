@@ -2072,3 +2072,4 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Fix /chaplaincy-training URL redirecting to landing page on published site
 - [x] Fix missing chaplain promo graphic - requires republish
 - [x] Add Open Graph meta tags to Chaplaincy Training page for Facebook link previews
+- [x] Fix Chaplaincy Training page auto-redirecting to login - should be publicly viewable
