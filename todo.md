@@ -2067,3 +2067,7 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Create credits/certification chart showing CLAC credits per course
 - [x] Include Certificate Upgrade Promise for future accreditation
 - [x] Make chart visible to students on the site
+
+## Bug Fixes
+- [x] Fix /chaplaincy-training URL redirecting to landing page on published site
+- [x] Fix missing chaplain promo graphic - requires republish
