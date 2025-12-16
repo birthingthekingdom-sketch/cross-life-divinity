@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Award, Menu, X, ShieldCheck } from "lucide-react";
 
 interface PublicNavProps {
-  currentPage?: "home" | "courses" | "learning-paths" | "pricing" | "about" | "accreditation" | "financial-aid";
+  currentPage?: "home" | "courses" | "learning-paths" | "pricing" | "about" | "accreditation" | "credits" | "financial-aid";
 }
 
 export function PublicNav({ currentPage }: PublicNavProps) {
@@ -17,6 +17,7 @@ export function PublicNav({ currentPage }: PublicNavProps) {
     { href: "/pricing", label: "Pricing", key: "pricing" },
     { href: "/about", label: "About", key: "about" },
     { href: "/accreditation", label: "Accreditation", key: "accreditation", icon: true },
+    { href: "/credits", label: "Credits", key: "credits", icon: true },
     { href: "/financial-aid", label: "Financial Aid", key: "financial-aid" },
   ];
 

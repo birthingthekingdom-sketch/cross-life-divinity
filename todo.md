@@ -2062,3 +2062,8 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 ## Chaplaincy Marketing & Pricing Update
 - [x] Update chaplaincy pricing: $275 course + $50 background check = $325 total (payment plan available)
 - [x] Create Facebook marketing post for Chaplaincy Training
+
+## Credits & Certification Chart
+- [x] Create credits/certification chart showing CLAC credits per course
+- [x] Include Certificate Upgrade Promise for future accreditation
+- [x] Make chart visible to students on the site
