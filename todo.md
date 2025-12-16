@@ -2049,3 +2049,11 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Add Financial Aid Calculator for cost estimation
 - [ ] Add "Need Help Paying?" banner on Pricing page linking to financial aid
 - [x] Update landing page tagline to: Join pastors, ministers and chaplains who are advancing their ministries through our CLAC-accredited programs
+
+## Landing Page Enhancements
+- [ ] Update hero section tagline for consistency
+- [x] Add placeholder for real student count display
+- [x] Add student location map visualization
+
+## Bug Investigation
+- [x] Investigate authentication issue - auto-login when clicking "already have account" (confirmed expected behavior - cached session)
