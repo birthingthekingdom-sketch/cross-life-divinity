@@ -542,16 +542,16 @@ export default function Landing() {
           {/* Stats Row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <div className="text-4xl font-bold text-primary mb-2">150+</div>
-              <p className="text-muted-foreground">Active Students</p>
+              <div className="text-3xl font-bold text-primary mb-2">Decades</div>
+              <p className="text-muted-foreground">of Ministry Training Experience</p>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <div className="text-4xl font-bold text-primary mb-2">12</div>
-              <p className="text-muted-foreground">States Represented</p>
+              <div className="text-3xl font-bold text-primary mb-2">Proven</div>
+              <p className="text-muted-foreground">Track Record of Student Success</p>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <div className="text-4xl font-bold text-primary mb-2">500+</div>
-              <p className="text-muted-foreground">Certificates Issued</p>
+              <div className="text-3xl font-bold text-primary mb-2">Seminary</div>
+              <p className="text-muted-foreground">Quality Curriculum</p>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-lg text-center">
               <div className="text-4xl font-bold text-primary mb-2">18</div>
@@ -583,61 +583,31 @@ export default function Landing() {
                   strokeWidth="1"
                 />
                 
-                {/* Student Location Markers */}
-                {/* Illinois - Chicago */}
-                <circle cx="580" cy="240" r="12" fill="#2563eb" opacity="0.8">
-                  <animate attributeName="r" values="10;14;10" dur="2s" repeatCount="indefinite" />
+                {/* Student Location Markers - Actual locations: IL, NE (Omaha), TX */}
+                {/* Illinois - Chicago (Headquarters) */}
+                <circle cx="580" cy="240" r="14" fill="#2563eb" opacity="0.9">
+                  <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite" />
                 </circle>
                 <text x="580" y="270" textAnchor="middle" className="text-xs fill-primary font-semibold">IL</text>
+                
+                {/* Nebraska - Omaha */}
+                <circle cx="420" cy="240" r="10" fill="#2563eb" opacity="0.8">
+                  <animate attributeName="r" values="8;12;8" dur="2.3s" repeatCount="indefinite" />
+                </circle>
+                <text x="420" y="265" textAnchor="middle" className="text-xs fill-primary font-semibold">NE</text>
                 
                 {/* Texas */}
                 <circle cx="450" cy="380" r="10" fill="#2563eb" opacity="0.8">
                   <animate attributeName="r" values="8;12;8" dur="2.5s" repeatCount="indefinite" />
                 </circle>
                 <text x="450" y="405" textAnchor="middle" className="text-xs fill-primary font-semibold">TX</text>
-                
-                {/* Georgia - Atlanta */}
-                <circle cx="680" cy="340" r="10" fill="#2563eb" opacity="0.8">
-                  <animate attributeName="r" values="8;12;8" dur="2.2s" repeatCount="indefinite" />
-                </circle>
-                <text x="680" y="365" textAnchor="middle" className="text-xs fill-primary font-semibold">GA</text>
-                
-                {/* California */}
-                <circle cx="200" cy="280" r="8" fill="#2563eb" opacity="0.8">
-                  <animate attributeName="r" values="6;10;6" dur="2.8s" repeatCount="indefinite" />
-                </circle>
-                <text x="200" y="305" textAnchor="middle" className="text-xs fill-primary font-semibold">CA</text>
-                
-                {/* Florida */}
-                <circle cx="740" cy="400" r="9" fill="#2563eb" opacity="0.8">
-                  <animate attributeName="r" values="7;11;7" dur="2.3s" repeatCount="indefinite" />
-                </circle>
-                <text x="740" y="425" textAnchor="middle" className="text-xs fill-primary font-semibold">FL</text>
-                
-                {/* New York */}
-                <circle cx="780" cy="200" r="8" fill="#2563eb" opacity="0.8">
-                  <animate attributeName="r" values="6;10;6" dur="2.6s" repeatCount="indefinite" />
-                </circle>
-                <text x="780" y="225" textAnchor="middle" className="text-xs fill-primary font-semibold">NY</text>
-                
-                {/* Ohio */}
-                <circle cx="660" cy="240" r="7" fill="#2563eb" opacity="0.8">
-                  <animate attributeName="r" values="5;9;5" dur="2.4s" repeatCount="indefinite" />
-                </circle>
-                <text x="660" y="265" textAnchor="middle" className="text-xs fill-primary font-semibold">OH</text>
-                
-                {/* North Carolina */}
-                <circle cx="740" cy="300" r="7" fill="#2563eb" opacity="0.8">
-                  <animate attributeName="r" values="5;9;5" dur="2.7s" repeatCount="indefinite" />
-                </circle>
-                <text x="740" y="325" textAnchor="middle" className="text-xs fill-primary font-semibold">NC</text>
               </svg>
               
               {/* Legend */}
               <div className="flex items-center justify-center gap-6 mt-6">
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 rounded-full bg-primary animate-pulse"></div>
-                  <span className="text-sm text-muted-foreground">Active Student Locations</span>
+                  <span className="text-sm text-muted-foreground">Graduate Locations</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MapPin className="h-4 w-4 text-primary" />
