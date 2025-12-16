@@ -52,7 +52,7 @@ function FinancialAidCalculator() {
         originalCost = 299; // 3-Course Bundle
         break;
       case "chaplaincy":
-        originalCost = 275; // Chaplaincy Training
+        originalCost = 325; // Chaplaincy Training ($275 + $50 background check)
         break;
       case "single":
         originalCost = 89; // Single Course
@@ -128,7 +128,7 @@ function FinancialAidCalculator() {
               <SelectContent>
                 <SelectItem value="subscription">Learning Path ($399)</SelectItem>
                 <SelectItem value="bundle">3-Course Bundle ($299)</SelectItem>
-                <SelectItem value="chaplaincy">Chaplaincy Training ($275)</SelectItem>
+                <SelectItem value="chaplaincy">Chaplaincy Training ($325)</SelectItem>
                 <SelectItem value="single">Single Course ($89)</SelectItem>
               </SelectContent>
             </Select>
@@ -304,7 +304,7 @@ function FinancialAidApplication() {
                 <SelectItem value="intermediate">Intermediate Learning Path ($399)</SelectItem>
                 <SelectItem value="advanced">Advanced Learning Path ($399)</SelectItem>
                 <SelectItem value="bundle">3-Course Bundle ($299)</SelectItem>
-                <SelectItem value="chaplaincy">Chaplaincy Training ($275)</SelectItem>
+                <SelectItem value="chaplaincy">Chaplaincy Training ($325)</SelectItem>
                 <SelectItem value="single">Individual Course ($89)</SelectItem>
               </SelectContent>
             </Select>

@@ -14,7 +14,7 @@ import { Footer } from "@/components/Footer";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY!);
 
-const CHAPLAINCY_PRICE = 27500; // $275 in cents
+const CHAPLAINCY_PRICE = 32500; // $325 in cents ($275 course + $50 background check)
 
 function CheckoutForm({ clientSecret, onSuccess }: { clientSecret: string; onSuccess: () => void }) {
   const stripe = useStripe();
@@ -134,7 +134,7 @@ export default function ChaplaincyTraining() {
           <Card className="max-w-md w-full">
             <CardHeader>
               <CardTitle>Complete Your Enrollment</CardTitle>
-              <CardDescription>Chaplaincy Training - $275</CardDescription>
+              <CardDescription>Chaplaincy Training - $325 ($275 + $50 background check)</CardDescription>
             </CardHeader>
             <CardContent>
               <Elements stripe={stripePromise} options={{ clientSecret }}>
@@ -282,27 +282,31 @@ export default function ChaplaincyTraining() {
               <CardHeader>
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <DollarSign className="h-8 w-8 text-primary" />
-                  <div className="text-5xl font-bold text-primary">$275</div>
+                  <div className="text-5xl font-bold text-primary">$325</div>
                 </div>
                 <CardDescription className="text-lg">
                   <span className="line-through text-muted-foreground">Regular: $400</span>
-                  <span className="ml-2 text-green-600 font-semibold">Save $125!</span>
+                  <span className="ml-2 text-green-600 font-semibold">Save $75!</span>
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="text-left space-y-2">
                   <div className="flex justify-between">
                     <span>Chaplaincy Training Course</span>
-                    <span className="font-semibold">$350</span>
+                    <span className="font-semibold">$275</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Background Check Fee</span>
                     <span className="font-semibold">$50</span>
                   </div>
                   <div className="border-t pt-2 flex justify-between text-lg font-bold">
-                    <span>Special Price (All Inclusive)</span>
-                    <span className="text-primary">$275</span>
+                    <span>Total Investment</span>
+                    <span className="text-primary">$325</span>
                   </div>
+                </div>
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-center">
+                  <p className="text-green-800 font-medium">Payment Plan Available</p>
+                  <p className="text-green-600 text-sm">6 monthly payments of ~$54.17 • 0% interest</p>
                 </div>
                 <Button 
                   size="lg" 
@@ -313,7 +317,7 @@ export default function ChaplaincyTraining() {
                   {createPaymentMutation.isPending ? "Loading..." : "Enroll Now"} <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <p className="text-sm text-muted-foreground">
-                  One-time payment • Lifetime access • Certificate included
+                  One-time payment or payment plan • Lifetime access • Certificate included
                 </p>
               </CardContent>
             </Card>

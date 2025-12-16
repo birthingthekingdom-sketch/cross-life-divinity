@@ -2058,3 +2058,7 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 ## Bug Investigation
 - [x] Investigate authentication issue - auto-login when clicking "already have account" (confirmed expected behavior - cached session)
 - [x] Update landing page stats to experience-focused (Decades, Proven, Seminary, 18 Courses) with IL/NE/TX map
+
+## Chaplaincy Marketing & Pricing Update
+- [x] Update chaplaincy pricing: $275 course + $50 background check = $325 total (payment plan available)
+- [x] Create Facebook marketing post for Chaplaincy Training

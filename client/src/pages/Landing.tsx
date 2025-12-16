@@ -192,11 +192,11 @@ export default function Landing() {
               </p>
               <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
                 <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-4xl font-bold text-accent">$275</span>
+                  <span className="text-4xl font-bold text-accent">$325</span>
                   <span className="text-2xl text-muted-foreground line-through">$400</span>
-                  <span className="bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">Save $125</span>
+                  <span className="bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">Save $75</span>
                 </div>
-                <p className="text-foreground/80">Includes $50 background check - One-time payment</p>
+                <p className="text-foreground/80">$275 course + $50 background check • Payment plan available</p>
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-3">
