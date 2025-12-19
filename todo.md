@@ -2083,3 +2083,4 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Create institutional outreach letters for credit acceptance
 - [x] Create video introduction script for 11 Labs AI
 - [x] Fix mission statement inconsistency - add to About page and update Accreditation FAQ
+- [x] Add 'How Credits Are Earned' table to Credits & Certification page

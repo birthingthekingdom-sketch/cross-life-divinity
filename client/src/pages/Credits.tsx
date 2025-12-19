@@ -180,6 +180,209 @@ export default function Credits() {
         </div>
       </section>
 
+      {/* How Credits Are Earned */}
+      <section className="py-16 bg-primary/5">
+        <div className="container max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <Badge className="mb-4">Credit Requirements</Badge>
+            <h2 className="text-4xl font-bold mb-4">How Credits Are Earned</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Understand exactly what's required to earn CLAC credits for each course.
+            </p>
+          </div>
+
+          {/* Credit Calculation Formula */}
+          <Card className="mb-8 border-2 border-primary">
+            <CardHeader className="bg-primary/10">
+              <CardTitle className="text-2xl flex items-center gap-3">
+                <Clock className="h-6 w-6 text-primary" />
+                Credit Hour Calculation
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-6">
+              <div className="bg-white rounded-lg p-6 mb-6">
+                <div className="text-center mb-6">
+                  <p className="text-lg text-muted-foreground mb-4">Standard Formula:</p>
+                  <div className="bg-primary/5 rounded-lg p-6 inline-block">
+                    <p className="text-3xl font-bold text-primary mb-2">1 CLAC Hour = 1 Hour of Learning</p>
+                    <p className="text-muted-foreground">Includes lessons, quizzes, assignments, and videos</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-blue-50 rounded-lg p-6">
+                  <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                    <BookOpen className="h-5 w-5 text-primary" />
+                    Standard Course (20 CLAC Hours)
+                  </h3>
+                  <ul className="space-y-3 text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>10 lessons</strong> (approx. 1.5 hours each = 15 hours)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>10 quizzes</strong> (approx. 15 minutes each = 2.5 hours)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Assignments</strong> (approx. 2.5 hours total)</span>
+                    </li>
+                  </ul>
+                  <div className="mt-4 pt-4 border-t border-blue-200">
+                    <p className="text-center font-bold text-primary text-xl">Total: 20 CLAC Hours</p>
+                  </div>
+                </div>
+
+                <div className="bg-green-50 rounded-lg p-6 border-2 border-green-200">
+                  <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                    <Award className="h-5 w-5 text-green-600" />
+                    Chaplaincy Program (65 CLAC Hours)
+                  </h3>
+                  <ul className="space-y-3 text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>30 lessons</strong> across 5 courses (45 hours)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>30 quizzes</strong> (7.5 hours)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Practical assignments</strong> (7.5 hours)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Capstone project</strong> (5 hours)</span>
+                    </li>
+                  </ul>
+                  <div className="mt-4 pt-4 border-t border-green-300">
+                    <p className="text-center font-bold text-green-600 text-xl">Total: 65 CLAC Hours</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Completion Requirements Table */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-2xl">Completion Requirements for Credit</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-muted">
+                    <tr>
+                      <th className="px-6 py-4 text-left font-semibold">Component</th>
+                      <th className="px-6 py-4 text-center font-semibold">Requirement</th>
+                      <th className="px-6 py-4 text-center font-semibold">Minimum Score</th>
+                      <th className="px-6 py-4 text-center font-semibold">Counts Toward Credits</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border">
+                    <tr>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-2">
+                          <BookOpen className="h-5 w-5 text-primary" />
+                          <span className="font-medium">Lessons</span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-center">Complete all lessons</td>
+                      <td className="px-6 py-4 text-center">N/A (must view)</td>
+                      <td className="px-6 py-4 text-center">
+                        <Badge className="bg-green-500">Yes</Badge>
+                      </td>
+                    </tr>
+                    <tr className="bg-muted/30">
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-2">
+                          <CheckCircle className="h-5 w-5 text-primary" />
+                          <span className="font-medium">Quizzes</span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-center">Pass all quizzes</td>
+                      <td className="px-6 py-4 text-center">
+                        <span className="font-bold text-primary">70%</span>
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        <Badge className="bg-green-500">Yes</Badge>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-2">
+                          <Star className="h-5 w-5 text-primary" />
+                          <span className="font-medium">Assignments</span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-center">Submit and receive grade</td>
+                      <td className="px-6 py-4 text-center">
+                        <span className="font-bold text-primary">70%</span>
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        <Badge className="bg-green-500">Yes</Badge>
+                      </td>
+                    </tr>
+                    <tr className="bg-muted/30">
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-2">
+                          <Clock className="h-5 w-5 text-primary" />
+                          <span className="font-medium">Videos</span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-center">Watch all course videos</td>
+                      <td className="px-6 py-4 text-center">N/A (must view)</td>
+                      <td className="px-6 py-4 text-center">
+                        <Badge className="bg-green-500">Yes</Badge>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-2">
+                          <GraduationCap className="h-5 w-5 text-primary" />
+                          <span className="font-medium">Overall Course Grade</span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-center">Weighted average</td>
+                      <td className="px-6 py-4 text-center">
+                        <span className="font-bold text-green-600">70%</span>
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        <Badge className="bg-blue-500">Required for Certificate</Badge>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="mt-6 bg-blue-50 rounded-lg p-6 border border-blue-200">
+                <h4 className="font-semibold text-lg mb-3 flex items-center gap-2">
+                  <Award className="h-5 w-5 text-blue-600" />
+                  Grading Breakdown
+                </h4>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <div className="text-center p-4 bg-white rounded-lg">
+                    <p className="text-sm text-muted-foreground mb-1">Quizzes</p>
+                    <p className="text-3xl font-bold text-primary">50%</p>
+                  </div>
+                  <div className="text-center p-4 bg-white rounded-lg">
+                    <p className="text-sm text-muted-foreground mb-1">Assignments</p>
+                    <p className="text-3xl font-bold text-primary">40%</p>
+                  </div>
+                  <div className="text-center p-4 bg-white rounded-lg">
+                    <p className="text-sm text-muted-foreground mb-1">Participation</p>
+                    <p className="text-3xl font-bold text-primary">10%</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Course Credits Chart */}
       <section className="py-16 bg-accent/5">
         <div className="container max-w-6xl mx-auto px-4">
