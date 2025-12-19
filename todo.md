@@ -2084,3 +2084,5 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Create video introduction script for 11 Labs AI
 - [x] Fix mission statement inconsistency - add to About page and update Accreditation FAQ
 - [x] Add 'How Credits Are Earned' table to Credits & Certification page
+- [x] Research Liberty/GCU certificate designs and create comparable CLAC certificate
+- [ ] Create cost comparison page: CLSD vs Liberty University pricing

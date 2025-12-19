@@ -26,211 +26,292 @@ export async function generateCertificate(data: CertificateData, res: Response) 
   // Pipe the PDF to the response
   doc.pipe(res);
 
-  // Background color
+  // Cream/ivory parchment background
   doc.rect(0, 0, doc.page.width, doc.page.height)
-     .fill('#f8f9fa');
+     .fill('#faf8f3');
 
-  // Decorative border
-  doc.rect(30, 30, doc.page.width - 60, doc.page.height - 60)
-     .lineWidth(3)
-     .stroke('#1a365d');
-
+  // Outer gold border (double-line style)
   doc.rect(40, 40, doc.page.width - 80, doc.page.height - 80)
+     .lineWidth(3)
+     .stroke('#d4af37');
+
+  doc.rect(48, 48, doc.page.width - 96, doc.page.height - 96)
      .lineWidth(1)
      .stroke('#d4af37');
 
-  // CPD Accreditation Badge (top right)
-  const badgeX = doc.page.width - 150;
-  const badgeY = 60;
+  // Inner navy border
+  doc.rect(56, 56, doc.page.width - 112, doc.page.height - 112)
+     .lineWidth(1)
+     .stroke('#1a365d');
+
+  // Decorative corner elements (optional - simple gold squares)
+  const cornerSize = 15;
+  const cornerOffset = 44;
   
-  doc.circle(badgeX, badgeY, 35)
+  // Top-left corner
+  doc.rect(cornerOffset, cornerOffset, cornerSize, cornerSize)
+     .fill('#d4af37');
+  
+  // Top-right corner
+  doc.rect(doc.page.width - cornerOffset - cornerSize, cornerOffset, cornerSize, cornerSize)
+     .fill('#d4af37');
+  
+  // Bottom-left corner
+  doc.rect(cornerOffset, doc.page.height - cornerOffset - cornerSize, cornerSize, cornerSize)
+     .fill('#d4af37');
+  
+  // Bottom-right corner
+  doc.rect(doc.page.width - cornerOffset - cornerSize, doc.page.height - cornerOffset - cornerSize, cornerSize, cornerSize)
+     .fill('#d4af37');
+
+  // CLSD Logo/Seal placeholder at top center
+  const sealX = doc.page.width / 2;
+  const sealY = 90;
+  
+  // Outer circle
+  doc.circle(sealX, sealY, 40)
      .lineWidth(2)
      .stroke('#1a365d');
   
+  // Inner circle
+  doc.circle(sealX, sealY, 35)
+     .lineWidth(1)
+     .stroke('#d4af37');
+  
+  // CLSD text in seal
   doc.fontSize(10)
      .fillColor('#1a365d')
      .font('Helvetica-Bold')
-     .text('CPD', badgeX - 15, badgeY - 20, { width: 30, align: 'center' });
+     .text('CLSD', sealX - 20, sealY - 18, { width: 40, align: 'center' });
   
-  doc.fontSize(8)
-     .fillColor('#666')
+  doc.fontSize(7)
+     .fillColor('#1a365d')
      .font('Helvetica')
-     .text('ACCREDITED', badgeX - 25, badgeY - 5, { width: 50, align: 'center' });
+     .text('EST. 1994', sealX - 20, sealY - 2, { width: 40, align: 'center' });
   
-  doc.fontSize(10)
-     .fillColor('#1a365d')
-     .font('Helvetica-Bold')
-     .text('STANDARDS', badgeX - 25, badgeY + 8, { width: 50, align: 'center' });
-
-  // Header - Cross Life School of Divinity
-  doc.fontSize(32)
-     .fillColor('#1a365d')
-     .font('Helvetica-Bold')
-     .text('Cross Life School of Divinity', 0, 80, {
-       align: 'center',
-       width: doc.page.width
-     });
-
-  doc.fontSize(14)
-     .fillColor('#666')
-     .font('Helvetica')
-     .text('Online Learning Platform', 0, 120, {
-       align: 'center',
-       width: doc.page.width
-     });
-
-  // Certificate of Completion
-  doc.fontSize(24)
+  doc.fontSize(6)
      .fillColor('#d4af37')
      .font('Helvetica-Bold')
-     .text('Certificate of Completion', 0, 160, {
+     .text('CHICAGO', sealX - 20, sealY + 10, { width: 40, align: 'center' });
+
+  // Header - Cross Life School of Divinity (Old English style - simulated with bold)
+  doc.fontSize(36)
+     .fillColor('#1a365d')
+     .font('Times-Bold')
+     .text('Cross Life School of Divinity', 0, 150, {
        align: 'center',
        width: doc.page.width
      });
-  
-  // CPD Hours Badge
+
+  // Location
   doc.fontSize(12)
-     .fillColor('#1a365d')
-     .font('Helvetica-Bold')
-     .text(`${data.cpdHours} CPD Hours`, 0, 190, {
+     .fillColor('#666')
+     .font('Times-Italic')
+     .text('Chicago, Illinois', 0, 190, {
        align: 'center',
        width: doc.page.width
      });
 
   // Decorative line
-  doc.moveTo(doc.page.width / 2 - 100, 220)
-     .lineTo(doc.page.width / 2 + 100, 220)
-     .lineWidth(2)
+  doc.moveTo(doc.page.width / 2 - 150, 215)
+     .lineTo(doc.page.width / 2 + 150, 215)
+     .lineWidth(1)
      .stroke('#d4af37');
 
-  // This certifies that
-  doc.fontSize(14)
+  // Formal certificate text
+  doc.fontSize(13)
      .fillColor('#333')
-     .font('Helvetica')
-     .text('This certifies that', 0, 245, {
+     .font('Times-Roman')
+     .text('This is to certify that', 0, 235, {
        align: 'center',
        width: doc.page.width
      });
 
-  // Student Name
-  doc.fontSize(28)
+  // Student Name (larger, prominent)
+  doc.fontSize(32)
      .fillColor('#1a365d')
-     .font('Helvetica-Bold')
-     .text(data.studentName, 0, 270, {
+     .font('Times-BoldItalic')
+     .text(data.studentName, 0, 260, {
        align: 'center',
        width: doc.page.width
      });
 
-  // Has successfully completed
+  // Underline for name
+  doc.moveTo(doc.page.width / 2 - 200, 295)
+     .lineTo(doc.page.width / 2 + 200, 295)
+     .lineWidth(0.5)
+     .stroke('#333');
+
+  // Completion text
+  doc.fontSize(13)
+     .fillColor('#333')
+     .font('Times-Roman')
+     .text('having successfully completed all requirements and demonstrated', 0, 310, {
+       align: 'center',
+       width: doc.page.width
+     });
+
+  doc.text('proficiency in the prescribed course of study', 0, 328, {
+    align: 'center',
+    width: doc.page.width
+  });
+
   doc.fontSize(14)
      .fillColor('#333')
-     .font('Helvetica')
-     .text('has successfully completed', 0, 305, {
+     .font('Times-Bold')
+     .text('is hereby awarded this', 0, 355, {
+       align: 'center',
+       width: doc.page.width
+     });
+
+  // Certificate title
+  doc.fontSize(22)
+     .fillColor('#d4af37')
+     .font('Times-Bold')
+     .text('Certificate of Completion', 0, 380, {
        align: 'center',
        width: doc.page.width
      });
 
   // Course Name
-  doc.fontSize(20)
+  doc.fontSize(18)
      .fillColor('#1a365d')
-     .font('Helvetica-Bold')
-     .text(data.courseName, 0, 330, {
+     .font('Times-BoldItalic')
+     .text(data.courseName, 0, 410, {
        align: 'center',
        width: doc.page.width
      });
 
-  // Course Code
-  doc.fontSize(12)
+  // Course Code and CPD Hours
+  doc.fontSize(11)
      .fillColor('#666')
-     .font('Helvetica')
-     .text(`Course Code: ${data.courseCode}`, 0, 360, {
+     .font('Times-Roman')
+     .text(`${data.courseCode} • ${data.cpdHours} CLAC Hours`, 0, 438, {
        align: 'center',
        width: doc.page.width
      });
 
-  // Completion Date
+  // Rights and privileges statement
+  doc.fontSize(11)
+     .fillColor('#333')
+     .font('Times-Italic')
+     .text('with all the rights, honors, and privileges thereunto appertaining.', 0, 460, {
+       align: 'center',
+       width: doc.page.width
+     });
+
+  // Date statement
   const formattedDate = data.completionDate.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
   });
 
-  doc.fontSize(12)
+  doc.fontSize(11)
      .fillColor('#333')
-     .text(`Completed on ${formattedDate}`, 0, 400, {
+     .font('Times-Italic')
+     .text(`Given at Chicago, Illinois, on the ${formattedDate.split(',')[1].trim()} day of ${formattedDate.split(' ')[0]}, ${data.completionDate.getFullYear()}.`, 0, 485, {
        align: 'center',
        width: doc.page.width
      });
 
-  // Signature line
-  const signatureY = 450;
-  const signatureWidth = 200;
-  const leftSignatureX = doc.page.width / 2 - signatureWidth - 40;
+  // Signature section
+  const signatureY = 520;
+  const signatureWidth = 180;
+  const leftSignatureX = doc.page.width / 2 - signatureWidth - 50;
+  const rightSignatureX = doc.page.width / 2 + 50;
 
+  // Left signature line (Director)
   doc.moveTo(leftSignatureX, signatureY)
      .lineTo(leftSignatureX + signatureWidth, signatureY)
+     .lineWidth(0.5)
      .stroke('#333');
 
-  doc.fontSize(10)
-     .fillColor('#666')
-     .text('Director, Cross Life School of Divinity', leftSignatureX, signatureY + 10, {
+  doc.fontSize(9)
+     .fillColor('#333')
+     .font('Times-Roman')
+     .text('Director', leftSignatureX, signatureY + 8, {
        width: signatureWidth,
        align: 'center'
+     });
+
+  doc.fontSize(8)
+     .fillColor('#666')
+     .font('Times-Italic')
+     .text('Cross Life School of Divinity', leftSignatureX, signatureY + 22, {
+       width: signatureWidth,
+       align: 'center'
+     });
+
+  // Right signature line (Academic Dean)
+  doc.moveTo(rightSignatureX, signatureY)
+     .lineTo(rightSignatureX + signatureWidth, signatureY)
+     .lineWidth(0.5)
+     .stroke('#333');
+
+  doc.fontSize(9)
+     .fillColor('#333')
+     .font('Times-Roman')
+     .text('Academic Dean', rightSignatureX, signatureY + 8, {
+       width: signatureWidth,
+       align: 'center'
+     });
+
+  doc.fontSize(8)
+     .fillColor('#666')
+     .font('Times-Italic')
+     .text('Cross Life School of Divinity', rightSignatureX, signatureY + 22, {
+       width: signatureWidth,
+       align: 'center'
+     });
+
+  // CLAC Accreditation statement at bottom
+  doc.fontSize(9)
+     .fillColor('#1a365d')
+     .font('Helvetica-Bold')
+     .text('Accredited by the Cross Life Accreditation Council (CLAC)', 0, doc.page.height - 100, {
+       align: 'center',
+       width: doc.page.width
      });
 
   // Generate QR Code for verification
   const verificationUrl = `https://cross-life-divinity.manus.space/verify/${data.verificationToken}`;
   const qrCodeDataUrl = await QRCode.toDataURL(verificationUrl, {
-    width: 80,
-    margin: 1,
+    width: 60,
+    margin: 0,
     color: {
       dark: '#1a365d',
-      light: '#f8f9fa'
+      light: '#faf8f3'
     }
   });
 
-  // Add QR Code (bottom left)
-  const qrX = 80;
-  const qrY = doc.page.height - 130;
-  doc.image(qrCodeDataUrl, qrX, qrY, { width: 70, height: 70 });
+  // Add QR Code (bottom right)
+  const qrX = doc.page.width - 120;
+  const qrY = doc.page.height - 100;
+  doc.image(qrCodeDataUrl, qrX, qrY, { width: 50, height: 50 });
 
-  doc.fontSize(8)
+  doc.fontSize(7)
      .fillColor('#666')
-     .text('Scan to verify', qrX - 5, qrY + 75, {
-       width: 80,
+     .font('Helvetica')
+     .text('Scan to verify', qrX - 5, qrY + 55, {
+       width: 60,
        align: 'center'
      });
 
-  // Certificate Number and CPD Info (bottom center/right)
-  doc.fontSize(8)
-     .fillColor('#999')
-     .text(`Certificate No: ${data.certificateNumber}`, 0, doc.page.height - 90, {
-       align: 'center',
-       width: doc.page.width
-     });
-
-  doc.fontSize(8)
-     .fillColor('#1a365d')
-     .font('Helvetica-Bold')
-     .text(`CPD Hours: ${data.cpdHours} | Self-Paced Learning`, 0, doc.page.height - 75, {
-       align: 'center',
-       width: doc.page.width
-     });
-
-  // Footer
+  // Certificate Number (bottom left)
   doc.fontSize(8)
      .fillColor('#999')
      .font('Helvetica')
-     .text('This certificate verifies completion of all course requirements and meets CPD Accredited Standards', 0, doc.page.height - 55, {
-       align: 'center',
-       width: doc.page.width
+     .text(`Certificate No: ${data.certificateNumber}`, 80, doc.page.height - 80, {
+       width: 200,
+       align: 'left'
      });
 
   doc.fontSize(7)
      .fillColor('#999')
-     .text(`Verify at: ${verificationUrl}`, 0, doc.page.height - 40, {
-       align: 'center',
-       width: doc.page.width
+     .text(`Verify at: crosslifeschoolofdivinity.org/verify`, 80, doc.page.height - 65, {
+       width: 250,
+       align: 'left'
      });
 
   // Finalize the PDF
