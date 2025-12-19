@@ -120,7 +120,7 @@ export default function Accreditation() {
       number: "I",
       title: "Institutional Purpose",
       icon: Target,
-      description: "CLSD maintains a clear mission statement that guides all institutional decisions. Our mission is to equip believers with sound theological education that is accessible, affordable, and applicable to ministry contexts.",
+      description: "CLSD maintains a clear mission statement that guides all institutional decisions. Our mission is to provide high-quality, CLAC-accredited theological education that empowers ministry leaders worldwide to deepen their biblical knowledge, strengthen their ministry skills, and transform their communities through the gospel of Jesus Christ.",
       requirements: [
         "Written mission statement approved by governing board",
         "Specific, measurable institutional objectives",
