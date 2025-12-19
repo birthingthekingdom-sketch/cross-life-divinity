@@ -680,7 +680,7 @@ export async function sendPaymentPlanCompletionEmail(
           <ul style="line-height: 1.8;">
             <li>✓ Your course access remains active <strong>forever</strong></li>
             <li>✓ No more monthly payments</li>
-            <li>✓ You've earned your CPD certificates</li>
+            <li>✓ You've earned your CLAC certificates</li>
             <li>✓ You can continue learning at your own pace</li>
           </ul>
           
@@ -786,7 +786,7 @@ export async function sendFullPaymentReceiptEmail(
               <ul style="line-height: 1.8; margin: 10px 0;">
                 <li>✓ <strong>Immediate Access:</strong> Your courses are ready to start</li>
                 <li>✓ <strong>Lifetime Access:</strong> No expiration, learn at your pace</li>
-                <li>✓ <strong>CPD Certificates:</strong> Earn certificates upon completion</li>
+                <li>✓ <strong>CLAC Certificates:</strong> Earn certificates upon completion</li>
                 <li>✓ <strong>Full Support:</strong> Access to discussion forums and support</li>
               </ul>
             </div>

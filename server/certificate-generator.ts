@@ -182,7 +182,7 @@ export async function generateCertificate(data: CertificateData, res: Response) 
        width: doc.page.width
      });
 
-  // Course Code and CPD Hours
+  // Course Code and CLAC Hours
   doc.fontSize(11)
      .fillColor('#666')
      .font('Times-Roman')

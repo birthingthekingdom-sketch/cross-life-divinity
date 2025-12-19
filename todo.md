@@ -2087,3 +2087,4 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Research Liberty/GCU certificate designs and create comparable CLAC certificate
 - [ ] Create cost comparison page: CLSD vs Liberty University pricing
 - [x] Remove certificate preview section from Credits page (temporary)
+- [x] Update Accreditation FAQ - replace CPD with CLAC

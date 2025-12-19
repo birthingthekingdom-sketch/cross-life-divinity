@@ -268,6 +268,10 @@ export default function Accreditation() {
       answer: "The Cross Life Accreditation Council (CLAC) is the internal accrediting body for Cross Life School of Divinity. CLAC establishes and maintains quality standards for educational programs, institutional operations, and student services. CLAC standards are designed to meet or exceed those established by nationally recognized accrediting agencies."
     },
     {
+      question: "How does CLSD meet CLAC standards?",
+      answer: "CLSD demonstrates compliance with all 12 CLAC standards through: (1) Clear Mission & Purpose - Our mission statement guides all institutional decisions and is regularly reviewed for effectiveness, (2) Qualified Faculty - All instructors possess relevant academic credentials and demonstrated ministry experience, (3) Rigorous Curriculum - Each course includes defined learning outcomes, substantive content, and comprehensive assessments, (4) Student Support Services - We provide responsive student services, grievance procedures, and academic advising, (5) Ethical Operations - We maintain truthful representation in all communications and clearly disclose our accreditation status, (6) Financial Accountability - Sound financial practices with board oversight ensure institutional sustainability, (7) Continuous Improvement - We systematically assess student learning outcomes and institutional effectiveness, making data-driven improvements annually. Our complete CLAC Standards Manual documents how we meet each of the 12 standards in detail."
+    },
+    {
       question: "Is CLSD accredited?",
       answer: "CLSD is accredited by the Cross Life Accreditation Council (CLAC), an internal accrediting body. CLSD is NOT accredited by agencies recognized by the U.S. Department of Education or the Council for Higher Education Accreditation (CHEA)."
     },
