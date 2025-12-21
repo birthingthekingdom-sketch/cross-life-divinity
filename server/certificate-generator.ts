@@ -26,119 +26,61 @@ export async function generateCertificate(data: CertificateData, res: Response) 
   // Pipe the PDF to the response
   doc.pipe(res);
 
-  // Cream/ivory parchment background
+  // Cream/ivory parchment background (exact GCU color)
   doc.rect(0, 0, doc.page.width, doc.page.height)
-     .fill('#faf8f3');
+     .fill('#f5f1e8');
 
-  // Outer gold border (double-line style)
-  doc.rect(40, 40, doc.page.width - 80, doc.page.height - 80)
+  // Simple single navy border (GCU style - clean and minimal)
+  const borderMargin = 50;
+  doc.rect(borderMargin, borderMargin, doc.page.width - (borderMargin * 2), doc.page.height - (borderMargin * 2))
      .lineWidth(3)
-     .stroke('#d4af37');
-
-  doc.rect(48, 48, doc.page.width - 96, doc.page.height - 96)
-     .lineWidth(1)
-     .stroke('#d4af37');
-
-  // Inner navy border
-  doc.rect(56, 56, doc.page.width - 112, doc.page.height - 112)
-     .lineWidth(1)
      .stroke('#1a365d');
 
-  // Decorative corner elements (optional - simple gold squares)
-  const cornerSize = 15;
-  const cornerOffset = 44;
-  
-  // Top-left corner
-  doc.rect(cornerOffset, cornerOffset, cornerSize, cornerSize)
-     .fill('#d4af37');
-  
-  // Top-right corner
-  doc.rect(doc.page.width - cornerOffset - cornerSize, cornerOffset, cornerSize, cornerSize)
-     .fill('#d4af37');
-  
-  // Bottom-left corner
-  doc.rect(cornerOffset, doc.page.height - cornerOffset - cornerSize, cornerSize, cornerSize)
-     .fill('#d4af37');
-  
-  // Bottom-right corner
-  doc.rect(doc.page.width - cornerOffset - cornerSize, doc.page.height - cornerOffset - cornerSize, cornerSize, cornerSize)
-     .fill('#d4af37');
-
-  // CLSD Logo/Seal placeholder at top center
-  const sealX = doc.page.width / 2;
-  const sealY = 90;
-  
-  // Outer circle
-  doc.circle(sealX, sealY, 40)
-     .lineWidth(2)
-     .stroke('#1a365d');
-  
-  // Inner circle
-  doc.circle(sealX, sealY, 35)
-     .lineWidth(1)
-     .stroke('#d4af37');
-  
-  // CLSD text in seal
-  doc.fontSize(10)
-     .fillColor('#1a365d')
-     .font('Helvetica-Bold')
-     .text('CLSD', sealX - 20, sealY - 18, { width: 40, align: 'center' });
-  
-  doc.fontSize(7)
-     .fillColor('#1a365d')
-     .font('Helvetica')
-     .text('EST. 1994', sealX - 20, sealY - 2, { width: 40, align: 'center' });
-  
-  doc.fontSize(6)
-     .fillColor('#d4af37')
-     .font('Helvetica-Bold')
-     .text('CHICAGO', sealX - 20, sealY + 10, { width: 40, align: 'center' });
-
-  // Header - Cross Life School of Divinity (Old English style - simulated with bold)
-  doc.fontSize(36)
+  // Header - VERY BOLD like GCU (Times-Bold at large size)
+  doc.fontSize(48)
      .fillColor('#1a365d')
      .font('Times-Bold')
-     .text('Cross Life School of Divinity', 0, 150, {
+     .text('Cross Life School of Divinity', 0, 100, {
        align: 'center',
        width: doc.page.width
      });
 
-  // Location
-  doc.fontSize(12)
+  // Location - smaller, simple
+  doc.fontSize(14)
      .fillColor('#666')
-     .font('Times-Italic')
-     .text('Chicago, Illinois', 0, 190, {
+     .font('Times-Roman')
+     .text('Chicago, Illinois', 0, 155, {
        align: 'center',
        width: doc.page.width
      });
 
-  // Decorative line
-  doc.moveTo(doc.page.width / 2 - 150, 215)
-     .lineTo(doc.page.width / 2 + 150, 215)
-     .lineWidth(1)
+  // Simple decorative line (very minimal like GCU)
+  doc.moveTo(doc.page.width / 2 - 100, 185)
+     .lineTo(doc.page.width / 2 + 100, 185)
+     .lineWidth(0.5)
      .stroke('#d4af37');
 
   // Formal certificate text
-  doc.fontSize(13)
+  doc.fontSize(14)
      .fillColor('#333')
      .font('Times-Roman')
-     .text('This is to certify that', 0, 235, {
+     .text('This is to certify that', 0, 210, {
        align: 'center',
        width: doc.page.width
      });
 
-  // Student Name (larger, prominent)
-  doc.fontSize(32)
+  // Student Name (large, prominent, italic)
+  doc.fontSize(36)
      .fillColor('#1a365d')
      .font('Times-BoldItalic')
-     .text(data.studentName, 0, 260, {
+     .text(data.studentName, 0, 240, {
        align: 'center',
        width: doc.page.width
      });
 
   // Underline for name
-  doc.moveTo(doc.page.width / 2 - 200, 295)
-     .lineTo(doc.page.width / 2 + 200, 295)
+  doc.moveTo(doc.page.width / 2 - 220, 280)
+     .lineTo(doc.page.width / 2 + 220, 280)
      .lineWidth(0.5)
      .stroke('#333');
 
@@ -146,12 +88,12 @@ export async function generateCertificate(data: CertificateData, res: Response) 
   doc.fontSize(13)
      .fillColor('#333')
      .font('Times-Roman')
-     .text('having successfully completed all requirements and demonstrated', 0, 310, {
+     .text('having successfully completed all requirements and demonstrated', 0, 295, {
        align: 'center',
        width: doc.page.width
      });
 
-  doc.text('proficiency in the prescribed course of study', 0, 328, {
+  doc.text('proficiency in the prescribed course of study', 0, 313, {
     align: 'center',
     width: doc.page.width
   });
@@ -159,25 +101,25 @@ export async function generateCertificate(data: CertificateData, res: Response) 
   doc.fontSize(14)
      .fillColor('#333')
      .font('Times-Bold')
-     .text('is hereby awarded this', 0, 355, {
+     .text('is hereby awarded this', 0, 340, {
        align: 'center',
        width: doc.page.width
      });
 
-  // Certificate title
-  doc.fontSize(22)
+  // Certificate title (gold, bold)
+  doc.fontSize(24)
      .fillColor('#d4af37')
      .font('Times-Bold')
-     .text('Certificate of Completion', 0, 380, {
+     .text('Certificate of Completion', 0, 368, {
        align: 'center',
        width: doc.page.width
      });
 
-  // Course Name
-  doc.fontSize(18)
+  // Course Name (navy, bold italic)
+  doc.fontSize(20)
      .fillColor('#1a365d')
      .font('Times-BoldItalic')
-     .text(data.courseName, 0, 410, {
+     .text(data.courseName, 0, 400, {
        align: 'center',
        width: doc.page.width
      });
@@ -186,7 +128,7 @@ export async function generateCertificate(data: CertificateData, res: Response) 
   doc.fontSize(11)
      .fillColor('#666')
      .font('Times-Roman')
-     .text(`${data.courseCode} • ${data.cpdHours} CLAC Hours`, 0, 438, {
+     .text(`${data.courseCode} • ${data.cpdHours} CLAC Hours`, 0, 428, {
        align: 'center',
        width: doc.page.width
      });
@@ -195,31 +137,43 @@ export async function generateCertificate(data: CertificateData, res: Response) 
   doc.fontSize(11)
      .fillColor('#333')
      .font('Times-Italic')
-     .text('with all the rights, honors, and privileges thereunto appertaining.', 0, 460, {
+     .text('with all the rights, honors, and privileges thereunto appertaining.', 0, 450, {
        align: 'center',
        width: doc.page.width
      });
 
   // Date statement
-  const formattedDate = data.completionDate.toLocaleDateString('en-US', {
+  const dateParts = data.completionDate.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
-  });
+  }).split(' ');
+  const month = dateParts[0];
+  const day = dateParts[1].replace(',', '');
+  const year = dateParts[2];
 
   doc.fontSize(11)
      .fillColor('#333')
      .font('Times-Italic')
-     .text(`Given at Chicago, Illinois, on the ${formattedDate.split(',')[1].trim()} day of ${formattedDate.split(' ')[0]}, ${data.completionDate.getFullYear()}.`, 0, 485, {
+     .text(`Given at Chicago, Illinois, on the ${day} day of ${month}, ${year}.`, 0, 472, {
        align: 'center',
        width: doc.page.width
      });
 
-  // Signature section
-  const signatureY = 520;
-  const signatureWidth = 180;
-  const leftSignatureX = doc.page.width / 2 - signatureWidth - 50;
-  const rightSignatureX = doc.page.width / 2 + 50;
+  // CLAC Accreditation statement (centered, above signatures)
+  doc.fontSize(10)
+     .fillColor('#1a365d')
+     .font('Helvetica-Bold')
+     .text('Accredited by the Cross Life Accreditation Council (CLAC)', 0, 500, {
+       align: 'center',
+       width: doc.page.width
+     });
+
+  // Signature lines (GCU style - clean and simple)
+  const signatureY = 530;
+  const signatureWidth = 200;
+  const leftSignatureX = doc.page.width / 2 - signatureWidth - 40;
+  const rightSignatureX = doc.page.width / 2 + 40;
 
   // Left signature line (Director)
   doc.moveTo(leftSignatureX, signatureY)
@@ -227,18 +181,18 @@ export async function generateCertificate(data: CertificateData, res: Response) 
      .lineWidth(0.5)
      .stroke('#333');
 
-  doc.fontSize(9)
+  doc.fontSize(11)
      .fillColor('#333')
-     .font('Times-Roman')
-     .text('Director', leftSignatureX, signatureY + 8, {
+     .font('Times-Bold')
+     .text('Director', leftSignatureX, signatureY + 10, {
        width: signatureWidth,
        align: 'center'
      });
 
-  doc.fontSize(8)
+  doc.fontSize(9)
      .fillColor('#666')
      .font('Times-Italic')
-     .text('Cross Life School of Divinity', leftSignatureX, signatureY + 22, {
+     .text('Cross Life School of Divinity', leftSignatureX, signatureY + 26, {
        width: signatureWidth,
        align: 'center'
      });
@@ -249,67 +203,88 @@ export async function generateCertificate(data: CertificateData, res: Response) 
      .lineWidth(0.5)
      .stroke('#333');
 
-  doc.fontSize(9)
+  doc.fontSize(11)
      .fillColor('#333')
-     .font('Times-Roman')
-     .text('Academic Dean', rightSignatureX, signatureY + 8, {
+     .font('Times-Bold')
+     .text('Academic Dean', rightSignatureX, signatureY + 10, {
        width: signatureWidth,
        align: 'center'
      });
 
-  doc.fontSize(8)
+  doc.fontSize(9)
      .fillColor('#666')
      .font('Times-Italic')
-     .text('Cross Life School of Divinity', rightSignatureX, signatureY + 22, {
+     .text('Cross Life School of Divinity', rightSignatureX, signatureY + 26, {
        width: signatureWidth,
        align: 'center'
      });
 
-  // CLAC Accreditation statement at bottom
-  doc.fontSize(9)
+  // CLSD Seal at bottom center (ONLY seal on page - like GCU)
+  const bottomSealY = doc.page.height - 80;
+  const bottomSealX = doc.page.width / 2;
+  
+  // Outer circle - navy (thicker like GCU)
+  doc.circle(bottomSealX, bottomSealY, 32)
+     .lineWidth(3)
+     .stroke('#1a365d');
+  
+  // Inner circle - gold
+  doc.circle(bottomSealX, bottomSealY, 27)
+     .lineWidth(1.5)
+     .stroke('#d4af37');
+  
+  // CLSD text in seal
+  doc.fontSize(12)
      .fillColor('#1a365d')
      .font('Helvetica-Bold')
-     .text('Accredited by the Cross Life Accreditation Council (CLAC)', 0, doc.page.height - 100, {
-       align: 'center',
-       width: doc.page.width
-     });
-
-  // Generate QR Code for verification
-  const verificationUrl = `https://cross-life-divinity.manus.space/verify/${data.verificationToken}`;
-  const qrCodeDataUrl = await QRCode.toDataURL(verificationUrl, {
-    width: 60,
-    margin: 0,
-    color: {
-      dark: '#1a365d',
-      light: '#faf8f3'
-    }
-  });
-
-  // Add QR Code (bottom right)
-  const qrX = doc.page.width - 120;
-  const qrY = doc.page.height - 100;
-  doc.image(qrCodeDataUrl, qrX, qrY, { width: 50, height: 50 });
-
+     .text('CLSD', bottomSealX - 20, bottomSealY - 16, { width: 40, align: 'center' });
+  
   doc.fontSize(7)
      .fillColor('#666')
      .font('Helvetica')
-     .text('Scan to verify', qrX - 5, qrY + 55, {
-       width: 60,
+     .text('EST. 1994', bottomSealX - 20, bottomSealY, { width: 40, align: 'center' });
+  
+  doc.fontSize(6)
+     .fillColor('#d4af37')
+     .font('Helvetica-Bold')
+     .text('CHICAGO', bottomSealX - 20, bottomSealY + 14, { width: 40, align: 'center' });
+
+  // Generate QR Code for verification
+  const verificationUrl = `https://crosslifeschoolofdivinity.org/verify/${data.verificationToken}`;
+  const qrCodeDataUrl = await QRCode.toDataURL(verificationUrl, {
+    width: 50,
+    margin: 0,
+    color: {
+      dark: '#1a365d',
+      light: '#f5f1e8'
+    }
+  });
+
+  // Add QR Code (bottom right corner - small and unobtrusive)
+  const qrX = doc.page.width - 90;
+  const qrY = doc.page.height - 75;
+  doc.image(qrCodeDataUrl, qrX, qrY, { width: 40, height: 40 });
+
+  doc.fontSize(6)
+     .fillColor('#999')
+     .font('Helvetica')
+     .text('Scan to verify', qrX - 5, qrY + 42, {
+       width: 50,
        align: 'center'
      });
 
-  // Certificate Number (bottom left)
-  doc.fontSize(8)
+  // Certificate Number (bottom left - small and subtle)
+  doc.fontSize(7)
      .fillColor('#999')
      .font('Helvetica')
-     .text(`Certificate No: ${data.certificateNumber}`, 80, doc.page.height - 80, {
+     .text(`Certificate No: ${data.certificateNumber}`, 60, doc.page.height - 65, {
        width: 200,
        align: 'left'
      });
 
-  doc.fontSize(7)
+  doc.fontSize(6)
      .fillColor('#999')
-     .text(`Verify at: crosslifeschoolofdivinity.org/verify`, 80, doc.page.height - 65, {
+     .text(`Verify at: crosslifeschoolofdivinity.org/verify`, 60, doc.page.height - 52, {
        width: 250,
        align: 'left'
      });

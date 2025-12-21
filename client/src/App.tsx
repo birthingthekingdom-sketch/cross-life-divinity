@@ -68,6 +68,7 @@ import ChaplaincyTraining from './pages/ChaplaincyTraining';
 import Accreditation from './pages/Accreditation';
 import FinancialAid from './pages/FinancialAid';
 import Credits from './pages/Credits';
+import PriorLearning from './pages/PriorLearning';
 import { PaymentPlanCheckout } from './pages/PaymentPlanCheckout';
 import MyPayments from './pages/MyPayments';
 
@@ -121,6 +122,7 @@ function Router() {
       <Route path="/about" component={About} />
       <Route path="/accreditation" component={Accreditation} />
       <Route path="/credits" component={Credits} />
+      <Route path="/prior-learning" component={PriorLearning} />
       <Route path="/financial-aid" component={FinancialAid} />
       <Route path="/faq" component={FAQ} />
       <Route path="/success-stories" component={SuccessStories} />
