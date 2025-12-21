@@ -56,6 +56,11 @@ export function Footer() {
                   Accreditation
                 </Link>
               </li>
+              <li>
+                <Link href="/pla" className="text-white/80 hover:text-white transition-colors">
+                  Life Experience Credits
+                </Link>
+              </li>
             </ul>
           </div>
 
