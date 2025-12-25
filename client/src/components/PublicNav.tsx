@@ -13,6 +13,7 @@ export function PublicNav({ currentPage }: PublicNavProps) {
   const navLinks = [
     { href: "/", label: "Home", key: "home" },
     { href: "/catalog", label: "Courses", key: "courses" },
+    { href: "/gospel-studies", label: "Gospel Studies", key: "gospel-studies" },
     { href: "/learning-paths", label: "Learning Paths", key: "learning-paths" },
     { href: "/about", label: "About", key: "about" },
     { href: "/accreditation", label: "Accreditation", key: "accreditation", icon: true },
@@ -25,17 +26,17 @@ export function PublicNav({ currentPage }: PublicNavProps) {
   return (
     <nav className="bg-white border-b border-border sticky top-0 z-50 shadow-sm">
       <div className="container max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-32 py-4">
+        <div className="flex items-center justify-between h-20 py-2">
           {/* Logo */}
           <Link href="/">
             <div className="flex items-center gap-3 cursor-pointer">
-              <img src="/logo.png" alt="Cross Life School of Divinity" className="h-48 w-48 object-contain" />
-              <span className="text-xl font-bold text-primary">Cross Life School of Divinity</span>
+              <img src="/logo.png" alt="Cross Life School of Divinity" className="h-16 w-16 object-contain" />
+              <span className="text-lg font-bold text-primary hidden sm:inline">Cross Life School of Divinity</span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-4 flex-1 justify-center px-8">
             {navLinks.map((link) => (
               <Link
                 key={link.key}
@@ -50,12 +51,14 @@ export function PublicNav({ currentPage }: PublicNavProps) {
                 {link.label}
               </Link>
             ))}
-            <Link href="/login">
-              <Button variant="ghost">Login</Button>
-            </Link>
-            <Link href="/register">
-              <Button>Sign Up</Button>
-            </Link>
+            <div className="flex items-center gap-3 ml-auto">
+              <Link href="/login">
+                <Button variant="ghost" className="text-sm">Login</Button>
+              </Link>
+              <Link href="/register">
+                <Button className="text-sm">Sign Up</Button>
+              </Link>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}

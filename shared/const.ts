@@ -6,7 +6,7 @@ export const NOT_ADMIN_ERR_MSG = 'You do not have required permission (10002)';
 
 // Pricing Constants
 export const PRICING = {
-  LEARNING_PATH: 399.00,
+  LEARNING_PATH: 199.00,
   BUNDLE_3_COURSE: 299.00,
   CHAPLAINCY_TRAINING: 325.00, // $275 course + $50 background check
   PAYMENT_PLAN_MONTHS: 6,

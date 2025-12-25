@@ -373,10 +373,10 @@ export default function Pricing() {
             <CardContent className="space-y-6">
               <div className="flex flex-col gap-2">
                 <div className="flex items-baseline gap-3">
-                  <span className="text-3xl text-slate-500 line-through">$534</span>
-                  <span className="text-5xl font-bold text-white">$399</span>
+                  <span className="text-3xl text-slate-500 line-through">$267</span>
+                  <span className="text-5xl font-bold text-white">$199</span>
                 </div>
-                <p className="text-sm text-green-400 font-semibold">Save $135 - Best value for structured learning!</p>
+                <p className="text-sm text-green-400 font-semibold">Save $68 - Best value for structured learning!</p>
               </div>
 
               <div className="space-y-3">
@@ -407,7 +407,7 @@ export default function Pricing() {
               <div className="pt-4 border-t border-green-700/50">
                 <div className="flex items-center gap-2 text-green-300">
                   <DollarSign className="w-5 h-5" />
-                  <span className="font-semibold">~$66-80 per course</span>
+                  <span className="font-semibold">~$33-50 per course</span>
                 </div>
               </div>
             </CardContent>

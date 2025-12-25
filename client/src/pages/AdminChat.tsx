@@ -7,8 +7,9 @@ import { trpc } from "@/lib/trpc";
 import { MessageCircle, Send, User, Clock } from "lucide-react";
 import { toast } from "sonner";
 import { formatDistanceToNow } from "date-fns";
+import { AdminRoute } from "@/components/AdminRoute";
 
-export default function AdminChat() {
+function AdminChatContent() {
   const [selectedSessionId, setSelectedSessionId] = useState<number | null>(null);
   const [replyMessage, setReplyMessage] = useState("");
 
@@ -213,5 +214,13 @@ export default function AdminChat() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function AdminChat() {
+  return (
+    <AdminRoute>
+      <AdminChatContent />
+    </AdminRoute>
   );
 }

@@ -24,7 +24,7 @@ export default function Landing() {
             </Link>
             
             {/* Navigation Links */}
-            <div className="hidden md:flex items-center gap-6">
+            <div className="hidden md:flex items-center gap-8 flex-1 justify-center">
               <Link href="/catalog" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
                 Courses
               </Link>
@@ -51,7 +51,7 @@ export default function Landing() {
             </button>
 
             {/* Auth Buttons - Desktop */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-4 ml-auto">
               <Link href="/login">
                 <Button variant="ghost" className="font-medium">
                   Login

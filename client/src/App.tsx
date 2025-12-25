@@ -71,6 +71,8 @@ import Credits from './pages/Credits';
 import PriorLearning from './pages/PriorLearning';
 import { PaymentPlanCheckout } from './pages/PaymentPlanCheckout';
 import MyPayments from './pages/MyPayments';
+import ChristmasGift from './pages/ChristmasGift';
+import GospelStudies from './pages/GospelStudies';
 
 function Router() {
   return (
@@ -81,6 +83,7 @@ function Router() {
       <Route path="/affiliate/apply" component={AffiliateApply} />
       <Route path="/affiliate/dashboard" component={AffiliateDashboard} />
       <Route path="/chaplaincy-training" component={ChaplaincyTraining} />
+      <Route path="/christmas-gift" component={ChristmasGift} />
       <Route path="/register" component={Register} />
       <Route path="/signup" component={Register} />
       <Route path="/forgot-password" component={ForgotPassword} />
@@ -132,6 +135,7 @@ function Router() {
       <Route path="/pricing" component={Pricing} />
       <Route path="/courses" component={Courses} />
       <Route path="/catalog" component={Catalog} />
+      <Route path="/gospel-studies" component={GospelStudies} />
       <Route path="/bundle-select" component={BundleSelection} />
       <Route path="/payment/success" component={PaymentSuccess} />
       <Route path="/payment/cancel" component={PaymentCancel} />

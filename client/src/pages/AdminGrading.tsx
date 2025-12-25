@@ -1,3 +1,4 @@
+import { AdminRoute } from "@/components/AdminRoute";
 import { useState } from "react";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
@@ -18,7 +19,7 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { FileText, Clock, CheckCircle, AlertCircle, ExternalLink } from "lucide-react";
 
-export default function AdminGrading() {
+function AdminGradingContent() {
   const [selectedSubmission, setSelectedSubmission] = useState<any>(null);
   const [gradeDialogOpen, setGradeDialogOpen] = useState(false);
   const [grade, setGrade] = useState("");
@@ -382,5 +383,13 @@ export default function AdminGrading() {
         </DialogContent>
       </Dialog>
     </div>
+  );
+}
+
+export default function AdminGrading() {
+  return (
+    <AdminRoute>
+      <AdminGradingContent />
+    </AdminRoute>
   );
 }

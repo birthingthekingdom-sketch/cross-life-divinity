@@ -1,3 +1,4 @@
+import { AdminRoute } from "@/components/AdminRoute";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { DollarSign, TrendingUp, Users, ShoppingCart, CreditCard, Calendar } from "lucide-react";
@@ -6,7 +7,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { useLocation } from "wouter";
 import { format } from "date-fns";
 
-export default function AdminRevenue() {
+function AdminRevenueContent() {
   const { user } = useAuth();
   const [, setLocation] = useLocation();
 
@@ -256,5 +257,13 @@ export default function AdminRevenue() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+export default function AdminRevenue() {
+  return (
+    <AdminRoute>
+      <AdminRevenueContent />
+    </AdminRoute>
   );
 }

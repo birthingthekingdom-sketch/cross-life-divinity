@@ -1,3 +1,4 @@
+import { AdminRoute } from "@/components/AdminRoute";
 import { useState } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Button } from "@/components/ui/button";
@@ -12,7 +13,7 @@ import { BookOpen, Edit, Plus, Trash2, GripVertical } from "lucide-react";
 import { toast } from "sonner";
 import { Checkbox } from "@/components/ui/checkbox";
 
-export default function AdminBundles() {
+function AdminBundlesContent() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editingBundle, setEditingBundle] = useState<any>(null);
   const [formData, setFormData] = useState({
@@ -314,5 +315,13 @@ export default function AdminBundles() {
         </div>
       </div>
     </DashboardLayout>
+  );
+}
+
+export default function AdminBundles() {
+  return (
+    <AdminRoute>
+      <AdminBundlesContent />
+    </AdminRoute>
   );
 }

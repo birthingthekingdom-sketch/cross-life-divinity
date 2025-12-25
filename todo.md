@@ -2092,3 +2092,15 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 
 ## Footer Updates
 - [x] Add Prior Learning Assessment (PLA) link to footer
+
+## Database Fixes
+- [x] Fix chat_sessions table missing error - created table manually
+
+
+## Gospel Content Integration - COMPLETED
+- [x] Updated New Testament Survey (BIB102) description to highlight Gospel studies
+- [x] Updated Old Testament Survey (BIB101) description to highlight Gospel connections
+- [x] Created "Gospel Studies Intensive" learning path combining OT & NT surveys
+- [x] Linked courses in proper sequence (OT Survey → NT Survey)
+- [x] Path includes 80 CLAC hours of Gospel-focused content
+- [x] Students can enroll in path and get automatic course access
