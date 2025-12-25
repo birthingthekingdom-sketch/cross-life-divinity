@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Stripe from "stripe";
 import { sql } from "drizzle-orm";
 import * as db from "./db";
-import { sendMonthlyPaymentReceiptEmail, sendFailedPaymentNotificationEmail, sendPaymentPlanCompletionEmail, sendPaymentPlanEnrollmentEmail, sendFullPaymentReceiptEmail } from './email';
+import { sendMonthlyPaymentReceiptEmail, sendFailedPaymentNotificationEmail, sendPaymentPlanCompletionEmail, sendPaymentPlanEnrollmentEmail, sendFullPaymentReceiptEmail, sendEnhancedWelcomeEmail } from './email';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-11-17.clover",
@@ -131,6 +131,8 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
     }
 
     // Enroll user in courses based on plan type
+    let enrolledCourseNames: string[] = [];
+    
     if (planType === 'BUNDLE_3_COURSE') {
       // Get selected course IDs from metadata
       const selectedCourseIds = session.metadata?.selectedCourseIds 
@@ -149,6 +151,15 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
             sql`INSERT INTO course_enrollments (userId, courseId, enrolledAt) 
                 VALUES (${userId}, ${courseId}, NOW())`
           );
+          
+          // Get course name for welcome email
+          const courseData: any = await dbConn.execute(
+            sql`SELECT title FROM courses WHERE id = ${courseId}`
+          );
+          const courses = Array.isArray(courseData) ? courseData : (courseData.rows || []);
+          if (courses.length > 0) {
+            enrolledCourseNames.push(courses[0].title);
+          }
         }
       }
       console.log(`Enrolled user ${userId} in bundle courses: ${selectedCourseIds.join(', ')}`);
@@ -172,6 +183,15 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
               sql`INSERT INTO course_enrollments (userId, courseId, enrolledAt) 
                   VALUES (${userId}, ${course.courseId}, NOW())`
             );
+            
+            // Get course name for welcome email
+            const courseTitle: any = await dbConn.execute(
+              sql`SELECT title FROM courses WHERE id = ${course.courseId}`
+            );
+            const titles = Array.isArray(courseTitle) ? courseTitle : (courseTitle.rows || []);
+            if (titles.length > 0) {
+              enrolledCourseNames.push(titles[0].title);
+            }
           }
         }
         console.log(`Enrolled user ${userId} in learning path ${learningPathId} courses`);
@@ -179,12 +199,13 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
     } else if (planType === 'CHAPLAINCY_TRAINING') {
       // Find chaplaincy course
       const chaplainCourse: any = await dbConn.execute(
-        sql`SELECT id FROM courses WHERE courseCode = 'CHAP-501' LIMIT 1`
+        sql`SELECT id, title FROM courses WHERE courseCode = 'CHAP-501' LIMIT 1`
       );
       const courses = Array.isArray(chaplainCourse) ? chaplainCourse : (chaplainCourse.rows || []);
       
       if (courses.length > 0) {
         const courseId = courses[0].id;
+        const courseTitle = courses[0].title;
         const existing: any = await dbConn.execute(
           sql`SELECT * FROM course_enrollments 
               WHERE userId = ${userId} AND courseId = ${courseId}`
@@ -196,6 +217,7 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
             sql`INSERT INTO course_enrollments (userId, courseId, enrolledAt) 
                 VALUES (${userId}, ${courseId}, NOW())`
           );
+          enrolledCourseNames.push(courseTitle);
         }
         console.log(`Enrolled user ${userId} in chaplaincy training`);
       }
@@ -231,6 +253,15 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
           config.totalAmount / 100,
           new Date(),
           session.payment_intent as string || session.id
+        );
+      }
+      
+      // Send welcome email with enrolled courses
+      if (enrolledCourseNames.length > 0) {
+        await sendEnhancedWelcomeEmail(
+          userEmail,
+          userName,
+          enrolledCourseNames
         );
       }
     }
