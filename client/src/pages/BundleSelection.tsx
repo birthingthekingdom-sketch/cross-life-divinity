@@ -41,7 +41,7 @@ export default function BundleSelection() {
     }
 
     // Store selected courses in sessionStorage and navigate to payment plan checkout
-    sessionStorage.setItem('bundleCourseIds', JSON.stringify(selectedCourses));
+    sessionStorage.setItem('selectedCourseIds', JSON.stringify(selectedCourses));
     setLocation(`/checkout/payment-plan?type=BUNDLE`);
   };
 
