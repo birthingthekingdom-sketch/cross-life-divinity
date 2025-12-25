@@ -173,7 +173,7 @@ export default function About() {
         <div className="container max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Ministry?</h2>
           <p className="text-xl text-white/90 mb-8">
-            Join hundreds of ministry leaders who are deepening their biblical knowledge and strengthening their ministry impact.
+            Join the many ministry leaders who are deepening their biblical knowledge and strengthening their ministry impact.
           </p>
           <div className="flex gap-4 justify-center">
             <Link href="/register">
