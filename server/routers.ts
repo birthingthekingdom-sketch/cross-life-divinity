@@ -27,6 +27,7 @@ import { affiliateRouter } from './affiliate-router';
 import { chaplaincyRouter } from './chaplaincy-router';
 import { installmentPlanRouter } from './installment-plan-router';
 import { paymentPlanRouter } from './payment-plan-router';
+import { idSubmissionRouter } from './id-submission-router';
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -48,6 +49,7 @@ export const appRouter = router({
   chaplaincy: chaplaincyRouter,
   installmentPlan: installmentPlanRouter,
   paymentPlan: paymentPlanRouter,
+  idSubmission: idSubmissionRouter,
 
   // Merge custom auth router with existing auth endpoints
   auth: router({

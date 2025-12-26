@@ -750,3 +750,28 @@ export const paymentHistory = mysqlTable("payment_history", {
 
 export type PaymentHistory = typeof paymentHistory.$inferSelect;
 export type InsertPaymentHistory = typeof paymentHistory.$inferInsert;
+
+
+/**
+ * ID Submissions - Student ID verification documents
+ */
+export const idSubmissions = mysqlTable("id_submissions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  idType: mysqlEnum("idType", ["drivers_license", "state_id", "passport"]).notNull(),
+  documentUrl: text("documentUrl").notNull(), // S3 URL to uploaded ID document
+  fileName: varchar("fileName", { length: 255 }).notNull(),
+  fileSize: int("fileSize").notNull(), // File size in bytes
+  status: mysqlEnum("status", ["pending", "approved", "rejected", "resubmit_requested"]).default("pending").notNull(),
+  verificationNotes: text("verificationNotes"), // Admin notes during verification
+  approvedAt: timestamp("approvedAt"), // When admin approved
+  rejectedAt: timestamp("rejectedAt"), // When admin rejected
+  rejectionReason: text("rejectionReason"), // Why it was rejected
+  adminId: int("adminId"), // Admin who reviewed
+  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type IdSubmission = typeof idSubmissions.$inferSelect;
+export type InsertIdSubmission = typeof idSubmissions.$inferInsert;

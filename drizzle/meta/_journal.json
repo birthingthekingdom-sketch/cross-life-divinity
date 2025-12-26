@@ -183,6 +183,13 @@
       "when": 1766711493169,
       "tag": "0025_normal_blazing_skull",
       "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "5",
+      "when": 1766713950703,
+      "tag": "0026_amazing_ravenous",
+      "breakpoints": true
     }
   ]
 }

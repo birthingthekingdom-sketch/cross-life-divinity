@@ -2159,3 +2159,14 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Display certificate eligibility information
 - [x] Add Chaplaincy-specific verification fields (references, credentials)
 - [x] Create separate admin view for managing student statuses
+
+
+## ID Upload Form (NEW)
+- [x] Create ID Upload Form component with file upload and drag-and-drop
+- [x] Add database schema for ID submissions (id_submissions table)
+- [x] Create backend API endpoints for upload, retrieval, and status checking
+- [x] Integrate form into student dashboard after enrollment
+- [x] Add admin email notifications when ID is submitted
+- [x] Create Admin Verification Dashboard for reviewing submissions
+- [x] Add routes for student ID upload and admin verification pages
+- [ ] Test ID upload flow end-to-end

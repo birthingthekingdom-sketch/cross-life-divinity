@@ -1,4 +1,4 @@
-import { eq, and, desc, inArray, sql, isNotNull } from "drizzle-orm";
+import { eq, and, desc, asc, inArray, sql, isNotNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { 
   InsertUser, users, 
@@ -24,7 +24,8 @@ import {
   assignmentVersions, InsertAssignmentVersion, AssignmentVersion,
   subscriptions, InsertSubscription, Subscription,
   coursePurchases, InsertCoursePurchase, CoursePurchase,
-  stripeCustomers, InsertStripeCustomer, StripeCustomer
+  stripeCustomers, InsertStripeCustomer, StripeCustomer,
+  idSubmissions, InsertIdSubmission, IdSubmission
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -1539,4 +1540,114 @@ export async function getAllCoursePurchases() {
   if (!db) return [];
 
   return db.select().from(coursePurchases).orderBy(desc(coursePurchases.purchasedAt));
+}
+
+
+/**
+ * Create ID submission
+ */
+export async function createIdSubmission(submission: InsertIdSubmission): Promise<IdSubmission | null> {
+  const db = await getDb();
+  if (!db) return null;
+  const result = await db.insert(idSubmissions).values(submission);
+  if (result[0].insertId) {
+    return getIdSubmissionById(Number(result[0].insertId));
+  }
+  return null;
+}
+
+/**
+ * Get ID submission by ID
+ */
+export async function getIdSubmissionById(id: number): Promise<IdSubmission | null> {
+  const db = await getDb();
+  if (!db) return null;
+  const result = await db
+    .select()
+    .from(idSubmissions)
+    .where(eq(idSubmissions.id, id))
+    .limit(1);
+  return result.length > 0 ? result[0] : null;
+}
+
+/**
+ * Get latest ID submission for a user
+ */
+export async function getLatestIdSubmissionByUserId(userId: number): Promise<IdSubmission | null> {
+  const db = await getDb();
+  if (!db) return null;
+  const result = await db
+    .select()
+    .from(idSubmissions)
+    .where(eq(idSubmissions.userId, userId))
+    .orderBy(desc(idSubmissions.createdAt))
+    .limit(1);
+  return result.length > 0 ? result[0] : null;
+}
+
+/**
+ * Get all ID submissions for a user
+ */
+export async function getIdSubmissionsByUserId(userId: number): Promise<IdSubmission[]> {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select()
+    .from(idSubmissions)
+    .where(eq(idSubmissions.userId, userId))
+    .orderBy(desc(idSubmissions.createdAt));
+}
+
+/**
+ * Get all pending ID submissions (admin)
+ */
+export async function getPendingIdSubmissions(): Promise<IdSubmission[]> {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select()
+    .from(idSubmissions)
+    .where(eq(idSubmissions.status, "pending"))
+    .orderBy(asc(idSubmissions.submittedAt));
+}
+
+/**
+ * Update ID submission status
+ */
+export async function updateIdSubmissionStatus(
+  id: number,
+  status: "pending" | "approved" | "rejected" | "resubmit_requested",
+  adminId?: number,
+  verificationNotes?: string,
+  rejectionReason?: string
+): Promise<IdSubmission | null> {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const updateData: any = { status, updatedAt: new Date() };
+  
+  if (adminId) updateData.adminId = adminId;
+  if (verificationNotes) updateData.verificationNotes = verificationNotes;
+  if (rejectionReason) updateData.rejectionReason = rejectionReason;
+  
+  if (status === "approved") {
+    updateData.approvedAt = new Date();
+  } else if (status === "rejected") {
+    updateData.rejectedAt = new Date();
+  }
+  
+  await db.update(idSubmissions).set(updateData).where(eq(idSubmissions.id, id));
+  return getIdSubmissionById(id);
+}
+
+/**
+ * Get all ID submissions (admin)
+ */
+export async function getAllIdSubmissions(): Promise<IdSubmission[]> {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select()
+    .from(idSubmissions)
+    .orderBy(desc(idSubmissions.createdAt));
 }

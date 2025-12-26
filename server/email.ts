@@ -1087,3 +1087,213 @@ export async function sendPaymentReminderEmail(
     return false;
   }
 }
+
+
+/**
+ * Send ID submission notification to admins
+ */
+export async function sendIdSubmissionNotification(user: any, submission: any) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  try {
+    // Get all admin emails (you may need to fetch these from your admin list)
+    const adminEmail = process.env.ADMIN_EMAIL || 'admin@crosslifeschoolofdivinity.org';
+    
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to: adminEmail,
+      subject: `New ID Submission from ${user.name}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #1e40af;">New ID Verification Submission</h2>
+          <p>A student has submitted their ID document for verification.</p>
+          
+          <div style="background-color: #eff6ff; padding: 16px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 0 0 8px 0;"><strong>Student Name:</strong> ${user.name}</p>
+            <p style="margin: 0 0 8px 0;"><strong>Student Email:</strong> ${user.email}</p>
+            <p style="margin: 0 0 8px 0;"><strong>ID Type:</strong> ${submission.idType.replace(/_/g, ' ').toUpperCase()}</p>
+            <p style="margin: 0 0 8px 0;"><strong>File Name:</strong> ${submission.fileName}</p>
+            <p style="margin: 0;"><strong>Submitted:</strong> ${new Date(submission.submittedAt).toLocaleString()}</p>
+          </div>
+          
+          <p>Please review the submitted document and approve or request resubmission as needed.</p>
+          
+          <p style="margin-top: 30px;">
+            <a href="https://cross-life-divinity.manus.space/admin/verification" 
+               style="background-color: #1e40af; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
+              Review Submission
+            </a>
+          </p>
+          
+          <p style="margin-top: 30px; color: #666; font-size: 14px;">
+            Cross Life School of Divinity Admin System
+          </p>
+        </div>
+      `,
+    });
+    console.log(`[Email] ID submission notification sent to ${adminEmail}`);
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send ID submission notification:', error);
+    return false;
+  }
+}
+
+/**
+ * Send ID approval notification to student
+ */
+export async function sendIdApprovalNotification(user: any) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to: user.email,
+      subject: 'ID Verification Approved',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #059669;">✓ ID Verification Approved</h2>
+          <p>Dear ${user.name},</p>
+          
+          <p>Great news! Your ID document has been successfully verified by our admin team.</p>
+          
+          <div style="background-color: #ecfdf5; padding: 16px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #059669;">
+            <p style="margin: 0; color: #065f46;"><strong>✓ Your ID has been approved</strong></p>
+            <p style="margin: 8px 0 0 0; color: #065f46; font-size: 14px;">You can now proceed with your enrollment and access all course materials.</p>
+          </div>
+          
+          <p>If you have any questions or need further assistance, please don't hesitate to contact our support team.</p>
+          
+          <p style="margin-top: 30px;">
+            <a href="https://cross-life-divinity.manus.space/dashboard" 
+               style="background-color: #059669; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
+              Go to Dashboard
+            </a>
+          </p>
+          
+          <p style="margin-top: 30px; color: #666; font-size: 14px;">
+            Blessings,<br>
+            Cross Life School of Divinity Team
+          </p>
+        </div>
+      `,
+    });
+    console.log(`[Email] ID approval notification sent to ${user.email}`);
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send ID approval notification:', error);
+    return false;
+  }
+}
+
+/**
+ * Send ID rejection notification to student
+ */
+export async function sendIdRejectionNotification(user: any, rejectionReason: string) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to: user.email,
+      subject: 'ID Verification - Resubmission Required',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #dc2626;">ID Verification - Resubmission Required</h2>
+          <p>Dear ${user.name},</p>
+          
+          <p>Thank you for submitting your ID document. Unfortunately, we were unable to verify it at this time.</p>
+          
+          <div style="background-color: #fef2f2; padding: 16px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #dc2626;">
+            <p style="margin: 0; color: #7f1d1d;"><strong>Reason:</strong></p>
+            <p style="margin: 8px 0 0 0; color: #7f1d1d;">${rejectionReason}</p>
+          </div>
+          
+          <p style="margin-top: 20px;">Please submit a new ID document that meets the requirements. Make sure the document is:</p>
+          <ul style="color: #374151; line-height: 1.8;">
+            <li>Clear and legible</li>
+            <li>Not expired</li>
+            <li>A government-issued ID (Driver's License, State ID, or Passport)</li>
+            <li>In good condition with no damage or obstruction</li>
+          </ul>
+          
+          <p style="margin-top: 30px;">
+            <a href="https://cross-life-divinity.manus.space/student/id-upload" 
+               style="background-color: #1e40af; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
+              Resubmit ID
+            </a>
+          </p>
+          
+          <p style="margin-top: 30px; color: #666; font-size: 14px;">
+            If you have questions or need assistance, please contact our support team at support@crosslifeschoolofdivinity.org
+          </p>
+          
+          <p style="color: #1e3a8a; font-weight: 600;">Blessings,<br>Cross Life School of Divinity Team</p>
+        </div>
+      `,
+    });
+    console.log(`[Email] ID rejection notification sent to ${user.email}`);
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send ID rejection notification:', error);
+    return false;
+  }
+}
+
+/**
+ * Send ID resubmission request to student
+ */
+export async function sendIdResubmissionRequestNotification(user: any, reason: string) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to: user.email,
+      subject: 'ID Verification - Please Resubmit',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #f59e0b;">ID Verification - Please Resubmit</h2>
+          <p>Dear ${user.name},</p>
+          
+          <p>We need you to resubmit your ID document for verification. Our team has identified an issue that needs to be addressed.</p>
+          
+          <div style="background-color: #fffbeb; padding: 16px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #f59e0b;">
+            <p style="margin: 0; color: #92400e;"><strong>Issue:</strong></p>
+            <p style="margin: 8px 0 0 0; color: #92400e;">${reason}</p>
+          </div>
+          
+          <p style="margin-top: 20px;">Please resubmit a corrected version of your ID document. Ensure that:</p>
+          <ul style="color: #374151; line-height: 1.8;">
+            <li>All information is clearly visible</li>
+            <li>The document is not expired</li>
+            <li>There are no glares or shadows obscuring details</li>
+            <li>Both sides are included if applicable</li>
+          </ul>
+          
+          <p style="margin-top: 30px;">
+            <a href="https://cross-life-divinity.manus.space/student/id-upload" 
+               style="background-color: #f59e0b; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
+              Resubmit ID
+            </a>
+          </p>
+          
+          <p style="margin-top: 30px; color: #666; font-size: 14px;">
+            Thank you for your patience. If you have any questions, please contact support@crosslifeschoolofdivinity.org
+          </p>
+          
+          <p style="color: #1e3a8a; font-weight: 600;">Blessings,<br>Cross Life School of Divinity Team</p>
+        </div>
+      `,
+    });
+    console.log(`[Email] ID resubmission request sent to ${user.email}`);
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send ID resubmission request:', error);
+    return false;
+  }
+}
