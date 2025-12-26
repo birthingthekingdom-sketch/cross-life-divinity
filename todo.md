@@ -2104,3 +2104,11 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Linked courses in proper sequence (OT Survey → NT Survey)
 - [x] Path includes 80 CLAC hours of Gospel-focused content
 - [x] Students can enroll in path and get automatic course access
+
+
+## Course Comparison Tool
+- [x] Design comparison table structure (individual courses, bundles, learning paths)
+- [x] Create comparison component with pricing and feature data
+- [x] Add routing for /comparison page
+- [x] Integrate into website navigation
+- [x] Test comparison tool functionality
