@@ -2135,3 +2135,12 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Add routing for both pages
 - [x] Integrate into website navigation
 - [x] Test both pages
+
+
+## Contact Form
+- [x] Create Contact Form page component
+- [x] Add form validation and submission handling
+- [x] Set up email notifications to support team
+- [x] Configure auto-response emails to users
+- [x] Add routing and navigation links
+- [x] Test form functionality
