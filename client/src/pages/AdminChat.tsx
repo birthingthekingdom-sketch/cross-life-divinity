@@ -14,7 +14,7 @@ function AdminChatContent() {
   const [replyMessage, setReplyMessage] = useState("");
 
   // Fetch all chat sessions
-  const { data: sessions, refetch: refetchSessions } = trpc.chat.getAllSessions.useQuery();
+  const { data: sessions, refetch: refetchSessions } = trpc.chat.getAllSessions.useQuery({});
   
   // Fetch messages for selected session
   const { data: messages, refetch: refetchMessages } = trpc.chat.getMessages.useQuery(
