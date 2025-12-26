@@ -77,6 +77,7 @@ import Comparison from './pages/Comparison';
 import EnrollmentVerification from './pages/EnrollmentVerification';
 import RefundPolicy from './pages/RefundPolicy';
 import Contact from './pages/Contact';
+import KnowledgeBase from './pages/KnowledgeBase';
 
 function Router() {
   return (
@@ -144,6 +145,7 @@ function Router() {
       <Route path="/enrollment-verification" component={EnrollmentVerification} />
       <Route path="/refund-policy" component={RefundPolicy} />
       <Route path="/contact" component={Contact} />
+      <Route path="/knowledge-base" component={KnowledgeBase} />
       <Route path="/bundle-select" component={BundleSelection} />
       <Route path="/payment/success" component={PaymentSuccess} />
       <Route path="/payment/cancel" component={PaymentCancel} />
