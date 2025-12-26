@@ -750,3 +750,26 @@ export const paymentHistory = mysqlTable("payment_history", {
 
 export type PaymentHistory = typeof paymentHistory.$inferSelect;
 export type InsertPaymentHistory = typeof paymentHistory.$inferInsert;
+
+
+/**
+ * ID Submissions - Student ID verification for enrollment
+ */
+export const idSubmissions = mysqlTable("id_submissions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  fileUrl: text("fileUrl").notNull(), // S3 URL to uploaded ID image
+  fileKey: varchar("fileKey", { length: 255 }).notNull(), // S3 key for file storage
+  idType: mysqlEnum("idType", ["driver_license", "state_id", "passport"]).notNull(),
+  status: mysqlEnum("status", ["pending", "approved", "rejected", "resubmit_requested"]).default("pending").notNull(),
+  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+  reviewedAt: timestamp("reviewedAt"), // When admin reviewed the submission
+  reviewedBy: int("reviewedBy"), // Admin user ID who reviewed
+  rejectionReason: text("rejectionReason"), // Reason for rejection if applicable
+  notes: text("notes"), // Admin notes
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type IdSubmission = typeof idSubmissions.$inferSelect;
+export type InsertIdSubmission = typeof idSubmissions.$inferInsert;
