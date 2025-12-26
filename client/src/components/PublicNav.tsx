@@ -31,11 +31,11 @@ export function PublicNav({ currentPage }: PublicNavProps) {
   return (
     <nav className="bg-white border-b border-border sticky top-0 z-50 shadow-sm">
       <div className="container max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-24 py-2">
+        <div className="flex items-center justify-between h-40 py-2">
           {/* Logo */}
           <Link href="/">
             <div className="flex items-center gap-3 cursor-pointer">
-              <img src="/logo.png" alt="Cross Life School of Divinity" className="h-20 w-20 object-contain" />
+              <img src="/logo.png" alt="Cross Life School of Divinity" className="h-40 w-40 object-contain" />
             </div>
           </Link>
 
