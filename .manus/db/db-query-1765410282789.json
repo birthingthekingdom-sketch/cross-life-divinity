@@ -1,9 +1,0 @@
-{
-  "query": "CREATE TABLE IF NOT EXISTS payment_plan_transactions (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  planId INT NOT NULL,\n  amount INT NOT NULL COMMENT 'Payment amount in cents',\n  status ENUM('pending', 'completed', 'failed') NOT NULL DEFAULT 'pending',\n  paymentDate DATETIME NOT NULL,\n  stripePaymentIntentId VARCHAR(255),\n  failureReason TEXT,\n  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,\n  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  INDEX idx_planId (planId),\n  INDEX idx_status (status),\n  INDEX idx_paymentDate (paymentDate),\n  FOREIGN KEY (planId) REFERENCES payment_plans(id) ON DELETE CASCADE\n)",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute CREATE TABLE IF NOT EXISTS payment_plan_transactions (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  planId INT NOT NULL,\n  amount INT NOT NULL COMMENT 'Payment amount in cents',\n  status ENUM('pending', 'completed', 'failed') NOT NULL DEFAULT 'pending',\n  paymentDate DATETIME NOT NULL,\n  stripePaymentIntentId VARCHAR(255),\n  failureReason TEXT,\n  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,\n  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  INDEX idx_planId (planId),\n  INDEX idx_status (status),\n  INDEX idx_paymentDate (paymentDate),\n  FOREIGN KEY (planId) REFERENCES payment_plans(id) ON DELETE CASCADE\n)",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 323
-}

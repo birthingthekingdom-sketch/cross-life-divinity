@@ -1,9 +1,0 @@
-{
-  "query": "INSERT INTO learning_path_courses (pathId, courseId, orderIndex)\nSELECT 2, c.id, \n  CASE c.title\n    WHEN 'Christian Leadership' THEN 1\n    WHEN 'The Fivefold Ministry' THEN 2\n    WHEN 'Prayer and Intercession' THEN 3\n    WHEN 'Church Administration' THEN 4\n  END\nFROM courses c\nWHERE c.title IN ('Christian Leadership', 'The Fivefold Ministry', 'Prayer and Intercession', 'Church Administration')",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO learning_path_courses (pathId, courseId, orderIndex)\nSELECT 2, c.id, \n  CASE c.title\n    WHEN 'Christian Leadership' THEN 1\n    WHEN 'The Fivefold Ministry' THEN 2\n    WHEN 'Prayer and Intercession' THEN 3\n    WHEN 'Church Administration' THEN 4\n  END\nFROM courses c\nWHERE c.title IN ('Christian Leadership', 'The Fivefold Ministry', 'Prayer and Intercession', 'Church Administration')",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 66
-}

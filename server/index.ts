@@ -2,8 +2,6 @@ import express from "express";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
-import { startFollowUpReminderScheduler } from "./scheduler";
-import { schedulePaymentReminders } from "./payment-reminder-scheduler";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,10 +27,6 @@ async function startServer() {
 
   server.listen(port, () => {
     console.log(`Server running on http://localhost:${port}/`);
-    
-    // Start scheduled tasks
-    startFollowUpReminderScheduler();
-    schedulePaymentReminders();
   });
 }
 
