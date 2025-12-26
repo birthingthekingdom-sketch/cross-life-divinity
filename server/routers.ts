@@ -28,6 +28,7 @@ import { chaplaincyRouter } from './chaplaincy-router';
 import { installmentPlanRouter } from './installment-plan-router';
 import { paymentPlanRouter } from './payment-plan-router';
 import { idVerificationRouter } from './id-verification-router';
+import * as autoGradingService from './auto-grading-service';
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -315,53 +316,41 @@ export const appRouter = router({
         })),
       }))
       .mutation(async ({ ctx, input }) => {
-        const questions = await db.getQuizQuestionsByLessonId(input.lessonId);
+        const gradingResult = await autoGradingService.gradeQuizSubmission(
+          input.lessonId,
+          input.answers
+        );
         
-        let correctCount = 0;
-        const results = [];
-        
-        for (const answer of input.answers) {
-          const question = questions.find(q => q.id === answer.questionId);
-          if (!question) continue;
-          
-          const isCorrect = answer.answer.toLowerCase().trim() === question.correctAnswer.toLowerCase().trim();
-          if (isCorrect) correctCount++;
-          
+        for (const result of gradingResult.results) {
           await db.saveQuizAnswer({
             userId: ctx.user.id,
-            questionId: answer.questionId,
-            answer: answer.answer,
-            isCorrect,
-          });
-          
-          results.push({
-            questionId: answer.questionId,
-            isCorrect,
-            correctAnswer: question.correctAnswer,
+            questionId: result.questionId,
+            answer: result.answer,
+            isCorrect: result.isCorrect,
           });
         }
-        
-        const score = correctCount;
-        const totalQuestions = questions.length;
-        const passed = (score / totalQuestions) >= 0.7; // 70% passing grade
         
         await db.createQuizSubmission({
           userId: ctx.user.id,
           lessonId: input.lessonId,
-          score,
-          totalQuestions,
-          passed,
+          score: gradingResult.score,
+          totalQuestions: gradingResult.totalQuestions,
+          passed: gradingResult.passed,
         });
         
-        if (passed) {
+        if (gradingResult.passed) {
           await db.markLessonComplete(ctx.user.id, input.courseId, input.lessonId);
         }
         
         return {
-          score,
-          totalQuestions,
-          passed,
-          results,
+          score: gradingResult.score,
+          totalQuestions: gradingResult.totalQuestions,
+          percentage: gradingResult.percentage,
+          passed: gradingResult.passed,
+          results: gradingResult.results,
+          autoGraded: gradingResult.autoGraded,
+          hasManualQuestions: gradingResult.hasManualQuestions,
+          feedback: autoGradingService.getGradingFeedback(gradingResult),
         };
       }),
     

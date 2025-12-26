@@ -2104,3 +2104,16 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Linked courses in proper sequence (OT Survey → NT Survey)
 - [x] Path includes 80 CLAC hours of Gospel-focused content
 - [x] Students can enroll in path and get automatic course access
+
+
+## Auto-Grading System for Multiple Choice Questions - Phase 3
+- [x] Create auto-grading service for MC/True-False questions
+- [x] Update quiz submission endpoint to use auto-grading
+- [x] Add percentage calculation to quiz results
+- [x] Add personalized feedback messages
+- [x] Support for mixed question types (auto + manual)
+- [x] Enhanced response with grading metadata
+- [ ] Test auto-grading with various quiz scenarios
+- [ ] Test instant feedback display
+- [ ] Test lesson completion on passing
+- [ ] Test retake functionality
