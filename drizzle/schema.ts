@@ -463,10 +463,16 @@ export const subscriptions = mysqlTable("subscriptions", {
   userId: int("userId").notNull(),
   stripeCustomerId: varchar("stripeCustomerId", { length: 255 }).notNull(),
   stripeSubscriptionId: varchar("stripeSubscriptionId", { length: 255 }).notNull().unique(),
-  status: mysqlEnum("status", ["active", "canceled", "past_due", "unpaid"]).default("active").notNull(),
+  status: mysqlEnum("status", ["active", "canceled", "past_due", "unpaid", "suspended"]).default("active").notNull(),
   currentPeriodStart: timestamp("currentPeriodStart").notNull(),
   currentPeriodEnd: timestamp("currentPeriodEnd").notNull(),
   cancelAtPeriodEnd: boolean("cancelAtPeriodEnd").default(false).notNull(),
+  // Payment failure tracking
+  failedPaymentAttempts: int("failedPaymentAttempts").default(0).notNull(),
+  lastFailedPaymentDate: timestamp("lastFailedPaymentDate"),
+  nextRetryDate: timestamp("nextRetryDate"),
+  accessSuspendedAt: timestamp("accessSuspendedAt"),
+  lastPaymentFailureReason: text("lastPaymentFailureReason"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });

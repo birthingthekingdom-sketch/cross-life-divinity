@@ -29,8 +29,9 @@ import { installmentPlanRouter } from './installment-plan-router';
 import { paymentPlanRouter } from './payment-plan-router';
 import { idVerificationRouter } from './id-verification-router';
 import * as autoGradingService from './auto-grading-service';
-import { gradingRouter } from './grading-router';
+import { gradingRouter } from './grading-router.js';
 import * as pendingAnswersNotification from './pending-answers-notification';
+import { subscriptionStatusRouter } from './subscription-status-router';
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -54,6 +55,7 @@ export const appRouter = router({
   paymentPlan: paymentPlanRouter,
   idVerification: idVerificationRouter,
   grading: gradingRouter,
+  subscriptionStatus: subscriptionStatusRouter,
 
   // Merge custom auth router with existing auth endpoints
   auth: router({

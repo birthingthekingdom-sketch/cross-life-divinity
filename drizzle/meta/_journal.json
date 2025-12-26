@@ -211,6 +211,13 @@
       "when": 1766727001915,
       "tag": "0029_sturdy_doctor_doom",
       "breakpoints": true
+    },
+    {
+      "idx": 30,
+      "version": "5",
+      "when": 1766788676235,
+      "tag": "0030_polite_cargill",
+      "breakpoints": true
     }
   ]
 }

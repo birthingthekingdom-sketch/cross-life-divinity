@@ -2148,3 +2148,73 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Fixed by passing empty object {} to useQuery()
 - [x] Dev server restarted with fix applied
 - [x] Ready for testing
+
+
+## Subscription Payment Failure Framework - Phase 1
+
+### Database Schema Updates
+- [ ] Add retry_attempts field to payment_plans table
+- [ ] Add last_retry_date field to payment_plans table
+- [ ] Add access_suspended_at field to payment_plans table
+- [ ] Create payment_retry_history table to track retry attempts
+- [ ] Add subscription_status field to subscriptions table (active, suspended, failed)
+
+### Access Control Layer
+- [ ] Create middleware to check subscription status before course access
+- [ ] Implement getCourseAccessStatus procedure
+- [ ] Add access suspension check to lesson viewer
+- [ ] Add access suspension check to quiz endpoints
+- [ ] Block progress updates for suspended subscriptions
+
+### Automatic Restoration Logic
+- [ ] Update invoice.payment_succeeded webhook to restore access
+- [ ] Reset retry_attempts counter on successful payment
+- [ ] Update access_suspended_at to null on restoration
+- [ ] Send restoration confirmation email to student
+
+### Retry Management
+- [ ] Track failed payment attempts in payment_retry_history
+- [ ] Implement retry attempt counter (max 3 attempts)
+- [ ] Calculate next retry date based on attempt number
+- [ ] Add manual retry trigger for admins
+
+### Student Dashboard Features
+- [ ] Create subscription status component
+- [ ] Display payment status (active, suspended, failed)
+- [ ] Show next payment/retry date
+- [ ] Display retry attempt count
+- [ ] Add "Update Payment Method" button
+- [ ] Show access restoration timeline
+
+### Admin Controls
+- [ ] Add subscription status view in admin dashboard
+- [ ] Create manual retry button for failed payments
+- [ ] Add ability to manually restore access
+- [ ] Implement payment status override
+- [ ] Create payment failure analytics
+
+### Testing
+- [ ] Write tests for access control enforcement
+- [ ] Test automatic restoration on successful payment
+- [ ] Test retry attempt tracking
+- [ ] Test progress preservation during suspension
+- [ ] Test student dashboard display
+- [ ] Create checkpoint
+
+
+## Subscription Payment Failure Framework - Phase 4
+- [x] Add payment failure tracking fields to subscriptions table
+- [x] Create subscription access control service
+- [x] Implement handlePaymentFailure with retry logic
+- [x] Implement restoreAccessOnPaymentSuccess
+- [x] Create subscription access middleware for lesson/quiz endpoints
+- [x] Enhanced webhook handlers for payment failures
+- [x] Build subscription status router (getStatus, checkAccess, getRetryDetails, getPaymentMethodUpdateUrl, getPaymentHistory)
+- [x] Create SubscriptionStatusCard frontend component
+- [x] Create PaymentHistoryTable frontend component
+- [x] Integrate subscription status router into main app router
+- [x] Write comprehensive vitest tests (13 tests, all passing)
+- [ ] Add admin subscription management interface
+- [ ] Create student-facing subscription dashboard page
+- [ ] Add access control to lesson/quiz endpoints
+- [ ] Test payment failure workflow end-to-end
