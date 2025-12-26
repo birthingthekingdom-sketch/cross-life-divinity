@@ -74,6 +74,8 @@ import MyPayments from './pages/MyPayments';
 import ChristmasGift from './pages/ChristmasGift';
 import GospelStudies from './pages/GospelStudies';
 import Comparison from './pages/Comparison';
+import EnrollmentVerification from './pages/EnrollmentVerification';
+import RefundPolicy from './pages/RefundPolicy';
 
 function Router() {
   return (
@@ -138,6 +140,8 @@ function Router() {
       <Route path="/catalog" component={Catalog} />
       <Route path="/gospel-studies" component={GospelStudies} />
       <Route path="/comparison" component={Comparison} />
+      <Route path="/enrollment-verification" component={EnrollmentVerification} />
+      <Route path="/refund-policy" component={RefundPolicy} />
       <Route path="/bundle-select" component={BundleSelection} />
       <Route path="/payment/success" component={PaymentSuccess} />
       <Route path="/payment/cancel" component={PaymentCancel} />

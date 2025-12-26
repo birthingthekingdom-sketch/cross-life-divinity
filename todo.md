@@ -2120,3 +2120,18 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Build results display showing cost comparison and timeline
 - [x] Integrate into comparison page
 - [x] Test calculator functionality
+
+
+## Email Address Updates
+- [ ] Add financialaid@ email to Financial Aid page
+- [ ] Add accreditation@ email to Accreditation page
+- [ ] Test email display on both pages
+
+
+## Enrollment Verification & Refund Policy
+- [x] Create Enrollment Verification page with ID verification process
+- [x] Add background check information for Chaplaincy training
+- [x] Create Refund Policy page with 14-day window
+- [x] Add routing for both pages
+- [x] Integrate into website navigation
+- [x] Test both pages
