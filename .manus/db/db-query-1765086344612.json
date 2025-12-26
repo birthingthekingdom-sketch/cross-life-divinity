@@ -1,0 +1,9 @@
+{
+  "query": "SELECT c.id, c.title, c.description \nFROM courses c\nJOIN path_courses pc ON c.id = pc.courseId\nJOIN learning_paths lp ON pc.pathId = lp.id\nWHERE lp.level = 'beginner'\nORDER BY pc.courseOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT c.id, c.title, c.description \nFROM courses c\nJOIN path_courses pc ON c.id = pc.courseId\nJOIN learning_paths lp ON pc.pathId = lp.id\nWHERE lp.level = 'beginner'\nORDER BY pc.courseOrder;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 56
+}

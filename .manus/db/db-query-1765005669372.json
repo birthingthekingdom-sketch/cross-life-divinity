@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS bundle_purchases (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  userId INT NOT NULL,\n  bundleId INT NOT NULL,\n  stripePaymentIntentId VARCHAR(255),\n  amount INT NOT NULL,\n  currency VARCHAR(10) DEFAULT 'usd',\n  status ENUM('pending', 'completed', 'failed', 'refunded') DEFAULT 'pending',\n  purchasedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  INDEX idx_user_bundle (userId, bundleId),\n  INDEX idx_stripe_payment (stripePaymentIntentId)\n)",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute CREATE TABLE IF NOT EXISTS bundle_purchases (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  userId INT NOT NULL,\n  bundleId INT NOT NULL,\n  stripePaymentIntentId VARCHAR(255),\n  amount INT NOT NULL,\n  currency VARCHAR(10) DEFAULT 'usd',\n  status ENUM('pending', 'completed', 'failed', 'refunded') DEFAULT 'pending',\n  purchasedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  INDEX idx_user_bundle (userId, bundleId),\n  INDEX idx_stripe_payment (stripePaymentIntentId)\n)",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 219
+}

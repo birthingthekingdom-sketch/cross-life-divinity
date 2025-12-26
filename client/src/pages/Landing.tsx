@@ -1,0 +1,677 @@
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Link } from "wouter";
+import { Footer } from "@/components/Footer";
+import { ChatWidget } from "@/components/ChatWidget";
+import { Check, BookOpen, Award, Users, Clock, Menu, X, MapPin, Globe } from "lucide-react";
+import { useState } from "react";
+
+export default function Landing() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Navigation Header */}
+      <nav className="bg-white border-b border-border sticky top-0 z-50 shadow-sm">
+        <div className="container max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-between h-24 py-2">
+            {/* Logo */}
+            <Link href="/">
+              <div className="flex items-center gap-3 cursor-pointer">
+                <img src="/logo.png" alt="Cross Life School of Divinity" className="h-32 w-32 object-contain" />
+                <span className="text-xl font-bold text-primary">Cross Life School of Divinity</span>
+              </div>
+            </Link>
+            
+            {/* Navigation Links */}
+            <div className="hidden md:flex items-center gap-8 flex-1 justify-center">
+              <Link href="/catalog" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                Courses
+              </Link>
+              <Link href="/learning-paths" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                Learning Paths
+              </Link>
+              <Link href="/chaplaincy-training" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                Chaplaincy
+              </Link>
+              <Link href="/pricing" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                Pricing
+              </Link>
+              <Link href="/about" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                About
+              </Link>
+            </div>
+            
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 hover:bg-accent/10 rounded-lg transition-colors"
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+
+            {/* Auth Buttons - Desktop */}
+            <div className="hidden md:flex items-center gap-4 ml-auto">
+              <Link href="/login">
+                <Button variant="ghost" className="font-medium">
+                  Login
+                </Button>
+              </Link>
+              <Link href="/register">
+                <Button className="bg-primary hover:bg-primary/90 font-medium">
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden border-t border-border bg-white">
+              <div className="py-4 space-y-2">
+                <Link href="/catalog">
+                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    Courses
+                  </div>
+                </Link>
+                <Link href="/learning-paths">
+                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    Learning Paths
+                  </div>
+                </Link>
+                <Link href="/chaplaincy-training">
+                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    Chaplaincy Training
+                  </div>
+                </Link>
+                <Link href="/pricing">
+                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    Pricing
+                  </div>
+                </Link>
+                <Link href="/about">
+                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    About
+                  </div>
+                </Link>
+                <Link href="/faq">
+                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    FAQ
+                  </div>
+                </Link>
+                <div className="px-4 pt-4 pb-2 border-t border-border space-y-2">
+                  <Link href="/login">
+                    <Button variant="ghost" className="w-full justify-start font-medium" onClick={() => setMobileMenuOpen(false)}>
+                      Login
+                    </Button>
+                  </Link>
+                  <Link href="/register">
+                    <Button className="w-full bg-primary hover:bg-primary/90 font-medium" onClick={() => setMobileMenuOpen(false)}>
+                      Sign Up
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+      
+      {/* Hero Section with Promotional Image */}
+      <section className="relative overflow-hidden">
+        <img 
+          src="/promo-hero-clac.png" 
+          alt="Study Theology at Your Own Pace - CLAC Accredited Courses" 
+          className="w-full h-auto object-cover"
+        />
+      </section>
+
+      {/* Pricing Highlight Section */}
+      <section className="py-16 bg-primary/5">
+        <div className="container max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <img 
+                src="/promo-pricing.png" 
+                alt="$49/Month All-Access Subscription" 
+                className="rounded-lg shadow-2xl"
+              />
+            </div>
+            <div>
+              <div className="mb-4">
+                <Badge className="bg-red-500 text-white hover:bg-red-600 mb-3">
+                  <Clock className="w-3 h-3 mr-1" />
+                  Limited-Time Offer
+                </Badge>
+              </div>
+              <h2 className="text-4xl font-bold mb-6">All-Access Subscription</h2>
+              <div className="flex items-baseline gap-3 mb-2">
+                <span className="text-3xl text-muted-foreground line-through">$79</span>
+                <div className="text-5xl font-bold text-accent">$49<span className="text-2xl text-muted-foreground">/month</span></div>
+              </div>
+              <p className="text-green-600 font-semibold mb-4">Save $30/month - Lock in this rate forever!</p>
+              <p className="text-xl text-muted-foreground mb-6">
+                Get unlimited access to all 17 courses and 170 lessons with one affordable subscription
+              </p>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-start gap-3">
+                  <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-lg">Unlimited access to all courses and lessons</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-lg">CLAC-accredited certificates upon completion</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-lg">New courses added regularly</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-lg">Study at your own pace, anytime, anywhere</span>
+                </li>
+              </ul>
+              <Link href="/pricing">
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6">
+                  Get Started Today
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Chaplain's Training Promotional Section */}
+      <section className="py-16 bg-gradient-to-br from-accent/10 to-accent/5">
+        <div className="container max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold mb-6 text-primary">Chaplain's Training Program</h2>
+              <p className="text-xl text-muted-foreground mb-6">
+                Pastor / Minister you've been waiting long enough; now is the time!
+              </p>
+              <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-4xl font-bold text-accent">$325</span>
+                  <span className="text-2xl text-muted-foreground line-through">$400</span>
+                  <span className="bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">Save $75</span>
+                </div>
+                <p className="text-foreground/80">$275 course + $50 background check • Payment plan available</p>
+              </div>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-start gap-3">
+                  <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-lg">30 CLAC Hours of Professional Certification</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-lg">Hospital, Military & Institutional Ministry Training</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-lg">Crisis Intervention & Pastoral Care Skills</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-lg">Professional Chaplaincy Certification</span>
+                </li>
+              </ul>
+              <Link href="/chaplaincy-training">
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6">
+                  Learn More & Enroll
+                </Button>
+              </Link>
+            </div>
+            <div>
+              <Link href="/chaplaincy-training">
+                <img 
+                  src="/chaplain-promo.png" 
+                  alt="Chaplain's Training - Pastor / Minister you've been waiting long enough; now is the time!" 
+                  className="rounded-lg shadow-2xl w-full cursor-pointer hover:opacity-90 transition-opacity"
+                />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* New Courses Highlight */}
+      <section className="py-16 bg-accent/5">
+        <div className="container max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-4">New Courses Added</h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg">Expand your ministry with our latest seminary-quality courses</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+              <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                <BookOpen className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-3">Understanding Prophecy</h3>
+              <p className="text-foreground/80 mb-4">
+                Explore the prophetic office and gift, learn to test prophecies, and understand the role of prophecy in the believer's life and church ministry.
+              </p>
+              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CLAC Hours</div>
+            </div>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+              <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                <BookOpen className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-3">Deliverance Ministry</h3>
+              <p className="text-foreground/80 mb-4">
+                Master the biblical foundations of deliverance, understand spiritual and natural bondages, and learn practical methods for setting captives free.
+              </p>
+              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CLAC Hours</div>
+            </div>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+              <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                <BookOpen className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-3">The Fivefold Ministry</h3>
+              <p className="text-foreground/80 mb-4">
+                Study the five ministry gifts from Ephesians 4:11 - apostle, prophet, evangelist, pastor, and teacher - and their function in building the church.
+              </p>
+              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CLAC Hours</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Learning Paths Section */}
+      <section className="py-16 bg-gradient-to-b from-background to-primary/5">
+        <div className="container max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Structured Learning Paths</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Follow our expertly designed learning paths that guide you from foundational knowledge to advanced theological mastery
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Beginner Path */}
+            <div className="bg-blue-50 border-2 border-blue-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-blue-500/40">
+              <div className="bg-blue-500/10 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                <BookOpen className="h-8 w-8 text-blue-600" />
+              </div>
+              <div className="mb-4">
+                <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">Beginner</span>
+                <h3 className="text-2xl font-bold mt-1">New Believer Foundation</h3>
+              </div>
+              <p className="text-foreground/80 mb-6 leading-relaxed">
+                Perfect for new believers and those seeking to establish a solid biblical foundation. This path introduces essential Christian doctrines, biblical interpretation basics, foundational spiritual disciplines, and practical tools for spiritual growth and discipleship.
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Duration:</strong> 5-6 months at recommended pace</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Courses:</strong> Introduction to Theology, Biblical Hermeneutics, Christian Ethics, Prayer & Intercession, Spiritual Warfare, Evangelism</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Ideal For:</strong> New Christians, seekers, and those wanting to strengthen their faith foundation</span>
+                </div>
+              </div>
+              <Link href="/learning-paths">
+                <Button className="w-full bg-blue-600 hover:bg-blue-700">Explore Beginner Path</Button>
+              </Link>
+            </div>
+
+            {/* Intermediate Path */}
+            <div className="bg-blue-50 border-2 border-purple-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-purple-500/40">
+              <div className="bg-purple-500/10 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                <Award className="h-8 w-8 text-purple-600" />
+              </div>
+              <div className="mb-4">
+                <span className="text-sm font-semibold text-purple-600 uppercase tracking-wide">Intermediate</span>
+                <h3 className="text-2xl font-bold mt-1">Ministry Preparation Track</h3>
+              </div>
+              <p className="text-foreground/80 mb-6 leading-relaxed">
+                Designed for aspiring ministry leaders and those actively serving in church roles. This comprehensive path equips you with practical ministry skills, deeper biblical knowledge, and leadership principles essential for effective kingdom service.
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Duration:</strong> 6-8 months at recommended pace</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Courses:</strong> Christian Leadership, Fivefold Ministry, Prayer & Intercession, Church Administration</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Ideal For:</strong> Emerging leaders, small group facilitators, worship team members, and ministry volunteers</span>
+                </div>
+              </div>
+              <Link href="/learning-paths">
+                <Button className="w-full bg-purple-600 hover:bg-purple-700">Explore Ministry Track</Button>
+              </Link>
+            </div>
+
+            {/* Advanced Path */}            <div className="bg-blue-50 border-2 border-orange-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-orange-500/40">              <div className="bg-amber-500/10 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                <Users className="h-8 w-8 text-amber-600" />
+              </div>
+              <div className="mb-4">
+                <span className="text-sm font-semibold text-amber-600 uppercase tracking-wide">Advanced</span>
+                <h3 className="text-2xl font-bold mt-1">Theological Studies</h3>
+              </div>
+              <p className="text-foreground/80 mb-6 leading-relaxed">
+                For seasoned ministry leaders and scholars pursuing theological depth. This rigorous path covers systematic theology, advanced biblical studies, and specialized ministry topics that prepare you for senior leadership and teaching roles in the church.
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Duration:</strong> 8-12 months at recommended pace</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Courses:</strong> Systematic Theology, Old & New Testament Survey, Deliverance Ministry, Understanding Prophecy</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm"><strong>Ideal For:</strong> Pastors, teachers, ministry directors, and those pursuing formal theological education</span>
+                </div>
+              </div>
+              <Link href="/learning-paths">
+                <Button className="w-full bg-amber-600 hover:bg-amber-700">Explore Advanced Path</Button>
+              </Link>
+            </div>
+          </div>
+          <div className="mt-12 text-center">
+            <p className="text-muted-foreground mb-4">
+              Each learning path includes progress tracking, completion certificates, and personalized recommendations
+            </p>
+            <Link href="/catalog">
+              <Button variant="outline" size="lg" className="text-lg px-10 py-7 font-semibold">View All Courses</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16">
+        <div className="container max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12">Why Choose Cross Life School of Divinity?</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center p-6">
+              <div className="inline-block bg-accent/10 p-4 rounded-full mb-4">
+                <BookOpen className="h-12 w-12 text-accent" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-3">Seminary-Quality Education</h3>
+              <p className="text-foreground/80">
+                Nearly 1,000,000 words of comprehensive theological content developed by experienced theologians and ministry leaders
+              </p>
+            </div>
+            <div className="text-center p-6">
+              <div className="inline-block bg-accent/10 p-4 rounded-full mb-4">
+                <Award className="h-12 w-12 text-accent" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-3">CLAC Accredited</h3>
+              <p className="text-foreground/80">
+                Earn recognized certificates that demonstrate your commitment to professional development
+              </p>
+            </div>
+            <div className="text-center p-6">
+              <div className="inline-block bg-accent/10 p-4 rounded-full mb-4">
+                <Users className="h-12 w-12 text-accent" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-3">Join with Other Leaders</h3>
+              <p className="text-foreground/80">
+                Connect with a global community of ministry leaders pursuing excellence
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-16 bg-accent/5">
+        <div className="container max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-4">What Our Students Say</h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg">Hear from ministry leaders who have transformed their understanding and impact</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Testimonial 1 */}
+            <div className="bg-card border border-border rounded-lg p-6 shadow-sm hover:shadow-lg transition-shadow">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center flex-shrink-0">
+                  <Users className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-lg">Pastor James Mitchell</h4>
+                  <p className="text-sm text-muted-foreground">Senior Pastor, Grace Community Church</p>
+                </div>
+              </div>
+              <p className="text-muted-foreground italic leading-relaxed">
+                "The Systematic Theology course completely transformed my preaching. The depth of content combined with practical application has equipped me to teach with greater confidence and clarity. Highly recommend for any pastor seeking theological excellence."
+              </p>
+              <div className="mt-4 flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Award key={i} className="h-4 w-4 text-amber-500 fill-amber-500" />
+                ))}
+              </div>
+            </div>
+
+            {/* Testimonial 2 */}
+            <div className="bg-card border border-border rounded-lg p-6 shadow-sm hover:shadow-lg transition-shadow">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center flex-shrink-0">
+                  <Users className="h-8 w-8 text-accent" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-lg">Sarah Thompson</h4>
+                  <p className="text-sm text-muted-foreground">Worship Leader & Ministry Coordinator</p>
+                </div>
+              </div>
+              <p className="text-muted-foreground italic leading-relaxed">
+                "As a worship leader, the Fivefold Ministry course opened my eyes to my calling and how to operate in my gifts. The flexible schedule allowed me to study while serving full-time in ministry. This platform is a game-changer for busy ministry leaders!"
+              </p>
+              <div className="mt-4 flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Award key={i} className="h-4 w-4 text-amber-500 fill-amber-500" />
+                ))}
+              </div>
+            </div>
+
+            {/* Testimonial 3 */}
+            <div className="bg-card border border-border rounded-lg p-6 shadow-sm hover:shadow-lg transition-shadow">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center flex-shrink-0">
+                  <Users className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-lg">Rev. David Okonkwo</h4>
+                  <p className="text-sm text-muted-foreground">Missionary & Church Planter, Nigeria</p>
+                </div>
+              </div>
+              <p className="text-muted-foreground italic leading-relaxed">
+                "The Biblical Hermeneutics course equipped me with tools I use daily in sermon preparation and Bible study leadership. The CLAC accreditation adds credibility to my ministry credentials. Worth every penny—actually, the subscription model makes it incredibly affordable!"
+              </p>
+              <div className="mt-4 flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Award key={i} className="h-4 w-4 text-amber-500 fill-amber-500" />
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="mt-12 text-center">
+            <p className="text-muted-foreground mb-4">
+              Join the many ministry leaders already enrolled in our courses
+            </p>
+            <Link href="/register">
+              <Button size="lg" className="bg-accent hover:bg-accent/90">Start Your Journey Today</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-primary text-white">
+        <div className="container max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-6">Ready to Begin Your Journey?</h2>
+          <p className="text-xl text-white/90 mb-8">
+            Join ministry leaders worldwide who are deepening their faith and expanding their impact
+          </p>
+          <div className="flex gap-4 justify-center">
+            <Link href="/register">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6">
+                Create Free Account
+              </Button>
+            </Link>
+            <Link href="/login">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8 py-6">
+                Sign In
+              </Button>
+            </Link>
+          </div>
+          <p className="mt-6 text-sm text-white/70">
+            Start with individual courses at $89 each or subscribe for unlimited access at $49/month
+          </p>
+        </div>
+      </section>
+
+      {/* Global Reach Section */}
+      <section className="py-16 bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5">
+        <div className="container max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <Badge className="mb-4">Global Impact</Badge>
+            <h2 className="text-4xl font-bold mb-4">Equipping Ministry Leaders Worldwide</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Our students are serving in churches, hospitals, prisons, and mission fields across the globe
+            </p>
+          </div>
+          
+          {/* Stats Row */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+              <div className="text-3xl font-bold text-primary mb-2">Decades</div>
+              <p className="text-muted-foreground">of Ministry Training Experience</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+              <div className="text-3xl font-bold text-primary mb-2">Proven</div>
+              <p className="text-muted-foreground">Track Record of Student Success</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+              <div className="text-3xl font-bold text-primary mb-2">Seminary</div>
+              <p className="text-muted-foreground">Quality Curriculum</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+              <div className="text-4xl font-bold text-primary mb-2">18</div>
+              <p className="text-muted-foreground">Courses Available</p>
+            </div>
+          </div>
+
+          {/* Map Visualization */}
+          <div className="bg-white rounded-2xl shadow-xl p-8">
+            <div className="flex items-center justify-center gap-2 mb-6">
+              <Globe className="h-6 w-6 text-primary" />
+              <h3 className="text-2xl font-bold">Where Our Students Serve</h3>
+            </div>
+            <div className="relative">
+              {/* US Map SVG */}
+              <svg viewBox="0 0 960 600" className="w-full h-auto max-h-[400px]">
+                {/* Simplified US Map Path */}
+                <path
+                  d="M158 453l-3-2-2-4 1-3 3-1 3 2 1 3-1 3-2 2zm-10-9l-2-1-1-2 1-2 2-1 2 1 1 2-1 2-2 1zm833-170l-1 4-3 2-4-1-2-3 1-4 3-2 4 1 2 3zm-15 8l-2 1-2-1-1-2 1-2 2-1 2 1 1 2-1 2z"
+                  fill="#e2e8f0"
+                  stroke="#94a3b8"
+                  strokeWidth="0.5"
+                />
+                {/* Continental US simplified */}
+                <path
+                  d="M230 140 L850 140 L870 180 L880 250 L860 320 L800 380 L700 400 L600 420 L500 400 L400 380 L300 400 L200 380 L150 320 L140 250 L160 180 Z"
+                  fill="#e2e8f0"
+                  stroke="#94a3b8"
+                  strokeWidth="1"
+                />
+                
+                {/* Student Location Markers - Actual locations: IL, NE (Omaha), TX */}
+                {/* Illinois - Chicago (Headquarters) */}
+                <circle cx="580" cy="240" r="14" fill="#2563eb" opacity="0.9">
+                  <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite" />
+                </circle>
+                <text x="580" y="270" textAnchor="middle" className="text-xs fill-primary font-semibold">IL</text>
+                
+                {/* Nebraska - Omaha */}
+                <circle cx="420" cy="240" r="10" fill="#2563eb" opacity="0.8">
+                  <animate attributeName="r" values="8;12;8" dur="2.3s" repeatCount="indefinite" />
+                </circle>
+                <text x="420" y="265" textAnchor="middle" className="text-xs fill-primary font-semibold">NE</text>
+                
+                {/* Texas */}
+                <circle cx="450" cy="380" r="10" fill="#2563eb" opacity="0.8">
+                  <animate attributeName="r" values="8;12;8" dur="2.5s" repeatCount="indefinite" />
+                </circle>
+                <text x="450" y="405" textAnchor="middle" className="text-xs fill-primary font-semibold">TX</text>
+              </svg>
+              
+              {/* Legend */}
+              <div className="flex items-center justify-center gap-6 mt-6">
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 rounded-full bg-primary animate-pulse"></div>
+                  <span className="text-sm text-muted-foreground">Graduate Locations</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-primary" />
+                  <span className="text-sm text-muted-foreground">Headquarters: Chicago, IL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-accent/5">
+        <div className="container max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <Badge className="mb-4">Student Success Stories</Badge>
+            <h2 className="text-4xl font-bold mb-4">Transforming Ministry Leaders Worldwide</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Join pastors, ministers and chaplains who are advancing their ministries through our CLAC-accredited programs
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-background p-8 rounded-lg shadow-lg">
+              <div className="text-5xl text-primary mb-4">"</div>
+              <p className="text-muted-foreground mb-6 italic">
+                The theological depth and practical application in these courses have revolutionized my preaching. My congregation has noticed the difference!
+              </p>
+              <div>
+                <p className="font-bold">Pastor James Rodriguez</p>
+                <p className="text-sm text-muted-foreground">Senior Pastor, Community Church</p>
+                <p className="text-xs text-primary mt-2">Completed 8 courses</p>
+              </div>
+            </div>
+            
+            <div className="bg-background p-8 rounded-lg shadow-lg">
+              <div className="text-5xl text-primary mb-4">"</div>
+              <p className="text-muted-foreground mb-6 italic">
+                As a busy ministry leader, the flexibility of online learning was perfect. The CLAC certification adds credibility to my credentials.
+              </p>
+              <div>
+                <p className="font-bold">Dr. Patricia Johnson</p>
+                <p className="text-sm text-muted-foreground">Ministry Director & Author</p>
+                <p className="text-xs text-primary mt-2">Full Access Subscriber</p>
+              </div>
+            </div>
+            
+            <div className="bg-background p-8 rounded-lg shadow-lg">
+              <div className="text-5xl text-primary mb-4">"</div>
+              <p className="text-muted-foreground mb-6 italic">
+                The chaplaincy training prepared me for service in ways seminary didn't. I'm now confidently serving in a hospital setting.
+              </p>
+              <div>
+                <p className="font-bold">Rev. Marcus Chen</p>
+                <p className="text-sm text-muted-foreground">Hospital Chaplain</p>
+                <p className="text-xs text-primary mt-2">Chaplaincy Graduate</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      <ChatWidget />
+    </div>
+  );
+}

@@ -1,0 +1,64 @@
+{
+  "query": "SELECT id, email, name, emailVerified FROM users WHERE role = 'admin' LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, email, name, emailVerified FROM users WHERE role = 'admin' LIMIT 10;",
+  "rows": [
+    {
+      "id": "1",
+      "email": "birthingthekingdom@gmail.com",
+      "name": "Christ Family Network",
+      "emailVerified": "0"
+    },
+    {
+      "id": "240032",
+      "email": "admin@test.com",
+      "name": "Test Admin",
+      "emailVerified": "0"
+    },
+    {
+      "id": "270033",
+      "email": "bulkadmin@test.com",
+      "name": "Bulk Test Admin",
+      "emailVerified": "0"
+    },
+    {
+      "id": "270079",
+      "email": "admin-1764659008097@test.com",
+      "name": "Test Admin",
+      "emailVerified": "0"
+    },
+    {
+      "id": "870031",
+      "email": "admin@crosslifeschool.org",
+      "name": "Administrator",
+      "emailVerified": "1"
+    },
+    {
+      "id": "1740001",
+      "email": "admin@crosslifedivinity.com",
+      "name": "Admin User",
+      "emailVerified": "0"
+    },
+    {
+      "id": "1800001",
+      "email": "admin@crosslife.edu",
+      "name": "Admin User",
+      "emailVerified": "1"
+    },
+    {
+      "id": "1800002",
+      "email": "clsd-admin@example.com",
+      "name": "CLSD Admin",
+      "emailVerified": "1"
+    },
+    {
+      "id": "1800003",
+      "email": "admin@clsd.edu",
+      "name": "CLSD Administrator",
+      "emailVerified": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\tname\temailVerified\n1\tbirthingthekingdom@gmail.com\tChrist Family Network\t0\n240032\tadmin@test.com\tTest Admin\t0\n270033\tbulkadmin@test.com\tBulk Test Admin\t0\n270079\tadmin-1764659008097@test.com\tTest Admin\t0\n870031\tadmin@crosslifeschool.org\tAdministrator\t1\n1740001\tadmin@crosslifedivinity.com\tAdmin User\t0\n1800001\tadmin@crosslife.edu\tAdmin User\t1\n1800002\tclsd-admin@example.com\tCLSD Admin\t1\n1800003\tadmin@clsd.edu\tCLSD Administrator\t1\n",
+  "stderr": "",
+  "execution_time_ms": 57
+}

@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO learning_path_courses (pathId, courseId, orderIndex)\nSELECT 3, c.id, \n  CASE c.title\n    WHEN 'Systematic Theology' THEN 1\n    WHEN 'Old Testament Survey' THEN 2\n    WHEN 'New Testament Survey' THEN 3\n    WHEN 'Deliverance Ministry' THEN 4\n    WHEN 'Understanding Prophecy' THEN 5\n  END\nFROM courses c\nWHERE c.title IN ('Systematic Theology', 'Old Testament Survey', 'New Testament Survey', 'Deliverance Ministry', 'Understanding Prophecy')",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO learning_path_courses (pathId, courseId, orderIndex)\nSELECT 3, c.id, \n  CASE c.title\n    WHEN 'Systematic Theology' THEN 1\n    WHEN 'Old Testament Survey' THEN 2\n    WHEN 'New Testament Survey' THEN 3\n    WHEN 'Deliverance Ministry' THEN 4\n    WHEN 'Understanding Prophecy' THEN 5\n  END\nFROM courses c\nWHERE c.title IN ('Systematic Theology', 'Old Testament Survey', 'New Testament Survey', 'Deliverance Ministry', 'Understanding Prophecy')",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 57
+}

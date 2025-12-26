@@ -1,0 +1,151 @@
+{
+  "query": "SHOW TABLES;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SHOW TABLES;",
+  "rows": [
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "__drizzle_migrations"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "access_code_courses"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "access_codes"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "affiliate_clicks"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "affiliate_commissions"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "affiliate_payouts"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "affiliate_referrals"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "affiliates"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "assignment_grades"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "assignment_submissions"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "assignment_versions"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "bundle_courses"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "bundle_purchases"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "certificates"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "chaplaincy_applications"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "course_bundles"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "course_enrollments"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "course_prerequisites"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "course_purchases"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "courses"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "email_notifications"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "email_preferences"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "email_settings"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "enrollments"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "follow_ups"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "forum_replies"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "forum_topics"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "learning_path_certificates"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "learning_path_courses"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "learning_path_enrollments"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "learning_paths"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "lessons"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "login_history"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "path_courses"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "payment_plan_transactions"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "payment_plans"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "peer_review_feedback"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "peer_reviews"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "plagiarism_reports"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "quiz_answers"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "quiz_questions"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "quiz_submissions"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "stripe_customers"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "student_progress"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "subscriptions"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "users"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b": "webinars"
+    }
+  ],
+  "messages": [],
+  "stdout": "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b\n__drizzle_migrations\naccess_code_courses\naccess_codes\naffiliate_clicks\naffiliate_commissions\naffiliate_payouts\naffiliate_referrals\naffiliates\nassignment_grades\nassignment_submissions\nassignment_versions\nbundle_courses\nbundle_purchases\ncertificates\nchaplaincy_applications\ncourse_bundles\ncourse_enrollments\ncourse_prerequisites\ncourse_purchases\ncourses\nemail_notifications\nemail_preferences\nemail_settings\nenrollments\nfollow_ups\nforum_replies\nforum_topics\nlearning_path_certificates\nlearning_path_courses\nlearning_path_enrollments\nlearning_paths\nlessons\nlogin_history\npath_courses\npayment_plan_transactions\npayment_plans\npeer_review_feedback\npeer_reviews\nplagiarism_reports\nquiz_answers\nquiz_questions\nquiz_submissions\nstripe_customers\nstudent_progress\nsubscriptions\nusers\nwebinars\n",
+  "stderr": "",
+  "execution_time_ms": 57
+}

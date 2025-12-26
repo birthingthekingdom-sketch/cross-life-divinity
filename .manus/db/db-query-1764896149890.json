@@ -1,0 +1,17 @@
+{
+  "query": "SELECT id, email, name, role, loginMethod FROM users WHERE email LIKE '%birthingthekingdom%' OR email LIKE '%christfamily%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, email, name, role, loginMethod FROM users WHERE email LIKE '%birthingthekingdom%' OR email LIKE '%christfamily%';",
+  "rows": [
+    {
+      "id": "1",
+      "email": "birthingthekingdom@gmail.com",
+      "name": "Christ Family Network",
+      "role": "admin",
+      "loginMethod": "google"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\tname\trole\tloginMethod\n1\tbirthingthekingdom@gmail.com\tChrist Family Network\tadmin\tgoogle\n",
+  "stderr": "",
+  "execution_time_ms": 52
+}
