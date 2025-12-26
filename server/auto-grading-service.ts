@@ -26,6 +26,7 @@ export interface QuizGradingResult {
   results: GradingResult[];
   autoGraded: boolean;
   hasManualQuestions: boolean;
+  manualQuestionIds?: number[];
 }
 
 /**
@@ -41,6 +42,7 @@ export async function gradeQuizSubmission(
   let autoGradedCount = 0;
   let manualCount = 0;
   const results: GradingResult[] = [];
+  const manualQuestionIds: number[] = [];
   
   for (const answer of answers) {
     const question = questions.find(q => q.id === answer.questionId);
@@ -57,6 +59,7 @@ export async function gradeQuizSubmission(
     } else if (question.questionType === "short_answer") {
       // Short answer questions require manual grading
       manualCount++;
+      manualQuestionIds.push(question.id);
     }
     
     results.push({
@@ -88,6 +91,7 @@ export async function gradeQuizSubmission(
     results,
     autoGraded: autoGradedCount > 0,
     hasManualQuestions: manualCount > 0,
+    manualQuestionIds,
   };
 }
 

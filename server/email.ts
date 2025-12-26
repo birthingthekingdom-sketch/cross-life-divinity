@@ -830,3 +830,121 @@ export async function sendFullPaymentReceiptEmail(
     return false;
   }
 }
+
+
+/**
+ * Send notification to admin when written answers are pending grading
+ */
+export async function sendPendingWrittenAnswersNotification(
+  adminEmail: string,
+  studentName: string,
+  courseName: string,
+  lessonName: string,
+  pendingCount: number
+) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to: adminEmail,
+      subject: `[Admin] ${pendingCount} Written Answer(s) Pending Review - ${courseName}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #1e40af; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">Written Answers Pending Review</h2>
+          
+          <p style="color: #333; font-size: 16px;">
+            <strong>${pendingCount}</strong> written answer(s) from <strong>${studentName}</strong> are awaiting your review.
+          </p>
+          
+          <div style="background-color: #f0f4ff; padding: 15px; border-left: 4px solid #1e40af; margin: 20px 0; border-radius: 4px;">
+            <p style="margin: 5px 0;"><strong>Course:</strong> ${courseName}</p>
+            <p style="margin: 5px 0;"><strong>Lesson:</strong> ${lessonName}</p>
+            <p style="margin: 5px 0;"><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
+          </div>
+          
+          <p style="margin-top: 20px;">
+            <a href="https://cross-life-divinity.manus.space/admin/grading" 
+               style="background-color: #1e40af; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
+              Review Written Answers
+            </a>
+          </p>
+          
+          <p style="margin-top: 30px; color: #666; font-size: 14px; border-top: 1px solid #e5e7eb; padding-top: 20px;">
+            This is an automated notification from Cross Life School of Divinity.<br>
+            Please review and grade these answers at your earliest convenience.
+          </p>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send pending written answers notification:', error);
+    return false;
+  }
+}
+
+/**
+ * Send notification to student when their written answers have been graded
+ */
+export async function sendWrittenAnswerGradedNotification(
+  studentEmail: string,
+  studentName: string,
+  courseName: string,
+  lessonName: string,
+  score: number,
+  feedback: string
+) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to: studentEmail,
+      subject: `Your Written Answers Have Been Graded - ${courseName}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #1e40af; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">Written Answers Graded</h2>
+          
+          <p style="color: #333; font-size: 16px;">
+            Dear ${studentName},
+          </p>
+          
+          <p style="color: #333;">
+            Your written answers for <strong>${lessonName}</strong> in <strong>${courseName}</strong> have been reviewed and graded by your instructor.
+          </p>
+          
+          <div style="background-color: #f0f4ff; padding: 20px; border-left: 4px solid #1e40af; margin: 20px 0; border-radius: 4px;">
+            <p style="margin: 5px 0;"><strong>Score:</strong> <span style="font-size: 24px; color: #1e40af;">${score}/100</span></p>
+            <p style="margin: 10px 0; color: #666; font-size: 14px;">Graded on ${new Date().toLocaleString()}</p>
+          </div>
+          
+          <div style="background-color: #fff9e6; padding: 15px; border-left: 4px solid #f59e0b; margin: 20px 0; border-radius: 4px;">
+            <p style="margin: 0 0 10px 0; font-weight: bold; color: #333;">Instructor Feedback:</p>
+            <p style="margin: 0; color: #555; line-height: 1.6;">${feedback}</p>
+          </div>
+          
+          <p style="margin-top: 20px;">
+            <a href="https://cross-life-divinity.manus.space/student/dashboard" 
+               style="background-color: #1e40af; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
+              View Your Results
+            </a>
+          </p>
+          
+          <p style="margin-top: 30px; color: #666; font-size: 14px; border-top: 1px solid #e5e7eb; padding-top: 20px;">
+            If you have any questions about your grade or feedback, please reach out to your instructor.<br>
+            <br>
+            Blessings on your theological journey,<br>
+            <strong>Cross Life School of Divinity Team</strong>
+          </p>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send written answer graded notification:', error);
+    return false;
+  }
+}

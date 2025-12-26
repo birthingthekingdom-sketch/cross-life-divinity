@@ -773,3 +773,29 @@ export const idSubmissions = mysqlTable("id_submissions", {
 
 export type IdSubmission = typeof idSubmissions.$inferSelect;
 export type InsertIdSubmission = typeof idSubmissions.$inferInsert;
+
+
+/**
+ * Pending Written Answers - Tracks short answer/essay questions awaiting admin grading
+ */
+export const pendingWrittenAnswers = mysqlTable("pending_written_answers", {
+  id: int("id").autoincrement().primaryKey(),
+  quizSubmissionId: int("quizSubmissionId").notNull(),
+  userId: int("userId").notNull(),
+  lessonId: int("lessonId").notNull(),
+  courseId: int("courseId").notNull(),
+  questionId: int("questionId").notNull(),
+  questionText: text("questionText").notNull(),
+  studentAnswer: text("studentAnswer").notNull(),
+  status: mysqlEnum("status", ["pending", "graded", "skipped"]).default("pending").notNull(),
+  adminScore: int("adminScore"), // 0-100 score given by admin
+  adminFeedback: text("adminFeedback"), // Feedback provided by admin
+  gradedAt: timestamp("gradedAt"), // When admin graded the answer
+  gradedBy: int("gradedBy"), // Admin user ID who graded
+  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type PendingWrittenAnswer = typeof pendingWrittenAnswers.$inferSelect;
+export type InsertPendingWrittenAnswer = typeof pendingWrittenAnswers.$inferInsert;

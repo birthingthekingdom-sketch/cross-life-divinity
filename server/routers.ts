@@ -29,6 +29,8 @@ import { installmentPlanRouter } from './installment-plan-router';
 import { paymentPlanRouter } from './payment-plan-router';
 import { idVerificationRouter } from './id-verification-router';
 import * as autoGradingService from './auto-grading-service';
+import { gradingRouter } from './grading-router';
+import * as pendingAnswersNotification from './pending-answers-notification';
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -51,6 +53,7 @@ export const appRouter = router({
   installmentPlan: installmentPlanRouter,
   paymentPlan: paymentPlanRouter,
   idVerification: idVerificationRouter,
+  grading: gradingRouter,
 
   // Merge custom auth router with existing auth endpoints
   auth: router({
@@ -337,6 +340,45 @@ export const appRouter = router({
           totalQuestions: gradingResult.totalQuestions,
           passed: gradingResult.passed,
         });
+        
+        // Get the quiz submission ID for tracking pending answers
+        const submission = await db.getQuizSubmissionByUserAndLesson(ctx.user.id, input.lessonId);
+        const submissionId = submission?.id || 0;
+        
+        // Track pending written answers for manual grading
+        if (gradingResult.hasManualQuestions && gradingResult.manualQuestionIds) {
+          const questions = await db.getQuizQuestionsByLessonId(input.lessonId);
+          
+          let pendingCount = 0;
+          for (const result of gradingResult.results) {
+            if (result.questionType === "short_answer") {
+              const question = questions.find(q => q.id === result.questionId);
+              if (question) {
+                await db.createPendingWrittenAnswer({
+                  quizSubmissionId: submissionId,
+                  userId: ctx.user.id,
+                  lessonId: input.lessonId,
+                  courseId: input.courseId,
+                  questionId: result.questionId,
+                  questionText: question.question,
+                  studentAnswer: result.answer,
+                  status: "pending",
+                });
+                pendingCount++;
+              }
+            }
+          }
+          
+          // Notify admins of pending answers
+          if (pendingCount > 0) {
+            await pendingAnswersNotification.notifyAdminsOfPendingAnswers(
+              ctx.user.id,
+              input.courseId,
+              input.lessonId,
+              pendingCount
+            );
+          }
+        }
         
         if (gradingResult.passed) {
           await db.markLessonComplete(ctx.user.id, input.courseId, input.lessonId);
