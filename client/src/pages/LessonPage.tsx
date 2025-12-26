@@ -109,29 +109,28 @@ export default function LessonPage() {
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">
-        {/* Lesson Header */}
-        <div 
-          className="text-white shadow-lg"
-          style={{ backgroundColor: course?.colorTheme || "#1a365d" }}
-        >
-          <div className="container py-6">
-            <Link href="/">
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="mb-4 text-white hover:bg-white/20"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Home
-              </Button>
-            </Link>
-            
-            <h1 className="text-3xl font-bold">{lesson.title}</h1>
-            {course && (
-              <p className="text-white/80 mt-2">{course.title} - {course.code}</p>
-            )}
-          </div>
+      {/* Lesson Header */}
+      <div 
+        className="text-white shadow-lg bg-blue-600"
+      >
+        <div className="container py-6">
+          <Link href="/">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="mb-4 text-white hover:bg-white/20"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Home
+            </Button>
+          </Link>
+          
+          <h1 className="text-3xl font-bold">{lesson.title}</h1>
+          {course && (
+            <p className="text-white/80 mt-2">{course.title} - {course.code}</p>
+          )}
         </div>
+      </div>
 
         <div className="container py-8">
           <div className="max-w-4xl mx-auto space-y-6">
@@ -186,8 +185,7 @@ export default function LessonPage() {
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">
       {/* Lesson Header */}
       <div 
-        className="text-white shadow-lg"
-        style={{ backgroundColor: course?.colorTheme || "#1a365d" }}
+        className="text-white shadow-lg bg-blue-600"
       >
         <div className="container py-6">
           <Link href={`/course/${lesson.courseId}`}>

@@ -1,0 +1,95 @@
+{
+  "query": "SELECT id, title, colorTheme FROM courses LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, title, colorTheme FROM courses LIMIT 20;",
+  "rows": [
+    {
+      "id": "150001",
+      "title": "Old Testament Survey",
+      "colorTheme": "blue"
+    },
+    {
+      "id": "150002",
+      "title": "New Testament Survey",
+      "colorTheme": "indigo"
+    },
+    {
+      "id": "150003",
+      "title": "Systematic Theology",
+      "colorTheme": "purple"
+    },
+    {
+      "id": "150004",
+      "title": "Biblical Hermeneutics",
+      "colorTheme": "teal"
+    },
+    {
+      "id": "150005",
+      "title": "Fundamentals of Apologetics",
+      "colorTheme": "cyan"
+    },
+    {
+      "id": "150006",
+      "title": "Evangelism and Discipleship",
+      "colorTheme": "red"
+    },
+    {
+      "id": "150007",
+      "title": "Discipleship Training",
+      "colorTheme": "orange"
+    },
+    {
+      "id": "150008",
+      "title": "Prayer and Intercession",
+      "colorTheme": "pink"
+    },
+    {
+      "id": "150009",
+      "title": "Christian Leadership",
+      "colorTheme": "amber"
+    },
+    {
+      "id": "150010",
+      "title": "Biblical Worship",
+      "colorTheme": "violet"
+    },
+    {
+      "id": "150011",
+      "title": "Pastoral Counseling",
+      "colorTheme": "rose"
+    },
+    {
+      "id": "150012",
+      "title": "Church Administration",
+      "colorTheme": "slate"
+    },
+    {
+      "id": "150013",
+      "title": "Homiletics",
+      "colorTheme": "emerald"
+    },
+    {
+      "id": "150014",
+      "title": "Discovering Spiritual Gifts",
+      "colorTheme": "sky"
+    },
+    {
+      "id": "180001",
+      "title": "Understanding Prophecy",
+      "colorTheme": "purple"
+    },
+    {
+      "id": "180002",
+      "title": "Deliverance Ministry",
+      "colorTheme": "red"
+    },
+    {
+      "id": "180003",
+      "title": "The Fivefold Ministry",
+      "colorTheme": "gold"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tcolorTheme\n150001\tOld Testament Survey\tblue\n150002\tNew Testament Survey\tindigo\n150003\tSystematic Theology\tpurple\n150004\tBiblical Hermeneutics\tteal\n150005\tFundamentals of Apologetics\tcyan\n150006\tEvangelism and Discipleship\tred\n150007\tDiscipleship Training\torange\n150008\tPrayer and Intercession\tpink\n150009\tChristian Leadership\tamber\n150010\tBiblical Worship\tviolet\n150011\tPastoral Counseling\trose\n150012\tChurch Administration\tslate\n150013\tHomiletics\temerald\n150014\tDiscovering Spiritual Gifts\tsky\n180001\tUnderstanding Prophecy\tpurple\n180002\tDeliverance Ministry\tred\n180003\tThe Fivefold Ministry\tgold\n",
+  "stderr": "",
+  "execution_time_ms": 51
+}

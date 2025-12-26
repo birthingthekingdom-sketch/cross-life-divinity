@@ -91,8 +91,7 @@ export default function CoursePage() {
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">
         {/* Course Header */}
         <div 
-          className="text-white shadow-lg"
-          style={{ backgroundColor: course.colorTheme }}
+          className="text-white shadow-lg bg-blue-600"
         >
           <div className="container py-8">
             <div className="flex items-center gap-2 mb-4">
@@ -241,8 +240,7 @@ export default function CoursePage() {
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">
       {/* Course Header */}
       <div 
-        className="text-white shadow-lg"
-        style={{ backgroundColor: course.colorTheme }}
+        className="text-white shadow-lg bg-blue-600"
       >
         <div className="container py-8">
           <div className="flex items-center gap-2 mb-4">
