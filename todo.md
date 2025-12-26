@@ -2112,3 +2112,11 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Add routing for /comparison page
 - [x] Integrate into website navigation
 - [x] Test comparison tool functionality
+
+
+## ROI Calculator
+- [x] Design calculator logic (cost-per-course, time-to-completion calculations)
+- [x] Create calculator component with interactive inputs (number of courses, learning pace)
+- [x] Build results display showing cost comparison and timeline
+- [x] Integrate into comparison page
+- [x] Test calculator functionality

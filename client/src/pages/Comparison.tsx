@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, X } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { useLocation } from "wouter";
+import { ROICalculator } from "@/components/ROICalculator";
 
 interface ComparisonItem {
   id: string;
@@ -364,6 +365,17 @@ export default function Comparison() {
               </tbody>
             </table>
           </div>
+        </div>
+      </section>
+
+      {/* ROI Calculator Section */}
+      <section className="py-12 bg-gradient-to-b from-primary/5 to-transparent">
+        <div className="container max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-2 text-center">Calculate Your ROI</h2>
+          <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Discover which plan offers the best value for your learning goals. Adjust the number of courses and your preferred pace to see personalized cost and timeline estimates.
+          </p>
+          <ROICalculator />
         </div>
       </section>
 
