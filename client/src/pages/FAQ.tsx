@@ -11,15 +11,15 @@ interface FAQItem {
 const faqs: FAQItem[] = [
   {
     question: "How do I enroll in a course?",
-    answer: "Simply create an account, browse our course catalog, and click 'Enroll' on any course. You can purchase individual courses for $89 each or subscribe to our All-Access plan for $49/month to access all 17 courses."
+    answer: "Simply create an account, browse our course catalog, and select the course you want to take. You can purchase individual courses for $89 each, subscribe to our All-Access plan for $49/month to access all 18 courses, or choose a 3-course bundle for $299. We also offer 0% interest payment plans with 6-month installments to make education more affordable."
   },
   {
     question: "What is the All-Access Subscription?",
-    answer: "Our All-Access Subscription gives you unlimited access to all 17 CPD-accredited courses for just $49/month (limited-time offer, regular price $79/month). You can study at your own pace, switch between courses, and access all content as long as your subscription is active."
+    answer: "Our All-Access Subscription gives you unlimited access to all 18 CLAC-accredited courses for just $49/month (limited-time offer, regular price $79/month). You can study at your own pace, switch between courses, and access all content as long as your subscription is active. This includes access to 180+ lessons, quizzes, assignments, and discussion forums."
   },
   {
     question: "Are the courses accredited?",
-    answer: "Yes! All our courses are accredited by the Continuing Professional Development (CPD) Standards Office. Upon successful completion, you'll receive a CPD-accredited certificate recognized by churches, ministries, and organizations worldwide."
+    answer: "Yes! All our courses are accredited by the Cross Life Accreditation Council (CLAC), our internal accreditation framework that meets rigorous standards for theological education. Upon successful completion, you'll receive a CLAC-accredited certificate recognized by churches, ministries, and organizations worldwide. We're working toward national accreditation, and all current students will have the option to upgrade their certificates at no cost when we achieve this milestone."
   },
   {
     question: "How long do I have access to a course?",
@@ -31,11 +31,11 @@ const faqs: FAQItem[] = [
   },
   {
     question: "Can I get a refund?",
-    answer: "We offer a 30-day money-back guarantee on individual course purchases. If you're not satisfied within 30 days of purchase, contact our support team for a full refund. Subscription refunds are prorated based on usage."
+    answer: "We offer a 7-day money-back guarantee on all purchases. If you're not satisfied within 7 days of purchase, contact our support team for a full refund. After 7 days, no refunds are available, but you can cancel your subscription anytime to stop future charges."
   },
   {
     question: "How do I receive my certificate?",
-    answer: "Certificates are automatically generated when you complete all course requirements (lessons, quizzes, and assignments). You can download your CPD-accredited certificate as a PDF from your dashboard and share it digitally or print it."
+    answer: "Certificates are automatically generated when you complete all course requirements (lessons, quizzes, and assignments with a minimum 70% grade). You can download your CLAC-accredited certificate as a PDF from your dashboard, print it, or share it digitally. Each certificate includes a unique verification code and QR code that employers and organizations can use to verify your completion."
   },
   {
     question: "What are the technical requirements?",
@@ -51,15 +51,15 @@ const faqs: FAQItem[] = [
   },
   {
     question: "What are Learning Paths?",
-    answer: "Learning Paths are curated course sequences designed to guide your theological education from beginner to advanced levels. We offer three paths: New Believer Foundation (6 courses), Ministry Preparation Track (4 courses), and Advanced Theological Studies (5 courses)."
+    answer: "Learning Paths are carefully curated course sequences designed to guide your theological education from beginner to advanced levels. We offer three paths: Beginner (6 courses, 5-6 months), Intermediate (4 courses, 4-5 months), and Advanced (5 courses, 5-6 months). Each path is $199 with a 0% interest payment plan option at $33.17/month for 6 months. Learning Paths provide structure and progression to build your theological knowledge systematically."
   },
   {
     question: "Can I purchase course bundles?",
-    answer: "Yes! We offer three course bundles at discounted rates: Ministry Leadership Track ($199), Spiritual Warfare & Deliverance ($199), and Biblical Foundations ($199). Bundles save you 25% compared to purchasing courses individually."
+    answer: "Yes! We offer three-course bundles for $299 (save $88 from the $387 regular price). You can choose any 3 courses from our catalog to create your own custom bundle. We also offer structured Learning Paths ($199 each) that guide you through 4-6 carefully sequenced courses for comprehensive theological education."
   },
   {
     question: "How long does it take to complete a course?",
-    answer: "Course length varies, but most courses take 4-8 weeks to complete at a recommended pace of 3-5 hours per week. You can study faster or slower based on your schedule. Learning Paths range from 3-12 months depending on the track."
+    answer: "Each course contains 10 lessons and typically takes 4-8 weeks to complete at a recommended pace of 3-5 hours per week. However, you can study at your own pace with no time limits. Learning Paths range from 5-6 months depending on the track. Most students complete a course while maintaining their regular ministry responsibilities."
   },
   {
     question: "Do you offer group discounts?",
@@ -79,7 +79,7 @@ const faqs: FAQItem[] = [
   },
   {
     question: "Can I lock in the current pricing?",
-    answer: "Yes! Our limited-time offer allows you to lock in the $49/month subscription rate or $89 per course pricing forever. Register now to secure these rates before they increase."
+    answer: "Yes! Our limited-time offer allows you to lock in the $49/month subscription rate ($199 for Learning Paths, $299 for bundles) forever. Once you enroll at these rates, your pricing is locked in even if we raise prices in the future. Register now to secure these rates before they increase."
   }
 ];
 
