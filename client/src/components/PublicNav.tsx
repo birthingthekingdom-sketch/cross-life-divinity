@@ -31,44 +31,43 @@ export function PublicNav({ currentPage }: PublicNavProps) {
   return (
     <nav className="bg-white border-b border-border sticky top-0 z-50 shadow-sm">
       <div className="container max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-20 py-2 gap-4">
-          {/* Logo with Text */}
+        <div className="flex items-center justify-between h-24 py-2">
+          {/* Logo */}
           <Link href="/">
-            <div className="flex items-center gap-2 cursor-pointer flex-shrink-0">
-              <img src="/logo.png" alt="Cross Life School of Divinity" className="h-14 w-14 object-contain" />
-              <span className="text-sm font-bold text-primary hidden sm:inline whitespace-nowrap">Cross Life School of Divinity</span>
+            <div className="flex items-center gap-3 cursor-pointer">
+              <img src="/logo.png" alt="Cross Life School of Divinity" className="h-20 w-20 object-contain" />
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-3 flex-1 justify-center px-4">
-            {navLinks.slice(1, 6).map((link) => (
+          <div className="hidden md:flex items-center gap-4 flex-1 justify-center px-8">
+            {navLinks.map((link) => (
               <Link
                 key={link.key}
                 href={link.href}
-                className={`transition-colors cursor-pointer font-medium flex items-center gap-1 text-sm ${
+                className={`transition-colors cursor-pointer font-medium flex items-center gap-1 ${
                   currentPage === link.key
                     ? "text-primary"
                     : "text-foreground hover:text-primary"
                 }`}
               >
-                {link.icon && <ShieldCheck className="h-3 w-3 text-accent" />}
+                {link.icon && <ShieldCheck className="h-4 w-4 text-accent" />}
                 {link.label}
               </Link>
             ))}
-            <div className="flex items-center gap-2 ml-auto flex-shrink-0">
+            <div className="flex items-center gap-3 ml-auto">
               <Link href="/login">
-                <Button variant="ghost" className="text-xs">Login</Button>
+                <Button variant="ghost" className="text-sm">Login</Button>
               </Link>
               <Link href="/register">
-                <Button className="text-xs">Sign Up</Button>
+                <Button className="text-sm">Sign Up</Button>
               </Link>
             </div>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-foreground hover:text-primary transition-colors flex-shrink-0"
+            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -78,8 +77,8 @@ export function PublicNav({ currentPage }: PublicNavProps) {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-border py-4 space-y-3">
-            {navLinks.slice(1).map((link) => (
+          <div className="md:hidden border-t border-border py-4 space-y-3">
+            {navLinks.map((link) => (
               <Link
                 key={link.key}
                 href={link.href}
@@ -94,16 +93,18 @@ export function PublicNav({ currentPage }: PublicNavProps) {
                 {link.label}
               </Link>
             ))}
-            <Link href="/login">
-              <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
-                Login
-              </div>
-            </Link>
-            <Link href="/register">
-              <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
-                Sign Up
-              </div>
-            </Link>
+            <div className="flex flex-col gap-2 px-4 pt-2">
+              <Link href="/login">
+                <Button variant="ghost" className="w-full" onClick={() => setMobileMenuOpen(false)}>
+                  Login
+                </Button>
+              </Link>
+              <Link href="/register">
+                <Button className="w-full" onClick={() => setMobileMenuOpen(false)}>
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
           </div>
         )}
       </div>
