@@ -781,9 +781,16 @@ export async function sendFullPaymentReceiptEmail(
               </table>
             </div>
             
+            <div style="background-color: #fef3c7; padding: 20px; margin: 30px 0; border-radius: 8px; border-left: 4px solid #d97706;">
+              <h3 style="color: #92400e; margin-top: 0;">⚠️ Important: Complete Your Enrollment</h3>
+              <p style="color: #b45309; margin: 10px 0;">To unlock full course access and earn certificates, please submit a government-issued ID for verification. This is a quick process that takes just 2 minutes.</p>
+              <a href="https://cross-life-divinity.manus.space/student/id-upload" style="display: inline-block; background-color: #d97706; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; margin: 10px 0;">Submit ID for Verification →</a>
+            </div>
+            
             <div style="background-color: #eff6ff; padding: 20px; margin: 30px 0; border-radius: 8px; border-left: 4px solid #1e40af;">
               <h3 style="color: #1e40af; margin-top: 0;">What's Next?</h3>
               <ul style="line-height: 1.8; margin: 10px 0;">
+                <li>✓ <strong>Submit Your ID:</strong> Complete enrollment verification</li>
                 <li>✓ <strong>Immediate Access:</strong> Your courses are ready to start</li>
                 <li>✓ <strong>Lifetime Access:</strong> No expiration, learn at your pace</li>
                 <li>✓ <strong>CLAC Certificates:</strong> Earn certificates upon completion</li>
@@ -920,9 +927,15 @@ export async function sendEnhancedWelcomeEmail(
                   </ul>
                 </div>
 
+                <div class="section" style="background-color: #fef3c7; padding: 20px; border-radius: 6px; border-left: 4px solid #d97706;">
+                  <p style="margin-top: 0; color: #92400e; font-weight: 600;">⚠️ Important: Complete Your Enrollment</p>
+                  <p style="color: #b45309; margin: 10px 0;">To unlock full course access and earn certificates, please submit a government-issued ID for verification. This is a quick process that takes just 2 minutes.</p>
+                  <a href="https://cross-life-divinity.manus.space/student/id-upload" style="display: inline-block; background-color: #d97706; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; margin: 10px 0;">Submit ID for Verification →</a>
+                </div>
+
                 <div class="section" style="background-color: #f0f4ff; padding: 20px; border-radius: 6px; text-align: center;">
                   <p style="margin-top: 0; color: #1e3a8a; font-weight: 600;">Ready to begin your learning journey?</p>
-                  <a href="https://crosslifeschoolofdivinity.org/dashboard" class="cta-button">Go to Your Dashboard</a>
+                  <a href="https://cross-life-divinity.manus.space/dashboard" class="cta-button">Go to Your Dashboard</a>
                 </div>
 
                 <div class="section">

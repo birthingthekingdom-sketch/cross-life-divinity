@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, BookOpen, Award, ArrowRight } from "lucide-react";
+import { CheckCircle, BookOpen, Award, ArrowRight, Shield } from "lucide-react";
 
 export default function PaymentSuccess() {
   const [, setLocation] = useLocation();
@@ -41,6 +41,31 @@ export default function PaymentSuccess() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
+          {/* ID Verification Alert - Always show this */}
+          <div className="bg-amber-900/30 border border-amber-600 rounded-lg p-6 space-y-4">
+            <h3 className="text-amber-100 font-semibold text-lg flex items-center gap-2">
+              <Shield className="w-5 h-5 text-amber-400" />
+              Next Step: Complete Your Enrollment
+            </h3>
+            <p className="text-amber-50 text-sm">
+              To complete your enrollment and unlock full course access, please submit a government-issued ID for verification. This is a quick process that typically takes 2-3 business days.
+            </p>
+            <ul className="space-y-2 text-amber-50 text-sm">
+              <li className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" />
+                <span>Takes just 2 minutes to upload</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" />
+                <span>Your information is secure and confidential</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" />
+                <span>You'll receive an email notification once verified</span>
+              </li>
+            </ul>
+          </div>
+
           {paymentType === "subscription" ? (
             <div className="bg-green-900/20 border border-green-700 rounded-lg p-6 space-y-4">
               <h3 className="text-white font-semibold text-lg flex items-center gap-2">
@@ -103,10 +128,18 @@ export default function PaymentSuccess() {
             </div>
           )}
         </CardContent>
-        <CardFooter className="flex gap-4">
+        <CardFooter className="flex flex-col gap-3 w-full">
+          <Button
+            onClick={() => navigate("/student/id-upload")}
+            className="w-full bg-amber-600 hover:bg-amber-700 text-white"
+            size="lg"
+          >
+            <Shield className="w-4 h-4 mr-2" />
+            Complete ID Verification Now
+          </Button>
           <Button
             onClick={() => navigate("/dashboard")}
-            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
             size="lg"
           >
             <BookOpen className="w-4 h-4 mr-2" />
@@ -116,7 +149,7 @@ export default function PaymentSuccess() {
             <Button
               onClick={() => navigate("/courses")}
               variant="outline"
-              className="flex-1 border-slate-600 text-slate-300 hover:bg-slate-700 hover:text-white"
+              className="w-full border-slate-600 text-slate-300 hover:bg-slate-700 hover:text-white"
               size="lg"
             >
               Browse More Courses

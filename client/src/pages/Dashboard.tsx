@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { PullToRefresh } from "@/components/PullToRefresh";
 import { trpc } from "@/lib/trpc";
-import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, RefreshCw, Settings, CreditCard } from "lucide-react";
+import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, RefreshCw, Settings, CreditCard, Shield } from "lucide-react";
 import { Fragment } from "react";
 import { Link } from "wouter";
 import { useMemo } from "react";
@@ -176,6 +176,27 @@ export default function Dashboard() {
           <p className="text-muted-foreground">
             Continue your theological education journey. Select a course below to begin or continue your studies.
           </p>
+        </div>
+
+        {/* ID Verification Prompt */}
+        <div className="bg-amber-50 border-2 border-amber-300 rounded-lg p-6 shadow-sm mb-8">
+          <div className="flex items-start gap-4">
+            <Shield className="h-6 w-6 text-amber-600 flex-shrink-0 mt-1" />
+            <div className="flex-1">
+              <h3 className="text-lg font-semibold text-amber-900 mb-2">
+                Complete Your Enrollment
+              </h3>
+              <p className="text-amber-800 mb-4">
+                To unlock full course access and earn certificates, please submit a government-issued ID for verification. This is a quick process that takes just 2 minutes.
+              </p>
+              <Link href="/student/id-upload">
+                <Button className="bg-amber-600 hover:bg-amber-700 text-white">
+                  <Shield className="h-4 w-4 mr-2" />
+                  Submit ID for Verification
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Course Recommendations */}
