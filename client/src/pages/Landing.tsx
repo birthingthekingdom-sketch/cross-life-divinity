@@ -3,11 +3,12 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { Footer } from "@/components/Footer";
 import { ChatWidget } from "@/components/ChatWidget";
-import { Check, BookOpen, Award, Users, Clock, Menu, X, MapPin, Globe } from "lucide-react";
+import { Check, BookOpen, Award, Users, Clock, Menu, X, MapPin, Globe, ChevronDown, Mail } from "lucide-react";
 import { useState } from "react";
 
 export default function Landing() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [courseDropdownOpen, setCourseDropdownOpen] = useState(false);
   
   return (
     <div className="min-h-screen bg-background">
@@ -25,21 +26,55 @@ export default function Landing() {
             
             {/* Navigation Links */}
             <div className="hidden md:flex items-center gap-8 flex-1 justify-center">
-              <Link href="/about" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5">
+              <Link href="/about" className="text-foreground hover:text-primary transition-all duration-200 cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5 hover:scale-105">
                 About
               </Link>
-              <Link href="/catalog" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5">
-                Courses
-              </Link>
-              <Link href="/learning-paths" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5">
+              
+              {/* Courses Dropdown */}
+              <div className="relative group">
+                <button 
+                  onClick={() => setCourseDropdownOpen(!courseDropdownOpen)}
+                  className="text-foreground hover:text-primary transition-all duration-200 cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5 hover:scale-105 flex items-center gap-1"
+                >
+                  Courses
+                  <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
+                </button>
+                
+                {/* Dropdown Menu */}
+                <div className="absolute left-0 mt-0 w-48 bg-white border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <Link href="/catalog">
+                    <div className="px-4 py-2 hover:bg-primary/5 transition-colors cursor-pointer font-medium">
+                      All Courses
+                    </div>
+                  </Link>
+                  <Link href="/gospel-studies">
+                    <div className="px-4 py-2 hover:bg-primary/5 transition-colors cursor-pointer font-medium">
+                      Gospel Studies
+                    </div>
+                  </Link>
+                  <Link href="/learning-paths">
+                    <div className="px-4 py-2 hover:bg-primary/5 transition-colors cursor-pointer font-medium">
+                      Learning Paths
+                    </div>
+                  </Link>
+                </div>
+              </div>
+              
+              <Link href="/learning-paths" className="text-foreground hover:text-primary transition-all duration-200 cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5 hover:scale-105">
                 Learning Paths
               </Link>
-              <Link href="/chaplaincy-training" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5">
+              <Link href="/chaplaincy-training" className="text-foreground hover:text-primary transition-all duration-200 cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5 hover:scale-105">
                 Chaplaincy
               </Link>
-              <Link href="/pricing" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5">
+              <Link href="/pricing" className="text-foreground hover:text-primary transition-all duration-200 cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5 hover:scale-105">
                 Pricing
               </Link>
+              
+              {/* Contact Us Button */}
+              <a href="mailto:support@crosslifeschoolofdivinity.org" className="text-foreground hover:text-primary transition-all duration-200 cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-accent/10 flex items-center gap-2 ml-4">
+                <Mail className="h-4 w-4" />
+                Contact
+              </a>
             </div>
             
             {/* Mobile Menu Button */}
@@ -51,7 +86,7 @@ export default function Landing() {
             </button>
 
             {/* Auth Buttons - Desktop */}
-            <div className="hidden md:flex items-center gap-4 ml-auto">
+            <div className="hidden md:flex items-center gap-3">
               <Link href="/login">
                 <Button variant="ghost" className="font-medium">
                   Login
@@ -76,7 +111,12 @@ export default function Landing() {
                 </Link>
                 <Link href="/catalog">
                   <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
-                    Courses
+                    All Courses
+                  </div>
+                </Link>
+                <Link href="/gospel-studies">
+                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    Gospel Studies
                   </div>
                 </Link>
                 <Link href="/learning-paths">

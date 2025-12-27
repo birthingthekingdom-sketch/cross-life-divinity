@@ -2234,3 +2234,12 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Move About page before Courses in navigation
 - [x] Test responsive design on mobile and desktopy-1, rounded-md)
 - [x] Test responsive design on mobile and desktop
+
+
+## Navigation & Course Page Enhancements - Phase 7
+- [x] Add hover animations to navigation links (scale-105, duration-200)
+- [x] Create dropdown menu for Courses section (All Courses, Gospel Studies, Learning Paths)
+- [x] Add Contact Us button to navigation (mailto link with Mail icon)
+- [x] Add video introductions to course page (placeholder video sections)
+- [x] Add Coming Soon status for courses in development (DIV108, DIV109, DIV110 with lock icon)
+- [x] Test all features on desktop and mobile
