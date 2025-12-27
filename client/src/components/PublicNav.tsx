@@ -12,10 +12,10 @@ export function PublicNav({ currentPage }: PublicNavProps) {
 
   const navLinks = [
     { href: "/", label: "Home", key: "home" },
+    { href: "/about", label: "About", key: "about" },
     { href: "/catalog", label: "Courses", key: "courses" },
     { href: "/gospel-studies", label: "Gospel Studies", key: "gospel-studies" },
     { href: "/learning-paths", label: "Learning Paths", key: "learning-paths" },
-    { href: "/about", label: "About", key: "about" },
     { href: "/accreditation", label: "Accreditation", key: "accreditation", icon: true },
     { href: "/credits", label: "Credits", key: "credits", icon: true },
     { href: "/prior-learning", label: "Life Experience", key: "prior-learning", icon: true },
@@ -26,37 +26,36 @@ export function PublicNav({ currentPage }: PublicNavProps) {
   return (
     <nav className="bg-white border-b border-border sticky top-0 z-50 shadow-sm">
       <div className="container max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-20 py-2">
+        <div className="flex items-center justify-between h-24 py-2">
           {/* Logo */}
           <Link href="/">
             <div className="flex items-center gap-3 cursor-pointer">
-              <img src="/logo.png" alt="Cross Life School of Divinity" className="h-16 w-16 object-contain" />
-              <span className="text-lg font-bold text-primary hidden sm:inline">Cross Life School of Divinity</span>
+              <img src="/logo.png" alt="Cross Life School of Divinity" className="h-20 w-20 object-contain" />
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-4 flex-1 justify-center px-8">
+          <div className="hidden md:flex items-center gap-6 flex-1 justify-center px-8">
             {navLinks.map((link) => (
               <Link
                 key={link.key}
                 href={link.href}
-                className={`transition-colors cursor-pointer font-medium flex items-center gap-1 ${
+                className={`transition-colors cursor-pointer font-medium flex items-center gap-1 px-2 py-1 rounded-md ${
                   currentPage === link.key
-                    ? "text-primary"
-                    : "text-foreground hover:text-primary"
+                    ? "text-primary bg-primary/10"
+                    : "text-foreground hover:text-primary hover:bg-primary/5"
                 }`}
               >
                 {link.icon && <ShieldCheck className="h-4 w-4 text-accent" />}
                 {link.label}
               </Link>
             ))}
-            <div className="flex items-center gap-3 ml-auto">
+            <div className="flex items-center gap-4 ml-auto">
               <Link href="/login">
-                <Button variant="ghost" className="text-sm">Login</Button>
+                <Button variant="ghost" className="text-sm px-4">Login</Button>
               </Link>
               <Link href="/register">
-                <Button className="text-sm">Sign Up</Button>
+                <Button className="text-sm px-4">Sign Up</Button>
               </Link>
             </div>
           </div>
