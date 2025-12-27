@@ -19,24 +19,25 @@ export default function Landing() {
             <Link href="/">
               <div className="flex items-center gap-3 cursor-pointer">
                 <img src="/logo.png" alt="Cross Life School of Divinity" className="h-20 w-20 object-contain" />
+                <span className="text-sm font-bold text-primary hidden sm:inline">CLSOD</span>
               </div>
             </Link>
             
             {/* Navigation Links */}
-            <div className="hidden md:flex items-center gap-6 flex-1 justify-center">
-              <Link href="/about" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-2 py-1 rounded-md hover:bg-primary/5">
+            <div className="hidden md:flex items-center gap-8 flex-1 justify-center">
+              <Link href="/about" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5">
                 About
               </Link>
-              <Link href="/catalog" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-2 py-1 rounded-md hover:bg-primary/5">
+              <Link href="/catalog" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5">
                 Courses
               </Link>
-              <Link href="/learning-paths" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-2 py-1 rounded-md hover:bg-primary/5">
+              <Link href="/learning-paths" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5">
                 Learning Paths
               </Link>
-              <Link href="/chaplaincy-training" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-2 py-1 rounded-md hover:bg-primary/5">
+              <Link href="/chaplaincy-training" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5">
                 Chaplaincy
               </Link>
-              <Link href="/pricing" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-2 py-1 rounded-md hover:bg-primary/5">
+              <Link href="/pricing" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5">
                 Pricing
               </Link>
             </div>
