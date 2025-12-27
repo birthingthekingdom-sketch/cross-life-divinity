@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import html2pdf from 'html2pdf.js';
-// @ts-ignore
 
 interface Section {
   id: string;
@@ -273,15 +271,110 @@ export default function StudentHandbook() {
     const element = document.getElementById('handbook-content');
     if (!element) return;
 
-    const opt = {
-      margin: 10,
-      filename: 'CLSD-Student-Handbook.pdf',
-      image: { type: 'jpeg' as const, quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { orientation: 'portrait' as const, unit: 'mm', format: 'a4' },
-    };
+    // Create a new window for printing
+    const printWindow = window.open('', '', 'height=600,width=800');
+    if (!printWindow) return;
 
-    html2pdf().set(opt).from(element).save();
+    // Clone the element to avoid modifying the original
+    const clonedElement = element.cloneNode(true) as HTMLElement;
+    
+    // Create HTML content for PDF
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="UTF-8">
+          <title>CLSD Student Handbook</title>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              line-height: 1.6;
+              color: #333;
+              margin: 20px;
+            }
+            h1 { color: #1e40af; font-size: 28px; margin-bottom: 10px; }
+            h2 { color: #1e40af; font-size: 20px; margin-top: 20px; margin-bottom: 10px; }
+            h3 { color: #1e40af; font-size: 16px; margin-top: 15px; margin-bottom: 8px; }
+            p { margin-bottom: 10px; }
+            .section { page-break-inside: avoid; margin-bottom: 20px; }
+            .header { border-bottom: 3px solid #1e40af; padding-bottom: 10px; margin-bottom: 20px; }
+            .footer { margin-top: 30px; border-top: 1px solid #ddd; padding-top: 10px; font-size: 12px; color: #666; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1>Cross Life School of Divinity</h1>
+            <h2>Student Handbook</h2>
+            <p>Your comprehensive guide to success at Cross Life School of Divinity</p>
+          </div>
+          ${getHandbookHTML()}
+          <div class="footer">
+            <p>© ${new Date().getFullYear()} Cross Life School of Divinity. All rights reserved.</p>
+            <p>Last Updated: December 2025</p>
+          </div>
+        </body>
+      </html>
+    `;
+
+    printWindow.document.write(htmlContent);
+    printWindow.document.close();
+    
+    // Trigger print dialog which can save as PDF
+    setTimeout(() => {
+      printWindow.print();
+    }, 250);
+  };
+
+  const getHandbookHTML = () => {
+    return `
+      <div class="section">
+        <h2>Welcome to Cross Life School of Divinity</h2>
+        <p>Welcome to the Cross Life School of Divinity (CLSD) community! We are delighted to have you join our mission to provide high-quality, CLAC-accredited theological education that empowers ministry leaders worldwide.</p>
+      </div>
+      <div class="section">
+        <h2>Getting Started: Your First Steps</h2>
+        <h3>Creating Your Account</h3>
+        <p>Your journey at Cross Life School of Divinity begins with account creation. Visit our website and select "Sign Up" to create your student account.</p>
+        <h3>Logging In to Your Account</h3>
+        <p>Once your account is created, you can log in at any time using your email address and password.</p>
+        <h3>Enrollment Options</h3>
+        <p>Cross Life School of Divinity offers flexible enrollment options to meet your needs and budget.</p>
+      </div>
+      <div class="section">
+        <h2>Navigating Your Student Dashboard</h2>
+        <p>Your student dashboard is your personal command center at Cross Life School of Divinity.</p>
+      </div>
+      <div class="section">
+        <h2>Understanding Course Structure</h2>
+        <p>Each course consists of 10 comprehensive lessons designed to build your knowledge progressively.</p>
+      </div>
+      <div class="section">
+        <h2>Academic Policies and Standards</h2>
+        <p>Your performance in each course is evaluated based on multiple components.</p>
+      </div>
+      <div class="section">
+        <h2>Payment and Financial Information</h2>
+        <p>Cross Life School of Divinity accepts multiple payment methods to provide flexibility and convenience.</p>
+      </div>
+      <div class="section">
+        <h2>Student Support and Resources</h2>
+        <p>If you experience technical difficulties or need support, our team is here to help.</p>
+      </div>
+      <div class="section">
+        <h2>Student Conduct and Academic Integrity</h2>
+        <p>Academic integrity is fundamental to our mission and values.</p>
+      </div>
+      <div class="section">
+        <h2>Frequently Asked Questions</h2>
+        <p>Find answers to common questions about our programs and policies.</p>
+      </div>
+      <div class="section">
+        <h2>Contact Information and Resources</h2>
+        <p><strong>Email:</strong> support@crosslifeschoolofdivinity.org</p>
+        <p><strong>Phone:</strong> (312) 300-3295</p>
+        <p><strong>Hours:</strong> Monday-Friday, 9am-5pm CST</p>
+      </div>
+    `;
   };
 
   return (
@@ -303,6 +396,7 @@ export default function StudentHandbook() {
           <Button
             onClick={downloadPDF}
             className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
+            title="Click to download the handbook as a PDF using your browser's print function"
           >
             <Download size={20} />
             Download as PDF

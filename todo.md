@@ -2223,7 +2223,8 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 ## Student Handbook - Phase 5
 - [x] Create comprehensive student handbook content (12,000 words)
 - [x] Build StudentHandbook.tsx page component with expandable sections
-- [x] Implement PDF download functionality
+- [x] Implement PDF download functionality (browser print-to-PDF)
 - [x] Add /student-handbook route to App.tsx
-- [x] Add Student Handbook link to PublicNav navigation
-- [x] Test handbook page and PDF download
+- [x] Remove Student Handbook link from PublicNav navigation
+- [x] Add Student Handbook link to Footer (Student Resources section)
+- [x] Test handbook page and PDF download functionality
