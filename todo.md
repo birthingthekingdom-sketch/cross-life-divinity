@@ -2227,11 +2227,10 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Add /student-handbook route to App.tsx
 - [x] Remove Student Handbook link from PublicNav navigation
 - [x] Add Student Handbook link to Footer (Student Resources section)
-- [x] Test handbook page and PDF download functionality
-
-
-## Navigation Bar Improvements - Phase 6
+- [x] Test handbook page and PDF download functional## Navigation Bar Improvements - Phase 6
 - [x] Remove "Cross Life School of Divinity" text from navigation bar
-- [x] Enlarge logo size in navigation bar (from h-16 w-16 to h-20 w-20)
+- [x] Enlarge logo size in navigation bar (h-20 w-20)
 - [x] Improve spacing and layout of navigation links (gap-6, px-2 py-1, rounded-md)
+- [x] Move About page before Courses in navigation
+- [x] Test responsive design on mobile and desktopy-1, rounded-md)
 - [x] Test responsive design on mobile and desktop

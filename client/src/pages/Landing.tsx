@@ -18,27 +18,26 @@ export default function Landing() {
             {/* Logo */}
             <Link href="/">
               <div className="flex items-center gap-3 cursor-pointer">
-                <img src="/logo.png" alt="Cross Life School of Divinity" className="h-32 w-32 object-contain" />
-                <span className="text-xl font-bold text-primary">Cross Life School of Divinity</span>
+                <img src="/logo.png" alt="Cross Life School of Divinity" className="h-20 w-20 object-contain" />
               </div>
             </Link>
             
             {/* Navigation Links */}
-            <div className="hidden md:flex items-center gap-8 flex-1 justify-center">
-              <Link href="/catalog" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+            <div className="hidden md:flex items-center gap-6 flex-1 justify-center">
+              <Link href="/about" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-2 py-1 rounded-md hover:bg-primary/5">
+                About
+              </Link>
+              <Link href="/catalog" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-2 py-1 rounded-md hover:bg-primary/5">
                 Courses
               </Link>
-              <Link href="/learning-paths" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+              <Link href="/learning-paths" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-2 py-1 rounded-md hover:bg-primary/5">
                 Learning Paths
               </Link>
-              <Link href="/chaplaincy-training" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+              <Link href="/chaplaincy-training" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-2 py-1 rounded-md hover:bg-primary/5">
                 Chaplaincy
               </Link>
-              <Link href="/pricing" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+              <Link href="/pricing" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium px-2 py-1 rounded-md hover:bg-primary/5">
                 Pricing
-              </Link>
-              <Link href="/about" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
-                About
               </Link>
             </div>
             
@@ -67,8 +66,13 @@ export default function Landing() {
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden border-t border-border bg-white">
+              <div className="md:hidden border-t border-border bg-white">
               <div className="py-4 space-y-2">
+                <Link href="/about">
+                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    About
+                  </div>
+                </Link>
                 <Link href="/catalog">
                   <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
                     Courses
@@ -87,11 +91,6 @@ export default function Landing() {
                 <Link href="/pricing">
                   <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
                     Pricing
-                  </div>
-                </Link>
-                <Link href="/about">
-                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
-                    About
                   </div>
                 </Link>
                 <Link href="/faq">
