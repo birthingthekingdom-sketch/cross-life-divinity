@@ -16,6 +16,7 @@ export function PublicNav({ currentPage }: PublicNavProps) {
     { href: "/gospel-studies", label: "Gospel Studies", key: "gospel-studies" },
     { href: "/learning-paths", label: "Learning Paths", key: "learning-paths" },
     { href: "/about", label: "About", key: "about" },
+    { href: "/student-handbook", label: "Student Handbook", key: "student-handbook" },
     { href: "/accreditation", label: "Accreditation", key: "accreditation", icon: true },
     { href: "/credits", label: "Credits", key: "credits", icon: true },
     { href: "/prior-learning", label: "Life Experience", key: "prior-learning", icon: true },
