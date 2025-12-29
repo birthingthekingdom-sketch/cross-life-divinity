@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { VideoPlayer } from "@/components/VideoPlayer";
+import { CourseIntroSlideshow } from "@/components/CourseIntroSlideshow";
 
 
 import { trpc } from "@/lib/trpc";
@@ -292,6 +293,9 @@ export default function CoursePage() {
       {/* Lessons List */}
       <div className="container py-8">
         <div className="max-w-4xl mx-auto">
+          {/* Course Introduction Slideshow */}
+          <CourseIntroSlideshow courseCode={course.code} courseTitle={course.title} />
+
           {/* Intro Video Section */}
           {course.introVideoUrl && (
             <Card className="mb-8">
