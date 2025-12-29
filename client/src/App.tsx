@@ -73,10 +73,6 @@ import { PaymentPlanCheckout } from './pages/PaymentPlanCheckout';
 import MyPayments from './pages/MyPayments';
 import ChristmasGift from './pages/ChristmasGift';
 import GospelStudies from './pages/GospelStudies';
-import StudentIdUpload from './pages/StudentIdUpload';
-import AdminIdVerification from './pages/AdminIdVerification';
-import StudentHandbook from './pages/StudentHandbook';
-// @ts-ignore
 
 function Router() {
   return (
@@ -141,9 +137,6 @@ function Router() {
       <Route path="/catalog" component={Catalog} />
       <Route path="/gospel-studies" component={GospelStudies} />
       <Route path="/bundle-select" component={BundleSelection} />
-      <Route path="/student/id-upload" component={StudentIdUpload} />
-      <Route path="/admin/id-verification" component={AdminIdVerification} />
-      <Route path="/student-handbook" component={StudentHandbook} />
       <Route path="/payment/success" component={PaymentSuccess} />
       <Route path="/payment/cancel" component={PaymentCancel} />
       <Route path="/checkout/payment-plan" component={PaymentPlanCheckout} />
