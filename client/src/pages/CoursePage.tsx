@@ -12,28 +12,45 @@ import { toast } from "sonner";
 
 export default function CoursePage() {
   const params = useParams<{ id: string }>();
-  const courseId = parseInt(params.id || "0");
+  const paramId = params.id || "0";
+  const isNumericId = /^\d+$/.test(paramId);
+  const courseId = isNumericId ? parseInt(paramId) : 0;
+  const courseCode = !isNumericId ? paramId : "";
   const { isAuthenticated } = useAuth();
 
-  const { data: course, isLoading: courseLoading } = trpc.courses.getById.useQuery({ id: courseId });
+  // Try to get course by numeric ID first, then by code
+  const { data: courseById, isLoading: courseByIdLoading } = trpc.courses.getById.useQuery(
+    { id: courseId },
+    { enabled: isNumericId }
+  );
+  const { data: courseByCode, isLoading: courseByCodeLoading } = trpc.courses.getByCode.useQuery(
+    { code: courseCode },
+    { enabled: !isNumericId }
+  );
+  const course = courseById || courseByCode;
+  const courseLoading = courseByIdLoading || courseByCodeLoading;
+  const actualCourseId = course?.id || courseId;
   
   // Only check enrollment if user is logged in
   const { data: enrollmentCheck } = trpc.courses.checkEnrollment.useQuery(
-    { courseId },
-    { enabled: isAuthenticated }
+    { courseId: actualCourseId },
+    { enabled: isAuthenticated && !!course }
   );
   
-  const { data: lessons, isLoading: lessonsLoading } = trpc.lessons.getByCourse.useQuery({ courseId });
+  const { data: lessons, isLoading: lessonsLoading } = trpc.lessons.getByCourse.useQuery(
+    { courseId: actualCourseId },
+    { enabled: !!course }
+  );
   
   // Only fetch progress if user is logged in
   const { data: progress } = trpc.progress.getByCourse.useQuery(
-    { courseId },
-    { enabled: isAuthenticated }
+    { courseId: actualCourseId },
+    { enabled: isAuthenticated && !!course }
   );
   
   const { data: certificateEligibility } = trpc.certificates.checkEligibility.useQuery(
-    { courseId },
-    { enabled: isAuthenticated }
+    { courseId: actualCourseId },
+    { enabled: isAuthenticated && !!course }
   );
   
   const [generatingCertificate, setGeneratingCertificate] = useState(false);

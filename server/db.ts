@@ -200,6 +200,14 @@ export async function getCourseById(id: number): Promise<Course | undefined> {
   return result[0];
 }
 
+export async function getCourseByCode(code: string): Promise<Course | undefined> {
+  const db = await getDb();
+  if (!db) return undefined;
+  
+  const result = await db.select().from(courses).where(eq(courses.code, code)).limit(1);
+  return result[0];
+}
+
 export async function updateCourse(id: number, updates: Partial<InsertCourse>) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");

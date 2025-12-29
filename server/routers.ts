@@ -191,6 +191,35 @@ export const appRouter = router({
         };
       }),
     
+    getByCode: publicProcedure
+      .input(z.object({ code: z.string() }))
+      .query(async ({ input, ctx }) => {
+        const course = await db.getCourseByCode(input.code);
+        if (!course) {
+          throw new TRPCError({ code: 'NOT_FOUND', message: 'Course not found' });
+        }
+        
+        const coursePrerequisites = await prerequisites.getCoursePrerequisites(course.id);
+        let canEnroll = true;
+        let missingPrerequisites: any[] = [];
+        let isEnrolled = false;
+        
+        if (ctx.user) {
+          const prerequisiteCheck = await prerequisites.checkPrerequisites(ctx.user.id, course.id);
+          canEnroll = prerequisiteCheck.canEnroll;
+          missingPrerequisites = prerequisiteCheck.missingPrerequisites;
+          isEnrolled = await db.isUserEnrolledInCourse(ctx.user.id, course.id);
+        }
+        
+        return {
+          ...course,
+          prerequisites: coursePrerequisites,
+          canEnroll,
+          missingPrerequisites,
+          isEnrolled
+        };
+      }),
+    
     checkPrerequisites: protectedProcedure
       .input(z.object({ courseId: z.number() }))
       .query(async ({ input, ctx }) => {
