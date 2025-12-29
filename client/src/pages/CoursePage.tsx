@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { CourseIntroSlideshow } from "@/components/CourseIntroSlideshow";
-import { getSlideshowConfig } from "@/data/slideshow-configs";
+import { courseIntroSlideshows } from "@/data/all-courses-slideshows";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { ArrowLeft, Award, BookOpen, CheckCircle2, Circle, Download, MessageSquare, Video } from "lucide-react";
@@ -311,18 +311,10 @@ export default function CoursePage() {
           )}
 
           {(() => {
-            const slideshowConfig = getSlideshowConfig(course.code);
-            if (slideshowConfig) {
+            if (courseIntroSlideshows[course.code]) {
               return (
                 <div className="mb-8">
-                  <CourseIntroSlideshow
-                    courseCode={slideshowConfig.courseCode}
-                    courseName={slideshowConfig.courseName}
-                    slides={slideshowConfig.slides}
-                    audioUrl={slideshowConfig.audioUrl}
-                    autoPlay={true}
-                    slideDuration={8}
-                  />
+                  <CourseIntroSlideshow courseCode={course.code} />
                 </div>
               );
             }

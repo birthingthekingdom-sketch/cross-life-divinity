@@ -1,70 +1,57 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-interface Slide {
-  id: number;
-  title: string;
-  content: string;
-  bgColor: string;
-}
+import { courseIntroSlideshows } from '../data/all-courses-slideshows';
 
 interface CourseIntroSlideshowProps {
   courseCode: string;
-  courseName: string;
-  slides: Slide[];
-  audioUrl: string;
-  autoPlay?: boolean;
-  slideDuration?: number; // Duration per slide in seconds
 }
 
 export const CourseIntroSlideshow: React.FC<CourseIntroSlideshowProps> = ({
   courseCode,
-  courseName,
-  slides,
-  audioUrl,
-  autoPlay = true,
-  slideDuration = 8, // Default 8 seconds per slide
 }) => {
+  const slideshow = courseIntroSlideshows[courseCode];
+  
+  if (!slideshow) {
+    return null;
+  }
+
+  const { title, audioPath, slides } = slideshow;
+
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(autoPlay);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
-
-  // Calculate total duration based on audio
-  const getTotalDuration = () => {
-    if (audioRef.current) {
-      return audioRef.current.duration || slides.length * slideDuration;
-    }
-    return slides.length * slideDuration;
-  };
 
   // Auto-advance slides based on audio progress
   useEffect(() => {
     if (!isPlaying || !audioRef.current) return;
 
     const audio = audioRef.current;
-    const totalDuration = audio.duration || slides.length * slideDuration;
-    const timePerSlide = totalDuration / slides.length;
+    const totalDuration = audio.duration || slides.reduce((sum, s) => sum + s.duration, 0);
+    const slideTimings = slides.map(s => s.duration);
+    
+    let cumulativeTime = 0;
+    const slideStartTimes = slideTimings.map(duration => {
+      const start = cumulativeTime;
+      cumulativeTime += (duration / slideTimings.reduce((a, b) => a + b, 0)) * totalDuration;
+      return start;
+    });
 
     const updateSlide = () => {
       const currentTime = audio.currentTime;
-      const slideIndex = Math.floor(currentTime / timePerSlide);
       
-      if (slideIndex < slides.length) {
-        setCurrentSlide(slideIndex);
-      } else if (audio.ended) {
-        // Loop back to first slide
-        setCurrentSlide(0);
-        audio.currentTime = 0;
+      for (let i = slides.length - 1; i >= 0; i--) {
+        if (currentTime >= slideStartTimes[i]) {
+          setCurrentSlide(i);
+          break;
+        }
       }
     };
 
     const interval = setInterval(updateSlide, 100);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [isPlaying, slides.length, slideDuration]);
+    return () => clearInterval(interval);
+  }, [isPlaying, slides]);
 
   // Handle play/pause
   useEffect(() => {
@@ -72,7 +59,6 @@ export const CourseIntroSlideshow: React.FC<CourseIntroSlideshowProps> = ({
 
     if (isPlaying) {
       audioRef.current.play().catch(() => {
-        // Autoplay might be blocked, user needs to click play
         setIsPlaying(false);
       });
     } else {
@@ -88,44 +74,65 @@ export const CourseIntroSlideshow: React.FC<CourseIntroSlideshowProps> = ({
   }, [isMuted]);
 
   const handlePrevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+    const newIndex = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+    setCurrentSlide(newIndex);
+    
     if (audioRef.current) {
-      const totalDuration = audioRef.current.duration || slides.length * slideDuration;
-      const timePerSlide = totalDuration / slides.length;
-      audioRef.current.currentTime = Math.max(0, (currentSlide - 1) * timePerSlide);
+      const totalDuration = audioRef.current.duration || slides.reduce((sum, s) => sum + s.duration, 0);
+      const slideTimings = slides.map(s => s.duration);
+      
+      let cumulativeTime = 0;
+      const slideStartTimes = slideTimings.map(duration => {
+        const start = cumulativeTime;
+        cumulativeTime += (duration / slideTimings.reduce((a, b) => a + b, 0)) * totalDuration;
+        return start;
+      });
+      
+      audioRef.current.currentTime = slideStartTimes[newIndex];
     }
   };
 
   const handleNextSlide = () => {
-    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    const newIndex = currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
+    setCurrentSlide(newIndex);
+    
     if (audioRef.current) {
-      const totalDuration = audioRef.current.duration || slides.length * slideDuration;
-      const timePerSlide = totalDuration / slides.length;
-      audioRef.current.currentTime = Math.min(
-        audioRef.current.duration || Infinity,
-        (currentSlide + 1) * timePerSlide
-      );
+      const totalDuration = audioRef.current.duration || slides.reduce((sum, s) => sum + s.duration, 0);
+      const slideTimings = slides.map(s => s.duration);
+      
+      let cumulativeTime = 0;
+      const slideStartTimes = slideTimings.map(duration => {
+        const start = cumulativeTime;
+        cumulativeTime += (duration / slideTimings.reduce((a, b) => a + b, 0)) * totalDuration;
+        return start;
+      });
+      
+      audioRef.current.currentTime = slideStartTimes[newIndex];
     }
   };
 
   const slide = slides[currentSlide];
   const progress = audioRef.current 
-    ? (audioRef.current.currentTime / (audioRef.current.duration || getTotalDuration())) * 100 
+    ? (audioRef.current.currentTime / (audioRef.current.duration || slides.reduce((sum, s) => sum + s.duration, 0))) * 100 
     : 0;
 
   return (
     <div className="w-full bg-gradient-to-br from-slate-900 to-slate-800 rounded-xl overflow-hidden shadow-2xl">
       {/* Main Slideshow Area */}
-      <div className={`relative ${slide.bgColor} min-h-[400px] flex flex-col items-center justify-center p-8 text-white transition-all duration-500`}>
+      <div className={`relative bg-gradient-to-br ${slide.gradient} min-h-[400px] flex flex-col items-center justify-center p-8 text-white transition-all duration-500`}>
         {/* Slide Content */}
         <div className="max-w-2xl text-center">
           <div className="mb-4 text-sm font-semibold text-white/70 uppercase tracking-widest">
             {courseCode} • Slide {currentSlide + 1} of {slides.length}
           </div>
           
-          <h2 className="text-4xl font-bold mb-6 leading-tight">
+          <h2 className="text-4xl font-bold mb-4 leading-tight">
             {slide.title}
           </h2>
+
+          <h3 className="text-xl text-white/80 mb-6">
+            {slide.subtitle}
+          </h3>
           
           <p className="text-lg text-white/90 leading-relaxed">
             {slide.content}
@@ -140,9 +147,17 @@ export const CourseIntroSlideshow: React.FC<CourseIntroSlideshowProps> = ({
               onClick={() => {
                 setCurrentSlide(index);
                 if (audioRef.current) {
-                  const totalDuration = audioRef.current.duration || slides.length * slideDuration;
-                  const timePerSlide = totalDuration / slides.length;
-                  audioRef.current.currentTime = index * timePerSlide;
+                  const totalDuration = audioRef.current.duration || slides.reduce((sum, s) => sum + s.duration, 0);
+                  const slideTimings = slides.map(s => s.duration);
+                  
+                  let cumulativeTime = 0;
+                  const slideStartTimes = slideTimings.map(duration => {
+                    const start = cumulativeTime;
+                    cumulativeTime += (duration / slideTimings.reduce((a, b) => a + b, 0)) * totalDuration;
+                    return start;
+                  });
+                  
+                  audioRef.current.currentTime = slideStartTimes[index];
                 }
               }}
               className={`h-2 rounded-full transition-all ${
@@ -165,7 +180,7 @@ export const CourseIntroSlideshow: React.FC<CourseIntroSlideshowProps> = ({
           </span>
           <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-100"
+              className="h-full bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-100"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -231,7 +246,7 @@ export const CourseIntroSlideshow: React.FC<CourseIntroSlideshowProps> = ({
       {/* Hidden Audio Element */}
       <audio
         ref={audioRef}
-        src={audioUrl}
+        src={audioPath}
         onEnded={() => {
           setCurrentSlide(0);
           setIsPlaying(false);
