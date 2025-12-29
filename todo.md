@@ -29,6 +29,7 @@
 ## ACTIVE TASKS (IN PROGRESS)
 - [x] Add Student Handbook page with comprehensive guide
 - [x] Add Student Handbook link to footer under "Student Resources"
+- [x] Restore missing courses to catalog (Old Testament Survey BIB101, New Testament Survey BIB102)
 - [ ] Build course introduction slideshows with female voiceover (one at a time)
 
 ## COURSE SLIDESHOW ORDER (Female Voiceover Only)

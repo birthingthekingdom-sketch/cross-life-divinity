@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 
 interface CourseIntroSlideshowProps {
@@ -9,9 +9,10 @@ interface CourseIntroSlideshowProps {
 
 export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: CourseIntroSlideshowProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(autoPlay);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
-  const [audioRef, setAudioRef] = useState<HTMLAudioElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [hasStarted, setHasStarted] = useState(false);
 
   const slides = [
     { id: 'slide_1_title', title: 'Understanding Prophecy' },
@@ -43,29 +44,70 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
   const currentSlideFile = `${basePath}/${slides[currentSlide].id}.html`;
   const voiceoverPath = `${basePath}/intro-voiceover.wav`;
 
+  // Initialize audio element on mount
   useEffect(() => {
-    // Create audio element if not exists
-    if (!audioRef) {
-      const audio = new Audio(voiceoverPath);
-      audio.loop = false;
-      setAudioRef(audio);
+    if (!audioRef.current) {
+      const audio = new Audio();
+      audio.src = voiceoverPath;
+      audio.preload = 'auto';
+      audio.currentTime = 0;
+      audioRef.current = audio;
+      
+      // Auto-play when ready
+      const handleCanPlay = () => {
+        if (autoPlay && !hasStarted) {
+          audio.play().catch(err => console.log('Autoplay failed:', err));
+          setHasStarted(true);
+        }
+      };
+      
+      audio.addEventListener('canplay', handleCanPlay);
+      
+      return () => {
+        audio.removeEventListener('canplay', handleCanPlay);
+      };
     }
-  }, [audioRef, voiceoverPath]);
+  }, [autoPlay, hasStarted]);
 
+  // Update audio source when voiceover path changes
   useEffect(() => {
-    if (!audioRef) return;
+    if (audioRef.current) {
+      audioRef.current.src = voiceoverPath;
+      audioRef.current.currentTime = 0;
+      
+      // Auto-play when source changes
+      if (autoPlay && isPlaying) {
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.log('Audio play failed:', error);
+          });
+        }
+      }
+    }
+  }, [voiceoverPath, autoPlay, isPlaying]);
+
+  // Handle play/pause
+  useEffect(() => {
+    if (!audioRef.current) return;
 
     if (isPlaying) {
-      audioRef.play().catch(err => console.log('Audio play failed:', err));
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log('Audio play failed:', error);
+        });
+      }
     } else {
-      audioRef.pause();
+      audioRef.current.pause();
     }
-  }, [isPlaying, audioRef]);
+  }, [isPlaying]);
 
+  // Handle mute
   useEffect(() => {
-    if (!audioRef) return;
-    audioRef.muted = isMuted;
-  }, [isMuted, audioRef]);
+    if (!audioRef.current) return;
+    audioRef.current.muted = isMuted;
+  }, [isMuted]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
