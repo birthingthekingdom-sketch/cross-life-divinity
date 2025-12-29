@@ -102,24 +102,7 @@ The webhook signing secret is already configured in your platform's environment 
 
 When Stripe sends webhook events to your platform, the system automatically:
 
-### For Payment Plan Checkouts (`checkout.session.completed` with payment plan metadata)
-1. Creates payment plan record in database with:
-   - Plan type (Learning Path, Bundle, or Chaplaincy)
-   - Total amount and monthly amount
-   - Payment schedule (6 monthly payments)
-2. Records first payment in payment history
-3. Enrolls user in courses based on plan type:
-   - **Learning Path**: Enrolls in all courses in the selected path
-   - **Bundle**: Enrolls in 3 selected courses
-   - **Chaplaincy**: Enrolls in chaplaincy training course
-4. Sends payment plan enrollment email with payment schedule
-
-### For Full Payment Checkouts (`checkout.session.completed` with full payment metadata)
-1. Enrolls user in courses immediately
-2. Sends full payment receipt email with transaction details
-3. Grants lifetime access to purchased courses
-
-### For Course Purchases (`checkout.session.completed` - legacy)
+### For Course Purchases (`checkout.session.completed`)
 1. Retrieves the student's email and purchased course ID from the session metadata
 2. Creates or updates the student's user account
 3. Grants access to the purchased course
@@ -130,13 +113,7 @@ When Stripe sends webhook events to your platform, the system automatically:
 2. Sets subscription status to "active"
 3. Sends subscription confirmation email
 
-### For Monthly Payment Plan Payments (`invoice.payment_succeeded` with payment plan metadata)
-1. Records payment in payment history
-2. Updates payment plan progress
-3. Sends monthly payment receipt email
-4. If final payment, sends payment plan completion email
-
-### For Subscription Renewals (`invoice.payment_succeeded` - for All-Access Subscription)
+### For Subscription Renewals (`invoice.payment_succeeded`)
 1. Extends subscription access for another billing period
 2. Sends payment receipt email
 
@@ -185,31 +162,15 @@ Your platform automatically verifies webhook authenticity using:
 
 Your platform is configured with these prices:
 
-### Learning Paths
-- **Full Payment**: $399 USD (one-time)
-- **Payment Plan**: $66.50/month × 6 months (0% interest)
-- **Access**: Lifetime access to 4-6 courses in structured sequence
-
-### 3-Course Bundles
-- **Full Payment**: $299 USD (one-time)
-- **Payment Plan**: $49.83/month × 6 months (0% interest)
-- **Access**: Lifetime access to 3 selected courses
-
-### Chaplaincy Training
-- **Full Payment**: $275 USD (one-time)
-- **Payment Plan**: $45.83/month × 6 months (0% interest)
-- **Access**: Lifetime access to chaplaincy certification program
-
 ### Individual Course Purchase
 - **Price**: $89 USD per course
 - **Type**: One-time payment
 - **Access**: Lifetime access to purchased course
 
-### All-Access Subscription
+### Monthly Subscription
 - **Price**: $49 USD per month
 - **Type**: Recurring monthly
-- **Minimum**: 6 months commitment
-- **Access**: All 18 courses while subscription is active
+- **Access**: All 14 courses while subscription is active
 - **Billing**: Automatic monthly renewal
 
 To modify pricing:
@@ -278,65 +239,5 @@ For development/staging/production environments:
 ---
 
 **Last Updated**: December 2024  
-**Platform Version**: 2.0 (Stripe Checkout Sessions)  
-**Stripe API Version**: 2025-11-17.clover
-
----
-
-## Payment Flow Architecture
-
-### Stripe Checkout Sessions (Current Implementation)
-
-The platform now uses **Stripe Checkout Sessions** for all payments, which provides:
-
-- ✅ Hosted checkout page (no embedded forms)
-- ✅ PCI compliance by default
-- ✅ Mobile-optimized payment experience
-- ✅ Automatic payment retry logic
-- ✅ Built-in fraud prevention
-
-**Payment Flow:**
-1. User selects payment option (payment plan or full payment)
-2. Frontend calls `/api/payment-plans/create-checkout-session`
-3. Backend creates Stripe Checkout Session with metadata
-4. User redirects to Stripe's hosted checkout page
-5. User completes payment on Stripe's secure page
-6. Stripe sends `checkout.session.completed` webhook
-7. Webhook handler processes enrollment and sends emails
-8. User redirects back to success page
-
-**Metadata Stored in Checkout Session:**
-- `userId` - User ID for enrollment
-- `planType` - LEARNING_PATH, BUNDLE, or CHAPLAINCY_TRAINING
-- `paymentMethod` - payment_plan or full_payment
-- `learningPathId` - For Learning Path purchases
-- `selectedCourses` - For Bundle purchases (comma-separated course IDs)
-
-### Email Notifications
-
-The platform automatically sends emails for:
-
-1. **Payment Plan Enrollment** - Sent when first payment succeeds
-   - Payment schedule details
-   - Course access confirmation
-   - Monthly payment reminders
-
-2. **Full Payment Receipt** - Sent for one-time payments
-   - Transaction details and receipt
-   - Course access confirmation
-   - Support information
-
-3. **Monthly Payment Receipt** - Sent for each monthly payment
-   - Payment confirmation
-   - Payments remaining
-   - Next payment date
-
-4. **Payment Plan Completion** - Sent when final payment succeeds
-   - Congratulations message
-   - Total amount paid
-   - Continued access confirmation
-
-5. **Failed Payment Notification** - Sent when payment fails
-   - Payment failure notice
-   - Retry instructions
-   - Support contact information
+**Platform Version**: 1.0  
+**Stripe API Version**: 2024-11-20.acacia

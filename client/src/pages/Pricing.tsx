@@ -1,15 +1,13 @@
 import { useState } from "react";
-import { useLocation, Link } from "wouter";
+import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, CreditCard, DollarSign, Calendar, Sparkles, BookOpen, Award, Clock, Phone, Mail, GraduationCap } from "lucide-react";
+import { Check, CreditCard, DollarSign, Calendar, Sparkles, BookOpen, Award, Clock } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { toast } from "sonner";
 import { Footer } from "@/components/Footer";
-import { PublicNav } from "@/components/PublicNav";
-import { FinanceOptionsChart } from "@/components/FinanceOptionsChart";
 // Price display data
 const priceDisplay = {
   subscription: {
@@ -80,8 +78,6 @@ export default function Pricing() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-      <PublicNav currentPage="pricing" />
-      
       {/* Header */}
       <div className="container mx-auto px-4 py-12">
         <div className="text-center mb-16">
@@ -93,79 +89,12 @@ export default function Pricing() {
             Seminary-Level Theological Education
           </h1>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-            Choose between individual course purchases or unlimited access to all 18 courses and 180 lessons with our All-Access Subscription
+            Choose between individual course purchases or unlimited access to all 10+ courses with our All-Access Subscription
           </p>
         </div>
 
-        {/* Pricing Cards - Row 1: Premium Options */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto mb-8">
-          {/* 3-Course Bundle */}
-          <Card className="relative border-2 border-purple-600 bg-gradient-to-br from-purple-900/20 to-slate-800/50 backdrop-blur">
-            <CardHeader>
-              <div className="flex items-center justify-between mb-2">
-                <Sparkles className="w-8 h-8 text-purple-400" />
-                <Badge variant="outline" className="text-purple-300 border-purple-600">
-                  Popular Choice
-                </Badge>
-              </div>
-              <CardTitle className="text-3xl text-white">3-Course Bundle</CardTitle>
-              <CardDescription className="text-slate-300 text-lg">
-                Choose any 3 courses from our catalog
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="flex flex-col gap-2">
-                <div className="flex items-baseline gap-3">
-                  <span className="text-3xl text-slate-500 line-through">$387</span>
-                  <span className="text-5xl font-bold text-white">$299</span>
-                </div>
-                <p className="text-sm text-green-400 font-semibold">Save $88 - One-time payment!</p>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">
-                    <strong className="text-white">Pick any 3 courses</strong> from 17 available
-                  </span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">Lifetime access to your chosen courses</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">All lessons, quizzes, and assignments</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">CPD certificates for completed courses</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">One-time payment, no recurring fees</span>
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-purple-700/50">
-                <div className="flex items-center gap-2 text-purple-300">
-                  <DollarSign className="w-5 h-5" />
-                  <span className="font-semibold">$99.67 per course</span>
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button
-                onClick={() => navigate("/bundle-select")}
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white"
-                size="lg"
-              >
-                <Sparkles className="w-4 h-4 mr-2" />
-                Choose Your 3 Courses
-              </Button>
-            </CardFooter>
-          </Card>
-
+        {/* Pricing Cards */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
           {/* Individual Courses */}
           <Card className="relative border-2 border-slate-700 bg-slate-800/50 backdrop-blur">
             <CardHeader>
@@ -255,7 +184,7 @@ export default function Pricing() {
               </div>
               <CardTitle className="text-3xl text-white">All-Access Subscription</CardTitle>
               <CardDescription className="text-slate-300 text-lg">
-                Unlimited access to all 18 courses and 180 lessons
+                Unlimited access to all courses
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -282,7 +211,7 @@ export default function Pricing() {
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                   <span className="text-slate-300">
-                    <strong className="text-white">Unlimited access to all 18 courses and 180 lessons</strong>
+                    <strong className="text-white">Unlimited access to all 10+ courses</strong>
                   </span>
                 </div>
                 <div className="flex items-start gap-3">
@@ -349,153 +278,6 @@ export default function Pricing() {
           </Card>
         </div>
 
-        {/* Pricing Cards - Row 2: Learning Paths & Chaplain */}
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-16">
-          {/* Learning Paths */}
-          <Card className="relative border-2 border-green-600 bg-gradient-to-br from-green-900/20 to-slate-800/50 backdrop-blur">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-              <Badge className="bg-green-500 text-white px-6 py-1 text-sm font-bold">
-                STRUCTURED LEARNING
-              </Badge>
-            </div>
-            <CardHeader className="pt-8">
-              <div className="flex items-center justify-between mb-2">
-                <GraduationCap className="w-8 h-8 text-green-400" />
-                <Badge variant="outline" className="text-green-300 border-green-600">
-                  Pre-Designed
-                </Badge>
-              </div>
-              <CardTitle className="text-3xl text-white">Learning Paths</CardTitle>
-              <CardDescription className="text-slate-300 text-lg">
-                Expertly curated course sequences for focused learning
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="flex flex-col gap-2">
-                <div className="flex items-baseline gap-3">
-                  <span className="text-3xl text-slate-500 line-through">$534</span>
-                  <span className="text-5xl font-bold text-white">$399</span>
-                </div>
-                <p className="text-sm text-green-400 font-semibold">Save $135 - Best value for structured learning!</p>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">
-                    <strong className="text-white">4-6 courses</strong> in a structured sequence
-                  </span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">Expertly designed curriculum progression</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">Lifetime access to all path courses</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">CPD certificates for each completed course</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">One-time payment, no recurring fees</span>
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-green-700/50">
-                <div className="flex items-center gap-2 text-green-300">
-                  <DollarSign className="w-5 h-5" />
-                  <span className="font-semibold">~$66-80 per course</span>
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button
-                onClick={() => navigate("/checkout/payment-plan?type=LEARNING_PATH")}
-                className="w-full bg-green-600 hover:bg-green-700 text-white"
-                size="lg"
-              >
-                <GraduationCap className="w-4 h-4 mr-2" />
-                Enroll in Learning Paths
-              </Button>
-            </CardFooter>
-          </Card>
-
-          {/* Chaplaincy Training */}
-          <Card className="relative border-2 border-blue-600 bg-gradient-to-br from-blue-900/20 to-slate-800/50 backdrop-blur">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-              <Badge className="bg-blue-500 text-white px-6 py-1 text-sm font-bold">
-                PROFESSIONAL CERTIFICATION
-              </Badge>
-            </div>
-            <CardHeader className="pt-8">
-              <div className="flex items-center justify-between mb-2">
-                <Award className="w-8 h-8 text-blue-400" />
-                <Badge variant="outline" className="text-blue-300 border-blue-600">
-                  65 CPD Hours
-                </Badge>
-              </div>
-              <CardTitle className="text-3xl text-white">Chaplaincy Training</CardTitle>
-              <CardDescription className="text-slate-300 text-lg">
-                Professional chaplaincy certification program
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="flex flex-col gap-2">
-                <div className="flex items-baseline gap-3">
-                  <span className="text-3xl text-slate-500 line-through">$350</span>
-                  <span className="text-5xl font-bold text-white">$275</span>
-                </div>
-                <p className="text-sm text-green-400 font-semibold">Save $75 - Comprehensive certification!</p>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">
-                    <strong className="text-white">Complete chaplaincy training</strong> program
-                  </span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">Healthcare, military, correctional, corporate settings</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">Advanced pastoral counseling skills</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">Professional certification upon completion</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">Earn 65 CPD hours</span>
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-blue-700/50">
-                <div className="flex items-center gap-2 text-blue-300">
-                  <Award className="w-5 h-5" />
-                  <span className="font-semibold">Professional Chaplaincy Certification</span>
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button
-                onClick={() => navigate("/checkout/payment-plan?type=CHAPLAINCY_TRAINING")}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                size="lg"
-              >
-                <Award className="w-4 h-4 mr-2" />
-                Enroll in Chaplaincy Training
-              </Button>
-            </CardFooter>
-          </Card>
-        </div>
-
         {/* Upgrade Option */}
         {purchasedCount > 0 && !hasActiveSub && (
           <Card className="max-w-4xl mx-auto bg-gradient-to-r from-purple-900/30 to-blue-900/30 border-purple-500/50">
@@ -531,14 +313,11 @@ export default function Pricing() {
           </Card>
         )}
 
-               {/* Finance Options Chart */}
-          <div className="max-w-6xl mx-auto mb-16">
-            <FinanceOptionsChart />
-          </div>
-
-          {/* FAQ Section */}
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-white text-center mb-8">Frequently Asked Questions</h2>
+        {/* FAQ Section */}
+        <div className="max-w-4xl mx-auto mt-16">
+          <h2 className="text-3xl font-bold text-white text-center mb-8">
+            Frequently Asked Questions
+          </h2>
           <div className="grid gap-6">
             <Card className="bg-slate-800/50 border-slate-700">
               <CardHeader>
@@ -576,35 +355,6 @@ export default function Pricing() {
               </CardContent>
             </Card>
           </div>
-
-          {/* Contact Section */}
-          <Card className="bg-slate-800/50 border-slate-700 mt-8">
-            <CardHeader>
-              <CardTitle className="text-white text-center">Have Questions?</CardTitle>
-            </CardHeader>
-            <CardContent className="text-center">
-              <p className="text-slate-300 mb-4">
-                Our support team is here to help you choose the right learning path.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a 
-                  href="tel:+13123003295" 
-                  className="flex items-center gap-2 text-white hover:text-primary transition-colors"
-                >
-                  <Phone className="h-5 w-5" />
-                  (312) 300-3295
-                </a>
-                <span className="hidden sm:inline text-slate-600">|</span>
-                <a 
-                  href="mailto:studio6817@yahoo.com" 
-                  className="flex items-center gap-2 text-white hover:text-primary transition-colors"
-                >
-                  <Mail className="h-5 w-5" />
-                  studio6817@yahoo.com
-                </a>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
 

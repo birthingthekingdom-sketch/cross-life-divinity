@@ -2,23 +2,19 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { Footer } from "@/components/Footer";
-import { ChatWidget } from "@/components/ChatWidget";
-import { Check, BookOpen, Award, Users, Clock, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Check, BookOpen, Award, Users, Clock } from "lucide-react";
 
 export default function Landing() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation Header */}
       <nav className="bg-white border-b border-border sticky top-0 z-50 shadow-sm">
         <div className="container max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between h-24 py-2">
+          <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/">
-              <div className="flex items-center gap-3 cursor-pointer">
-                <img src="/logo.png" alt="Cross Life School of Divinity" className="h-32 w-32 object-contain" />
+              <div className="flex items-center gap-2 cursor-pointer">
+                <Award className="h-8 w-8 text-primary" />
                 <span className="text-xl font-bold text-primary">Cross Life School of Divinity</span>
               </div>
             </Link>
@@ -31,9 +27,6 @@ export default function Landing() {
               <Link href="/learning-paths" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
                 Learning Paths
               </Link>
-              <Link href="/chaplaincy-training" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
-                Chaplaincy
-              </Link>
               <Link href="/pricing" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
                 Pricing
               </Link>
@@ -42,16 +35,8 @@ export default function Landing() {
               </Link>
             </div>
             
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 hover:bg-accent/10 rounded-lg transition-colors"
-            >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-
-            {/* Auth Buttons - Desktop */}
-            <div className="hidden md:flex items-center gap-3">
+            {/* Auth Buttons */}
+            <div className="flex items-center gap-3">
               <Link href="/login">
                 <Button variant="ghost" className="font-medium">
                   Login
@@ -64,66 +49,40 @@ export default function Landing() {
               </Link>
             </div>
           </div>
-
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden border-t border-border bg-white">
-              <div className="py-4 space-y-2">
-                <Link href="/catalog">
-                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
-                    Courses
-                  </div>
-                </Link>
-                <Link href="/learning-paths">
-                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
-                    Learning Paths
-                  </div>
-                </Link>
-                <Link href="/chaplaincy-training">
-                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
-                    Chaplaincy Training
-                  </div>
-                </Link>
-                <Link href="/pricing">
-                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
-                    Pricing
-                  </div>
-                </Link>
-                <Link href="/about">
-                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
-                    About
-                  </div>
-                </Link>
-                <Link href="/faq">
-                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
-                    FAQ
-                  </div>
-                </Link>
-                <div className="px-4 pt-4 pb-2 border-t border-border space-y-2">
-                  <Link href="/login">
-                    <Button variant="ghost" className="w-full justify-start font-medium" onClick={() => setMobileMenuOpen(false)}>
-                      Login
-                    </Button>
-                  </Link>
-                  <Link href="/register">
-                    <Button className="w-full bg-primary hover:bg-primary/90 font-medium" onClick={() => setMobileMenuOpen(false)}>
-                      Sign Up
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </nav>
       
       {/* Hero Section with Promotional Image */}
-      <section className="relative overflow-hidden">
+      <section className="relative h-[500px] overflow-hidden">
         <img 
-          src="/promo-hero-new.webp" 
-          alt="Study Theology at Your Own Pace - CPD Accredited Courses" 
-          className="w-full h-auto object-cover"
+          src="/promo-hero.png" 
+          alt="Study Theology at Your Own Pace" 
+          className="w-full h-full object-cover"
         />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center">
+          <div className="container max-w-7xl mx-auto px-4">
+            <div className="max-w-2xl">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                Transform Your Ministry Through Biblical Excellence
+              </h1>
+              <p className="text-lg md:text-xl text-white/90 mb-6">
+                CPD-accredited courses designed for ministry leaders. Study at your own pace with expert instruction.
+              </p>
+              <div className="flex gap-4">
+                <Link href="/pricing">
+                  <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6">
+                    View Pricing
+                  </Button>
+                </Link>
+                <Link href="/catalog">
+                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8 py-6">
+                    Course Catalog
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Pricing Highlight Section */}
@@ -151,7 +110,7 @@ export default function Landing() {
               </div>
               <p className="text-green-600 font-semibold mb-4">Save $30/month - Lock in this rate forever!</p>
               <p className="text-xl text-muted-foreground mb-6">
-                Get unlimited access to all 17 courses and 170 lessons with one affordable subscription
+                Get unlimited access to all 17 seminary-quality courses with one affordable subscription
               </p>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-3">
@@ -181,92 +140,38 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Chaplain's Training Promotional Section */}
-      <section className="py-16 bg-gradient-to-br from-accent/10 to-accent/5">
-        <div className="container max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold mb-6 text-primary">Chaplain's Training Program</h2>
-              <p className="text-xl text-muted-foreground mb-6">
-                Pastor / Minister you've been waiting long enough; now is the time!
-              </p>
-              <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-4xl font-bold text-accent">$275</span>
-                  <span className="text-2xl text-muted-foreground line-through">$400</span>
-                  <span className="bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">Save $125</span>
-                </div>
-                <p className="text-foreground/80">Includes $50 background check - One-time payment</p>
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-3">
-                  <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-lg">30 CPD Hours of Professional Certification</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-lg">Hospital, Military & Institutional Ministry Training</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-lg">Crisis Intervention & Pastoral Care Skills</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-lg">Professional Chaplaincy Certification</span>
-                </li>
-              </ul>
-              <Link href="/chaplaincy-training">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6">
-                  Learn More & Enroll
-                </Button>
-              </Link>
-            </div>
-            <div>
-              <Link href="/chaplaincy-training">
-                <img 
-                  src="/chaplain-promo.png" 
-                  alt="Chaplain's Training - Pastor / Minister you've been waiting long enough; now is the time!" 
-                  className="rounded-lg shadow-2xl w-full cursor-pointer hover:opacity-90 transition-opacity"
-                />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* New Courses Highlight */}
       <section className="py-16 bg-accent/5">
         <div className="container max-w-7xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-4">New Courses Added</h2>
           <p className="text-center text-muted-foreground mb-12 text-lg">Expand your ministry with our latest seminary-quality courses</p>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
                 <BookOpen className="h-8 w-8 text-accent" />
               </div>
               <h3 className="text-2xl font-semibold mb-3">Understanding Prophecy</h3>
-              <p className="text-foreground/80 mb-4">
+              <p className="text-muted-foreground mb-4">
                 Explore the prophetic office and gift, learn to test prophecies, and understand the role of prophecy in the believer's life and church ministry.
               </p>
               <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CPD Hours</div>
             </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
                 <BookOpen className="h-8 w-8 text-accent" />
               </div>
               <h3 className="text-2xl font-semibold mb-3">Deliverance Ministry</h3>
-              <p className="text-foreground/80 mb-4">
+              <p className="text-muted-foreground mb-4">
                 Master the biblical foundations of deliverance, understand spiritual and natural bondages, and learn practical methods for setting captives free.
               </p>
               <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CPD Hours</div>
             </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
                 <BookOpen className="h-8 w-8 text-accent" />
               </div>
               <h3 className="text-2xl font-semibold mb-3">The Fivefold Ministry</h3>
-              <p className="text-foreground/80 mb-4">
+              <p className="text-muted-foreground mb-4">
                 Study the five ministry gifts from Ephesians 4:11 - apostle, prophet, evangelist, pastor, and teacher - and their function in building the church.
               </p>
               <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CPD Hours</div>
@@ -286,7 +191,7 @@ export default function Landing() {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {/* Beginner Path */}
-            <div className="bg-blue-50 border-2 border-blue-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-blue-500/40">
+            <div className="bg-card border-2 border-blue-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-blue-500/40">
               <div className="bg-blue-500/10 rounded-full w-16 h-16 flex items-center justify-center mb-6">
                 <BookOpen className="h-8 w-8 text-blue-600" />
               </div>
@@ -294,7 +199,7 @@ export default function Landing() {
                 <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">Beginner</span>
                 <h3 className="text-2xl font-bold mt-1">New Believer Foundation</h3>
               </div>
-              <p className="text-foreground/80 mb-6 leading-relaxed">
+              <p className="text-muted-foreground mb-6 leading-relaxed">
                 Perfect for new believers and those seeking to establish a solid biblical foundation. This path introduces essential Christian doctrines, biblical interpretation basics, foundational spiritual disciplines, and practical tools for spiritual growth and discipleship.
               </p>
               <div className="space-y-3 mb-6">
@@ -317,7 +222,7 @@ export default function Landing() {
             </div>
 
             {/* Intermediate Path */}
-            <div className="bg-blue-50 border-2 border-purple-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-purple-500/40">
+            <div className="bg-card border-2 border-purple-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-purple-500/40">
               <div className="bg-purple-500/10 rounded-full w-16 h-16 flex items-center justify-center mb-6">
                 <Award className="h-8 w-8 text-purple-600" />
               </div>
@@ -325,7 +230,7 @@ export default function Landing() {
                 <span className="text-sm font-semibold text-purple-600 uppercase tracking-wide">Intermediate</span>
                 <h3 className="text-2xl font-bold mt-1">Ministry Preparation Track</h3>
               </div>
-              <p className="text-foreground/80 mb-6 leading-relaxed">
+              <p className="text-muted-foreground mb-6 leading-relaxed">
                 Designed for aspiring ministry leaders and those actively serving in church roles. This comprehensive path equips you with practical ministry skills, deeper biblical knowledge, and leadership principles essential for effective kingdom service.
               </p>
               <div className="space-y-3 mb-6">
@@ -347,14 +252,16 @@ export default function Landing() {
               </Link>
             </div>
 
-            {/* Advanced Path */}            <div className="bg-blue-50 border-2 border-orange-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-orange-500/40">              <div className="bg-amber-500/10 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+            {/* Advanced Path */}
+            <div className="bg-card border-2 border-amber-500/20 rounded-lg p-8 hover:shadow-xl transition-all hover:border-amber-500/40">
+              <div className="bg-amber-500/10 rounded-full w-16 h-16 flex items-center justify-center mb-6">
                 <Users className="h-8 w-8 text-amber-600" />
               </div>
               <div className="mb-4">
                 <span className="text-sm font-semibold text-amber-600 uppercase tracking-wide">Advanced</span>
                 <h3 className="text-2xl font-bold mt-1">Theological Studies</h3>
               </div>
-              <p className="text-foreground/80 mb-6 leading-relaxed">
+              <p className="text-muted-foreground mb-6 leading-relaxed">
                 For seasoned ministry leaders and scholars pursuing theological depth. This rigorous path covers systematic theology, advanced biblical studies, and specialized ministry topics that prepare you for senior leadership and teaching roles in the church.
               </p>
               <div className="space-y-3 mb-6">
@@ -381,7 +288,7 @@ export default function Landing() {
               Each learning path includes progress tracking, completion certificates, and personalized recommendations
             </p>
             <Link href="/catalog">
-              <Button variant="outline" size="lg" className="text-lg px-10 py-7 font-semibold">View All Courses</Button>
+              <Button variant="outline" size="lg">View All Courses</Button>
             </Link>
           </div>
         </div>
@@ -397,8 +304,8 @@ export default function Landing() {
                 <BookOpen className="h-12 w-12 text-accent" />
               </div>
               <h3 className="text-2xl font-semibold mb-3">Seminary-Quality Education</h3>
-              <p className="text-foreground/80">
-                Nearly 1,000,000 words of comprehensive theological content developed by experienced theologians and ministry leaders
+              <p className="text-muted-foreground">
+                Comprehensive courses developed by experienced theologians and ministry leaders
               </p>
             </div>
             <div className="text-center p-6">
@@ -406,7 +313,7 @@ export default function Landing() {
                 <Award className="h-12 w-12 text-accent" />
               </div>
               <h3 className="text-2xl font-semibold mb-3">CPD Accredited</h3>
-              <p className="text-foreground/80">
+              <p className="text-muted-foreground">
                 Earn recognized certificates that demonstrate your commitment to professional development
               </p>
             </div>
@@ -414,8 +321,8 @@ export default function Landing() {
               <div className="inline-block bg-accent/10 p-4 rounded-full mb-4">
                 <Users className="h-12 w-12 text-accent" />
               </div>
-              <h3 className="text-2xl font-semibold mb-3">Join with Other Leaders</h3>
-              <p className="text-foreground/80">
+              <h3 className="text-2xl font-semibold mb-3">Join Thousands of Leaders</h3>
+              <p className="text-muted-foreground">
                 Connect with a global community of ministry leaders pursuing excellence
               </p>
             </div>
@@ -494,7 +401,7 @@ export default function Landing() {
           </div>
           <div className="mt-12 text-center">
             <p className="text-muted-foreground mb-4">
-              Join the many ministry leaders already enrolled in our courses
+              Join 500+ ministry leaders already enrolled in our courses
             </p>
             <Link href="/register">
               <Button size="lg" className="bg-accent hover:bg-accent/90">Start Your Journey Today</Button>
@@ -528,59 +435,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-accent/5">
-        <div className="container max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <Badge className="mb-4">Student Success Stories</Badge>
-            <h2 className="text-4xl font-bold mb-4">Transforming Ministry Leaders Worldwide</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Join thousands of pastors, ministers, and chaplains who have advanced their ministry through our CPD-accredited programs
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-background p-8 rounded-lg shadow-lg">
-              <div className="text-5xl text-primary mb-4">"</div>
-              <p className="text-muted-foreground mb-6 italic">
-                The theological depth and practical application in these courses have revolutionized my preaching. My congregation has noticed the difference!
-              </p>
-              <div>
-                <p className="font-bold">Pastor James Rodriguez</p>
-                <p className="text-sm text-muted-foreground">Senior Pastor, Community Church</p>
-                <p className="text-xs text-primary mt-2">Completed 8 courses</p>
-              </div>
-            </div>
-            
-            <div className="bg-background p-8 rounded-lg shadow-lg">
-              <div className="text-5xl text-primary mb-4">"</div>
-              <p className="text-muted-foreground mb-6 italic">
-                As a busy ministry leader, the flexibility of online learning was perfect. The CPD certification adds credibility to my credentials.
-              </p>
-              <div>
-                <p className="font-bold">Dr. Patricia Johnson</p>
-                <p className="text-sm text-muted-foreground">Ministry Director & Author</p>
-                <p className="text-xs text-primary mt-2">Full Access Subscriber</p>
-              </div>
-            </div>
-            
-            <div className="bg-background p-8 rounded-lg shadow-lg">
-              <div className="text-5xl text-primary mb-4">"</div>
-              <p className="text-muted-foreground mb-6 italic">
-                The chaplaincy training prepared me for service in ways seminary didn't. I'm now confidently serving in a hospital setting.
-              </p>
-              <div>
-                <p className="font-bold">Rev. Marcus Chen</p>
-                <p className="text-sm text-muted-foreground">Hospital Chaplain</p>
-                <p className="text-xs text-primary mt-2">Chaplaincy Graduate</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <Footer />
-      <ChatWidget />
     </div>
   );
 }

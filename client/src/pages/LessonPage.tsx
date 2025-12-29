@@ -6,17 +6,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { trpc } from "@/lib/trpc";
 import { AssignmentSubmission } from "@/components/AssignmentSubmission";
 import { ArrowLeft, CheckCircle2, Loader2 } from "lucide-react";
-import { Link, useParams, useLocation } from "wouter";
-import { useState, useMemo, useEffect } from "react";
+import { Link, useParams } from "wouter";
+import { useState, useMemo } from "react";
 import { toast } from "sonner";
 import { Streamdown } from "streamdown";
-import { useAuth } from "@/_core/hooks/useAuth";
 
 export default function LessonPage() {
   const params = useParams<{ id: string }>();
   const lessonId = parseInt(params.id || "0");
-  const { isAuthenticated } = useAuth();
-  const [, setLocation] = useLocation();
 
   const { data: lesson, isLoading: lessonLoading } = trpc.lessons.getById.useQuery({ id: lessonId });
   const { data: course } = trpc.courses.getById.useQuery(
@@ -105,83 +102,6 @@ export default function LessonPage() {
     );
   }
 
-  // Preview mode for unauthenticated users
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">
-        {/* Lesson Header */}
-        <div 
-          className="text-white shadow-lg"
-          style={{ backgroundColor: course?.colorTheme || "#1a365d" }}
-        >
-          <div className="container py-6">
-            <Link href="/">
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="mb-4 text-white hover:bg-white/20"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Home
-              </Button>
-            </Link>
-            
-            <h1 className="text-3xl font-bold">{lesson.title}</h1>
-            {course && (
-              <p className="text-white/80 mt-2">{course.title} - {course.code}</p>
-            )}
-          </div>
-        </div>
-
-        <div className="container py-8">
-          <div className="max-w-4xl mx-auto space-y-6">
-            {/* Sign Up CTA */}
-            <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  🔒 Unlock This Lesson
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground">
-                  Sign up or log in to access the full lesson content, assignments, and quizzes.
-                </p>
-                <div className="flex gap-2">
-                  <Link href="/signup">
-                    <Button className="flex-1">Create Free Account</Button>
-                  </Link>
-                  <Link href="/login">
-                    <Button variant="outline" className="flex-1">Log In</Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Lesson Preview */}
-            <Card className="opacity-75 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background z-10 pointer-events-none" />
-              <CardHeader>
-                <CardTitle>Lesson Preview</CardTitle>
-                <p className="text-sm text-muted-foreground">
-                  Get a glimpse of what you'll learn in this lesson
-                </p>
-              </CardHeader>
-              <CardContent className="prose prose-slate max-w-none relative">
-                <div className="line-clamp-6">
-                  <Streamdown>{lesson.content.split('\n\n')[0] || lesson.content.substring(0, 300)}</Streamdown>
-                </div>
-                <div className="mt-4 text-center">
-                  <p className="text-muted-foreground text-sm italic">Sign up to read the full lesson...</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Authenticated user view
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">
       {/* Lesson Header */}
@@ -256,21 +176,14 @@ export default function LessonPage() {
                               onValueChange={(value) => setAnswers({ ...answers, [question.id]: value })}
                               disabled={showResults}
                             >
-                              {(() => {
-                                try {
-                                  const options = JSON.parse(question.options);
-                                  return options.map((option: string, optIndex: number) => (
-                                    <div key={optIndex} className="flex items-center space-x-2">
-                                      <RadioGroupItem value={option} id={`q${question.id}-opt${optIndex}`} />
-                                      <Label htmlFor={`q${question.id}-opt${optIndex}`} className="cursor-pointer">
-                                        {option}
-                                      </Label>
-                                    </div>
-                                  ));
-                                } catch (e) {
-                                  return <p className="text-sm text-muted-foreground">Error loading options</p>;
-                                }
-                              })()}
+                              {JSON.parse(question.options).map((option: string, optIndex: number) => (
+                                <div key={optIndex} className="flex items-center space-x-2">
+                                  <RadioGroupItem value={option} id={`q${question.id}-opt${optIndex}`} />
+                                  <Label htmlFor={`q${question.id}-opt${optIndex}`} className="cursor-pointer">
+                                    {option}
+                                  </Label>
+                                </div>
+                              ))}
                             </RadioGroup>
                           )}
                           

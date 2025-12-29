@@ -127,48 +127,6 @@
       "when": 1765001436682,
       "tag": "0017_demonic_taskmaster",
       "breakpoints": true
-    },
-    {
-      "idx": 18,
-      "version": "5",
-      "when": 1765066138780,
-      "tag": "0018_dapper_vengeance",
-      "breakpoints": true
-    },
-    {
-      "idx": 19,
-      "version": "5",
-      "when": 1765066410231,
-      "tag": "0019_sparkling_mad_thinker",
-      "breakpoints": true
-    },
-    {
-      "idx": 20,
-      "version": "5",
-      "when": 1765267223162,
-      "tag": "0020_heavy_puff_adder",
-      "breakpoints": true
-    },
-    {
-      "idx": 21,
-      "version": "5",
-      "when": 1765305324046,
-      "tag": "0021_amusing_patriot",
-      "breakpoints": true
-    },
-    {
-      "idx": 22,
-      "version": "5",
-      "when": 1765314277805,
-      "tag": "0022_overjoyed_starhawk",
-      "breakpoints": true
-    },
-    {
-      "idx": 23,
-      "version": "5",
-      "when": 1765706830118,
-      "tag": "0023_certain_molecule_man",
-      "breakpoints": true
     }
   ]
 }

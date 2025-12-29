@@ -8,11 +8,6 @@ export async function checkPrerequisites(userId: number, courseId: number): Prom
   canEnroll: boolean;
   missingPrerequisites: Array<{ id: number; title: string }>;
 }> {
-  // Validate courseId
-  if (!courseId || isNaN(courseId)) {
-    return { canEnroll: true, missingPrerequisites: [] };
-  }
-
   const dbConn = await db.getDb();
   if (!dbConn) {
     throw new Error('Database not available');
@@ -26,13 +21,9 @@ export async function checkPrerequisites(userId: number, courseId: number): Prom
         WHERE cp.courseId = ${courseId} AND cp.required = true`
   );
 
-  // Handle different result formats from drizzle
-  let prerequisites = [];
-  if (Array.isArray(prerequisitesResult)) {
-    prerequisites = prerequisitesResult;
-  } else if (prerequisitesResult && typeof prerequisitesResult === 'object') {
-    prerequisites = prerequisitesResult.rows || [];
-  }
+  const prerequisites = Array.isArray(prerequisitesResult) 
+    ? prerequisitesResult 
+    : prerequisitesResult.rows || [];
 
   if (prerequisites.length === 0) {
     // No prerequisites, can enroll
@@ -43,12 +34,6 @@ export async function checkPrerequisites(userId: number, courseId: number): Prom
   const missingPrerequisites = [];
   
   for (const prereq of prerequisites) {
-    // Ensure prereq.id exists before querying
-    if (!prereq || !prereq.id) {
-      console.error('[Prerequisites] Invalid prerequisite object:', prereq);
-      continue;
-    }
-
     const completedResult: any = await dbConn.execute(
       sql`SELECT ce.id
           FROM course_enrollments ce
@@ -57,12 +42,9 @@ export async function checkPrerequisites(userId: number, courseId: number): Prom
             AND ce.completed = true`
     );
 
-    let completed = false;
-    if (Array.isArray(completedResult)) {
-      completed = completedResult.length > 0;
-    } else if (completedResult && typeof completedResult === 'object') {
-      completed = (completedResult.rows || []).length > 0;
-    }
+    const completed = Array.isArray(completedResult) 
+      ? completedResult.length > 0
+      : (completedResult.rows || []).length > 0;
 
     if (!completed) {
       missingPrerequisites.push({
@@ -82,11 +64,6 @@ export async function checkPrerequisites(userId: number, courseId: number): Prom
  * Get all prerequisites for a course
  */
 export async function getCoursePrerequisites(courseId: number): Promise<Array<{ id: number; title: string; required: boolean }>> {
-  // Validate courseId
-  if (!courseId || isNaN(courseId)) {
-    return [];
-  }
-
   const dbConn = await db.getDb();
   if (!dbConn) {
     throw new Error('Database not available');
@@ -100,11 +77,5 @@ export async function getCoursePrerequisites(courseId: number): Promise<Array<{ 
         ORDER BY c.title`
   );
 
-  // Handle different result formats
-  if (Array.isArray(result)) {
-    return result;
-  } else if (result && typeof result === 'object' && result.rows) {
-    return result.rows;
-  }
-  return [];
+  return Array.isArray(result) ? result : result.rows || [];
 }

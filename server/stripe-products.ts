@@ -23,30 +23,6 @@ export const STRIPE_PRODUCTS = {
     amount: 8900, // $89.00 in cents
     currency: "usd",
   },
-
-  // Learning Path Purchase
-  LEARNING_PATH: {
-    name: "Learning Path",
-    description: "Structured sequence of 4-6 courses",
-    amount: 19900, // $199.00 in cents
-    currency: "usd",
-  },
-
-  // 3-Course Bundle
-  COURSE_BUNDLE: {
-    name: "3-Course Bundle",
-    description: "Choose any 3 courses from catalog",
-    amount: 29900, // $299.00 in cents
-    currency: "usd",
-  },
-
-  // Chaplain Course
-  CHAPLAIN_COURSE: {
-    name: "Chaplain Course",
-    description: "Comprehensive chaplaincy training program",
-    amount: 27500, // $275.00 in cents
-    currency: "usd",
-  },
 } as const;
 
 /**
