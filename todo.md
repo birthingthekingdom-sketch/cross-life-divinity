@@ -26,8 +26,32 @@
 
 ---
 
-## ACTIVE TASKS (COMPLETE ✅)
+## ACTIVE TASKS (IN PROGRESS)
 - [x] Add Student Handbook page with comprehensive guide
+- [x] Add Student Handbook link to footer under "Student Resources"
+- [ ] Build course introduction slideshows with female voiceover (one at a time)
+
+## COURSE SLIDESHOW ORDER (Female Voiceover Only)
+1. [x] Understanding Prophecy (DIV101)
+2. [ ] The Fivefold Ministry (MIN201)
+3. [ ] Deliverance Ministry (MIN301)
+4. [ ] Systematic Theology (THE201)
+5. [ ] Biblical Hermeneutics (BIB201)
+6. [ ] Fundamentals of Apologetics (THE301)
+7. [ ] Evangelism and Discipleship (MIN101)
+8. [ ] Discipleship Training (MIN102)
+9. [ ] Prayer and Intercession (SPR101)
+10. [ ] Christian Leadership (LED201)
+11. [ ] Pastoral Counseling (PAS201)
+12. [ ] Church Administration (PAS301)
+13. [ ] Homiletics (PAS101)
+14. [ ] Discovering Spiritual Gifts (SPR201)
+
+### Slideshow Implementation Details:
+- Placement: Top of course page (before course description)
+- Auto-play: Yes, auto-play when student opens course
+- Voiceover: Female only (no male voiceovers)
+- Build process: One course at a time with user approval between each
 
 ---
 

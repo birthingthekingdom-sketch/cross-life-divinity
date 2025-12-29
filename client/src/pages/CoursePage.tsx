@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { VideoPlayer } from "@/components/VideoPlayer";
+import { CourseIntroSlideshow } from "@/components/CourseIntroSlideshow";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { ArrowLeft, Award, BookOpen, CheckCircle2, Circle, Download, MessageSquare, Video } from "lucide-react";
@@ -130,23 +131,40 @@ export default function CoursePage() {
         {/* Course Info for Non-Logged-In Users */}
         <div className="container py-8">
           <div className="max-w-4xl mx-auto">
-            {/* Intro Video Section */}
-            {course.introVideoUrl && (
-              <Card className="mb-8">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Video className="h-5 w-5 text-primary" />
-                    Course Introduction Video
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <VideoPlayer 
-                    url={course.introVideoUrl} 
-                    title={`${course.title} Introduction`}
-                  />
-                </CardContent>
-              </Card>
-            )}
+          {/* Course Introduction Slideshow */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Video className="h-5 w-5 text-primary" />
+                Course Introduction
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CourseIntroSlideshow 
+                courseId={course.code} 
+                courseName={course.title}
+                autoPlay={true}
+              />
+            </CardContent>
+          </Card>
+
+          {/* Intro Video Section */}
+          {course.introVideoUrl && (
+            <Card className="mb-8">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Video className="h-5 w-5 text-primary" />
+                  Course Introduction Video
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <VideoPlayer 
+                  url={course.introVideoUrl} 
+                  title={`${course.title} Introduction`}
+                />
+              </CardContent>
+            </Card>
+          )}
 
             <Card className="mb-8 border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5">
               <CardHeader>
@@ -290,6 +308,23 @@ export default function CoursePage() {
       {/* Lessons List */}
       <div className="container py-8">
         <div className="max-w-4xl mx-auto">
+          {/* Course Introduction Slideshow */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Video className="h-5 w-5 text-primary" />
+                Course Introduction
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CourseIntroSlideshow 
+                courseId={course.code} 
+                courseName={course.title}
+                autoPlay={true}
+              />
+            </CardContent>
+          </Card>
+
           {/* Intro Video Section */}
           {course.introVideoUrl && (
             <Card className="mb-8">

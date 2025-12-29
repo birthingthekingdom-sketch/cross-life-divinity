@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Prophecy - Course Introduction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #001f3f 0%, #003d5c 100%);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.1) 100%);
+            pointer-events: none;
+        }
+
+        .content-left {
+            padding-top: 60px;
+            padding-left: 80px;
+            padding-right: 40px;
+            z-index: 2;
+        }
+
+        .course-code {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #D4AF37;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .course-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: #FFFFFF;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .course-subtitle {
+            font-family: 'Merriweather', serif;
+            font-size: 22px;
+            font-weight: 400;
+            color: #E8E8E8;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .accent-line {
+            width: 80px;
+            height: 4px;
+            background: #D4AF37;
+            margin-top: 30px;
+        }
+
+        .decorative-right {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .geometric-shape {
+            width: 300px;
+            height: 300px;
+            border: 3px solid #D4AF37;
+            border-radius: 0;
+            opacity: 0.15;
+            transform: rotate(45deg);
+            position: absolute;
+        }
+
+        .geometric-shape-2 {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #D4AF37;
+            opacity: 0.2;
+            position: absolute;
+            right: 80px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .tagline {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            color: #D4AF37;
+            margin-top: 50px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="content-left">
+            <div class="course-code">DIV101</div>
+            <h1 class="course-title">Understanding Prophecy</h1>
+            <p class="course-subtitle">Exploring the Spiritual Gift and Office of Prophecy in Christian Theology</p>
+            <div class="accent-line"></div>
+            <p class="tagline">CROSS LIFE SCHOOL OF DIVINITY</p>
+        </div>
+        <div class="decorative-right">
+            <div class="geometric-shape"></div>
+            <div class="geometric-shape-2"></div>
+        </div>
+    </div>
+</body>
+</html>
