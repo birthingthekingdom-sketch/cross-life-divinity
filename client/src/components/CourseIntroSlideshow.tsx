@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Volume2, VolumeX } from "lucide-react";
+import { ChevronLeft, ChevronRight, Volume2, VolumeX, Play, Pause } from "lucide-react";
 import { getCourseSlideshow } from "@/data/course-slideshows";
 
 interface CourseIntroSlideshowProps {
@@ -13,9 +13,40 @@ export function CourseIntroSlideshow({ courseCode, courseTitle }: CourseIntroSli
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   // Get the correct slideshow for this specific course
   const slideshow = getCourseSlideshow(courseCode);
+  
+  // Get the audio file path based on course code
+  const getAudioPath = () => {
+    // Map course codes to audio file names
+    const audioMap: { [key: string]: string } = {
+      'DIV101': 'understanding-prophecy-intro',
+      'DIV102': 'DIV102-intro',
+      'DIV103': 'DIV103-intro',
+      'DIV104': 'DIV104-intro',
+      'DIV105': 'DIV105-intro',
+      'DIV106': 'DIV106-intro',
+      'DIV107': 'DIV107-intro',
+      'DIV108': 'DIV108-intro',
+      'DIV109': 'DIV109-intro',
+      'DIV110': 'DIV110-intro',
+      'BIB101': 'old-testament-survey-intro',
+      'BIB102': 'BIB102-intro',
+      'BIB103': 'BIB103-intro',
+      'BIB104': 'BIB104-intro',
+      'CHR101': 'CHR101-intro',
+      'CHR102': 'CHR102-intro',
+      'CHR103': 'CHR103-intro',
+      'MIN101': 'MIN101-intro',
+      'MIN102': 'MIN102-intro',
+      'MIN103': 'MIN103-intro',
+    };
+    const fileName = audioMap[courseCode] || courseCode.toLowerCase() + '-intro';
+    return `/audio/${fileName}.wav`;
+  };
 
   useEffect(() => {
     if (!slideshow || !isAutoPlaying) return;
@@ -41,6 +72,22 @@ export function CourseIntroSlideshow({ courseCode, courseTitle }: CourseIntroSli
   const handleNext = () => {
     setCurrentSlide((prev) => (prev + 1) % slideshow.slides.length);
     setIsAutoPlaying(false);
+  };
+
+  const handlePlayAudio = () => {
+    if (audioRef.current) {
+      if (isAudioPlaying) {
+        audioRef.current.pause();
+        setIsAudioPlaying(false);
+      } else {
+        audioRef.current.play();
+        setIsAudioPlaying(true);
+      }
+    }
+  };
+
+  const handleAudioEnded = () => {
+    setIsAudioPlaying(false);
   };
 
   return (
@@ -71,6 +118,15 @@ export function CourseIntroSlideshow({ courseCode, courseTitle }: CourseIntroSli
           </div>
         </div>
 
+        {/* Audio Player */}
+        <audio
+          ref={audioRef}
+          src={getAudioPath()}
+          onEnded={handleAudioEnded}
+          muted={isMuted}
+          className="hidden"
+        />
+
         {/* Controls */}
         <div className="flex items-center justify-between">
           <div className="flex gap-2">
@@ -98,17 +154,31 @@ export function CourseIntroSlideshow({ courseCode, courseTitle }: CourseIntroSli
             </span>
           </div>
 
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setIsMuted(!isMuted)}
-          >
-            {isMuted ? (
-              <VolumeX className="h-4 w-4" />
-            ) : (
-              <Volume2 className="h-4 w-4" />
-            )}
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handlePlayAudio}
+              title="Play course introduction audio"
+            >
+              {isAudioPlaying ? (
+                <Pause className="h-4 w-4" />
+              ) : (
+                <Play className="h-4 w-4" />
+              )}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setIsMuted(!isMuted)}
+            >
+              {isMuted ? (
+                <VolumeX className="h-4 w-4" />
+              ) : (
+                <Volume2 className="h-4 w-4" />
+              )}
+            </Button>
+          </div>
         </div>
 
         {/* Slide Indicators */}
