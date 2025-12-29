@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { VideoPlayer } from "@/components/VideoPlayer";
+import { CourseIntroSlideshow } from "@/components/CourseIntroSlideshow";
+import { getSlideshowConfig } from "@/data/slideshow-configs";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { ArrowLeft, Award, BookOpen, CheckCircle2, Circle, Download, MessageSquare, Video } from "lucide-react";
@@ -307,6 +309,25 @@ export default function CoursePage() {
               </CardContent>
             </Card>
           )}
+
+          {(() => {
+            const slideshowConfig = getSlideshowConfig(course.code);
+            if (slideshowConfig) {
+              return (
+                <div className="mb-8">
+                  <CourseIntroSlideshow
+                    courseCode={slideshowConfig.courseCode}
+                    courseName={slideshowConfig.courseName}
+                    slides={slideshowConfig.slides}
+                    audioUrl={slideshowConfig.audioUrl}
+                    autoPlay={true}
+                    slideDuration={8}
+                  />
+                </div>
+              );
+            }
+            return null;
+          })()}
 
           <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
             <BookOpen className="h-6 w-6 text-primary" />

@@ -8,6 +8,7 @@ import { Link } from "wouter";
 import { toast } from "sonner";
 import { CourseDependencyDiagram } from "@/components/CourseDependencyDiagram";
 import { PublicNav } from "@/components/PublicNav";
+import { Footer } from "@/components/Footer";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { useLocation } from "wouter";
 

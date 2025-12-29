@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { trpc } from "@/lib/trpc";
-import { BookOpen, Clock, Award, ArrowRight, Play, Lock } from "lucide-react";
+import { BookOpen, Clock, Award, ArrowRight, Lock } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
 import { Footer } from "@/components/Footer";
@@ -64,25 +64,14 @@ export default function Catalog() {
             const isComingSoon = ['DIV108', 'DIV109', 'DIV110'].includes(course.code);
             return (
             <Card key={course.id} className="hover:shadow-xl transition-all bg-blue-50 border-blue-200 relative overflow-hidden">
-              <div className="relative bg-black/10 h-40 overflow-hidden group">
-                {course.videoUrl ? (
-                  <div className="w-full h-full bg-black flex items-center justify-center">
-                    <Play className="h-12 w-12 text-white/60" />
+              {isComingSoon && (
+                <div className="relative bg-gradient-to-br from-primary/20 to-accent/20 h-40 overflow-hidden group flex items-center justify-center">
+                  <div className="bg-white/90 px-4 py-2 rounded-lg flex items-center gap-2">
+                    <Lock className="h-4 w-4 text-primary" />
+                    <span className="font-bold text-primary">Coming Soon</span>
                   </div>
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                    <BookOpen className="h-12 w-12 text-primary/40" />
-                  </div>
-                )}
-                {isComingSoon && (
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                    <div className="bg-white/90 px-4 py-2 rounded-lg flex items-center gap-2">
-                      <Lock className="h-4 w-4 text-primary" />
-                      <span className="font-bold text-primary">Coming Soon</span>
-                    </div>
-                  </div>
-                )}
-              </div>
+                </div>
+              )}
               <CardHeader 
                 className="bg-primary text-white min-h-[100px]"
               >
