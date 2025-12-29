@@ -140,7 +140,7 @@ export function TuitionAgreement({
             <section className="mt-4 p-3 bg-accent/10 rounded-lg">
               <p className="text-xs text-muted-foreground">
                 <strong>Questions?</strong> If you have any questions about this payment plan or agreement, please contact us at 
-                support@crosslifeschoolofdivinity.org before proceeding with enrollment.
+                support@crosslifeschool.org before proceeding with enrollment.
               </p>
             </section>
           </div>

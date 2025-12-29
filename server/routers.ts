@@ -27,11 +27,6 @@ import { affiliateRouter } from './affiliate-router';
 import { chaplaincyRouter } from './chaplaincy-router';
 import { installmentPlanRouter } from './installment-plan-router';
 import { paymentPlanRouter } from './payment-plan-router';
-import { idVerificationRouter } from './id-verification-router';
-import * as autoGradingService from './auto-grading-service';
-import { gradingRouter } from './grading-router.js';
-import * as pendingAnswersNotification from './pending-answers-notification';
-import { subscriptionStatusRouter } from './subscription-status-router';
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -53,9 +48,6 @@ export const appRouter = router({
   chaplaincy: chaplaincyRouter,
   installmentPlan: installmentPlanRouter,
   paymentPlan: paymentPlanRouter,
-  idVerification: idVerificationRouter,
-  grading: gradingRouter,
-  subscriptionStatus: subscriptionStatusRouter,
 
   // Merge custom auth router with existing auth endpoints
   auth: router({
@@ -321,80 +313,53 @@ export const appRouter = router({
         })),
       }))
       .mutation(async ({ ctx, input }) => {
-        const gradingResult = await autoGradingService.gradeQuizSubmission(
-          input.lessonId,
-          input.answers
-        );
+        const questions = await db.getQuizQuestionsByLessonId(input.lessonId);
         
-        for (const result of gradingResult.results) {
+        let correctCount = 0;
+        const results = [];
+        
+        for (const answer of input.answers) {
+          const question = questions.find(q => q.id === answer.questionId);
+          if (!question) continue;
+          
+          const isCorrect = answer.answer.toLowerCase().trim() === question.correctAnswer.toLowerCase().trim();
+          if (isCorrect) correctCount++;
+          
           await db.saveQuizAnswer({
             userId: ctx.user.id,
-            questionId: result.questionId,
-            answer: result.answer,
-            isCorrect: result.isCorrect,
+            questionId: answer.questionId,
+            answer: answer.answer,
+            isCorrect,
+          });
+          
+          results.push({
+            questionId: answer.questionId,
+            isCorrect,
+            correctAnswer: question.correctAnswer,
           });
         }
+        
+        const score = correctCount;
+        const totalQuestions = questions.length;
+        const passed = (score / totalQuestions) >= 0.7; // 70% passing grade
         
         await db.createQuizSubmission({
           userId: ctx.user.id,
           lessonId: input.lessonId,
-          score: gradingResult.score,
-          totalQuestions: gradingResult.totalQuestions,
-          passed: gradingResult.passed,
+          score,
+          totalQuestions,
+          passed,
         });
         
-        // Get the quiz submission ID for tracking pending answers
-        const submission = await db.getQuizSubmissionByUserAndLesson(ctx.user.id, input.lessonId);
-        const submissionId = submission?.id || 0;
-        
-        // Track pending written answers for manual grading
-        if (gradingResult.hasManualQuestions && gradingResult.manualQuestionIds) {
-          const questions = await db.getQuizQuestionsByLessonId(input.lessonId);
-          
-          let pendingCount = 0;
-          for (const result of gradingResult.results) {
-            if (result.questionType === "short_answer") {
-              const question = questions.find(q => q.id === result.questionId);
-              if (question) {
-                await db.createPendingWrittenAnswer({
-                  quizSubmissionId: submissionId,
-                  userId: ctx.user.id,
-                  lessonId: input.lessonId,
-                  courseId: input.courseId,
-                  questionId: result.questionId,
-                  questionText: question.question,
-                  studentAnswer: result.answer,
-                  status: "pending",
-                });
-                pendingCount++;
-              }
-            }
-          }
-          
-          // Notify admins of pending answers
-          if (pendingCount > 0) {
-            await pendingAnswersNotification.notifyAdminsOfPendingAnswers(
-              ctx.user.id,
-              input.courseId,
-              input.lessonId,
-              pendingCount
-            );
-          }
-        }
-        
-        if (gradingResult.passed) {
+        if (passed) {
           await db.markLessonComplete(ctx.user.id, input.courseId, input.lessonId);
         }
         
         return {
-          score: gradingResult.score,
-          totalQuestions: gradingResult.totalQuestions,
-          percentage: gradingResult.percentage,
-          passed: gradingResult.passed,
-          results: gradingResult.results,
-          autoGraded: gradingResult.autoGraded,
-          hasManualQuestions: gradingResult.hasManualQuestions,
-          feedback: autoGradingService.getGradingFeedback(gradingResult),
+          score,
+          totalQuestions,
+          passed,
+          results,
         };
       }),
     

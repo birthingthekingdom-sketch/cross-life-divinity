@@ -7,14 +7,13 @@ import { trpc } from "@/lib/trpc";
 import { MessageCircle, Send, User, Clock } from "lucide-react";
 import { toast } from "sonner";
 import { formatDistanceToNow } from "date-fns";
-import { AdminRoute } from "@/components/AdminRoute";
 
-function AdminChatContent() {
+export default function AdminChat() {
   const [selectedSessionId, setSelectedSessionId] = useState<number | null>(null);
   const [replyMessage, setReplyMessage] = useState("");
 
   // Fetch all chat sessions
-  const { data: sessions, refetch: refetchSessions } = trpc.chat.getAllSessions.useQuery({});
+  const { data: sessions, refetch: refetchSessions } = trpc.chat.getAllSessions.useQuery();
   
   // Fetch messages for selected session
   const { data: messages, refetch: refetchMessages } = trpc.chat.getMessages.useQuery(
@@ -214,13 +213,5 @@ function AdminChatContent() {
         </div>
       </div>
     </div>
-  );
-}
-
-export default function AdminChat() {
-  return (
-    <AdminRoute>
-      <AdminChatContent />
-    </AdminRoute>
   );
 }

@@ -2,8 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { trpc } from "@/lib/trpc";
-import { BookOpen, Clock, Award, ArrowRight, Lock } from "lucide-react";
-import { useState } from "react";
+import { BookOpen, Clock, Award, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { Footer } from "@/components/Footer";
 import { PublicNav } from "@/components/PublicNav";
@@ -60,20 +59,10 @@ export default function Catalog() {
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {courses?.filter((course: any) => !course.code.startsWith('CHAP')).map((course: any) => {
-            const isComingSoon = ['DIV108', 'DIV109', 'DIV110'].includes(course.code);
-            return (
-            <Card key={course.id} className="hover:shadow-xl transition-all bg-blue-50 border-blue-200 relative overflow-hidden">
-              {isComingSoon && (
-                <div className="relative bg-gradient-to-br from-primary/20 to-accent/20 h-40 overflow-hidden group flex items-center justify-center">
-                  <div className="bg-white/90 px-4 py-2 rounded-lg flex items-center gap-2">
-                    <Lock className="h-4 w-4 text-primary" />
-                    <span className="font-bold text-primary">Coming Soon</span>
-                  </div>
-                </div>
-              )}
+          {courses?.filter((course: any) => !course.code.startsWith('CHAP')).map((course: any) => (
+            <Card key={course.id} className="hover:shadow-xl transition-all bg-blue-50 border-blue-200">
               <CardHeader 
-                className="bg-primary text-white min-h-[100px]"
+                className="bg-primary text-white min-h-[140px]"
               >
                 <div className="flex items-start justify-between mb-2">
                   <Badge className="bg-white/20 text-white">{course.code}</Badge>
@@ -102,16 +91,15 @@ export default function Catalog() {
                     </div>
                   )}
                 </div>
-                <Link href={isComingSoon ? '#' : '/register'}>
-                  <Button variant="outline" className="w-full" disabled={isComingSoon}>
-                    {isComingSoon ? 'Coming Soon' : 'Enroll Now'}
-                    {!isComingSoon && <ArrowRight className="h-4 w-4 ml-2" />}
+                <Link href="/register">
+                  <Button variant="outline" className="w-full">
+                    Enroll Now
+                    <ArrowRight className="h-4 w-4 ml-2" />
                   </Button>
                 </Link>
               </CardContent>
             </Card>
-            );
-          })}
+          ))}
         </div>
       </div>
 

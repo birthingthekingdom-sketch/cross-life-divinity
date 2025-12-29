@@ -87,7 +87,7 @@ export const paymentPlanRouter = router({
             price_data: {
               currency: 'usd',
               product_data: {
-                name: `Cross Life School of Divinity - ${input.planType.replace(/_/g, ' ')}`,
+                name: `${input.planType.replace(/_/g, ' ')} - Payment Plan`,
                 description: `${config.months} monthly payments of $${(config.monthlyAmount / 100).toFixed(2)}`,
               },
               unit_amount: config.monthlyAmount,
@@ -98,7 +98,7 @@ export const paymentPlanRouter = router({
             },
             quantity: 1,
           }],
-          success_url: `${baseUrl}/payment/success?session_id={CHECKOUT_SESSION_ID}&plan_type=${input.planType}`,
+          success_url: `${baseUrl}/payment-success?session_id={CHECKOUT_SESSION_ID}&plan_type=${input.planType}`,
           cancel_url: `${baseUrl}/payment-cancel`,
           metadata,
         });
@@ -117,14 +117,14 @@ export const paymentPlanRouter = router({
             price_data: {
               currency: 'usd',
               product_data: {
-                name: `Cross Life School of Divinity - ${input.planType.replace(/_/g, ' ')}`,
+                name: `${input.planType.replace(/_/g, ' ')} - Full Payment`,
                 description: 'One-time payment - Full access',
               },
               unit_amount: config.totalAmount,
             },
             quantity: 1,
           }],
-          success_url: `${baseUrl}/payment/success?session_id={CHECKOUT_SESSION_ID}&plan_type=${input.planType}`,
+          success_url: `${baseUrl}/payment-success?session_id={CHECKOUT_SESSION_ID}&plan_type=${input.planType}`,
           cancel_url: `${baseUrl}/payment-cancel`,
           metadata,
         });

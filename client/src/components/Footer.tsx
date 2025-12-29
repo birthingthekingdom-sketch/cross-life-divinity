@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin, ShieldCheck } from "lucide-react";
+import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
 
 export function Footer() {
   return (
@@ -17,13 +17,9 @@ export function Footer() {
               />
               <h3 className="font-bold text-lg">CLSOD</h3>
             </div>
-            <p className="text-white/80 text-sm mb-4">
-              CLAC-accredited theological education for ministry leaders. Transform your ministry through biblical excellence.
+            <p className="text-white/80 text-sm">
+              CPD-accredited theological education for ministry leaders. Transform your ministry through biblical excellence.
             </p>
-            <Link href="/accreditation" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 transition-colors px-3 py-2 rounded-md text-sm">
-              <ShieldCheck className="h-4 w-4 text-accent" />
-              <span>CLAC Accredited</span>
-            </Link>
           </div>
 
           {/* Quick Links */}
@@ -50,17 +46,6 @@ export function Footer() {
                   About Us
                 </Link>
               </li>
-              <li>
-                <Link href="/accreditation" className="text-white/80 hover:text-white transition-colors flex items-center gap-1">
-                  <ShieldCheck className="h-3 w-3" />
-                  Accreditation
-                </Link>
-              </li>
-              <li>
-                <Link href="/pla" className="text-white/80 hover:text-white transition-colors">
-                  Life Experience Credits
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -68,11 +53,6 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Student Resources</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/student-handbook" className="text-white/80 hover:text-white transition-colors">
-                  Student Handbook
-                </Link>
-              </li>
               <li>
                 <Link href="/dashboard" className="text-white/80 hover:text-white transition-colors">
                   My Dashboard
@@ -102,8 +82,8 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <Mail className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <a href="mailto:support@crosslifeschoolofdivinity.org" className="text-white/80 hover:text-white transition-colors">
-                  support@crosslifeschoolofdivinity.org
+                <a href="mailto:studio6817@yahoo.com" className="text-white/80 hover:text-white transition-colors">
+                  studio6817@yahoo.com
                 </a>
               </li>
               <li className="flex items-start gap-2">

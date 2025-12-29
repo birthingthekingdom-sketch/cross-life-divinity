@@ -1,4 +1,3 @@
-import { AdminRoute } from "@/components/AdminRoute";
 import { useState } from "react";
 import { useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
@@ -10,7 +9,7 @@ import { toast } from "sonner";
 import Papa from "papaparse";
 import { ArrowLeft, Upload, Download, CheckCircle2, AlertCircle } from "lucide-react";
 
-function AdminBulkImportContent() {
+export default function AdminBulkImport() {
   const [, navigate] = useLocation();
   const [selectedCourseId, setSelectedCourseId] = useState<string>("");
   const [importing, setImporting] = useState(false);
@@ -205,13 +204,5 @@ function AdminBulkImportContent() {
         </Card>
       </div>
     </div>
-  );
-}
-
-export default function AdminBulkImport() {
-  return (
-    <AdminRoute>
-      <AdminBulkImportContent />
-    </AdminRoute>
   );
 }

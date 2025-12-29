@@ -31,7 +31,7 @@ export default function About() {
                 </div>
                 <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
                 <p className="text-lg text-foreground/80 leading-relaxed">
-                  To provide high-quality, CLAC-accredited theological education that empowers ministry leaders worldwide to deepen their biblical knowledge, strengthen their ministry skills, and transform their communities through the gospel of Jesus Christ.
+                  To provide high-quality, CPD-accredited theological education that empowers ministry leaders worldwide to deepen their biblical knowledge, strengthen their ministry skills, and transform their communities through the gospel of Jesus Christ.
                 </p>
               </CardContent>
             </Card>
@@ -97,28 +97,22 @@ export default function About() {
               <div className="bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center mb-6">
                 <Award className="h-10 w-10 text-accent" />
               </div>
-              <h2 className="text-4xl font-bold mb-6">CLAC Accreditation</h2>
+              <h2 className="text-4xl font-bold mb-6">CPD Accreditation</h2>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                All our courses are accredited by the Cross Life Accreditation Council (CLAC), our internal accrediting body that maintains rigorous standards equivalent to nationally recognized accrediting agencies.
+                All our courses are accredited by the Continuing Professional Development (CPD) Standards Office, ensuring that your learning is recognized and valued by churches, ministries, and organizations worldwide.
               </p>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                Upon successful completion of each course, you'll receive a CLAC-accredited certificate that demonstrates your commitment to theological excellence and ministry preparation.
+                Upon successful completion of each course, you'll receive a CPD-accredited certificate that demonstrates your commitment to ongoing professional development and theological excellence.
               </p>
-              <Link href="/accreditation">
-                <Button variant="outline" className="mt-2">
-                  Learn More About Our Accreditation
-                  <ArrowRight className="h-4 w-4 ml-2" />
-                </Button>
-              </Link>
             </div>
             <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg p-12 text-center">
               <Award className="h-24 w-24 text-primary mx-auto mb-6" />
-              <h3 className="text-3xl font-bold mb-4">CLAC Certified</h3>
+              <h3 className="text-3xl font-bold mb-4">CPD Certified</h3>
               <p className="text-xl text-muted-foreground mb-6">
                 Recognized by churches and ministries worldwide
               </p>
               <div className="text-4xl font-bold text-primary mb-2">17 Courses</div>
-              <div className="text-lg text-muted-foreground">All CLAC-Accredited</div>
+              <div className="text-lg text-muted-foreground">All CPD-Accredited</div>
             </div>
           </div>
         </div>

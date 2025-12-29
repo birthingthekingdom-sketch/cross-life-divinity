@@ -3,12 +3,11 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { Footer } from "@/components/Footer";
 import { ChatWidget } from "@/components/ChatWidget";
-import { Check, BookOpen, Award, Users, Clock, Menu, X, MapPin, Globe, ChevronDown, Mail } from "lucide-react";
+import { Check, BookOpen, Award, Users, Clock, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 export default function Landing() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [courseDropdownOpen, setCourseDropdownOpen] = useState(false);
   
   return (
     <div className="min-h-screen bg-background">
@@ -19,62 +18,28 @@ export default function Landing() {
             {/* Logo */}
             <Link href="/">
               <div className="flex items-center gap-3 cursor-pointer">
-                <img src="/logo.png" alt="Cross Life School of Divinity" className="h-20 w-20 object-contain" />
-                <span className="text-sm font-bold text-primary hidden sm:inline">CLSOD</span>
+                <img src="/logo.png" alt="Cross Life School of Divinity" className="h-32 w-32 object-contain" />
+                <span className="text-xl font-bold text-primary">Cross Life School of Divinity</span>
               </div>
             </Link>
             
             {/* Navigation Links */}
-            <div className="hidden md:flex items-center gap-8 flex-1 justify-center">
-              <Link href="/about" className="text-foreground hover:text-primary transition-all duration-200 cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5 hover:scale-105">
-                About
+            <div className="hidden md:flex items-center gap-6">
+              <Link href="/catalog" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                Courses
               </Link>
-              
-              {/* Courses Dropdown */}
-              <div className="relative group">
-                <button 
-                  onClick={() => setCourseDropdownOpen(!courseDropdownOpen)}
-                  className="text-foreground hover:text-primary transition-all duration-200 cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5 hover:scale-105 flex items-center gap-1"
-                >
-                  Courses
-                  <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
-                </button>
-                
-                {/* Dropdown Menu */}
-                <div className="absolute left-0 mt-0 w-48 bg-white border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <Link href="/catalog">
-                    <div className="px-4 py-2 hover:bg-primary/5 transition-colors cursor-pointer font-medium">
-                      All Courses
-                    </div>
-                  </Link>
-                  <Link href="/gospel-studies">
-                    <div className="px-4 py-2 hover:bg-primary/5 transition-colors cursor-pointer font-medium">
-                      Gospel Studies
-                    </div>
-                  </Link>
-                  <Link href="/learning-paths">
-                    <div className="px-4 py-2 hover:bg-primary/5 transition-colors cursor-pointer font-medium">
-                      Learning Paths
-                    </div>
-                  </Link>
-                </div>
-              </div>
-              
-              <Link href="/learning-paths" className="text-foreground hover:text-primary transition-all duration-200 cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5 hover:scale-105">
+              <Link href="/learning-paths" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
                 Learning Paths
               </Link>
-              <Link href="/chaplaincy-training" className="text-foreground hover:text-primary transition-all duration-200 cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5 hover:scale-105">
+              <Link href="/chaplaincy-training" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
                 Chaplaincy
               </Link>
-              <Link href="/pricing" className="text-foreground hover:text-primary transition-all duration-200 cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-primary/5 hover:scale-105">
+              <Link href="/pricing" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
                 Pricing
               </Link>
-              
-              {/* Contact Us Button */}
-              <a href="mailto:support@crosslifeschoolofdivinity.org" className="text-foreground hover:text-primary transition-all duration-200 cursor-pointer font-medium px-4 py-2 rounded-md hover:bg-accent/10 flex items-center gap-2 ml-4">
-                <Mail className="h-4 w-4" />
-                Contact
-              </a>
+              <Link href="/about" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
+                About
+              </Link>
             </div>
             
             {/* Mobile Menu Button */}
@@ -102,21 +67,11 @@ export default function Landing() {
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-              <div className="md:hidden border-t border-border bg-white">
+            <div className="md:hidden border-t border-border bg-white">
               <div className="py-4 space-y-2">
-                <Link href="/about">
-                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
-                    About
-                  </div>
-                </Link>
                 <Link href="/catalog">
                   <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
-                    All Courses
-                  </div>
-                </Link>
-                <Link href="/gospel-studies">
-                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
-                    Gospel Studies
+                    Courses
                   </div>
                 </Link>
                 <Link href="/learning-paths">
@@ -132,6 +87,11 @@ export default function Landing() {
                 <Link href="/pricing">
                   <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
                     Pricing
+                  </div>
+                </Link>
+                <Link href="/about">
+                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    About
                   </div>
                 </Link>
                 <Link href="/faq">
@@ -160,8 +120,8 @@ export default function Landing() {
       {/* Hero Section with Promotional Image */}
       <section className="relative overflow-hidden">
         <img 
-          src="/promo-hero-clac.png" 
-          alt="Study Theology at Your Own Pace - CLAC Accredited Courses" 
+          src="/promo-hero-new.webp" 
+          alt="Study Theology at Your Own Pace - CPD Accredited Courses" 
           className="w-full h-auto object-cover"
         />
       </section>
@@ -200,7 +160,7 @@ export default function Landing() {
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-lg">CLAC-accredited certificates upon completion</span>
+                  <span className="text-lg">CPD-accredited certificates upon completion</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
@@ -232,16 +192,16 @@ export default function Landing() {
               </p>
               <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
                 <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-4xl font-bold text-accent">$325</span>
+                  <span className="text-4xl font-bold text-accent">$275</span>
                   <span className="text-2xl text-muted-foreground line-through">$400</span>
-                  <span className="bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">Save $75</span>
+                  <span className="bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">Save $125</span>
                 </div>
-                <p className="text-foreground/80">$275 course + $50 background check • Payment plan available</p>
+                <p className="text-foreground/80">Includes $50 background check - One-time payment</p>
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-3">
                   <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-lg">30 CLAC Hours of Professional Certification</span>
+                  <span className="text-lg">30 CPD Hours of Professional Certification</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
@@ -289,7 +249,7 @@ export default function Landing() {
               <p className="text-foreground/80 mb-4">
                 Explore the prophetic office and gift, learn to test prophecies, and understand the role of prophecy in the believer's life and church ministry.
               </p>
-              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CLAC Hours</div>
+              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CPD Hours</div>
             </div>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
@@ -299,7 +259,7 @@ export default function Landing() {
               <p className="text-foreground/80 mb-4">
                 Master the biblical foundations of deliverance, understand spiritual and natural bondages, and learn practical methods for setting captives free.
               </p>
-              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CLAC Hours</div>
+              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CPD Hours</div>
             </div>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
@@ -309,7 +269,7 @@ export default function Landing() {
               <p className="text-foreground/80 mb-4">
                 Study the five ministry gifts from Ephesians 4:11 - apostle, prophet, evangelist, pastor, and teacher - and their function in building the church.
               </p>
-              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CLAC Hours</div>
+              <div className="text-sm text-accent font-semibold">10 Comprehensive Lessons • 20 CPD Hours</div>
             </div>
           </div>
         </div>
@@ -445,7 +405,7 @@ export default function Landing() {
               <div className="inline-block bg-accent/10 p-4 rounded-full mb-4">
                 <Award className="h-12 w-12 text-accent" />
               </div>
-              <h3 className="text-2xl font-semibold mb-3">CLAC Accredited</h3>
+              <h3 className="text-2xl font-semibold mb-3">CPD Accredited</h3>
               <p className="text-foreground/80">
                 Earn recognized certificates that demonstrate your commitment to professional development
               </p>
@@ -523,7 +483,7 @@ export default function Landing() {
                 </div>
               </div>
               <p className="text-muted-foreground italic leading-relaxed">
-                "The Biblical Hermeneutics course equipped me with tools I use daily in sermon preparation and Bible study leadership. The CLAC accreditation adds credibility to my ministry credentials. Worth every penny—actually, the subscription model makes it incredibly affordable!"
+                "The Biblical Hermeneutics course equipped me with tools I use daily in sermon preparation and Bible study leadership. The CPD accreditation adds credibility to my ministry credentials. Worth every penny—actually, the subscription model makes it incredibly affordable!"
               </p>
               <div className="mt-4 flex gap-1">
                 {[...Array(5)].map((_, i) => (
@@ -568,97 +528,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Global Reach Section */}
-      <section className="py-16 bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5">
-        <div className="container max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <Badge className="mb-4">Global Impact</Badge>
-            <h2 className="text-4xl font-bold mb-4">Equipping Ministry Leaders Worldwide</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Our students are serving in churches, hospitals, prisons, and mission fields across the globe
-            </p>
-          </div>
-          
-          {/* Stats Row */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <div className="text-3xl font-bold text-primary mb-2">Decades</div>
-              <p className="text-muted-foreground">of Ministry Training Experience</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <div className="text-3xl font-bold text-primary mb-2">Proven</div>
-              <p className="text-muted-foreground">Track Record of Student Success</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <div className="text-3xl font-bold text-primary mb-2">Seminary</div>
-              <p className="text-muted-foreground">Quality Curriculum</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <div className="text-4xl font-bold text-primary mb-2">18</div>
-              <p className="text-muted-foreground">Courses Available</p>
-            </div>
-          </div>
-
-          {/* Map Visualization */}
-          <div className="bg-white rounded-2xl shadow-xl p-8">
-            <div className="flex items-center justify-center gap-2 mb-6">
-              <Globe className="h-6 w-6 text-primary" />
-              <h3 className="text-2xl font-bold">Where Our Students Serve</h3>
-            </div>
-            <div className="relative">
-              {/* US Map SVG */}
-              <svg viewBox="0 0 960 600" className="w-full h-auto max-h-[400px]">
-                {/* Simplified US Map Path */}
-                <path
-                  d="M158 453l-3-2-2-4 1-3 3-1 3 2 1 3-1 3-2 2zm-10-9l-2-1-1-2 1-2 2-1 2 1 1 2-1 2-2 1zm833-170l-1 4-3 2-4-1-2-3 1-4 3-2 4 1 2 3zm-15 8l-2 1-2-1-1-2 1-2 2-1 2 1 1 2-1 2z"
-                  fill="#e2e8f0"
-                  stroke="#94a3b8"
-                  strokeWidth="0.5"
-                />
-                {/* Continental US simplified */}
-                <path
-                  d="M230 140 L850 140 L870 180 L880 250 L860 320 L800 380 L700 400 L600 420 L500 400 L400 380 L300 400 L200 380 L150 320 L140 250 L160 180 Z"
-                  fill="#e2e8f0"
-                  stroke="#94a3b8"
-                  strokeWidth="1"
-                />
-                
-                {/* Student Location Markers - Actual locations: IL, NE (Omaha), TX */}
-                {/* Illinois - Chicago (Headquarters) */}
-                <circle cx="580" cy="240" r="14" fill="#2563eb" opacity="0.9">
-                  <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite" />
-                </circle>
-                <text x="580" y="270" textAnchor="middle" className="text-xs fill-primary font-semibold">IL</text>
-                
-                {/* Nebraska - Omaha */}
-                <circle cx="420" cy="240" r="10" fill="#2563eb" opacity="0.8">
-                  <animate attributeName="r" values="8;12;8" dur="2.3s" repeatCount="indefinite" />
-                </circle>
-                <text x="420" y="265" textAnchor="middle" className="text-xs fill-primary font-semibold">NE</text>
-                
-                {/* Texas */}
-                <circle cx="450" cy="380" r="10" fill="#2563eb" opacity="0.8">
-                  <animate attributeName="r" values="8;12;8" dur="2.5s" repeatCount="indefinite" />
-                </circle>
-                <text x="450" y="405" textAnchor="middle" className="text-xs fill-primary font-semibold">TX</text>
-              </svg>
-              
-              {/* Legend */}
-              <div className="flex items-center justify-center gap-6 mt-6">
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-primary animate-pulse"></div>
-                  <span className="text-sm text-muted-foreground">Graduate Locations</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-primary" />
-                  <span className="text-sm text-muted-foreground">Headquarters: Chicago, IL</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials Section */}
       <section className="py-20 bg-accent/5">
         <div className="container max-w-7xl mx-auto px-4">
@@ -666,7 +535,7 @@ export default function Landing() {
             <Badge className="mb-4">Student Success Stories</Badge>
             <h2 className="text-4xl font-bold mb-4">Transforming Ministry Leaders Worldwide</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Join pastors, ministers and chaplains who are advancing their ministries through our CLAC-accredited programs
+              Join thousands of pastors, ministers, and chaplains who have advanced their ministry through our CPD-accredited programs
             </p>
           </div>
           
@@ -686,7 +555,7 @@ export default function Landing() {
             <div className="bg-background p-8 rounded-lg shadow-lg">
               <div className="text-5xl text-primary mb-4">"</div>
               <p className="text-muted-foreground mb-6 italic">
-                As a busy ministry leader, the flexibility of online learning was perfect. The CLAC certification adds credibility to my credentials.
+                As a busy ministry leader, the flexibility of online learning was perfect. The CPD certification adds credibility to my credentials.
               </p>
               <div>
                 <p className="font-bold">Dr. Patricia Johnson</p>

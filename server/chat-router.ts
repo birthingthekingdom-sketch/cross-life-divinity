@@ -58,7 +58,7 @@ export const chatRouter = router({
       return result;
     }),
 
-  getMessages: adminProcedure
+  getMessages: publicProcedure
     .input(z.object({
       sessionId: z.number(),
     }))

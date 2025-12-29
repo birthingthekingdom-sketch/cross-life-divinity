@@ -1,4 +1,3 @@
-import { AdminRoute } from "@/components/AdminRoute";
 import { useState } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Button } from "@/components/ui/button";
@@ -13,7 +12,7 @@ import { GraduationCap, Edit, Plus, Trash2, CheckCircle2, Circle } from "lucide-
 import { toast } from "sonner";
 import { Checkbox } from "@/components/ui/checkbox";
 
-function AdminLearningPathsContent() {
+export default function AdminLearningPaths() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editingPath, setEditingPath] = useState<any>(null);
   const [formData, setFormData] = useState({
@@ -394,13 +393,5 @@ function AdminLearningPathsContent() {
         </div>
       </div>
     </DashboardLayout>
-  );
-}
-
-export default function AdminLearningPaths() {
-  return (
-    <AdminRoute>
-      <AdminLearningPathsContent />
-    </AdminRoute>
   );
 }

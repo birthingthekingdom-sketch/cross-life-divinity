@@ -65,18 +65,8 @@ import Logout from './pages/Logout';
 import AffiliateApply from './pages/AffiliateApply';
 import AffiliateDashboard from './pages/AffiliateDashboard';
 import ChaplaincyTraining from './pages/ChaplaincyTraining';
-import Accreditation from './pages/Accreditation';
-import FinancialAid from './pages/FinancialAid';
-import Credits from './pages/Credits';
-import PriorLearning from './pages/PriorLearning';
 import { PaymentPlanCheckout } from './pages/PaymentPlanCheckout';
 import MyPayments from './pages/MyPayments';
-import ChristmasGift from './pages/ChristmasGift';
-import GospelStudies from './pages/GospelStudies';
-import StudentIdUpload from './pages/StudentIdUpload';
-import AdminIdVerification from './pages/AdminIdVerification';
-import StudentHandbook from './pages/StudentHandbook';
-// @ts-ignore
 
 function Router() {
   return (
@@ -87,7 +77,6 @@ function Router() {
       <Route path="/affiliate/apply" component={AffiliateApply} />
       <Route path="/affiliate/dashboard" component={AffiliateDashboard} />
       <Route path="/chaplaincy-training" component={ChaplaincyTraining} />
-      <Route path="/christmas-gift" component={ChristmasGift} />
       <Route path="/register" component={Register} />
       <Route path="/signup" component={Register} />
       <Route path="/forgot-password" component={ForgotPassword} />
@@ -127,10 +116,6 @@ function Router() {
       <Route path="/learning-paths" component={LearningPaths} />
       <Route path="/cohorts" component={CohortGroups} />
       <Route path="/about" component={About} />
-      <Route path="/accreditation" component={Accreditation} />
-      <Route path="/credits" component={Credits} />
-      <Route path="/prior-learning" component={PriorLearning} />
-      <Route path="/financial-aid" component={FinancialAid} />
       <Route path="/faq" component={FAQ} />
       <Route path="/success-stories" component={SuccessStories} />
       <Route path="/resources" component={Resources} />
@@ -139,11 +124,7 @@ function Router() {
       <Route path="/pricing" component={Pricing} />
       <Route path="/courses" component={Courses} />
       <Route path="/catalog" component={Catalog} />
-      <Route path="/gospel-studies" component={GospelStudies} />
       <Route path="/bundle-select" component={BundleSelection} />
-      <Route path="/student/id-upload" component={StudentIdUpload} />
-      <Route path="/admin/id-verification" component={AdminIdVerification} />
-      <Route path="/student-handbook" component={StudentHandbook} />
       <Route path="/payment/success" component={PaymentSuccess} />
       <Route path="/payment/cancel" component={PaymentCancel} />
       <Route path="/checkout/payment-plan" component={PaymentPlanCheckout} />

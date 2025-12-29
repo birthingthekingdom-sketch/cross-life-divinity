@@ -1,8 +1,0 @@
-{
-  "query": "INSERT INTO courses (code, title, description, totalLessons, estimatedHours, cpdHours) VALUES \n('DIV108', 'Advanced Spiritual Warfare', 'Master advanced techniques and biblical principles for spiritual warfare and victory in Christ. Coming soon.', 10, 20, 20),\n('DIV109', 'Kingdom Authority and Power', 'Explore the authority believers have in Christ and how to exercise kingdom power effectively. Coming soon.', 10, 20, 20),\n('DIV110', 'Prophetic Activation and Development', 'Develop and activate your prophetic gifts through biblical training and practical ministry. Coming soon.', 10, 20, 20);",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO courses (code, title, description, totalLessons, estimatedHours, cpdHours) VALUES \n('DIV108', 'Advanced Spiritual Warfare', 'Master advanced techniques and biblical principles for spiritual warfare and victory in Christ. Coming soon.', 10, 20, 20),\n('DIV109', 'Kingdom Authority and Power', 'Explore the authority believers have in Christ and how to exercise kingdom power effectively. Coming soon.', 10, 20, 20),\n('DIV110', 'Prophetic Activation and Development', 'Develop and activate your prophetic gifts through biblical training and practical ministry. Coming soon.', 10, 20, 20);",
-  "returncode": 1,
-  "logs": [
-    "ERROR 1054 (42S22) at line 1: Unknown column 'estimatedHours' in 'field list'"
-  ]
-}

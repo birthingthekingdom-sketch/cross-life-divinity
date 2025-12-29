@@ -1,4 +1,3 @@
-import { AdminRoute } from "@/components/AdminRoute";
 import { useState } from "react";
 import { useLocation } from "wouter";
 import DashboardLayout from "@/components/DashboardLayout";
@@ -11,7 +10,7 @@ import { trpc } from "@/lib/trpc";
 import { ArrowLeft, Loader2, Mail, Send } from "lucide-react";
 import { toast } from "sonner";
 
-function AdminEmailSettingsContent() {
+export default function AdminEmailSettings() {
   const [, navigate] = useLocation();
   const { data: emailConfig, refetch } = trpc.admin.getEmailConfig.useQuery();
   
@@ -241,13 +240,5 @@ function AdminEmailSettingsContent() {
         )}
       </div>
     </DashboardLayout>
-  );
-}
-
-export default function AdminEmailSettings() {
-  return (
-    <AdminRoute>
-      <AdminEmailSettingsContent />
-    </AdminRoute>
   );
 }
