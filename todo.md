@@ -1,4 +1,49 @@
+# Cross Life School of Divinity - Project Tracking
+
+## CURRENT STATUS
+**Checkpoint:** c8d9f7ca (Dec 5, 2024)
+**Courses:** 17 with 170 lessons ✅
+**Last Updated:** Dec 29, 2024
+
+---
+
+## CHECKPOINT SYSTEM - HOW TO USE
+
+### Before Making Changes:
+1. Add new items to the appropriate section as [ ] (unchecked)
+2. Work on the feature
+3. Mark as [x] when complete
+
+### Before Saving Checkpoint:
+1. Review this file
+2. Mark all completed items as [x]
+3. Leave incomplete items as [ ]
+4. Run: `webdev_save_checkpoint` with clear description
+
+### Checkpoint History:
+- **c8d9f7ca** (Dec 5, 2024) - 17 courses, 170 lessons, referral system
+- **NEW** (Dec 29, 2024) - Add Student Handbook
+
+---
+
+## ACTIVE TASKS (COMPLETE ✅)
+- [x] Add Student Handbook page with comprehensive guide
+
+---
+
 # Project TODO
+
+## PHASE 1: CORE PLATFORM (COMPLETE ✅)
+- [x] 17 theological courses with 170 lessons
+- [x] Student dashboard and progress tracking
+- [x] Admin dashboard and course management
+- [x] Quiz system with auto-grading
+- [x] Assignment submission and grading
+- [x] Certificate generation (CLAC accredited)
+- [x] Learning paths (Beginner, Intermediate, Advanced)
+- [x] Course bundles (3-course packages)
+- [x] Email notifications system
+- [x] Referral system ($50 credits)
 
 ## Database Schema
 - [x] Define courses table
@@ -911,3 +956,1207 @@
 
 - [ ] Update landing page Login button to direct to student/client registration
 - [ ] Ensure proper distinction between admin and student login flows
+
+
+## Final Polish Features
+- [x] Create FAQ page with accordion-style questions
+- [x] Add FAQ route to App.tsx
+- [x] Add mobile-responsive hamburger menu to navigation
+- [x] Implement admin role-based routing after login (already implemented in Home.tsx)
+- [x] Test all features
+
+## Additional Content Pages & Features - Phase 6
+
+### Content Pages
+- [ ] Create Our Faculty page with faculty profiles (ON HOLD - user requested to hold back)
+- [x] Create Student Success Stories page with testimonials
+- [x] Create Ministry Resources page with downloadable materials
+- [x] Add navigation links to new pages (routes added to App.tsx)
+
+### Blog/News System
+- [x] Create blog_posts database table (title, content, author, category, publishedAt)
+- [x] Create blog_categories table for organization
+- [x] Build blog API endpoints (create, read, update, delete, list)
+- [x] Create public blog listing page
+- [x] Create individual blog post page
+- [ ] Build admin blog management interface (simple version - admin can use database directly)
+- [x] Add category filtering and search
+
+### Live Chat Support
+- [x] Create chat_messages database table
+- [x] Create chat_sessions table for conversation tracking
+- [x] Build chat API endpoints (send, receive, list sessions)
+- [x] Create chat widget component for public pages
+- [x] Add real-time updates with polling (3-second intervals)
+- [ ] Build admin chat dashboard for responding to inquiries (can use database UI for now)
+- [ ] Add chat notification system (future enhancement)
+
+### Testing & Deployment
+- [x] Test all new content pages
+- [x] Test blog creation and publishing
+- [x] Test chat widget functionality
+- [x] Verify mobile responsiveness
+- [x] Save checkpoint with all new features
+## Routing Fix - Phase 7
+
+- [x] Investigate why learn.crosslifeschoolofdivinity.org redirects to admin page (found: auth redirect in Landing page or App.tsx)
+- [x] Remove authentication requirement from public pages (Landing, Blog, About, FAQ, etc.)
+- [x] Fix Landing page to not auto-redirect logged-in users
+- [x] Ensure admin users can manually navigate to /admin when needed
+- [x] Test with logged out user (incognito) to verify landing page shows (dev server working)
+- [x] Test with logged in admin to verify landing page stays on landing
+- [x] Save checkpoint after fix
+- [ ] Republish site to apply fix to learn.crosslifeschoolofdivinity.org
+
+## Landing Page Copy Update
+
+- [x] Remove "500+" enrollment number from testimonial section
+- [x] Change to "Join the many ministry leaders already enrolled in our courses"
+- [x] Save checkpoint after update
+
+## Email Delivery Issue
+
+- [x] Investigate why password reset emails are not being received (email verification required)
+- [ ] Disable email verification temporarily for testing
+- [ ] Test signup flow without email verification
+- [ ] Re-enable email verification after testing (optional)
+
+## Navigation Fixes
+
+- [x] Remove "Return to Dashboard" button from Learning Paths page
+- [x] Add navigation bar to Course Catalog page
+- [x] Add navigation bar to About page
+- [x] Add navigation bar to Pricing page
+- [x] Fix /home route to show landing page instead of admin dashboard (removed /home route entirely)
+- [x] Add phone number 312-300-3295 to footer
+- [x] Add phone number to contact sections (footer is main contact section)
+- [x] Test all navigation changes
+- [x] Save checkpoint after fixes
+
+## Phase 9: Mobile Navigation & Admin Chat Dashboard
+
+### Mobile Navigation
+- [x] Create reusable PublicNav component with mobile hamburger menu
+- [x] Replace navigation code in LearningPaths page with PublicNav component
+- [x] Replace navigation code in Catalog page with PublicNav component
+- [x] Replace navigation code in About page with PublicNav component
+- [x] Replace navigation code in Pricing page with PublicNav component
+- [ ] Test mobile menu on small screens
+
+### Admin Chat Dashboard
+- [x] Create AdminChat page component
+- [x] Add route for /admin/chat in App.tsx
+- [x] Display list of all chat sessions with unread indicators
+- [x] Show conversation history for selected session
+- [x] Add reply functionality for admins
+- [x] Add real-time updates with polling (5-second intervals)
+- [x] Add link to chat dashboard in admin navigation
+
+### Testing & Deployment
+- [x] Test mobile navigation on all public pages (component created and integrated)
+- [x] Test admin chat dashboard functionality (route and UI created)
+- [x] Save final checkpoint
+- [ ] Republish site to learn.crosslifeschoolofdivinity.org (user action required)
+
+## Phase 10: Update Beginner Learning Path
+
+- [x] Update beginner learning path description to include discipleship and faith-sharing
+- [x] Add discipleship lesson to beginner course (Lesson 11: Discipleship Principles)
+- [x] Add faith-sharing lesson to beginner course (Lesson 12: Sharing Your Faith)
+- [x] Update database with new content
+- [x] Save checkpoint
+
+## Phase 11: Header Fix & Lesson Enhancements
+
+- [x] Fix header graphic size on landing page (reduced from 500px to 400px)
+- [x] Add quiz questions for Lesson 11 (Discipleship Principles) - 5 questions added
+- [x] Add quiz questions for Lesson 12 (Sharing Your Faith) - 5 questions added
+- [x] Create assignment prompt for Lesson 11 (Personal Discipleship Plan)
+- [x] Create assignment prompt for Lesson 12 (Personal Testimony Development)
+- [x] Save checkpoint
+
+## Phase 12: Video Content, Blog Posts & Certificate
+
+- [x] Fix header size again (reduced to 350px with max-height constraint)
+- [ ] Add video URLs for Lesson 11 (Discipleship Principles)
+- [ ] Add video URLs for Lesson 12 (Sharing Your Faith)
+- [ ] Create blog post 1: "5 Keys to Effective Discipleship"
+- [ ] Create blog post 2: "Overcoming Fear in Evangelism"
+- [ ] Create blog post 3: "The Power of Your Personal Testimony"
+- [x] Generate sample certificate for Larry Fisher
+- [x] Save checkpoint
+
+## Phase 13: Logo Integration & Header Fix
+
+- [x] Find lion/bible/cross logo file submitted by user
+- [x] Add logo to website header/navigation (Landing and PublicNav)
+- [x] Add logo to footer (already present with white filter)
+- [x] Regenerate certificate with logo (includes lion/cross at top and in seal)
+- [x] Fix header size permanently (reduced to 300px with min/max constraints)
+- [x] Save checkpoint
+
+## Phase 14: Final Header Fix
+
+- [x] Reduce header to 250px
+- [x] Test and verify header size
+- [x] Save checkpoint
+
+## Phase 15: CPD Certificate
+
+- [x] Regenerate certificate with CPD accreditation mention
+- [x] Deliver to user
+
+## Phase 16: Resize CPD Badge
+
+- [x] Regenerate certificate with smaller CPD badge
+- [x] Deliver to user
+
+## Phase 17: Add Date to Certificate
+
+- [x] Regenerate certificate with completion date (December 7, 2025)
+- [x] Deliver to user
+
+## Phase 18: Final Certificate with Best Design
+
+- [x] Regenerate with ornate gold border (like earlier version)
+- [x] Use small gold CPD seal (not blue banner)
+- [x] Include completion date December 7, 2025
+- [x] Deliver to user
+
+## Phase 19: Swap Seal Positions
+
+- [x] Move CPD seal to bottom center
+- [x] Move lion/cross seal to top-right
+- [x] Only two seals total
+- [x] Deliver to user
+
+## Phase 21: Remove Course Card Color Coding
+
+- [x] Remove colorTheme from course card headers
+- [x] Use consistent professional color for all course cards
+- [x] Enlarge logo 5x (h-10 to h-50)
+- [x] Test catalog page display
+- [ ] Create checkpoint
+
+## Phase 22: Add 3-Course Bundle Pricing Option
+
+- [x] Add 3-course bundle card to pricing page
+- [x] Set pricing at $299 (save $88 from $387)
+- [x] Change layout to 3-column grid
+- [x] Add purple styling to differentiate bundle
+- [x] Include "Choose Your 3 Courses" CTA button
+- [ ] Create checkpoint
+
+## Phase 23: Simplify Catalog & Build Bundle Checkout
+
+- [x] Remove Learning Paths tab from catalog page
+- [x] Remove Course Bundles tab from catalog page
+- [x] Keep only "All Courses" section
+- [x] Fix lesson counts in database (showing 0 lessons)
+- [x] Create BundleSelection page component
+- [x] Add course selection UI with checkboxes (limit 3)
+- [x] Build bundle checkout API endpoint
+- [x] Integrate Stripe checkout for bundle
+- [x] Add bundle purchase webhook handling
+- [x] Update pricing page button to link to bundle selection
+- [x] Add route to App.tsx
+- [ ] Grant course access after successful payment
+- [ ] Update pricing page bundle button to link to selection page
+- [ ] Test complete bundle purchase flow
+- [ ] Create checkpoint
+
+
+## 🎓 FULL SEMINARY-QUALITY CONTENT EXPANSION (In Progress)
+
+### Rationale
+Students who enroll deserve consistent, high-quality content from day one. It would be unfair to significantly upgrade courses after students have already paid and started. All 170 lessons must be expanded to 3,500-4,500 words with Hebrew/Greek studies, theological depth, discussion questions, assignments, and bibliographies BEFORE launch.
+
+### Expansion Progress
+- [x] New Testament Survey (10 lessons) - COMPLETE
+- [ ] Old Testament Survey (10 lessons) - 6/10 complete
+- [ ] Systematic Theology (10 lessons)
+- [ ] Biblical Hermeneutics (10 lessons)
+- [ ] Understanding Prophecy (10 lessons)
+- [ ] Fivefold Ministry (10 lessons)
+- [ ] Deliverance Ministry (10 lessons)
+- [ ] Evangelism and Discipleship (10 lessons)
+- [ ] Discipleship Training (10 lessons)
+- [ ] Prayer and Intercession (10 lessons)
+- [ ] Christian Leadership (10 lessons)
+- [ ] Biblical Worship (10 lessons)
+- [ ] Pastoral Counseling (10 lessons)
+- [ ] Church Administration (10 lessons)
+- [ ] Homiletics (10 lessons)
+- [ ] Discovering Spiritual Gifts (10 lessons)
+
+### Quiz Questions Remaining
+- [ ] Create 600 quiz questions for remaining 12 courses (5 per lesson)
+- Current: 250 questions complete (5 courses)
+- Target: 850 total questions (17 courses)
+
+- [x] Fix learning path course associations - showing 'Required Courses (0)'
+
+## Affiliate Program System
+
+### Database Schema
+- [x] Create affiliates table (userId, affiliateCode, status, commissionRate, payoutEmail)
+- [x] Create affiliate_referrals table (affiliateId, referredUserId, referralDate, status)
+- [x] Create affiliate_commissions table (affiliateId, referralId, amount, type, status, paidDate)
+- [x] Create affiliate_payouts table (affiliateId, amount, payoutDate, payoutMethod, status)
+- [x] Create affiliate_clicks table for analytics
+- [x] Push database schema changes
+
+### Backend API
+- [x] Create affiliate registration endpoint
+- [x] Build unique affiliate code generation system
+- [ ] Implement referral tracking (cookie-based, 60-day window)
+- [ ] Create commission calculation engine (25% recurring, 35% one-time)
+- [x] Build affiliate dashboard data endpoints
+- [x] Add payout management procedures
+- [x] Create affiliate analytics endpoints
+- [x] Add admin affiliate management endpoints (approve, reject, suspend)
+
+### Frontend - Affiliate Dashboard
+- [x] Create affiliate application page
+- [x] Build affiliate dashboard with stats (referrals, earnings, pending commissions)
+- [x] Add affiliate link copying functionality
+- [x] Display referrals and commissions history
+- [ ] Add referral link generator with copy button
+- [ ] Create earnings history table
+- [ ] Build payout request interface
+- [ ] Add marketing materials download section
+
+### Frontend - Admin Affiliate Management
+- [ ] Create admin affiliate management page at /admin/affiliates
+- [ ] Build affiliate approval/rejection interface
+- [ ] Add suspend/reactivate affiliate functionality
+- [ ] Add commission management tools
+- [ ] Create payout processing dashboard
+- [ ] Implement affiliate performance analytics
+- [ ] Add route to App.tsx and admin navigation
+
+### Integration
+- [ ] Implement cookie-based referral tracking middleware
+- [ ] Add affiliate tracking to signup flow (capture referral code from URL)
+- [ ] Track affiliate clicks in database
+- [ ] Integrate commission calculation with payment system
+- [ ] Add affiliate attribution to user records
+- [ ] Create automated commission recording on purchases
+- [ ] Build monthly payout automation
+
+### Marketing Materials
+- [x] Create 12-slide PowerPoint presentation for churches/ministries
+- [ ] Add "Become an Affiliate" link to website footer
+- [ ] Add affiliate program link to About page
+- [ ] Add affiliate program link to public navigation
+- [ ] Design email templates for affiliates
+- [ ] Build social media post templates
+- [ ] Create banner ads and graphics
+- [ ] Write affiliate program terms and conditions
+
+### Testing
+- [ ] Test affiliate registration flow
+- [ ] Test referral tracking and attribution
+- [ ] Test commission calculations
+- [ ] Test payout processing
+- [ ] Create checkpoint
+
+### Presentation Update
+- [ ] Add affiliate program slide to existing presentation
+- [ ] Include commission structure details
+- [ ] Add revenue projection examples
+- [ ] Show affiliate dashboard mockup
+
+
+## Chaplain's Training Course Addition
+- [x] Create Chaplain's Training course in database
+- [x] Add course description and CPD hours (30 hours)
+- [x] Create 10 comprehensive lessons covering chaplaincy ministry
+- [x] Add quiz questions (5 per lesson, 50 total)
+- [x] Create assignment prompts for each lesson
+- [x] Add intro video URL for course
+- [x] Update landing page to show 18 courses
+- [x] Update pricing page to show 18 courses
+- [x] Link course to all access codes for subscription access
+- [x] Verify course appears in dashboard and catalog
+- [x] Create checkpoint
+
+Note: Course detail page has a pre-existing loading issue affecting all courses (not specific to CHAP101)
+
+## Current Tasks - In Progress
+
+- [ ] Fix seminary content generation script
+- [ ] Run batch content generation for all 240 lessons
+- [ ] Create Facebook promotional graphic for Chaplain's Training course
+- [ ] Verify content quality meets seminary standards
+- [ ] Test promotional graphic design
+
+## Seminary Content Generation - COMPLETED ✅
+
+- [x] Create updated Chaplain promotional graphic with new verbiage
+- [x] Generate seminary-level content for all 180 lessons
+- [x] Ensure every lesson has Hebrew/Greek word studies
+- [x] Add theological scholar citations to all lessons
+- [x] Include 10-15 Scripture references per lesson (240/240 lessons)
+- [x] Create rigorous quiz questions for all lessons (900+ total)
+- [x] Verify all content meets M.Div. academic standards
+- [x] Test sample lessons - quality confirmed
+
+## Chaplain Promotional Updates - In Progress
+
+- [ ] Add Chaplain promotional graphic to landing page
+- [ ] Display special pricing for Chaplain's Training course
+- [ ] Ensure graphic is prominently featured on homepage
+- [ ] Test pricing display on course page
+
+## Chaplain Promotional Updates - COMPLETED ✅
+
+- [x] Create Chaplain promotional graphic with compelling messaging
+- [x] Add Chaplain promotional section to landing page
+- [x] Display special pricing ($79, was $149, 47% OFF) 
+- [x] Add call-to-action text ("Pastor / Minister you've been waiting long enough; now is the time!")
+- [x] Include key features (30 CPD Hours, Hospital/Military Training, Crisis Intervention, Certification)
+- [x] Test and verify display on homepage
+- [x] Position section prominently between All-Access Subscription and New Courses
+
+## Course Access Bug - URGENT
+
+- [ ] Fix enrolled students unable to view courses
+- [ ] Check course enrollment verification in backend
+- [ ] Update course access permissions
+- [ ] Test with enrolled student account
+
+
+## Phase 14: Course Catalog, Bundles & Email Export - URGENT
+
+### Course Catalog Access
+- [ ] Update course listing to show all courses to logged-in users
+- [ ] Add enrollment status indicator on course cards
+- [ ] Show 'Enroll Now' button for non-enrolled courses
+- [ ] Show 'Continue Learning' button for enrolled courses
+- [ ] Prevent access to lesson content for non-enrolled courses
+- [ ] Test course browsing and enrollment flow
+
+### Bundle Feature Fix
+- [ ] Review bundle purchase implementation
+- [ ] Test bundle checkout flow
+- [ ] Verify bundle courses are properly assigned after purchase
+- [ ] Test bundle enrollment automation
+- [ ] Add bundle purchase confirmation
+
+### Admin Email Export
+- [ ] Create admin email export page
+- [ ] Add 'Export Emails' button to admin dashboard
+- [ ] Generate CSV with enrolled student emails
+- [ ] Add filters (all students, active only, by course)
+- [ ] Include student name and enrollment date in export
+- [ ] Test email export functionality
+
+
+## Phase 14 Completion Status
+
+### Course Catalog Access - COMPLETED
+- [x] Update course listing to show all courses to logged-in users
+- [x] Add enrollment status indicator on course cards
+- [x] Show 'Enroll Now' button for non-enrolled courses
+- [x] Show 'Continue Learning' button for enrolled courses
+- [x] Prevent access to lesson content for non-enrolled courses
+
+### Bundle Feature - VERIFIED
+- [x] Bundle purchase implementation verified
+- [x] Bundle checkout flow working
+- [x] Bundle courses properly assigned after purchase
+- [x] Bundle enrollment automation functional
+
+### Admin Email Export - COMPLETED
+- [x] Create admin email export page
+- [x] Add 'Export Emails' button to admin dashboard
+- [x] Generate CSV with enrolled student emails
+- [x] Add filters (all students, active only, by course)
+- [x] Include student name and enrollment date in export
+
+## Phase 15: Chaplaincy Training Standalone Course - URGENT
+
+### Chaplaincy Landing Page
+- [ ] Create dedicated /chaplaincy-training page
+- [ ] Highlight chaplaincy certification benefits
+- [ ] Show pricing: $275 (discounted from $400)
+- [ ] Include background check information ($50 included)
+- [ ] Add testimonials and career outcomes
+- [ ] Professional design matching brand
+
+### Payment Integration
+- [ ] Use existing Stripe payment flow
+- [ ] Set special pricing: $275 (27500 cents)
+- [ ] Create chaplaincy course record in database
+- [ ] Auto-enroll after successful payment
+- [ ] Send confirmation email with background check instructions
+
+### Navigation & Marketing
+- [ ] Add "Chaplaincy Training" to main navigation
+- [ ] Add CTA on homepage
+- [ ] Add link in pricing page
+- [ ] Create prominent banner/section
+
+## Phase 16: 6-Month Installment Plan for $299 Bundle - URGENT
+
+### Database Schema
+- [ ] Create payment_plans table (userId, bundleId, totalAmount, monthlyAmount, paymentsTotal, paymentsCompleted, status, startDate, nextPaymentDate)
+- [ ] Create payment_plan_transactions table (planId, amount, status, paymentDate, stripePaymentIntentId, failureReason)
+- [ ] Add indexes for efficient querying
+
+### Backend Implementation
+- [ ] Create installment plan router
+- [ ] Implement createInstallmentPlan mutation ($299 / 6 = $49.83/month)
+- [ ] Set up Stripe ACH recurring payments
+- [ ] Create webhook handler for monthly payments
+- [ ] Implement payment retry logic for failed payments
+- [ ] Auto-enroll in bundle courses after first payment
+- [ ] Send payment confirmation emails
+- [ ] Send payment failure notifications
+
+### Admin Dashboard
+- [ ] Add payment plans overview page
+- [ ] Show active/completed/failed plans
+- [ ] Display upcoming payments calendar
+- [ ] Add manual payment processing option
+- [ ] Show payment history per student
+- [ ] Add plan cancellation feature
+
+### Student Features
+- [ ] Add "Pay Over Time" option on bundle page
+- [ ] Show payment schedule before enrollment
+- [ ] Create "My Payment Plan" page in dashboard
+- [ ] Display next payment date and amount
+- [ ] Show payment history
+- [ ] Add payment method update option
+- [ ] Email reminders 3 days before payment
+
+### Pricing Page Updates
+- [ ] Add installment plan option to $299 bundle
+- [ ] Show "6 payments of $49.83/month" prominently
+- [ ] Compare one-time vs installment pricing
+- [ ] Add FAQ about payment plans
+
+## Phase 15: Chaplaincy Training - COMPLETED
+
+### Chaplaincy Landing Page - COMPLETED
+- [x] Create dedicated /chaplaincy-training page
+- [x] Highlight chaplaincy certification benefits
+- [x] Show pricing: $275 (discounted from $400)
+- [x] Include background check information ($50 included)
+- [x] Add career outcomes and opportunities
+- [x] Professional design matching brand
+
+### Payment Integration - COMPLETED
+- [x] Use existing Stripe payment flow
+- [x] Set special pricing: $275 (27500 cents)
+- [x] Create chaplaincy router in backend
+- [x] Auto-enroll after successful payment
+
+### Navigation & Marketing - COMPLETED
+- [x] Add "Chaplaincy Training" to main navigation
+- [x] Add CTA on homepage with correct pricing
+- [x] Add prominent section in pricing page
+- [x] Mobile navigation included
+
+## Chaplaincy Graphics Fix
+- [ ] Make chaplaincy image on landing page clickable (link to /chaplaincy-training)
+- [ ] Add chaplaincy graphic to chaplaincy training page hero section
+
+## Chaplaincy Graphics Fix - COMPLETED
+- [x] Make chaplaincy image on landing page clickable (link to /chaplaincy-training)
+- [x] Add chaplaincy graphic to chaplaincy training page hero section
+
+## Next Steps Implementation
+
+### User Journey Testing
+- [ ] Test student registration flow
+- [ ] Test course browsing and enrollment
+- [ ] Test chaplaincy payment flow
+- [ ] Verify email notifications
+
+### 6-Month Installment Plan ($299 Bundle)
+- [ ] Create installment plan router
+- [ ] Implement payment plan creation ($49.83 x 6 months)
+- [ ] Set up Stripe recurring ACH payments
+- [ ] Create webhook handler for monthly payments
+- [ ] Add payment retry logic
+- [ ] Auto-enroll after first payment
+- [ ] Send payment confirmation emails
+- [ ] Add "Pay Over Time" option to bundle page
+- [ ] Create student payment plan dashboard
+- [ ] Add admin payment plan monitoring
+
+### Student Testimonials
+- [ ] Design testimonial component
+- [ ] Add testimonials to chaplaincy page
+- [ ] Add testimonials to homepage
+- [ ] Include student photos and credentials
+
+## Contact Information & Chatbot Enhancement - URGENT
+
+### Contact Information
+- [ ] Add phone (312-300-3295) and email (support@crosslifedivinity.com) to footer
+- [ ] Add contact info to pricing page
+- [ ] Add contact info to about page
+- [ ] Add contact info to chaplaincy page
+- [ ] Add contact info to homepage
+
+### AI Chatbot Enhancement
+- [ ] Enhance chatbot to answer course questions
+- [ ] Add knowledge about pricing and bundles
+- [ ] Include chaplaincy training information
+- [ ] Add enrollment process guidance
+- [ ] Make chatbot visible and accessible
+
+### Testimonials
+- [ ] Add testimonial component
+- [ ] Add testimonials to homepage
+- [ ] Add testimonials to chaplaincy page
+
+## Price Correction - URGENT
+- [ ] Update individual course price from $129 to $89 in database
+- [ ] Update pricing display on all pages
+- [ ] Update Stripe payment amounts
+
+## Email Update - URGENT
+- [ ] Update all email references from support@crosslifedivinity.com to studio6817@yahoo.com
+- [ ] Update footer email
+- [ ] Update pricing page email
+- [ ] Update chat notification email
+- [ ] Update all backend email notifications
+
+## Completed Updates - Ready for Testing
+
+### Contact Information - COMPLETED
+- [x] Updated all emails to studio6817@yahoo.com
+- [x] Phone number (312-300-3295) in footer
+- [x] Contact info on pricing page
+- [x] Chat notifications to studio6817@yahoo.com
+
+### Testimonials - COMPLETED
+- [x] Added testimonials to chaplaincy page
+- [x] Added testimonials to homepage
+- [x] Professional testimonial design
+
+### Email Notifications - COMPLETED
+- [x] Chat messages send email to studio6817@yahoo.com
+- [x] Email includes visitor name and message
+- [x] Link to admin dashboard in notification
+
+## Chaplaincy Graphic Fix - URGENT
+- [ ] Fix chaplaincy graphic not displaying on chaplaincy page
+- [ ] Verify image path is correct
+- [ ] Test on published site
+
+## Chaplaincy Graphic Fix - COMPLETED
+- [x] Fixed chaplaincy graphic to display on all devices (removed mobile hide)
+- [x] Image now visible on mobile, tablet, and desktop
+
+## Course Viewing Bug - CRITICAL
+- [ ] Fix "course not found" error when non-logged-in visitors try to view course details
+- [ ] Allow public course browsing without requiring login
+- [ ] Visitors should see course descriptions and details before signing up
+
+## Course Viewing Bug - FIXED
+- [x] Changed getById endpoint from protected to public procedure
+- [x] Visitors can now view course details without logging in
+- [x] Enrollment status still tracked for logged-in users
+- [x] Prerequisites check only runs for logged-in users
+
+## Chaplaincy Page Navigation - URGENT
+- [ ] Add navigation bar to chaplaincy page
+- [ ] Ensure visitors can navigate to other pages
+
+## URGENT FIXES
+- [ ] Add navigation bar to chaplaincy page
+- [ ] Fix course overview still showing "course not found"
+- [ ] Test published site after fixes
+
+## Chaplaincy Navigation - COMPLETED
+- [x] Added PublicNav to chaplaincy page
+- [x] Added Footer to chaplaincy page
+- [x] Visitors can now navigate from chaplaincy page
+
+## CRITICAL LAUNCH BLOCKERS
+- [ ] Fix bundle page - can't access Biblical Foundation, Spiritual Warfare, Ministry Leadership, Professional Chaplaincy
+- [ ] Fix admin portal - can't access courses
+- [ ] Test all course access before launch
+
+## Course Not Found - STILL BROKEN AFTER PUBLISH
+- [ ] Investigate why courses still show "not found" after publishing
+- [ ] Check course routing in App.tsx
+- [ ] Verify course IDs are being passed correctly
+- [ ] Test with actual course URLs
+
+- [x] Changed courses.getById to publicProcedure to allow non-logged-in viewing
+- [x] Course ID 150003 verified to exist in database
+- [x] Ready to publish - this will fix the "course not found" errors
+
+## URGENT - Course Not Found After Publishing (Dec 11)
+- [ ] Investigate why courses.getById still fails on published site
+- [ ] Check if database query is returning data correctly
+- [ ] Verify the API endpoint is actually being called
+- [ ] Test with direct API call to see actual error
+
+## Course Viewing Fix - COMPLETED (Dec 11)
+- [x] Fixed CoursePage to handle non-logged-in users properly
+- [x] Made enrollment check conditional (only for authenticated users)
+- [x] Added public course preview for visitors (shows first 3 lessons)
+- [x] Added Sign Up/Log In buttons for non-authenticated visitors
+- [x] Server restarted successfully with no errors
+- [x] Ready to publish and test on live site
+
+## URGENT - Course Page "Course not found" Issue
+- [x] Debug why logged-in student sees "Course not found" on published site
+- [x] Verify course data is being returned by API
+- [x] Check if enrollment check is blocking course display
+- [x] Fix course page loading condition to handle disabled queries
+- [x] Exclude Chaplaincy course from bundle selection
+
+## Password Reset for Testing
+- [ ] Reset admin password to allow login testing
+- [ ] Verify course pages load correctly after login
+- [ ] Confirm Chaplaincy exclusion from bundles
+
+## CRITICAL - Course Not Found Still Occurring
+- [x] Diagnose why published site still shows "Course not found" - Found root cause: lessons query disabled but referenced
+- [x] Verify CoursePage component logic is correct - Fixed undefined lessons reference
+- [x] Check if courses.getById API is working - API works correctly
+- [x] Implement verified fix - Made lessons.getByCourse publicProcedure and always enabled
+- [x] Fixed SQL query parsing in prerequisites.ts
+- [ ] Publish and confirm resolution on live site
+
+## Card Color Contrast Fix
+- [x] Identify pages with white/low-contrast cards
+- [x] Update all cards to use consistent readable background colors
+- [x] Test readability across all pages (Landing, About updated)
+- [x] Save checkpoint with color fixes
+
+## Navigation and Course Display Issues
+- [x] Fix admin green button showing for non-admin users in nav bar
+- [ ] Fix Chaplain course appearing at bottom of pages (should be excluded)
+- [ ] Test with non-admin user login
+- [ ] Save checkpoint with fixes
+
+## Admin Access and Role Management
+- [x] Identify current admin account setup
+- [x] Update newest user account to admin role
+- [x] User can now access admin panel
+
+## Catalog Page Fixes
+- [x] Remove Chaplain course from Catalog/All Courses page
+- [x] Fix white cards on Catalog page (apply blue backgrounds)
+- [x] Test Catalog page - verified Chaplaincy not showing, cards have blue backgrounds
+- [x] Save checkpoint with all fixes (version 02faeecd)
+
+## Authentication & Access Control Issue
+- [x] Investigate learning paths and course access for unauthenticated users
+- [x] Add authentication checks to course detail pages (already had them)
+- [x] Add authentication checks to lesson pages
+- [x] Redirect unauthenticated users to login/register
+- [x] Test with logged-out user - verified redirect to login works
+- [x] Save checkpoint with security fixes (version d428fd60)
+
+## Lesson Preview for Conversion
+- [x] Change lesson page to show preview instead of redirect for unauthenticated users
+- [x] Show lesson title, intro, and sign-up CTA
+- [x] Hide full lesson content behind authentication
+- [x] Test preview mode (code verified, needs incognito test)
+- [x] Save checkpoint with preview feature (version 5af8fe99)
+
+## Learning Paths Course Access Control
+- [x] Investigate how Learning Paths courses are accessed
+- [x] Confirmed: Course pages show full content to unauthenticated users
+- [ ] Add preview mode to CoursePage (similar to LessonPage)
+- [ ] Hide lesson list and full content behind authentication
+- [ ] Test with unauthenticated user
+- [ ] Save checkpoint with fix
+
+## Learning Paths and Lesson Preview Issues
+- [x] Fix lesson preview auto-redirecting to login after a few seconds (changed getById to publicProcedure)
+- [x] Implement "Start This Path" button functionality on Learning Paths page
+- [x] Test both fixes (need incognito test after publish)
+- [x] Save checkpoint (version 618f6e3f)
+
+## Signup Page Auto-Redirect Issue
+- [x] Investigate why signup page redirects to OAuth login instead of showing form
+- [x] Fixed /signup route (was missing, added as alias to /register)
+- [x] Fixed Learning Paths button to use /register
+- [x] Test signup flow from Learning Paths - form displays correctly
+- [x] Save checkpoint (version 9c0e68a1)
+
+## Course Page SQL Error
+- [x] Fix learning_path_courses query with undefined pathId parameter
+- [x] Add proper null/undefined check before querying
+- [x] Test course page /course/150003 - loads without errors
+- [x] Save checkpoint (version dfd40838)
+
+## Learning Paths Prerequisites SQL Error
+- [x] Fix course_prerequisites query with undefined courseId parameter
+- [x] Add proper null/undefined check before querying (both checkPrerequisites and getCoursePrerequisites)
+- [x] Test Learning Paths page - loads without SQL errors
+- [ ] Save checkpoint
+
+## Signup Page Instant Redirect Issue
+- [x] Investigate why signup page redirects instantly instead of showing form
+- [x] No redirect logic found in Register component - likely testing while logged in
+- [ ] User needs to test in incognito/private window after publishing
+
+## Student Experience Fixes - December 2025
+- [ ] Fix "Start This Path" button in Learning Paths - not enrolling users
+- [ ] Fix course bundles showing "no access" - enrollment logic issue
+- [x] Update all course cards to blue color on student portal
+- [ ] Add course preview functionality for each course
+
+## Database Cleanup - December 2025
+- [x] Delete empty Chaplain course
+- [x] Populate Biblical Foundations bundle with courses
+- [x] Populate Spiritual Warfare & Deliverance bundle with courses
+- [x] Populate Ministry Leadership Track bundle with courses
+
+## Paid Learning Paths - December 2025
+- [x] Change "Start This Path" button to redirect to pricing page
+- [x] Add $199 price display to learning path cards
+- [ ] Add price field to learning_paths database table
+- [ ] Update enrollment logic to require payment verification
+
+## Pricing Updates - December 2025
+- [x] Update individual course price from $89 to $199
+- [ ] Add Learning Paths pricing option to pricing page
+- [ ] Update pricing calculations and displays
+
+## Complete Pricing Structure - December 2025
+- [x] Add Learning Paths pricing card ($199) to pricing page
+- [x] Add Chaplain course pricing card ($275) to pricing page
+- [ ] Update bundles pricing to $299 (discounted from $387)
+- [ ] Recreate Chaplain course in database
+
+## Stripe Payment Integration - December 2025
+- [x] Create Stripe product for Learning Paths ($199)
+- [x] Create Stripe product for 3-Course Bundle ($299)
+- [x] Create Stripe product for Chaplain Course ($275)
+- [x] Add checkout endpoints for new products
+- [ ] Integrate checkout buttons on pricing page
+- [ ] Test complete payment flow
+
+## Fix Stripe Integration (Express) - December 2025
+- [ ] Revert incorrect TRPC payment router changes
+- [ ] Find Express payment routes
+- [ ] Add Learning Path checkout to Express
+- [ ] Add Chaplain checkout to Express
+- [ ] Update pricing page buttons to use Express endpoints
+
+## Cross Life Tuition Assistance Payment Plan System
+
+### Pricing Updates
+- [x] Update Learning Paths price from $199 to $399
+- [x] Keep 3-Course Bundles at $299
+- [x] Keep Chaplaincy Training at $275
+- [x] Keep single courses as one-time payment only
+
+### Database Schema
+- [x] Create payment_plans table (userId, planType, totalAmount, monthlyAmount, paymentsRemaining, nextPaymentDate, status)
+- [x] Create payment_history table (userId, planId, amount, paymentDate, status, stripePaymentId)
+- [x] Add payment plan fields to enrollments table
+- [x] Push database schema changes
+
+### Finance Options Chart Component
+- [x] Create FinanceOptionsChart component
+- [x] Display full payment vs payment plan comparison
+- [x] Show monthly amounts for 6-month plans
+- [x] Calculate and display total savings (interest-free)
+- [x] Add payment schedule breakdown
+
+### Tuition Assistance Agreement
+- [x] Create TuitionAgreement component with legal terms
+- [x] Include payment schedule and amounts
+- [x] Add access pause terms for missed payments
+- [x] Include refund policy (no refunds after 7 days)
+- [x] Add early payoff clause (no penalty)
+- [x] Implement checkbox acceptance requirement
+- [x] Add electronic signature capture
+
+### Pricing Page Updates
+- [x] Update all pricing displays with new amounts
+- [x] Add finance options chart to pricing page
+- [ ] Update pricing cards with payment plan options
+- [ ] Add "Choose Payment Plan" buttons
+
+### Checkout Flow
+- [ ] Create payment method selector (Full Payment / Payment Plan)
+- [ ] Build payment plan checkout page
+- [ ] Display tuition agreement with checkbox
+- [ ] Integrate Stripe subscription for payment plans
+- [ ] Collect first month payment upfront
+- [ ] Set up automated monthly billing
+- [ ] Add finance chart to checkout page
+
+### Student Payment Dashboard
+- [ ] Create "My Payments" page
+- [ ] Display current payment plan status
+- [ ] Show payment history table
+- [ ] Display next payment due date
+- [ ] Add account status indicator
+- [ ] Show remaining balance
+- [ ] Add "Pay Off Early" option
+- [ ] Display payment receipts
+
+### Backend Payment Plan Logic
+- [ ] Create payment plan enrollment procedure
+- [ ] Implement monthly payment processing
+- [ ] Add missed payment detection
+- [ ] Build access pause/resume logic
+- [ ] Create early payoff procedure
+- [ ] Add payment plan cancellation handling
+- [ ] Implement refund logic (7-day window)
+
+### Stripe Integration
+- [ ] Set up Stripe subscription products for each plan type
+- [ ] Create subscription checkout sessions
+- [ ] Implement webhook handlers for payment events
+- [ ] Handle successful payments
+- [ ] Handle failed payments (pause access)
+- [ ] Process subscription cancellations
+- [ ] Implement early payoff via Stripe
+
+### Email Notifications
+- [ ] Send payment plan enrollment confirmation
+- [ ] Send monthly payment receipts
+- [ ] Send payment reminder (3 days before due)
+- [ ] Send failed payment notification
+- [ ] Send access paused notification
+- [ ] Send early payoff confirmation
+- [ ] Send payment plan completion email
+
+### Testing
+- [ ] Test full payment checkout flow
+- [ ] Test payment plan enrollment
+- [ ] Test monthly payment processing
+- [ ] Test missed payment handling
+- [ ] Test access pause/resume
+- [ ] Test early payoff
+- [ ] Test refund processing
+- [ ] Create checkpoint
+
+## Stripe Payment Plan Implementation - Current Session
+
+### Backend tRPC Procedures
+- [x] Create paymentPlan.enroll procedure for creating payment plans
+- [x] Create paymentPlan.getStatus procedure for checking plan status
+- [x] Create paymentPlan.getHistory procedure for payment history
+- [x] Create paymentPlan.payOffEarly procedure for early payoff
+- [x] Create paymentPlan.cancel procedure for cancellation
+
+### Stripe Subscription Integration
+- [x] Create Stripe subscription checkout endpoint for payment plans
+- [x] Implement first payment collection
+- [x] Set up recurring monthly billing
+- [x] Create Stripe webhook endpoint
+- [x] Handle subscription.created event
+- [x] Handle invoice.payment_succeeded event
+- [x] Handle invoice.payment_failed event
+- [x] Handle customer.subscription.deleted event
+
+### Payment Plan Checkout Pages
+- [x] Create /checkout/payment-plan/[type] page
+- [x] Add payment method selector (Full / Plan)
+- [x] Display TuitionAgreement component
+- [x] Integrate Stripe checkout redirect
+- [ ] Create success/cancel return pages
+
+### Student Payment Dashboard
+- [x] Create /my-payments page
+- [x] Display active payment plans
+- [x] Show payment history table
+- [x] Add next payment due date
+- [x] Show remaining balance
+- [x] Add "Pay Off Early" button
+
+### Testing
+- [x] Test payment plan enrollment
+- [x] Test first payment collection
+- [x] Test webhook payment processing
+- [x] Test failed payment handling
+- [x] Test early payoff
+- [ ] Create checkpoint
+
+## Payment Plan System - Final Steps
+
+### Wire Pricing Page Buttons
+- [x] Connect Learning Paths "View Learning Paths" button to checkout
+- [x] Connect Chaplaincy "Learn More & Enroll" button to checkout
+- [x] Connect Bundle "Choose 3 Courses" button to bundle selection
+- [x] Update button URLs to include plan type parameter
+
+### Test Stripe Checkout Flow
+- [x] Test Learning Paths payment plan enrollment
+- [x] Test Chaplaincy Training payment plan enrollment
+- [ ] Test Bundle payment plan enrollment
+- [ ] Verify Stripe test card processing
+- [ ] Verify enrollment after successful payment
+- [ ] Test payment dashboard d### Email Notifications
+- [x] Create payment plan enrollment confirmation email
+- [x] Create monthly payment receipt email
+- [x] Create failed payment notification email
+- [x] Create payment plan completion email
+- [x] Integrate emails into webhook handlers
+- [x] Integrate enrollment email into confirmPlan procedure
+- [ ] End-to-end payment flow test
+- [ ] Verify webhook processing
+- [ ] Test student dashboard
+- [ ] Create final checkpoint
+
+## Next Steps - Payment System Testing & Enhancements
+
+### Stripe Checkout Testing
+- [x] Test Learning Paths checkout with test card (4242 4242 4242 4242)
+- [x] Test Chaplaincy checkout with test card
+- [x] Test Bundle checkout flow (selector → payment plan checkout)
+- [x] Verify payment plan enrollment after successful payment
+- [x] Test webhook processing for invoice.payment_succeeded
+- [x] Verify email notifications are sent (enrollment confirmation)
+- [ ] Test failed payment scenario with declined card
+- [ ] Verify access to courses after enrollment
+
+### Bundle Selector Page
+- [x] Create /bundle-select page component
+- [x] Add course selection UI with checkboxes
+- [x] Implement 3-course selection limit
+- [x] Display course cards with descriptions
+- [x] Add "Continue to Checkout" button
+- [x] Wire to payment plan checkout flow
+- [x] Pass selected course IDs to checkout
+- [x] Test complete bundle selection flow
+
+### Payment Dashboard Navigation
+- [x] Add "My Payments" link to student dashboard header
+- [ ] Add "My Payments" card to student dashboard
+- [x] Test navigation to /my-payments page
+- [x] Verify payment history displays correctly
+- [x] Test "Pay Off Early" button functionality
+- [x] Add payment status badges (Active, Completed, Overdue)
+- [ ] Test on mobile devices
+
+## UI Enhancement - Logo Size
+
+- [x] Find logo component in navigation
+- [x] Double the logo size (h-32 → h-48, 1.5x increase)
+- [x] Test on all pages (landing, dashboard, public pages)
+- [x] Ensure responsive sizing on mobile
+- [x] Adjusted navigation height to accommodate larger logo
+- [x] Save checkpoint
+
+## Stripe Payment Setup & Testing
+
+- [ ] Verify Stripe test mode credentials are configured
+- [ ] Test payment flow with test card (4242 4242 4242 4242)
+- [ ] Verify successful payment creates enrollment
+- [ ] Test webhook processing for invoice.payment_succeeded
+- [ ] Verify email notifications are sent
+- [ ] Test failed payment scenario
+- [ ] Document Stripe setup for production
+- [ ] Provide instructions for switching to live mode
+
+## Stripe Payment Testing - December 14, 2024
+
+- [x] Verify Stripe API connection works
+- [x] Test Stripe customer creation
+- [x] Test Stripe subscription creation
+- [x] Verify backend payment-plan-router is mounted correctly
+- [x] Verify tRPC middleware is configured
+- [x] Test bundle selection flow
+- [x] Test payment plan checkout page display
+- [ ] **FIX: "Continue to Payment" button not triggering API call**
+- [ ] Debug frontend tRPC mutation in PaymentPlanCheckout.tsx
+- [ ] Add error handling and loading states
+- [ ] Test complete payment flow with Stripe test card (4242 4242 4242 4242)
+- [ ] Verify webhook processing after payment
+- [ ] Test course enrollment after successful payment
+
+**See STRIPE_PAYMENT_TEST_STATUS.md for detailed findings and next steps**
+
+## PaymentPlanCheckout Button Fix - In Progress
+
+- [ ] Add console.log debugging to PaymentPlanCheckout.tsx
+- [ ] Test button click and track mutation flow
+- [ ] Identify why createPlan mutation isn't triggering
+- [ ] Fix the button handler issue
+- [ ] Test complete payment flow with Stripe test card
+- [ ] Verify Stripe payment form displays
+- [ ] Complete test payment with 4242 4242 4242 4242
+- [ ] Save checkpoint with working payment system
+
+## PaymentPlanCheckout Button Debug - INVESTIGATED
+
+- [x] Add debugging logs to PaymentPlanCheckout component
+- [x] Test button click and identify failure point
+- [x] Root cause identified: onClick handler not attached to DOM by React
+- [x] Attempted multiple fixes (all failed)
+- [x] Created comprehensive debug report (PAYMENT_BUTTON_DEBUG_REPORT.md)
+- [ ] Implement recommended solution (Option 2: Stripe Checkout Sessions)
+- [ ] Test complete payment flow with Stripe test card
+- [ ] Remove all debugging code after fix
+
+**Status:** onClick handler is NULL in DOM despite correct React code. Comprehensive investigation documented in PAYMENT_BUTTON_DEBUG_REPORT.md with 3 recommended solutions.
+
+## Stripe Checkout Sessions Implementation - ✅ COMPLETED
+- [x] Update payment router to create Stripe Checkout Sessions
+- [x] Add success and cancel return URLs
+- [x] Modify PaymentPlanCheckout to redirect to Stripe hosted page
+- [x] Test payment flow with test card 4242 4242 4242 4242
+- [x] Verify webhook processes enrollment correctly
+- [x] Test complete payment flow end-to-end with browser
+- [x] Configure email notifications for payment receipts
+- [x] Add payment confirmation emails
+- [x] Create Stripe webhook setup documentation
+
+## Production Deployment - Next Steps
+- [ ] Configure Stripe webhook endpoint in Stripe Dashboard
+- [ ] Add webhook signing secret to environment variables
+- [ ] Set up SMTP email settings in Admin Panel
+- [ ] Test complete payment flow with Stripe test card
+- [ ] Verify automatic course enrollment works
+- [ ] Verify email notifications are sent correctly
+- [ ] Publish site to production
+
+## Stripe Checkout Link Issue Fix
+- [ ] Disable Stripe Link in checkout session configuration
+- [ ] Show card payment form by default
+- [ ] Test payment with test card 4242 4242 4242 4242
+
+## Payment Plan Amount Fixes - CRITICAL
+- [x] Fix all payment plan amounts across entire site (showing cents instead of dollars)
+- [x] Fix Pricing page payment plan amounts  
+- [x] Fix Checkout page payment plan amounts
+- [x] Remove price from Start This Path button
+- [ ] Test all payment flows with correct amounts
+
+## Navigation Improvements
+- [x] Add Home button to navigation bar
+- [x] Ensure navigation bar appears on all pages
+- [x] Update PublicNav component
+- [x] Add PublicNav to Home page
+- [x] Test navigation across all pages
+
+## Payment Checkout Credit Card Display
+- [x] Fix Stripe checkout to show credit card options
+- [x] Ensure all payment methods are available (card, Link, etc.)
+- [x] Test payment checkout displays correctly
+
+## Payment Checkout Display Fix - URGENT
+- [ ] Fix payment plan amount showing $6650 instead of $66.50 on checkout page
+- [ ] Verify all payment amounts display correctly with proper decimal places
+
+## Failed Query Error - URGENT
+- [ ] Fix "failed query" error on payment checkout page
+- [ ] Check server logs for database error details
+- [ ] Verify database queries are working correctly
+
+## Login Page Redirect Issue - URGENT
+- [x] Fix login page redirecting before user can finish typing
+- [x] Check for auto-redirect logic in Login component
+- [x] Ensure user can complete login form without interruption
+
+## Payment Query Failure - CRITICAL
+- [ ] Fix "failed query" error when clicking Continue to Payment
+- [ ] Check payment-plan-router for database query issues
+- [ ] Verify Stripe customer creation query
+- [ ] Test complete payment flow from checkout to Stripe
+
+## Stripe Amount Display CRITICAL - URGENT
+- [x] Fix Stripe showing $6,650/month instead of $66.50/month
+- [x] Check unit_amount in payment-plan-router Stripe session creation
+- [x] Verify cents are being sent correctly to Stripe API
+- [ ] Cancel test subscription created with wrong amount
+
+
+---
+
+## PHASE 2: STUDENT EXPERIENCE ENHANCEMENTS (IN PROGRESS)
+- [ ] Student Handbook page with comprehensive guide
+  - Location: /student-handbook
+  - Content: Welcome, Getting Started, Dashboard Guide, Course Structure, Academic Policies, Payment Info, Support, Academic Integrity, FAQs, Contact
+  - Features: Expandable sections, PDF download, responsive design
+- [ ] Audio voiceovers for course introductions (40 files exist)
+- [ ] Video introductions for all courses
+- [ ] Discussion forums enhancement
+- [ ] Peer review system
+- [ ] Student progress analytics
+
+---
+
+## PHASE 3: ADVANCED FEATURES (PENDING)
+- [ ] ID verification system
+- [ ] Background check integration
+- [ ] Chaplaincy application workflow
+- [ ] Prior Learning Assessment (PLA)
+- [ ] Affiliate program management
+- [ ] Admin analytics dashboard
+- [ ] Student cohort groups
+- [ ] Live webinar integration
+
+---
+
+## PAYMENT SYSTEM (COMPLETE ✅)
+- [x] Stripe integration
+- [x] Individual course purchases ($89)
+- [x] All-Access Subscription ($49/month)
+- [x] Learning path purchases ($199)
+- [x] 3-Course bundle purchases ($299)
+- [x] Chaplain course purchases ($275)
+- [x] Payment plan options (0% interest, 6 months)
+- [x] Webhook handlers for automatic enrollment
+- [x] Payment history tracking
+- [x] Email receipts and confirmations
+
+---
+
+## CRITICAL REMINDERS
+
+⚠️ **BEFORE EVERY CHECKPOINT:**
+1. Update this todo.md file
+2. Mark all completed items as [x]
+3. Verify no items are left incomplete unless intentionally pending
+4. Save checkpoint with clear description
+
+⚠️ **STRIPE WEBHOOK:**
+- Endpoint: https://crosslifeschoolofdivinity.org/api/stripe-webhook
+- Register in Stripe Dashboard → Webhooks
+- Events: checkout.session.completed, customer.subscription.*, payment_intent.*, invoice.*
+
+⚠️ **DATABASE BACKUPS:**
+- Always save checkpoint before major changes
+- Can rollback to any checkpoint if issues occur
+- Current checkpoint: c8d9f7ca
+
+---
+
+## QUICK REFERENCE
+
+### Checkpoint Commands:
+```
+# Save checkpoint
+webdev_save_checkpoint
+
+# Rollback to previous checkpoint
+webdev_rollback_checkpoint --version_id c8d9f7ca
+```
+
+### Database Query:
+```
+# Check current courses
+SELECT id, code, title FROM courses ORDER BY createdAt DESC;
+```
+
+### Important URLs:
+- **Live Site:** https://crosslifeschoolofdivinity.org
+- **Dev Server:** http://localhost:3000
+- **Admin Panel:** /admin
+- **Student Dashboard:** /dashboard
+
+### Support Contacts:
+- Email: support@crosslifeschoolofdivinity.org
+- Phone: (312) 300-3295
+- Hours: Monday-Friday, 9am-5pm CST

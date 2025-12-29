@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { trpc } from "@/lib/trpc";
-import { BookOpen, Code, Edit, GraduationCap, Key, Loader2, Mail, Plus, Settings, Users, Video, BarChart3, FileCheck, AlertCircle, CheckCircle2, Clock, DollarSign } from "lucide-react";
+import { BookOpen, Code, Edit, GraduationCap, Key, Loader2, Mail, Plus, Settings, Users, Video, BarChart3, FileCheck, AlertCircle, CheckCircle2, Clock, DollarSign, MessageCircle } from "lucide-react";
 import AssignCoursesDialog from "@/components/AssignCoursesDialog";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -121,6 +121,34 @@ export default function Admin() {
                 </CardTitle>
                 <CardDescription>
                   Configure SMTP server for email notifications
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
+          
+          <Link href="/admin/email-export">
+            <Card className="hover:shadow-md transition-shadow cursor-pointer border-l-4 border-l-green-500">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Mail className="h-5 w-5" />
+                  Export Student Emails
+                </CardTitle>
+                <CardDescription>
+                  Download student emails for marketing campaigns
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
+          
+          <Link href="/admin/chat">
+            <Card className="hover:shadow-md transition-shadow cursor-pointer border-l-4 border-l-blue-500">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <MessageCircle className="h-5 w-5" />
+                  Chat Dashboard
+                </CardTitle>
+                <CardDescription>
+                  View and respond to student inquiries
                 </CardDescription>
               </CardHeader>
             </Card>

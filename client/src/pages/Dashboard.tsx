@@ -5,7 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { PullToRefresh } from "@/components/PullToRefresh";
 import { trpc } from "@/lib/trpc";
-import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, RefreshCw, Settings } from "lucide-react";
+import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, RefreshCw, Settings, CreditCard } from "lucide-react";
+import { Fragment } from "react";
 import { Link } from "wouter";
 import { useMemo } from "react";
 
@@ -73,68 +74,94 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <Link href="/webinars">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
-                >
-                  <Video className="h-4 w-4 mr-2" />
-                  Webinars
-                </Button>
-              </Link>
-              <Link href="/progress">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
-                >
-                  <TrendingUp className="h-4 w-4 mr-2" />
-                  My Progress
-                </Button>
-              </Link>
-              <Link href="/certificates">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
-                >
-                  <Award className="h-4 w-4 mr-2" />
-                  My Certificates
-                </Button>
-              </Link>
-              {user?.role === 'admin' && (
-                <Link href="/admin">
+              <Fragment key="webinars-btn">
+                <Link href="/webinars">
                   <Button
                     variant="outline"
                     size="sm"
-                    className="bg-green-500/20 border-green-400/30 text-primary-foreground hover:bg-green-500/30"
+                    className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
                   >
-                    <Settings className="h-4 w-4 mr-2" />
-                    Admin
+                    <Video className="h-4 w-4 mr-2" />
+                    Webinars
                   </Button>
                 </Link>
+              </Fragment>
+              <Fragment key="progress-btn">
+                <Link href="/progress">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
+                  >
+                    <TrendingUp className="h-4 w-4 mr-2" />
+                    My Progress
+                  </Button>
+                </Link>
+              </Fragment>
+              <Fragment key="certificates-btn">
+                <Link href="/certificates">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
+                  >
+                    <Award className="h-4 w-4 mr-2" />
+                    My Certificates
+                  </Button>
+                </Link>
+              </Fragment>
+              <Fragment key="payments-btn">
+                <Link href="/my-payments">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
+                  >
+                    <CreditCard className="h-4 w-4 mr-2" />
+                    My Payments
+                  </Button>
+                </Link>
+              </Fragment>
+              {user?.role === 'admin' && (
+                <Fragment key="admin-btn">
+                  <Link href="/admin">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="bg-green-500/20 border-green-400/30 text-primary-foreground hover:bg-green-500/30"
+                    >
+                      <Settings className="h-4 w-4 mr-2" />
+                      Admin
+                    </Button>
+                  </Link>
+                </Fragment>
               )}
-              <Link href="/toggle-role">
+              {user?.email === 'birthingthekingdom@gmail.com' && (
+                <Fragment key="toggle-btn">
+                  <Link href="/toggle-role">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="bg-blue-500/20 border-blue-400/30 text-primary-foreground hover:bg-blue-500/30"
+                      title={`Switch to ${user?.role === 'admin' ? 'Student' : 'Admin'} View`}
+                    >
+                      <RefreshCw className="h-4 w-4 mr-2" />
+                      {user?.role === 'admin' ? 'Student' : 'Admin'} View
+                    </Button>
+                  </Link>
+                </Fragment>
+              )}
+              <Fragment key="logout-btn">
                 <Button
                   variant="outline"
                   size="sm"
-                  className="bg-blue-500/20 border-blue-400/30 text-primary-foreground hover:bg-blue-500/30"
-                  title={`Switch to ${user?.role === 'admin' ? 'Student' : 'Admin'} View`}
+                  onClick={() => logout()}
+                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
                 >
-                  <RefreshCw className="h-4 w-4 mr-2" />
-                  {user?.role === 'admin' ? 'Student' : 'Admin'} View
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Logout
                 </Button>
-              </Link>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => logout()}
-                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
-              >
-                <LogOut className="h-4 w-4 mr-2" />
-                Logout
-              </Button>
+              </Fragment>
             </div>
           </div>
         </div>
@@ -413,51 +440,70 @@ export default function Dashboard() {
         {/* All Courses Grid */}
         <h2 className="text-2xl font-bold text-foreground mb-6">All Courses</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {courses?.map((course) => {
+          {courses?.map((course: any) => {
             const progress = courseProgress[course.id] || { completed: 0, total: course.totalLessons };
             const progressPercent = progress.total > 0 ? (progress.completed / progress.total) * 100 : 0;
+            const isEnrolled = course.isEnrolled;
 
             return (
-              <Link key={course.id} href={`/course/${course.id}`}>
-                <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer border-2 hover:border-primary/50">
-                  <CardHeader 
-                    className="text-card-foreground min-h-[140px] relative overflow-hidden"
-                    style={{ backgroundColor: course.colorTheme }}
-                  >
-                    <div className="absolute top-3 right-3 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold">
-                      {course.code}
+              <Card key={course.id} className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50">
+                <CardHeader 
+                  className="text-card-foreground min-h-[140px] relative overflow-hidden"
+                  style={{ backgroundColor: '#1e40af' }}
+                >
+                  <div className="absolute top-3 right-3 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold">
+                    {course.code}
+                  </div>
+                  {!isEnrolled && (
+                    <div className="absolute top-3 left-3 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      Not Enrolled
                     </div>
-                    <CardTitle className="text-white text-xl mb-2 pr-20">{course.title}</CardTitle>
-                    {progress.total > 0 && (
-                      <div className="mt-auto">
-                        <div className="flex justify-between text-xs text-white/90 mb-1">
-                          <span>Progress</span>
-                          <span>{progress.completed} / {progress.total} lessons</span>
-                        </div>
-                        <Progress value={progressPercent} className="h-2 bg-white/30" />
+                  )}
+                  <CardTitle className="text-white text-xl mb-2 pr-20">{course.title}</CardTitle>
+                  {isEnrolled && progress.total > 0 && (
+                    <div className="mt-auto">
+                      <div className="flex justify-between text-xs text-white/90 mb-1">
+                        <span>Progress</span>
+                        <span>{progress.completed} / {progress.total} lessons</span>
                       </div>
-                    )}
-                  </CardHeader>
-                  <CardContent className="pt-4">
-                    <CardDescription className="text-sm mb-4 line-clamp-2">
-                      {course.description}
-                    </CardDescription>
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <div className="flex items-center gap-2">
-                        <BookOpen className="h-4 w-4" />
-                        <span>{course.totalLessons} lessons</span>
-                      </div>
-                      {progressPercent === 100 ? (
+                      <Progress value={progressPercent} className="h-2 bg-white/30" />
+                    </div>
+                  )}
+                </CardHeader>
+                <CardContent className="pt-4">
+                  <CardDescription className="text-sm mb-4 line-clamp-2">
+                    {course.description}
+                  </CardDescription>
+                  <div className="flex items-center justify-between text-sm mb-3">
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <BookOpen className="h-4 w-4" />
+                      <span>{course.totalLessons} lessons</span>
+                    </div>
+                    {isEnrolled && (
+                      progressPercent === 100 ? (
                         <span className="text-green-600 font-semibold">✓ Completed</span>
                       ) : progressPercent > 0 ? (
                         <span className="text-primary font-semibold">In Progress</span>
                       ) : (
                         <span className="text-muted-foreground">Not Started</span>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
+                      )
+                    )}
+                  </div>
+                  {isEnrolled ? (
+                    <Link href={`/course/${course.id}`}>
+                      <Button className="w-full">
+                        {progressPercent > 0 ? 'Continue Learning' : 'Start Course'} →
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Link href="/pricing">
+                      <Button className="w-full" variant="outline">
+                        Enroll Now
+                      </Button>
+                    </Link>
+                  )}
+                </CardContent>
+              </Card>
             );
           })}
         </div>

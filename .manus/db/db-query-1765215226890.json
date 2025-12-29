@@ -1,0 +1,78 @@
+{
+  "query": "SELECT c.title as course, COUNT(qq.id) as question_count \nFROM courses c \nLEFT JOIN lessons l ON c.id = l.courseId \nLEFT JOIN quiz_questions qq ON l.id = qq.lessonId \nGROUP BY c.id, c.title \nORDER BY c.id",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT c.title as course, COUNT(qq.id) as question_count \nFROM courses c \nLEFT JOIN lessons l ON c.id = l.courseId \nLEFT JOIN quiz_questions qq ON l.id = qq.lessonId \nGROUP BY c.id, c.title \nORDER BY c.id",
+  "rows": [
+    {
+      "course": "Old Testament Survey",
+      "question_count": "50"
+    },
+    {
+      "course": "New Testament Survey",
+      "question_count": "50"
+    },
+    {
+      "course": "Systematic Theology",
+      "question_count": "50"
+    },
+    {
+      "course": "Biblical Hermeneutics",
+      "question_count": "50"
+    },
+    {
+      "course": "Fundamentals of Apologetics",
+      "question_count": "50"
+    },
+    {
+      "course": "Evangelism and Discipleship",
+      "question_count": "50"
+    },
+    {
+      "course": "Discipleship Training",
+      "question_count": "50"
+    },
+    {
+      "course": "Prayer and Intercession",
+      "question_count": "50"
+    },
+    {
+      "course": "Christian Leadership",
+      "question_count": "50"
+    },
+    {
+      "course": "Biblical Worship",
+      "question_count": "50"
+    },
+    {
+      "course": "Pastoral Counseling",
+      "question_count": "50"
+    },
+    {
+      "course": "Church Administration",
+      "question_count": "50"
+    },
+    {
+      "course": "Homiletics",
+      "question_count": "50"
+    },
+    {
+      "course": "Discovering Spiritual Gifts",
+      "question_count": "50"
+    },
+    {
+      "course": "Understanding Prophecy",
+      "question_count": "50"
+    },
+    {
+      "course": "Deliverance Ministry",
+      "question_count": "50"
+    },
+    {
+      "course": "The Fivefold Ministry",
+      "question_count": "50"
+    }
+  ],
+  "messages": [],
+  "stdout": "course\tquestion_count\nOld Testament Survey\t50\nNew Testament Survey\t50\nSystematic Theology\t50\nBiblical Hermeneutics\t50\nFundamentals of Apologetics\t50\nEvangelism and Discipleship\t50\nDiscipleship Training\t50\nPrayer and Intercession\t50\nChristian Leadership\t50\nBiblical Worship\t50\nPastoral Counseling\t50\nChurch Administration\t50\nHomiletics\t50\nDiscovering Spiritual Gifts\t50\nUnderstanding Prophecy\t50\nDeliverance Ministry\t50\nThe Fivefold Ministry\t50\n",
+  "stderr": "",
+  "execution_time_ms": 55
+}

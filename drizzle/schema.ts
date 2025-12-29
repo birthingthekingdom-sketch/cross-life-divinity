@@ -504,3 +504,249 @@ export const stripeCustomers = mysqlTable("stripe_customers", {
 
 export type StripeCustomer = typeof stripeCustomers.$inferSelect;
 export type InsertStripeCustomer = typeof stripeCustomers.$inferInsert;
+
+/**
+ * Blog categories for organizing posts
+ */
+export const blogCategories = mysqlTable("blog_categories", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull().unique(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+  description: text("description"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BlogCategory = typeof blogCategories.$inferSelect;
+export type InsertBlogCategory = typeof blogCategories.$inferInsert;
+
+/**
+ * Blog posts for news, articles, and updates
+ */
+export const blogPosts = mysqlTable("blog_posts", {
+  id: int("id").autoincrement().primaryKey(),
+  title: varchar("title", { length: 500 }).notNull(),
+  slug: varchar("slug", { length: 500 }).notNull().unique(),
+  content: text("content").notNull(),
+  excerpt: text("excerpt"),
+  featuredImage: varchar("featuredImage", { length: 500 }),
+  authorId: int("authorId").notNull(),
+  categoryId: int("categoryId"),
+  status: mysqlEnum("status", ["draft", "published", "archived"]).default("draft").notNull(),
+  publishedAt: timestamp("publishedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertBlogPost = typeof blogPosts.$inferInsert;
+
+/**
+ * Chat sessions for tracking conversations
+ */
+export const chatSessions = mysqlTable("chat_sessions", {
+  id: int("id").autoincrement().primaryKey(),
+  visitorName: varchar("visitorName", { length: 255 }),
+  visitorEmail: varchar("visitorEmail", { length: 320 }),
+  userId: int("userId"), // Null for anonymous visitors
+  status: mysqlEnum("status", ["active", "closed"]).default("active").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ChatSession = typeof chatSessions.$inferSelect;
+export type InsertChatSession = typeof chatSessions.$inferInsert;
+
+/**
+ * Chat messages within sessions
+ */
+export const chatMessages = mysqlTable("chat_messages", {
+  id: int("id").autoincrement().primaryKey(),
+  sessionId: int("sessionId").notNull(),
+  senderId: int("senderId"), // User ID if logged in, null for visitors
+  senderType: mysqlEnum("senderType", ["visitor", "admin"]).notNull(),
+  message: text("message").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ChatMessage = typeof chatMessages.$inferSelect;
+export type InsertChatMessage = typeof chatMessages.$inferInsert;
+
+/**
+ * Email SMTP settings for sending notifications
+ */
+export const emailSettings = mysqlTable("email_settings", {
+  id: int("id").autoincrement().primaryKey(),
+  smtpHost: varchar("smtpHost", { length: 255 }).notNull(),
+  smtpPort: int("smtpPort").notNull(),
+  smtpUser: varchar("smtpUser", { length: 255 }).notNull(),
+  smtpPassword: varchar("smtpPassword", { length: 255 }).notNull(),
+  fromEmail: varchar("fromEmail", { length: 320 }).notNull(),
+  fromName: varchar("fromName", { length: 255 }).notNull(),
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type EmailSettings = typeof emailSettings.$inferSelect;
+export type InsertEmailSettings = typeof emailSettings.$inferInsert;
+
+/**
+ * Affiliate Program Tables
+ */
+
+/**
+ * Affiliates - Partners who refer students
+ */
+export const affiliates = mysqlTable("affiliates", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(), // Links to users table
+  affiliateCode: varchar("affiliateCode", { length: 50 }).notNull().unique(),
+  organizationName: varchar("organizationName", { length: 255 }),
+  organizationType: mysqlEnum("organizationType", ["church", "ministry", "nonprofit", "individual", "other"]),
+  website: varchar("website", { length: 500 }),
+  description: text("description"),
+  expectedReferrals: varchar("expectedReferrals", { length: 255 }),
+  paymentDetails: text("paymentDetails"),
+  rejectionReason: text("rejectionReason"),
+  suspensionReason: text("suspensionReason"),
+  status: mysqlEnum("status", ["pending", "active", "suspended", "inactive", "rejected"]).default("pending").notNull(),
+  subscriptionCommissionRate: int("subscriptionCommissionRate").default(25).notNull(), // Percentage (e.g., 25 = 25%)
+  courseCommissionRate: int("courseCommissionRate").default(35).notNull(), // Percentage (e.g., 35 = 35%)
+  payoutEmail: varchar("payoutEmail", { length: 320 }),
+  payoutMethod: mysqlEnum("payoutMethod", ["paypal", "bank_transfer", "check"]).default("paypal"),
+  totalEarnings: int("totalEarnings").default(0).notNull(), // In cents
+  pendingEarnings: int("pendingEarnings").default(0).notNull(), // In cents
+  paidEarnings: int("paidEarnings").default(0).notNull(), // In cents
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  approvedAt: timestamp("approvedAt"),
+});
+
+export type Affiliate = typeof affiliates.$inferSelect;
+export type InsertAffiliate = typeof affiliates.$inferInsert;
+
+/**
+ * Affiliate Referrals - Tracks which users were referred by affiliates
+ */
+export const affiliateReferrals = mysqlTable("affiliate_referrals", {
+  id: int("id").autoincrement().primaryKey(),
+  affiliateId: int("affiliateId").notNull(),
+  referredUserId: int("referredUserId").notNull(),
+  referralCode: varchar("referralCode", { length: 50 }).notNull(), // The affiliate code used
+  status: mysqlEnum("status", ["pending", "converted", "cancelled"]).default("pending").notNull(),
+  referralDate: timestamp("referralDate").defaultNow().notNull(),
+  conversionDate: timestamp("conversionDate"),
+  ipAddress: varchar("ipAddress", { length: 45 }),
+  userAgent: text("userAgent"),
+});
+
+export type AffiliateReferral = typeof affiliateReferrals.$inferSelect;
+export type InsertAffiliateReferral = typeof affiliateReferrals.$inferInsert;
+
+/**
+ * Affiliate Commissions - Individual commission records
+ */
+export const affiliateCommissions = mysqlTable("affiliate_commissions", {
+  id: int("id").autoincrement().primaryKey(),
+  affiliateId: int("affiliateId").notNull(),
+  referralId: int("referralId").notNull(),
+  orderId: varchar("orderId", { length: 255 }), // Stripe payment ID or subscription ID
+  amount: int("amount").notNull(), // Commission amount in cents
+  type: mysqlEnum("type", ["subscription", "course", "bundle"]).notNull(),
+  status: mysqlEnum("status", ["pending", "approved", "paid", "cancelled"]).default("pending").notNull(),
+  description: text("description"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  approvedAt: timestamp("approvedAt"),
+  paidAt: timestamp("paidAt"),
+});
+
+export type AffiliateCommission = typeof affiliateCommissions.$inferSelect;
+export type InsertAffiliateCommission = typeof affiliateCommissions.$inferInsert;
+
+/**
+ * Affiliate Payouts - Batch payments to affiliates
+ */
+export const affiliatePayouts = mysqlTable("affiliate_payouts", {
+  id: int("id").autoincrement().primaryKey(),
+  affiliateId: int("affiliateId").notNull(),
+  amount: int("amount").notNull(), // Payout amount in cents
+  payoutMethod: mysqlEnum("payoutMethod", ["paypal", "bank_transfer", "check"]).notNull(),
+  payoutEmail: varchar("payoutEmail", { length: 320 }),
+  status: mysqlEnum("status", ["pending", "processing", "completed", "failed"]).default("pending").notNull(),
+  transactionId: varchar("transactionId", { length: 255 }), // PayPal transaction ID, check number, etc.
+  notes: text("notes"),
+  requestedAt: timestamp("requestedAt").defaultNow().notNull(),
+  processedAt: timestamp("processedAt"),
+  completedAt: timestamp("completedAt"),
+});
+
+export type AffiliatePayout = typeof affiliatePayouts.$inferSelect;
+export type InsertAffiliatePayout = typeof affiliatePayouts.$inferInsert;
+
+/**
+ * Affiliate Clicks - Track affiliate link clicks for analytics
+ */
+export const affiliateClicks = mysqlTable("affiliate_clicks", {
+  id: int("id").autoincrement().primaryKey(),
+  affiliateId: int("affiliateId").notNull(),
+  affiliateCode: varchar("affiliateCode", { length: 50 }).notNull(),
+  ipAddress: varchar("ipAddress", { length: 45 }),
+  userAgent: text("userAgent"),
+  referrerUrl: text("referrerUrl"),
+  landingPage: text("landingPage"),
+  clickedAt: timestamp("clickedAt").defaultNow().notNull(),
+});
+
+export type AffiliateClick = typeof affiliateClicks.$inferSelect;
+export type InsertAffiliateClick = typeof affiliateClicks.$inferInsert;
+
+
+/**
+ * Payment Plans - Cross Life Tuition Assistance
+ */
+export const paymentPlans = mysqlTable("payment_plans", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  planType: mysqlEnum("planType", ["LEARNING_PATH", "BUNDLE_3_COURSE", "CHAPLAINCY_TRAINING"]).notNull(),
+  bundleId: int("bundleId"), // Reference to bundle if applicable
+  learningPathId: int("learningPathId"), // Reference to learning path if applicable
+  totalAmount: int("totalAmount").notNull(), // Total amount in cents
+  monthlyAmount: int("monthlyAmount").notNull(), // Monthly payment in cents
+  paymentsTotal: int("paymentsTotal").default(6).notNull(), // Total number of payments (6 months)
+  paymentsCompleted: int("paymentsCompleted").default(0).notNull(), // Number of completed payments
+  paymentsRemaining: int("paymentsRemaining").default(6).notNull(), // Remaining payments
+  nextPaymentDate: timestamp("nextPaymentDate").notNull(),
+  status: mysqlEnum("status", ["active", "paused", "completed", "cancelled"]).default("active").notNull(),
+  stripeSubscriptionId: varchar("stripeSubscriptionId", { length: 255 }).unique(),
+  stripeCustomerId: varchar("stripeCustomerId", { length: 255 }).notNull(),
+  agreementAcceptedAt: timestamp("agreementAcceptedAt").notNull(), // When user accepted tuition agreement
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  completedAt: timestamp("completedAt"), // When plan was fully paid
+  cancelledAt: timestamp("cancelledAt"), // When plan was cancelled
+});
+
+export type PaymentPlan = typeof paymentPlans.$inferSelect;
+export type InsertPaymentPlan = typeof paymentPlans.$inferInsert;
+
+/**
+ * Payment History - Track all payment transactions
+ */
+export const paymentHistory = mysqlTable("payment_history", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  paymentPlanId: int("paymentPlanId"), // Null for one-time payments
+  amount: int("amount").notNull(), // Amount in cents
+  paymentNumber: int("paymentNumber"), // Which payment in the plan (1-6)
+  paymentDate: timestamp("paymentDate").defaultNow().notNull(),
+  status: mysqlEnum("status", ["succeeded", "failed", "refunded", "pending"]).default("pending").notNull(),
+  stripePaymentIntentId: varchar("stripePaymentIntentId", { length: 255 }).unique(),
+  stripeInvoiceId: varchar("stripeInvoiceId", { length: 255 }),
+  failureReason: text("failureReason"), // Reason if payment failed
+  refundedAt: timestamp("refundedAt"), // When refund was processed
+  refundAmount: int("refundAmount"), // Refund amount in cents
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PaymentHistory = typeof paymentHistory.$inferSelect;
+export type InsertPaymentHistory = typeof paymentHistory.$inferInsert;

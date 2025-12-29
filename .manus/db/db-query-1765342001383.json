@@ -1,0 +1,26 @@
+{
+  "query": "SELECT * FROM courses WHERE title LIKE '%Chaplain%' OR code LIKE '%CHAP%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT * FROM courses WHERE title LIKE '%Chaplain%' OR code LIKE '%CHAP%';",
+  "rows": [
+    {
+      "id": "240001",
+      "code": "CHAP101",
+      "title": "Chaplain's Training",
+      "description": "This comprehensive course prepares students for effective chaplaincy ministry across various settings including hospitals, military, prisons, and corporate environments. Students will develop essential skills in pastoral care, crisis intervention, ethical decision-making, and spiritual counseling while learning to minister to diverse populations in institutional contexts. The curriculum covers theological foundations of chaplaincy, professional boundaries, trauma-informed care, and interfaith sensitivity. Through case studies and practical applications, students will gain competency in providing compassionate spiritual support during life transitions, grief, illness, and crisis situations.",
+      "colorTheme": "#0066CC",
+      "totalLessons": "10",
+      "displayOrder": "18",
+      "createdAt": "2025-12-09 23:31:56",
+      "updatedAt": "2025-12-10 01:54:55",
+      "cpdHours": "30",
+      "introVideoUrl": "https://www.youtube.com/watch?v=8ZfYJXrJGYc",
+      "price": "350",
+      "requiresBackgroundCheck": "1",
+      "backgroundCheckFee": "50"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\tdescription\tcolorTheme\ttotalLessons\tdisplayOrder\tcreatedAt\tupdatedAt\tcpdHours\tintroVideoUrl\tprice\trequiresBackgroundCheck\tbackgroundCheckFee\n240001\tCHAP101\tChaplain's Training\tThis comprehensive course prepares students for effective chaplaincy ministry across various settings including hospitals, military, prisons, and corporate environments. Students will develop essential skills in pastoral care, crisis intervention, ethical decision-making, and spiritual counseling while learning to minister to diverse populations in institutional contexts. The curriculum covers theological foundations of chaplaincy, professional boundaries, trauma-informed care, and interfaith sensitivity. Through case studies and practical applications, students will gain competency in providing compassionate spiritual support during life transitions, grief, illness, and crisis situations.\t#0066CC\t10\t18\t2025-12-09 23:31:56\t2025-12-10 01:54:55\t30\thttps://www.youtube.com/watch?v=8ZfYJXrJGYc\t350\t1\t50\n",
+  "stderr": "",
+  "execution_time_ms": 224
+}

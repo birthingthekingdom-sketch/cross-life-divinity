@@ -1,0 +1,40 @@
+{
+  "query": "SELECT l.id, c.title as course, l.title, LENGTH(l.content) as content_length \nFROM lessons l \nJOIN courses c ON l.courseId = c.id \nWHERE c.title LIKE '%Old Testament%' \nORDER BY l.lessonOrder \nLIMIT 5",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT l.id, c.title as course, l.title, LENGTH(l.content) as content_length \nFROM lessons l \nJOIN courses c ON l.courseId = c.id \nWHERE c.title LIKE '%Old Testament%' \nORDER BY l.lessonOrder \nLIMIT 5",
+  "rows": [
+    {
+      "id": "360001",
+      "course": "Old Testament Survey",
+      "title": "Introduction to the Old Testament - Canon, Text, and Historical Context",
+      "content_length": "12680"
+    },
+    {
+      "id": "360002",
+      "course": "Old Testament Survey",
+      "title": "The Pentateuch - Genesis through Deuteronomy",
+      "content_length": "12611"
+    },
+    {
+      "id": "360003",
+      "course": "Old Testament Survey",
+      "title": "Historical Books - Joshua through Esther",
+      "content_length": "12710"
+    },
+    {
+      "id": "360004",
+      "course": "Old Testament Survey",
+      "title": "Wisdom Literature - Job, Psalms, Proverbs",
+      "content_length": "12839"
+    },
+    {
+      "id": "360005",
+      "course": "Old Testament Survey",
+      "title": "Wisdom Literature - Ecclesiastes and Song of Songs",
+      "content_length": "12737"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcourse\ttitle\tcontent_length\n360001\tOld Testament Survey\tIntroduction to the Old Testament - Canon, Text, and Historical Context\t12680\n360002\tOld Testament Survey\tThe Pentateuch - Genesis through Deuteronomy\t12611\n360003\tOld Testament Survey\tHistorical Books - Joshua through Esther\t12710\n360004\tOld Testament Survey\tWisdom Literature - Job, Psalms, Proverbs\t12839\n360005\tOld Testament Survey\tWisdom Literature - Ecclesiastes and Song of Songs\t12737\n",
+  "stderr": "",
+  "execution_time_ms": 171
+}

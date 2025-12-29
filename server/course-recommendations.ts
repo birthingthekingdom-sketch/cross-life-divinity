@@ -50,6 +50,9 @@ export async function getCourseRecommendations(userId: number): Promise<Recommen
 
   // 1. Recommend next course in enrolled learning paths (highest priority)
   for (const pathEnrollment of enrolledPaths) {
+    // Skip if learningPathId is undefined
+    if (!pathEnrollment.learningPathId) continue;
+    
     const pathCoursesResult: any = await dbConn.execute(
       sql`SELECT c.*, lpc.orderIndex
           FROM learning_path_courses lpc

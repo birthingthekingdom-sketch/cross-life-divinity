@@ -3,10 +3,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { Footer } from "@/components/Footer";
 import { Award, BookOpen, Users, Target, Heart, Globe, ArrowRight } from "lucide-react";
+import { PublicNav } from "@/components/PublicNav";
 
 export default function About() {
   return (
     <div className="min-h-screen bg-background">
+      <PublicNav currentPage="about" />
+      
       {/* Header */}
       <section className="bg-gradient-to-r from-primary to-primary/80 text-white py-20">
         <div className="container max-w-6xl mx-auto px-4">
@@ -21,25 +24,25 @@ export default function About() {
       <section className="py-16">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12">
-            <Card>
+            <Card className="bg-blue-50 border-blue-200">
               <CardContent className="pt-6">
                 <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
                   <Target className="h-8 w-8 text-primary" />
                 </div>
                 <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-lg text-foreground/80 leading-relaxed">
                   To provide high-quality, CPD-accredited theological education that empowers ministry leaders worldwide to deepen their biblical knowledge, strengthen their ministry skills, and transform their communities through the gospel of Jesus Christ.
                 </p>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-blue-50 border-blue-200">
               <CardContent className="pt-6">
                 <div className="bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
                   <Heart className="h-8 w-8 text-accent" />
                 </div>
                 <h2 className="text-3xl font-bold mb-4">Our Vision</h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-lg text-foreground/80 leading-relaxed">
                   To be the leading online platform for accessible theological education, raising up a generation of biblically-grounded, Spirit-led ministry leaders who will advance the Kingdom of God in every sphere of society.
                 </p>
               </CardContent>
@@ -120,37 +123,37 @@ export default function About() {
         <div className="container max-w-6xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-12">Why Choose Cross Life School of Divinity?</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <Card>
+            <Card className="bg-blue-50 border-blue-200">
               <CardContent className="pt-6">
                 <h3 className="text-2xl font-semibold mb-3">Seminary-Quality Education</h3>
-                <p className="text-muted-foreground">
+                <p className="text-foreground/80">
                   Our courses are developed by experienced theologians and ministry leaders, providing the same depth and rigor as traditional seminary programs.
                 </p>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-blue-50 border-blue-200">
               <CardContent className="pt-6">
                 <h3 className="text-2xl font-semibold mb-3">Study at Your Own Pace</h3>
-                <p className="text-muted-foreground">
+                <p className="text-foreground/80">
                   Access courses 24/7 from anywhere in the world. Learn on your schedule, whether you're a full-time minister or balancing work and family.
                 </p>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-blue-50 border-blue-200">
               <CardContent className="pt-6">
                 <h3 className="text-2xl font-semibold mb-3">Affordable Pricing</h3>
-                <p className="text-muted-foreground">
+                <p className="text-foreground/80">
                   At just $49/month for unlimited access to all courses, quality theological education has never been more affordable.
                 </p>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-blue-50 border-blue-200">
               <CardContent className="pt-6">
                 <h3 className="text-2xl font-semibold mb-3">Practical Application</h3>
-                <p className="text-muted-foreground">
+                <p className="text-foreground/80">
                   Every course includes practical assignments and real-world applications to help you immediately implement what you learn in your ministry.
                 </p>
               </CardContent>

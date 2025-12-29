@@ -21,6 +21,12 @@ import { bundlePurchaseRouter } from './bundle-purchase-router';
 import { emailNotificationRouter } from './email-notification-router';
 import { adminEmailRouter } from './admin-email-router';
 import * as referralSystem from './referral-router.js';
+import { blogRouter } from './blog-router';
+import { chatRouter } from './chat-router';
+import { affiliateRouter } from './affiliate-router';
+import { chaplaincyRouter } from './chaplaincy-router';
+import { installmentPlanRouter } from './installment-plan-router';
+import { paymentPlanRouter } from './payment-plan-router';
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -36,6 +42,12 @@ export const appRouter = router({
   cohorts: cohortRouter,
   bundlePurchase: bundlePurchaseRouter,
   emailNotifications: emailNotificationRouter,
+  blog: blogRouter,
+  chat: chatRouter,
+  affiliate: affiliateRouter,
+  chaplaincy: chaplaincyRouter,
+  installmentPlan: installmentPlanRouter,
+  paymentPlan: paymentPlanRouter,
 
   // Merge custom auth router with existing auth endpoints
   auth: router({
@@ -115,14 +127,25 @@ export const appRouter = router({
 
   courses: router({
     list: protectedProcedure.query(async ({ ctx }) => {
-      // Admins see all courses, students see only enrolled courses
+      // Return all courses with enrollment status
+      const allCourses = await db.getAllCourses();
+      
       if (ctx.user.role === 'admin') {
-        return db.getAllCourses();
+        return allCourses.map(course => ({ ...course, isEnrolled: true }));
       }
-      return db.getEnrolledCourses(ctx.user.id);
+      
+      // For students, check enrollment status for each course
+      const coursesWithEnrollment = await Promise.all(
+        allCourses.map(async (course) => {
+          const isEnrolled = await db.isUserEnrolledInCourse(ctx.user.id, course.id);
+          return { ...course, isEnrolled };
+        })
+      );
+      
+      return coursesWithEnrollment;
     }),
     
-    listAll: adminProcedure.query(async () => {
+    listAll: publicProcedure.query(async () => {
       return db.getAllCourses();
     }),
     
@@ -136,7 +159,7 @@ export const appRouter = router({
         return { enrolled };
       }),
     
-    getById: protectedProcedure
+    getById: publicProcedure
       .input(z.object({ id: z.number() }))
       .query(async ({ input, ctx }) => {
         const course = await db.getCourseById(input.id);
@@ -147,14 +170,24 @@ export const appRouter = router({
         // Get prerequisites for this course
         const coursePrerequisites = await prerequisites.getCoursePrerequisites(input.id);
         
-        // Check if user can enroll (has completed prerequisites)
-        const prerequisiteCheck = await prerequisites.checkPrerequisites(ctx.user.id, input.id);
+        // If user is logged in, check prerequisites and enrollment
+        let canEnroll = true;
+        let missingPrerequisites: any[] = [];
+        let isEnrolled = false;
+        
+        if (ctx.user) {
+          const prerequisiteCheck = await prerequisites.checkPrerequisites(ctx.user.id, input.id);
+          canEnroll = prerequisiteCheck.canEnroll;
+          missingPrerequisites = prerequisiteCheck.missingPrerequisites;
+          isEnrolled = await db.isUserEnrolledInCourse(ctx.user.id, input.id);
+        }
         
         return {
           ...course,
           prerequisites: coursePrerequisites,
-          canEnroll: prerequisiteCheck.canEnroll,
-          missingPrerequisites: prerequisiteCheck.missingPrerequisites
+          canEnroll,
+          missingPrerequisites,
+          isEnrolled
         };
       }),
     
@@ -208,13 +241,13 @@ export const appRouter = router({
   }),
 
   lessons: router({
-    getByCourse: protectedProcedure
+    getByCourse: publicProcedure
       .input(z.object({ courseId: z.number() }))
       .query(async ({ input }) => {
         return db.getLessonsByCourseId(input.courseId);
       }),
     
-    getById: protectedProcedure
+    getById: publicProcedure
       .input(z.object({ id: z.number() }))
       .query(async ({ input }) => {
         const lesson = await db.getLessonById(input.id);
@@ -957,6 +990,71 @@ export const appRouter = router({
           console.error("Failed to retry email:", error);
           throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: error.message });
         }
+      }),
+    
+    // Student Email Export
+    getStudentEmails: adminProcedure
+      .input(z.object({
+        filterType: z.string(),
+        courseId: z.number().optional()
+      }))
+      .query(async ({ input }) => {
+        const dbConn = await db.getDb();
+        if (!dbConn) return [];
+        
+        let query;
+        
+        if (input.filterType === 'all') {
+          // Get all enrolled students
+          query = sql`
+            SELECT DISTINCT
+              u.id,
+              u.name,
+              u.email,
+              MIN(ce.enrolledAt) as enrolledAt,
+              COUNT(DISTINCT ce.courseId) as courseCount
+            FROM users u
+            INNER JOIN course_enrollments ce ON u.id = ce.userId
+            WHERE u.role = 'student'
+            GROUP BY u.id, u.name, u.email
+            ORDER BY u.name
+          `;
+        } else if (input.filterType === 'course' && input.courseId) {
+          // Get students enrolled in specific course
+          query = sql`
+            SELECT DISTINCT
+              u.id,
+              u.name,
+              u.email,
+              ce.enrolledAt,
+              COUNT(DISTINCT ce2.courseId) as courseCount
+            FROM users u
+            INNER JOIN course_enrollments ce ON u.id = ce.userId
+            LEFT JOIN course_enrollments ce2 ON u.id = ce2.userId
+            WHERE u.role = 'student' AND ce.courseId = ${input.courseId}
+            GROUP BY u.id, u.name, u.email, ce.enrolledAt
+            ORDER BY u.name
+          `;
+        } else {
+          // Active students (logged in within last 30 days)
+          query = sql`
+            SELECT DISTINCT
+              u.id,
+              u.name,
+              u.email,
+              MIN(ce.enrolledAt) as enrolledAt,
+              COUNT(DISTINCT ce.courseId) as courseCount
+            FROM users u
+            INNER JOIN course_enrollments ce ON u.id = ce.userId
+            WHERE u.role = 'student' 
+              AND u.lastSignedIn >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+            GROUP BY u.id, u.name, u.email
+            ORDER BY u.name
+          `;
+        }
+        
+        const result: any = await dbConn.execute(query);
+        return Array.isArray(result) ? result : result.rows || [];
       }),
   }),
   

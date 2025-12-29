@@ -3,17 +3,22 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { trpc } from "@/lib/trpc";
-import { ArrowLeft, BookOpen, CheckCircle2, Clock, GraduationCap, Target } from "lucide-react";
+import { BookOpen, CheckCircle2, Clock, GraduationCap, Target } from "lucide-react";
 import { Link } from "wouter";
 import { toast } from "sonner";
 import { CourseDependencyDiagram } from "@/components/CourseDependencyDiagram";
+import { PublicNav } from "@/components/PublicNav";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { useLocation } from "wouter";
 
 export default function LearningPaths() {
+  const { isAuthenticated } = useAuth();
+  const [, setLocation] = useLocation();
   const utils = trpc.useUtils();
   const { data: paths, isLoading } = trpc.bundles.getActiveLearningPaths.useQuery();
-  const { data: enrolledCourses } = trpc.courses.list.useQuery();
-  const { data: allProgress } = trpc.progress.getAll.useQuery();
-  const { data: myEnrolledPaths } = trpc.bundles.getMyEnrolledPaths.useQuery();
+  const { data: enrolledCourses } = trpc.courses.list.useQuery(undefined, { enabled: isAuthenticated });
+  const { data: allProgress } = trpc.progress.getAll.useQuery(undefined, { enabled: isAuthenticated });
+  const { data: myEnrolledPaths } = trpc.bundles.getMyEnrolledPaths.useQuery(undefined, { enabled: isAuthenticated });
 
   const enrollMutation = trpc.bundles.enrollInPath.useMutation({
     onSuccess: () => {
@@ -98,15 +103,11 @@ export default function LearningPaths() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">
+      <PublicNav currentPage="learning-paths" />
+      
       {/* Header */}
       <div className="bg-primary text-white shadow-lg">
         <div className="container py-8">
-          <Link href="/dashboard">
-            <Button variant="ghost" size="sm" className="text-white hover:bg-white/20 mb-4">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Dashboard
-            </Button>
-          </Link>
           <h1 className="text-4xl font-bold mb-3">Learning Paths</h1>
           <p className="text-white/90 text-lg max-w-3xl">
             Structured course sequences designed to help you achieve specific ministry goals. Follow a path from start to finish for comprehensive training.
@@ -138,6 +139,9 @@ export default function LearningPaths() {
                             {path.duration}
                           </Badge>
                         )}
+                        <Badge className="bg-green-600 hover:bg-green-700 text-white">
+                          $199
+                        </Badge>
                       </div>
                       <CardTitle className="text-2xl mb-2">{path.name}</CardTitle>
                       <CardDescription className="text-base">{path.description}</CardDescription>
@@ -153,10 +157,9 @@ export default function LearningPaths() {
                         </Button>
                       ) : (
                         <Button
-                          onClick={() => enrollMutation.mutate({ learningPathId: path.id })}
-                          disabled={enrollMutation.isPending}
+                          onClick={() => setLocation('/pricing')}
                         >
-                          {enrollMutation.isPending ? "Enrolling..." : "Start This Path"}
+                          Start This Path
                         </Button>
                       )}
                     </div>

@@ -1,0 +1,8 @@
+{
+  "query": "SELECT ce.id, ce.user_id, ce.course_id, c.code, c.title \nFROM course_enrollments ce \nJOIN courses c ON ce.course_id = c.id \nWHERE ce.user_id = (SELECT id FROM users WHERE email = 'student@test.com');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT ce.id, ce.user_id, ce.course_id, c.code, c.title \nFROM course_enrollments ce \nJOIN courses c ON ce.course_id = c.id \nWHERE ce.user_id = (SELECT id FROM users WHERE email = 'student@test.com');",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'ce.course_id' in 'on clause'"
+  ]
+}

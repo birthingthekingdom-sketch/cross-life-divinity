@@ -1,0 +1,15 @@
+{
+  "query": "SELECT id, code, title FROM courses WHERE title LIKE '%Chaplain%' OR code LIKE '%CHAP%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code, title FROM courses WHERE title LIKE '%Chaplain%' OR code LIKE '%CHAP%';",
+  "rows": [
+    {
+      "id": "240001",
+      "code": "CHAP101",
+      "title": "Chaplain's Training"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\n240001\tCHAP101\tChaplain's Training\n",
+  "stderr": "",
+  "execution_time_ms": 51
+}

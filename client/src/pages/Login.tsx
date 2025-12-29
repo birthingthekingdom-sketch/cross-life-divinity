@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,9 +10,28 @@ import { useAuth } from "@/_core/hooks/useAuth";
 
 export default function Login() {
   const [, setLocation] = useLocation();
-  const { refresh } = useAuth();
+  const { refresh, isAuthenticated, loading } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [hasInteracted, setHasInteracted] = useState(false);
+
+  // Redirect if already logged in (but only on initial load, not during form interaction)
+  useEffect(() => {
+    if (!loading && isAuthenticated && !hasInteracted) {
+      setLocation("/dashboard");
+    }
+  }, [isAuthenticated, loading, hasInteracted, setLocation]);
+  
+  // Mark as interacted when user starts typing
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setHasInteracted(true);
+    setEmail(e.target.value);
+  };
+  
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setHasInteracted(true);
+    setPassword(e.target.value);
+  };
 
   const loginMutation = trpc.auth.login.useMutation({
     onSuccess: async () => {
@@ -33,6 +52,18 @@ export default function Login() {
     }
     loginMutation.mutate({ email, password });
   };
+
+  // Show loading state while checking authentication
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-primary via-primary/90 to-primary/70 flex items-center justify-center p-4">
+        <div className="text-white text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary via-primary/90 to-primary/70 flex items-center justify-center p-4">
@@ -64,7 +95,7 @@ export default function Login() {
                   type="email"
                   placeholder="your.email@example.com"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={handleEmailChange}
                   required
                   autoComplete="email"
                 />
@@ -82,7 +113,7 @@ export default function Login() {
                   type="password"
                   placeholder="••••••••"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={handlePasswordChange}
                   required
                   autoComplete="current-password"
                 />

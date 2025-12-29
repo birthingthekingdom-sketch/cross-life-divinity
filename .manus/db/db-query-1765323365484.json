@@ -1,0 +1,43 @@
+{
+  "query": "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'lessons' AND TABLE_SCHEMA = 'P2Dpw9MQsmxzdUQCfGjV6b'",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'lessons' AND TABLE_SCHEMA = 'P2Dpw9MQsmxzdUQCfGjV6b'",
+  "rows": [
+    {
+      "COLUMN_NAME": "id"
+    },
+    {
+      "COLUMN_NAME": "courseId"
+    },
+    {
+      "COLUMN_NAME": "title"
+    },
+    {
+      "COLUMN_NAME": "content"
+    },
+    {
+      "COLUMN_NAME": "lessonOrder"
+    },
+    {
+      "COLUMN_NAME": "createdAt"
+    },
+    {
+      "COLUMN_NAME": "updatedAt"
+    },
+    {
+      "COLUMN_NAME": "videoUrl"
+    },
+    {
+      "COLUMN_NAME": "readingMaterial"
+    },
+    {
+      "COLUMN_NAME": "assignment"
+    },
+    {
+      "COLUMN_NAME": "assignmentDueDate"
+    }
+  ],
+  "messages": [],
+  "stdout": "COLUMN_NAME\nid\ncourseId\ntitle\ncontent\nlessonOrder\ncreatedAt\nupdatedAt\nvideoUrl\nreadingMaterial\nassignment\nassignmentDueDate\n",
+  "stderr": "",
+  "execution_time_ms": 54
+}

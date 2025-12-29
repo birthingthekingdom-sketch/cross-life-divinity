@@ -1,0 +1,19 @@
+{
+  "query": "SELECT ce.*, c.title as course_title, u.email \nFROM course_enrollments ce \nJOIN courses c ON ce.courseId = c.id \nJOIN users u ON ce.userId = u.id \nWHERE u.email = 'student@test.com';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT ce.*, c.title as course_title, u.email \nFROM course_enrollments ce \nJOIN courses c ON ce.courseId = c.id \nJOIN users u ON ce.userId = u.id \nWHERE u.email = 'student@test.com';",
+  "rows": [
+    {
+      "id": "30001",
+      "userId": "240033",
+      "courseId": "150001",
+      "accessCodeId": "120001",
+      "enrolledAt": "2025-12-08 17:43:02",
+      "course_title": "Old Testament Survey",
+      "email": "student@test.com"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tuserId\tcourseId\taccessCodeId\tenrolledAt\tcourse_title\temail\n30001\t240033\t150001\t120001\t2025-12-08 17:43:02\tOld Testament Survey\tstudent@test.com\n",
+  "stderr": "",
+  "execution_time_ms": 57
+}

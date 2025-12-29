@@ -13,6 +13,7 @@ import Enroll from "./pages/Enroll";
 import CoursePage from "./pages/CoursePage";
 import LessonPage from "./pages/LessonPage";
 import Admin from "./pages/Admin";
+import AdminChat from "./pages/AdminChat";
 import AdminCourseDetail from "./pages/AdminCourseDetail";
 import AdminEditLesson from "./pages/AdminEditLesson";
 import AdminBulkImport from "./pages/AdminBulkImport";
@@ -51,16 +52,34 @@ import EmailSettings from './pages/EmailSettings';
 import Referrals from './pages/Referrals';
 import AdminEmailConfig from './pages/AdminEmailConfig';
 import AdminEmailNotifications from './pages/AdminEmailNotifications';
+import AdminEmailExport from './pages/AdminEmailExport';
 import CohortGroups from './pages/CohortGroups';
 import About from './pages/About';
+import FAQ from './pages/FAQ';
+import SuccessStories from './pages/SuccessStories';
+import Resources from './pages/Resources';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
+import BundleSelection from './pages/BundleSelection';
+import Logout from './pages/Logout';
+import AffiliateApply from './pages/AffiliateApply';
+import AffiliateDashboard from './pages/AffiliateDashboard';
+import ChaplaincyTraining from './pages/ChaplaincyTraining';
+import { PaymentPlanCheckout } from './pages/PaymentPlanCheckout';
+import MyPayments from './pages/MyPayments';
+import StudentHandbook from './pages/StudentHandbook';
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Landing} />
-      <Route path="/home" component={Home} />
       <Route path="/login" component={Login} />
+      <Route path="/logout" component={Logout} />
+      <Route path="/affiliate/apply" component={AffiliateApply} />
+      <Route path="/affiliate/dashboard" component={AffiliateDashboard} />
+      <Route path="/chaplaincy-training" component={ChaplaincyTraining} />
       <Route path="/register" component={Register} />
+      <Route path="/signup" component={Register} />
       <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/reset-password" component={ResetPassword} />
         <Route path="/verify-email" component={VerifyEmail} />
@@ -69,6 +88,8 @@ function Router() {
       <Route path="/course/:id" component={CoursePage} />
       <Route path="/lesson/:id" component={LessonPage} />
       <Route path="/admin" component={Admin} />
+      <Route path="/admin/chat" component={AdminChat} />
+      <Route path="/admin/email-export" component={AdminEmailExport} />
       <Route path="/admin/course/:id" component={AdminCourseDetail} />
       <Route path="/admin/lesson/:id" component={AdminEditLesson} />
       <Route path="/admin/bulk-import" component={AdminBulkImport} />
@@ -96,11 +117,20 @@ function Router() {
       <Route path="/learning-paths" component={LearningPaths} />
       <Route path="/cohorts" component={CohortGroups} />
       <Route path="/about" component={About} />
+      <Route path="/faq" component={FAQ} />
+      <Route path="/success-stories" component={SuccessStories} />
+      <Route path="/resources" component={Resources} />
+      <Route path="/blog" component={Blog} />
+      <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/courses" component={Courses} />
       <Route path="/catalog" component={Catalog} />
+      <Route path="/bundle-select" component={BundleSelection} />
       <Route path="/payment/success" component={PaymentSuccess} />
       <Route path="/payment/cancel" component={PaymentCancel} />
+      <Route path="/checkout/payment-plan" component={PaymentPlanCheckout} />
+      <Route path="/my-payments" component={MyPayments} />
+      <Route path="/student-handbook" component={StudentHandbook} />
       <Route path="/upgrade" component={Upgrade} />
       <Route path="/subscription" component={Subscription} />
       <Route path="/toggle-role" component={ToggleRole} />
