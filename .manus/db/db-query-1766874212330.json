@@ -1,0 +1,26 @@
+{
+  "query": "SELECT * FROM courses LIMIT 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT * FROM courses LIMIT 1;",
+  "rows": [
+    {
+      "id": "150001",
+      "code": "BIB101",
+      "title": "Old Testament Survey",
+      "description": "This comprehensive course provides an in-depth exploration of the Old Testament, examining its historical, literary, and theological dimensions. Students will journey through the Pentateuch, Historical Books, Wisdom Literature, and Prophetic writings, gaining critical insights into God's covenant relationship with Israel. Through careful analysis of key texts, cultural contexts, and theological themes, learners will develop a robust understanding of how the Old Testament lays the foundation for biblical faith and continues to speak to contemporary Christian life and ministry.",
+      "colorTheme": "blue",
+      "totalLessons": "10",
+      "displayOrder": "1",
+      "createdAt": "2025-12-05 05:10:41",
+      "updatedAt": "2025-12-19 23:11:56",
+      "cpdHours": "40",
+      "introVideoUrl": "NULL",
+      "price": "89",
+      "requiresBackgroundCheck": "0",
+      "backgroundCheckFee": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\tdescription\tcolorTheme\ttotalLessons\tdisplayOrder\tcreatedAt\tupdatedAt\tcpdHours\tintroVideoUrl\tprice\trequiresBackgroundCheck\tbackgroundCheckFee\n150001\tBIB101\tOld Testament Survey\tThis comprehensive course provides an in-depth exploration of the Old Testament, examining its historical, literary, and theological dimensions. Students will journey through the Pentateuch, Historical Books, Wisdom Literature, and Prophetic writings, gaining critical insights into God's covenant relationship with Israel. Through careful analysis of key texts, cultural contexts, and theological themes, learners will develop a robust understanding of how the Old Testament lays the foundation for biblical faith and continues to speak to contemporary Christian life and ministry.\tblue\t10\t1\t2025-12-05 05:10:41\t2025-12-19 23:11:56\t40\tNULL\t89\t0\t0\n",
+  "stderr": "",
+  "execution_time_ms": 59
+}

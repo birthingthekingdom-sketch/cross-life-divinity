@@ -463,10 +463,16 @@ export const subscriptions = mysqlTable("subscriptions", {
   userId: int("userId").notNull(),
   stripeCustomerId: varchar("stripeCustomerId", { length: 255 }).notNull(),
   stripeSubscriptionId: varchar("stripeSubscriptionId", { length: 255 }).notNull().unique(),
-  status: mysqlEnum("status", ["active", "canceled", "past_due", "unpaid"]).default("active").notNull(),
+  status: mysqlEnum("status", ["active", "canceled", "past_due", "unpaid", "suspended"]).default("active").notNull(),
   currentPeriodStart: timestamp("currentPeriodStart").notNull(),
   currentPeriodEnd: timestamp("currentPeriodEnd").notNull(),
   cancelAtPeriodEnd: boolean("cancelAtPeriodEnd").default(false).notNull(),
+  // Payment failure tracking
+  failedPaymentAttempts: int("failedPaymentAttempts").default(0).notNull(),
+  lastFailedPaymentDate: timestamp("lastFailedPaymentDate"),
+  nextRetryDate: timestamp("nextRetryDate"),
+  accessSuspendedAt: timestamp("accessSuspendedAt"),
+  lastPaymentFailureReason: text("lastPaymentFailureReason"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
@@ -750,3 +756,52 @@ export const paymentHistory = mysqlTable("payment_history", {
 
 export type PaymentHistory = typeof paymentHistory.$inferSelect;
 export type InsertPaymentHistory = typeof paymentHistory.$inferInsert;
+
+
+/**
+ * ID Submissions - Student ID verification for enrollment
+ */
+export const idSubmissions = mysqlTable("id_submissions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  fileUrl: text("fileUrl").notNull(), // S3 URL to uploaded ID image
+  fileKey: varchar("fileKey", { length: 255 }).notNull(), // S3 key for file storage
+  idType: mysqlEnum("idType", ["driver_license", "state_id", "passport"]).notNull(),
+  status: mysqlEnum("status", ["pending", "approved", "rejected", "resubmit_requested"]).default("pending").notNull(),
+  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+  reviewedAt: timestamp("reviewedAt"), // When admin reviewed the submission
+  reviewedBy: int("reviewedBy"), // Admin user ID who reviewed
+  rejectionReason: text("rejectionReason"), // Reason for rejection if applicable
+  notes: text("notes"), // Admin notes
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type IdSubmission = typeof idSubmissions.$inferSelect;
+export type InsertIdSubmission = typeof idSubmissions.$inferInsert;
+
+
+/**
+ * Pending Written Answers - Tracks short answer/essay questions awaiting admin grading
+ */
+export const pendingWrittenAnswers = mysqlTable("pending_written_answers", {
+  id: int("id").autoincrement().primaryKey(),
+  quizSubmissionId: int("quizSubmissionId").notNull(),
+  userId: int("userId").notNull(),
+  lessonId: int("lessonId").notNull(),
+  courseId: int("courseId").notNull(),
+  questionId: int("questionId").notNull(),
+  questionText: text("questionText").notNull(),
+  studentAnswer: text("studentAnswer").notNull(),
+  status: mysqlEnum("status", ["pending", "graded", "skipped"]).default("pending").notNull(),
+  adminScore: int("adminScore"), // 0-100 score given by admin
+  adminFeedback: text("adminFeedback"), // Feedback provided by admin
+  gradedAt: timestamp("gradedAt"), // When admin graded the answer
+  gradedBy: int("gradedBy"), // Admin user ID who graded
+  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type PendingWrittenAnswer = typeof pendingWrittenAnswers.$inferSelect;
+export type InsertPendingWrittenAnswer = typeof pendingWrittenAnswers.$inferInsert;

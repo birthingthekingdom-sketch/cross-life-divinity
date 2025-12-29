@@ -1,0 +1,122 @@
+{
+  "query": "DESCRIBE payment_plans;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute DESCRIBE payment_plans;",
+  "rows": [
+    {
+      "Field": "id",
+      "Type": "int(11)",
+      "Null": "NO",
+      "Key": "PRI",
+      "Default": "NULL",
+      "Extra": "auto_increment"
+    },
+    {
+      "Field": "userId",
+      "Type": "int(11)",
+      "Null": "NO",
+      "Key": "MUL",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "bundleId",
+      "Type": "int(11)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "totalAmount",
+      "Type": "int(11)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "monthlyAmount",
+      "Type": "int(11)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "paymentsTotal",
+      "Type": "int(11)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "6",
+      "Extra": ""
+    },
+    {
+      "Field": "paymentsCompleted",
+      "Type": "int(11)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "0",
+      "Extra": ""
+    },
+    {
+      "Field": "status",
+      "Type": "enum('active','completed','cancelled','failed')",
+      "Null": "NO",
+      "Key": "MUL",
+      "Default": "active",
+      "Extra": ""
+    },
+    {
+      "Field": "startDate",
+      "Type": "datetime",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "nextPaymentDate",
+      "Type": "datetime",
+      "Null": "NO",
+      "Key": "MUL",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "stripeCustomerId",
+      "Type": "varchar(255)",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "stripePaymentMethodId",
+      "Type": "varchar(255)",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "createdAt",
+      "Type": "datetime",
+      "Null": "YES",
+      "Key": "",
+      "Default": "CURRENT_TIMESTAMP",
+      "Extra": ""
+    },
+    {
+      "Field": "updatedAt",
+      "Type": "datetime",
+      "Null": "YES",
+      "Key": "",
+      "Default": "CURRENT_TIMESTAMP",
+      "Extra": "DEFAULT_GENERATED on update CURRENT_TIMESTAMP"
+    }
+  ],
+  "messages": [],
+  "stdout": "Field\tType\tNull\tKey\tDefault\tExtra\nid\tint(11)\tNO\tPRI\tNULL\tauto_increment\nuserId\tint(11)\tNO\tMUL\tNULL\t\nbundleId\tint(11)\tNO\t\tNULL\t\ntotalAmount\tint(11)\tNO\t\tNULL\t\nmonthlyAmount\tint(11)\tNO\t\tNULL\t\npaymentsTotal\tint(11)\tNO\t\t6\t\npaymentsCompleted\tint(11)\tNO\t\t0\t\nstatus\tenum('active','completed','cancelled','failed')\tNO\tMUL\tactive\t\nstartDate\tdatetime\tNO\t\tNULL\t\nnextPaymentDate\tdatetime\tNO\tMUL\tNULL\t\nstripeCustomerId\tvarchar(255)\tYES\t\tNULL\t\nstripePaymentMethodId\tvarchar(255)\tYES\t\tNULL\t\ncreatedAt\tdatetime\tYES\t\tCURRENT_TIMESTAMP\t\nupdatedAt\tdatetime\tYES\t\tCURRENT_TIMESTAMP\tDEFAULT_GENERATED on update CURRENT_TIMESTAMP\n",
+  "stderr": "",
+  "execution_time_ms": 56
+}
