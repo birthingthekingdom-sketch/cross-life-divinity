@@ -2243,3 +2243,10 @@ Note: Course detail page has a pre-existing loading issue affecting all courses 
 - [x] Add video introductions to course page (placeholder video sections)
 - [x] Add Coming Soon status for courses in development (DIV108, DIV109, DIV110 with lock icon)
 - [x] Test all features on desktop and mobile
+
+
+## Course Introduction Slideshows - Integration Fixes Needed
+- [x] Remove all slideshow integration (incorrect course matching, wrong placement)
+- [x] Delete CourseIntroSlideshow component
+- [x] Delete slideshow data files
+- [x] Remove slideshow scripts directory

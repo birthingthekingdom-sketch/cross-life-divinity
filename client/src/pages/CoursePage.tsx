@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { VideoPlayer } from "@/components/VideoPlayer";
-import { CourseIntroSlideshow } from "@/components/CourseIntroSlideshow";
-import { courseIntroSlideshows } from "@/data/all-courses-slideshows";
+
+
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { ArrowLeft, Award, BookOpen, CheckCircle2, Circle, Download, MessageSquare, Video } from "lucide-react";
@@ -309,17 +309,6 @@ export default function CoursePage() {
               </CardContent>
             </Card>
           )}
-
-          {(() => {
-            if (courseIntroSlideshows[course.code]) {
-              return (
-                <div className="mb-8">
-                  <CourseIntroSlideshow courseCode={course.code} />
-                </div>
-              );
-            }
-            return null;
-          })()}
 
           <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
             <BookOpen className="h-6 w-6 text-primary" />
