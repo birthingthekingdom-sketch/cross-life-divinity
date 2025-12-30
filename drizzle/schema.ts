@@ -895,3 +895,43 @@ export const bridgeAcademyCertificates = mysqlTable("bridge_academy_certificates
 
 export type BridgeAcademyCertificate = typeof bridgeAcademyCertificates.$inferSelect;
 export type InsertBridgeAcademyCertificate = typeof bridgeAcademyCertificates.$inferInsert;
+
+/**
+ * Bridge Academy Transcripts - Detailed course records with scores
+ */
+export const bridgeAcademyTranscripts = mysqlTable("bridge_academy_transcripts", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  certificateId: int("certificateId").notNull(), // Links to bridgeAcademyCertificates
+  courseId: int("courseId").notNull(), // GED subject
+  courseName: varchar("courseName", { length: 255 }).notNull(), // e.g., "Reasoning Through Language Arts"
+  courseCode: varchar("courseCode", { length: 32 }).notNull(), // e.g., "GED-RLA"
+  topicsCompleted: int("topicsCompleted").notNull(),
+  totalTopics: int("totalTopics").notNull(),
+  averageScore: int("averageScore").notNull(), // Average quiz score (0-100)
+  completionDate: timestamp("completionDate").notNull(),
+  studyHours: int("studyHours").default(0).notNull(), // Estimated hours spent
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BridgeAcademyTranscript = typeof bridgeAcademyTranscripts.$inferSelect;
+export type InsertBridgeAcademyTranscript = typeof bridgeAcademyTranscripts.$inferInsert;
+
+/**
+ * Bridge Academy Subject Certificates - Individual subject completion certificates
+ */
+export const bridgeAcademySubjectCertificates = mysqlTable("bridge_academy_subject_certificates", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  courseId: int("courseId").notNull(), // GED subject
+  courseName: varchar("courseName", { length: 255 }).notNull(),
+  courseCode: varchar("courseCode", { length: 32 }).notNull(),
+  certificateNumber: varchar("certificateNumber", { length: 50 }).notNull().unique(),
+  verificationToken: varchar("verificationToken", { length: 64 }).notNull().unique(),
+  score: int("score").notNull(), // Final score for this subject
+  completionDate: timestamp("completionDate").notNull(),
+  issuedAt: timestamp("issuedAt").defaultNow().notNull(),
+});
+
+export type BridgeAcademySubjectCertificate = typeof bridgeAcademySubjectCertificates.$inferSelect;
+export type InsertBridgeAcademySubjectCertificate = typeof bridgeAcademySubjectCertificates.$inferInsert;

@@ -69,6 +69,8 @@ import { PaymentPlanCheckout } from './pages/PaymentPlanCheckout';
 import MyPayments from './pages/MyPayments';
 import StudentHandbook from './pages/StudentHandbook';
 import { BridgeAcademy } from './pages/BridgeAcademy';
+import BridgeAcademyDiplomas from './pages/BridgeAcademyDiplomas';
+import VerifyBridgeAcademyCertificate from './pages/VerifyBridgeAcademyCertificate';
 
 function Router() {
   return (
@@ -134,6 +136,8 @@ function Router() {
       <Route path="/student-handbook" component={StudentHandbook} />
       <Route path="/bridge-academy" component={BridgeAcademy} />
       <Route path="/bridge-academy/:subject" component={BridgeAcademy} />
+      <Route path="/bridge-academy/diplomas" component={BridgeAcademyDiplomas} />
+      <Route path="/verify-bridge-academy/:token" component={VerifyBridgeAcademyCertificate} />
       <Route path="/upgrade" component={Upgrade} />
       <Route path="/subscription" component={Subscription} />
       <Route path="/toggle-role" component={ToggleRole} />
