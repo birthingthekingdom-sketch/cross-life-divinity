@@ -68,6 +68,7 @@ import ChaplaincyTraining from './pages/ChaplaincyTraining';
 import { PaymentPlanCheckout } from './pages/PaymentPlanCheckout';
 import MyPayments from './pages/MyPayments';
 import StudentHandbook from './pages/StudentHandbook';
+import { BridgeAcademy } from './pages/BridgeAcademy';
 
 function Router() {
   return (
@@ -131,6 +132,8 @@ function Router() {
       <Route path="/checkout/payment-plan" component={PaymentPlanCheckout} />
       <Route path="/my-payments" component={MyPayments} />
       <Route path="/student-handbook" component={StudentHandbook} />
+      <Route path="/bridge-academy" component={BridgeAcademy} />
+      <Route path="/bridge-academy/:subject" component={BridgeAcademy} />
       <Route path="/upgrade" component={Upgrade} />
       <Route path="/subscription" component={Subscription} />
       <Route path="/toggle-role" component={ToggleRole} />

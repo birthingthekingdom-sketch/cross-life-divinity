@@ -750,3 +750,148 @@ export const paymentHistory = mysqlTable("payment_history", {
 
 export type PaymentHistory = typeof paymentHistory.$inferSelect;
 export type InsertPaymentHistory = typeof paymentHistory.$inferInsert;
+
+/**
+ * Bridge Academy Topics - Organize GED subjects into topics
+ */
+export const bridgeAcademyTopics = mysqlTable("bridge_academy_topics", {
+  id: int("id").autoincrement().primaryKey(),
+  courseId: int("courseId").notNull(), // Links to GED subject course
+  title: varchar("title", { length: 255 }).notNull(),
+  description: text("description"),
+  topicOrder: int("topicOrder").notNull(),
+  khanaAcademyPlaylistId: varchar("khanaAcademyPlaylistId", { length: 255 }), // Khan Academy playlist ID
+  khanaAcademyVideoIds: text("khanaAcademyVideoIds"), // JSON array of Khan Academy video IDs
+  studyGuideUrl: text("studyGuideUrl"), // URL to downloadable PDF study guide
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BridgeAcademyTopic = typeof bridgeAcademyTopics.$inferSelect;
+export type InsertBridgeAcademyTopic = typeof bridgeAcademyTopics.$inferInsert;
+
+/**
+ * Bridge Academy Quiz Questions - 10+ questions per topic
+ */
+export const bridgeAcademyQuizQuestions = mysqlTable("bridge_academy_quiz_questions", {
+  id: int("id").autoincrement().primaryKey(),
+  topicId: int("topicId").notNull(),
+  question: text("question").notNull(),
+  questionType: mysqlEnum("questionType", ["multiple_choice", "true_false", "short_answer"]).notNull(),
+  options: text("options"), // JSON array for multiple choice
+  correctAnswer: text("correctAnswer").notNull(),
+  explanation: text("explanation"), // Explanation for correct answer
+  questionOrder: int("questionOrder").notNull(),
+  difficulty: mysqlEnum("difficulty", ["easy", "medium", "hard"]).default("medium"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BridgeAcademyQuizQuestion = typeof bridgeAcademyQuizQuestions.$inferSelect;
+export type InsertBridgeAcademyQuizQuestion = typeof bridgeAcademyQuizQuestions.$inferInsert;
+
+/**
+ * Bridge Academy Quiz Submissions - Track student quiz attempts
+ */
+export const bridgeAcademyQuizSubmissions = mysqlTable("bridge_academy_quiz_submissions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  topicId: int("topicId").notNull(),
+  courseId: int("courseId").notNull(),
+  score: int("score").notNull(), // Number of correct answers
+  totalQuestions: int("totalQuestions").notNull(),
+  percentage: int("percentage").notNull(), // Percentage score
+  passed: boolean("passed").notNull(), // true if >= 70%
+  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+});
+
+export type BridgeAcademyQuizSubmission = typeof bridgeAcademyQuizSubmissions.$inferSelect;
+export type InsertBridgeAcademyQuizSubmission = typeof bridgeAcademyQuizSubmissions.$inferInsert;
+
+/**
+ * Bridge Academy Quiz Answers - Track individual question answers
+ */
+export const bridgeAcademyQuizAnswers = mysqlTable("bridge_academy_quiz_answers", {
+  id: int("id").autoincrement().primaryKey(),
+  submissionId: int("submissionId").notNull(),
+  questionId: int("questionId").notNull(),
+  userAnswer: text("userAnswer").notNull(),
+  isCorrect: boolean("isCorrect").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BridgeAcademyQuizAnswer = typeof bridgeAcademyQuizAnswers.$inferSelect;
+export type InsertBridgeAcademyQuizAnswer = typeof bridgeAcademyQuizAnswers.$inferInsert;
+
+/**
+ * Bridge Academy Enrollments - Track $19/month subscriptions for Bridge Academy
+ */
+export const bridgeAcademyEnrollments = mysqlTable("bridge_academy_enrollments", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  stripeSubscriptionId: varchar("stripeSubscriptionId", { length: 255 }).unique(),
+  status: mysqlEnum("status", ["active", "canceled", "past_due", "unpaid"]).default("active").notNull(),
+  currentPeriodStart: timestamp("currentPeriodStart").notNull(),
+  currentPeriodEnd: timestamp("currentPeriodEnd").notNull(),
+  cancelAtPeriodEnd: boolean("cancelAtPeriodEnd").default(false).notNull(),
+  enrolledAt: timestamp("enrolledAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BridgeAcademyEnrollment = typeof bridgeAcademyEnrollments.$inferSelect;
+export type InsertBridgeAcademyEnrollment = typeof bridgeAcademyEnrollments.$inferInsert;
+
+/**
+ * Referral Credits - Track $50 credits earned from referrals
+ */
+export const referralCredits = mysqlTable("referral_credits", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(), // User who earned the credit
+  referralId: int("referralId").notNull(), // Link to affiliate_referrals table
+  creditAmount: int("creditAmount").notNull(), // Amount in cents (e.g., 5000 = $50)
+  creditType: mysqlEnum("creditType", ["referrer_bonus", "referred_bonus"]).notNull(), // Who earned it
+  status: mysqlEnum("status", ["pending", "available", "applied", "expired"]).default("available").notNull(),
+  appliedToOrderId: varchar("appliedToOrderId", { length: 255 }), // Which order/subscription used this credit
+  appliedAt: timestamp("appliedAt"),
+  expiresAt: timestamp("expiresAt"), // Optional expiration date
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ReferralCredit = typeof referralCredits.$inferSelect;
+export type InsertReferralCredit = typeof referralCredits.$inferInsert;
+
+/**
+ * Bridge Academy Progress - Track student progress through courses
+ */
+export const bridgeAcademyProgress = mysqlTable("bridge_academy_progress", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  courseId: int("courseId").notNull(), // GED subject
+  topicsCompleted: int("topicsCompleted").default(0).notNull(),
+  totalTopics: int("totalTopics").notNull(),
+  averageScore: int("averageScore").default(0).notNull(), // Average quiz score
+  lastActivityAt: timestamp("lastActivityAt"),
+  completedAt: timestamp("completedAt"), // When all topics completed
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BridgeAcademyProgress = typeof bridgeAcademyProgress.$inferSelect;
+export type InsertBridgeAcademyProgress = typeof bridgeAcademyProgress.$inferInsert;
+
+/**
+ * Bridge Academy Certificates - GED Prep Completion Certificates
+ */
+export const bridgeAcademyCertificates = mysqlTable("bridge_academy_certificates", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  certificateNumber: varchar("certificateNumber", { length: 50 }).notNull().unique(),
+  verificationToken: varchar("verificationToken", { length: 64 }).notNull().unique(),
+  completionDate: timestamp("completionDate").notNull(),
+  averageScore: int("averageScore").notNull(), // Average score across all 4 subjects
+  issuedAt: timestamp("issuedAt").defaultNow().notNull(),
+});
+
+export type BridgeAcademyCertificate = typeof bridgeAcademyCertificates.$inferSelect;
+export type InsertBridgeAcademyCertificate = typeof bridgeAcademyCertificates.$inferInsert;
