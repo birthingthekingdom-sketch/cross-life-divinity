@@ -82,6 +82,8 @@ import Contact from './pages/Contact';
 import AdminBridgeAcademyCourses from './pages/AdminBridgeAcademyCourses';
 import AdminBridgeAcademyStudents from './pages/AdminBridgeAcademyStudents';
 import AdminBridgeAcademyAnalytics from './pages/AdminBridgeAcademyAnalytics';
+import BridgeAcademyDashboard from './pages/BridgeAcademyDashboard';
+import BridgeAcademyPracticeQuiz from './pages/BridgeAcademyPracticeQuiz';
 
 function Router() {
   return (
@@ -150,6 +152,8 @@ function Router() {
       <Route path="/student-handbook" component={StudentHandbook} />
       <Route path="/bridge-academy" component={BridgeAcademy} />
       <Route path="/bridge-academy/:subject" component={BridgeAcademy} />
+      <Route path="/bridge-academy/dashboard" component={BridgeAcademyDashboard} />
+      <Route path="/bridge-academy/practice-quiz/:subjectCode" component={BridgeAcademyPracticeQuiz} />
       <Route path="/bridge-academy/diplomas" component={BridgeAcademyDiplomas} />
       <Route path="/verify-bridge-academy/:token" component={VerifyBridgeAcademyCertificate} />
       <Route path="/accreditation" component={Accreditation} />

@@ -1,17 +1,18 @@
-import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { PullToRefresh } from "@/components/PullToRefresh";
 import { trpc } from "@/lib/trpc";
-import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, RefreshCw, Settings, CreditCard } from "lucide-react";
+import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, RefreshCw, Settings, CreditCard, Zap, Target } from "lucide-react";
 import { Fragment } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { useMemo } from "react";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
+  const [, navigate] = useLocation();
   const utils = trpc.useUtils();
   const { data: courses, isLoading: coursesLoading } = trpc.courses.list.useQuery();
   const { data: recommendations } = trpc.courses.getRecommendations.useQuery();
@@ -436,6 +437,46 @@ export default function Dashboard() {
             </div>
           </div>
         )}
+
+        {/* Bridge Academy GED Prep Section */}
+        <div className="mb-12 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h2 className="text-2xl font-bold text-foreground mb-2 flex items-center gap-2">
+                <Target className="w-6 h-6 text-blue-600" />
+                Bridge Academy GED Prep
+              </h2>
+              <p className="text-muted-foreground">Practice unlimited GED quizzes across all subjects</p>
+            </div>
+            <Button
+              onClick={() => navigate("/bridge-academy/dashboard")}
+              className="bg-blue-600 hover:bg-blue-700"
+              size="lg"
+            >
+              <Zap className="w-4 h-4 mr-2" />
+              Go to Dashboard
+            </Button>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+            {[
+              { code: "MATH", name: "Mathematical Reasoning", icon: "📐" },
+              { code: "LANG", name: "Language Arts", icon: "📝" },
+              { code: "SCI", name: "Science", icon: "🔬" },
+              { code: "SOCIAL", name: "Social Studies", icon: "🌍" },
+            ].map((subject) => (
+              <Card key={subject.code} className="hover:shadow-md transition-shadow cursor-pointer" onClick={() => navigate(`/bridge-academy/practice-quiz/${subject.code}`)}>
+                <CardContent className="pt-6 text-center">
+                  <div className="text-3xl mb-2">{subject.icon}</div>
+                  <p className="font-semibold text-sm mb-1">{subject.name}</p>
+                  <Button variant="outline" size="sm" className="w-full mt-3">
+                    Start Quiz
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
 
         {/* All Courses Grid */}
         <h2 className="text-2xl font-bold text-foreground mb-6">All Courses</h2>
