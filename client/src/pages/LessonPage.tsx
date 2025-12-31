@@ -11,6 +11,7 @@ import { useState, useMemo, useEffect } from "react";
 import { toast } from "sonner";
 import { Streamdown } from "streamdown";
 import { useAuth } from "@/_core/hooks/useAuth";
+import { ContentProtection } from "@/components/ContentProtection";
 
 export default function LessonPage() {
   const params = useParams<{ id: string }>();
@@ -216,7 +217,9 @@ export default function LessonPage() {
               <CardTitle>Lesson Content</CardTitle>
             </CardHeader>
             <CardContent className="prose prose-slate max-w-none">
-              <Streamdown>{lesson.content}</Streamdown>
+              <ContentProtection>
+                <Streamdown>{lesson.content}</Streamdown>
+              </ContentProtection>
             </CardContent>
           </Card>
 

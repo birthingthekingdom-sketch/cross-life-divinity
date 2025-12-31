@@ -71,6 +71,14 @@ import StudentHandbook from './pages/StudentHandbook';
 import { BridgeAcademy } from './pages/BridgeAcademy';
 import BridgeAcademyDiplomas from './pages/BridgeAcademyDiplomas';
 import VerifyBridgeAcademyCertificate from './pages/VerifyBridgeAcademyCertificate';
+import Accreditation from './pages/Accreditation';
+import CreditsAndCertification from './pages/CreditsAndCertification';
+import LifeExperienceCredits from './pages/LifeExperienceCredits';
+import FinancialAid from './pages/FinancialAid';
+import EnrollmentVerification from './pages/EnrollmentVerification';
+import RefundPolicy from './pages/RefundPolicy';
+import HelpCenter from './pages/HelpCenter';
+import Contact from './pages/Contact';
 
 function Router() {
   return (
@@ -138,6 +146,14 @@ function Router() {
       <Route path="/bridge-academy/:subject" component={BridgeAcademy} />
       <Route path="/bridge-academy/diplomas" component={BridgeAcademyDiplomas} />
       <Route path="/verify-bridge-academy/:token" component={VerifyBridgeAcademyCertificate} />
+      <Route path="/accreditation" component={Accreditation} />
+      <Route path="/credits" component={CreditsAndCertification} />
+      <Route path="/life-experience" component={LifeExperienceCredits} />
+      <Route path="/financial-aid" component={FinancialAid} />
+      <Route path="/enrollment-verification" component={EnrollmentVerification} />
+      <Route path="/refund-policy" component={RefundPolicy} />
+      <Route path="/knowledge-base" component={HelpCenter} />
+      <Route path="/contact" component={Contact} />
       <Route path="/upgrade" component={Upgrade} />
       <Route path="/subscription" component={Subscription} />
       <Route path="/toggle-role" component={ToggleRole} />

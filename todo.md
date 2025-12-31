@@ -2255,3 +2255,62 @@ SELECT id, code, title FROM courses ORDER BY createdAt DESC;
 - [ ] Email notifications for course completion
 - [ ] Leaderboards and achievements
 - [ ] Group study features
+
+
+## FREE TRIAL SYSTEM (NEW - Dec 30, 2024)
+
+### 7-Day Free Trial Implementation
+- [ ] Design free trial system architecture
+- [ ] Create trials database table (userId, trialType, startDate, endDate, autoChargeDate, status)
+- [ ] Build TRPC endpoints for trial management (startTrial, checkTrialStatus, cancelTrial, confirmCharge)
+- [ ] Integrate free trial into payment flow (Bridge Academy, Subscription, Learning Paths, Bundles)
+- [ ] Implement auto-charge after 7 days via Stripe
+- [ ] Add trial status checks to lesson/course access control
+
+### Content Protection (Copy/Paste Prevention)
+- [ ] Disable text selection on lesson pages (CSS user-select: none)
+- [ ] Disable right-click context menu on lesson content
+- [ ] Disable keyboard shortcuts (Ctrl+C, Cmd+C) on lesson pages
+- [ ] Add student name watermarks to lesson content display
+- [ ] Add watermarks to quiz questions during trial
+- [ ] Test copy/paste protection across browsers
+
+### Email Notifications for Trials
+- [ ] Trial started email template
+- [ ] Trial ending soon email (3 days before expiration)
+- [ ] Trial expired email
+- [ ] Auto-charge confirmation email
+- [ ] Trial cancellation confirmation email
+- [ ] Integrate email sending into trial lifecycle
+
+### Frontend UI Updates
+- [ ] Update Pricing page to show "7-Day Free Trial" badges
+- [ ] Add trial information to Bridge Academy page
+- [ ] Update payment flow to offer free trial option
+- [ ] Create trial signup flow (no credit card required initially)
+- [ ] Add trial status display to student dashboard
+- [ ] Add "Cancel Trial" button to dashboard
+
+### Testing & Deployment
+- [ ] Test free trial signup flow
+- [ ] Test auto-charge after 7 days
+- [ ] Test content protection (copy/paste disabled)
+- [ ] Test trial cancellation before auto-charge
+- [ ] Test email notifications
+- [ ] Verify watermarks display correctly
+- [ ] Create final checkpoint
+
+
+## HERO GRAPHICS & VISUAL IMPROVEMENTS (NEW)
+- [x] Generate hero graphic for Bridge Academy page (GED prep theme)
+- [x] Generate hero graphic for Pricing page (education/seminary theme)
+- [x] Add hero graphics to Bridge Academy page
+- [x] Add hero graphics to Pricing page
+
+## FREE TRIAL SYSTEM (NEW)
+- [ ] Simplify trials router database integration
+- [ ] Fix TypeScript errors in trials router
+- [ ] Integrate free trial option into pricing page
+- [ ] Add free trial UI to Bridge Academy page
+- [ ] Test free trial signup flow
+- [ ] Test content protection on all lessons

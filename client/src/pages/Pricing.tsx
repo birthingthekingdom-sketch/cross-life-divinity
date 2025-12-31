@@ -82,6 +82,17 @@ export default function Pricing() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
       <PublicNav currentPage="pricing" />
       
+      {/* Hero Image */}
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-12 rounded-lg overflow-hidden shadow-2xl">
+          <img 
+            src="/pricing-hero.png" 
+            alt="Theological Education - Affordable Pathways to Ministry" 
+            className="w-full h-auto object-cover"
+          />
+        </div>
+      </div>
+      
       {/* Header */}
       <div className="container mx-auto px-4 py-12">
         <div className="text-center mb-16">

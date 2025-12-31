@@ -935,3 +935,46 @@ export const bridgeAcademySubjectCertificates = mysqlTable("bridge_academy_subje
 
 export type BridgeAcademySubjectCertificate = typeof bridgeAcademySubjectCertificates.$inferSelect;
 export type InsertBridgeAcademySubjectCertificate = typeof bridgeAcademySubjectCertificates.$inferInsert;
+
+
+/**
+ * Free Trial Tracking
+ * Tracks 7-day free trials for Bridge Academy, Subscription, Learning Paths, and 3-Course Bundles
+ */
+export const freeTrials = mysqlTable("free_trials", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  trialType: mysqlEnum("trialType", ["bridge_academy", "subscription", "learning_path", "bundle"]).notNull(),
+  courseId: int("courseId"), // For learning path or bundle trials
+  bundleId: int("bundleId"), // For bundle trials
+  startDate: timestamp("startDate").defaultNow().notNull(),
+  endDate: timestamp("endDate").notNull(), // 7 days from start
+  autoChargeDate: timestamp("autoChargeDate").notNull(), // Date when subscription will auto-charge
+  status: mysqlEnum("status", ["active", "cancelled", "converted_to_paid", "expired"]).default("active").notNull(),
+  cancelledAt: timestamp("cancelledAt"), // When user cancelled the trial
+  chargedAt: timestamp("chargedAt"), // When auto-charge occurred
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type FreeTrial = typeof freeTrials.$inferSelect;
+export type InsertFreeTrial = typeof freeTrials.$inferInsert;
+
+/**
+ * Trial Content Protection Log
+ * Tracks content access during trials for security and analytics
+ */
+export const trialContentAccess = mysqlTable("trial_content_access", {
+  id: int("id").autoincrement().primaryKey(),
+  trialId: int("trialId").notNull(),
+  userId: int("userId").notNull(),
+  lessonId: int("lessonId"),
+  quizId: int("quizId"),
+  contentType: mysqlEnum("contentType", ["lesson", "quiz", "assignment"]).notNull(),
+  accessedAt: timestamp("accessedAt").defaultNow().notNull(),
+  copyAttempted: boolean("copyAttempted").default(false).notNull(), // Tracks if user tried to copy content
+  screenshotAttempted: boolean("screenshotAttempted").default(false).notNull(), // Tracks if user tried to screenshot
+});
+
+export type TrialContentAccess = typeof trialContentAccess.$inferSelect;
+export type InsertTrialContentAccess = typeof trialContentAccess.$inferInsert;

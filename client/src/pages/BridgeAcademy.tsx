@@ -75,9 +75,18 @@ export function BridgeAcademy() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      {/* Hero Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      {/* Hero Section with Image */}
+      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50 to-white">
         <div className="max-w-6xl mx-auto">
+          {/* Hero Image */}
+          <div className="mb-12 rounded-lg overflow-hidden shadow-lg">
+            <img 
+              src="/bridge-academy-hero.png" 
+              alt="Bridge Academy - GED Prep" 
+              className="w-full h-auto object-cover"
+            />
+          </div>
+          
           <div className="text-center mb-12">
             <h1 className="text-4xl sm:text-5xl font-bold text-primary mb-4">
               Bridge Academy
@@ -88,6 +97,10 @@ export function BridgeAcademy() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <div className="text-2xl font-bold text-primary">$19/month</div>
               <div className="text-foreground/60">Self-paced • 4 GED Subjects • Lifetime Access</div>
+            </div>
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="bg-primary hover:bg-primary/90">Start 7-Day Free Trial</Button>
+              <Button size="lg" variant="outline">Learn More</Button>
             </div>
           </div>
 
