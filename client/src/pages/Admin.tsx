@@ -251,6 +251,48 @@ export default function Admin() {
               </CardHeader>
             </Card>
           </Link>
+          
+          <Link href="/admin/bridge-academy/courses">
+            <Card className="hover:shadow-md transition-shadow cursor-pointer border-l-4 border-l-amber-500">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <BookOpen className="h-5 w-5" />
+                  Bridge Academy Courses
+                </CardTitle>
+                <CardDescription>
+                  Manage and review all 12 GED lessons
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
+          
+          <Link href="/admin/bridge-academy/students">
+            <Card className="hover:shadow-md transition-shadow cursor-pointer border-l-4 border-l-cyan-500">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Users className="h-5 w-5" />
+                  Bridge Academy Students
+                </CardTitle>
+                <CardDescription>
+                  Monitor student progress and engagement
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
+          
+          <Link href="/admin/bridge-academy/analytics">
+            <Card className="hover:shadow-md transition-shadow cursor-pointer border-l-4 border-l-rose-500">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <BarChart3 className="h-5 w-5" />
+                  Bridge Academy Analytics
+                </CardTitle>
+                <CardDescription>
+                  Performance metrics and student insights
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
         </div>
 
         {/* Stats Cards */}

@@ -79,6 +79,9 @@ import EnrollmentVerification from './pages/EnrollmentVerification';
 import RefundPolicy from './pages/RefundPolicy';
 import HelpCenter from './pages/HelpCenter';
 import Contact from './pages/Contact';
+import AdminBridgeAcademyCourses from './pages/AdminBridgeAcademyCourses';
+import AdminBridgeAcademyStudents from './pages/AdminBridgeAcademyStudents';
+import AdminBridgeAcademyAnalytics from './pages/AdminBridgeAcademyAnalytics';
 
 function Router() {
   return (
@@ -116,6 +119,9 @@ function Router() {
       <Route path="/admin/email-config" component={AdminEmailConfig} />
       <Route path="/admin/email-notifications" component={AdminEmailNotifications} />
           <Route path="/admin/grading" component={AdminGrading} />
+      <Route path="/admin/bridge-academy/courses" component={AdminBridgeAcademyCourses} />
+      <Route path="/admin/bridge-academy/students" component={AdminBridgeAcademyStudents} />
+      <Route path="/admin/bridge-academy/analytics" component={AdminBridgeAcademyAnalytics} />
         <Route path="/peer-reviews" component={PeerReviews} />
         <Route path="/calendar" component={AssignmentCalendar} />
       <Route path="/webinars" component={Webinars} />
