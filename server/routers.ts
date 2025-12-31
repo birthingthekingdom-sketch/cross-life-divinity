@@ -50,7 +50,6 @@ export const appRouter = router({
   installmentPlan: installmentPlanRouter,
   paymentPlan: paymentPlanRouter,
   practiceQuiz: practiceQuizRouter,
-
   auth: router({
     ...authRouter._def.procedures,
     logout: publicProcedure.mutation(({ ctx }) => {
@@ -1281,8 +1280,6 @@ export const appRouter = router({
         return { success: true };
       }),
   }),
-
-  practiceQuiz: practiceQuizRouter,
 });
 
 export type AppRouter = typeof appRouter;
