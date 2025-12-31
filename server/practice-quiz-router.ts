@@ -416,4 +416,69 @@ export const practiceQuizRouter = router({
         };
       }
     }),
+
+  // Admin endpoint to bulk insert practice questions
+  bulkInsertPracticeQuestions: protectedProcedure
+    .input(
+      z.object({
+        questions: z.array(
+          z.object({
+            topicId: z.number(),
+            question: z.string(),
+            questionType: z.enum(['multiple_choice', 'true_false', 'short_answer']),
+            options: z.array(z.string()).optional(),
+            correctAnswer: z.string(),
+            explanation: z.string(),
+            difficulty: z.enum(['easy', 'medium', 'hard']),
+            variationGroup: z.string().optional(),
+          })
+        ),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      // Only allow admin users
+      if (ctx.user?.role !== 'admin') {
+        throw new Error('Unauthorized: Admin access required');
+      }
+
+      try {
+        const database = await getDb();
+        if (!database) throw new Error('Database connection failed');
+
+        let inserted = 0;
+        const batchSize = 50;
+
+        for (let i = 0; i < input.questions.length; i += batchSize) {
+          const batch = input.questions.slice(i, i + batchSize);
+
+          for (const q of batch) {
+            await database.execute(
+              `INSERT INTO bridge_academy_practice_questions 
+               (topicId, question, questionType, options, correctAnswer, explanation, difficulty, variationGroup)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+              [
+                q.topicId,
+                q.question,
+                q.questionType,
+                q.options ? JSON.stringify(q.options) : null,
+                q.correctAnswer,
+                q.explanation,
+                q.difficulty,
+                q.variationGroup || null,
+              ]
+            );
+            inserted++;
+          }
+        }
+
+        return {
+          success: true,
+          totalInserted: inserted,
+          message: `Successfully inserted ${inserted} practice questions`,
+        };
+      } catch (error) {
+        console.error('Error bulk inserting practice questions:', error);
+        throw new Error(`Failed to insert practice questions: ${error}`);
+      }
+    }),
 });

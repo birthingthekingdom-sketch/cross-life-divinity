@@ -1547,3 +1547,5 @@ export async function getAllCoursePurchases() {
 
   return db.select().from(coursePurchases).orderBy(desc(coursePurchases.purchasedAt));
 }
+
+
