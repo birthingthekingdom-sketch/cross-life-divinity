@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
-import { ArrowLeft, RotateCcw, TrendingUp, Award, Zap } from "lucide-react";
+import { ArrowLeft, RotateCcw, TrendingUp, Award, Zap, BarChart3, Clock, Target, Flame } from "lucide-react";
 
 interface QuizQuestion {
   id: number;
@@ -32,6 +32,27 @@ interface SubmissionAnswer {
   userAnswer: string;
 }
 
+interface AttemptHistory {
+  id: number;
+  attemptNumber: number;
+  score: number;
+  totalQuestions: number;
+  percentage: number;
+  difficulty: string;
+  submittedAt: string;
+}
+
+interface StudentProfile {
+  currentDifficulty: string;
+  averageScore: number;
+  attemptCount: number;
+  bestScore: number;
+  improvementTrend: number;
+  lastAttemptAt: string;
+}
+
+const QUIZ_TIME_LIMIT = 30 * 60; // 30 minutes in seconds
+
 export function PracticeQuizPage() {
   const [location, navigate] = useLocation();
   const params = useParams();
@@ -44,6 +65,9 @@ export function PracticeQuizPage() {
   const [showResults, setShowResults] = useState(false);
   const [submissionResult, setSubmissionResult] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [showHistory, setShowHistory] = useState(false);
+  const [timeStarted, setTimeStarted] = useState<number | null>(null);
+  const [timeSpent, setTimeSpent] = useState(0);
 
   // Fetch practice quiz
   const generateQuizMutation = trpc.practiceQuiz.generatePracticeQuiz.useQuery(
@@ -60,14 +84,40 @@ export function PracticeQuizPage() {
     { enabled: topicId > 0 }
   );
 
+  // Get practice history
+  const practiceHistoryQuery = trpc.practiceQuiz.getPracticeHistory.useQuery(
+    { topicId, limit: 20 },
+    { enabled: topicId > 0 }
+  );
+
+  // Get analytics
+  const analyticsQuery = trpc.practiceQuiz.getPracticeAnalytics.useQuery(
+    { courseId },
+    { enabled: courseId > 0 }
+  );
+
   useEffect(() => {
     if (generateQuizMutation.data) {
       setQuizState(generateQuizMutation.data);
+      setTimeStarted(Date.now());
       setIsLoading(false);
     }
   }, [generateQuizMutation.data]);
 
+  // Track time spent
+  useEffect(() => {
+    if (!showResults && timeStarted) {
+      const interval = setInterval(() => {
+        setTimeSpent(Math.floor((Date.now() - timeStarted) / 1000));
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [showResults, timeStarted]);
+
   const currentQuestion = quizState?.questions[currentQuestionIndex];
+  const studentProfile = studentProfileQuery.data as StudentProfile | null;
+  const attemptHistory = practiceHistoryQuery.data as AttemptHistory[] | null;
+  const analytics = analyticsQuery.data;
 
   const handleAnswerSelect = (answer: string) => {
     if (currentQuestion) {
@@ -110,9 +160,17 @@ export function PracticeQuizPage() {
         answers,
       });
 
-      setSubmissionResult(result);
+      setSubmissionResult({
+        ...result,
+        timeSpent,
+      });
       setShowResults(true);
       toast.success("Quiz submitted successfully!");
+      
+      // Refresh history and profile
+      practiceHistoryQuery.refetch();
+      studentProfileQuery.refetch();
+      analyticsQuery.refetch();
     } catch (error) {
       toast.error("Failed to submit quiz");
     }
@@ -123,38 +181,196 @@ export function PracticeQuizPage() {
     setUserAnswers(new Map());
     setShowResults(false);
     setSubmissionResult(null);
+    setTimeSpent(0);
     generateQuizMutation.refetch();
   };
 
-  if (isLoading || !quizState) {
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  };
+
+  const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty?.toLowerCase()) {
+      case "easy":
+        return "bg-green-100 text-green-800";
+      case "medium":
+        return "bg-yellow-100 text-yellow-800";
+      case "hard":
+        return "bg-red-100 text-red-800";
+      default:
+        return "bg-gray-100 text-gray-800";
+    }
+  };
+
+  // History View
+  if (showHistory) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-background to-secondary/20 p-4">
-        <div className="max-w-2xl mx-auto">
-          <div className="flex items-center justify-center h-96">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-              <p className="text-muted-foreground">Loading practice quiz...</p>
-            </div>
-          </div>
+        <div className="max-w-4xl mx-auto">
+          <Button
+            variant="ghost"
+            onClick={() => setShowHistory(false)}
+            className="mb-6"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Quiz
+          </Button>
+
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <BarChart3 className="w-5 h-5" />
+                Your Practice History
+              </CardTitle>
+              <CardDescription>
+                Track your progress and improvement over time
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          {/* Student Profile Summary */}
+          {studentProfile && (
+            <Card className="mb-6 border-2 border-primary/20">
+              <CardHeader className="bg-gradient-to-r from-primary/5 to-accent/5">
+                <CardTitle className="text-lg">Performance Profile</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <p className="text-xs text-muted-foreground mb-1">Average Score</p>
+                    <p className="text-2xl font-bold text-blue-600">
+                      {Math.round(studentProfile.averageScore)}%
+                    </p>
+                  </div>
+                  <div className="bg-green-50 p-4 rounded-lg">
+                    <p className="text-xs text-muted-foreground mb-1">Best Score</p>
+                    <p className="text-2xl font-bold text-green-600">
+                      {studentProfile.bestScore}%
+                    </p>
+                  </div>
+                  <div className="bg-purple-50 p-4 rounded-lg">
+                    <p className="text-xs text-muted-foreground mb-1">Total Attempts</p>
+                    <p className="text-2xl font-bold text-purple-600">
+                      {studentProfile.attemptCount}
+                    </p>
+                  </div>
+                  <div className={`${getDifficultyColor(studentProfile.currentDifficulty)} p-4 rounded-lg`}>
+                    <p className="text-xs text-muted-foreground mb-1">Current Level</p>
+                    <p className="text-lg font-bold capitalize">
+                      {studentProfile.currentDifficulty}
+                    </p>
+                  </div>
+                </div>
+
+                {studentProfile.improvementTrend !== undefined && (
+                  <div className="mt-4 p-3 bg-secondary/50 rounded-lg flex items-center gap-2">
+                    <TrendingUp className="w-4 h-4 text-green-600" />
+                    <span className="text-sm">
+                      {studentProfile.improvementTrend > 0 ? "📈" : "📉"} 
+                      {" "}Improvement Trend: {studentProfile.improvementTrend > 0 ? "+" : ""}{studentProfile.improvementTrend}%
+                    </span>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Attempt History */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Recent Attempts</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {attemptHistory && attemptHistory.length > 0 ? (
+                <div className="space-y-3">
+                  {attemptHistory.map((attempt, idx) => (
+                    <div
+                      key={attempt.id}
+                      className="flex items-center justify-between p-4 border rounded-lg hover:bg-secondary/50 transition-colors"
+                    >
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="font-semibold">Attempt {attempt.attemptNumber}</span>
+                          <Badge className={getDifficultyColor(attempt.difficulty)}>
+                            {attempt.difficulty}
+                          </Badge>
+                          <span className="text-xs text-muted-foreground">
+                            {new Date(attempt.submittedAt).toLocaleDateString()}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Progress value={attempt.percentage} className="flex-1 h-2" />
+                          <span className="text-sm font-medium min-w-fit">
+                            {attempt.score}/{attempt.totalQuestions}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="text-right ml-4">
+                        <p className="text-2xl font-bold">{attempt.percentage}%</p>
+                        {attempt.percentage >= 80 && (
+                          <Award className="w-4 h-4 text-green-500 mx-auto mt-1" />
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-center text-muted-foreground py-8">
+                  No attempts yet. Start your first quiz!
+                </p>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Analytics Summary */}
+          {analytics && (
+            <Card className="mt-6">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Target className="w-5 h-5" />
+                  Overall Analytics
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  <div className="bg-slate-50 p-4 rounded-lg">
+                    <p className="text-xs text-muted-foreground mb-1">Total Attempts</p>
+                    <p className="text-2xl font-bold">{analytics.totalAttempts}</p>
+                  </div>
+                  <div className="bg-slate-50 p-4 rounded-lg">
+                    <p className="text-xs text-muted-foreground mb-1">Average Score</p>
+                    <p className="text-2xl font-bold">{Math.round(analytics.averageScore)}%</p>
+                  </div>
+                  <div className="bg-slate-50 p-4 rounded-lg">
+                    <p className="text-xs text-muted-foreground mb-1">Best Score</p>
+                    <p className="text-2xl font-bold">{analytics.bestScore}%</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
         </div>
       </div>
     );
   }
 
+  // Results View
   if (showResults && submissionResult) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-background to-secondary/20 p-4">
         <div className="max-w-2xl mx-auto">
-      <Button
-        variant="ghost"
-        onClick={() => window.history.back()}
-        className="mb-6"
-      >
+          <Button
+            variant="ghost"
+            onClick={() => window.history.back()}
+            className="mb-6"
+          >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back
           </Button>
 
-          <Card className="border-2">
+          <Card className="border-2 mb-6">
             <CardHeader className="text-center">
               <div className="flex justify-center mb-4">
                 {submissionResult.percentage >= 80 ? (
@@ -165,7 +381,7 @@ export function PracticeQuizPage() {
                   <Zap className="w-12 h-12 text-amber-500" />
                 )}
               </div>
-              <CardTitle className="text-3xl">
+              <CardTitle className="text-4xl font-bold">
                 {submissionResult.percentage}%
               </CardTitle>
               <CardDescription className="text-lg mt-2">
@@ -175,17 +391,29 @@ export function PracticeQuizPage() {
 
             <CardContent className="space-y-6">
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-secondary/50 p-4 rounded-lg">
+                <div className="bg-green-50 p-4 rounded-lg border border-green-200">
                   <p className="text-sm text-muted-foreground">Correct Answers</p>
                   <p className="text-2xl font-bold text-green-600">
                     {submissionResult.score}/{submissionResult.totalQuestions}
                   </p>
                 </div>
-                <div className="bg-secondary/50 p-4 rounded-lg">
-                  <p className="text-sm text-muted-foreground">Difficulty Level</p>
-                  <Badge variant="outline" className="mt-2 text-lg py-1">
-                    {submissionResult.nextDifficulty?.toUpperCase()}
-                  </Badge>
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <p className="text-sm text-muted-foreground">Time Spent</p>
+                  <p className="text-2xl font-bold text-blue-600">
+                    {formatTime(submissionResult.timeSpent)}
+                  </p>
+                </div>
+                <div className={`${getDifficultyColor(submissionResult.nextDifficulty)} p-4 rounded-lg border`}>
+                  <p className="text-sm text-muted-foreground">Next Difficulty</p>
+                  <p className="text-lg font-bold capitalize">
+                    {submissionResult.nextDifficulty}
+                  </p>
+                </div>
+                <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                  <p className="text-sm text-muted-foreground">Avg Time/Question</p>
+                  <p className="text-2xl font-bold text-purple-600">
+                    {Math.round(submissionResult.timeSpent / submissionResult.totalQuestions)}s
+                  </p>
                 </div>
               </div>
 
@@ -205,12 +433,7 @@ export function PracticeQuizPage() {
                     </p>
                     {!answer.isCorrect && (
                       <p className="text-xs text-muted-foreground mt-1">
-                        Correct answer: {answer.correctAnswer}
-                      </p>
-                    )}
-                    {answer.explanation && (
-                      <p className="text-xs mt-2 text-muted-foreground italic">
-                        {answer.explanation}
+                        Your answer: {answer.userAnswer}
                       </p>
                     )}
                   </div>
@@ -225,13 +448,21 @@ export function PracticeQuizPage() {
                   <RotateCcw className="w-4 h-4 mr-2" />
                   Try Again
                 </Button>
-              <Button
-                variant="outline"
-                onClick={() => window.history.back()}
-                className="flex-1"
-              >
-                Back to Course
-              </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => setShowHistory(true)}
+                  className="flex-1"
+                >
+                  <BarChart3 className="w-4 h-4 mr-2" />
+                  View History
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => window.history.back()}
+                  className="flex-1"
+                >
+                  Back to Course
+                </Button>
               </div>
             </CardContent>
           </Card>
@@ -240,6 +471,23 @@ export function PracticeQuizPage() {
     );
   }
 
+  // Loading View
+  if (isLoading || !quizState) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-background to-secondary/20 p-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="flex items-center justify-center h-96">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+              <p className="text-muted-foreground">Loading practice quiz...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Quiz View
   const progress = ((currentQuestionIndex + 1) / quizState.totalQuestions) * 100;
   const isAnswered = userAnswers.has(currentQuestion?.id || 0);
 
@@ -247,13 +495,19 @@ export function PracticeQuizPage() {
     <div className="min-h-screen bg-gradient-to-b from-background to-secondary/20 p-4">
       <div className="max-w-2xl mx-auto">
         <div className="mb-6 flex items-center justify-between">
-        <Button
-          variant="ghost"
-          onClick={() => window.history.back()}
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back
-        </Button>
+          <Button
+            variant="ghost"
+            onClick={() => window.history.back()}
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back
+          </Button>
+          <div className="flex items-center gap-2">
+            <Clock className={`w-4 h-4 ${timeSpent > QUIZ_TIME_LIMIT - 300 ? 'text-red-500' : 'text-muted-foreground'}`} />
+            <span className={`font-mono text-sm ${timeSpent > QUIZ_TIME_LIMIT - 300 ? 'text-red-600 font-bold' : ''}`}>
+              {formatTime(timeSpent)} / {formatTime(QUIZ_TIME_LIMIT)}
+            </span>
+          </div>
           <Badge variant="secondary">
             Attempt {quizState.attemptNumber}
           </Badge>
@@ -263,9 +517,14 @@ export function PracticeQuizPage() {
           <CardHeader>
             <div className="flex items-center justify-between mb-4">
               <CardTitle>Practice Quiz</CardTitle>
-              <Badge variant="outline" className="text-base">
-                {currentQuestionIndex + 1}/{quizState.totalQuestions}
-              </Badge>
+              <div className="flex items-center gap-2">
+                <Badge variant="outline" className="text-base">
+                  {currentQuestionIndex + 1}/{quizState.totalQuestions}
+                </Badge>
+                <Badge className={getDifficultyColor(quizState.difficulty)}>
+                  {quizState.difficulty.toUpperCase()}
+                </Badge>
+              </div>
             </div>
             <Progress value={progress} className="h-2" />
           </CardHeader>
@@ -311,7 +570,7 @@ export function PracticeQuizPage() {
           </CardContent>
         </Card>
 
-        <div className="flex gap-3 justify-between">
+        <div className="flex gap-3 justify-between mb-6">
           <Button
             variant="outline"
             onClick={handlePrevious}
@@ -339,7 +598,7 @@ export function PracticeQuizPage() {
           )}
         </div>
 
-        <div className="mt-6 p-4 bg-secondary/50 rounded-lg">
+        <div className="p-4 bg-secondary/50 rounded-lg mb-6">
           <p className="text-sm text-muted-foreground mb-3">Question Progress:</p>
           <div className="flex flex-wrap gap-2">
             {quizState.questions.map((q, idx) => (
@@ -359,6 +618,15 @@ export function PracticeQuizPage() {
             ))}
           </div>
         </div>
+
+        <Button
+          variant="outline"
+          onClick={() => setShowHistory(true)}
+          className="w-full"
+        >
+          <BarChart3 className="w-4 h-4 mr-2" />
+          View Practice History
+        </Button>
       </div>
     </div>
   );
