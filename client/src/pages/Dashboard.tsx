@@ -449,7 +449,7 @@ export default function Dashboard() {
               <p className="text-muted-foreground">Practice unlimited GED quizzes across all subjects</p>
             </div>
             <Button
-              onClick={() => navigate("/bridge-academy/dashboard")}
+              onClick={() => navigate("/bridge-academy/student-dashboard")}
               className="bg-blue-600 hover:bg-blue-700"
               size="lg"
             >

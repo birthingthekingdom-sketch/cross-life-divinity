@@ -27,7 +27,13 @@ import {
   stripeCustomers, InsertStripeCustomer, StripeCustomer,
   bridgeAcademyTopics, InsertBridgeAcademyTopic, BridgeAcademyTopic,
   bridgeAcademyQuizQuestions, InsertBridgeAcademyQuizQuestion, BridgeAcademyQuizQuestion,
-  bridgeAcademyPracticeQuestions, InsertBridgeAcademyPracticeQuestion, BridgeAcademyPracticeQuestion
+  bridgeAcademyPracticeQuestions, InsertBridgeAcademyPracticeQuestion, BridgeAcademyPracticeQuestion,
+  bridgeAcademyQuizSubmissions, BridgeAcademyQuizSubmission,
+  bridgeAcademyPracticeAttempts, BridgeAcademyPracticeAttempt,
+  bridgeAcademyProgress, BridgeAcademyProgress,
+  bridgeAcademyEnrollments, BridgeAcademyEnrollment,
+  bridgeAcademyCertificates, BridgeAcademyCertificate,
+  bridgeAcademyStudentDifficultyProfiles, BridgeAcademyStudentDifficultyProfile
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -1676,4 +1682,224 @@ export async function getAllBridgeAcademyCoursesWithTopics() {
       };
     })
   );
+}
+
+
+/**
+ * Get student's Bridge Academy enrollment status
+ */
+export async function getStudentBridgeAcademyEnrollment(userId: number) {
+  const db = await getDb();
+  if (!db) return null;
+
+  return db.select().from(bridgeAcademyEnrollments)
+    .where(eq(bridgeAcademyEnrollments.userId, userId))
+    .limit(1)
+    .then(results => results[0] || null);
+}
+
+/**
+ * Get all available Bridge Academy courses for student
+ */
+export async function getAvailableBridgeAcademyCourses() {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select().from(courses)
+    .where(sql`code LIKE 'GED-%'`)
+    .orderBy(courses.displayOrder);
+}
+
+/**
+ * Get student's progress for all Bridge Academy courses
+ */
+export async function getStudentBridgeAcademyProgress(userId: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select().from(bridgeAcademyProgress)
+    .where(eq(bridgeAcademyProgress.userId, userId));
+}
+
+/**
+ * Get student's progress for a specific course
+ */
+export async function getStudentCourseProgress(userId: number, courseId: number) {
+  const db = await getDb();
+  if (!db) return null;
+
+  return db.select().from(bridgeAcademyProgress)
+    .where(and(
+      eq(bridgeAcademyProgress.userId, userId),
+      eq(bridgeAcademyProgress.courseId, courseId)
+    ))
+    .limit(1)
+    .then(results => results[0] || null);
+}
+
+/**
+ * Get student's quiz submissions for a course
+ */
+export async function getStudentCourseQuizSubmissions(userId: number, courseId: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select().from(bridgeAcademyQuizSubmissions)
+    .where(and(
+      eq(bridgeAcademyQuizSubmissions.userId, userId),
+      eq(bridgeAcademyQuizSubmissions.courseId, courseId)
+    ))
+    .orderBy(desc(bridgeAcademyQuizSubmissions.submittedAt));
+}
+
+/**
+ * Get student's quiz submissions for a specific topic
+ */
+export async function getStudentTopicQuizSubmissions(userId: number, topicId: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select().from(bridgeAcademyQuizSubmissions)
+    .where(and(
+      eq(bridgeAcademyQuizSubmissions.userId, userId),
+      eq(bridgeAcademyQuizSubmissions.topicId, topicId)
+    ))
+    .orderBy(desc(bridgeAcademyQuizSubmissions.submittedAt));
+}
+
+/**
+ * Get student's practice attempts for a course
+ */
+export async function getStudentCoursePracticeAttempts(userId: number, courseId: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select().from(bridgeAcademyPracticeAttempts)
+    .where(and(
+      eq(bridgeAcademyPracticeAttempts.userId, userId),
+      eq(bridgeAcademyPracticeAttempts.courseId, courseId)
+    ))
+    .orderBy(desc(bridgeAcademyPracticeAttempts.submittedAt));
+}
+
+/**
+ * Get student's practice attempts for a specific topic
+ */
+export async function getStudentTopicPracticeAttempts(userId: number, topicId: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select().from(bridgeAcademyPracticeAttempts)
+    .where(and(
+      eq(bridgeAcademyPracticeAttempts.userId, userId),
+      eq(bridgeAcademyPracticeAttempts.topicId, topicId)
+    ))
+    .orderBy(desc(bridgeAcademyPracticeAttempts.submittedAt));
+}
+
+/**
+ * Get student's difficulty profile for a topic
+ */
+export async function getStudentTopicDifficultyProfile(userId: number, topicId: number) {
+  const db = await getDb();
+  if (!db) return null;
+
+  return db.select().from(bridgeAcademyStudentDifficultyProfiles)
+    .where(and(
+      eq(bridgeAcademyStudentDifficultyProfiles.userId, userId),
+      eq(bridgeAcademyStudentDifficultyProfiles.topicId, topicId)
+    ))
+    .limit(1)
+    .then(results => results[0] || null);
+}
+
+/**
+ * Get student's certificates
+ */
+export async function getStudentBridgeAcademyCertificates(userId: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select().from(bridgeAcademyCertificates)
+    .where(eq(bridgeAcademyCertificates.userId, userId))
+    .orderBy(desc(bridgeAcademyCertificates.issuedAt));
+}
+
+/**
+ * Get comprehensive student dashboard data
+ */
+export async function getStudentBridgeAcademyDashboard(userId: number) {
+  const db = await getDb();
+  if (!db) return null;
+
+  // Get enrollment status
+  const enrollment = await db.select().from(bridgeAcademyEnrollments)
+    .where(eq(bridgeAcademyEnrollments.userId, userId))
+    .limit(1)
+    .then(results => results[0] || null);
+
+  // Get all courses
+  const allCourses = await db.select().from(courses)
+    .where(sql`code LIKE 'GED-%'`)
+    .orderBy(courses.displayOrder);
+
+  // Get progress for each course
+  const coursesWithProgress = await Promise.all(
+    allCourses.map(async (course) => {
+      const progress = await db.select().from(bridgeAcademyProgress)
+        .where(and(
+          eq(bridgeAcademyProgress.userId, userId),
+          eq(bridgeAcademyProgress.courseId, course.id)
+        ))
+        .limit(1)
+        .then(results => results[0] || null);
+
+      // Get latest quiz submission
+      const latestQuiz = await db.select().from(bridgeAcademyQuizSubmissions)
+        .where(and(
+          eq(bridgeAcademyQuizSubmissions.userId, userId),
+          eq(bridgeAcademyQuizSubmissions.courseId, course.id)
+        ))
+        .orderBy(desc(bridgeAcademyQuizSubmissions.submittedAt))
+        .limit(1)
+        .then(results => results[0] || null);
+
+      // Get topics for this course
+      const topics = await db.select().from(bridgeAcademyTopics)
+        .where(eq(bridgeAcademyTopics.courseId, course.id))
+        .orderBy(bridgeAcademyTopics.topicOrder);
+
+      return {
+        course,
+        progress,
+        latestQuiz,
+        topicCount: topics.length,
+      };
+    })
+  );
+
+  // Get recent quiz submissions
+  const recentQuizzes = await db.select().from(bridgeAcademyQuizSubmissions)
+    .where(eq(bridgeAcademyQuizSubmissions.userId, userId))
+    .orderBy(desc(bridgeAcademyQuizSubmissions.submittedAt))
+    .limit(10);
+
+  // Get recent practice attempts
+  const recentPractice = await db.select().from(bridgeAcademyPracticeAttempts)
+    .where(eq(bridgeAcademyPracticeAttempts.userId, userId))
+    .orderBy(desc(bridgeAcademyPracticeAttempts.submittedAt))
+    .limit(10);
+
+  // Get certificates
+  const certificates = await db.select().from(bridgeAcademyCertificates)
+    .where(eq(bridgeAcademyCertificates.userId, userId))
+    .orderBy(desc(bridgeAcademyCertificates.issuedAt));
+
+  return {
+    enrollment,
+    coursesWithProgress,
+    recentQuizzes,
+    recentPractice,
+    certificates,
+  };
 }
