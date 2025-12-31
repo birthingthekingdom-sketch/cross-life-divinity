@@ -53,8 +53,8 @@ export function BridgeAcademy() {
   const benefits = [
     {
       icon: <BookOpen className="h-6 w-6" />,
-      title: "Khan Academy Videos",
-      description: "Curated, high-quality video lessons from Khan Academy for each topic",
+      title: "Expert-Crafted Lessons",
+      description: "Comprehensive, professionally-designed lessons covering all GED topics with clear explanations",
     },
     {
       icon: <CheckCircle className="h-6 w-6" />,
