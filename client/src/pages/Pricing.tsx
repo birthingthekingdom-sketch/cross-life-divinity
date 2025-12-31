@@ -82,6 +82,26 @@ export default function Pricing() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
       <PublicNav currentPage="pricing" />
       
+      {/* Bridge Academy Pricing Section */}
+      <div className="container mx-auto px-4 py-12 mb-12">
+        <div className="bg-gradient-to-r from-blue-900 to-slate-900 rounded-lg overflow-hidden shadow-2xl">
+          <img 
+            src="/bridge-academy-pricing.png" 
+            alt="Bridge Academy GED Preparation - Affordable Pricing" 
+            className="w-full h-auto object-cover"
+          />
+          <div className="p-8 text-center bg-gradient-to-r from-slate-900 to-blue-900">
+            <h2 className="text-3xl font-bold text-white mb-2">Bridge Academy - GED Preparation</h2>
+            <p className="text-slate-300 mb-6">Prepare for your GED exam with our comprehensive 12-lesson program across all 4 subjects</p>
+            <Link href="/bridge-academy">
+              <Button className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-3 text-lg">
+                Start Your Free Trial
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+      
       {/* Hero Image */}
       <div className="container mx-auto px-4 py-8">
         <div className="mb-12 rounded-lg overflow-hidden shadow-2xl">
