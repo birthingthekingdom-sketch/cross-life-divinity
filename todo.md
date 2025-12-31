@@ -31,10 +31,13 @@
 - [x] Add Student Handbook link to footer under "Student Resources"
 - [x] Restore missing courses to catalog (Old Testament Survey BIB101, New Testament Survey BIB102)
 - [ ] Build course introduction slideshows with female voiceover (one at a time)
-- [ ] Bridge Academy: Fix database migration and create all tables
-- [ ] Bridge Academy: Seed GED courses and lesson topics
-- [ ] Bridge Academy: Populate practice questions and quiz content
-- [ ] Bridge Academy: Test student dashboard integration
+- [x] Bridge Academy: Database tables created and seeded with 4 GED courses
+- [x] Bridge Academy: Added 180+ practice questions across all topics
+- [x] Bridge Academy: Created database functions to retrieve courses with topics
+- [x] Bridge Academy: Created admin API endpoint for getBridgeAcademyCourses
+- [x] Bridge Academy: Updated AdminBridgeAcademyCourses component to fetch real data
+- [ ] Bridge Academy: Debug API endpoint - courses not displaying in admin portal
+- [ ] Bridge Academy: Test quiz system with all practice questions
 - [ ] Bridge Academy: Deploy and publish for student access
 
 ## COURSE SLIDESHOW ORDER (Female Voiceover Only)

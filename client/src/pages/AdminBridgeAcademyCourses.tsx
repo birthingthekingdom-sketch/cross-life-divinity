@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+'use client';
+
+import { useState, useEffect } from 'react';
 import DashboardLayout from '@/components/DashboardLayout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -6,76 +8,53 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
-import { BookOpen, Edit, Eye, Plus, Search, Trash2, CheckCircle2, Clock, Users } from 'lucide-react';
+import { BookOpen, Edit, Eye, Plus, Search, Trash2, CheckCircle2, Clock, Users, Loader2 } from 'lucide-react';
 import { Link } from 'wouter';
 import { useAuth } from '@/_core/hooks/useAuth';
+import { trpc } from '@/lib/trpc';
 
 /**
  * Bridge Academy Courses Admin Page
- * Review, edit, and manage all 12 GED lessons
+ * Review, edit, and manage all GED courses and topics
  */
 
-interface BridgeAcademyCourse {
+interface BridgeAcademyCourseData {
   id: number;
+  code: string;
   title: string;
-  subject: 'Mathematical Reasoning' | 'Reasoning Through Language Arts' | 'Science' | 'Social Studies';
-  lessonNumber: number;
-  status: 'draft' | 'published' | 'archived';
-  estimatedMinutes: number;
-  enrolledStudents: number;
-  completionRate: number;
-  averageScore: number;
-  createdAt: string;
-  updatedAt: string;
+  description: string | null;
+  colorTheme: string;
+  totalLessons: number;
+  topics: Array<{
+    id: number;
+    title: string;
+    topicOrder: number;
+    quizQuestions: number;
+    practiceQuestions: number;
+    totalQuestions: number;
+  }>;
+  totalQuizQuestions: number;
+  totalPracticeQuestions: number;
 }
-
-const mockCourses: BridgeAcademyCourse[] = [
-  {
-    id: 1,
-    title: 'Fundamentals & Basic Operations',
-    subject: 'Mathematical Reasoning',
-    lessonNumber: 1,
-    status: 'published',
-    estimatedMinutes: 45,
-    enrolledStudents: 24,
-    completionRate: 85,
-    averageScore: 78,
-    createdAt: '2025-12-15',
-    updatedAt: '2025-12-30',
-  },
-  {
-    id: 2,
-    title: 'Algebra & Equations',
-    subject: 'Mathematical Reasoning',
-    lessonNumber: 2,
-    status: 'published',
-    estimatedMinutes: 50,
-    enrolledStudents: 22,
-    completionRate: 72,
-    averageScore: 75,
-    createdAt: '2025-12-16',
-    updatedAt: '2025-12-30',
-  },
-  {
-    id: 3,
-    title: 'Geometry & Problem Solving',
-    subject: 'Mathematical Reasoning',
-    lessonNumber: 3,
-    status: 'draft',
-    estimatedMinutes: 55,
-    enrolledStudents: 0,
-    completionRate: 0,
-    averageScore: 0,
-    createdAt: '2025-12-17',
-    updatedAt: '2025-12-30',
-  },
-];
 
 export default function AdminBridgeAcademyCourses() {
   const { user } = useAuth();
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCourse, setSelectedCourse] = useState<BridgeAcademyCourse | null>(null);
-  const [filterSubject, setFilterSubject] = useState<string>('all');
+  const [selectedCourse, setSelectedCourse] = useState<BridgeAcademyCourseData | null>(null);
+  const [courses, setCourses] = useState<BridgeAcademyCourseData[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch Bridge Academy courses
+  const { data: bridgeAcademyCourses, isLoading, error } = trpc.admin.getBridgeAcademyCourses.useQuery(undefined, {
+    enabled: user?.role === 'admin',
+  });
+
+  useEffect(() => {
+    if (bridgeAcademyCourses) {
+      setCourses(bridgeAcademyCourses);
+      setLoading(false);
+    }
+  }, [bridgeAcademyCourses]);
 
   if (user?.role !== 'admin') {
     return (
@@ -92,13 +71,16 @@ export default function AdminBridgeAcademyCourses() {
     );
   }
 
-  const filteredCourses = mockCourses.filter(course => {
-    const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesSubject = filterSubject === 'all' || course.subject === filterSubject;
-    return matchesSearch && matchesSubject;
+  const filteredCourses = courses.filter(course => {
+    const matchesSearch = 
+      course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      course.code.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesSearch;
   });
 
-  const subjects = ['Mathematical Reasoning', 'Reasoning Through Language Arts', 'Science', 'Social Studies'];
+  const totalLessons = courses.reduce((sum, c) => sum + c.totalLessons, 0);
+  const totalQuizQuestions = courses.reduce((sum, c) => sum + c.totalQuizQuestions, 0);
+  const totalPracticeQuestions = courses.reduce((sum, c) => sum + c.totalPracticeQuestions, 0);
 
   return (
     <DashboardLayout>
@@ -110,226 +92,164 @@ export default function AdminBridgeAcademyCourses() {
               <BookOpen className="h-8 w-8 text-blue-600" />
               Bridge Academy Courses
             </h1>
-            <p className="text-muted-foreground mt-1">Manage and review all 12 GED lessons</p>
+            <p className="text-muted-foreground mt-1">Manage and review all GED courses and topics</p>
           </div>
-          <Link href="/admin/bridge-academy/create-course">
-            <Button className="bg-blue-600 hover:bg-blue-700">
-              <Plus className="h-4 w-4 mr-2" />
-              New Lesson
-            </Button>
-          </Link>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium">Total Lessons</CardTitle>
+              <CardTitle className="text-sm font-medium">Total Topics</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">12</div>
-              <p className="text-xs text-muted-foreground">4 subjects × 3 lessons</p>
+              <div className="text-2xl font-bold">{totalLessons}</div>
+              <p className="text-xs text-muted-foreground">Across all subjects</p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium">Published</CardTitle>
+              <CardTitle className="text-sm font-medium">Quiz Questions</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-green-600">
-                {mockCourses.filter(c => c.status === 'published').length}
-              </div>
-              <p className="text-xs text-muted-foreground">Ready for students</p>
+              <div className="text-2xl font-bold text-blue-600">{totalQuizQuestions}</div>
+              <p className="text-xs text-muted-foreground">10+ per topic</p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium">Total Enrollments</CardTitle>
+              <CardTitle className="text-sm font-medium">Practice Questions</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">
-                {mockCourses.reduce((sum, c) => sum + c.enrolledStudents, 0)}
-              </div>
-              <p className="text-xs text-muted-foreground">Active students</p>
+              <div className="text-2xl font-bold text-green-600">{totalPracticeQuestions}</div>
+              <p className="text-xs text-muted-foreground">50+ per topic</p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium">Avg Completion</CardTitle>
+              <CardTitle className="text-sm font-medium">GED Subjects</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-blue-600">
-                {Math.round(
-                  mockCourses.filter(c => c.status === 'published').reduce((sum, c) => sum + c.completionRate, 0) /
-                    mockCourses.filter(c => c.status === 'published').length
-                )}
-                %
-              </div>
-              <p className="text-xs text-muted-foreground">Across all lessons</p>
+              <div className="text-2xl font-bold text-purple-600">{courses.length}</div>
+              <p className="text-xs text-muted-foreground">Math, RLA, Science, Social Studies</p>
             </CardContent>
           </Card>
         </div>
 
-        {/* Filters */}
-        <div className="flex gap-4 flex-wrap">
-          <div className="flex-1 min-w-64">
-            <div className="relative">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search lessons..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
-              />
-            </div>
+        {/* Search */}
+        <div className="flex gap-4">
+          <div className="flex-1 relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="Search courses or topics..."
+              className="pl-10"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
-          <select
-            value={filterSubject}
-            onChange={(e) => setFilterSubject(e.target.value)}
-            className="px-3 py-2 border rounded-md bg-background"
-          >
-            <option value="all">All Subjects</option>
-            {subjects.map(subject => (
-              <option key={subject} value={subject}>{subject}</option>
-            ))}
-          </select>
         </div>
 
         {/* Courses Table */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Course Catalog</CardTitle>
-            <CardDescription>Review and manage all Bridge Academy lessons</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Lesson</TableHead>
-                    <TableHead>Subject</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead className="text-right">Duration</TableHead>
-                    <TableHead className="text-right">Students</TableHead>
-                    <TableHead className="text-right">Completion</TableHead>
-                    <TableHead className="text-right">Avg Score</TableHead>
-                    <TableHead className="text-right">Actions</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {filteredCourses.map(course => (
-                    <TableRow key={course.id}>
-                      <TableCell className="font-medium">{course.title}</TableCell>
-                      <TableCell>{course.subject}</TableCell>
-                      <TableCell>
-                        <Badge
-                          variant={
-                            course.status === 'published'
-                              ? 'default'
-                              : course.status === 'draft'
-                              ? 'secondary'
-                              : 'outline'
-                          }
-                        >
-                          {course.status}
-                        </Badge>
-                      </TableCell>
-                      <TableCell className="text-right">{course.estimatedMinutes} min</TableCell>
-                      <TableCell className="text-right flex items-center justify-end gap-1">
-                        <Users className="h-4 w-4 text-muted-foreground" />
-                        {course.enrolledStudents}
-                      </TableCell>
-                      <TableCell className="text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          {course.completionRate > 0 ? (
-                            <>
-                              <div className="w-16 bg-gray-200 rounded-full h-2">
-                                <div
-                                  className="bg-green-500 h-2 rounded-full"
-                                  style={{ width: `${course.completionRate}%` }}
-                                />
-                              </div>
-                              <span className="text-sm">{course.completionRate}%</span>
-                            </>
-                          ) : (
-                            <span className="text-sm text-muted-foreground">-</span>
-                          )}
-                        </div>
-                      </TableCell>
-                      <TableCell className="text-right">
-                        {course.enrolledStudents > 0 ? (
-                          <span className="font-semibold">{course.averageScore}</span>
-                        ) : (
-                          <span className="text-muted-foreground">-</span>
-                        )}
-                      </TableCell>
-                      <TableCell className="text-right">
-                        <div className="flex gap-2 justify-end">
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => setSelectedCourse(course)}
-                              >
-                                <Eye className="h-4 w-4" />
-                              </Button>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-2xl">
-                              <DialogHeader>
-                                <DialogTitle>{course.title}</DialogTitle>
-                                <DialogDescription>{course.subject}</DialogDescription>
-                              </DialogHeader>
-                              <div className="space-y-4">
-                                <div className="grid grid-cols-2 gap-4">
-                                  <div>
-                                    <p className="text-sm text-muted-foreground">Subject</p>
-                                    <p className="font-semibold">{course.subject}</p>
-                                  </div>
-                                  <div>
-                                    <p className="text-sm text-muted-foreground">Status</p>
-                                    <Badge>{course.status}</Badge>
-                                  </div>
-                                  <div>
-                                    <p className="text-sm text-muted-foreground">Duration</p>
-                                    <p className="font-semibold">{course.estimatedMinutes} minutes</p>
-                                  </div>
-                                  <div>
-                                    <p className="text-sm text-muted-foreground">Enrolled Students</p>
-                                    <p className="font-semibold">{course.enrolledStudents}</p>
-                                  </div>
-                                </div>
-                                <div className="pt-4 border-t">
-                                  <p className="text-sm font-semibold mb-2">Preview Content</p>
-                                  <div className="bg-muted p-4 rounded-lg text-sm text-muted-foreground">
-                                    [Lesson content preview would appear here]
-                                  </div>
-                                </div>
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-
-                          <Link href={`/admin/bridge-academy/edit-course/${course.id}`}>
-                            <Button variant="ghost" size="sm">
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                          </Link>
-
-                          <Button variant="ghost" size="sm" className="text-red-600 hover:text-red-700">
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </div>
-                      </TableCell>
+        {isLoading ? (
+          <Card>
+            <CardContent className="flex items-center justify-center py-8">
+              <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+              <span className="ml-2 text-muted-foreground">Loading courses...</span>
+            </CardContent>
+          </Card>
+        ) : (
+          <Card>
+            <CardHeader>
+              <CardTitle>Bridge Academy Courses</CardTitle>
+              <CardDescription>{filteredCourses.length} courses found</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Course</TableHead>
+                      <TableHead>Code</TableHead>
+                      <TableHead className="text-center">Topics</TableHead>
+                      <TableHead className="text-center">Quiz Q's</TableHead>
+                      <TableHead className="text-center">Practice Q's</TableHead>
+                      <TableHead className="text-right">Actions</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          </CardContent>
-        </Card>
+                  </TableHeader>
+                  <TableBody>
+                    {filteredCourses.length === 0 ? (
+                      <TableRow>
+                        <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
+                          No courses found
+                        </TableCell>
+                      </TableRow>
+                    ) : (
+                      filteredCourses.map((course) => (
+                        <TableRow key={course.id} className="hover:bg-muted/50">
+                          <TableCell>
+                            <div className="font-medium">{course.title}</div>
+                            <div className="text-sm text-muted-foreground">{course.description}</div>
+                          </TableCell>
+                          <TableCell>
+                            <Badge variant="outline">{course.code}</Badge>
+                          </TableCell>
+                          <TableCell className="text-center">
+                            <span className="font-medium">{course.totalLessons}</span>
+                          </TableCell>
+                          <TableCell className="text-center">
+                            <span className="font-medium text-blue-600">{course.totalQuizQuestions}</span>
+                          </TableCell>
+                          <TableCell className="text-center">
+                            <span className="font-medium text-green-600">{course.totalPracticeQuestions}</span>
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => setSelectedCourse(course)}
+                                >
+                                  <Eye className="h-4 w-4" />
+                                </Button>
+                              </DialogTrigger>
+                              {selectedCourse?.id === course.id && (
+                                <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                                  <DialogHeader>
+                                    <DialogTitle>{selectedCourse.title}</DialogTitle>
+                                    <DialogDescription>{selectedCourse.description}</DialogDescription>
+                                  </DialogHeader>
+                                  <div className="space-y-4">
+                                    <div>
+                                      <h3 className="font-semibold mb-3">Topics</h3>
+                                      <div className="space-y-2">
+                                        {selectedCourse.topics.map((topic) => (
+                                          <div key={topic.id} className="p-3 border rounded-lg">
+                                            <div className="font-medium">{topic.title}</div>
+                                            <div className="text-sm text-muted-foreground mt-1">
+                                              {topic.quizQuestions} quiz questions • {topic.practiceQuestions} practice questions
+                                            </div>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </DialogContent>
+                              )}
+                            </Dialog>
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    )}
+                  </TableBody>
+                </Table>
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </div>
     </DashboardLayout>
   );

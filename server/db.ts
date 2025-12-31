@@ -24,7 +24,10 @@ import {
   assignmentVersions, InsertAssignmentVersion, AssignmentVersion,
   subscriptions, InsertSubscription, Subscription,
   coursePurchases, InsertCoursePurchase, CoursePurchase,
-  stripeCustomers, InsertStripeCustomer, StripeCustomer
+  stripeCustomers, InsertStripeCustomer, StripeCustomer,
+  bridgeAcademyTopics, InsertBridgeAcademyTopic, BridgeAcademyTopic,
+  bridgeAcademyQuizQuestions, InsertBridgeAcademyQuizQuestion, BridgeAcademyQuizQuestion,
+  bridgeAcademyPracticeQuestions, InsertBridgeAcademyPracticeQuestion, BridgeAcademyPracticeQuestion
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -1549,3 +1552,128 @@ export async function getAllCoursePurchases() {
 }
 
 
+
+/**
+ * Bridge Academy Functions
+ */
+
+/**
+ * Get all Bridge Academy courses with their topics
+ */
+export async function getAllBridgeAcademyCourses() {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select().from(courses).where(sql`code LIKE 'GED-%'`).orderBy(courses.displayOrder);
+}
+
+/**
+ * Get Bridge Academy topics for a course
+ */
+export async function getBridgeAcademyTopics(courseId: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select().from(bridgeAcademyTopics).where(eq(bridgeAcademyTopics.courseId, courseId)).orderBy(bridgeAcademyTopics.topicOrder);
+}
+
+/**
+ * Get Bridge Academy quiz questions for a topic
+ */
+export async function getBridgeAcademyQuizQuestions(topicId: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select().from(bridgeAcademyQuizQuestions).where(eq(bridgeAcademyQuizQuestions.topicId, topicId)).orderBy(bridgeAcademyQuizQuestions.questionOrder);
+}
+
+/**
+ * Get Bridge Academy practice questions for a topic
+ */
+export async function getBridgeAcademyPracticeQuestions(topicId: number, limit?: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  const questions = await db.select().from(bridgeAcademyPracticeQuestions).where(eq(bridgeAcademyPracticeQuestions.topicId, topicId));
+  
+  if (limit) {
+    return questions.slice(0, limit);
+  }
+
+  return questions;
+}
+
+/**
+ * Get Bridge Academy course with all topics and questions (for admin)
+ */
+export async function getBridgeAcademyCourseWithTopics(courseId: number) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const courseData = await db.select().from(courses).where(eq(courses.id, courseId)).limit(1);
+  if (!courseData || courseData.length === 0) return null;
+
+  const topics = await db.select().from(bridgeAcademyTopics).where(eq(bridgeAcademyTopics.courseId, courseId)).orderBy(bridgeAcademyTopics.topicOrder);
+
+  const topicsWithQuestions = await Promise.all(
+    topics.map(async (topic) => {
+      const quizQuestions = await db.select().from(bridgeAcademyQuizQuestions).where(eq(bridgeAcademyQuizQuestions.topicId, topic.id));
+      const practiceQuestions = await db.select().from(bridgeAcademyPracticeQuestions).where(eq(bridgeAcademyPracticeQuestions.topicId, topic.id));
+      
+      return {
+        ...topic,
+        quizQuestions: quizQuestions.length,
+        practiceQuestions: practiceQuestions.length,
+      };
+    })
+  );
+
+  return {
+    ...courseData[0],
+    topics: topicsWithQuestions,
+  };
+}
+
+/**
+ * Get all Bridge Academy courses with topics for admin dashboard
+ */
+export async function getAllBridgeAcademyCoursesWithTopics() {
+  const db = await getDb();
+  if (!db) return [];
+
+  const coursesList = await db.select().from(courses).where(sql`code LIKE 'GED-%'`).orderBy(courses.displayOrder);
+
+  return Promise.all(
+    coursesList.map(async (course) => {
+      const topics = await db.select().from(bridgeAcademyTopics).where(eq(bridgeAcademyTopics.courseId, course.id));
+      
+      const topicsWithStats = await Promise.all(
+        topics.map(async (topic) => {
+          const quizQuestions = await db.select().from(bridgeAcademyQuizQuestions).where(eq(bridgeAcademyQuizQuestions.topicId, topic.id));
+          const practiceQuestions = await db.select().from(bridgeAcademyPracticeQuestions).where(eq(bridgeAcademyPracticeQuestions.topicId, topic.id));
+          
+          return {
+            id: topic.id,
+            title: topic.title,
+            topicOrder: topic.topicOrder,
+            quizQuestions: quizQuestions.length,
+            practiceQuestions: practiceQuestions.length,
+            totalQuestions: quizQuestions.length + practiceQuestions.length,
+          };
+        })
+      );
+
+      return {
+        id: course.id,
+        code: course.code,
+        title: course.title,
+        description: course.description,
+        colorTheme: course.colorTheme,
+        totalLessons: topics.length,
+        topics: topicsWithStats,
+        totalQuizQuestions: topicsWithStats.reduce((sum, t) => sum + t.quizQuestions, 0),
+        totalPracticeQuestions: topicsWithStats.reduce((sum, t) => sum + t.practiceQuestions, 0),
+      };
+    })
+  );
+}

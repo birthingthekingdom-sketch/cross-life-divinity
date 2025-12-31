@@ -30,6 +30,8 @@ import { paymentPlanRouter } from './payment-plan-router';
 import { practiceQuizRouter } from './practice-quiz-router';
 import { TRPCError } from "@trpc/server";
 
+// Import Bridge Academy database functions are already available via db.* namespace
+
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
   if (ctx.user.role !== 'admin') {
     throw new TRPCError({ code: 'FORBIDDEN', message: 'Admin access required' });
@@ -1084,6 +1086,23 @@ export const appRouter = router({
         
         const result: any = await dbConn.execute(query);
         return Array.isArray(result) ? result : result.rows || [];
+      }),
+    
+    // Bridge Academy Management
+    getBridgeAcademyCourses: adminProcedure.query(async () => {
+      return db.getAllBridgeAcademyCoursesWithTopics();
+    }),
+    
+    getBridgeAcademyCourse: adminProcedure
+      .input(z.object({ courseId: z.number() }))
+      .query(async ({ input }) => {
+        return db.getBridgeAcademyCourseWithTopics(input.courseId);
+      }),
+    
+    getBridgeAcademyTopics: adminProcedure
+      .input(z.object({ courseId: z.number() }))
+      .query(async ({ input }) => {
+        return db.getBridgeAcademyTopics(input.courseId);
       }),
   }),
   
