@@ -139,6 +139,21 @@
 
 ## Phase 5: Quiz System & Auto-Grading Implementation
 
+### Unlimited Practice Quiz System
+- [ ] Create practice_quiz_questions table with question variations/pools
+- [ ] Implement question bank with 50+ questions per lesson
+- [ ] Create quiz randomization algorithm (shuffle questions, randomize answers)
+- [ ] Implement unlimited quiz generation from question pool
+- [ ] Create practice_quiz_attempts table for tracking all attempts
+- [ ] Implement adaptive difficulty algorithm (adjust based on performance)
+- [ ] Create difficulty scoring system (easy, medium, hard)
+- [ ] Track attempt history with timestamps and scores
+- [ ] Implement best score tracking and average score calculation
+- [ ] Create practice quiz analytics (attempt count, improvement trend)
+- [ ] Integrate practice quiz scores into final course grade (weighted)
+- [ ] Create practice quiz UI component with unlimited retake button
+- [ ] Implement score persistence and history display
+
 ### Quiz Structure (120 total questions, 10 per lesson)
 - [ ] Create quiz question database schema
 - [ ] Implement 4 question types: Multiple choice, True/False, Short answer, Essay
@@ -153,6 +168,8 @@
 - [ ] Create grading rubric for essays
 - [ ] Create admin grading interface
 - [ ] Send grading notifications to students
+- [ ] Apply adaptive difficulty adjustments based on auto-grading results
+- [ ] Update practice quiz scores in final grade calculation
 
 ### Quiz Questions (10 per lesson)
 - [ ] Math Reasoning: 30 questions total
@@ -162,10 +179,13 @@
 
 ### Question Content
 - [ ] Real GED-style practice problems
-- [ ] Multiple difficulty levels
+- [ ] Multiple difficulty levels (easy, medium, hard)
 - [ ] Detailed answer explanations
 - [ ] Reference to lesson content
 - [ ] Test-taking tips
+- [ ] Question variations for unlimited practice (50+ per lesson)
+- [ ] Randomizable answer options
+- [ ] Performance-based question selection for adaptive quizzes
 
 ---
 

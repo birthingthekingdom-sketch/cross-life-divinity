@@ -49,7 +49,6 @@ export const appRouter = router({
   installmentPlan: installmentPlanRouter,
   paymentPlan: paymentPlanRouter,
 
-  // Merge custom auth router with existing auth endpoints
   auth: router({
     ...authRouter._def.procedures,
     logout: publicProcedure.mutation(({ ctx }) => {
@@ -1278,6 +1277,74 @@ export const appRouter = router({
       .mutation(async ({ input, ctx }) => {
         await referralSystem.trackReferral(input.referralCode, ctx.user.id);
         return { success: true };
+      }),
+  }),
+
+  // Practice Quiz System (Placeholder - to be implemented)
+  practiceQuiz: router({
+    generatePracticeQuiz: protectedProcedure
+      .input(z.object({ topicId: z.number(), courseId: z.number(), questionsPerQuiz: z.number().default(10) }))
+      .query(async ({ ctx, input }) => {
+        return {
+          quizId: `quiz_${Date.now()}`,
+          topicId: input.topicId,
+          courseId: input.courseId,
+          difficulty: 'easy',
+          questions: [],
+          totalQuestions: 0,
+          attemptNumber: 1,
+        };
+      }),
+
+    submitPracticeQuiz: protectedProcedure
+      .input(z.object({ topicId: z.number(), courseId: z.number(), difficulty: z.enum(['easy', 'medium', 'hard']), answers: z.array(z.object({ questionId: z.number(), userAnswer: z.string() })) }))
+      .mutation(async ({ ctx, input }) => {
+        return {
+          attemptId: 1,
+          score: 0,
+          totalQuestions: 0,
+          percentage: 0,
+          passed: false,
+          answers: [],
+          nextDifficulty: 'easy',
+          message: 'Quiz submitted',
+        };
+      }),
+
+    getPracticeHistory: protectedProcedure
+      .input(z.object({ topicId: z.number(), limit: z.number().default(20) }))
+      .query(async ({ ctx, input }) => {
+        return [];
+      }),
+
+    getStudentProfile: protectedProcedure
+      .input(z.object({ topicId: z.number() }))
+      .query(async ({ ctx, input }) => {
+        return null;
+      }),
+
+    getPracticeAnalytics: protectedProcedure
+      .input(z.object({ courseId: z.number() }))
+      .query(async ({ ctx, input }) => {
+        return {
+          totalTopics: 0,
+          topicsWithAttempts: 0,
+          totalAttempts: 0,
+          averageScore: 0,
+          bestScore: 0,
+          topicProfiles: [],
+        };
+      }),
+
+    calculatePracticeGradeContribution: protectedProcedure
+      .input(z.object({ courseId: z.number() }))
+      .query(async ({ ctx, input }) => {
+        return {
+          practiceGradePercentage: 0,
+          gradeContribution: 0,
+          totalAttempts: 0,
+          averageScore: 0,
+        };
       }),
   }),
 });

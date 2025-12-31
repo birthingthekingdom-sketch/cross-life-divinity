@@ -824,6 +824,81 @@ export type BridgeAcademyQuizAnswer = typeof bridgeAcademyQuizAnswers.$inferSele
 export type InsertBridgeAcademyQuizAnswer = typeof bridgeAcademyQuizAnswers.$inferInsert;
 
 /**
+ * Bridge Academy Practice Quiz Questions - Unlimited question variations for practice (50+ per topic)
+ */
+export const bridgeAcademyPracticeQuestions = mysqlTable("bridge_academy_practice_questions", {
+  id: int("id").autoincrement().primaryKey(),
+  topicId: int("topicId").notNull(),
+  question: text("question").notNull(),
+  questionType: mysqlEnum("questionType", ["multiple_choice", "true_false", "short_answer"]).notNull(),
+  options: text("options"), // JSON array for multiple choice
+  correctAnswer: text("correctAnswer").notNull(),
+  explanation: text("explanation"), // Explanation for correct answer
+  difficulty: mysqlEnum("difficulty", ["easy", "medium", "hard"]).default("medium").notNull(),
+  variationGroup: varchar("variationGroup", { length: 64 }), // Groups similar questions for randomization
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BridgeAcademyPracticeQuestion = typeof bridgeAcademyPracticeQuestions.$inferSelect;
+export type InsertBridgeAcademyPracticeQuestion = typeof bridgeAcademyPracticeQuestions.$inferInsert;
+
+/**
+ * Bridge Academy Practice Quiz Attempts - Track unlimited practice quiz attempts
+ */
+export const bridgeAcademyPracticeAttempts = mysqlTable("bridge_academy_practice_attempts", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  topicId: int("topicId").notNull(),
+  courseId: int("courseId").notNull(),
+  attemptNumber: int("attemptNumber").notNull(), // 1st attempt, 2nd attempt, etc.
+  score: int("score").notNull(), // Number of correct answers
+  totalQuestions: int("totalQuestions").notNull(),
+  percentage: int("percentage").notNull(), // Percentage score
+  difficulty: mysqlEnum("difficulty", ["easy", "medium", "hard"]).default("medium").notNull(), // Difficulty level of this attempt
+  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+});
+
+export type BridgeAcademyPracticeAttempt = typeof bridgeAcademyPracticeAttempts.$inferSelect;
+export type InsertBridgeAcademyPracticeAttempt = typeof bridgeAcademyPracticeAttempts.$inferInsert;
+
+/**
+ * Bridge Academy Practice Quiz Answers - Track individual question answers for practice attempts
+ */
+export const bridgeAcademyPracticeAnswers = mysqlTable("bridge_academy_practice_answers", {
+  id: int("id").autoincrement().primaryKey(),
+  attemptId: int("attemptId").notNull(),
+  questionId: int("questionId").notNull(),
+  userAnswer: text("userAnswer").notNull(),
+  isCorrect: boolean("isCorrect").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BridgeAcademyPracticeAnswer = typeof bridgeAcademyPracticeAnswers.$inferSelect;
+export type InsertBridgeAcademyPracticeAnswer = typeof bridgeAcademyPracticeAnswers.$inferInsert;
+
+/**
+ * Bridge Academy Student Difficulty Profile - Track adaptive difficulty per student per topic
+ */
+export const bridgeAcademyStudentDifficultyProfiles = mysqlTable("bridge_academy_student_difficulty_profiles", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  topicId: int("topicId").notNull(),
+  courseId: int("courseId").notNull(),
+  currentDifficulty: mysqlEnum("currentDifficulty", ["easy", "medium", "hard"]).default("easy").notNull(),
+  averageScore: int("averageScore").default(0).notNull(), // Average score across all attempts
+  attemptCount: int("attemptCount").default(0).notNull(), // Total practice attempts
+  bestScore: int("bestScore").default(0).notNull(), // Best score achieved
+  improvementTrend: int("improvementTrend").default(0), // Percentage improvement from first to last attempt
+  lastAttemptAt: timestamp("lastAttemptAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BridgeAcademyStudentDifficultyProfile = typeof bridgeAcademyStudentDifficultyProfiles.$inferSelect;
+export type InsertBridgeAcademyStudentDifficultyProfile = typeof bridgeAcademyStudentDifficultyProfiles.$inferInsert;
+
+/**
  * Bridge Academy Enrollments - Track $19/month subscriptions for Bridge Academy
  */
 export const bridgeAcademyEnrollments = mysqlTable("bridge_academy_enrollments", {
