@@ -27,6 +27,7 @@ import { affiliateRouter } from './affiliate-router';
 import { chaplaincyRouter } from './chaplaincy-router';
 import { installmentPlanRouter } from './installment-plan-router';
 import { paymentPlanRouter } from './payment-plan-router';
+import { practiceQuizRouter } from './practice-quiz-router';
 import { TRPCError } from "@trpc/server";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -1280,73 +1281,7 @@ export const appRouter = router({
       }),
   }),
 
-  // Practice Quiz System (Placeholder - to be implemented)
-  practiceQuiz: router({
-    generatePracticeQuiz: protectedProcedure
-      .input(z.object({ topicId: z.number(), courseId: z.number(), questionsPerQuiz: z.number().default(10) }))
-      .query(async ({ ctx, input }) => {
-        return {
-          quizId: `quiz_${Date.now()}`,
-          topicId: input.topicId,
-          courseId: input.courseId,
-          difficulty: 'easy',
-          questions: [],
-          totalQuestions: 0,
-          attemptNumber: 1,
-        };
-      }),
-
-    submitPracticeQuiz: protectedProcedure
-      .input(z.object({ topicId: z.number(), courseId: z.number(), difficulty: z.enum(['easy', 'medium', 'hard']), answers: z.array(z.object({ questionId: z.number(), userAnswer: z.string() })) }))
-      .mutation(async ({ ctx, input }) => {
-        return {
-          attemptId: 1,
-          score: 0,
-          totalQuestions: 0,
-          percentage: 0,
-          passed: false,
-          answers: [],
-          nextDifficulty: 'easy',
-          message: 'Quiz submitted',
-        };
-      }),
-
-    getPracticeHistory: protectedProcedure
-      .input(z.object({ topicId: z.number(), limit: z.number().default(20) }))
-      .query(async ({ ctx, input }) => {
-        return [];
-      }),
-
-    getStudentProfile: protectedProcedure
-      .input(z.object({ topicId: z.number() }))
-      .query(async ({ ctx, input }) => {
-        return null;
-      }),
-
-    getPracticeAnalytics: protectedProcedure
-      .input(z.object({ courseId: z.number() }))
-      .query(async ({ ctx, input }) => {
-        return {
-          totalTopics: 0,
-          topicsWithAttempts: 0,
-          totalAttempts: 0,
-          averageScore: 0,
-          bestScore: 0,
-          topicProfiles: [],
-        };
-      }),
-
-    calculatePracticeGradeContribution: protectedProcedure
-      .input(z.object({ courseId: z.number() }))
-      .query(async ({ ctx, input }) => {
-        return {
-          practiceGradePercentage: 0,
-          gradeContribution: 0,
-          totalAttempts: 0,
-          averageScore: 0,
-        };
-      }),
-  }),
+  practiceQuiz: practiceQuizRouter,
 });
 
 export type AppRouter = typeof appRouter;
