@@ -49,6 +49,7 @@ export const appRouter = router({
   chaplaincy: chaplaincyRouter,
   installmentPlan: installmentPlanRouter,
   paymentPlan: paymentPlanRouter,
+  practiceQuiz: practiceQuizRouter,
 
   auth: router({
     ...authRouter._def.procedures,
