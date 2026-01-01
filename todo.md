@@ -53,6 +53,13 @@
 - [x] Test all GED features and verify separation is complete
 - [x] Verify quiz system is working correctly with proper lesson placement
 
+## CRITICAL FIXES NEEDED (IMMEDIATE)
+- [x] Add navigation bar to Bridge Academy main page (/bridge-academy)
+- [x] Restore Old Testament Survey (BIB101) and New Testament Survey (BIB102) to database
+- [x] Implement "Explore Topic" functionality on GED course cards (currently placeholders)
+- [x] Update referral system to track current enrollees only (remove new enrollee incentives)
+- [ ] Test all fixes and verify catalog displays correctly
+
 ## COURSE SLIDESHOW ORDER (Female Voiceover Only)
 1. [x] Understanding Prophecy (DIV101)
 2. [ ] The Fivefold Ministry (MIN201)
