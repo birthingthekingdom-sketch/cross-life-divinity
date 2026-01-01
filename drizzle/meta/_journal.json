@@ -253,6 +253,13 @@
       "when": 1767199799913,
       "tag": "0035_sour_ronan",
       "breakpoints": true
+    },
+    {
+      "idx": 36,
+      "version": "5",
+      "when": 1767296964563,
+      "tag": "0036_bouncy_vulture",
+      "breakpoints": true
     }
   ]
 }

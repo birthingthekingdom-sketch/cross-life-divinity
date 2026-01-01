@@ -28,6 +28,7 @@ import { chaplaincyRouter } from './chaplaincy-router';
 import { installmentPlanRouter } from './installment-plan-router';
 import { paymentPlanRouter } from './payment-plan-router';
 import { practiceQuizRouter } from './practice-quiz-router';
+import { idVerificationRouter } from './id-verification-router';
 import { TRPCError } from "@trpc/server";
 
 // Import Bridge Academy database functions are already available via db.* namespace
@@ -52,6 +53,7 @@ export const appRouter = router({
   installmentPlan: installmentPlanRouter,
   paymentPlan: paymentPlanRouter,
   practiceQuiz: practiceQuizRouter,
+  idVerification: idVerificationRouter,
   auth: router({
     ...authRouter._def.procedures,
     logout: publicProcedure.mutation(({ ctx }) => {

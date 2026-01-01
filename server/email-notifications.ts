@@ -501,3 +501,120 @@ export async function updateEmailPreferences(
     );
   }
 }
+
+/**
+ * Send ID approval email to student
+ */
+export async function sendIdApprovalEmail(userId: number): Promise<void> {
+  try {
+    const user = await db.getUserById(userId);
+    if (!user || !user.email) {
+      console.warn(`Cannot send ID approval email: user ${userId} not found or has no email`);
+      return;
+    }
+
+    const config = getEmailConfig();
+    if (!config) {
+      console.warn("Email configuration not available");
+      return;
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: config.host,
+      port: config.port,
+      secure: config.secure,
+      auth: {
+        user: config.user,
+        pass: config.pass,
+      },
+    });
+
+    const subject = "ID Verification Approved - Welcome to Cross Life School of Divinity";
+    const html = `
+      <h2>ID Verification Approved</h2>
+      <p>Dear ${user.name || 'Student'},</p>
+      <p>Great news! Your ID has been successfully verified and approved. Your enrollment is now complete.</p>
+      <p>You can now:</p>
+      <ul>
+        <li>Access all your enrolled courses</li>
+        <li>Download course materials</li>
+        <li>Submit assignments and take quizzes</li>
+        <li>Earn your CLAC certificate upon completion</li>
+      </ul>
+      <p>Welcome to the Cross Life School of Divinity community!</p>
+      <p>Best regards,<br/>The Cross Life School of Divinity Team</p>
+    `;
+
+    await transporter.sendMail({
+      from: config.user,
+      to: user.email,
+      subject,
+      html,
+    });
+
+    console.log(`ID approval email sent to ${user.email}`);
+  } catch (error) {
+    console.error("Failed to send ID approval email:", error);
+  }
+}
+
+/**
+ * Send ID rejection email to student
+ */
+export async function sendIdRejectionEmail(
+  userId: number,
+  rejectionReason: string
+): Promise<void> {
+  try {
+    const user = await db.getUserById(userId);
+    if (!user || !user.email) {
+      console.warn(`Cannot send ID rejection email: user ${userId} not found or has no email`);
+      return;
+    }
+
+    const config = getEmailConfig();
+    if (!config) {
+      console.warn("Email configuration not available");
+      return;
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: config.host,
+      port: config.port,
+      secure: config.secure,
+      auth: {
+        user: config.user,
+        pass: config.pass,
+      },
+    });
+
+    const subject = "ID Verification - Resubmission Required";
+    const html = `
+      <h2>ID Verification - Resubmission Required</h2>
+      <p>Dear ${user.name || 'Student'},</p>
+      <p>We received your ID submission, but we were unable to verify it at this time.</p>
+      <p><strong>Reason:</strong> ${rejectionReason}</p>
+      <p>Please resubmit a clear, legible copy of your government-issued ID. Make sure:</p>
+      <ul>
+        <li>The entire ID is visible in the image</li>
+        <li>All text is clear and readable</li>
+        <li>The file format is JPG, PNG, or PDF</li>
+        <li>The file size is under 10MB</li>
+      </ul>
+      <p>You can resubmit your ID anytime from your enrollment dashboard.</p>
+      <p>If you have questions, please contact our support team.</p>
+      <p>Best regards,<br/>The Cross Life School of Divinity Team</p>
+    `;
+
+    await transporter.sendMail({
+      from: config.user,
+      to: user.email,
+      subject,
+      html,
+    });
+
+    console.log(`ID rejection email sent to ${user.email}`);
+  } catch (error) {
+    console.error("Failed to send ID rejection email:", error);
+  }
+}

@@ -1053,3 +1053,25 @@ export const trialContentAccess = mysqlTable("trial_content_access", {
 
 export type TrialContentAccess = typeof trialContentAccess.$inferSelect;
 export type InsertTrialContentAccess = typeof trialContentAccess.$inferInsert;
+
+/**
+ * ID Submissions - Students upload government IDs for verification
+ */
+export const idSubmissions = mysqlTable("id_submissions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  fileUrl: varchar("fileUrl", { length: 500 }).notNull(), // S3 URL
+  fileName: varchar("fileName", { length: 255 }).notNull(),
+  fileSize: int("fileSize").notNull(), // Size in bytes
+  mimeType: varchar("mimeType", { length: 100 }).notNull(),
+  status: mysqlEnum("status", ["pending", "approved", "rejected"]).default("pending").notNull(),
+  reviewedBy: int("reviewedBy"), // Admin user ID who reviewed it
+  reviewNotes: text("reviewNotes"), // Admin notes for rejection or approval
+  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+  reviewedAt: timestamp("reviewedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type IdSubmission = typeof idSubmissions.$inferSelect;
+export type InsertIdSubmission = typeof idSubmissions.$inferInsert;
