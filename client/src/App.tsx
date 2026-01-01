@@ -86,6 +86,9 @@ import BridgeAcademyDashboard from './pages/BridgeAcademyDashboard';
 import BridgeAcademyStudentDashboard from './pages/BridgeAcademyStudentDashboard';
 import BridgeAcademyCourseDetail from './pages/BridgeAcademyCourseDetail';
 import BridgeAcademyPracticeQuiz from './pages/BridgeAcademyPracticeQuiz';
+import BridgeAcademyDetails from './pages/BridgeAcademyDetails';
+import BridgeAcademyStudyMaterials from './pages/BridgeAcademyStudyMaterials';
+import GEDProgressDashboard from './pages/GEDProgressDashboard';
 
 function Router() {
   return (
@@ -158,6 +161,9 @@ function Router() {
       <Route path="/bridge-academy/student-dashboard" component={BridgeAcademyStudentDashboard} />
       <Route path="/bridge-academy/course/:courseId" component={BridgeAcademyCourseDetail} />
       <Route path="/bridge-academy/practice-quiz/:subjectCode" component={BridgeAcademyPracticeQuiz} />
+      <Route path="/bridge-academy/details" component={BridgeAcademyDetails} />
+      <Route path="/bridge-academy/study-materials" component={BridgeAcademyStudyMaterials} />
+      <Route path="/bridge-academy/progress" component={GEDProgressDashboard} />
       <Route path="/bridge-academy/diplomas" component={BridgeAcademyDiplomas} />
       <Route path="/verify-bridge-academy/:token" component={VerifyBridgeAcademyCertificate} />
       <Route path="/accreditation" component={Accreditation} />

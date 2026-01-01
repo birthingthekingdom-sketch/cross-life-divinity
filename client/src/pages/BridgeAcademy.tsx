@@ -217,6 +217,45 @@ export function BridgeAcademy() {
         </div>
       </section>
 
+      {/* Quick Links to GED Resources */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">GED Program Resources</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Link href="/bridge-academy/details">
+              <Card className="p-8 hover:shadow-lg transition-shadow cursor-pointer h-full">
+                <div className="text-4xl mb-4">📖</div>
+                <h3 className="text-xl font-bold mb-2">Program Overview</h3>
+                <p className="text-foreground/70 mb-4">Learn about Bridge Academy, success rates, and how the program works</p>
+                <div className="flex items-center gap-2 text-primary font-semibold">
+                  Explore <ArrowRight className="w-4 h-4" />
+                </div>
+              </Card>
+            </Link>
+            <Link href="/bridge-academy/study-materials">
+              <Card className="p-8 hover:shadow-lg transition-shadow cursor-pointer h-full">
+                <div className="text-4xl mb-4">📚</div>
+                <h3 className="text-xl font-bold mb-2">Study Materials</h3>
+                <p className="text-foreground/70 mb-4">Download study guides, practice tests, and formula sheets for all subjects</p>
+                <div className="flex items-center gap-2 text-primary font-semibold">
+                  Download <ArrowRight className="w-4 h-4" />
+                </div>
+              </Card>
+            </Link>
+            <Link href="/bridge-academy/progress">
+              <Card className="p-8 hover:shadow-lg transition-shadow cursor-pointer h-full">
+                <div className="text-4xl mb-4">📊</div>
+                <h3 className="text-xl font-bold mb-2">Progress Dashboard</h3>
+                <p className="text-foreground/70 mb-4">Track your exam readiness and get personalized study recommendations</p>
+                <div className="flex items-center gap-2 text-primary font-semibold">
+                  View <ArrowRight className="w-4 h-4" />
+                </div>
+              </Card>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary/10 to-primary/5">
         <div className="max-w-4xl mx-auto text-center">
