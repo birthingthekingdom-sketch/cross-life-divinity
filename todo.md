@@ -44,6 +44,14 @@
 - [x] Bridge Academy: Add navigation bar to main page
 - [x] Bridge Academy: Fix back button on course detail pages (uses window.history.back())
 - [x] Bridge Academy: Fix Learn More button functionality
+- [x] Restore Accreditation page with CLAC standards and pathways
+- [x] Restore Credits & Certification page with course credits and CPD info
+- [x] Restore Financial Aid page with calculator and application
+- [x] Restore Life Experience (Prior Learning Assessment) page
+- [x] Restore Enrollment Verification page with ID verification info
+- [x] Restore Refund Policy page with 14-day guarantee
+- [x] Restore Help Center (Knowledge Base) page
+- [x] Restore Contact page with support information
 
 ## COURSE SLIDESHOW ORDER (Female Voiceover Only)
 1. [x] Understanding Prophecy (DIV101)
