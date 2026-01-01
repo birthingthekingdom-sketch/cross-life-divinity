@@ -35,6 +35,14 @@ interface TopicProgress {
 export default function BridgeAcademyCourseDetail() {
   const [, navigate] = useLocation();
   const [match, params] = useRoute("/bridge-academy/course/:courseId");
+  
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      navigate("/bridge-academy");
+    }
+  };
   const [courseData, setCourseData] = useState<any>(null);
   const [topics, setTopics] = useState<Topic[]>([]);
   const [progress, setProgress] = useState<TopicProgress[]>([]);
@@ -81,7 +89,7 @@ export default function BridgeAcademyCourseDetail() {
         <div className="max-w-6xl mx-auto">
           <Button
             variant="ghost"
-            onClick={() => navigate("/bridge-academy")}
+            onClick={handleBack}
             className="mb-4"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -126,7 +134,7 @@ export default function BridgeAcademyCourseDetail() {
         <div className="mb-8">
           <Button
             variant="ghost"
-            onClick={() => navigate("/bridge-academy")}
+            onClick={handleBack}
             className="mb-4"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
