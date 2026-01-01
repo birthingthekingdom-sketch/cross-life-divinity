@@ -2493,3 +2493,11 @@ All components built and integrated. Ready for:
 - Testing with real student data
 - Performance optimization if needed
 - Additional features based on user feedback
+
+
+## GED Catalog Separation (NEW)
+- [x] Separate GED courses from theological courses in Catalog.tsx
+- [x] Add filtering tabs to switch between theological and GED courses
+- [x] Create dedicated Bridge Academy section for GED courses
+- [x] Display individual GED course cards (GED-MATH, GED-LANG, GED-SCI, GED-SOCIAL)
+- [x] Test catalog filtering and course separation
