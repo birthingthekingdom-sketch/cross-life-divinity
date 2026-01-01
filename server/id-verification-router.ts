@@ -2,8 +2,8 @@ import { protectedProcedure, router } from './_core/trpc';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 import * as db from './db';
-import { idSubmissions } from '../drizzle/schema';
-import { eq, and, desc } from 'drizzle-orm';
+import { idSubmissions, courseEnrollments } from '../drizzle/schema';
+import { eq, and, desc, lte, isNull } from 'drizzle-orm';
 import { getDb } from './db';
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -296,6 +296,14 @@ export const idVerificationRouter = router({
           .limit(1);
 
         if (submission.length > 0) {
+          // Mark verification as completed for all enrollments
+          const middleware = await import('./id-verification-middleware');
+          try {
+            await middleware.restoreAccessOnVerification(submission[0].userId);
+          } catch (error) {
+            console.error('Failed to restore access on verification:', error);
+          }
+
           // Send approval email
           const emailNotifications = await import('./email-notifications');
           try {
@@ -421,6 +429,180 @@ export const idVerificationRouter = router({
         throw new TRPCError({
           code: 'INTERNAL_SERVER_ERROR',
           message: 'Failed to fetch submission details',
+        });
+      }
+    }),
+
+  /**
+   * Check if user has passed the 7-day verification deadline
+   * Returns deadline info and whether access should be restricted
+   */
+  checkVerificationDeadline: protectedProcedure
+    .input(z.object({ courseId: z.number().optional() }))
+    .query(async ({ ctx, input }) => {
+      try {
+        const database = await getDb();
+        if (!database) {
+          throw new TRPCError({
+            code: 'INTERNAL_SERVER_ERROR',
+            message: 'Database not available',
+          });
+        }
+
+        // Get user's enrollments
+        let enrollments;
+        if (input.courseId) {
+          enrollments = await database
+            .select()
+            .from(courseEnrollments)
+            .where(
+              and(
+                eq(courseEnrollments.userId, ctx.user.id),
+                eq(courseEnrollments.courseId, input.courseId)
+              )
+            );
+        } else {
+          enrollments = await database
+            .select()
+            .from(courseEnrollments)
+            .where(eq(courseEnrollments.userId, ctx.user.id));
+        }
+
+        if (enrollments.length === 0) {
+          return {
+            hasEnrollments: false,
+            enrollments: [],
+          };
+        }
+
+        const now = new Date();
+        const enrollmentStatus = enrollments.map((enrollment) => {
+          const enrolledAt = new Date(enrollment.enrolledAt);
+          const sevenDaysLater = new Date(enrolledAt.getTime() + 7 * 24 * 60 * 60 * 1000);
+          const isPastDeadline = now > sevenDaysLater;
+          const isVerified = enrollment.idVerificationCompletedAt !== null;
+          const isAccessSuspended = enrollment.accessSuspendedAt !== null;
+
+          return {
+            enrollmentId: enrollment.id,
+            courseId: enrollment.courseId,
+            enrolledAt,
+            deadlineAt: sevenDaysLater,
+            isPastDeadline,
+            isVerified,
+            isAccessSuspended,
+            daysRemaining: Math.max(0, Math.ceil((sevenDaysLater.getTime() - now.getTime()) / (24 * 60 * 60 * 1000))),
+          };
+        });
+
+        return {
+          hasEnrollments: true,
+          enrollments: enrollmentStatus,
+        };
+      } catch (error) {
+        console.error('Check verification deadline error:', error);
+        throw new TRPCError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'Failed to check verification deadline',
+        });
+      }
+    }),
+
+  /**
+   * Mark ID verification as completed for all enrollments
+   * Called when admin approves ID submission
+   */
+  markVerificationCompleted: protectedProcedure.mutation(async ({ ctx }) => {
+    try {
+      const database = await getDb();
+      if (!database) {
+        throw new TRPCError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'Database not available',
+        });
+      }
+
+      // Update all enrollments for this user to mark verification as completed
+      await database
+        .update(courseEnrollments)
+        .set({
+          idVerificationCompletedAt: new Date(),
+        })
+        .where(
+          and(
+            eq(courseEnrollments.userId, ctx.user.id),
+            isNull(courseEnrollments.idVerificationCompletedAt)
+          )
+        );
+
+      return { success: true, message: 'Verification marked as completed' };
+    } catch (error) {
+      console.error('Mark verification completed error:', error);
+      throw new TRPCError({
+        code: 'INTERNAL_SERVER_ERROR',
+        message: 'Failed to mark verification as completed',
+      });
+    }
+  }),
+
+  /**
+   * Get enrollment verification status for a specific course
+   */
+  getEnrollmentVerificationStatus: protectedProcedure
+    .input(z.object({ courseId: z.number() }))
+    .query(async ({ ctx, input }) => {
+      try {
+        const database = await getDb();
+        if (!database) {
+          throw new TRPCError({
+            code: 'INTERNAL_SERVER_ERROR',
+            message: 'Database not available',
+          });
+        }
+
+        const enrollment = await database
+          .select()
+          .from(courseEnrollments)
+          .where(
+            and(
+              eq(courseEnrollments.userId, ctx.user.id),
+              eq(courseEnrollments.courseId, input.courseId)
+            )
+          )
+          .limit(1);
+
+        if (enrollment.length === 0) {
+          return {
+            isEnrolled: false,
+            verificationStatus: null,
+          };
+        }
+
+        const enrollmentRecord = enrollment[0];
+        const enrolledAt = new Date(enrollmentRecord.enrolledAt);
+        const sevenDaysLater = new Date(enrolledAt.getTime() + 7 * 24 * 60 * 60 * 1000);
+        const now = new Date();
+        const isPastDeadline = now > sevenDaysLater;
+        const isVerified = enrollmentRecord.idVerificationCompletedAt !== null;
+        const isAccessSuspended = enrollmentRecord.accessSuspendedAt !== null;
+
+        return {
+          isEnrolled: true,
+          verificationStatus: {
+            enrollmentId: enrollmentRecord.id,
+            enrolledAt,
+            deadlineAt: sevenDaysLater,
+            isPastDeadline,
+            isVerified,
+            isAccessSuspended,
+            daysRemaining: Math.max(0, Math.ceil((sevenDaysLater.getTime() - now.getTime()) / (24 * 60 * 60 * 1000))),
+          },
+        };
+      } catch (error) {
+        console.error('Get enrollment verification status error:', error);
+        throw new TRPCError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'Failed to get enrollment verification status',
         });
       }
     }),

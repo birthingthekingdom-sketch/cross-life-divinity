@@ -1,6 +1,7 @@
 import cron from 'node-cron';
 import * as db from './db';
 import * as email from './email';
+import * as idVerificationScheduler from './id-verification-scheduler';
 
 /**
  * Scheduled task to send follow-up due date reminders
@@ -44,6 +45,28 @@ export function startFollowUpReminderScheduler() {
   });
   
   console.log('[Scheduler] Follow-up reminder scheduler started (runs daily at 9:00 AM)');
+
+  // Run ID verification deadline reminders every day at 8:00 AM
+  cron.schedule('0 8 * * *', async () => {
+    console.log('[Scheduler] Running ID verification deadline reminders...');
+    try {
+      await idVerificationScheduler.sendDeadlineReminders();
+    } catch (error) {
+      console.error('[Scheduler] Error in ID verification reminder scheduler:', error);
+    }
+  });
+  console.log('[Scheduler] ID verification reminder scheduler started (runs daily at 8:00 AM)');
+
+  // Run ID verification deadline enforcement every day at 9:00 AM
+  cron.schedule('0 9 * * *', async () => {
+    console.log('[Scheduler] Running ID verification deadline enforcement...');
+    try {
+      await idVerificationScheduler.enforceDeadlines();
+    } catch (error) {
+      console.error('[Scheduler] Error in ID verification enforcement scheduler:', error);
+    }
+  });
+  console.log('[Scheduler] ID verification enforcement scheduler started (runs daily at 9:00 AM)');
 }
 
 /**

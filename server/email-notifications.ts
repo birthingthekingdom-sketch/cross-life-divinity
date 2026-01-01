@@ -618,3 +618,123 @@ export async function sendIdRejectionEmail(
     console.error("Failed to send ID rejection email:", error);
   }
 }
+
+
+/**
+ * Send ID verification reminder email
+ */
+export async function sendIdVerificationReminderEmail(
+  userId: number,
+  daysRemaining: number
+): Promise<void> {
+  try {
+    const user = await db.getUserById(userId);
+    if (!user || !user.email) {
+      console.warn(`Cannot send ID verification reminder: user ${userId} not found or has no email`);
+      return;
+    }
+
+    const config = getEmailConfig();
+    if (!config) {
+      console.warn("Email configuration not available");
+      return;
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: config.host,
+      port: config.port,
+      secure: config.secure,
+      auth: {
+        user: config.user,
+        pass: config.pass,
+      },
+    });
+
+    const subject = `Reminder: Complete Your ID Verification (${daysRemaining} days left)`;
+    const html = `
+      <h2>ID Verification Reminder</h2>
+      <p>Dear ${user.name || 'Student'},</p>
+      <p>This is a friendly reminder that you have <strong>${daysRemaining} days remaining</strong> to complete your ID verification.</p>
+      <p>After 7 days from your enrollment, your course access will be suspended until you complete ID verification.</p>
+      <p>To complete your ID verification:</p>
+      <ol>
+        <li>Log in to your student dashboard</li>
+        <li>Click on "Complete ID Verification"</li>
+        <li>Upload a clear photo of your government-issued ID</li>
+        <li>Our team will review and approve your ID within 24-48 hours</li>
+      </ol>
+      <p>If you have any questions, please contact our support team.</p>
+      <p>Best regards,<br/>The Cross Life School of Divinity Team</p>
+    `;
+
+    await transporter.sendMail({
+      from: config.user,
+      to: user.email,
+      subject,
+      html,
+    });
+
+    console.log(`ID verification reminder email sent to ${user.email}`);
+  } catch (error) {
+    console.error("Failed to send ID verification reminder email:", error);
+  }
+}
+
+/**
+ * Send access suspension email
+ */
+export async function sendAccessSuspensionEmail(userId: number): Promise<void> {
+  try {
+    const user = await db.getUserById(userId);
+    if (!user || !user.email) {
+      console.warn(`Cannot send access suspension email: user ${userId} not found or has no email`);
+      return;
+    }
+
+    const config = getEmailConfig();
+    if (!config) {
+      console.warn("Email configuration not available");
+      return;
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: config.host,
+      port: config.port,
+      secure: config.secure,
+      auth: {
+        user: config.user,
+        pass: config.pass,
+      },
+    });
+
+    const subject = "Course Access Suspended - ID Verification Required";
+    const html = `
+      <h2>Course Access Suspended</h2>
+      <p>Dear ${user.name || 'Student'},</p>
+      <p>Your course access has been suspended because your 7-day grace period for ID verification has ended.</p>
+      <p><strong>What happened:</strong> You enrolled in a course but did not complete ID verification within 7 days.</p>
+      <p><strong>What you need to do:</strong> Complete your ID verification to regain access to your courses.</p>
+      <p>To restore your access:</p>
+      <ol>
+        <li>Log in to your student dashboard</li>
+        <li>Click on "Complete ID Verification"</li>
+        <li>Upload a clear photo of your government-issued ID (driver's license, passport, or state ID)</li>
+        <li>Our team will review and approve your ID within 24-48 hours</li>
+        <li>Your course access will be restored immediately upon approval</li>
+      </ol>
+      <p>If you have any questions or need assistance, please contact our support team.</p>
+      <p>Best regards,<br/>The Cross Life School of Divinity Team</p>
+    `;
+
+    await transporter.sendMail({
+      from: config.user,
+      to: user.email,
+      subject,
+      html,
+    });
+
+    console.log(`Access suspension email sent to ${user.email}`);
+  } catch (error) {
+    console.error("Failed to send access suspension email:", error);
+  }
+}

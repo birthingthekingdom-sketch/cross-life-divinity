@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { IdVerificationDeadlineAlert } from "@/components/IdVerificationDeadlineAlert";
 import { 
   TrendingUp, 
   Award, 
@@ -12,15 +15,22 @@ import {
   BookOpen,
   CheckCircle2,
   AlertCircle,
-  Star
+  Star,
+  Clock,
+  FileCheck
 } from "lucide-react";
 
 export function StudentDashboard() {
+  const [, navigate] = useLocation();
   const [viewMode, setViewMode] = useState<"overview" | "detailed">("overview");
 
   // Fetch user's enrolled courses
   const coursesQuery = trpc.courses.list.useQuery();
   const courses = coursesQuery.data || [];
+
+  // Check ID verification deadline
+  const verificationQuery = trpc.idVerification.checkVerificationDeadline.useQuery({});
+  const verificationStatus = verificationQuery.data;
 
   // Fetch overall progress
   const progressQuery = trpc.progress.getAll.useQuery();
@@ -67,6 +77,11 @@ export function StudentDashboard() {
             <h1 className="text-3xl md:text-4xl font-bold mb-2">Learning Dashboard</h1>
             <p className="text-muted-foreground">Track your progress and achievements</p>
           </div>
+
+          {/* ID Verification Deadline Alert */}
+          {verificationStatus?.hasEnrollments && (
+            <IdVerificationDeadlineAlert enrollments={verificationStatus.enrollments} />
+          )}
 
           {/* Key Stats */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
