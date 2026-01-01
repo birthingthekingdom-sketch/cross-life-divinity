@@ -43,6 +43,7 @@
 - [ ] Bridge Academy: Deploy and publish for student access
 - [x] Bridge Academy: Add navigation bar to main page
 - [x] Bridge Academy: Fix back button on course detail pages
+- [x] Bridge Academy: Fix Learn More button functionality
 
 ## COURSE SLIDESHOW ORDER (Female Voiceover Only)
 1. [x] Understanding Prophecy (DIV101)

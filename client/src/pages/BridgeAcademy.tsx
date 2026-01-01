@@ -146,7 +146,9 @@ export function BridgeAcademy() {
                 <Link href="/register">
                   <Button size="lg" className="bg-primary hover:bg-primary/90">Start 7-Day Free Trial</Button>
                 </Link>
-                <Button size="lg" variant="outline">Learn More</Button>
+                <Link href="/bridge-academy/rla">
+                  <Button size="lg" variant="outline">Learn More</Button>
+                </Link>
               </div>
             </div>
 
@@ -215,8 +217,12 @@ export function BridgeAcademy() {
               <div className="text-foreground/60">Self-paced • 4 GED Subjects • Lifetime Access</div>
             </div>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-primary hover:bg-primary/90">Start 7-Day Free Trial</Button>
-              <Button size="lg" variant="outline">Learn More</Button>
+              <Link href="/register">
+                <Button size="lg" className="bg-primary hover:bg-primary/90">Start 7-Day Free Trial</Button>
+              </Link>
+              <Link href="/bridge-academy/rla">
+                <Button size="lg" variant="outline">Learn More</Button>
+              </Link>
             </div>
           </div>
 
