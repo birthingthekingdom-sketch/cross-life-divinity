@@ -2518,3 +2518,11 @@ All components built and integrated. Ready for:
 - [x] Implement GED Study Materials system with downloadable resources by subject
 - [x] Build GED Progress Tracking Dashboard with exam readiness scores and recommendations
 - [ ] Test all three features and save checkpoint
+
+
+## GED PRICING & TUTORING UPDATES (COMPLETED)
+- [x] Move GED pricing from main Pricing page to Bridge Academy landing page only
+- [x] Remove GED pricing from Pricing.tsx component
+- [x] Add/verify GED pricing display on Bridge Academy page
+- [x] Remove all tutoring service references from the site
+- [x] Verify no tutoring mentions in course descriptions or marketing copy
