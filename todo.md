@@ -2512,3 +2512,14 @@ All components built and integrated. Ready for:
 - [x] Create dedicated Bridge Academy section for GED courses
 - [x] Display individual GED course cards (GED-MATH, GED-LANG, GED-SCI, GED-SOCIAL)
 - [x] Test catalog filtering and course separation
+
+
+## ID VERIFICATION WORKFLOW - SIMPLIFIED (COMPLETE ✅)
+- [x] Remove 7-day grace period logic from database schema
+- [x] Simplify verification status to Pending/Approved only
+- [x] Remove automatic deadline enforcement scheduler
+- [x] Update frontend dashboard alerts to show only "Pending" status
+- [x] Simplified IdVerificationDeadlineAlert component (no deadline alerts)
+- [x] Updated email notifications for pending verification status
+- [x] Remove access suspension logic from middleware
+- [x] TypeScript compilation clean

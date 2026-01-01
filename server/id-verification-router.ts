@@ -299,7 +299,7 @@ export const idVerificationRouter = router({
           // Mark verification as completed for all enrollments
           const middleware = await import('./id-verification-middleware');
           try {
-            await middleware.restoreAccessOnVerification(submission[0].userId);
+            await middleware.markVerificationCompleted(submission[0].userId);
           } catch (error) {
             console.error('Failed to restore access on verification:', error);
           }
@@ -478,20 +478,15 @@ export const idVerificationRouter = router({
         const now = new Date();
         const enrollmentStatus = enrollments.map((enrollment) => {
           const enrolledAt = new Date(enrollment.enrolledAt);
-          const sevenDaysLater = new Date(enrolledAt.getTime() + 7 * 24 * 60 * 60 * 1000);
-          const isPastDeadline = now > sevenDaysLater;
           const isVerified = enrollment.idVerificationCompletedAt !== null;
-          const isAccessSuspended = enrollment.accessSuspendedAt !== null;
 
+          const status: 'approved' | 'pending' = isVerified ? 'approved' : 'pending';
           return {
             enrollmentId: enrollment.id,
             courseId: enrollment.courseId,
             enrolledAt,
-            deadlineAt: sevenDaysLater,
-            isPastDeadline,
             isVerified,
-            isAccessSuspended,
-            daysRemaining: Math.max(0, Math.ceil((sevenDaysLater.getTime() - now.getTime()) / (24 * 60 * 60 * 1000))),
+            verificationStatus: status,
           };
         });
 
@@ -580,22 +575,15 @@ export const idVerificationRouter = router({
 
         const enrollmentRecord = enrollment[0];
         const enrolledAt = new Date(enrollmentRecord.enrolledAt);
-        const sevenDaysLater = new Date(enrolledAt.getTime() + 7 * 24 * 60 * 60 * 1000);
-        const now = new Date();
-        const isPastDeadline = now > sevenDaysLater;
         const isVerified = enrollmentRecord.idVerificationCompletedAt !== null;
-        const isAccessSuspended = enrollmentRecord.accessSuspendedAt !== null;
 
         return {
           isEnrolled: true,
           verificationStatus: {
             enrollmentId: enrollmentRecord.id,
             enrolledAt,
-            deadlineAt: sevenDaysLater,
-            isPastDeadline,
             isVerified,
-            isAccessSuspended,
-            daysRemaining: Math.max(0, Math.ceil((sevenDaysLater.getTime() - now.getTime()) / (24 * 60 * 60 * 1000))),
+            status: isVerified ? 'approved' : 'pending',
           },
         };
       } catch (error) {

@@ -46,27 +46,19 @@ export function startFollowUpReminderScheduler() {
   
   console.log('[Scheduler] Follow-up reminder scheduler started (runs daily at 9:00 AM)');
 
-  // Run ID verification deadline reminders every day at 8:00 AM
+  // Run ID verification pending reminders every day at 8:00 AM (optional courtesy reminder)
   cron.schedule('0 8 * * *', async () => {
-    console.log('[Scheduler] Running ID verification deadline reminders...');
+    console.log('[Scheduler] Running ID verification pending reminders...');
     try {
-      await idVerificationScheduler.sendDeadlineReminders();
+      await idVerificationScheduler.sendPendingVerificationReminders();
     } catch (error) {
-      console.error('[Scheduler] Error in ID verification reminder scheduler:', error);
+      console.error('[Scheduler] Error in ID verification pending reminder scheduler:', error);
     }
   });
-  console.log('[Scheduler] ID verification reminder scheduler started (runs daily at 8:00 AM)');
+  console.log('[Scheduler] ID verification pending reminder scheduler started (runs daily at 8:00 AM)');
 
-  // Run ID verification deadline enforcement every day at 9:00 AM
-  cron.schedule('0 9 * * *', async () => {
-    console.log('[Scheduler] Running ID verification deadline enforcement...');
-    try {
-      await idVerificationScheduler.enforceDeadlines();
-    } catch (error) {
-      console.error('[Scheduler] Error in ID verification enforcement scheduler:', error);
-    }
-  });
-  console.log('[Scheduler] ID verification enforcement scheduler started (runs daily at 9:00 AM)');
+  // NOTE: No deadline enforcement - students have immediate access and are not penalized
+  // Admin contacts students directly if there are verification issues
 }
 
 /**

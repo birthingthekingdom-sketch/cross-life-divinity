@@ -73,9 +73,7 @@ export const courseEnrollments = mysqlTable("course_enrollments", {
   courseId: int("courseId").notNull(),
   accessCodeId: int("accessCodeId").notNull(),
   enrolledAt: timestamp("enrolledAt").defaultNow().notNull(),
-  idVerificationDeadlineAt: timestamp("idVerificationDeadlineAt"), // 7 days after enrollment
   idVerificationCompletedAt: timestamp("idVerificationCompletedAt"), // When ID verification was completed
-  accessSuspendedAt: timestamp("accessSuspendedAt"), // When access was suspended due to missed deadline
 });
 
 export type CourseEnrollment = typeof courseEnrollments.$inferSelect;

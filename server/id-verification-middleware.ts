@@ -4,17 +4,17 @@ import { courseEnrollments, idSubmissions } from '../drizzle/schema';
 import { eq, and, isNull } from 'drizzle-orm';
 
 /**
- * Check if user has completed ID verification or is within the 7-day grace period
- * Returns true if user can access course content, false if access should be blocked
+ * Check if user is enrolled in a course
+ * NEW WORKFLOW: Students have immediate access upon enrollment
+ * ID verification is pending/approved but does NOT block access
  */
-export async function checkIdVerificationDeadline(
+export async function checkIdVerificationStatus(
   userId: number,
   courseId: number
 ): Promise<{
   canAccess: boolean;
+  verificationStatus: 'approved' | 'pending';
   reason?: string;
-  daysRemaining?: number;
-  deadlineAt?: Date;
 }> {
   try {
     const database = await getDb();
@@ -37,62 +37,37 @@ export async function checkIdVerificationDeadline(
     if (enrollment.length === 0) {
       return {
         canAccess: false,
+        verificationStatus: 'pending',
         reason: 'User is not enrolled in this course',
       };
     }
 
     const enrollmentRecord = enrollment[0];
 
-    // If verification is already completed, allow access
-    if (enrollmentRecord.idVerificationCompletedAt) {
-      return { canAccess: true };
-    }
+    // Check if verification is completed
+    const isVerified = enrollmentRecord.idVerificationCompletedAt !== null;
 
-    // If access has been suspended, deny access
-    if (enrollmentRecord.accessSuspendedAt) {
-      return {
-        canAccess: false,
-        reason: 'Your course access has been suspended due to incomplete ID verification. Please complete your ID verification to regain access.',
-      };
-    }
-
-    // Calculate the 7-day deadline
-    const enrolledAt = new Date(enrollmentRecord.enrolledAt);
-    const sevenDaysLater = new Date(enrolledAt.getTime() + 7 * 24 * 60 * 60 * 1000);
-    const now = new Date();
-
-    // If within 7 days, allow access
-    if (now <= sevenDaysLater) {
-      const daysRemaining = Math.ceil((sevenDaysLater.getTime() - now.getTime()) / (24 * 60 * 60 * 1000));
-      return {
-        canAccess: true,
-        daysRemaining,
-        deadlineAt: sevenDaysLater,
-      };
-    }
-
-    // Past 7 days and no verification - deny access
+    // NEW WORKFLOW: Students have immediate access regardless of verification status
     return {
-      canAccess: false,
-      reason: 'Your 7-day grace period has ended. You must complete ID verification to continue accessing course materials.',
-      deadlineAt: sevenDaysLater,
+      canAccess: true,
+      verificationStatus: isVerified ? 'approved' : 'pending',
     };
   } catch (error) {
-    console.error('Error checking ID verification deadline:', error);
+    console.error('Error checking ID verification status:', error);
     // On error, allow access to avoid blocking users
-    return { canAccess: true };
+    return { canAccess: true, verificationStatus: 'pending' };
   }
 }
 
 /**
- * Get all enrollments for a user that are past the deadline without verification
+ * Get verification status for all user enrollments
  */
-export async function getOverdueEnrollments(userId: number): Promise<
+export async function getUserVerificationStatus(userId: number): Promise<
   Array<{
     enrollmentId: number;
     courseId: number;
     enrolledAt: Date;
-    deadlineAt: Date;
+    verificationStatus: 'approved' | 'pending';
   }>
 > {
   try {
@@ -106,77 +81,23 @@ export async function getOverdueEnrollments(userId: number): Promise<
       .from(courseEnrollments)
       .where(eq(courseEnrollments.userId, userId));
 
-    const now = new Date();
-    const overdue = [];
-
-    for (const enrollment of enrollments) {
-      // Skip if already verified
-      if (enrollment.idVerificationCompletedAt) continue;
-
-      // Skip if access already suspended
-      if (enrollment.accessSuspendedAt) continue;
-
-      const enrolledAt = new Date(enrollment.enrolledAt);
-      const deadlineAt = new Date(enrolledAt.getTime() + 7 * 24 * 60 * 60 * 1000);
-
-      // If past deadline, add to overdue list
-      if (now > deadlineAt) {
-        overdue.push({
-          enrollmentId: enrollment.id,
-          courseId: enrollment.courseId,
-          enrolledAt,
-          deadlineAt,
-        });
-      }
-    }
-
-    return overdue;
+    return enrollments.map((enrollment) => ({
+      enrollmentId: enrollment.id,
+      courseId: enrollment.courseId,
+      enrolledAt: new Date(enrollment.enrolledAt),
+      verificationStatus: enrollment.idVerificationCompletedAt ? 'approved' : 'pending',
+    }));
   } catch (error) {
-    console.error('Error getting overdue enrollments:', error);
+    console.error('Error getting user verification status:', error);
     return [];
   }
 }
 
 /**
- * Suspend access for all overdue enrollments
- * Called by scheduler to enforce deadline
+ * Mark ID verification as completed for a user
+ * This updates all pending enrollments for the user
  */
-export async function suspendOverdueAccess(userId: number): Promise<number> {
-  try {
-    const database = await getDb();
-    if (!database) {
-      return 0;
-    }
-
-    const overdue = await getOverdueEnrollments(userId);
-
-    if (overdue.length === 0) {
-      return 0;
-    }
-
-    let suspendedCount = 0;
-    for (const item of overdue) {
-      await database
-        .update(courseEnrollments)
-        .set({
-          accessSuspendedAt: new Date(),
-        })
-        .where(eq(courseEnrollments.id, item.enrollmentId));
-
-      suspendedCount++;
-    }
-
-    return suspendedCount;
-  } catch (error) {
-    console.error('Error suspending overdue access:', error);
-    return 0;
-  }
-}
-
-/**
- * Restore access when ID verification is approved
- */
-export async function restoreAccessOnVerification(userId: number): Promise<number> {
+export async function markVerificationCompleted(userId: number): Promise<number> {
   try {
     const database = await getDb();
     if (!database) {
@@ -188,7 +109,6 @@ export async function restoreAccessOnVerification(userId: number): Promise<numbe
       .update(courseEnrollments)
       .set({
         idVerificationCompletedAt: new Date(),
-        accessSuspendedAt: null, // Clear suspension if it was set
       })
       .where(
         and(
@@ -200,7 +120,14 @@ export async function restoreAccessOnVerification(userId: number): Promise<numbe
 
     return 1; // Update successful
   } catch (error) {
-    console.error('Error restoring access on verification:', error);
+    console.error('Error marking verification as completed:', error);
     return 0;
   }
 }
+
+/**
+ * NOTE: The new workflow does NOT enforce deadlines or suspend access
+ * Students have immediate access to courses upon enrollment
+ * Admin has 72 hours to review ID verification, but no automatic penalties apply
+ * If admin finds issues, they contact the student directly via email
+ */
