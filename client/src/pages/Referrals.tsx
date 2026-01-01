@@ -48,7 +48,7 @@ export default function Referrals() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold">Referral Program</h1>
-            <p className="text-muted-foreground">Earn $50 for every friend who signs up through your link</p>
+            <p className="text-muted-foreground">Earn $50 for every friend who joins</p>
           </div>
           <Link href="/dashboard">
             <Button variant="outline">Back to Dashboard</Button>
@@ -126,9 +126,9 @@ export default function Referrals() {
               <p className="text-sm font-medium mb-2">How it works:</p>
               <ol className="text-sm text-muted-foreground space-y-1 list-decimal list-inside">
                 <li>Share your unique referral link with friends</li>
-                <li>They register and enroll using your link</li>
-                <li>You earn $50 in credits when they complete enrollment</li>
-                <li>Use your credits toward any course or subscription</li>
+                <li>They register using your link</li>
+                <li>When they purchase their first course or subscription, you earn $50</li>
+                <li>Credits can be applied to your future course purchases</li>
               </ol>
             </div>
           </CardContent>

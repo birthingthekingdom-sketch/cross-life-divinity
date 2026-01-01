@@ -9,12 +9,12 @@ import { Footer } from "@/components/Footer";
 import { PublicNav } from "@/components/PublicNav";
 
 export default function Catalog() {
-  const [activeTab, setActiveTab] = useState<'theological' | 'ged'>('theological');
+  const [activeTab, setActiveTab] = useState<'all' | 'theological' | 'ged'>('all');
   const { data: courses, isLoading: coursesLoading } = trpc.courses.listAll.useQuery();
   
   const theologicalCourses = courses?.filter((c: any) => !c.code.startsWith('GED') && !c.code.startsWith('CHAP')) || [];
   const gedCourses = courses?.filter((c: any) => c.code.startsWith('GED')) || [];
-  const displayedCourses = activeTab === 'theological' ? theologicalCourses : gedCourses;
+  const displayedCourses = activeTab === 'theological' ? theologicalCourses : activeTab === 'ged' ? gedCourses : [...theologicalCourses, ...gedCourses];
 
   if (coursesLoading) {
     return (
@@ -37,7 +37,7 @@ export default function Catalog() {
           <div className="max-w-4xl">
             <h1 className="text-5xl font-bold mb-4">Course Catalog</h1>
             <p className="text-xl text-white/90 mb-6">
-              Browse our theological courses covering essential ministry topics.
+              Browse our complete catalog of 17 theological courses covering essential ministry topics.
             </p>
             <div className="flex gap-4">
               <Link href="/register">
@@ -60,6 +60,13 @@ export default function Catalog() {
       <div className="container py-8">
         <div className="flex gap-3 justify-center flex-wrap mb-8">
           <Button 
+            variant={activeTab === 'all' ? 'default' : 'outline'}
+            onClick={() => setActiveTab('all')}
+            className="px-6"
+          >
+            All Courses
+          </Button>
+          <Button 
             variant={activeTab === 'theological' ? 'default' : 'outline'}
             onClick={() => setActiveTab('theological')}
             className="px-6"
@@ -72,13 +79,13 @@ export default function Catalog() {
             className="px-6"
           >
             <BookMarked className="h-4 w-4 mr-2" />
-            Bridge Academy - GED ({gedCourses.length})
+            GED Preparation ({gedCourses.length})
           </Button>
         </div>
       </div>
 
       {/* Theological Courses Section */}
-      {activeTab === 'theological' && theologicalCourses.length > 0 && (
+      {(activeTab === 'all' || activeTab === 'theological') && theologicalCourses.length > 0 && (
         <div className="container py-12 border-t">
           <div className="text-center max-w-3xl mx-auto mb-8">
             <h2 className="text-3xl font-bold mb-3">Theological Courses</h2>
@@ -132,7 +139,7 @@ export default function Catalog() {
       )}
 
       {/* GED Preparation Section */}
-      {activeTab === 'ged' && gedCourses.length > 0 && (
+      {(activeTab === 'all' || activeTab === 'ged') && gedCourses.length > 0 && (
         <div className="container py-12 border-t">
           <div className="text-center max-w-3xl mx-auto mb-8">
             <div className="flex items-center justify-center gap-3 mb-4">

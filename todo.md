@@ -38,27 +38,9 @@
 - [x] Bridge Academy: Created database functions to retrieve courses with topics
 - [x] Bridge Academy: Created admin API endpoint for getBridgeAcademyCourses
 - [x] Bridge Academy: Updated AdminBridgeAcademyCourses component to fetch real data
-- [x] Bridge Academy: Debug API endpoint - courses not displaying in admin portal
-- [x] Bridge Academy: Test quiz system with all practice questions
-- [x] Bridge Academy: Deploy and publish for student access
-- [x] Bridge Academy: Created Bridge Academy Details Page with program overview, success rates, testimonials
-- [x] Bridge Academy: Implemented Study Materials system with downloadable resources by subject
-- [x] Bridge Academy: Built GED Progress Tracking Dashboard with exam readiness scores
-
-## CRITICAL GED FIXES (COMPLETED)
-- [x] Remove GED courses from ministry catalog completely
-- [x] Update Catalog filtering to exclude GED courses from "All Courses" and "Theological Courses" tabs
-- [x] Add navigation bar to Bridge Academy pages (Details, Study Materials, Progress Dashboard)
-- [x] Fix lesson organization - GED lessons should be separate from ministry course structure
-- [x] Test all GED features and verify separation is complete
-- [x] Verify quiz system is working correctly with proper lesson placement
-
-## CRITICAL FIXES NEEDED (IMMEDIATE)
-- [x] Add navigation bar to Bridge Academy main page (/bridge-academy)
-- [x] Restore Old Testament Survey (BIB101) and New Testament Survey (BIB102) to database
-- [x] Implement "Explore Topic" functionality on GED course cards (currently placeholders)
-- [x] Update referral system to track current enrollees only (remove new enrollee incentives)
-- [ ] Test all fixes and verify catalog displays correctly
+- [ ] Bridge Academy: Debug API endpoint - courses not displaying in admin portal
+- [ ] Bridge Academy: Test quiz system with all practice questions
+- [ ] Bridge Academy: Deploy and publish for student access
 
 ## COURSE SLIDESHOW ORDER (Female Voiceover Only)
 1. [x] Understanding Prophecy (DIV101)
@@ -2519,17 +2501,3 @@ All components built and integrated. Ready for:
 - [x] Create dedicated Bridge Academy section for GED courses
 - [x] Display individual GED course cards (GED-MATH, GED-LANG, GED-SCI, GED-SOCIAL)
 - [x] Test catalog filtering and course separation
-
-## GED Program Enhancements (NEW)
-- [x] Create Bridge Academy Details Page with program overview, benefits, success rates, testimonials
-- [x] Implement GED Study Materials system with downloadable resources by subject
-- [x] Build GED Progress Tracking Dashboard with exam readiness scores and recommendations
-- [ ] Test all three features and save checkpoint
-
-
-## GED PRICING & TUTORING UPDATES (COMPLETED)
-- [x] Move GED pricing from main Pricing page to Bridge Academy landing page only
-- [x] Remove GED pricing from Pricing.tsx component
-- [x] Add/verify GED pricing display on Bridge Academy page
-- [x] Remove all tutoring service references from the site
-- [x] Verify no tutoring mentions in course descriptions or marketing copy
