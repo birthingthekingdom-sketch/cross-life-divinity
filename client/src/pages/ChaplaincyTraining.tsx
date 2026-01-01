@@ -14,7 +14,7 @@ import { Footer } from "@/components/Footer";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY!);
 
-const CHAPLAINCY_PRICE = 27500; // $275 in cents
+const CHAPLAINCY_PRICE = 32500; // $325 in cents
 
 function CheckoutForm({ clientSecret, onSuccess }: { clientSecret: string; onSuccess: () => void }) {
   const stripe = useStripe();
@@ -47,7 +47,7 @@ function CheckoutForm({ clientSecret, onSuccess }: { clientSecret: string; onSuc
     <form onSubmit={handleSubmit} className="space-y-4">
       <PaymentElement />
       <Button type="submit" disabled={!stripe || isProcessing} className="w-full" size="lg">
-        {isProcessing ? "Processing..." : "Complete Enrollment - $275"}
+        {isProcessing ? "Processing..." : "Complete Enrollment - $325"}
       </Button>
     </form>
   );
@@ -103,8 +103,8 @@ export default function ChaplaincyTraining() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <div className="text-center">
-                <div className="text-4xl font-bold mb-2">$275</div>
-                <div className="text-sm text-primary-foreground/80 line-through">Regular: $400</div>
+                <div className="text-4xl font-bold mb-2">$325</div>
+                <div className="text-sm text-primary-foreground/80">$275 course + $50 background check</div>
                 <div className="text-xs text-primary-foreground/70">Includes $50 background check</div>
               </div>
               <Button 
@@ -134,7 +134,7 @@ export default function ChaplaincyTraining() {
           <Card className="max-w-md w-full">
             <CardHeader>
               <CardTitle>Complete Your Enrollment</CardTitle>
-              <CardDescription>Chaplaincy Training - $275</CardDescription>
+              <CardDescription>Chaplaincy Training - $325</CardDescription>
             </CardHeader>
             <CardContent>
               <Elements stripe={stripePromise} options={{ clientSecret }}>
@@ -282,26 +282,25 @@ export default function ChaplaincyTraining() {
               <CardHeader>
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <DollarSign className="h-8 w-8 text-primary" />
-                  <div className="text-5xl font-bold text-primary">$275</div>
+                  <div className="text-5xl font-bold text-primary">$325</div>
                 </div>
                 <CardDescription className="text-lg">
-                  <span className="line-through text-muted-foreground">Regular: $400</span>
-                  <span className="ml-2 text-green-600 font-semibold">Save $125!</span>
+                  <span className="text-muted-foreground">$275 course + $50 background check</span>
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="text-left space-y-2">
                   <div className="flex justify-between">
                     <span>Chaplaincy Training Course</span>
-                    <span className="font-semibold">$350</span>
+                    <span className="font-semibold">$275</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Background Check Fee</span>
                     <span className="font-semibold">$50</span>
                   </div>
                   <div className="border-t pt-2 flex justify-between text-lg font-bold">
-                    <span>Special Price (All Inclusive)</span>
-                    <span className="text-primary">$275</span>
+                    <span>Total Cost</span>
+                    <span className="text-primary">$325</span>
                   </div>
                 </div>
                 <Button 
@@ -420,7 +419,7 @@ export default function ChaplaincyTraining() {
             disabled={createPaymentMutation.isPending}
             className="text-lg px-8 py-6"
           >
-            {createPaymentMutation.isPending ? "Loading..." : "Enroll Now for $275"} <ArrowRight className="ml-2 h-5 w-5" />
+            {createPaymentMutation.isPending ? "Loading..." : "Enroll Now for $325"} <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </section>
       </div>

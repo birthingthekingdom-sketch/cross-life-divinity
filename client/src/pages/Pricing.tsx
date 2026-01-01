@@ -457,10 +457,10 @@ export default function Pricing() {
             <CardContent className="space-y-6">
               <div className="flex flex-col gap-2">
                 <div className="flex items-baseline gap-3">
-                  <span className="text-3xl text-slate-500 line-through">$350</span>
-                  <span className="text-5xl font-bold text-white">$275</span>
+                  <span className="text-3xl text-slate-500 line-through">$400</span>
+                  <span className="text-5xl font-bold text-white">$325</span>
                 </div>
-                <p className="text-sm text-green-400 font-semibold">Save $75 - Comprehensive certification!</p>
+                <p className="text-sm text-green-400 font-semibold">$275 course + $50 background check</p>
               </div>
 
               <div className="space-y-3">
