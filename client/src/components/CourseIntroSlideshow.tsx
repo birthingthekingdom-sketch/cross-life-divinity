@@ -25,6 +25,12 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
 
   // Map course IDs to their slideshow paths
   const slideshowMap: { [key: string]: string } = {
+    // GED Courses
+    'GED-MATH': '/course-intros/ged-math',
+    'GED-LANG': '/course-intros/ged-lang',
+    'GED-SCI': '/course-intros/ged-science',
+    'GED-SOCIAL': '/course-intros/ged-social-studies',
+    // Ministry Courses
     'DIV101': '/course-intros/understanding-prophecy',
     'MIN201': '/course-intros/fivefold-ministry',
     'MIN301': '/course-intros/deliverance-ministry',
