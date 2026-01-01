@@ -30,6 +30,8 @@
 - [x] Add Student Handbook page with comprehensive guide
 - [x] Add Student Handbook link to footer under "Student Resources"
 - [x] Restore missing courses to catalog (Old Testament Survey BIB101, New Testament Survey BIB102)
+- [x] Remove test courses from database (Test Webinar, CSV Test Course, Test Analytics Course, Test Enhancement Course)
+- [x] Fix CourseIntroSlideshow component to handle missing slide files gracefully
 - [ ] Build course introduction slideshows with female voiceover (one at a time)
 - [x] Bridge Academy: Database tables created and seeded with 4 GED courses
 - [x] Bridge Academy: Added 180+ practice questions across all topics

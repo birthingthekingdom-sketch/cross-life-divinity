@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, AlertCircle } from 'lucide-react';
 
 interface CourseIntroSlideshowProps {
   courseId: string;
@@ -13,6 +13,7 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [hasStarted, setHasStarted] = useState(false);
+  const [slidesAvailable, setSlidesAvailable] = useState(true);
 
   const slides = [
     { id: 'slide_1_title', title: 'Understanding Prophecy' },
@@ -43,6 +44,13 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
   const basePath = slideshowMap[courseId] || `/course-intros/${courseId.toLowerCase()}`;
   const currentSlideFile = `${basePath}/${slides[currentSlide].id}.html`;
   const voiceoverPath = `${basePath}/intro-voiceover.wav`;
+
+  // Check if slides are available
+  useEffect(() => {
+    fetch(currentSlideFile, { method: 'HEAD' })
+      .then(res => setSlidesAvailable(res.ok))
+      .catch(() => setSlidesAvailable(false));
+  }, [currentSlideFile]);
 
   // Initialize audio element on mount
   useEffect(() => {
@@ -124,6 +132,22 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
   const toggleMute = () => {
     setIsMuted(!isMuted);
   };
+
+  if (!slidesAvailable) {
+    return (
+      <div className="w-full bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+        <div className="relative bg-white p-8">
+          <div className="flex items-center gap-3 text-amber-600 mb-4">
+            <AlertCircle className="h-5 w-5" />
+            <p className="font-medium">Course introduction slides not yet available</p>
+          </div>
+          <p className="text-muted-foreground">
+            The interactive introduction slides for this course are being prepared. Please check back soon!
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full bg-gray-50 rounded-lg overflow-hidden shadow-lg">
