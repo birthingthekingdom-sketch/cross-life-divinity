@@ -1,11 +1,21 @@
-import { useState } from "react";
-import { Link } from "wouter";
+import { useState, useEffect } from "react";
+import { Link, useRoute, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { BookOpen, CheckCircle, Users, Award, ArrowRight, Share2 } from "lucide-react";
+import { BookOpen, CheckCircle, Users, Award, ArrowRight, Share2, ArrowLeft } from "lucide-react";
 
 export function BridgeAcademy() {
-  const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
+  const [, navigate] = useLocation();
+  const [match, params] = useRoute("/bridge-academy/:subject");
+  const [selectedCourse, setSelectedCourse] = useState<string | null>(params?.subject || null);
+  const [courseDetails, setCourseDetails] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (params?.subject) {
+      setSelectedCourse(params.subject);
+    }
+  }, [params?.subject]);
 
   const gedSubjects = [
     {
@@ -72,6 +82,106 @@ export function BridgeAcademy() {
       description: "Earn $50 credits for each friend who signs up via your referral link",
     },
   ];
+
+  // If a subject is selected, show the course details view
+  if (selectedCourse) {
+    const subject = gedSubjects.find(s => s.id === selectedCourse);
+    if (!subject) {
+      return (
+        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white p-4">
+          <div className="max-w-6xl mx-auto">
+            <Button
+              variant="ghost"
+              onClick={() => navigate("/bridge-academy")}
+              className="mb-4"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Bridge Academy
+            </Button>
+            <Card className="p-8 text-center">
+              <p className="text-muted-foreground">Subject not found</p>
+            </Card>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+        {/* Back Button */}
+        <div className="py-6 px-4 sm:px-6 lg:px-8 bg-white border-b">
+          <div className="max-w-6xl mx-auto">
+            <Button
+              variant="ghost"
+              onClick={() => navigate("/bridge-academy")}
+              className="mb-4"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Bridge Academy
+            </Button>
+          </div>
+        </div>
+
+        {/* Course Header */}
+        <section className="py-12 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-8">
+              <div className="text-6xl mb-4">{subject.icon}</div>
+              <h1 className="text-4xl sm:text-5xl font-bold text-primary mb-4">
+                {subject.title}
+              </h1>
+              <p className="text-xl text-foreground/70 mb-6">
+                {subject.description}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                <div className="text-2xl font-bold text-primary">$19/month</div>
+                <div className="text-foreground/60">or $180/year • Lifetime Access</div>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/register">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90">Start 7-Day Free Trial</Button>
+                </Link>
+                <Button size="lg" variant="outline">Learn More</Button>
+              </div>
+            </div>
+
+            {/* Course Features */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+              <Card className="p-6">
+                <h3 className="font-semibold text-lg mb-4">What You'll Learn</h3>
+                <ul className="space-y-3">
+                  {subject.features.map((feature) => (
+                    <li key={feature} className="flex items-center gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+
+              <Card className="p-6 bg-primary/5 border-primary/20">
+                <h3 className="font-semibold text-lg mb-4">Course Details</h3>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-sm text-muted-foreground">Topics Covered</p>
+                    <p className="text-2xl font-bold text-primary">{subject.topics}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Estimated Duration</p>
+                    <p className="text-lg font-semibold">4-6 weeks</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Price</p>
+                    <p className="text-lg font-semibold">$19/month</p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -152,11 +262,12 @@ export function BridgeAcademy() {
                       </div>
                     ))}
                   </div>
-                  <Link href={`/bridge-academy/${subject.id}`}>
-                    <Button className="w-full">
-                      Explore Topic <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
+                  <Button 
+                    className="w-full"
+                    onClick={() => navigate(`/bridge-academy/${subject.id}`)}
+                  >
+                    Explore Topic <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
                 </div>
               </Card>
             ))}

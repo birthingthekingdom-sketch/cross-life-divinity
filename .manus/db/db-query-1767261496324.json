@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO courses (code, title, description, totalLessons, cpdHours, colorTheme) VALUES \n('BIB101', 'Old Testament Survey', 'Comprehensive overview of Old Testament books, themes, and theological significance', 10, 10, '#1e40af'),\n('BIB102', 'New Testament Survey', 'In-depth study of New Testament gospels, epistles, and apocalyptic literature', 10, 10, '#1e40af');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO courses (code, title, description, totalLessons, cpdHours, colorTheme) VALUES \n('BIB101', 'Old Testament Survey', 'Comprehensive overview of Old Testament books, themes, and theological significance', 10, 10, '#1e40af'),\n('BIB102', 'New Testament Survey', 'In-depth study of New Testament gospels, epistles, and apocalyptic literature', 10, 10, '#1e40af');",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 61
+}

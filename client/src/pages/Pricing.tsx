@@ -91,10 +91,20 @@ export default function Pricing() {
             className="w-full h-auto object-cover"
           />
           <div className="p-8 text-center bg-gradient-to-r from-slate-900 to-blue-900">
-            <h2 className="text-3xl font-bold text-white mb-2">Bridge Academy - GED Preparation</h2>
-            <p className="text-slate-300 mb-6">Prepare for your GED exam with our comprehensive 12-lesson program across all 4 subjects</p>
+            <h2 className="text-3xl font-bold text-white mb-4">Bridge Academy - GED Preparation</h2>
+            <p className="text-slate-300 mb-6">Prepare for your GED exam with our comprehensive program across all 4 subjects</p>
+            <div className="flex justify-center gap-8 mb-6">
+              <div className="text-white">
+                <p className="text-sm text-slate-300 mb-1">Monthly</p>
+                <p className="text-3xl font-bold">$19<span className="text-lg">/month</span></p>
+              </div>
+              <div className="text-white">
+                <p className="text-sm text-slate-300 mb-1">Annual</p>
+                <p className="text-3xl font-bold">$180<span className="text-lg">/year</span></p>
+              </div>
+            </div>
             <Link href="/bridge-academy">
-              <Button className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-3 text-lg">
+              <Button className="bg-white hover:bg-slate-100 text-slate-900 font-bold px-8 py-3 text-lg">
                 Start Your Free Trial
               </Button>
             </Link>
