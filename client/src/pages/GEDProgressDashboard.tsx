@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { TrendingUp, BookOpen, Target, Award, AlertCircle, CheckCircle } from "lucide-react";
+import { BridgeAcademyNav } from "@/components/BridgeAcademyNav";
 
 interface SubjectProgress {
   name: string;
@@ -126,6 +127,7 @@ export default function GEDProgressDashboard() {
 
   return (
     <div className="min-h-screen bg-background">
+      <BridgeAcademyNav currentPage="dashboard" />
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12">
         <div className="container max-w-6xl mx-auto px-4">

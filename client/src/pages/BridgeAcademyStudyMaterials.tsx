@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Download, FileText, Calculator, BookOpen, Zap } from "lucide-react";
+import { BridgeAcademyNav } from "@/components/BridgeAcademyNav";
 
 interface StudyMaterial {
   id: string;
@@ -236,6 +237,7 @@ export default function BridgeAcademyStudyMaterials() {
 
   return (
     <div className="min-h-screen bg-background">
+      <BridgeAcademyNav currentPage="materials" />
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12">
         <div className="container max-w-6xl mx-auto px-4">

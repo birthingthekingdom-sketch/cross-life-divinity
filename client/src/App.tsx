@@ -155,8 +155,6 @@ function Router() {
       <Route path="/checkout/payment-plan" component={PaymentPlanCheckout} />
       <Route path="/my-payments" component={MyPayments} />
       <Route path="/student-handbook" component={StudentHandbook} />
-      <Route path="/bridge-academy" component={BridgeAcademy} />
-      <Route path="/bridge-academy/:subject" component={BridgeAcademy} />
       <Route path="/bridge-academy/dashboard" component={BridgeAcademyDashboard} />
       <Route path="/bridge-academy/student-dashboard" component={BridgeAcademyStudentDashboard} />
       <Route path="/bridge-academy/course/:courseId" component={BridgeAcademyCourseDetail} />
@@ -165,6 +163,8 @@ function Router() {
       <Route path="/bridge-academy/study-materials" component={BridgeAcademyStudyMaterials} />
       <Route path="/bridge-academy/progress" component={GEDProgressDashboard} />
       <Route path="/bridge-academy/diplomas" component={BridgeAcademyDiplomas} />
+      <Route path="/bridge-academy/:subject" component={BridgeAcademy} />
+      <Route path="/bridge-academy" component={BridgeAcademy} />
       <Route path="/verify-bridge-academy/:token" component={VerifyBridgeAcademyCertificate} />
       <Route path="/accreditation" component={Accreditation} />
       <Route path="/credits" component={CreditsAndCertification} />

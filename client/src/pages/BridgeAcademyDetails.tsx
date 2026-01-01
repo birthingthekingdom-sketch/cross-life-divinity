@@ -2,10 +2,12 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle, BookOpen, Award, Users, TrendingUp, Clock } from "lucide-react";
+import { BridgeAcademyNav } from "@/components/BridgeAcademyNav";
 
 export default function BridgeAcademyDetails() {
   return (
     <div className="min-h-screen bg-background">
+      <BridgeAcademyNav currentPage="details" />
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12">
         <div className="container max-w-4xl mx-auto px-4">

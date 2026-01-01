@@ -45,6 +45,14 @@
 - [x] Bridge Academy: Implemented Study Materials system with downloadable resources by subject
 - [x] Bridge Academy: Built GED Progress Tracking Dashboard with exam readiness scores
 
+## CRITICAL GED FIXES (COMPLETED)
+- [x] Remove GED courses from ministry catalog completely
+- [x] Update Catalog filtering to exclude GED courses from "All Courses" and "Theological Courses" tabs
+- [x] Add navigation bar to Bridge Academy pages (Details, Study Materials, Progress Dashboard)
+- [x] Fix lesson organization - GED lessons should be separate from ministry course structure
+- [x] Test all GED features and verify separation is complete
+- [x] Verify quiz system is working correctly with proper lesson placement
+
 ## COURSE SLIDESHOW ORDER (Female Voiceover Only)
 1. [x] Understanding Prophecy (DIV101)
 2. [ ] The Fivefold Ministry (MIN201)
