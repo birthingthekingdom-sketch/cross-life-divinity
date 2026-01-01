@@ -80,7 +80,7 @@ export function BridgeAcademy() {
     {
       icon: <Users className="h-6 w-6" />,
       title: "$50 Referral Bonus",
-      description: "Earn $50 credits for each friend who signs up via your referral link",
+      description: "Share your referral link with friends. When they enroll, you get $50 in credits",
     },
   ];
 
@@ -199,13 +199,21 @@ export function BridgeAcademy() {
           {/* Hero Image */}
           <div className="mb-12 rounded-lg overflow-hidden shadow-lg">
             <img 
-              src="/bridge-academy-hero.png" 
-              alt="Bridge Academy - GED Prep" 
+              src="/bridge-academy-hero.jpg" 
+              alt="Bridge Academy - Global Community Online Learning" 
               className="w-full h-auto object-cover"
             />
           </div>
           
           <div className="text-center mb-12">
+            {/* Bridge Academy Logo */}
+            <div className="mb-8 flex justify-center">
+              <img 
+                src="/bridge-academy-logo.png" 
+                alt="Bridge Academy Logo" 
+                className="h-32 w-auto object-contain"
+              />
+            </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-primary mb-4">
               Bridge Academy
             </h1>
@@ -309,9 +317,9 @@ export function BridgeAcademy() {
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-primary/5">
         <div className="max-w-4xl mx-auto text-center">
           <Share2 className="h-12 w-12 text-primary mx-auto mb-4" />
-          <h2 className="text-3xl font-bold mb-4">Earn $50 Referral Credits</h2>
+          <h2 className="text-3xl font-bold mb-4">Share & Earn $50 Referral Credits</h2>
           <p className="text-lg text-foreground/70 mb-6">
-            Share your referral link with friends. When they sign up, you BOTH get $50 in credits to use toward any course or subscription.
+            Share your referral link with friends. When they enroll in Bridge Academy, you get $50 in credits to use toward any course or subscription.
           </p>
           <div className="bg-white p-6 rounded-lg border border-border mb-6">
             <p className="text-sm text-foreground/60 mb-2">How it works:</p>
@@ -326,7 +334,7 @@ export function BridgeAcademy() {
               </li>
               <li className="flex gap-3">
                 <span className="font-bold text-primary">3.</span>
-                <span>They sign up → Both of you get $50 credits</span>
+                <span>They enroll in Bridge Academy → You get $50 credits</span>
               </li>
               <li className="flex gap-3">
                 <span className="font-bold text-primary">4.</span>

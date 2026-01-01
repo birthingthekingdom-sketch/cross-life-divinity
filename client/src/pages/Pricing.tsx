@@ -87,8 +87,8 @@ export default function Pricing() {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-12 rounded-lg overflow-hidden shadow-2xl">
           <img 
-            src="/pricing-hero.png" 
-            alt="Theological Education - Affordable Pathways to Ministry" 
+            src="/pricing-hero.jpg" 
+            alt="Study Theology Online - Flexible Learning at Home" 
             className="w-full h-auto object-cover"
           />
         </div>

@@ -35,8 +35,8 @@ export default function Home() {
       {/* Hero Section with Promotional Image */}
       <section className="relative h-[600px] overflow-hidden">
         <img 
-          src="/promo-hero.png" 
-          alt="Study Theology at Your Own Pace" 
+          src="/pricing-hero.jpg" 
+          alt="Study Theology Online at Your Own Pace" 
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center">

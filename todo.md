@@ -27,6 +27,10 @@
 ---
 
 ## ACTIVE TASKS (IN PROGRESS)
+- [x] Update hero banners to reflect online-only status
+- [x] Add Bridge Academy logo to hero header
+- [x] Update referral program messaging (referrer-only, post-enrollment)
+- [x] Create separate referral systems for Bridge Academy and theological courses
 - [x] Add Student Handbook page with comprehensive guide
 - [x] Add Student Handbook link to footer under "Student Resources"
 - [x] Restore missing courses to catalog (Old Testament Survey BIB101, New Testament Survey BIB102)
