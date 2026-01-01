@@ -41,6 +41,8 @@
 - [ ] Bridge Academy: Debug API endpoint - courses not displaying in admin portal
 - [ ] Bridge Academy: Test quiz system with all practice questions
 - [ ] Bridge Academy: Deploy and publish for student access
+- [x] Bridge Academy: Add navigation bar to main page
+- [x] Bridge Academy: Fix back button on course detail pages
 
 ## COURSE SLIDESHOW ORDER (Female Voiceover Only)
 1. [x] Understanding Prophecy (DIV101)

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Award, Menu, X, ChevronDown } from "lucide-react";
 
 interface PublicNavProps {
-  currentPage?: "home" | "courses" | "learning-paths" | "pricing" | "about";
+  currentPage?: "home" | "courses" | "learning-paths" | "pricing" | "about" | "bridge-academy";
 }
 
 export function PublicNav({ currentPage }: PublicNavProps) {

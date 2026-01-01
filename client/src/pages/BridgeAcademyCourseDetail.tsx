@@ -81,11 +81,11 @@ export default function BridgeAcademyCourseDetail() {
         <div className="max-w-6xl mx-auto">
           <Button
             variant="ghost"
-            onClick={() => navigate("/bridge-academy/dashboard")}
+            onClick={() => navigate("/bridge-academy")}
             className="mb-4"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Dashboard
+            Back to Bridge Academy
           </Button>
           <Card>
             <CardContent className="pt-6 text-center">
@@ -126,11 +126,11 @@ export default function BridgeAcademyCourseDetail() {
         <div className="mb-8">
           <Button
             variant="ghost"
-            onClick={() => navigate("/bridge-academy/dashboard")}
+            onClick={() => navigate("/bridge-academy")}
             className="mb-4"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Dashboard
+            Back to Bridge Academy
           </Button>
 
           <div className="mb-6">

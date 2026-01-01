@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useRoute, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { PublicNav } from "@/components/PublicNav";
 import { BookOpen, CheckCircle, Users, Award, ArrowRight, Share2, ArrowLeft } from "lucide-react";
 
 export function BridgeAcademy() {
@@ -88,8 +89,10 @@ export function BridgeAcademy() {
     const subject = gedSubjects.find(s => s.id === selectedCourse);
     if (!subject) {
       return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white p-4">
-          <div className="max-w-6xl mx-auto">
+        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+          <PublicNav currentPage="bridge-academy" />
+          <div className="p-4">
+            <div className="max-w-6xl mx-auto">
             <Button
               variant="ghost"
               onClick={() => navigate("/bridge-academy")}
@@ -103,11 +106,13 @@ export function BridgeAcademy() {
             </Card>
           </div>
         </div>
+        </div>
       );
     }
 
     return (
       <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+        <PublicNav currentPage="bridge-academy" />
         {/* Back Button */}
         <div className="py-6 px-4 sm:px-6 lg:px-8 bg-white border-b">
           <div className="max-w-6xl mx-auto">
@@ -185,6 +190,7 @@ export function BridgeAcademy() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      <PublicNav currentPage="bridge-academy" />
       {/* Hero Section with Image */}
       <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50 to-white">
         <div className="max-w-6xl mx-auto">
