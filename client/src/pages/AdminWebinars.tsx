@@ -40,7 +40,7 @@ export default function AdminWebinars() {
     onSuccess: () => {
       toast.success("Webinar created successfully");
       utils.admin.getAllWebinars.invalidate();
-      utils.webinars.getUpcoming.invalidate();
+      utils.webinars.listWebinars.invalidate();
       setIsCreateDialogOpen(false);
       resetForm();
     },
@@ -53,7 +53,7 @@ export default function AdminWebinars() {
     onSuccess: () => {
       toast.success("Webinar updated successfully");
       utils.admin.getAllWebinars.invalidate();
-      utils.webinars.getUpcoming.invalidate();
+      utils.webinars.listWebinars.invalidate();
       setEditingWebinar(null);
       resetForm();
     },
@@ -66,7 +66,7 @@ export default function AdminWebinars() {
     onSuccess: () => {
       toast.success("Webinar deleted");
       utils.admin.getAllWebinars.invalidate();
-      utils.webinars.getUpcoming.invalidate();
+      utils.webinars.listWebinars.invalidate();
     },
     onError: (error) => {
       toast.error(`Failed to delete webinar: ${error.message}`);

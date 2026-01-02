@@ -2645,3 +2645,35 @@ All components built and integrated. Ready for:
 - [ ] Create student UI for viewing and registering for webinars
 - [ ] Add webinar notifications and reminders
 - [ ] Test webinar scheduling feature
+
+
+## NEXT STEPS - Phase 4 (IN PROGRESS)
+
+### Live Webinar Scheduling System
+- [x] Create webinars table in database (id, courseId, title, description, startTime, endTime, zoomUrl, googleMeetUrl, recordingUrl, status)
+- [x] Create webinar_registrations table (userId, webinarId, registeredAt, attended)
+- [x] Create tRPC procedures for webinar CRUD operations
+- [x] Create tRPC procedure to register user for webinar
+- [x] Create tRPC procedure to list webinars for a course
+- [x] Create tRPC procedure to get webinar details with attendee list
+- [ ] Build webinar scheduling UI in admin dashboard
+- [ ] Build webinar list component for course pages
+- [ ] Build webinar registration modal
+- [ ] Add email reminders (24 hours and 1 hour before webinar)
+- [ ] Add past webinar recordings display
+- [ ] Seed sample webinars for each course
+- [x] Write and pass vitest tests for webinar system (14 tests passing)
+
+### Interactive Course Preview System
+- [x] Create course_previews table (courseId, previewLessonId, previewQuizId, studyGuideUrl)
+- [x] Create tRPC procedure to get course preview content
+- [x] Create tRPC procedure to track preview quiz attempts (non-graded)
+- [ ] Generate PDF study guides for each course
+- [ ] Build course preview UI component
+- [ ] Build preview quiz component (non-graded)
+- [ ] Add "Try Free Preview" button to course cards
+- [ ] Create preview landing page showing all courses
+- [ ] Add preview lesson viewer
+- [ ] Add study guide download functionality
+- [ ] Seed preview data for all 14 courses
+- [x] Write and pass vitest tests for course preview system (14 tests passing)

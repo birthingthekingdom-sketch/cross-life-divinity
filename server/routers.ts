@@ -29,6 +29,8 @@ import { installmentPlanRouter } from './installment-plan-router';
 import { paymentPlanRouter } from './payment-plan-router';
 import { practiceQuizRouter } from './practice-quiz-router';
 import { idVerificationRouter } from './id-verification-router';
+import { webinarRouter } from './webinar-router';
+import { coursePreviewRouter } from './course-preview-router';
 import { TRPCError } from "@trpc/server";
 
 // Import Bridge Academy database functions are already available via db.* namespace
@@ -54,6 +56,8 @@ export const appRouter = router({
   paymentPlan: paymentPlanRouter,
   practiceQuiz: practiceQuizRouter,
   idVerification: idVerificationRouter,
+  webinars: webinarRouter,
+  coursePreviews: coursePreviewRouter,
   auth: router({
     ...authRouter._def.procedures,
     logout: publicProcedure.mutation(({ ctx }) => {
@@ -1108,27 +1112,6 @@ export const appRouter = router({
       }),
   }),
   
-  webinars: router({
-    getAll: protectedProcedure.query(async () => {
-      return db.getAllWebinars();
-    }),
-    
-    getUpcoming: protectedProcedure.query(async () => {
-      return db.getUpcomingWebinars();
-    }),
-    
-    getById: protectedProcedure
-      .input(z.object({ id: z.number() }))
-      .query(async ({ input }) => {
-        return db.getWebinarById(input.id);
-      }),
-    
-    getByCourse: protectedProcedure
-      .input(z.object({ courseId: z.number() }))
-      .query(async ({ input }) => {
-        return db.getWebinarsByCourse(input.courseId);
-      }),
-  }),
 
   forum: router({
     getTopicsByCourse: protectedProcedure

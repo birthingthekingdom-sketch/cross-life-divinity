@@ -1185,3 +1185,52 @@ export const bridgeAcademyStudySessionLogs = mysqlTable("bridge_academy_study_se
 
 export type BridgeAcademyStudySessionLog = typeof bridgeAcademyStudySessionLogs.$inferSelect;
 export type InsertBridgeAcademyStudySessionLog = typeof bridgeAcademyStudySessionLogs.$inferInsert;
+
+
+/**
+ * Webinar registrations - tracks which students registered for which webinars
+ */
+export const webinarRegistrations = mysqlTable("webinar_registrations", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  webinarId: int("webinarId").notNull(),
+  registeredAt: timestamp("registeredAt").defaultNow().notNull(),
+  attended: boolean("attended").default(false).notNull(),
+  attendedAt: timestamp("attendedAt"), // When student joined the webinar
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type WebinarRegistration = typeof webinarRegistrations.$inferSelect;
+export type InsertWebinarRegistration = typeof webinarRegistrations.$inferInsert;
+
+/**
+ * Course previews - tracks preview lesson and quiz for each course
+ */
+export const coursePreviews = mysqlTable("course_previews", {
+  id: int("id").autoincrement().primaryKey(),
+  courseId: int("courseId").notNull().unique(),
+  previewLessonId: int("previewLessonId").notNull(), // First lesson ID for preview
+  studyGuideUrl: text("studyGuideUrl"), // URL to PDF study guide
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type CoursePreview = typeof coursePreviews.$inferSelect;
+export type InsertCoursePreview = typeof coursePreviews.$inferInsert;
+
+/**
+ * Preview quiz attempts - tracks non-graded preview quiz attempts
+ */
+export const previewQuizAttempts = mysqlTable("preview_quiz_attempts", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  courseId: int("courseId").notNull(),
+  lessonId: int("lessonId").notNull(),
+  score: int("score").notNull(),
+  totalQuestions: int("totalQuestions").notNull(),
+  attemptedAt: timestamp("attemptedAt").defaultNow().notNull(),
+});
+
+export type PreviewQuizAttempt = typeof previewQuizAttempts.$inferSelect;
+export type InsertPreviewQuizAttempt = typeof previewQuizAttempts.$inferInsert;
