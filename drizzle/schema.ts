@@ -1076,3 +1076,112 @@ export const idSubmissions = mysqlTable("id_submissions", {
 
 export type IdSubmission = typeof idSubmissions.$inferSelect;
 export type InsertIdSubmission = typeof idSubmissions.$inferInsert;
+
+
+/**
+ * Bridge Academy Full-Length Practice Tests
+ */
+export const bridgeAcademyPracticeTests = mysqlTable("bridge_academy_practice_tests", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  courseId: int("courseId").notNull(), // GED subject course
+  testNumber: int("testNumber").notNull(), // Test 1, 2, 3, etc.
+  totalQuestions: int("totalQuestions").notNull(), // Usually 50
+  score: int("score").notNull(), // Number of correct answers
+  percentage: int("percentage").notNull(), // Percentage score
+  timeSpentSeconds: int("timeSpentSeconds").notNull(), // Time taken in seconds
+  completedAt: timestamp("completedAt").defaultNow().notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BridgeAcademyPracticeTest = typeof bridgeAcademyPracticeTests.$inferSelect;
+export type InsertBridgeAcademyPracticeTest = typeof bridgeAcademyPracticeTests.$inferInsert;
+
+/**
+ * Bridge Academy Practice Test Answers - Track individual question answers for full-length tests
+ */
+export const bridgeAcademyPracticeTestAnswers = mysqlTable("bridge_academy_practice_test_answers", {
+  id: int("id").autoincrement().primaryKey(),
+  testId: int("testId").notNull(),
+  questionId: int("questionId").notNull(),
+  topicId: int("topicId").notNull(),
+  userAnswer: text("userAnswer").notNull(),
+  isCorrect: boolean("isCorrect").notNull(),
+  timeSpentSeconds: int("timeSpentSeconds").notNull(), // Time spent on this question
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BridgeAcademyPracticeTestAnswer = typeof bridgeAcademyPracticeTestAnswers.$inferSelect;
+export type InsertBridgeAcademyPracticeTestAnswer = typeof bridgeAcademyPracticeTestAnswers.$inferInsert;
+
+/**
+ * Bridge Academy Readiness Assessments - 20-question diagnostic quiz
+ */
+export const bridgeAcademyReadinessAssessments = mysqlTable("bridge_academy_readiness_assessments", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  courseId: int("courseId").notNull(), // GED subject course
+  score: int("score").notNull(), // Number of correct answers out of 20
+  percentage: int("percentage").notNull(), // Percentage score
+  recommendedPlan: mysqlEnum("recommendedPlan", ["4week", "8week", "12week"]).notNull(), // Recommended study plan
+  readinessLevel: mysqlEnum("readinessLevel", ["beginner", "intermediate", "advanced"]).notNull(), // Readiness level
+  strengths: text("strengths"), // JSON array of strong topics
+  weaknesses: text("weaknesses"), // JSON array of weak topics
+  completedAt: timestamp("completedAt").defaultNow().notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BridgeAcademyReadinessAssessment = typeof bridgeAcademyReadinessAssessments.$inferSelect;
+export type InsertBridgeAcademyReadinessAssessment = typeof bridgeAcademyReadinessAssessments.$inferInsert;
+
+/**
+ * Bridge Academy Study Schedules - Personalized study plans
+ */
+export const bridgeAcademyStudySchedules = mysqlTable("bridge_academy_study_schedules", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  courseId: int("courseId").notNull(), // GED subject course
+  planDuration: mysqlEnum("planDuration", ["4week", "8week", "12week"]).notNull(), // 4, 8, or 12 weeks
+  startDate: timestamp("startDate").notNull(),
+  endDate: timestamp("endDate").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BridgeAcademyStudySchedule = typeof bridgeAcademyStudySchedules.$inferSelect;
+export type InsertBridgeAcademyStudySchedule = typeof bridgeAcademyStudySchedules.$inferInsert;
+
+/**
+ * Bridge Academy Study Schedule Reminders - Email reminders for scheduled study sessions
+ */
+export const bridgeAcademyStudyScheduleReminders = mysqlTable("bridge_academy_study_schedule_reminders", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  scheduleId: int("scheduleId").notNull(),
+  reminderType: mysqlEnum("reminderType", ["daily", "weekly"]).notNull(), // Daily or weekly reminders
+  reminderTime: varchar("reminderTime", { length: 5 }).notNull(), // Time in HH:MM format (24-hour)
+  isActive: boolean("isActive").default(true).notNull(),
+  lastSentAt: timestamp("lastSentAt"), // Last time reminder was sent
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BridgeAcademyStudyScheduleReminder = typeof bridgeAcademyStudyScheduleReminders.$inferSelect;
+export type InsertBridgeAcademyStudyScheduleReminder = typeof bridgeAcademyStudyScheduleReminders.$inferInsert;
+
+/**
+ * Bridge Academy Study Session Logs - Track when students complete study sessions
+ */
+export const bridgeAcademyStudySessionLogs = mysqlTable("bridge_academy_study_session_logs", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  scheduleId: int("scheduleId").notNull(),
+  topicId: int("topicId").notNull(),
+  sessionDate: timestamp("sessionDate").notNull(),
+  durationMinutes: int("durationMinutes").notNull(),
+  completed: boolean("completed").default(false).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BridgeAcademyStudySessionLog = typeof bridgeAcademyStudySessionLogs.$inferSelect;
+export type InsertBridgeAcademyStudySessionLog = typeof bridgeAcademyStudySessionLogs.$inferInsert;
