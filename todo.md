@@ -2677,3 +2677,18 @@ All components built and integrated. Ready for:
 - [ ] Add study guide download functionality
 - [ ] Seed preview data for all 14 courses
 - [x] Write and pass vitest tests for course preview system (14 tests passing)
+
+
+## STEPS 1 & 2: WEBINAR MANAGEMENT & COURSE PREVIEW UI
+- [x] Step 1: Enhance Admin Webinar Management Dashboard
+  - [x] Add webinar statistics (total, upcoming, past)
+  - [x] Add filtering by course and status
+  - [ ] Add bulk actions (delete multiple, export list)
+  - [ ] Add attendance tracking UI
+  - [ ] Add email notification templates for webinars
+- [x] Step 2: Create Student Course Preview UI
+  - [x] Build LessonPreview component with video player
+  - [x] Build QuizPreview component with sample questions
+  - [x] Build CoursePreviewModal for quick course overview
+  - [x] Build CourseCard component with preview button
+  - [x] Create CoursePageEnhanced with preview integration

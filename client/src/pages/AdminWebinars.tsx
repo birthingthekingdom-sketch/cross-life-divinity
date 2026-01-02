@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import { WebinarStats } from "@/components/WebinarStats";
+import { WebinarFilters } from "@/components/WebinarFilters";
 import { trpc } from "@/lib/trpc";
 import { Plus, Calendar, Clock, Edit, Trash2, ExternalLink, Video } from "lucide-react";
 import { toast } from "sonner";
@@ -19,6 +21,11 @@ export default function AdminWebinars() {
   const [, setLocation] = useLocation();
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [editingWebinar, setEditingWebinar] = useState<any>(null);
+  
+  // Filter state
+  const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
+  const [courseFilter, setCourseFilter] = useState('');
   
   // Form state
   const [formData, setFormData] = useState({
@@ -158,6 +165,55 @@ export default function AdminWebinars() {
     const endTime = new Date(scheduledDate.getTime() + (duration * 60000));
     return endTime > new Date();
   };
+
+  const isOngoing = (date: Date, duration: number) => {
+    const scheduledDate = new Date(date);
+    const endTime = new Date(scheduledDate.getTime() + (duration * 60000));
+    const now = new Date();
+    return scheduledDate <= now && now <= endTime;
+  };
+
+  const filteredWebinars = useMemo(() => {
+    if (!webinars) return [];
+    
+    return webinars.filter((webinar) => {
+      if (searchTerm && !webinar.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+        return false;
+      }
+      
+      if (statusFilter) {
+        if (statusFilter === 'upcoming' && !isUpcoming(webinar.scheduledAt, webinar.duration)) {
+          return false;
+        }
+        if (statusFilter === 'ongoing' && !isOngoing(webinar.scheduledAt, webinar.duration)) {
+          return false;
+        }
+        if (statusFilter === 'past' && (isUpcoming(webinar.scheduledAt, webinar.duration) || isOngoing(webinar.scheduledAt, webinar.duration))) {
+          return false;
+        }
+      }
+      
+      if (courseFilter && webinar.courseId?.toString() !== courseFilter) {
+        return false;
+      }
+      
+      return true;
+    });
+  }, [webinars, searchTerm, statusFilter, courseFilter]);
+
+  const stats = useMemo(() => {
+    if (!webinars) return { total: 0, upcoming: 0, past: 0, attendees: 0 };
+    
+    const upcoming = webinars.filter(w => isUpcoming(w.scheduledAt, w.duration)).length;
+    const past = webinars.filter(w => !isUpcoming(w.scheduledAt, w.duration)).length;
+    
+    return {
+      total: webinars.length,
+      upcoming,
+      past,
+      attendees: 0
+    };
+  }, [webinars]);
 
   return (
     <DashboardLayout>
@@ -309,15 +365,46 @@ export default function AdminWebinars() {
           </Dialog>
         </div>
 
+        {/* Statistics */}
+        <WebinarStats
+          totalWebinars={stats.total}
+          upcomingCount={stats.upcoming}
+          pastCount={stats.past}
+          totalAttendees={stats.attendees}
+        />
+
+        {/* Filters */}
+        <WebinarFilters
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+          statusFilter={statusFilter}
+          onStatusChange={setStatusFilter}
+          courseFilter={courseFilter}
+          onCourseChange={setCourseFilter}
+          courses={courses || []}
+          onReset={() => {
+            setSearchTerm('');
+            setStatusFilter('');
+            setCourseFilter('');
+          }}
+        />
+
+        {/* Results Count */}
+        {!isLoading && (
+          <div className="text-sm text-muted-foreground">
+            Showing {filteredWebinars.length} of {webinars?.length || 0} webinars
+          </div>
+        )}
+
         {/* Webinars List */}
         {isLoading ? (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
             <p className="text-muted-foreground mt-4">Loading webinars...</p>
           </div>
-        ) : webinars && webinars.length > 0 ? (
+        ) : filteredWebinars.length > 0 ? (
           <div className="grid gap-4">
-            {webinars.map((webinar) => (
+            {filteredWebinars.map((webinar) => (
               <Card key={webinar.id}>
                 <CardHeader>
                   <div className="flex items-start justify-between">
@@ -402,14 +489,13 @@ export default function AdminWebinars() {
           <Card>
             <CardContent className="py-12 text-center">
               <Video className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">No Webinars Scheduled</h3>
-              <p className="text-muted-foreground mb-4">
-                Create your first webinar to start hosting live online sessions
+              <h3 className="text-lg font-semibold mb-2">{webinars?.length === 0 ? 'No Webinars' : 'No Results'}</h3>
+              <p className="text-muted-foreground">
+                {webinars?.length === 0 
+                  ? 'No webinars scheduled yet. Create one to get started.'
+                  : 'No webinars match your filters. Try adjusting your search.'
+                }
               </p>
-              <Button onClick={() => setIsCreateDialogOpen(true)}>
-                <Plus className="h-4 w-4 mr-2" />
-                Schedule Webinar
-              </Button>
             </CardContent>
           </Card>
         )}
