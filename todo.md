@@ -35,7 +35,7 @@
 - [x] Add Student Handbook page with comprehensive guide
 - [x] Add Student Handbook link to footer under "Student Resources"
 - [x] Restore missing courses to catalog (Old Testament Survey BIB101, New Testament Survey BIB102)
-- [x] Remove test courses from database (Test Webinar, CSV Test Course, Test Analytics Course, Test Enhancement Course)
+- [x] Remove test courses from database (Test Webinar, CSV Test Course, Test Analytics Course, Test Enhancement Course) - DELETED
 - [x] Fix CourseIntroSlideshow component to handle missing slide files gracefully
 - [ ] Build course introduction slideshows with female voiceover (one at a time)
 - [x] Bridge Academy: Database tables created and seeded with 4 GED courses
@@ -2619,3 +2619,29 @@ All components built and integrated. Ready for:
 - [x] Create all necessary API endpoints
 - [x] Implement frontend components
 - [x] Create checkpoint with all features complete
+
+
+## COURSE SLIDESHOW CREATION (IN PROGRESS - Jan 2, 2026)
+- [x] Understanding Prophecy (DIV101) - Complete with female voiceover
+- [x] The Fivefold Ministry (MIN201) - Complete with female voiceover
+- [x] Deliverance Ministry (MIN301) - Complete with female voiceover
+- [x] Systematic Theology (THE201) - Complete with female voiceover
+- [x] Biblical Hermeneutics (BIB201) - Complete with female voiceover
+- [x] Fundamentals of Apologetics (THE301) - Complete with female voiceover
+- [x] Evangelism and Discipleship (MIN101) - Complete with female voiceover
+- [x] Discipleship Training (MIN102) - Complete with female voiceover
+- [ ] Prayer and Intercession (SPR101) - Project initialized, creating slides
+- [ ] Christian Leadership (LED201) - Needs all 5 slides + voiceover
+- [ ] Pastoral Counseling (PAS201) - Needs all 5 slides + voiceover
+- [ ] Church Administration (PAS301) - Needs all 5 slides + voiceover
+- [ ] Homiletics (PAS101) - Needs all 5 slides + voiceover
+- [ ] Discovering Spiritual Gifts (SPR201) - Needs all 5 slides + voiceover
+
+## WEBINAR SCHEDULING FEATURE (NOT STARTED)
+- [ ] Design webinar scheduling database schema
+- [ ] Create webinar management API endpoints
+- [ ] Build admin UI for webinar creation and management
+- [ ] Implement Zoom/Google Meet integration
+- [ ] Create student UI for viewing and registering for webinars
+- [ ] Add webinar notifications and reminders
+- [ ] Test webinar scheduling feature
