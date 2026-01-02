@@ -27,6 +27,7 @@
 ---
 
 ## ACTIVE TASKS (IN PROGRESS)
+- [x] Fix Chaplaincy Training pricing in financial assistance chart ($325.00 with $54.17/mo payment)
 - [x] Update hero banners to reflect online-only status
 - [x] Add Bridge Academy logo to hero header
 - [x] Update referral program messaging (referrer-only, post-enrollment)
