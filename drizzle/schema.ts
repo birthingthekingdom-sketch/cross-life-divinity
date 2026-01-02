@@ -1234,3 +1234,74 @@ export const previewQuizAttempts = mysqlTable("preview_quiz_attempts", {
 
 export type PreviewQuizAttempt = typeof previewQuizAttempts.$inferSelect;
 export type InsertPreviewQuizAttempt = typeof previewQuizAttempts.$inferInsert;
+
+
+/**
+ * Webinar Attendance Tracking
+ */
+export const webinarAttendance = mysqlTable("webinar_attendance", {
+  id: int("id").autoincrement().primaryKey(),
+  webinarId: int("webinarId").notNull(),
+  userId: int("userId").notNull(),
+  status: mysqlEnum("status", ["registered", "attended", "no_show", "excused"]).default("registered").notNull(),
+  markedAt: timestamp("markedAt"), // When attendance was manually marked
+  markedBy: int("markedBy"), // Admin user ID who marked attendance
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type WebinarAttendance = typeof webinarAttendance.$inferSelect;
+export type InsertWebinarAttendance = typeof webinarAttendance.$inferInsert;
+
+/**
+ * Course Preview Events - Track all preview interactions
+ */
+export const previewEvents = mysqlTable("preview_events", {
+  id: int("id").autoincrement().primaryKey(),
+  courseId: int("courseId").notNull(),
+  userId: int("userId"), // Null for anonymous users
+  eventType: mysqlEnum("eventType", ["view", "quiz_attempt", "lesson_view", "study_guide_download"]).notNull(),
+  sessionId: varchar("sessionId", { length: 64 }), // For tracking anonymous sessions
+  duration: int("duration").default(0).notNull(), // Duration in seconds
+  metadata: text("metadata"), // JSON for additional event data
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PreviewEvent = typeof previewEvents.$inferSelect;
+export type InsertPreviewEvent = typeof previewEvents.$inferInsert;
+
+/**
+ * Preview to Enrollment Conversions - Track when preview users enroll
+ */
+export const previewConversions = mysqlTable("preview_conversions", {
+  id: int("id").autoincrement().primaryKey(),
+  courseId: int("courseId").notNull(),
+  userId: int("userId").notNull(),
+  previewedAt: timestamp("previewedAt").notNull(), // First preview interaction
+  enrolledAt: timestamp("enrolledAt").notNull(), // When user enrolled
+  previewDuration: int("previewDuration").default(0).notNull(), // Total preview time in seconds
+  quizAttempts: int("quizAttempts").default(0).notNull(), // Number of preview quiz attempts
+  conversionDays: int("conversionDays").default(0).notNull(), // Days between preview and enrollment
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PreviewConversion = typeof previewConversions.$inferSelect;
+export type InsertPreviewConversion = typeof previewConversions.$inferInsert;
+
+/**
+ * Webinar Notifications - Track sent notifications
+ */
+export const webinarNotifications = mysqlTable("webinar_notifications", {
+  id: int("id").autoincrement().primaryKey(),
+  webinarId: int("webinarId").notNull(),
+  userId: int("userId").notNull(),
+  notificationType: mysqlEnum("notificationType", ["reminder_24h", "reminder_1h", "recording_available"]).notNull(),
+  status: mysqlEnum("status", ["pending", "sent", "failed"]).default("pending").notNull(),
+  sentAt: timestamp("sentAt"),
+  failureReason: text("failureReason"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type WebinarNotification = typeof webinarNotifications.$inferSelect;
+export type InsertWebinarNotification = typeof webinarNotifications.$inferInsert;

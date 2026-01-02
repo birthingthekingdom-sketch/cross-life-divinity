@@ -2,6 +2,7 @@ import cron from 'node-cron';
 import * as db from './db';
 import * as email from './email';
 import * as idVerificationScheduler from './id-verification-scheduler';
+import * as webinarScheduler from './webinar-email-scheduler';
 
 /**
  * Scheduled task to send follow-up due date reminders
@@ -56,6 +57,28 @@ export function startFollowUpReminderScheduler() {
     }
   });
   console.log('[Scheduler] ID verification pending reminder scheduler started (runs daily at 8:00 AM)');
+
+  // Run webinar 24-hour reminders every day at 8:00 AM
+  cron.schedule('0 8 * * *', async () => {
+    console.log('[Scheduler] Running webinar 24-hour reminders...');
+    try {
+      await webinarScheduler.sendWebinarReminders();
+    } catch (error) {
+      console.error('[Scheduler] Error in webinar reminder scheduler:', error);
+    }
+  });
+  console.log('[Scheduler] Webinar 24-hour reminder scheduler started (runs daily at 8:00 AM)');
+
+  // Run recording notification job every hour
+  cron.schedule('0 * * * *', async () => {
+    console.log('[Scheduler] Running recording notification check...');
+    try {
+      await webinarScheduler.sendRecordingNotifications();
+    } catch (error) {
+      console.error('[Scheduler] Error in recording notification scheduler:', error);
+    }
+  });
+  console.log('[Scheduler] Recording notification scheduler started (runs hourly)');
 
   // NOTE: No deadline enforcement - students have immediate access and are not penalized
   // Admin contacts students directly if there are verification issues

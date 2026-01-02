@@ -31,6 +31,9 @@ import { practiceQuizRouter } from './practice-quiz-router';
 import { idVerificationRouter } from './id-verification-router';
 import { webinarRouter } from './webinar-router';
 import { coursePreviewRouter } from './course-preview-router';
+import { attendanceRouter } from './attendance-router';
+import { previewAnalyticsRouter } from './preview-analytics-router';
+import { webinarNotificationsRouter } from './webinar-notifications-router';
 import { TRPCError } from "@trpc/server";
 
 // Import Bridge Academy database functions are already available via db.* namespace
@@ -58,6 +61,9 @@ export const appRouter = router({
   idVerification: idVerificationRouter,
   webinars: webinarRouter,
   coursePreviews: coursePreviewRouter,
+  attendance: attendanceRouter,
+  previewAnalytics: previewAnalyticsRouter,
+  webinarNotifications: webinarNotificationsRouter,
   auth: router({
     ...authRouter._def.procedures,
     logout: publicProcedure.mutation(({ ctx }) => {

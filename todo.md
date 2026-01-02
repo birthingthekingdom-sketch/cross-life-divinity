@@ -2692,3 +2692,47 @@ All components built and integrated. Ready for:
   - [x] Build CoursePreviewModal for quick course overview
   - [x] Build CourseCard component with preview button
   - [x] Create CoursePageEnhanced with preview integration
+
+## NEW FEATURES - PHASE 4 (COMPLETE ✅)
+
+### Webinar Attendance Tracking
+- [x] Create webinars table (id, courseId, title, scheduledDate, recordingUrl, etc.)
+- [x] Create attendance table (id, webinarId, userId, attendanceStatus, markedAt)
+- [x] Build admin API endpoint to list webinars
+- [x] Build admin API endpoint to mark attendance (manual marking)
+- [x] Build admin API endpoint to generate attendance CSV export
+- [x] Create admin UI for webinar management
+- [x] Create admin UI for attendance marking (checkbox per student)
+- [x] Create admin UI for attendance reports with CSV download
+- [x] Test attendance tracking end-to-end
+
+### Course Preview Analytics
+- [x] Create preview_events table (id, courseId, userId, eventType, timestamp, duration)
+- [x] Create preview_conversions table (id, courseId, userId, previewedAt, enrolledAt)
+- [x] Build API endpoint to track preview events (views, quiz attempts)
+- [x] Build API endpoint to track preview-to-enrollment conversion
+- [x] Create analytics dashboard showing:
+  - [x] Total preview views by course
+  - [x] Average time spent in preview
+  - [x] Quiz attempt count and success rate
+  - [x] Conversion rate (preview → enrollment)
+  - [x] Per-lesson preview analytics
+- [x] Add analytics tracking to course preview pages
+- [x] Test analytics data collection and display
+
+### Email Notifications for Webinars
+- [x] Create webinar_notifications table (id, webinarId, userId, notificationType, sentAt)
+- [x] Build API endpoint to send 24-hour reminder emails
+- [x] Build API endpoint to send post-webinar recording emails
+- [x] Set up cron job for 24-hour reminders (runs daily at 8:00 AM)
+- [x] Set up cron job for post-webinar notifications (runs hourly)
+- [x] Create email templates (reminder, recording link)
+- [x] Test email sending with test webinar
+- [x] Verify cron jobs execute correctly
+
+### Testing & Integration
+- [x] Write vitest tests for attendance tracking
+- [x] Write vitest tests for analytics tracking
+- [x] Write vitest tests for email notifications
+- [x] Test all features in browser
+- [x] Create checkpoint for Phase 4 features
