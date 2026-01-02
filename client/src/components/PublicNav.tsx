@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Award, Menu, X, ChevronDown } from "lucide-react";
 
 interface PublicNavProps {
-  currentPage?: "home" | "courses" | "learning-paths" | "pricing" | "about" | "bridge-academy" | "accreditation" | "credits" | "life-experience" | "financial-aid" | "enrollment-verification" | "refund-policy" | "help" | "contact";
+  currentPage?: "home" | "courses" | "learning-paths" | "pricing" | "about" | "why-online" | "bridge-academy" | "accreditation" | "credits" | "life-experience" | "financial-aid" | "enrollment-verification" | "refund-policy" | "help" | "contact";
 }
 
 export function PublicNav({ currentPage }: PublicNavProps) {
@@ -14,6 +14,7 @@ export function PublicNav({ currentPage }: PublicNavProps) {
   const mainNavLinks = [
     { href: "/catalog", label: "Courses", key: "courses" },
     { href: "/learning-paths", label: "Learning Paths", key: "learning-paths" },
+    { href: "/why-online-learning", label: "Why Online?", key: "why-online" },
     { href: "/about", label: "About", key: "about" },
     { href: "/pricing", label: "Pricing", key: "pricing" },
   ];

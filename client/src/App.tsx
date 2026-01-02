@@ -55,6 +55,7 @@ import AdminEmailNotifications from './pages/AdminEmailNotifications';
 import AdminEmailExport from './pages/AdminEmailExport';
 import CohortGroups from './pages/CohortGroups';
 import About from './pages/About';
+import WhyOnlineLearning from './pages/WhyOnlineLearning';
 import FAQ from './pages/FAQ';
 import SuccessStories from './pages/SuccessStories';
 import Resources from './pages/Resources';
@@ -86,6 +87,8 @@ import BridgeAcademyDashboard from './pages/BridgeAcademyDashboard';
 import BridgeAcademyStudentDashboard from './pages/BridgeAcademyStudentDashboard';
 import BridgeAcademyCourseDetail from './pages/BridgeAcademyCourseDetail';
 import BridgeAcademyPracticeQuiz from './pages/BridgeAcademyPracticeQuiz';
+import BridgeAcademyPracticeTests from './pages/BridgeAcademyPracticeTests';
+import BridgeAcademyStudySchedule from './pages/BridgeAcademyStudySchedule';
 
 function Router() {
   return (
@@ -138,6 +141,7 @@ function Router() {
       <Route path="/learning-paths" component={LearningPaths} />
       <Route path="/cohorts" component={CohortGroups} />
       <Route path="/about" component={About} />
+      <Route path="/why-online-learning" component={WhyOnlineLearning} />
       <Route path="/faq" component={FAQ} />
       <Route path="/success-stories" component={SuccessStories} />
       <Route path="/resources" component={Resources} />
@@ -158,6 +162,9 @@ function Router() {
       <Route path="/bridge-academy/student-dashboard" component={BridgeAcademyStudentDashboard} />
       <Route path="/bridge-academy/course/:courseId" component={BridgeAcademyCourseDetail} />
       <Route path="/bridge-academy/practice-quiz/:subjectCode" component={BridgeAcademyPracticeQuiz} />
+      <Route path="/bridge-academy/practice-tests" component={BridgeAcademyPracticeTests} />
+      <Route path="/bridge-academy/practice-test/:testId" component={BridgeAcademyPracticeTests} />
+      <Route path="/bridge-academy/study-schedule" component={BridgeAcademyStudySchedule} />
       <Route path="/bridge-academy/diplomas" component={BridgeAcademyDiplomas} />
       <Route path="/verify-bridge-academy/:token" component={VerifyBridgeAcademyCertificate} />
       <Route path="/accreditation" component={Accreditation} />

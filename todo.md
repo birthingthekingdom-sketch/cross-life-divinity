@@ -2527,3 +2527,49 @@ All components built and integrated. Ready for:
 - [x] Updated email notifications for pending verification status
 - [x] Remove access suspension logic from middleware
 - [x] TypeScript compilation clean
+
+
+## BUG FIXES - IMMEDIATE
+- [x] Fix Chaplaincy Training pricing on Pricing page (show $400 original, $325 sale, $275 course + $50 background check)
+
+## NEW FEATURES - PHASE 5 (IN PROGRESS)
+
+### Why Online Learning Page
+- [x] Create /why-online-learning page with comprehensive content
+- [x] Add 6-8 key benefits of online theological education
+- [x] Include flexibility, affordability, accessibility, community sections
+- [x] Add testimonials from online students
+- [x] Include comparison table (online vs traditional)
+- [x] Add FAQ section addressing common concerns
+- [x] Integrate into main navigation menu
+
+### GED Practice Tests System
+- [x] Create full-length practice tests (50 questions, 3-hour timer)
+- [x] Implement practice test database schema
+- [x] Build practice test UI with question navigation
+- [x] Add timer with visual warnings
+- [x] Create detailed results page with score breakdown
+- [x] Implement answer review with explanations
+- [x] Track practice test history and improvement trends
+- [x] Add difficulty-based question selection
+
+### GED Study Schedule Feature
+- [x] Create personalized study schedule generator
+- [x] Build database schema for study plans
+- [x] Implement 4, 8, and 12-week study plans
+- [x] Add daily study recommendations by subject
+- [x] Create study schedule UI with calendar view
+- [x] Add progress tracking against schedule
+- [ ] Implement email reminders for scheduled study sessions
+- [ ] Allow custom schedule adjustments
+
+### GED Performance Analytics Dashboard
+- [ ] Create comprehensive analytics dashboard
+- [ ] Add subject-by-subject performance tracking
+- [ ] Implement score trend visualization (line chart)
+- [ ] Add strengths and weaknesses analysis
+- [ ] Create readiness assessment (% ready for exam)
+- [ ] Add time-per-question analytics
+- [ ] Implement difficulty progression tracking
+- [ ] Add personalized improvement recommendations
+- [ ] Create comparative analytics (student vs average)
