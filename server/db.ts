@@ -33,7 +33,11 @@ import {
   bridgeAcademyProgress, BridgeAcademyProgress,
   bridgeAcademyEnrollments, BridgeAcademyEnrollment,
   bridgeAcademyCertificates, BridgeAcademyCertificate,
-  bridgeAcademyStudentDifficultyProfiles, BridgeAcademyStudentDifficultyProfile
+  bridgeAcademyStudentDifficultyProfiles, BridgeAcademyStudentDifficultyProfile,
+  previewTracking, InsertPreviewTracking, PreviewTracking,
+  qrCodes, InsertQrCode, QrCode,
+  qrCodeScans, InsertQrCodeScan, QrCodeScan,
+  emailTemplates, InsertEmailTemplate, EmailTemplate
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
 

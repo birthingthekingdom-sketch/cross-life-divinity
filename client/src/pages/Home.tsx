@@ -121,11 +121,10 @@ export default function Home() {
               </p>
               <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
                 <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-4xl font-bold text-accent">$79</span>
-                  <span className="text-2xl text-muted-foreground line-through">$149</span>
-                  <span className="bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">47% OFF</span>
+                  <span className="text-4xl font-bold text-accent">$325</span>
+                  <span className="text-sm text-muted-foreground">($275 course + $50 background check)</span>
                 </div>
-                <p className="text-muted-foreground">Special introductory pricing - Limited time offer</p>
+                <p className="text-muted-foreground">Professional Chaplaincy Certification Program</p>
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-3">

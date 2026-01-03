@@ -2736,3 +2736,40 @@ All components built and integrated. Ready for:
 - [x] Write vitest tests for email notifications
 - [x] Test all features in browser
 - [x] Create checkpoint for Phase 4 features
+
+## PHASE 4: ADVANCED FEATURES (NEW)
+
+### Student Preview Tracking
+- [ ] Create preview_tracking table in database (userId, courseId, previewedAt, duration)
+- [ ] Create API endpoint to log preview views
+- [ ] Add tracking logic to course preview component
+- [ ] Create admin dashboard widget showing preview analytics
+- [ ] Display top previewed courses and student preview history
+
+### Attendance QR Code Generation
+- [ ] Create qr_codes table in database (courseId, lessonId, code, expiresAt)
+- [ ] Install qrcode library for QR code generation
+- [ ] Create API endpoint to generate QR codes for lessons
+- [ ] Add QR code display to lesson pages
+- [ ] Create attendance scanning interface for admins
+- [ ] Build attendance report showing student scan history
+
+### Email Template Customization
+- [ ] Create email_templates table in database (name, subject, body, variables)
+- [ ] Create admin panel for email template editor
+- [ ] Build template preview functionality
+- [ ] Add template variable system ({{studentName}}, {{courseName}}, etc.)
+- [ ] Implement template selection in email automation
+- [ ] Test email delivery with custom templates
+
+
+## COMPLETED - Advanced Features Implementation (Jan 3, 2025)
+- [x] Fixed Chaplaincy pricing on homepage ($325.00 = $275 course + $50 background check)
+- [x] Database schema updated with 4 new tables (preview_tracking, qr_codes, qr_code_scans, email_templates)
+- [x] Advanced analytics router created with all endpoints
+- [x] QRCode library installed
+- [x] PreviewAnalyticsDashboard component created
+- [x] QrCodeScanner component created
+- [x] EmailTemplateEditor component created
+- [x] All TypeScript errors resolved
+- [x] Ready for testing and deployment

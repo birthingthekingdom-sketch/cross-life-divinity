@@ -20,7 +20,7 @@ import { cohortRouter } from './cohort-router';
 import { bundlePurchaseRouter } from './bundle-purchase-router';
 import { emailNotificationRouter } from './email-notification-router';
 import { adminEmailRouter } from './admin-email-router';
-import * as referralSystem from './referral-router.js';
+import * as referralSystem from './referral-router';
 import { blogRouter } from './blog-router';
 import { chatRouter } from './chat-router';
 import { affiliateRouter } from './affiliate-router';
@@ -34,6 +34,7 @@ import { coursePreviewRouter } from './course-preview-router';
 import { attendanceRouter } from './attendance-router';
 import { previewAnalyticsRouter } from './preview-analytics-router';
 import { webinarNotificationsRouter } from './webinar-notifications-router';
+import { advancedAnalyticsRouter } from './advanced-analytics-router';
 import { TRPCError } from "@trpc/server";
 
 // Import Bridge Academy database functions are already available via db.* namespace
@@ -64,6 +65,7 @@ export const appRouter = router({
   attendance: attendanceRouter,
   previewAnalytics: previewAnalyticsRouter,
   webinarNotifications: webinarNotificationsRouter,
+  advancedAnalytics: advancedAnalyticsRouter,
   auth: router({
     ...authRouter._def.procedures,
     logout: publicProcedure.mutation(({ ctx }) => {

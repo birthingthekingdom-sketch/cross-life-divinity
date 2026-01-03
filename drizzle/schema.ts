@@ -1305,3 +1305,73 @@ export const webinarNotifications = mysqlTable("webinar_notifications", {
 
 export type WebinarNotification = typeof webinarNotifications.$inferSelect;
 export type InsertWebinarNotification = typeof webinarNotifications.$inferInsert;
+
+
+/**
+ * Student Preview Tracking - Track which students have viewed course previews
+ */
+export const previewTracking = mysqlTable("preview_tracking", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  courseId: int("courseId").notNull(),
+  previewedAt: timestamp("previewedAt").defaultNow().notNull(),
+  duration: int("duration").default(0).notNull(), // Duration in seconds
+  viewCount: int("viewCount").default(1).notNull(), // Number of times previewed
+  lastViewedAt: timestamp("lastViewedAt").defaultNow().onUpdateNow().notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PreviewTracking = typeof previewTracking.$inferSelect;
+export type InsertPreviewTracking = typeof previewTracking.$inferInsert;
+
+/**
+ * QR Codes for Attendance - Generate QR codes for attendance tracking
+ */
+export const qrCodes = mysqlTable("qr_codes", {
+  id: int("id").autoincrement().primaryKey(),
+  courseId: int("courseId").notNull(),
+  lessonId: int("lessonId"),
+  code: varchar("code", { length: 255 }).notNull().unique(), // QR code data
+  qrData: text("qrData").notNull(), // Encoded QR data
+  expiresAt: timestamp("expiresAt").notNull(),
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type QrCode = typeof qrCodes.$inferSelect;
+export type InsertQrCode = typeof qrCodes.$inferInsert;
+
+/**
+ * QR Code Scans - Track attendance via QR code scans
+ */
+export const qrCodeScans = mysqlTable("qr_code_scans", {
+  id: int("id").autoincrement().primaryKey(),
+  qrCodeId: int("qrCodeId").notNull(),
+  userId: int("userId").notNull(),
+  scannedAt: timestamp("scannedAt").defaultNow().notNull(),
+  ipAddress: varchar("ipAddress", { length: 45 }),
+  userAgent: text("userAgent"),
+});
+
+export type QrCodeScan = typeof qrCodeScans.$inferSelect;
+export type InsertQrCodeScan = typeof qrCodeScans.$inferInsert;
+
+/**
+ * Email Templates - Customizable email templates for admins
+ */
+export const emailTemplates = mysqlTable("email_templates", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull().unique(),
+  subject: varchar("subject", { length: 255 }).notNull(),
+  body: text("body").notNull(),
+  variables: text("variables"), // JSON array of available variables
+  templateType: mysqlEnum("templateType", ["welcome", "reminder", "certificate", "custom"]).default("custom").notNull(),
+  isActive: boolean("isActive").default(true).notNull(),
+  createdBy: int("createdBy").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type EmailTemplate = typeof emailTemplates.$inferSelect;
+export type InsertEmailTemplate = typeof emailTemplates.$inferInsert;
