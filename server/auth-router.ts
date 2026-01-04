@@ -156,54 +156,5 @@ export const authRouter = router({
     };
   }),
 
-  /**
-   * Verify email using token
-   */
-  verifyEmail: publicProcedure
-    .input(
-      z.object({
-        token: z.string().min(1, 'Verification token is required'),
-      })
-    )
-    .mutation(async ({ input }) => {
-      try {
-        await authService.verifyEmail(input.token);
-        return { success: true, message: 'Email verified successfully' };
-      } catch (error) {
-        if (error instanceof Error) {
-          throw new Error(error.message);
-        }
-        throw new Error('Email verification failed');
-      }
-    }),
-
-  /**
-   * Resend verification email
-   */
-  resendVerification: publicProcedure
-    .input(
-      z.object({
-        email: z.string().email('Invalid email address'),
-      })
-    )
-    .mutation(async ({ input }) => {
-      try {
-        const result = await authService.resendVerificationEmail(input.email);
-        
-        if (result.verificationToken) {
-          try {
-            await emailService.sendEmailVerification(input.email, result.userName || 'Student', result.verificationToken);
-          } catch (emailError) {
-            console.error('Failed to send verification email:', emailError);
-          }
-        }
-
-        return { success: true, message: 'Verification email has been sent' };
-      } catch (error) {
-        if (error instanceof Error) {
-          throw new Error(error.message);
-        }
-        throw new Error('Failed to resend verification email');
-      }
-    }),
+  // Email verification endpoints disabled - all users are auto-verified on registration
 });

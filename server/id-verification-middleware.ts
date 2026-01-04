@@ -5,8 +5,8 @@ import { eq, and, isNull } from 'drizzle-orm';
 
 /**
  * Check if user is enrolled in a course
- * NEW WORKFLOW: Students have immediate access upon enrollment
- * ID verification is pending/approved but does NOT block access
+ * VERIFICATION DISABLED: All users have immediate access upon enrollment
+ * No ID verification is required
  */
 export async function checkIdVerificationStatus(
   userId: number,
@@ -47,15 +47,15 @@ export async function checkIdVerificationStatus(
     // Check if verification is completed
     const isVerified = enrollmentRecord.idVerificationCompletedAt !== null;
 
-    // NEW WORKFLOW: Students have immediate access regardless of verification status
+    // VERIFICATION DISABLED: Always allow access regardless of verification status
     return {
       canAccess: true,
-      verificationStatus: isVerified ? 'approved' : 'pending',
+      verificationStatus: 'approved', // No verification required
     };
   } catch (error) {
     console.error('Error checking ID verification status:', error);
     // On error, allow access to avoid blocking users
-    return { canAccess: true, verificationStatus: 'pending' };
+    return { canAccess: true, verificationStatus: 'approved' };
   }
 }
 
