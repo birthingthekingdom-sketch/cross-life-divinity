@@ -27,6 +27,10 @@
 ---
 
 ## ACTIVE TASKS (IN PROGRESS)
+- [x] Disable Manus OAuth login completely
+- [x] Remove OAuth buttons from Login page
+- [x] Remove OAuth buttons from Register page
+- [x] Test login with custom email/password only
 - [x] Fix Chaplaincy Training pricing in financial assistance chart ($325.00 with $54.17/mo payment)
 - [x] Update hero banners to reflect online-only status
 - [x] Add Bridge Academy logo to hero header
