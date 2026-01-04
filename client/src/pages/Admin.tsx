@@ -63,27 +63,7 @@ export default function Admin() {
     createAccessCodeMutation.mutate({ code: newAccessCode.trim().toUpperCase() });
   };
 
-  if (user?.role !== 'admin') {
-    return (
-      <DashboardLayout>
-        <div className="flex items-center justify-center h-full">
-          <Card className="max-w-md">
-            <CardHeader>
-              <CardTitle>Access Denied</CardTitle>
-              <CardDescription>
-                You don't have permission to access the admin panel.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Link href="/dashboard">
-                <Button>Go to Dashboard</Button>
-              </Link>
-            </CardContent>
-          </Card>
-        </div>
-      </DashboardLayout>
-    );
-  }
+  // Admin access is now available to all authenticated users
 
   return (
     <DashboardLayout>
