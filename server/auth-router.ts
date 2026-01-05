@@ -10,14 +10,15 @@ export const authRouter = router({
   register: publicProcedure
     .input(
       z.object({
-        email: z.string().email('Invalid email address'),
+        email: z.string().email('Invalid email address').optional().or(z.literal('')),
         password: z.string().min(8, 'Password must be at least 8 characters'),
         name: z.string().min(1, 'Name is required'),
       })
     )
     .mutation(async ({ input }) => {
       try {
-        const user = await authService.registerUser(input.email, input.password, input.name);
+        const email = input.email && input.email.trim() ? input.email : undefined;
+        const user = await authService.registerUser(email, input.password, input.name);
         
         // Email verification disabled - users are auto-verified
         

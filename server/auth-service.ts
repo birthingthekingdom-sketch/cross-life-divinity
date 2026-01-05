@@ -29,16 +29,18 @@ export function generateResetToken(): string {
 /**
  * Register a new user with email and password
  */
-export async function registerUser(email: string, password: string, name: string) {
+export async function registerUser(email: string | undefined, password: string, name: string) {
   const dbInstance = await db.getDb();
   if (!dbInstance) throw new Error('Database not available');
 
   const { users } = await import('../drizzle/schema');
   
-  // Check if user already exists
-  const existingUser = await dbInstance.select().from(users).where(eq(users.email, email)).limit(1);
-  if (existingUser.length > 0) {
-    throw new Error('User with this email already exists');
+  // Check if user already exists (only if email is provided)
+  if (email) {
+    const existingUser = await dbInstance.select().from(users).where(eq(users.email, email)).limit(1);
+    if (existingUser.length > 0) {
+      throw new Error('User with this email already exists');
+    }
   }
 
   // Hash password

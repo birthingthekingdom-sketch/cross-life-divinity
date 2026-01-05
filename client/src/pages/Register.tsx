@@ -58,7 +58,7 @@ export default function Register() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!name || !email || !password || !confirmPassword) {
+    if (!name || !password || !confirmPassword) {
       toast.error("Please fill in all fields");
       return;
     }
@@ -113,14 +113,13 @@ export default function Register() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">Email <span className="text-xs text-muted-foreground">(optional)</span></Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="your.email@example.com"
+                  placeholder="your.email@example.com (optional)"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  required
                   autoComplete="email"
                 />
               </div>
