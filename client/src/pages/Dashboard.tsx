@@ -5,7 +5,7 @@ import { Progress } from "@/components/ui/progress";
 import { PullToRefresh } from "@/components/PullToRefresh";
 import { trpc } from "@/lib/trpc";
 import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, RefreshCw, Settings, CreditCard, Zap, Target } from "lucide-react";
-import { Fragment } from "react";
+
 import { Link, useLocation } from "wouter";
 import { useMemo } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
@@ -75,8 +75,7 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <Fragment key="webinars-btn">
-                <Link href="/webinars">
+              <Link href="/webinars">
                   <Button
                     variant="outline"
                     size="sm"
@@ -86,9 +85,7 @@ export default function Dashboard() {
                     Webinars
                   </Button>
                 </Link>
-              </Fragment>
-              <Fragment key="progress-btn">
-                <Link href="/progress">
+              <Link href="/progress">
                   <Button
                     variant="outline"
                     size="sm"
@@ -98,9 +95,7 @@ export default function Dashboard() {
                     My Progress
                   </Button>
                 </Link>
-              </Fragment>
-              <Fragment key="certificates-btn">
-                <Link href="/certificates">
+              <Link href="/certificates">
                   <Button
                     variant="outline"
                     size="sm"
@@ -110,9 +105,7 @@ export default function Dashboard() {
                     My Certificates
                   </Button>
                 </Link>
-              </Fragment>
-              <Fragment key="payments-btn">
-                <Link href="/my-payments">
+              <Link href="/my-payments">
                   <Button
                     variant="outline"
                     size="sm"
@@ -122,9 +115,7 @@ export default function Dashboard() {
                     My Payments
                   </Button>
                 </Link>
-              </Fragment>
               {user?.role === 'admin' && (
-                <Fragment key="admin-btn">
                   <Link href="/admin">
                     <Button
                       variant="outline"
@@ -135,10 +126,8 @@ export default function Dashboard() {
                       Admin
                     </Button>
                   </Link>
-                </Fragment>
               )}
               {user?.email === 'birthingthekingdom@gmail.com' && (
-                <Fragment key="toggle-btn">
                   <Link href="/toggle-role">
                     <Button
                       variant="outline"
@@ -150,19 +139,16 @@ export default function Dashboard() {
                       {user?.role === 'admin' ? 'Student' : 'Admin'} View
                     </Button>
                   </Link>
-                </Fragment>
               )}
-              <Fragment key="logout-btn">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => logout()}
-                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
-                >
-                  <LogOut className="h-4 w-4 mr-2" />
-                  Logout
-                </Button>
-              </Fragment>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => logout()}
+                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
+              >
+                <LogOut className="h-4 w-4 mr-2" />
+                Logout
+              </Button>
             </div>
           </div>
         </div>
