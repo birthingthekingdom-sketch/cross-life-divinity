@@ -1,5 +1,7 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import DashboardLayout from "@/components/DashboardLayout";
+import { useLocation } from "wouter";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -16,6 +18,26 @@ import { Link } from "wouter";
 
 export default function Admin() {
   const { user } = useAuth();
+  const [, setLocation] = useLocation();
+
+  // Protect admin page - only admins can access
+  useEffect(() => {
+    if (user && user.role !== 'admin') {
+      setLocation('/dashboard');
+    }
+  }, [user, setLocation]);
+
+  // Show loading or redirect state
+  if (!user || user.role !== 'admin') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Redirecting...</p>
+        </div>
+      </div>
+    );
+  }
   const [newAccessCode, setNewAccessCode] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [assignDialogOpen, setAssignDialogOpen] = useState(false);
@@ -63,7 +85,7 @@ export default function Admin() {
     createAccessCodeMutation.mutate({ code: newAccessCode.trim().toUpperCase() });
   };
 
-  // Admin access is now available to all authenticated users
+
 
   return (
     <DashboardLayout>

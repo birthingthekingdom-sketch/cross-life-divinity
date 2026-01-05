@@ -146,7 +146,11 @@ export const authRouter = router({
   /**
    * Get current user info
    */
-  me: protectedProcedure.query(async ({ ctx }) => {
+  me: publicProcedure.query(async ({ ctx }) => {
+    // Return null if not authenticated
+    if (!ctx.user) {
+      return null;
+    }
     return {
       id: ctx.user.id,
       email: ctx.user.email,
