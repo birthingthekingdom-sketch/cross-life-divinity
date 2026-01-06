@@ -27,6 +27,8 @@
 ---
 
 ## ACTIVE TASKS (IN PROGRESS)
+- [x] Add Affiliate Program link to footer and navigation
+- [ ] Make phone number optional in registration/login
 - [x] Disable Manus OAuth login completely
 - [x] Remove OAuth buttons from Login page
 - [x] Remove OAuth buttons from Register page
