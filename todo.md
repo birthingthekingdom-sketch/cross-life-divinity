@@ -42,6 +42,7 @@
 - [x] Add Student Handbook link to footer under "Student Resources"
 - [x] Restore missing courses to catalog (Old Testament Survey BIB101, New Testament Survey BIB102)
 - [x] Remove test courses from database (Test Webinar, CSV Test Course, Test Analytics Course, Test Enhancement Course) - DELETED
+- [x] Clean up database: Removed 12 test courses (TWC*, CSV*, TEST* prefixes) - Jan 6, 2025
 - [x] Fix CourseIntroSlideshow component to handle missing slide files gracefully
 - [ ] Build course introduction slideshows with female voiceover (one at a time)
 - [x] Bridge Academy: Database tables created and seeded with 4 GED courses
