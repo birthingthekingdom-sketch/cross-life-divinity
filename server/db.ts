@@ -198,8 +198,8 @@ export async function getAllCourses(): Promise<Course[]> {
   const db = await getDb();
   if (!db) return [];
   
-  // Return only theological courses (exclude GED courses)
-  return db.select().from(courses).where(eq(courses.courseType, 'theological')).orderBy(courses.displayOrder);
+  // Return both theological and GED courses
+  return db.select().from(courses).orderBy(courses.displayOrder);
 }
 
 export async function getAllGedCourses(): Promise<Course[]> {
