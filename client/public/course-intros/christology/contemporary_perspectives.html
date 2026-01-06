@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contemporary Challenges</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #F5F1E8 0%, #FAF8F3 100%);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .header-bar {
+            height: 8px;
+            background: linear-gradient(90deg, #6B4423 0%, #C9A961 100%);
+            flex-shrink: 0;
+        }
+        
+        .content {
+            flex: 1;
+            padding: 60px 80px 40px; /* keep top padding, reduce bottom to fit within 720px */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #2C1810;
+            margin-bottom: 50px;
+        }
+        
+        .perspectives-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .perspective-box {
+            background: linear-gradient(135deg, rgba(107, 68, 35, 0.08) 0%, rgba(201, 169, 97, 0.08) 100%);
+            border-left: 6px solid #6B4423;
+            padding: 32px; /* reduced inner padding to decrease overall height */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .perspective-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #6B4423;
+            margin-bottom: 15px;
+        }
+        
+        .perspective-box p {
+            font-family: 'Lato', sans-serif;
+            font-size: 15px;
+            color: #5C3D2E;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        .perspective-focus {
+            font-family: 'Lato', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #C9A961;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-bar"></div>
+        <div class="content">
+            <h1>Contemporary Theological Movements</h1>
+            
+            <div class="perspectives-grid">
+                <div class="perspective-box">
+                    <h3>👩 Feminist Christology</h3>
+                    <p>Reimagines Christ through feminist perspectives, questioning patriarchal interpretations and exploring Christ's liberating message for women and marginalized communities.</p>
+                    <div class="perspective-focus">Focus: Justice and Inclusion</div>
+                </div>
+                
+                <div class="perspective-box">
+                    <h3>⚡ Process Theology</h3>
+                    <p>Understands Christ within a dynamic, evolving cosmos where God works persuasively rather than coercively, emphasizing Christ's solidarity with creation's ongoing transformation.</p>
+                    <div class="perspective-focus">Focus: Divine Persuasion</div>
+                </div>
+                
+                <div class="perspective-box">
+                    <h3>🌍 Religious Pluralism</h3>
+                    <p>Addresses how to understand Christ's uniqueness and significance in a religiously diverse world, exploring Christ's relationship to other faith traditions.</p>
+                    <div class="perspective-focus">Focus: Interfaith Dialogue</div>
+                </div>
+                
+                <div class="perspective-box">
+                    <h3>🌏 Non-Western Christology</h3>
+                    <p>Develops contextual Christologies from African, Asian, Latin American, and Indigenous perspectives, allowing Christ to be encountered through diverse cultural and theological lenses.</p>
+                    <div class="perspective-focus">Focus: Contextual Theology</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

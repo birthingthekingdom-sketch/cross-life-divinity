@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Overview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #F5F1E8 0%, #FAF8F3 100%);
+            display: flex;
+            position: relative;
+        }
+        
+        .accent-bar {
+            width: 8px;
+            background: linear-gradient(180deg, #8B4513 0%, #D4A574 100%);
+            flex-shrink: 0;
+        }
+        
+        .content {
+            flex: 1;
+            padding: 80px 80px 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: #2C1810;
+            margin-bottom: 40px;
+            line-height: 1.2;
+        }
+        
+        .overview-text {
+            font-family: 'Lato', sans-serif;
+            font-size: 18px;
+            color: #5C3D2E;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 900px;
+        }
+        
+        .key-points {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .point {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .point-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: #D4A574;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #F5F1E8;
+        }
+        
+        .point-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2C1810;
+            margin-bottom: 8px;
+        }
+        
+        .point-text p {
+            font-family: 'Lato', sans-serif;
+            font-size: 15px;
+            color: #5C3D2E;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="accent-bar"></div>
+        <div class="content">
+            <h1>What is the Capstone Project?</h1>
+            <p class="overview-text">The Capstone Project is the culminating experience in the Master of Divinity program. It represents the synthesis of your theological learning and demonstrates your scholarly competency through a substantial independent project that bridges academic study and vocational ministry.</p>
+            
+            <div class="key-points">
+                <div class="point">
+                    <div class="point-icon">🎓</div>
+                    <div class="point-text">
+                        <h3>Scholarly Integration</h3>
+                        <p>Synthesize knowledge from across the M.Div. curriculum into a focused project.</p>
+                    </div>
+                </div>
+                
+                <div class="point">
+                    <div class="point-icon">🤝</div>
+                    <div class="point-text">
+                        <h3>Faculty Mentorship</h3>
+                        <p>Work with experienced faculty advisors throughout your project development.</p>
+                    </div>
+                </div>
+                
+                <div class="point">
+                    <div class="point-icon">✨</div>
+                    <div class="point-text">
+                        <h3>Real-World Application</h3>
+                        <p>Apply theological education to actual ministry contexts or scholarly inquiry.</p>
+                    </div>
+                </div>
+                
+                <div class="point">
+                    <div class="point-icon">📖</div>
+                    <div class="point-text">
+                        <h3>Professional Competency</h3>
+                        <p>Demonstrate mastery and readiness for advanced ministry or academic work.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

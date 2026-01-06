@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Major Topics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #F5F1E8 0%, #FAF8F3 100%);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .header-bar {
+            height: 8px;
+            background: linear-gradient(90deg, #1B5E20 0%, #81C784 100%);
+            flex-shrink: 0;
+        }
+        
+        .content {
+            flex: 1;
+            padding: 60px 80px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #2C1810;
+            margin-bottom: 50px;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            flex: 1;
+        }
+        
+        .topic-box {
+            background: linear-gradient(135deg, rgba(27, 94, 32, 0.08) 0%, rgba(129, 199, 132, 0.08) 100%);
+            border-left: 6px solid #1B5E20;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .topic-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1B5E20;
+            margin-bottom: 12px;
+        }
+        
+        .topic-box p {
+            font-family: 'Lato', sans-serif;
+            font-size: 14px;
+            color: #5C3D2E;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-bar"></div>
+        <div class="content">
+            <h1>Major Topics We Explore</h1>
+            
+            <div class="topics-grid">
+                <div class="topic-box">
+                    <h3>⚖️ Justice & Reconciliation</h3>
+                    <p>Liberation theology, racial justice, economic justice, and the church's role in addressing systemic oppression and promoting reconciliation.</p>
+                </div>
+                
+                <div class="topic-box">
+                    <h3>🤝 Pluralism & Interfaith</h3>
+                    <p>Religious diversity, Christian exclusivism and inclusivism, interfaith cooperation, and Christ's relationship to other faith traditions.</p>
+                </div>
+                
+                <div class="topic-box">
+                    <h3>👥 Gender & Sexuality</h3>
+                    <p>Feminist theology, LGBTQ+ inclusion, gender justice, embodiment, and the church's response to evolving understandings of identity.</p>
+                </div>
+                
+                <div class="topic-box">
+                    <h3>🌱 Environmental Theology</h3>
+                    <p>Creation care, climate justice, ecological ethics, sustainability, and the church's responsibility for the created world.</p>
+                </div>
+                
+                <div class="topic-box">
+                    <h3>💻 Technology & Digital Ethics</h3>
+                    <p>Artificial intelligence, social media, virtual community, digital justice, and the theological implications of technological change.</p>
+                </div>
+                
+                <div class="topic-box">
+                    <h3>🏛️ Church & Society</h3>
+                    <p>Secularization, political theology, prophetic witness, Christian activism, and the church's engagement with public life.</p>
+                </div>
+                
+                <div class="topic-box">
+                    <h3>🌏 Global Christianity</h3>
+                    <p>Majority World theology, postcolonial perspectives, indigenous Christianity, and contextual approaches from diverse cultures.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
