@@ -1,6 +1,6 @@
 import { getDb } from "./db";
 import * as email from "./email";
-import { webinars, webinarRegistrations, users, webinarNotifications } from "../drizzle/schema";
+import { webinars, webinarRegistrations, users } from "../drizzle/schema";
 import { eq, and, lt, gte, lte } from "drizzle-orm";
 
 /**

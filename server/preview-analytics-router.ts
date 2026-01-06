@@ -3,11 +3,10 @@ import { getDb } from "./db";
 import { protectedProcedure, router } from "./_core/trpc";
 import { TRPCError } from "@trpc/server";
 import {
-  previewEvents,
-  previewConversions,
   courses,
   users,
 } from "../drizzle/schema";
+// import { previewEvents, previewConversions } from "../drizzle/schema"; // TODO: tables not yet implemented
 import { eq, and, desc, gte, lte } from "drizzle-orm";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {

@@ -3,10 +3,10 @@ import { getDb } from "./db";
 import { protectedProcedure, router } from "./_core/trpc";
 import { TRPCError } from "@trpc/server";
 import {
-  webinarAttendance,
   webinars,
   users,
 } from "../drizzle/schema";
+// import { webinarAttendance } from "../drizzle/schema"; // TODO: webinarAttendance table not yet implemented
 import { eq, and } from "drizzle-orm";
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {

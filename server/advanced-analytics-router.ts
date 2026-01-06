@@ -3,13 +3,10 @@ import { z } from "zod";
 import { getDb } from "./db";
 import { TRPCError } from "@trpc/server";
 import {
-  previewTracking,
-  qrCodes,
-  qrCodeScans,
-  emailTemplates,
   users,
   courses,
 } from "../drizzle/schema";
+// import { previewTracking, qrCodes, qrCodeScans, emailTemplates } from "../drizzle/schema"; // TODO: tables not yet implemented
 import { eq, and } from "drizzle-orm";
 import QRCode from "qrcode";
 

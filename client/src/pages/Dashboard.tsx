@@ -151,8 +151,8 @@ export default function Dashboard() {
               Recommended for You
             </h2>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {recommendations.slice(0, 3).map((rec: any) => (
-                <Card key={rec.id} className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
+              {recommendations.slice(0, 3).map((rec: any, idx: number) => (
+                <Card key={`rec-${rec.id}-${idx}`} className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
                   <CardHeader className="bg-gradient-to-br from-yellow-50 to-orange-50">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
@@ -297,8 +297,8 @@ export default function Dashboard() {
               </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {paths.slice(0, 3).map((path: any) => (
-                <Link key={path.id} href="/learning-paths">
+              {paths.slice(0, 3).map((path: any, idx: number) => (
+                <Link key={`path-${path.id}-${idx}`} href="/learning-paths">
                   <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer border-2 hover:border-primary/50">
                     <CardHeader className="bg-gradient-to-br from-purple-50 to-blue-50">
                       <div className="flex items-center gap-2 mb-2">
@@ -331,7 +331,7 @@ export default function Dashboard() {
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-foreground mb-6">Course Bundles</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {bundles.map((bundle: any) => {
+              {bundles.map((bundle: any, bundleIdx: number) => {
                 // Calculate bundle progress
                 const bundleCourseIds = bundle.courses.map((c: any) => c.id);
                 const enrolledBundleCourses = courses?.filter((c: any) => bundleCourseIds.includes(c.id)) || [];
@@ -349,7 +349,7 @@ export default function Dashboard() {
                 const bundleProgress = totalLessons > 0 ? (completedLessons / totalLessons) * 100 : 0;
 
                 return (
-                  <Card key={bundle.id} className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50">
+                  <Card key={`bundle-${bundle.id}-${bundleIdx}`} className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50">
                     <CardHeader className="bg-gradient-to-br from-primary/5 to-accent/5">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="p-2 bg-primary/10 rounded-lg">
@@ -377,8 +377,8 @@ export default function Dashboard() {
                           </div>
                         )}
                         <div className="space-y-1">
-                          {bundle.courses.slice(0, 3).map((course: any) => (
-                            <Link key={course.id} href={`/course/${course.id}`}>
+                          {bundle.courses.slice(0, 3).map((course: any, courseIdx: number) => (
+                            <Link key={`bundle-course-${course.id}-${courseIdx}`} href={`/course/${course.id}`}>
                               <div className="text-xs text-muted-foreground hover:text-primary transition-colors cursor-pointer flex items-center gap-1">
                                 <span>→</span>
                                 <span className="line-clamp-1">{course.title}</span>
@@ -426,8 +426,8 @@ export default function Dashboard() {
               { code: "LANG", name: "Language Arts", icon: "📝" },
               { code: "SCI", name: "Science", icon: "🔬" },
               { code: "SOCIAL", name: "Social Studies", icon: "🌍" },
-            ].map((subject) => (
-              <Card key={subject.code} className="hover:shadow-md transition-shadow cursor-pointer" onClick={() => navigate(`/bridge-academy/practice-quiz/${subject.code}`)}>
+            ].map((subject, subIdx) => (
+              <Card key={`subject-${subject.code}-${subIdx}`} className="hover:shadow-md transition-shadow cursor-pointer" onClick={() => navigate(`/bridge-academy/practice-quiz/${subject.code}`)}>
                 <CardContent className="pt-6 text-center">
                   <div className="text-3xl mb-2">{subject.icon}</div>
                   <p className="font-semibold text-sm mb-1">{subject.name}</p>
@@ -443,13 +443,13 @@ export default function Dashboard() {
         {/* All Courses Grid */}
         <h2 className="text-2xl font-bold text-foreground mb-6">All Courses</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {courses?.map((course: any) => {
+          {courses?.map((course: any, courseIdx: number) => {
             const progress = courseProgress[course.id] || { completed: 0, total: course.totalLessons };
             const progressPercent = progress.total > 0 ? (progress.completed / progress.total) * 100 : 0;
             const isEnrolled = course.isEnrolled;
 
             return (
-              <Card key={course.id} className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50">
+              <Card key={`course-${course.id}-${courseIdx}`} className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50">
                 <CardHeader 
                   className="text-card-foreground min-h-[140px] relative overflow-hidden"
                   style={{ backgroundColor: '#1e40af' }}

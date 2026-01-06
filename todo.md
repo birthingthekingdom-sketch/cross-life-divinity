@@ -1,9 +1,9 @@
 # Cross Life School of Divinity - Project Tracking
 
 ## CURRENT STATUS
-**Checkpoint:** c8d9f7ca (Dec 5, 2024)
-**Courses:** 17 with 170 lessons ✅
-**Last Updated:** Dec 29, 2024
+**Checkpoint:** 00eeac18 (Jan 6, 2025)
+**Courses:** 17 theological + 4 GED (total 21) ✅
+**Last Updated:** Jan 6, 2025 - Fixed course separation and login issues
 
 ---
 
@@ -50,7 +50,11 @@
 - [x] Bridge Academy: Created database functions to retrieve courses with topics
 - [x] Bridge Academy: Created admin API endpoint for getBridgeAcademyCourses
 - [x] Bridge Academy: Updated AdminBridgeAcademyCourses component to fetch real data
-- [ ] Bridge Academy: Debug API endpoint - courses not displaying in admin portal
+- [x] Bridge Academy: Debug API endpoint - courses not displaying in admin portal
+- [x] Fixed course catalog separation: Added courseType field to courses table
+- [x] Separated theological courses from GED courses in database
+- [x] Updated getAllCourses() to return only theological courses
+- [x] Created getAllGedCourses() for Bridge Academy courses
 - [ ] Bridge Academy: Test quiz system with all practice questions
 - [ ] Bridge Academy: Deploy and publish for student access
 - [x] Bridge Academy: Add navigation bar to main page

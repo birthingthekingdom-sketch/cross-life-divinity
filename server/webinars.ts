@@ -182,11 +182,12 @@ export async function markWebinarAttendance(registrationId: number, attended: bo
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   
+  const updateData: any = {
+    attended,
+    attendedAt: attended ? new Date() : null,
+  };
   await db.update(webinarRegistrations)
-    .set({
-      attended,
-      attendedAt: attended ? new Date() : null,
-    })
+    .set(updateData)
     .where(eq(webinarRegistrations.id, registrationId));
   
   return await db.select().from(webinarRegistrations)

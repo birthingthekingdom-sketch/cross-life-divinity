@@ -2,7 +2,8 @@ import { protectedProcedure, router } from './_core/trpc';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 import * as db from './db';
-import { idSubmissions, courseEnrollments } from '../drizzle/schema';
+import { courseEnrollments } from '../drizzle/schema';
+// import { idSubmissions } from '../drizzle/schema'; // TODO: idSubmissions table not yet implemented
 import { eq, and, desc, lte, isNull } from 'drizzle-orm';
 import { getDb } from './db';
 

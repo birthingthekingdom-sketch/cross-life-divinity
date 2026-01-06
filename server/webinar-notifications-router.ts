@@ -3,11 +3,11 @@ import { getDb } from "./db";
 import { protectedProcedure, router } from "./_core/trpc";
 import { TRPCError } from "@trpc/server";
 import {
-  webinarNotifications,
   webinars,
   webinarRegistrations,
   users,
 } from "../drizzle/schema";
+// import { webinarNotifications } from "../drizzle/schema"; // TODO: webinarNotifications table not yet implemented
 import { eq, and } from "drizzle-orm";
 import * as email from "./email";
 

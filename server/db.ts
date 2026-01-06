@@ -30,9 +30,6 @@ import {
   bridgeAcademyPracticeQuestions, InsertBridgeAcademyPracticeQuestion, BridgeAcademyPracticeQuestion,
   bridgeAcademyQuizSubmissions, BridgeAcademyQuizSubmission,
   bridgeAcademyPracticeAttempts, BridgeAcademyPracticeAttempt,
-  bridgeAcademyProgress, BridgeAcademyProgress,
-  bridgeAcademyEnrollments, BridgeAcademyEnrollment,
-  bridgeAcademyCertificates, BridgeAcademyCertificate,
   bridgeAcademyStudentDifficultyProfiles, BridgeAcademyStudentDifficultyProfile,
   previewTracking, InsertPreviewTracking, PreviewTracking,
   qrCodes, InsertQrCode, QrCode,
@@ -201,7 +198,16 @@ export async function getAllCourses(): Promise<Course[]> {
   const db = await getDb();
   if (!db) return [];
   
-  return db.select().from(courses).orderBy(courses.displayOrder);
+  // Return only theological courses (exclude GED courses)
+  return db.select().from(courses).where(eq(courses.courseType, 'theological')).orderBy(courses.displayOrder);
+}
+
+export async function getAllGedCourses(): Promise<Course[]> {
+  const db = await getDb();
+  if (!db) return [];
+  
+  // Return only GED courses
+  return db.select().from(courses).where(eq(courses.courseType, 'ged')).orderBy(courses.displayOrder);
 }
 
 export async function getCourseById(id: number): Promise<Course | undefined> {
@@ -1693,13 +1699,8 @@ export async function getAllBridgeAcademyCoursesWithTopics() {
  * Get student's Bridge Academy enrollment status
  */
 export async function getStudentBridgeAcademyEnrollment(userId: number) {
-  const db = await getDb();
-  if (!db) return null;
-
-  return db.select().from(bridgeAcademyEnrollments)
-    .where(eq(bridgeAcademyEnrollments.userId, userId))
-    .limit(1)
-    .then(results => results[0] || null);
+  // TODO: bridgeAcademyEnrollments table not yet implemented
+  return null;
 }
 
 /**
@@ -1718,27 +1719,16 @@ export async function getAvailableBridgeAcademyCourses() {
  * Get student's progress for all Bridge Academy courses
  */
 export async function getStudentBridgeAcademyProgress(userId: number) {
-  const db = await getDb();
-  if (!db) return [];
-
-  return db.select().from(bridgeAcademyProgress)
-    .where(eq(bridgeAcademyProgress.userId, userId));
+  // TODO: bridgeAcademyProgress table not yet implemented
+  return [];
 }
 
 /**
  * Get student's progress for a specific course
  */
 export async function getStudentCourseProgress(userId: number, courseId: number) {
-  const db = await getDb();
-  if (!db) return null;
-
-  return db.select().from(bridgeAcademyProgress)
-    .where(and(
-      eq(bridgeAcademyProgress.userId, userId),
-      eq(bridgeAcademyProgress.courseId, courseId)
-    ))
-    .limit(1)
-    .then(results => results[0] || null);
+  // TODO: bridgeAcademyProgress table not yet implemented
+  return null;
 }
 
 /**
@@ -1821,12 +1811,8 @@ export async function getStudentTopicDifficultyProfile(userId: number, topicId: 
  * Get student's certificates
  */
 export async function getStudentBridgeAcademyCertificates(userId: number) {
-  const db = await getDb();
-  if (!db) return [];
-
-  return db.select().from(bridgeAcademyCertificates)
-    .where(eq(bridgeAcademyCertificates.userId, userId))
-    .orderBy(desc(bridgeAcademyCertificates.issuedAt));
+  // TODO: bridgeAcademyCertificates table not yet implemented
+  return [];
 }
 
 /**
@@ -1836,11 +1822,8 @@ export async function getStudentBridgeAcademyDashboard(userId: number) {
   const db = await getDb();
   if (!db) return null;
 
-  // Get enrollment status
-  const enrollment = await db.select().from(bridgeAcademyEnrollments)
-    .where(eq(bridgeAcademyEnrollments.userId, userId))
-    .limit(1)
-    .then(results => results[0] || null);
+  // Get enrollment status - TODO: bridgeAcademyEnrollments table not yet implemented
+  const enrollment = null;
 
   // Get all courses
   const allCourses = await db.select().from(courses)
@@ -1850,13 +1833,8 @@ export async function getStudentBridgeAcademyDashboard(userId: number) {
   // Get progress for each course
   const coursesWithProgress = await Promise.all(
     allCourses.map(async (course) => {
-      const progress = await db.select().from(bridgeAcademyProgress)
-        .where(and(
-          eq(bridgeAcademyProgress.userId, userId),
-          eq(bridgeAcademyProgress.courseId, course.id)
-        ))
-        .limit(1)
-        .then(results => results[0] || null);
+      // TODO: bridgeAcademyProgress table not yet implemented
+      const progress = null;
 
       // Get latest quiz submission
       const latestQuiz = await db.select().from(bridgeAcademyQuizSubmissions)
@@ -1894,10 +1872,8 @@ export async function getStudentBridgeAcademyDashboard(userId: number) {
     .orderBy(desc(bridgeAcademyPracticeAttempts.submittedAt))
     .limit(10);
 
-  // Get certificates
-  const certificates = await db.select().from(bridgeAcademyCertificates)
-    .where(eq(bridgeAcademyCertificates.userId, userId))
-    .orderBy(desc(bridgeAcademyCertificates.issuedAt));
+  // Get certificates - TODO: bridgeAcademyCertificates table not yet implemented
+  const certificates: any[] = [];
 
   return {
     enrollment,

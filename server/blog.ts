@@ -1,5 +1,6 @@
 import { getDb } from "./db";
-import { blogPosts, blogCategories, users } from "../drizzle/schema";
+// import { blogPosts, blogCategories, users } from "../drizzle/schema";
+import { users } from "../drizzle/schema";
 import { eq, desc, and, like } from "drizzle-orm";
 
 export async function createBlogCategory(name: string, slug: string, description?: string) {
