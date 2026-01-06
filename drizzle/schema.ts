@@ -414,6 +414,7 @@ export const courses = mysqlTable("courses", {
 	price: int().default(89).notNull(),
 	requiresBackgroundCheck: tinyint().default(0).notNull(),
 	backgroundCheckFee: int().default(0).notNull(),
+	courseType: mysqlEnum(['theological', 'ged']).default('theological').notNull(),
 },
 (table) => [
 	index("courses_code_unique").on(table.code),
