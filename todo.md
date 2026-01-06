@@ -224,7 +224,7 @@
 - [x] Create DIV110: Prophecy & Prophetic Office course
 - [x] Add starter lesson content to each course (3 lessons each)
 - [x] Add quiz questions for each lesson
-- [ ] Update total course count to 10
+- [x] Delete DIV108, DIV109, DIV110 - Removed due to course catalog loading issues (Jan 6, 2025)
 
 ## New Features - Phase 3
 
