@@ -50,9 +50,23 @@ export const authRouter = router({
         password: z.string().min(1, 'Password is required'),
       })
     )
-    .mutation(async ({ input }) => {
+    .mutation(async ({ input, ctx }) => {
       try {
         const user = await authService.authenticateUser(input.email, input.password);
+        
+        // Create and set session cookie
+        const { sdk } = await import('./_core/sdk');
+        const { getSessionCookieOptions } = await import('./_core/cookies');
+        const { COOKIE_NAME, ONE_YEAR_MS } = await import('@shared/const');
+        
+        const sessionToken = await sdk.createSessionToken(user.openId, {
+          name: user.name || '',
+          expiresInMs: ONE_YEAR_MS,
+        });
+        
+        const cookieOptions = getSessionCookieOptions(ctx.req);
+        ctx.res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
+        
         return {
           success: true,
           user: {

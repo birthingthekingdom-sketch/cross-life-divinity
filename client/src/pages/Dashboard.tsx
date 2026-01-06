@@ -7,11 +7,11 @@ import { trpc } from "@/lib/trpc";
 import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, CreditCard, Zap, Target } from "lucide-react";
 
 import { Link, useLocation } from "wouter";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
 
 export default function Dashboard() {
-  const { user, logout } = useAuth();
+  const { user, logout } = useAuth({ redirectOnUnauthenticated: true });
   const [, navigate] = useLocation();
   const utils = trpc.useUtils();
   const { data: courses, isLoading: coursesLoading } = trpc.courses.list.useQuery();

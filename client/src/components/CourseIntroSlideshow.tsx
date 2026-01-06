@@ -16,11 +16,11 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
   const [slidesAvailable, setSlidesAvailable] = useState(true);
 
   const slides = [
-    { id: 'title_slide', title: 'Course Introduction' },
-    { id: 'course_overview', title: 'Course Overview' },
-    { id: 'learning_objectives', title: 'Learning Objectives' },
-    { id: 'course_structure', title: 'Course Structure' },
-    { id: 'call_to_action', title: 'Get Started' },
+    { id: 'slide_1_title', title: 'Course Introduction' },
+    { id: 'slide_2_objectives', title: 'Course Overview' },
+    { id: 'slide_3_topics', title: 'Learning Objectives' },
+    { id: 'slide_4_structure', title: 'Course Structure' },
+    { id: 'slide_5_commitment', title: 'Get Started' },
   ];
 
   // Map course IDs to their slideshow paths
@@ -49,7 +49,7 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
 
   const basePath = slideshowMap[courseId] || `/course-intros/${courseId.toLowerCase()}`;
   const currentSlideFile = `${basePath}/${slides[currentSlide].id}.html`;
-  const voiceoverPath = `${basePath}/voiceover_complete.wav`;
+  const voiceoverPath = `${basePath}/intro-voiceover.wav`;
 
   // Check if slides are available
   useEffect(() => {

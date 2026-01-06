@@ -44,6 +44,7 @@
 - [x] Remove test courses from database (Test Webinar, CSV Test Course, Test Analytics Course, Test Enhancement Course) - DELETED
 - [x] Clean up database: Removed 12 test courses (TWC*, CSV*, TEST* prefixes) - Jan 6, 2025
 - [x] Fix CourseIntroSlideshow component to handle missing slide files gracefully
+- [x] Fix slide file naming mismatch in CourseIntroSlideshow (updated to match actual files: slide_1_title, slide_2_objectives, etc.)
 - [ ] Build course introduction slideshows with female voiceover (one at a time)
 - [x] Bridge Academy: Database tables created and seeded with 4 GED courses
 - [x] Bridge Academy: Added 180+ practice questions across all topics
@@ -2784,3 +2785,8 @@ All components built and integrated. Ready for:
 - [x] EmailTemplateEditor component created
 - [x] All TypeScript errors resolved
 - [x] Ready for testing and deployment
+
+## BUG FIXES (IN PROGRESS)
+- [x] Fix login redirect issue - login shows successful but redirects back to sign in instead of student dashboard
+  - Added session cookie creation to login endpoint
+  - Added redirectOnUnauthenticated protection to Dashboard
