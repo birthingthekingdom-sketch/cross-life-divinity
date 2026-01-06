@@ -16,11 +16,11 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
   const [slidesAvailable, setSlidesAvailable] = useState(true);
 
   const slides = [
-    { id: 'slide_1_title', title: 'Understanding Prophecy' },
-    { id: 'slide_2_objectives', title: 'Course Objectives' },
-    { id: 'slide_3_topics', title: 'What You\'ll Learn' },
-    { id: 'slide_4_structure', title: 'Course Structure' },
-    { id: 'slide_5_commitment', title: 'Your Learning Journey' },
+    { id: 'title_slide', title: 'Course Introduction' },
+    { id: 'course_overview', title: 'Course Overview' },
+    { id: 'learning_objectives', title: 'Learning Objectives' },
+    { id: 'course_structure', title: 'Course Structure' },
+    { id: 'call_to_action', title: 'Get Started' },
   ];
 
   // Map course IDs to their slideshow paths
@@ -49,7 +49,7 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
 
   const basePath = slideshowMap[courseId] || `/course-intros/${courseId.toLowerCase()}`;
   const currentSlideFile = `${basePath}/${slides[currentSlide].id}.html`;
-  const voiceoverPath = `${basePath}/intro-voiceover.wav`;
+  const voiceoverPath = `${basePath}/voiceover_complete.wav`;
 
   // Check if slides are available
   useEffect(() => {
@@ -158,12 +158,13 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
   return (
     <div className="w-full bg-gray-50 rounded-lg overflow-hidden shadow-lg">
       {/* Slideshow Container */}
-      <div className="relative bg-white">
+      <div className="relative bg-white" style={{ aspectRatio: '16 / 9', overflow: 'hidden' }}>
         <iframe
           src={currentSlideFile}
-          className="w-full"
-          style={{ height: '480px', border: 'none' }}
+          className="w-full h-full"
+          style={{ border: 'none', display: 'block' }}
           title={`${courseName} - ${slides[currentSlide].title}`}
+          sandbox="allow-same-origin"
         />
       </div>
 

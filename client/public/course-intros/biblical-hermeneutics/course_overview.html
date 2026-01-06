@@ -7,7 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        .slide-container { width: 1280px; min-height: 720px; background: linear-gradient(135deg, #1e3a8a 0%, #2c5aa0 100%); display: flex; align-items: center; padding-top: 60px; }
+        .slide-container { width: 100%; min-height: 100vh; background: linear-gradient(135deg, #1e3a8a 0%, #2c5aa0 100%); display: flex; align-items: center; padding-top: 60px; 
+            transform-origin: top left;
+            transform: scale(1);
+        }
         .content-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 60px; }
         .section-title { font-family: 'Merriweather', serif; font-size: 48px; font-weight: 700; color: #d4af37; margin-bottom: 30px; position: relative; padding-bottom: 20px; }
         .section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 4px; background: #d4af37; }

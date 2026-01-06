@@ -13,14 +13,17 @@
         }
 
         .slide-container {
-            width: 1280px;
-            min-height: 720px;
+            width: 100%;
+            min-height: 100vh;
             background: linear-gradient(135deg, #001f3f 0%, #003d5c 100%);
             display: grid;
             grid-template-columns: 1fr 1fr;
             align-items: center;
             position: relative;
             overflow: hidden;
+        
+            transform-origin: top left;
+            transform: scale(1);
         }
 
         .slide-container::after {

@@ -13,14 +13,17 @@
         }
         
         .slide-container {
-            width: 1280px;
-            min-height: 720px;
+            width: 100%;
+            min-height: 100vh;
             background: linear-gradient(135deg, #F5F1E8 0%, #FAF8F3 100%);
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: relative;
             overflow: hidden;
+        
+            transform-origin: top left;
+            transform: scale(1);
         }
         
         .content-left {
@@ -57,7 +60,7 @@
         
         .decorative-right {
             flex: 0 0 400px;
-            height: 720px;
+            min-height: 100vh;
             background: linear-gradient(135deg, #1B5E20 0%, #81C784 100%);
             position: relative;
             display: flex;
