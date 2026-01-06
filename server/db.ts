@@ -198,16 +198,16 @@ export async function getAllCourses(): Promise<Course[]> {
   const db = await getDb();
   if (!db) return [];
   
-  // Return all courses ordered by display order
-  return db.select().from(courses).orderBy(courses.displayOrder);
+  // Return only theological courses (exclude GED courses)
+  return db.select().from(courses).where(eq(courses.courseType, 'theological')).orderBy(courses.displayOrder);
 }
 
 export async function getAllGedCourses(): Promise<Course[]> {
   const db = await getDb();
   if (!db) return [];
   
-  // Return all courses ordered by display order (GED filtering would need courseType column)
-  return db.select().from(courses).orderBy(courses.displayOrder);
+  // Return only GED courses
+  return db.select().from(courses).where(eq(courses.courseType, 'ged')).orderBy(courses.displayOrder);
 }
 
 export async function getCourseById(id: number): Promise<Course | undefined> {
