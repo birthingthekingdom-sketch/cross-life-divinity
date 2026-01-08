@@ -10,6 +10,8 @@ import { serveStatic, setupVite } from "./vite";
 import { generateCertificate } from "../certificate-generator";
 import * as db from "../db";
 import { sdk } from "./sdk";
+import { setEmailConfig } from "../email";
+import { ENV } from "./env";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -31,6 +33,21 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
 }
 
 async function startServer() {
+  // Initialize email configuration at startup
+  if (ENV.emailUser && ENV.emailPass) {
+    setEmailConfig({
+      host: ENV.emailHost,
+      port: ENV.emailPort,
+      secure: ENV.emailSecure,
+      user: ENV.emailUser,
+      pass: ENV.emailPass,
+    });
+    console.log('[Email] Email service configured successfully');
+  } else {
+    console.warn('[Email] Email credentials not configured. Password reset emails will not be sent.');
+    console.warn('[Email] Please set SMTP_USER and SMTP_PASS environment variables.');
+  }
+
   const app = express();
   const server = createServer(app);
   // Configure body parser with larger size limit for file uploads
