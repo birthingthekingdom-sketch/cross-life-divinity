@@ -18,6 +18,7 @@ import {
 import { PublicNav } from "@/components/PublicNav";
 import { Footer } from "@/components/Footer";
 import { Link } from "wouter";
+import { CPEAccreditationBadge } from "@/components/CPEAccreditationBadge";
 
 export default function ChaplaincyTrainingEnhanced() {
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(0);
@@ -175,6 +176,11 @@ export default function ChaplaincyTrainingEnhanced() {
             </Link>
           </div>
         </div>
+      </div>
+
+      {/* CPE Accreditation Badge */}
+      <div className="container">
+        <CPEAccreditationBadge cpeHours={30} colorTheme="#7c3aed" />
       </div>
 
       {/* CPE Pathways */}

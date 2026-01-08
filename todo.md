@@ -2905,3 +2905,4 @@ All components built and integrated. Ready for:
 - [x] Integrate CPE badge into all theological course pages
 - [x] Test responsive design and styling across devices
 - [x] Verify color-coordinated styling matches course themes
+- [x] Add CPE accreditation badge to Chaplaincy Training course (CHAP101) with 30 CPD hours and ACPE details (Provider ID: CLD-2024)
