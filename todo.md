@@ -2790,3 +2790,110 @@ All components built and integrated. Ready for:
 - [x] Fix login redirect issue - login shows successful but redirects back to sign in instead of student dashboard
   - Added session cookie creation to login endpoint
   - Added redirectOnUnauthenticated protection to Dashboard
+
+
+---
+
+## CPE CHAPLAINCY COURSE ENHANCEMENTS (NEW - January 2026)
+
+### Phase 1: Content Development
+
+#### Enhanced Course Content
+- [ ] Develop comprehensive course syllabus with learning outcomes
+- [ ] Create detailed module breakdowns (8-10 modules)
+- [ ] Develop enhanced theological foundations section
+- [ ] Create practical skills modules with real-world scenarios
+- [ ] Develop self-care and burnout prevention content
+
+#### CPE Pathway Map & Visualization
+- [ ] Design CPE pathway flowchart (enrollment → certification)
+- [ ] Create interactive pathway component with clinical hours tracking
+- [ ] Develop visual timeline showing prerequisites and milestones
+- [ ] Build clinical hours calculator and tracker
+- [ ] Create downloadable pathway guide for students
+
+#### Supplementary Materials
+- [ ] Create comprehensive CPE glossary (50+ terms)
+- [ ] Develop supervisor relationship guide
+- [ ] Create professional boundaries framework document
+- [ ] Develop multi-faith ministry guide
+- [ ] Create crisis intervention quick reference guide
+- [ ] Develop self-care resource toolkit
+
+#### Case Studies & Scenarios
+- [ ] Develop 5-8 realistic CPE case studies
+- [ ] Create hospital chaplaincy scenarios
+- [ ] Create military chaplaincy scenarios
+- [ ] Create correctional facility scenarios
+- [ ] Create corporate chaplaincy scenarios
+- [ ] Develop discussion questions for each case study
+
+#### CPE Readiness Assessment
+- [ ] Design self-evaluation questionnaire (20-30 questions)
+- [ ] Create scoring rubric and interpretation guide
+- [ ] Develop personalized feedback system
+- [ ] Create remedial resource recommendations based on scores
+
+### Phase 2: Web App Integration
+
+#### New Pages & Components
+- [ ] Create CPE Pathway Map page with interactive visualization
+- [ ] Create CPE Glossary page with search functionality
+- [ ] Create Case Studies page with filtering and discussion tools
+- [ ] Create CPE Readiness Assessment page with interactive quiz
+- [ ] Create Resources Hub page for supplementary materials
+- [ ] Create Clinical Hours Tracker component
+- [ ] Create Supervisor Relationship Guide page
+
+#### Enhanced Chaplaincy Training Page
+- [ ] Add CPE pathway map section to main page
+- [ ] Integrate clinical hours information prominently
+- [ ] Add links to new supplementary resources
+- [ ] Enhance marketing messaging with CPE focus
+- [ ] Add CPE certification details and benefits
+- [ ] Create comparison table: CPE vs. other certifications
+
+#### Interactive Components
+- [ ] Build interactive CPE pathway visualization (D3.js or Chart.js)
+- [ ] Create clinical hours calculator widget
+- [ ] Build case study discussion forum component
+- [ ] Create readiness assessment with real-time scoring
+- [ ] Build resource search and filter system
+
+### Phase 3: Content Assets
+
+#### Documents & Downloadables
+- [ ] CPE Glossary PDF
+- [ ] Pathway Guide PDF
+- [ ] Supervisor Relationship Guide PDF
+- [ ] Professional Boundaries Framework PDF
+- [ ] Multi-faith Ministry Guide PDF
+- [ ] Crisis Intervention Quick Reference PDF
+- [ ] Self-Care Resource Toolkit PDF
+
+#### Visual Assets
+- [ ] CPE pathway diagram/flowchart
+- [ ] Clinical hours breakdown infographic
+- [ ] Career opportunities visualization
+- [ ] Timeline graphics for each chaplaincy setting
+
+### Phase 4: Testing & Deployment
+
+- [ ] Test all interactive components
+- [ ] Verify responsive design on mobile/tablet
+- [ ] Test readiness assessment scoring
+- [ ] Verify all PDF downloads work correctly
+- [ ] Test case study filtering and search
+- [ ] Verify clinical hours calculator accuracy
+- [ ] User acceptance testing with sample students
+- [ ] Performance optimization
+- [ ] Create checkpoint for deployment
+
+### Marketing & Messaging Enhancements
+
+- [ ] Highlight CPE focus in all marketing copy
+- [ ] Emphasize clinical hours requirements and completion
+- [ ] Feature supervisor relationship support
+- [ ] Showcase case study-based learning approach
+- [ ] Promote readiness assessment as student benefit
+- [ ] Create comparison messaging vs. competitors

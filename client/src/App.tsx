@@ -66,6 +66,10 @@ import Logout from './pages/Logout';
 import AffiliateApply from './pages/AffiliateApply';
 import AffiliateDashboard from './pages/AffiliateDashboard';
 import ChaplaincyTraining from './pages/ChaplaincyTraining';
+import CPEReadinessAssessment from './pages/CPEReadinessAssessment';
+import CPEGlossary from './pages/CPEGlossary';
+import CPECaseStudies from './pages/CPECaseStudies';
+import CPEPathwayMap from './pages/CPEPathwayMap';
 import { PaymentPlanCheckout } from './pages/PaymentPlanCheckout';
 import MyPayments from './pages/MyPayments';
 import StudentHandbook from './pages/StudentHandbook';
@@ -99,6 +103,10 @@ function Router() {
       <Route path="/affiliate/apply" component={AffiliateApply} />
       <Route path="/affiliate/dashboard" component={AffiliateDashboard} />
       <Route path="/chaplaincy-training" component={ChaplaincyTraining} />
+      <Route path="/cpe-readiness" component={CPEReadinessAssessment} />
+      <Route path="/cpe-glossary" component={CPEGlossary} />
+      <Route path="/cpe-case-studies" component={CPECaseStudies} />
+      <Route path="/cpe-pathway" component={CPEPathwayMap} />
       <Route path="/register" component={Register} />
       <Route path="/signup" component={Register} />
       <Route path="/forgot-password" component={ForgotPassword} />
