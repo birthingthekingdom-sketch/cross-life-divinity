@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { CourseIntroSlideshow } from "@/components/CourseIntroSlideshow";
+import { CPEAccreditationBadge } from "@/components/CPEAccreditationBadge";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { ArrowLeft, Award, BookOpen, CheckCircle2, Circle, Download, MessageSquare, Video } from "lucide-react";
@@ -148,6 +149,12 @@ export default function CoursePage() {
         {/* Course Info for Non-Logged-In Users */}
         <div className="container py-8">
           <div className="max-w-4xl mx-auto">
+          {/* CPE Accreditation Badge */}
+          <CPEAccreditationBadge 
+            cpeHours={course.cpdHours || 2.5}
+            colorTheme={course.colorTheme}
+          />
+
           {/* Course Introduction Slideshow */}
           <Card className="mb-8">
             <CardHeader>
@@ -325,6 +332,12 @@ export default function CoursePage() {
       {/* Lessons List */}
       <div className="container py-8">
         <div className="max-w-4xl mx-auto">
+          {/* CPE Accreditation Badge */}
+          <CPEAccreditationBadge 
+            cpeHours={course.cpdHours || 2.5}
+            colorTheme={course.colorTheme}
+          />
+
           {/* Course Introduction Slideshow */}
           <Card className="mb-8">
             <CardHeader>

@@ -2897,3 +2897,11 @@ All components built and integrated. Ready for:
 - [ ] Showcase case study-based learning approach
 - [ ] Promote readiness assessment as student benefit
 - [ ] Create comparison messaging vs. competitors
+
+
+## CPE ACCREDITATION BADGE (NEW - January 2026)
+- [x] Create CPE badge component with ACPE accreditation details
+- [x] Add CPE credits (2-3 hours) and provider ID (CLD-2024) to badge
+- [x] Integrate CPE badge into all theological course pages
+- [x] Test responsive design and styling across devices
+- [x] Verify color-coordinated styling matches course themes
