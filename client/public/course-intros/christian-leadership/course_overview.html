@@ -12,6 +12,9 @@
             transform: scale(1);
         }
         .content-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+        .content-wrapper[style*="grid-template-columns: 1fr"] { grid-template-columns: 1fr; }
+        .content-wrapper[style*="grid-template-columns: 1fr"] .left-section { grid-column: 1 / -1; }
+        .content-wrapper[style*="grid-template-columns: 1fr"] .right-section { grid-column: 1 / -1; }
         .section-title { font-family: 'Merriweather', serif; font-size: 48px; font-weight: 700; color: #d4af37; margin-bottom: 30px; position: relative; padding-bottom: 20px; }
         .section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 4px; background: #d4af37; }
         .overview-text { font-family: 'Open Sans', sans-serif; font-size: 16px; color: #f5f5f5; line-height: 1.8; margin-bottom: 30px; }
@@ -21,12 +24,123 @@
         .point-box { background: rgba(212, 175, 55, 0.08); border-left: 4px solid #d4af37; padding: 18px 20px; margin-bottom: 15px; }
         .point-box-title { font-family: 'Merriweather', serif; font-size: 16px; font-weight: 700; color: #d4af37; margin-bottom: 8px; }
         .point-box-text { font-family: 'Open Sans', sans-serif; font-size: 14px; color: #f5f5f5; line-height: 1.6; }
+        .cpe-badge-container {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 30px 0;
+            grid-column: 1 / -1;
+        }
+        .cpe-badge-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .cpe-badge-icon {
+            width: 32px;
+            height: 32px;
+            background: #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1e3a8a;
+            font-size: 18px;
+        }
+        .cpe-badge-title {
+            font-family: 'Merriweather', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #d4af37;
+            margin: 0;
+        }
+        .cpe-badge-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 16px;
+        }
+        .cpe-info-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .cpe-info-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .cpe-info-value {
+            font-size: 16px;
+            color: #f5f5f5;
+            font-weight: 500;
+        }
+        .cpe-info-description {
+            font-size: 13px;
+            color: #d4af37;
+            margin-top: 4px;
+            opacity: 0.9;
+        }
+        .cpe-badge-footer {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            font-size: 12px;
+            color: #b8b8b8;
+            line-height: 1.6;
+        }
+        .cpe-badge-footer strong {
+            color: #d4af37;
+        }
+        @media (max-width: 768px) {
+            .cpe-badge-container { padding: 18px; margin: 20px 0; }
+            .cpe-badge-title { font-size: 18px; }
+            .cpe-badge-content { grid-template-columns: 1fr; gap: 12px; }
+            .cpe-info-value { font-size: 15px; }
+        }
     </style>
 </head>
 <body>
     <div class="slide-container">
-        <div class="content-wrapper">
-            <div class="left-section">
+        <div class="content-wrapper" style="grid-template-columns: 1fr;">
+            <div class="cpe-badge-container">
+                <div class="cpe-badge-header">
+                    <div class="cpe-badge-icon">✓</div>
+                    <h3 class="cpe-badge-title">CPE Accredited Course</h3>
+                </div>
+                <div class="cpe-badge-content">
+                    <div class="cpe-info-item">
+                        <div class="cpe-info-label">CPE Credits</div>
+                        <div class="cpe-info-value">2-3 Credits</div>
+                        <div class="cpe-info-description">Per course completion</div>
+                    </div>
+                    <div class="cpe-info-item">
+                        <div class="cpe-info-label">Accreditation</div>
+                        <div class="cpe-info-value">ACPE</div>
+                        <div class="cpe-info-description">Association for Clinical Pastoral Education</div>
+                    </div>
+                    <div class="cpe-info-item">
+                        <div class="cpe-info-label">Provider ID</div>
+                        <div class="cpe-info-value">CLD-2024</div>
+                        <div class="cpe-info-description">Cross Life School of Divinity</div>
+                    </div>
+                    <div class="cpe-info-item">
+                        <div class="cpe-info-label">For Professionals</div>
+                        <div class="cpe-info-value">Chaplains & Counselors</div>
+                        <div class="cpe-info-description">Clergy, spiritual care professionals</div>
+                    </div>
+                </div>
+                <div class="cpe-badge-footer">
+                    <strong>How to Claim:</strong> Upon successful course completion, you will receive a certificate of completion. This certificate documents your CPE credits and can be submitted to your professional organization or employer for continuing education requirements.
+                </div>
+            </div>
+
+            <div class="left-section" style="grid-column: 1 / 2;">
                 <h2 class="section-title">Course Overview</h2>
                 <p class="overview-text">Develop <span class="highlight">biblical leadership skills and character</span>. This course develops your ability to lead with integrity, vision, and servant-heartedness in your ministry context.</p>
                 <p class="overview-text">Whether you're a pastor, church leader, or ministry director, this course will equip you with biblical principles and practical skills for effective Christian leadership.</p>
