@@ -165,6 +165,10 @@ export const appRouter = router({
       return db.getAllCourses();
     }),
     
+    listGed: publicProcedure.query(async () => {
+      return db.getAllGedCourses();
+    }),
+    
     checkEnrollment: protectedProcedure
       .input(z.object({ courseId: z.number() }))
       .query(async ({ ctx, input }) => {

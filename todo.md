@@ -26,6 +26,14 @@
 
 ---
 
+## CURRENT TASK - Remove GED Courses from Main Catalogue
+- [x] Remove GED Math, GED Language Arts, GED Science, GED Social Studies from main course catalogue
+- [x] Keep GED courses in separate Bridge Academy section only
+- [x] Update course filtering to exclude GED from main display
+- [x] Updated getAllCourses() to return only theological courses
+- [x] Created listGed endpoint for Bridge Academy
+- [x] Updated Catalog page to fetch theological and GED courses separately
+
 ## ACTIVE TASKS (IN PROGRESS)
 - [x] Restore courses list section to admin page
 - [x] Add Financial Aid link to main navigation menu for better discoverability and enrollment conversion
