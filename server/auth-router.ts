@@ -52,7 +52,9 @@ export const authRouter = router({
     )
     .mutation(async ({ input, ctx }) => {
       try {
+        console.log('[Auth] Login attempt for:', input.email);
         const user = await authService.authenticateUser(input.email, input.password);
+        console.log('[Auth] User authenticated:', user.id, user.email);
         
         // Create and set session cookie
         const { sdk } = await import('./_core/sdk');
@@ -81,6 +83,7 @@ export const authRouter = router({
           },
         };
       } catch (error) {
+        console.error('[Auth] Login error:', error);
         if (error instanceof Error) {
           throw new Error(error.message);
         }
