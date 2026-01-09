@@ -1,0 +1,40 @@
+{
+  "query": "SELECT id, email, role, name FROM users ORDER BY lastSignedIn DESC LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, email, role, name FROM users ORDER BY lastSignedIn DESC LIMIT 5;",
+  "rows": [
+    {
+      "id": "1",
+      "email": "birthingthekingdom@gmail.com",
+      "role": "admin",
+      "name": "Christ Family Network"
+    },
+    {
+      "id": "6690003",
+      "email": "Studio6817@yahoo.com",
+      "role": "user",
+      "name": "Larry"
+    },
+    {
+      "id": "17370008",
+      "email": "integration-test-1767916114@example.com",
+      "role": "user",
+      "name": "Integration Test User"
+    },
+    {
+      "id": "17370007",
+      "email": "integration-test-1767916108@example.com",
+      "role": "user",
+      "name": "Integration Test User"
+    },
+    {
+      "id": "17220015",
+      "email": "csv-student-1767843742275@test.com",
+      "role": "user",
+      "name": "CSV Test Student"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\trole\tname\n1\tbirthingthekingdom@gmail.com\tadmin\tChrist Family Network\n6690003\tStudio6817@yahoo.com\tuser\tLarry\n17370008\tintegration-test-1767916114@example.com\tuser\tIntegration Test User\n17370007\tintegration-test-1767916108@example.com\tuser\tIntegration Test User\n17220015\tcsv-student-1767843742275@test.com\tuser\tCSV Test Student\n",
+  "stderr": "",
+  "execution_time_ms": 412
+}

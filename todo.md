@@ -2943,3 +2943,4 @@ All components built and integrated. Ready for:
 - [x] Added 4 GED courses (Math, Language Arts, Science, Social Studies)
 - [x] Updated Catalog hero text to show 20 theological + 4 GED courses
 - [x] Verified course counts: 20 theological, 4 GED, 1 Chaplaincy
+- [x] Add admin/student role toggle to dashboard - allow users to switch between admin and student views

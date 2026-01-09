@@ -1,0 +1,17 @@
+{
+  "query": "SELECT id, email, role, name, lastSignedIn FROM users WHERE email != 'studio6817@yahoo.com' ORDER BY lastSignedIn DESC LIMIT 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, email, role, name, lastSignedIn FROM users WHERE email != 'studio6817@yahoo.com' ORDER BY lastSignedIn DESC LIMIT 1;",
+  "rows": [
+    {
+      "id": "1",
+      "email": "birthingthekingdom@gmail.com",
+      "role": "admin",
+      "name": "Christ Family Network",
+      "lastSignedIn": "2026-01-08 23:54:47"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\trole\tname\tlastSignedIn\n1\tbirthingthekingdom@gmail.com\tadmin\tChrist Family Network\t2026-01-08 23:54:47\n",
+  "stderr": "",
+  "execution_time_ms": 391
+}
