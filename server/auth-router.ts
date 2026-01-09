@@ -59,7 +59,10 @@ export const authRouter = router({
         const { getSessionCookieOptions } = await import('./_core/cookies');
         const { COOKIE_NAME, ONE_YEAR_MS } = await import('@shared/const');
         
-        const sessionToken = await sdk.createSessionToken(user.openId, {
+        // For email/password users without openId, generate a temporary openId
+        const openIdForSession = user.openId || `local-user-${user.id}`;
+        
+        const sessionToken = await sdk.createSessionToken(openIdForSession, {
           name: user.name || '',
           expiresInMs: ONE_YEAR_MS,
         });

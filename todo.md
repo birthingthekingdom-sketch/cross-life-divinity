@@ -27,6 +27,8 @@
 ---
 
 ## ACTIVE TASKS (IN PROGRESS)
+- [x] Debug login issue - admin account (studio6817@yahoo.com) cannot login - FIXED
+- [x] Debug login issue - student account (Studio6817@yahoo.com) cannot login - FIXED
 - [x] Add Affiliate Program link to footer and navigation
 - [ ] Make phone number optional in registration/login
 - [x] Disable Manus OAuth login completely
