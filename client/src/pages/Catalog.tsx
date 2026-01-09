@@ -37,7 +37,7 @@ export default function Catalog() {
           <div className="max-w-4xl">
             <h1 className="text-5xl font-bold mb-4">Course Catalog</h1>
             <p className="text-xl text-white/90 mb-6">
-              Browse our complete catalog of 17 theological courses covering essential ministry topics.
+              Browse our complete catalog of 20 theological courses and 4 GED preparation courses covering essential ministry and educational topics.
             </p>
             <div className="flex gap-4">
               <Link href="/register">

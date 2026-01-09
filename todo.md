@@ -1,9 +1,9 @@
 # Cross Life School of Divinity - Project Tracking
 
 ## CURRENT STATUS
-**Checkpoint:** 00eeac18 (Jan 6, 2025)
-**Courses:** 17 theological + 4 GED (total 21) ✅
-**Last Updated:** Jan 6, 2025 - Fixed course separation and login issues
+**Checkpoint:** e2b32816 (Jan 8, 2025)
+**Courses:** 20 theological + 4 GED + 1 Chaplaincy (total 25) ✅
+**Last Updated:** Jan 8, 2025 - Added missing theological courses, GED courses, removed ACPE affiliation
 
 ---
 
@@ -2928,3 +2928,14 @@ All components built and integrated. Ready for:
 - Email sending is gracefully handled with proper error logging
 - Test suite validates all aspects of the password reset flow
 - SMTP credentials are securely stored as environment variables
+
+## COMPLETED - Jan 8, 2025
+- [x] Remove all ACPE affiliation claims from CPEAccreditationBadge component
+- [x] Verified: No AC prefix courses in database
+- [x] Kept MIN201 Fivefold Ministry course intact
+- [x] Restored Fivefold Ministry references in Landing page and Success Stories
+- [x] Added BIB101 (Old Testament Survey) - missing theological course
+- [x] Added BIB102 (New Testament Survey) - missing theological course
+- [x] Added 4 GED courses (Math, Language Arts, Science, Social Studies)
+- [x] Updated Catalog hero text to show 20 theological + 4 GED courses
+- [x] Verified course counts: 20 theological, 4 GED, 1 Chaplaincy
