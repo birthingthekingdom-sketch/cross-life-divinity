@@ -104,8 +104,8 @@ export default function BridgeAcademyDashboard() {
                 Prepare for your GED exam with unlimited practice quizzes
               </p>
               <div className="mt-3 flex items-center gap-4">
-                <div className="text-2xl font-bold text-primary">$19/month</div>
-                <div className="text-sm text-muted-foreground">or $180/year • Lifetime Access</div>
+                <div className="text-2xl font-bold text-green-600">FREE BONUS</div>
+                <div className="text-sm text-muted-foreground">Included with your course enrollment</div>
               </div>
             </div>
             <div className="text-right">

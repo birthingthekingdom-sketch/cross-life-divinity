@@ -136,6 +136,64 @@ export default function Admin() {
           </Card>
         </div>
 
+        {/* Courses List */}
+        <Card>
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle>Courses</CardTitle>
+                <CardDescription>
+                  View and manage course content
+                </CardDescription>
+              </div>
+              <Link href="/admin/bulk-import">
+                <Button variant="outline">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Bulk Import Lessons
+                </Button>
+              </Link>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {courses?.map((course) => (
+                <div
+                  key={course.id}
+                  className="flex items-center justify-between p-4 border rounded-lg hover:bg-accent/5 transition-colors"
+                >
+                  <div className="flex items-center gap-4">
+                    <div
+                      className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold"
+                      style={{ backgroundColor: course.colorTheme }}
+                    >
+                      {course.code.substring(3)}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold">{course.title}</h3>
+                      <p className="text-sm text-muted-foreground">
+                        {course.code} • {course.totalLessons} lessons
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <Link href={`/admin/course/${course.id}`}>
+                      <Button variant="outline" size="sm">
+                        <Edit className="h-4 w-4 mr-1" />
+                        Manage
+                      </Button>
+                    </Link>
+                    <Link href={`/course/${course.id}`}>
+                      <Button variant="ghost" size="sm">
+                        View
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Access Codes Section */}
         <Card>
           <CardHeader>

@@ -139,8 +139,8 @@ export function BridgeAcademy() {
                 {subject.description}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                <div className="text-2xl font-bold text-primary">$19/month</div>
-                <div className="text-foreground/60">or $180/year • Lifetime Access</div>
+                <div className="text-2xl font-bold text-green-600">FREE BONUS</div>
+                <div className="text-foreground/60">Included with any course enrollment</div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/register">
@@ -179,7 +179,7 @@ export function BridgeAcademy() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Price</p>
-                    <p className="text-lg font-semibold">$19/month</p>
+                    <p className="text-lg font-semibold text-green-600">FREE with enrollment</p>
                   </div>
                 </div>
               </Card>
@@ -221,8 +221,8 @@ export function BridgeAcademy() {
               Affordable GED Prep to Transform Your Future
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <div className="text-2xl font-bold text-primary">$19/month</div>
-              <div className="text-foreground/60">Self-paced • 4 GED Subjects • Lifetime Access</div>
+              <div className="text-2xl font-bold text-green-600">FREE BONUS</div>
+              <div className="text-foreground/60">Included with any course enrollment • 4 GED Subjects • Lifetime Access</div>
             </div>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/register">
@@ -353,7 +353,7 @@ export function BridgeAcademy() {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Life?</h2>
           <p className="text-lg text-foreground/70 mb-8">
-            Start your GED prep journey today. $19/month, cancel anytime.
+            Get Bridge Academy FREE when you enroll in any theological course. No additional cost!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/register">
@@ -376,7 +376,7 @@ export function BridgeAcademy() {
             <div>
               <h3 className="font-semibold mb-2">Can I add Bridge Academy to my existing CLSOD enrollment?</h3>
               <p className="text-foreground/70">
-                Yes! Bridge Academy is available as an add-on to any CLSOD course, path, or subscription. Just add it to your account for $19/month.
+                Yes! Bridge Academy is automatically included FREE with any CLSOD course, path, or subscription enrollment. No additional cost needed.
               </p>
             </div>
             <div>
@@ -400,7 +400,7 @@ export function BridgeAcademy() {
             <div>
               <h3 className="font-semibold mb-2">Do you offer payment plans?</h3>
               <p className="text-foreground/70">
-                Bridge Academy is a monthly subscription ($19/month). You can cancel anytime. Contact us for custom payment arrangements if needed.
+                Bridge Academy is completely FREE as a bonus with your course enrollment. As long as you're enrolled in any CLSOD course, you have full access to Bridge Academy at no additional cost.
               </p>
             </div>
           </div>

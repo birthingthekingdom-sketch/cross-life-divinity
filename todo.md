@@ -27,6 +27,7 @@
 ---
 
 ## ACTIVE TASKS (IN PROGRESS)
+- [x] Restore courses list section to admin page
 - [x] Add Financial Aid link to main navigation menu for better discoverability and enrollment conversion
 - [x] Debug login issue - admin account (studio6817@yahoo.com) cannot login - FIXED
 - [x] Debug login issue - student account (Studio6817@yahoo.com) cannot login - FIXED
@@ -52,6 +53,17 @@
 - [x] Remove ACPE affiliation claims from CPEAccreditationBadge component
 - [x] Verify Chaplaincy course (CHAP101) focuses on Clinical Pastoral Education (CPE) with 10 comprehensive lessons
 - [ ] Build course introduction slideshows with female voiceover (one at a time)
+
+## Bridge Academy FREE Bonus Changes
+- [x] Remove $19/month and $180/year pricing from Bridge Academy
+- [x] Update database schema to mark Bridge Academy as FREE
+- [x] Implement auto-enrollment logic for Bridge Academy on theological course enrollment
+- [x] Update pricing pages to remove Bridge Academy costs
+- [x] Update Bridge Academy landing page to highlight FREE bonus status
+- [x] Update GED course pages to show FREE access
+- [x] Update navigation and marketing materials
+- [ ] Test auto-enrollment flow
+- [ ] Verify pricing calculations exclude Bridge Academy
 - [x] Bridge Academy: Database tables created and seeded with 4 GED courses
 - [x] Bridge Academy: Added 180+ practice questions across all topics
 - [x] Bridge Academy: Created database functions to retrieve courses with topics

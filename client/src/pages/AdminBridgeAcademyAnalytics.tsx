@@ -74,11 +74,11 @@ export default function AdminBridgeAcademyAnalytics() {
 
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium">Active Subscriptions</CardTitle>
+              <CardTitle className="text-sm font-medium">Active Students</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-blue-600">124</div>
-              <p className="text-xs text-muted-foreground">$19/month each</p>
+              <div className="text-2xl font-bold text-green-600">156</div>
+              <p className="text-xs text-muted-foreground">FREE with enrollment</p>
             </CardContent>
           </Card>
         </div>
