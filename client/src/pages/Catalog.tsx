@@ -95,45 +95,46 @@ export default function Catalog() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {(theologicalCourses || []).map((course: any) => (
-            <Card key={course.id} className="hover:shadow-xl transition-all bg-blue-50 border-blue-200">
-              <CardHeader 
-                className="bg-primary text-white min-h-[140px]"
-              >
-                <div className="flex items-start justify-between mb-2">
-                  <Badge className="bg-white/20 text-white">{course.code}</Badge>
-                  {course.cpdHours > 0 && (
-                    <Badge variant="secondary" className="bg-white/90">
-                      <Award className="h-3 w-3 mr-1" />
-                      {course.cpdHours} CPD
-                    </Badge>
-                  )}
-                </div>
-                <CardTitle className="text-white text-lg">{course.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-4">
-                <CardDescription className="text-sm mb-4 line-clamp-2 text-foreground/80">
-                  {course.description}
-                </CardDescription>
-                <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                  <div className="flex items-center gap-1">
-                    <BookOpen className="h-4 w-4" />
-                    {course.totalLessons} lessons
+              <Card key={course.id} className="hover:shadow-xl transition-all bg-blue-50 border-blue-200">
+                <CardHeader 
+                  className="bg-primary text-white min-h-[140px]"
+                >
+                  <div className="flex items-start justify-between mb-2">
+                    <Badge className="bg-white/20 text-white">{course.code}</Badge>
+                    {course.cpdHours > 0 && (
+                      <Badge variant="secondary" className="bg-white/90">
+                        <Award className="h-3 w-3 mr-1" />
+                        {course.cpdHours} CPD
+                      </Badge>
+                    )}
                   </div>
-                  {course.estimatedHours && (
+                  <CardTitle className="text-white text-lg">{course.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="pt-4">
+                  <CardDescription className="text-sm mb-4 line-clamp-2 text-foreground/80">
+                    {course.description}
+                  </CardDescription>
+                  <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
                     <div className="flex items-center gap-1">
-                      <Clock className="h-4 w-4" />
-                      {course.estimatedHours}h
+                      <BookOpen className="h-4 w-4" />
+                      {course.totalLessons} lessons
                     </div>
-                  )}
-                </div>
-                <Link href="/register">
-                  <Button variant="outline" className="w-full">
-                    Enroll Now
-                    <ArrowRight className="h-4 w-4 ml-2" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>          ))}
+                    {course.estimatedHours && (
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-4 w-4" />
+                        {course.estimatedHours}h
+                      </div>
+                    )}
+                  </div>
+                  <Link href="/register">
+                    <Button variant="outline" className="w-full">
+                      Enroll Now
+                      <ArrowRight className="h-4 w-4 ml-2" />
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       )}

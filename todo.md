@@ -2976,3 +2976,9 @@ All components built and integrated. Ready for:
 - [x] Restore lessons to LED202 (Christian Leadership) - 10 lessons added
 - [x] Restore lessons to DIV111 (Capstone Project) - 8 lessons added
 - [x] Restore lessons to DIV113 (Contemporary Theological Issues) - 10 lessons added
+
+## URGENT: Course Catalog Cleanup (Jan 9, 2025)
+- [x] Remove CPE (Clinical Pastoral Education) from all course categories - VERIFIED: 0 CPE courses in database
+- [x] Add Old Testament Survey course (BIB101) - VERIFIED: Displaying in catalog
+- [x] Add New Testament Survey course (BIB102) - VERIFIED: Displaying in catalog
+- [x] Verify CPE is completely removed from course catalog display - VERIFIED: No CPE courses showing
