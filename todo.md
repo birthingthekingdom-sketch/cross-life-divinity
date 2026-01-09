@@ -2956,3 +2956,15 @@ All components built and integrated. Ready for:
 - [x] Updated Catalog hero text to show 20 theological + 4 GED courses
 - [x] Verified course counts: 20 theological, 4 GED, 1 Chaplaincy
 - [x] Add admin/student role toggle to dashboard - allow users to switch between admin and student views
+
+## URGENT FIXES - Course Menu Issues (Jan 9, 2025)
+- [x] Audit all courses and identify which have missing lessons
+- [x] Remove CPE references from all course descriptions and titles (VERIFIED - none found)
+- [x] Fix Christology course (verify it exists and has proper lessons) - DIV112 has 10 lessons
+- [x] Remove incorrectly placed CPE course from course list (verified - no CPE course in list)
+- [x] Verify all courses have proper lesson assignments - ALL RESTORED
+- [x] Fix Homiletics card background color - bg-green-900/40 and bg-slate-800/70
+- [x] Restore lessons to DIV102 (Deliverance Ministry) - 10 lessons added
+- [x] Restore lessons to LED202 (Christian Leadership) - 10 lessons added
+- [x] Restore lessons to DIV111 (Capstone Project) - 8 lessons added
+- [x] Restore lessons to DIV113 (Contemporary Theological Issues) - 10 lessons added
