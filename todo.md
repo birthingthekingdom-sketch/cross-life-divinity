@@ -1,9 +1,9 @@
 # Cross Life School of Divinity - Project Tracking
 
 ## CURRENT STATUS
-**Checkpoint:** e2b32816 (Jan 8, 2025)
+**Checkpoint:** (pending) (Jan 8, 2025)
 **Courses:** 20 theological + 4 GED + 1 Chaplaincy (total 25) ✅
-**Last Updated:** Jan 8, 2025 - Added missing theological courses, GED courses, removed ACPE affiliation
+**Last Updated:** Jan 8, 2025 - Updated chaplaincy pricing, removed ACPE affiliation, verified CPE content
 
 ---
 
@@ -47,6 +47,9 @@
 - [x] Clean up database: Removed 12 test courses (TWC*, CSV*, TEST* prefixes) - Jan 6, 2025
 - [x] Fix CourseIntroSlideshow component to handle missing slide files gracefully
 - [x] Fix slide file naming mismatch in CourseIntroSlideshow (updated to match actual files: slide_1_title, slide_2_objectives, etc.)
+- [x] Update Chaplaincy Training pricing to show ~~$400~~ → $325 ($275 course + $50 background check)
+- [x] Remove ACPE affiliation claims from CPEAccreditationBadge component
+- [x] Verify Chaplaincy course (CHAP101) focuses on Clinical Pastoral Education (CPE) with 10 comprehensive lessons
 - [ ] Build course introduction slideshows with female voiceover (one at a time)
 - [x] Bridge Academy: Database tables created and seeded with 4 GED courses
 - [x] Bridge Academy: Added 180+ practice questions across all topics

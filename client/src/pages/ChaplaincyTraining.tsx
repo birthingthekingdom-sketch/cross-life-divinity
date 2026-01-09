@@ -103,9 +103,9 @@ export default function ChaplaincyTraining() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <div className="text-center">
+                <div className="text-sm text-primary-foreground/80 line-through mb-1">$400</div>
                 <div className="text-4xl font-bold mb-2">$325</div>
                 <div className="text-sm text-primary-foreground/80">$275 course + $50 background check</div>
-                <div className="text-xs text-primary-foreground/70">Includes $50 background check</div>
               </div>
               <Button 
                 size="lg" 
@@ -282,10 +282,13 @@ export default function ChaplaincyTraining() {
               <CardHeader>
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <DollarSign className="h-8 w-8 text-primary" />
-                  <div className="text-5xl font-bold text-primary">$325</div>
+                  <div className="flex items-baseline gap-2">
+                    <div className="text-2xl text-muted-foreground line-through">$400</div>
+                    <div className="text-5xl font-bold text-primary">$325</div>
+                  </div>
                 </div>
                 <CardDescription className="text-lg">
-                  <span className="text-muted-foreground">$275 course + $50 background check</span>
+                  <span className="text-muted-foreground">Reduced from $400 • $275 course + $50 background check</span>
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">

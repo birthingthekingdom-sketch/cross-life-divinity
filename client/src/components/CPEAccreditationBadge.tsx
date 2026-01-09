@@ -29,12 +29,12 @@ export function CPEAccreditationBadge({
           {/* Content */}
           <div className="flex-1 min-w-[250px]">
             <div className="flex items-center gap-2 mb-2">
-              <h3 className="text-lg font-bold">ACPE Accredited</h3>
+              <h3 className="text-lg font-bold">Clinical Pastoral Education (CPE) Training</h3>
               <CheckCircle2 className="h-5 w-5 text-white" />
             </div>
             
             <p className="text-white/90 mb-4">
-              This course is accredited by the Association of Clinical Pastoral Education (ACPE) and qualifies for Continuing Professional Education (CPE) credits.
+              This course provides comprehensive Clinical Pastoral Education (CPE) training for chaplaincy professionals. Our program focuses on developing pastoral care competencies through supervised clinical practice, theological reflection, and professional development in institutional settings.
             </p>
 
             {/* Credits and Provider Info */}
@@ -46,21 +46,21 @@ export function CPEAccreditationBadge({
               </div>
 
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
-                <div className="text-sm text-white/80 font-medium">Provider ID</div>
-                <div className="text-lg font-bold mt-1">CLD-2024</div>
-                <div className="text-xs text-white/70">ACPE Registered</div>
+                <div className="text-sm text-white/80 font-medium">Program Focus</div>
+                <div className="text-lg font-bold mt-1">Chaplaincy</div>
+                <div className="text-xs text-white/70">Professional Training</div>
               </div>
 
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
-                <div className="text-sm text-white/80 font-medium">Accreditation</div>
-                <div className="text-lg font-bold mt-1">ACPE</div>
+                <div className="text-sm text-white/80 font-medium">Certification</div>
+                <div className="text-lg font-bold mt-1">CPE</div>
                 <div className="text-xs text-white/70">Professional Standard</div>
               </div>
             </div>
 
             {/* Footer Note */}
             <p className="text-xs text-white/70 mt-4">
-              Upon course completion, participants will receive a certificate of completion with CPE credit hours and accreditation details.
+              Upon course completion, participants will receive a certificate of completion recognizing their CPE training and professional development in chaplaincy ministry.
             </p>
           </div>
         </div>
