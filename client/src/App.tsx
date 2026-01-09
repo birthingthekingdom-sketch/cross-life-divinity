@@ -93,6 +93,8 @@ import BridgeAcademyCourseDetail from './pages/BridgeAcademyCourseDetail';
 import BridgeAcademyPracticeQuiz from './pages/BridgeAcademyPracticeQuiz';
 import BridgeAcademyPracticeTests from './pages/BridgeAcademyPracticeTests';
 import BridgeAcademyStudySchedule from './pages/BridgeAcademyStudySchedule';
+import CPESupervisorDirectory from './pages/CPESupervisorDirectory';
+import ChaplainancyFinancialAid from './pages/ChaplainancyFinancialAid';
 
 function Router() {
   return (
@@ -179,6 +181,8 @@ function Router() {
       <Route path="/credits" component={CreditsAndCertification} />
       <Route path="/life-experience" component={LifeExperienceCredits} />
       <Route path="/financial-aid" component={FinancialAid} />
+      <Route path="/chaplaincy-financial-aid" component={ChaplainancyFinancialAid} />
+      <Route path="/cpe-supervisors" component={CPESupervisorDirectory} />
       <Route path="/enrollment-verification" component={EnrollmentVerification} />
       <Route path="/refund-policy" component={RefundPolicy} />
       <Route path="/knowledge-base" component={HelpCenter} />
