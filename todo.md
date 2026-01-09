@@ -27,9 +27,6 @@
 ---
 
 ## ACTIVE TASKS (IN PROGRESS)
-- [x] Fix admin login - password updated and working
-- [x] Remove GED test courses from course list - filtered from main dashboard
-- [x] Remove all ACPE Accredited references from entire site
 - [x] Debug login issue - admin account (studio6817@yahoo.com) cannot login - FIXED
 - [x] Debug login issue - student account (Studio6817@yahoo.com) cannot login - FIXED
 - [x] Add Affiliate Program link to footer and navigation

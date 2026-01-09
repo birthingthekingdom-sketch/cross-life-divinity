@@ -18,7 +18,7 @@ export function Footer() {
               <h3 className="font-bold text-lg">CLSOD</h3>
             </div>
             <p className="text-white/80 text-sm">
-              Theological education for ministry leaders. Transform your ministry through biblical excellence.
+              CPD-accredited theological education for ministry leaders. Transform your ministry through biblical excellence.
             </p>
           </div>
 
