@@ -62,12 +62,7 @@ export function CourseCard({
               {totalLessons} lessons
             </span>
           )}
-          {cpdHours && (
-            <span className="flex items-center gap-1">
-              <Award className="h-4 w-4" />
-              {cpdHours} CPD hrs
-            </span>
-          )}
+
         </div>
 
         <div className="flex gap-2">

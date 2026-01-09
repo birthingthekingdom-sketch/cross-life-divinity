@@ -443,7 +443,11 @@ export default function Dashboard() {
         {/* All Courses Grid */}
         <h2 className="text-2xl font-bold text-foreground mb-6">All Courses</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {courses?.map((course: any, courseIdx: number) => {
+          {courses?.filter((course: any) => {
+            // Filter out GED test courses and test webinar courses - only show theological courses
+            const courseCode = course.code?.toUpperCase() || '';
+            return !courseCode.startsWith('GED') && !courseCode.startsWith('TEST') && !courseCode.startsWith('CSV') && !courseCode.startsWith('TWC');
+          }).map((course: any, courseIdx: number) => {
             const progress = courseProgress[course.id] || { completed: 0, total: course.totalLessons };
             const progressPercent = progress.total > 0 ? (progress.completed / progress.total) * 100 : 0;
             const isEnrolled = course.isEnrolled;

@@ -1,0 +1,18 @@
+{
+  "query": "SELECT code, title FROM courses WHERE code LIKE 'GED%' OR code LIKE 'TEST%' OR code LIKE 'CSV%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT code, title FROM courses WHERE code LIKE 'GED%' OR code LIKE 'TEST%' OR code LIKE 'CSV%';",
+  "rows": [
+    {
+      "code": "TEST-ENH-1767843706476",
+      "title": "Test Enhancement Course"
+    },
+    {
+      "code": "TEST-ENH-1767843742245",
+      "title": "Test Enhancement Course"
+    }
+  ],
+  "messages": [],
+  "stdout": "code\ttitle\nTEST-ENH-1767843706476\tTest Enhancement Course\nTEST-ENH-1767843742245\tTest Enhancement Course\n",
+  "stderr": "",
+  "execution_time_ms": 391
+}
