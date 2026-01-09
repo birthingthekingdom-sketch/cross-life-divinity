@@ -1,0 +1,18 @@
+{
+  "query": "SELECT id, email, name, role, emailVerified, loginMethod FROM users WHERE email IN ('studio6817@yahoo.com', 'Studio6817@yahoo.com') LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, email, name, role, emailVerified, loginMethod FROM users WHERE email IN ('studio6817@yahoo.com', 'Studio6817@yahoo.com') LIMIT 10;",
+  "rows": [
+    {
+      "id": "6690003",
+      "email": "Studio6817@yahoo.com",
+      "name": "Larry",
+      "role": "admin",
+      "emailVerified": "0",
+      "loginMethod": "email"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\tname\trole\temailVerified\tloginMethod\n6690003\tStudio6817@yahoo.com\tLarry\tadmin\t0\temail\n",
+  "stderr": "",
+  "execution_time_ms": 409
+}

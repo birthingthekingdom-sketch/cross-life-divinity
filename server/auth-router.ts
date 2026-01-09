@@ -2,6 +2,8 @@ import { z } from 'zod';
 import { publicProcedure, protectedProcedure, router } from './_core/trpc';
 import * as authService from './auth-service';
 import * as emailService from './email';
+import { eq } from 'drizzle-orm';
+import * as db from './db';
 
 export const authRouter = router({
   /**
@@ -64,6 +66,15 @@ export const authRouter = router({
         // For email/password users without openId, generate a temporary openId
         const openIdForSession = user.openId || `local-user-${user.id}`;
         
+        // If openId was generated, save it to the database
+        if (!user.openId) {
+          const { users } = await import('../drizzle/schema');
+          const dbInstance = await (await import('./db')).getDb();
+          if (dbInstance) {
+            await dbInstance.update(users).set({ openId: openIdForSession }).where(eq(users.id, user.id));
+          }
+        }
+        
         const sessionToken = await sdk.createSessionToken(openIdForSession, {
           name: user.name || '',
           expiresInMs: ONE_YEAR_MS,
@@ -79,7 +90,7 @@ export const authRouter = router({
             email: user.email,
             name: user.name,
             role: user.role,
-            openId: user.openId,
+            openId: openIdForSession,
           },
         };
       } catch (error) {
