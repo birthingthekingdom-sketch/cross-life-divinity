@@ -17,6 +17,7 @@ export function PublicNav({ currentPage }: PublicNavProps) {
     { href: "/why-online-learning", label: "Why Online?", key: "why-online" },
     { href: "/about", label: "About", key: "about" },
     { href: "/pricing", label: "Pricing", key: "pricing" },
+    { href: "/financial-aid", label: "Financial Aid", key: "financial-aid" },
   ];
 
   const secondaryNavLinks = [
