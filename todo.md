@@ -55,6 +55,7 @@
 - [x] Restore missing courses to catalog (Old Testament Survey BIB101, New Testament Survey BIB102)
 - [x] Remove test courses from database (Test Webinar, CSV Test Course, Test Analytics Course, Test Enhancement Course) - DELETED
 - [x] Clean up database: Removed 12 test courses (TWC*, CSV*, TEST* prefixes) - Jan 6, 2025
+- [x] Remove remaining 8 test courses from database - Jan 9, 2025 (TWC*, CSV*, TEST*, TEST-ENH* prefixes)
 - [x] Fix CourseIntroSlideshow component to handle missing slide files gracefully
 - [x] Fix slide file naming mismatch in CourseIntroSlideshow (updated to match actual files: slide_1_title, slide_2_objectives, etc.)
 - [x] Update Chaplaincy Training pricing to show ~~$400~~ → $325 ($275 course + $50 background check)

@@ -1,0 +1,50 @@
+{
+  "query": "SELECT id, code, title FROM courses WHERE code LIKE 'TWC%' OR code LIKE 'CSV%' OR code LIKE 'TEST%' OR code LIKE 'TEST-ENH%' ORDER BY code;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code, title FROM courses WHERE code LIKE 'TWC%' OR code LIKE 'CSV%' OR code LIKE 'TEST%' OR code LIKE 'TEST-ENH%' ORDER BY code;",
+  "rows": [
+    {
+      "id": "720002",
+      "code": "CSV1767982209492",
+      "title": "CSV Test Course"
+    },
+    {
+      "id": "720006",
+      "code": "CSV1767982221903",
+      "title": "CSV Test Course"
+    },
+    {
+      "id": "720001",
+      "code": "TEST-ENH-1767982209322",
+      "title": "Test Enhancement Course"
+    },
+    {
+      "id": "720005",
+      "code": "TEST-ENH-1767982221520",
+      "title": "Test Enhancement Course"
+    },
+    {
+      "id": "720003",
+      "code": "TEST1767982212567",
+      "title": "Test Analytics Course"
+    },
+    {
+      "id": "720007",
+      "code": "TEST1767982229740",
+      "title": "Test Analytics Course"
+    },
+    {
+      "id": "720004",
+      "code": "TWC1767982212929",
+      "title": "Test Webinar Course"
+    },
+    {
+      "id": "720008",
+      "code": "TWC1767982235722",
+      "title": "Test Webinar Course"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\n720002\tCSV1767982209492\tCSV Test Course\n720006\tCSV1767982221903\tCSV Test Course\n720001\tTEST-ENH-1767982209322\tTest Enhancement Course\n720005\tTEST-ENH-1767982221520\tTest Enhancement Course\n720003\tTEST1767982212567\tTest Analytics Course\n720007\tTEST1767982229740\tTest Analytics Course\n720004\tTWC1767982212929\tTest Webinar Course\n720008\tTWC1767982235722\tTest Webinar Course\n",
+  "stderr": "",
+  "execution_time_ms": 109
+}
