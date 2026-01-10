@@ -149,11 +149,11 @@ export default function CoursePage() {
         {/* Course Info for Non-Logged-In Users */}
         <div className="container py-8">
           <div className="max-w-4xl mx-auto">
-          {/* CPE Accreditation Badge */}
-          <CPEAccreditationBadge 
+          {/* CPE Accreditation Badge - REMOVED */}
+          {/* <CPEAccreditationBadge 
             cpeHours={course.cpdHours || 2.5}
             colorTheme={course.colorTheme}
-          />
+          /> */}
 
           {/* Course Introduction Slideshow */}
           <Card className="mb-8">
@@ -332,11 +332,11 @@ export default function CoursePage() {
       {/* Lessons List */}
       <div className="container py-8">
         <div className="max-w-4xl mx-auto">
-          {/* CPE Accreditation Badge */}
-          <CPEAccreditationBadge 
+          {/* CPE Accreditation Badge - REMOVED */}
+          {/* <CPEAccreditationBadge 
             cpeHours={course.cpdHours || 2.5}
             colorTheme={course.colorTheme}
-          />
+          /> */}
 
           {/* Course Introduction Slideshow */}
           <Card className="mb-8">

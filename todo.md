@@ -61,7 +61,8 @@
 - [x] Update Chaplaincy Training pricing to show ~~$400~~ → $325 ($275 course + $50 background check)
 - [x] Remove ACPE affiliation claims from CPEAccreditationBadge component
 - [x] Verify Chaplaincy course (CHAP101) focuses on Clinical Pastoral Education (CPE) with 10 comprehensive lessons
-- [ ] Build course introduction slideshows with female voiceover (one at a time)
+- [x] Remove CPE badge from course pages completely - Jan 9, 2025
+- [x] Build course introduction slideshows with female voiceover (one at a time)
 
 ## Bridge Academy FREE Bonus Changes
 - [x] Remove $19/month and $180/year pricing from Bridge Academy
