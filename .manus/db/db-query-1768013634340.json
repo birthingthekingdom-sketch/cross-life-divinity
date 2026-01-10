@@ -1,0 +1,178 @@
+{
+  "query": "SELECT id, code, title, price, courseType FROM courses ORDER BY code;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code, title, price, courseType FROM courses ORDER BY code;",
+  "rows": [
+    {
+      "id": "660001",
+      "code": "BIB101",
+      "title": "Old Testament Survey",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "660002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "150004",
+      "code": "BIB201",
+      "title": "Biblical Hermeneutics",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "180001",
+      "code": "DIV101",
+      "title": "Understanding Prophecy",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "690001",
+      "code": "DIV102",
+      "title": "Deliverance Ministry",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "570004",
+      "code": "DIV111",
+      "title": "Capstone Project",
+      "price": "129",
+      "courseType": "theological"
+    },
+    {
+      "id": "570005",
+      "code": "DIV112",
+      "title": "Christology",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "570006",
+      "code": "DIV113",
+      "title": "Contemporary Theological Issues",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "660004",
+      "code": "GED-LANG",
+      "title": "GED Language Arts",
+      "price": "79",
+      "courseType": "ged"
+    },
+    {
+      "id": "660003",
+      "code": "GED-MATH",
+      "title": "GED Mathematics",
+      "price": "79",
+      "courseType": "ged"
+    },
+    {
+      "id": "660005",
+      "code": "GED-SCI",
+      "title": "GED Science",
+      "price": "79",
+      "courseType": "ged"
+    },
+    {
+      "id": "660006",
+      "code": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "price": "79",
+      "courseType": "ged"
+    },
+    {
+      "id": "150009",
+      "code": "LED201",
+      "title": "Leadership",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "690002",
+      "code": "LED202",
+      "title": "Christian Leadership",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "150006",
+      "code": "MIN101",
+      "title": "Evangelism and Discipleship",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "150007",
+      "code": "MIN102",
+      "title": "Discipleship Training",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "150013",
+      "code": "PAS101",
+      "title": "Homiletics",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "150011",
+      "code": "PAS201",
+      "title": "Pastoral Counseling",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "150012",
+      "code": "PAS301",
+      "title": "Church Administration",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "150008",
+      "code": "SPR101",
+      "title": "Prayer and Intercession",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "150014",
+      "code": "SPR201",
+      "title": "Discovering Spiritual Gifts",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "150005",
+      "code": "THE301",
+      "title": "Fundamentals of Apologetics",
+      "price": "89",
+      "courseType": "theological"
+    },
+    {
+      "id": "360001",
+      "code": "WOR101",
+      "title": "Biblical Worship",
+      "price": "89",
+      "courseType": "theological"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\tprice\tcourseType\n660001\tBIB101\tOld Testament Survey\t89\ttheological\n660002\tBIB102\tNew Testament Survey\t89\ttheological\n150004\tBIB201\tBiblical Hermeneutics\t89\ttheological\n180001\tDIV101\tUnderstanding Prophecy\t89\ttheological\n690001\tDIV102\tDeliverance Ministry\t89\ttheological\n570004\tDIV111\tCapstone Project\t129\ttheological\n570005\tDIV112\tChristology\t89\ttheological\n570006\tDIV113\tContemporary Theological Issues\t89\ttheological\n660004\tGED-LANG\tGED Language Arts\t79\tged\n660003\tGED-MATH\tGED Mathematics\t79\tged\n660005\tGED-SCI\tGED Science\t79\tged\n660006\tGED-SOCIAL\tGED Social Studies\t79\tged\n150009\tLED201\tLeadership\t89\ttheological\n690002\tLED202\tChristian Leadership\t89\ttheological\n150006\tMIN101\tEvangelism and Discipleship\t89\ttheological\n150007\tMIN102\tDiscipleship Training\t89\ttheological\n150013\tPAS101\tHomiletics\t89\ttheological\n150011\tPAS201\tPastoral Counseling\t89\ttheological\n150012\tPAS301\tChurch Administration\t89\ttheological\n150008\tSPR101\tPrayer and Intercession\t89\ttheological\n150014\tSPR201\tDiscovering Spiritual Gifts\t89\ttheological\n150003\tTHE201\tSystematic Theology\t89\ttheological\n150005\tTHE301\tFundamentals of Apologetics\t89\ttheological\n360001\tWOR101\tBiblical Worship\t89\ttheological\n",
+  "stderr": "",
+  "execution_time_ms": 50
+}
