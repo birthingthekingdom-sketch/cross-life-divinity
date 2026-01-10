@@ -110,7 +110,7 @@ export default function Admin() {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">Total Courses</CardTitle>
@@ -147,6 +147,19 @@ export default function Admin() {
               <p className="text-xs text-muted-foreground mt-1">Requires attention</p>
             </CardContent>
           </Card>
+          <Link href="/admin/students">
+            <Card className="cursor-pointer hover:bg-accent transition-colors">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground">Student Monitoring</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between">
+                  <Users className="h-8 w-8 text-primary" />
+                  <p className="text-xs text-muted-foreground">View & track</p>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
         </div>
 
         {/* Courses List */}

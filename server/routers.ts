@@ -1122,8 +1122,25 @@ export const appRouter = router({
       .query(async ({ input }) => {
         return db.getBridgeAcademyTopics(input.courseId);
       }),
+    
+    getEnrolledStudents: adminProcedure.query(async () => {
+      return db.getEnrolledStudents();
+    }),
+    
+    getStudentEnrollments: adminProcedure
+      .input(z.object({ studentId: z.number() }))
+      .query(async ({ input }) => {
+        return db.getStudentEnrollments(input.studentId);
+      }),
+    
+    getStudentProgress: adminProcedure
+      .input(z.object({ studentId: z.number(), courseId: z.number() }))
+      .query(async ({ input }) => {
+        return db.getStudentCourseProgress(input.studentId, input.courseId);
+      }),
   }),
   
+
 
   forum: router({
     getTopicsByCourse: protectedProcedure
