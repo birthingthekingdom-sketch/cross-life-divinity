@@ -35,6 +35,7 @@
 - [x] Updated Catalog page to fetch theological and GED courses separately
 
 ## ACTIVE TASKS (IN PROGRESS)
+- [x] Fix student dashboard navigation - clicking student tab shows role toggle instead of student content
 - [x] Restore courses list section to admin page
 - [x] Add Financial Aid link to main navigation menu for better discoverability and enrollment conversion
 - [x] Debug login issue - admin account (studio6817@yahoo.com) cannot login - FIXED
