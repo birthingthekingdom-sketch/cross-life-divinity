@@ -13,6 +13,12 @@ import { useAuth } from "@/_core/hooks/useAuth";
 export default function Dashboard() {
   const { user, logout } = useAuth({ redirectOnUnauthenticated: true });
   const [, navigate] = useLocation();
+  
+  // Redirect admin users to admin panel
+  if (user?.role === 'admin') {
+    navigate('/admin');
+    return null;
+  }
   const utils = trpc.useUtils();
   const { data: courses, isLoading: coursesLoading } = trpc.courses.list.useQuery();
   const { data: recommendations } = trpc.courses.getRecommendations.useQuery();

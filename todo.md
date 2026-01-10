@@ -35,6 +35,7 @@
 - [x] Updated Catalog page to fetch theological and GED courses separately
 
 ## ACTIVE TASKS (IN PROGRESS)
+- [x] Fix Admin Dashboard course count showing 20 instead of 19 (Leadership course removed but count not updated) - Added visibility change listener to refetch courses
 - [x] Fix student dashboard navigation - clicking student tab shows role toggle instead of student content
 - [x] Restore courses list section to admin page
 - [x] Add Financial Aid link to main navigation menu for better discoverability and enrollment conversion

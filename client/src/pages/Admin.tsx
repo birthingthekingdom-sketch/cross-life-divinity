@@ -24,9 +24,10 @@ export default function Admin() {
   const [assignDialogOpen, setAssignDialogOpen] = useState(false);
   const [selectedAccessCode, setSelectedAccessCode] = useState<{ id: number; code: string } | null>(null);
 
-  const { data: courses } = trpc.courses.listAll.useQuery();
+  const { data: courses, refetch: refetchCourses } = trpc.courses.listAll.useQuery();
   const { data: accessCodes, refetch: refetchAccessCodes } = trpc.admin.getAccessCodes.useQuery();
   const { data: allFollowUps } = trpc.admin.getAllFollowUps.useQuery();
+  const utils = trpc.useUtils();
   
   // Calculate follow-up metrics
   const now = new Date();
@@ -64,6 +65,18 @@ export default function Admin() {
       setLocation('/dashboard');
     }
   }, [user, setLocation]);
+
+  // Refetch courses when page becomes visible (to catch any changes made elsewhere)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        refetchCourses();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, [refetchCourses]);
 
   // Show loading or redirect state
   if (!user || user.role !== 'admin') {
