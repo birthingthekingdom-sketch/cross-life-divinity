@@ -143,8 +143,8 @@ export function BridgeAcademy() {
                 <div className="text-foreground/60">Included with any course enrollment</div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/register">
-                  <Button size="lg" className="bg-primary hover:bg-primary/90">Start 7-Day Free Trial</Button>
+                <Link href="/courses">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90">Enroll in a Course</Button>
                 </Link>
                 <Link href="/bridge-academy/rla">
                   <Button size="lg" variant="outline">Learn More</Button>
@@ -398,8 +398,8 @@ export function BridgeAcademy() {
             Get Bridge Academy FREE when you enroll in any theological course. No additional cost!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/register">
-              <Button size="lg">Start Free Trial</Button>
+            <Link href="/courses">
+              <Button size="lg">Enroll in a Course</Button>
             </Link>
             <Link href="/bridge-academy/rla">
               <Button size="lg" variant="outline">

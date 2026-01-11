@@ -150,12 +150,25 @@ export default function Admin() {
           <Link href="/admin/students">
             <Card className="cursor-pointer hover:bg-accent transition-colors">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">Student Monitoring</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground">All Students</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center justify-between">
                   <Users className="h-8 w-8 text-primary" />
                   <p className="text-xs text-muted-foreground">View & track</p>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
+          <Link href="/admin/paid-students">
+            <Card className="cursor-pointer hover:bg-accent transition-colors">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground">Paid Students</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between">
+                  <DollarSign className="h-8 w-8 text-green-600" />
+                  <p className="text-xs text-muted-foreground">Active accounts</p>
                 </div>
               </CardContent>
             </Card>
