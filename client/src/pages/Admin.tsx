@@ -15,6 +15,23 @@ import AssignCoursesDialog from "@/components/AssignCoursesDialog";
 import { toast } from "sonner";
 import { Link } from "wouter";
 
+// Function to determine if a color is light or dark
+function getContrastColor(hexColor: string): string {
+  // Remove # if present
+  const hex = hexColor.replace('#', '');
+  
+  // Convert to RGB
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  
+  // Calculate luminance using relative luminance formula
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  
+  // Return white text for dark backgrounds, black text for light backgrounds
+  return luminance > 0.5 ? '#000000' : '#ffffff';
+}
+
 export default function Admin() {
   // All hooks must be at the top, before any conditional logic
   const { user } = useAuth();
@@ -202,8 +219,11 @@ export default function Admin() {
                 >
                   <div className="flex items-center gap-4">
                     <div
-                      className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold"
-                      style={{ backgroundColor: course.colorTheme }}
+                      className="w-12 h-12 rounded-lg flex items-center justify-center font-bold"
+                      style={{ 
+                        backgroundColor: course.colorTheme,
+                        color: getContrastColor(course.colorTheme)
+                      }}
                     >
                       {course.code.substring(3)}
                     </div>

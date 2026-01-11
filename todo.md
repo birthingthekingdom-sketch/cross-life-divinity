@@ -3105,3 +3105,4 @@ All components built and integrated. Ready for:
 - [ ] Verify score calculations
 - [ ] Test certificate generation
 - [ ] Create checkpoint after Phase 1 completion
+- [x] Fix course placeholder card legibility on admin dashboard (bright backgrounds with non-legible text for Pastoral Counseling, Church Administration, Homiletics, Discovering Spiritual Gifts, Biblical Worship)

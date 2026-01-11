@@ -14,6 +14,23 @@ import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
+// Function to determine if a color is light or dark
+function getContrastColor(hexColor: string): string {
+  // Remove # if present
+  const hex = hexColor.replace('#', '');
+  
+  // Convert to RGB
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  
+  // Calculate luminance using relative luminance formula
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  
+  // Return white text for dark backgrounds, black text for light backgrounds
+  return luminance > 0.5 ? '#000000' : '#ffffff';
+}
+
 interface AssignCoursesDialogProps {
   accessCodeId: number;
   accessCode: string;
@@ -120,8 +137,11 @@ export default function AssignCoursesDialog({
                 >
                   <div className="flex items-center gap-3">
                     <div
-                      className="w-10 h-10 rounded flex items-center justify-center text-white text-sm font-bold"
-                      style={{ backgroundColor: course.colorTheme }}
+                      className="w-10 h-10 rounded flex items-center justify-center text-sm font-bold"
+                      style={{ 
+                        backgroundColor: course.colorTheme,
+                        color: getContrastColor(course.colorTheme)
+                      }}
                     >
                       {course.code.substring(3)}
                     </div>
