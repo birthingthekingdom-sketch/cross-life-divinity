@@ -1,0 +1,1170 @@
+{
+  "query": "SELECT lessonId, COUNT(*) as question_count FROM quiz_questions GROUP BY lessonId ORDER BY lessonId;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT lessonId, COUNT(*) as question_count FROM quiz_questions GROUP BY lessonId ORDER BY lessonId;",
+  "rows": [
+    {
+      "lessonId": "1",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "2",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "3",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "41",
+      "question_count": "10"
+    },
+    {
+      "lessonId": "42",
+      "question_count": "10"
+    },
+    {
+      "lessonId": "43",
+      "question_count": "10"
+    },
+    {
+      "lessonId": "44",
+      "question_count": "10"
+    },
+    {
+      "lessonId": "45",
+      "question_count": "10"
+    },
+    {
+      "lessonId": "46",
+      "question_count": "10"
+    },
+    {
+      "lessonId": "47",
+      "question_count": "10"
+    },
+    {
+      "lessonId": "48",
+      "question_count": "10"
+    },
+    {
+      "lessonId": "49",
+      "question_count": "10"
+    },
+    {
+      "lessonId": "50",
+      "question_count": "10"
+    },
+    {
+      "lessonId": "60001",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "60002",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "60003",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "60004",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "60005",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "60006",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "60007",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "60008",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "60009",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90001",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90002",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90003",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90004",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90005",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90006",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90007",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90008",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90009",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90010",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90011",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90012",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90013",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90014",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90015",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90016",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90017",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90018",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90019",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90020",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90021",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90022",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90023",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90024",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90025",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90026",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90027",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90028",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90029",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90030",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90031",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90032",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90033",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90034",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90035",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90036",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90037",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90038",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90039",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90040",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90041",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90042",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90043",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90044",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90045",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "90046",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150041",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150042",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150043",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150044",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150045",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150046",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150047",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150048",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150049",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150050",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150051",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150052",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150053",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150054",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150055",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150056",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150057",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150058",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150059",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150060",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150061",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150062",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150063",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150064",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "150065",
+      "question_count": "6"
+    },
+    {
+      "lessonId": "150066",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150067",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150068",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150069",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150070",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150071",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150072",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150073",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150074",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150075",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150076",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150077",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150078",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150079",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "150080",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "300001",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "300002",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "330001",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "330002",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "330003",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "330004",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "330005",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "330006",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "330007",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "330008",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "330009",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "330010",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360001",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360002",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360003",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360004",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360005",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360006",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360007",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360008",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360009",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360010",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360011",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360012",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360013",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360014",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360015",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360016",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360017",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360018",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360019",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360020",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360021",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360022",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360023",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360024",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360025",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360026",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360027",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360028",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360029",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360030",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360031",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360032",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360033",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360034",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360035",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360036",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360037",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360038",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360039",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360040",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360041",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360042",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360043",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360044",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360045",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360046",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360047",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360048",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360049",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360050",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360051",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360052",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360053",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360054",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360055",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360056",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360057",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360058",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360059",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360060",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360061",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360062",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360063",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360064",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360065",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360066",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360067",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360068",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360069",
+      "question_count": "3"
+    },
+    {
+      "lessonId": "360070",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360071",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360072",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360073",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360074",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360075",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360076",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360077",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360078",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360079",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360080",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360081",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360082",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360083",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360084",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360085",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360086",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360087",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360088",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360089",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360090",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360091",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360092",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360093",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360094",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360095",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360096",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360097",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360098",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360099",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360100",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360101",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360102",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360103",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360104",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360105",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360106",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360107",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360108",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360109",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360110",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360111",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360112",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360113",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360114",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360115",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360116",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360117",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360118",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360119",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360120",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360121",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360122",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360123",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360124",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360125",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360126",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360127",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360128",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360129",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360130",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360161",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360162",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360163",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360164",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360165",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360166",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360167",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360168",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360169",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360170",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360171",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360172",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360173",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360174",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360175",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360176",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360177",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360178",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360179",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360180",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360181",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360182",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360183",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360184",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360185",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360186",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360187",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360188",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "360189",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "360190",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "390001",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "390002",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "390003",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "390004",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "390005",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "390006",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "390007",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "390008",
+      "question_count": "5"
+    },
+    {
+      "lessonId": "390009",
+      "question_count": "4"
+    },
+    {
+      "lessonId": "390010",
+      "question_count": "5"
+    }
+  ],
+  "messages": [],
+  "stdout": "lessonId\tquestion_count\n1\t5\n2\t5\n3\t5\n41\t10\n42\t10\n43\t10\n44\t10\n45\t10\n46\t10\n47\t10\n48\t10\n49\t10\n50\t10\n60001\t5\n60002\t5\n60003\t5\n60004\t5\n60005\t5\n60006\t5\n60007\t5\n60008\t5\n60009\t5\n90001\t5\n90002\t5\n90003\t5\n90004\t5\n90005\t5\n90006\t5\n90007\t5\n90008\t5\n90009\t5\n90010\t5\n90011\t5\n90012\t5\n90013\t5\n90014\t5\n90015\t5\n90016\t5\n90017\t5\n90018\t5\n90019\t5\n90020\t5\n90021\t5\n90022\t5\n90023\t5\n90024\t5\n90025\t5\n90026\t5\n90027\t5\n90028\t5\n90029\t5\n90030\t5\n90031\t5\n90032\t5\n90033\t5\n90034\t5\n90035\t5\n90036\t5\n90037\t5\n90038\t5\n90039\t5\n90040\t5\n90041\t5\n90042\t5\n90043\t5\n90044\t5\n90045\t5\n90046\t5\n150041\t5\n150042\t5\n150043\t5\n150044\t5\n150045\t5\n150046\t5\n150047\t5\n150048\t5\n150049\t5\n150050\t5\n150051\t5\n150052\t5\n150053\t5\n150054\t5\n150055\t5\n150056\t5\n150057\t5\n150058\t5\n150059\t5\n150060\t5\n150061\t5\n150062\t5\n150063\t5\n150064\t4\n150065\t6\n150066\t5\n150067\t5\n150068\t5\n150069\t5\n150070\t5\n150071\t5\n150072\t5\n150073\t5\n150074\t5\n150075\t5\n150076\t5\n150077\t5\n150078\t5\n150079\t5\n150080\t5\n300001\t5\n300002\t5\n330001\t5\n330002\t3\n330003\t5\n330004\t5\n330005\t5\n330006\t5\n330007\t3\n330008\t5\n330009\t5\n330010\t5\n360001\t5\n360002\t3\n360003\t5\n360004\t5\n360005\t5\n360006\t3\n360007\t5\n360008\t3\n360009\t5\n360010\t5\n360011\t5\n360012\t3\n360013\t5\n360014\t5\n360015\t5\n360016\t5\n360017\t3\n360018\t5\n360019\t5\n360020\t5\n360021\t5\n360022\t5\n360023\t5\n360024\t3\n360025\t3\n360026\t5\n360027\t5\n360028\t5\n360029\t5\n360030\t5\n360031\t3\n360032\t3\n360033\t3\n360034\t5\n360035\t5\n360036\t5\n360037\t3\n360038\t3\n360039\t5\n360040\t5\n360041\t3\n360042\t5\n360043\t5\n360044\t5\n360045\t5\n360046\t5\n360047\t3\n360048\t5\n360049\t5\n360050\t3\n360051\t5\n360052\t5\n360053\t3\n360054\t3\n360055\t5\n360056\t3\n360057\t5\n360058\t5\n360059\t3\n360060\t5\n360061\t3\n360062\t3\n360063\t3\n360064\t3\n360065\t5\n360066\t3\n360067\t5\n360068\t3\n360069\t3\n360070\t5\n360071\t5\n360072\t5\n360073\t5\n360074\t5\n360075\t4\n360076\t4\n360077\t5\n360078\t5\n360079\t5\n360080\t4\n360081\t5\n360082\t4\n360083\t4\n360084\t4\n360085\t4\n360086\t5\n360087\t5\n360088\t5\n360089\t4\n360090\t5\n360091\t5\n360092\t5\n360093\t5\n360094\t4\n360095\t5\n360096\t4\n360097\t4\n360098\t5\n360099\t5\n360100\t5\n360101\t5\n360102\t5\n360103\t4\n360104\t4\n360105\t5\n360106\t5\n360107\t4\n360108\t5\n360109\t5\n360110\t5\n360111\t4\n360112\t5\n360113\t4\n360114\t5\n360115\t5\n360116\t5\n360117\t5\n360118\t5\n360119\t4\n360120\t4\n360121\t4\n360122\t5\n360123\t4\n360124\t5\n360125\t5\n360126\t5\n360127\t5\n360128\t5\n360129\t4\n360130\t5\n360161\t4\n360162\t5\n360163\t5\n360164\t5\n360165\t4\n360166\t4\n360167\t5\n360168\t4\n360169\t5\n360170\t5\n360171\t5\n360172\t4\n360173\t4\n360174\t5\n360175\t4\n360176\t5\n360177\t4\n360178\t4\n360179\t5\n360180\t4\n360181\t5\n360182\t5\n360183\t5\n360184\t5\n360185\t5\n360186\t5\n360187\t4\n360188\t4\n360189\t5\n360190\t4\n390001\t4\n390002\t4\n390003\t4\n390004\t4\n390005\t5\n390006\t4\n390007\t4\n390008\t5\n390009\t4\n390010\t5\n",
+  "stderr": "",
+  "execution_time_ms": 122
+}

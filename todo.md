@@ -3107,3 +3107,13 @@ All components built and integrated. Ready for:
 - [ ] Create checkpoint after Phase 1 completion
 - [x] Fix course placeholder card legibility on admin dashboard (bright backgrounds with non-legible text for Pastoral Counseling, Church Administration, Homiletics, Discovering Spiritual Gifts, Biblical Worship)
 - [x] Add color theme to Biblical Worship course (WOR101) to display colored badge like other courses
+
+## CRITICAL BUGS - Jan 11, 2025
+- [ ] Fix course intro slides not displaying (only voiceover working for Old/New Testament)
+- [ ] Fix missing quizzes for all courses
+- [ ] Reduce brightness of place cards in admin dashboard (too bright colors)
+
+## CRITICAL BUGS - Jan 11, 2025 (FIXED)
+- [x] Fix course intro slides not displaying (generated individual slide files for all 20 courses)
+- [ ] Fix missing quizzes for all courses
+- [x] Reduce brightness of place cards in admin dashboard (implemented getMutedColor function and applied to Admin.tsx and AssignCoursesDialog.tsx)

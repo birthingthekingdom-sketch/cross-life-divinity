@@ -1,6 +1,7 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import DashboardLayout from "@/components/DashboardLayout";
 import { useLocation } from "wouter";
+import { getContrastColor, getMutedColor } from "@/lib/colorUtils";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,23 +16,6 @@ import AssignCoursesDialog from "@/components/AssignCoursesDialog";
 import { toast } from "sonner";
 import { Link } from "wouter";
 
-// Function to determine if a color is light or dark
-function getContrastColor(hexColor: string): string {
-  // Remove # if present
-  const hex = hexColor.replace('#', '');
-  
-  // Convert to RGB
-  const r = parseInt(hex.substring(0, 2), 16);
-  const g = parseInt(hex.substring(2, 4), 16);
-  const b = parseInt(hex.substring(4, 6), 16);
-  
-  // Calculate luminance using relative luminance formula
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  
-  // Return white text for dark backgrounds, black text for light backgrounds
-  return luminance > 0.5 ? '#000000' : '#ffffff';
-}
-
 export default function Admin() {
   // All hooks must be at the top, before any conditional logic
   const { user } = useAuth();
@@ -40,7 +24,6 @@ export default function Admin() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [assignDialogOpen, setAssignDialogOpen] = useState(false);
   const [selectedAccessCode, setSelectedAccessCode] = useState<{ id: number; code: string } | null>(null);
-
   const { data: courses, refetch: refetchCourses } = trpc.courses.listAll.useQuery();
   const { data: accessCodes, refetch: refetchAccessCodes } = trpc.admin.getAccessCodes.useQuery();
   const { data: allFollowUps } = trpc.admin.getAllFollowUps.useQuery();
@@ -48,13 +31,14 @@ export default function Admin() {
   
   // Calculate follow-up metrics
   const now = new Date();
-  const pendingFollowUps = allFollowUps?.filter(f => f.status === 'pending') || [];
-  const overdueFollowUps = pendingFollowUps.filter(f => f.dueDate && new Date(f.dueDate) < now);
-  const completedThisWeek = allFollowUps?.filter(f => {
-    if (f.status !== 'completed' || !f.completedAt) return false;
-    const completedDate = new Date(f.completedAt);
-    const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-    return completedDate >= weekAgo;
+  const pendingFollowUps = allFollowUps?.filter((fu) => {
+    const dueDate = new Date(fu.dueDate);
+    return dueDate > now && !fu.completed;
+  }) || [];
+  
+  const overdueFollowUps = allFollowUps?.filter((fu) => {
+    const dueDate = new Date(fu.dueDate);
+    return dueDate <= now && !fu.completed;
   }) || [];
 
   const createAccessCodeMutation = trpc.admin.createAccessCode.useMutation({
@@ -74,6 +58,9 @@ export default function Admin() {
       toast.success("Access code updated!");
       refetchAccessCodes();
     },
+    onError: (error) => {
+      toast.error(error.message || "Failed to update access code");
+    },
   });
 
   // Protect admin page - only admins can access (useEffect after all hooks)
@@ -90,7 +77,6 @@ export default function Admin() {
         refetchCourses();
       }
     };
-
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, [refetchCourses]);
@@ -137,6 +123,7 @@ export default function Admin() {
               <p className="text-xs text-muted-foreground mt-1">Active courses</p>
             </CardContent>
           </Card>
+
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">Access Codes</CardTitle>
@@ -146,6 +133,7 @@ export default function Admin() {
               <p className="text-xs text-muted-foreground mt-1">Available codes</p>
             </CardContent>
           </Card>
+
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">Pending Follow-ups</CardTitle>
@@ -155,6 +143,7 @@ export default function Admin() {
               <p className="text-xs text-muted-foreground mt-1">Awaiting action</p>
             </CardContent>
           </Card>
+
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">Overdue Follow-ups</CardTitle>
@@ -164,6 +153,7 @@ export default function Admin() {
               <p className="text-xs text-muted-foreground mt-1">Requires attention</p>
             </CardContent>
           </Card>
+
           <Link href="/admin/students">
             <Card className="cursor-pointer hover:bg-accent transition-colors">
               <CardHeader className="pb-2">
@@ -177,6 +167,7 @@ export default function Admin() {
               </CardContent>
             </Card>
           </Link>
+
           <Link href="/admin/paid-students">
             <Card className="cursor-pointer hover:bg-accent transition-colors">
               <CardHeader className="pb-2">
@@ -198,20 +189,12 @@ export default function Admin() {
             <div className="flex items-center justify-between">
               <div>
                 <CardTitle>Courses</CardTitle>
-                <CardDescription>
-                  View and manage course content
-                </CardDescription>
+                <CardDescription>All available courses in the system</CardDescription>
               </div>
-              <Link href="/admin/bulk-import">
-                <Button variant="outline">
-                  <Plus className="h-4 w-4 mr-2" />
-                  Bulk Import Lessons
-                </Button>
-              </Link>
             </div>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {courses?.map((course) => (
                 <div
                   key={course.id}
@@ -221,8 +204,8 @@ export default function Admin() {
                     <div
                       className="w-12 h-12 rounded-lg flex items-center justify-center font-bold"
                       style={{ 
-                        backgroundColor: course.colorTheme,
-                        color: getContrastColor(course.colorTheme)
+                        backgroundColor: getMutedColor(course.colorTheme),
+                        color: getContrastColor(getMutedColor(course.colorTheme))
                       }}
                     >
                       {course.code.substring(3)}
@@ -234,14 +217,8 @@ export default function Admin() {
                       </p>
                     </div>
                   </div>
-                  <div className="flex gap-2">
+                  <div>
                     <Link href={`/admin/course/${course.id}`}>
-                      <Button variant="outline" size="sm">
-                        <Edit className="h-4 w-4 mr-1" />
-                        Manage
-                      </Button>
-                    </Link>
-                    <Link href={`/course/${course.id}`}>
                       <Button variant="ghost" size="sm">
                         View
                       </Button>

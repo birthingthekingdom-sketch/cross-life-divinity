@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { getContrastColor, getMutedColor } from "@/lib/colorUtils";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
@@ -13,23 +14,6 @@ import { trpc } from "@/lib/trpc";
 import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-
-// Function to determine if a color is light or dark
-function getContrastColor(hexColor: string): string {
-  // Remove # if present
-  const hex = hexColor.replace('#', '');
-  
-  // Convert to RGB
-  const r = parseInt(hex.substring(0, 2), 16);
-  const g = parseInt(hex.substring(2, 4), 16);
-  const b = parseInt(hex.substring(4, 6), 16);
-  
-  // Calculate luminance using relative luminance formula
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  
-  // Return white text for dark backgrounds, black text for light backgrounds
-  return luminance > 0.5 ? '#000000' : '#ffffff';
-}
 
 interface AssignCoursesDialogProps {
   accessCodeId: number;
@@ -47,7 +31,6 @@ export default function AssignCoursesDialog({
   onSuccess,
 }: AssignCoursesDialogProps) {
   const [selectedCourses, setSelectedCourses] = useState<number[]>([]);
-
   const { data: allCourses } = trpc.courses.listAll.useQuery();
   const { data: assignedCourses } = trpc.admin.getAccessCodeCourses.useQuery(
     { accessCodeId },
@@ -109,7 +92,6 @@ export default function AssignCoursesDialog({
             Select which courses can be accessed with code <span className="font-mono font-bold">{accessCode}</span>
           </DialogDescription>
         </DialogHeader>
-
         <div className="space-y-4 py-4">
           <div className="flex gap-2">
             <Button variant="outline" size="sm" onClick={handleSelectAll}>
@@ -119,7 +101,6 @@ export default function AssignCoursesDialog({
               Deselect All
             </Button>
           </div>
-
           <div className="grid grid-cols-1 gap-3 max-h-96 overflow-y-auto">
             {allCourses?.map((course) => (
               <div
@@ -139,8 +120,8 @@ export default function AssignCoursesDialog({
                     <div
                       className="w-10 h-10 rounded flex items-center justify-center text-sm font-bold"
                       style={{ 
-                        backgroundColor: course.colorTheme,
-                        color: getContrastColor(course.colorTheme)
+                        backgroundColor: getMutedColor(course.colorTheme),
+                        color: getContrastColor(getMutedColor(course.colorTheme))
                       }}
                     >
                       {course.code.substring(3)}
@@ -156,7 +137,6 @@ export default function AssignCoursesDialog({
               </div>
             ))}
           </div>
-
           <div className="text-sm text-muted-foreground">
             {selectedCourses.length === 0 && "No courses selected"}
             {selectedCourses.length === 1 && "1 course selected"}
@@ -164,7 +144,6 @@ export default function AssignCoursesDialog({
             {selectedCourses.length === allCourses?.length && " (Full Suite)"}
           </div>
         </div>
-
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Cancel
