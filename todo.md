@@ -3106,3 +3106,4 @@ All components built and integrated. Ready for:
 - [ ] Test certificate generation
 - [ ] Create checkpoint after Phase 1 completion
 - [x] Fix course placeholder card legibility on admin dashboard (bright backgrounds with non-legible text for Pastoral Counseling, Church Administration, Homiletics, Discovering Spiritual Gifts, Biblical Worship)
+- [x] Add color theme to Biblical Worship course (WOR101) to display colored badge like other courses
