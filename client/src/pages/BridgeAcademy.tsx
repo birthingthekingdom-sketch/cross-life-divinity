@@ -23,7 +23,7 @@ export function BridgeAcademy() {
       id: "rla",
       title: "Reasoning Through Language Arts",
       subtitle: "Reading, Writing & Grammar",
-      description: "Master reading comprehension, grammar, writing, and vocabulary for the GED test.",
+      description: "Master reading comprehension, grammar, writing, and vocabulary for the GED test. We prepare you to pass this critical section and earn your GED diploma.",
       icon: "📚",
       topics: 8,
       color: "from-blue-500 to-blue-600",
@@ -33,7 +33,7 @@ export function BridgeAcademy() {
       id: "math",
       title: "Mathematical Reasoning",
       subtitle: "Algebra, Geometry & Data",
-      description: "Learn algebra, geometry, data analysis, and problem-solving for the GED test.",
+      description: "Learn algebra, geometry, data analysis, and problem-solving for the GED test. We guide you through every step to master the math section.",
       icon: "🧮",
       topics: 8,
       color: "from-purple-500 to-purple-600",
@@ -43,7 +43,7 @@ export function BridgeAcademy() {
       id: "science",
       title: "Science",
       subtitle: "Life, Physical & Earth Science",
-      description: "Explore life science, physical science, and earth science for the GED test.",
+      description: "Explore life science, physical science, and earth science for the GED test. Our comprehensive support system helps you succeed on exam day.",
       icon: "🔬",
       topics: 8,
       color: "from-green-500 to-green-600",
@@ -53,7 +53,7 @@ export function BridgeAcademy() {
       id: "social-studies",
       title: "Social Studies",
       subtitle: "History, Civics & Economics",
-      description: "Study U.S. history, civics, economics, and geography for the GED test.",
+      description: "Study U.S. history, civics, economics, and geography for the GED test. We prepare you to pass and earn your diploma with confidence.",
       icon: "🌍",
       topics: 8,
       color: "from-amber-500 to-amber-600",
@@ -220,6 +220,24 @@ export function BridgeAcademy() {
             <p className="text-xl text-foreground/70 mb-6">
               Affordable GED Prep to Transform Your Future
             </p>
+            
+            {/* GED Messaging Section */}
+            <div className="bg-white rounded-lg border border-primary/20 p-8 my-8 shadow-sm">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="text-center">
+                  <p className="text-lg font-semibold text-primary mb-2">Prepare to Pass</p>
+                  <p className="text-foreground/70">We prepare you to pass the GED test and earn your diploma.</p>
+                </div>
+                <div className="text-center border-l border-r border-primary/10 px-6">
+                  <p className="text-lg font-semibold text-primary mb-2">Complete Guidance</p>
+                  <p className="text-foreground/70">We guide you through every step of the GED process.</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-lg font-semibold text-primary mb-2">Comprehensive Support</p>
+                  <p className="text-foreground/70">Get your GED Diploma with our comprehensive support system.</p>
+                </div>
+              </div>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <div className="text-2xl font-bold text-green-600">FREE BONUS</div>
               <div className="text-foreground/60">Included with any course enrollment • 4 GED Subjects • Lifetime Access</div>
@@ -345,6 +363,30 @@ export function BridgeAcademy() {
           <Link href="/login">
             <Button size="lg">Get Your Referral Link</Button>
           </Link>
+        </div>
+      </section>
+
+      {/* GED Success Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-blue-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-8">Your Path to GED Success</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div className="bg-white rounded-lg p-6 border border-blue-200">
+              <div className="text-4xl mb-4">🎯</div>
+              <h3 className="font-semibold text-lg mb-2">Pass the GED Test</h3>
+              <p className="text-foreground/70">We prepare you to pass the GED test and earn your diploma with our expert-crafted lessons and comprehensive quizzes.</p>
+            </div>
+            <div className="bg-white rounded-lg p-6 border border-blue-200">
+              <div className="text-4xl mb-4">🛤️</div>
+              <h3 className="font-semibold text-lg mb-2">Step-by-Step Guidance</h3>
+              <p className="text-foreground/70">We guide you through every step of the GED process, from foundational concepts to test-day readiness.</p>
+            </div>
+            <div className="bg-white rounded-lg p-6 border border-blue-200">
+              <div className="text-4xl mb-4">🏆</div>
+              <h3 className="font-semibold text-lg mb-2">Complete Support System</h3>
+              <p className="text-foreground/70">Get your GED Diploma with our comprehensive support system, including lifetime access and unlimited retakes.</p>
+            </div>
+          </div>
         </div>
       </section>
 
