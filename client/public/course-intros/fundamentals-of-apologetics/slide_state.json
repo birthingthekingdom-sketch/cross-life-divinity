@@ -1,0 +1,52 @@
+{
+  "project_info": {
+    "title": "Fundamentals of Apologetics",
+    "created": 1767373679.300965,
+    "last_updated": 1767373737.770233,
+    "total_slides": 5
+  },
+  "slides": {
+    "title_slide": "edited",
+    "course_overview": "edited",
+    "learning_objectives": "edited",
+    "course_structure": "edited",
+    "call_to_action": "edited"
+  },
+  "outline": [
+    {
+      "id": "title_slide",
+      "title": "Fundamentals of Apologetics",
+      "summary": "Welcome to Fundamentals of Apologetics. Defend the Christian faith with confidence. Learn apologetic methods, arguments for God's existence, and how to respond to common objections to Christianity.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "course_overview",
+      "title": "Course Overview",
+      "summary": "Learn to defend the Christian faith with confidence and respond to common objections. This course develops your ability to present persuasive arguments for God's existence and address challenges to Christian belief.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "learning_objectives",
+      "title": "What You'll Learn",
+      "summary": "Master apologetic methods and arguments for God. Understand the problem of evil and the resurrection of Christ. Learn to address common objections and compare worldviews. Develop confidence in defending your faith.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "course_structure",
+      "title": "Course Structure",
+      "summary": "10 comprehensive lessons covering introduction to apologetics, cosmological arguments, teleological arguments, ontological arguments, problem of evil, resurrection of Christ, objections to Christianity, worldview analysis, practical apologetics, and integration.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "call_to_action",
+      "title": "Ready to Begin?",
+      "summary": "Enroll now and develop confidence in defending the Christian faith. Equip yourself with persuasive arguments and responses to objections that will strengthen your faith and ministry.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    }
+  ]
+}

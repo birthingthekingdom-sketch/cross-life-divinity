@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Learning Journey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .slide {
+            background: white;
+            border-radius: 12px;
+            padding: 60px 40px;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        h2 {
+            color: #059669;
+            font-size: 36px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        .journey {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            gap: 10px;
+        }
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+        .step-icon {
+            font-size: 40px;
+        }
+        .step-label {
+            color: #4b5563;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .arrow {
+            color: #f59e0b;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .message {
+            color: #4b5563;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        .cta {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <h2>Your Learning Journey</h2>
+        <div class="journey">
+            <div class="step">
+                <div class="step-icon">📚</div>
+                <div class="step-label">Learn</div>
+            </div>
+            <div class="arrow">→</div>
+            <div class="step">
+                <div class="step-icon">✍️</div>
+                <div class="step-label">Practice</div>
+            </div>
+            <div class="arrow">→</div>
+            <div class="step">
+                <div class="step-icon">🎯</div>
+                <div class="step-label">Master</div>
+            </div>
+            <div class="arrow">→</div>
+            <div class="step">
+                <div class="step-icon">🏆</div>
+                <div class="step-label">Succeed</div>
+            </div>
+        </div>
+        <p class="message">
+            You're ready to begin! This course will help you develop the reading and writing skills needed to succeed on the GED Reasoning Through Language Arts test. Let's start your journey to success!
+        </p>
+        <div class="cta">Let's Get Started! 🚀</div>
+    </div>
+</body>
+</html>

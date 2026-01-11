@@ -1,0 +1,52 @@
+{
+  "project_info": {
+    "title": "Systematic Theology",
+    "created": 1767373069.5738692,
+    "last_updated": 1767373271.3266404,
+    "total_slides": 5
+  },
+  "slides": {
+    "title_slide": "edited",
+    "course_overview": "edited",
+    "learning_objectives": "edited",
+    "course_structure": "edited",
+    "call_to_action": "edited"
+  },
+  "outline": [
+    {
+      "id": "title_slide",
+      "title": "Systematic Theology",
+      "summary": "Welcome to Systematic Theology. This course explores the foundational doctrines of Christian faith including God, humanity, salvation, and eschatology. Learn a comprehensive systematic approach to understanding biblical theology and Christian doctrine.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "course_overview",
+      "title": "Course Overview",
+      "summary": "Understand the major theological doctrines and how they relate to each other. This course provides a structured framework for understanding Christian theology and develops your ability to think systematically about biblical truth.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "learning_objectives",
+      "title": "What You'll Learn",
+      "summary": "Master the major doctrines of Christian faith. Understand God's nature and attributes. Learn about humanity, sin, salvation, and the church. Explore eschatology and God's plan for the future.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "course_structure",
+      "title": "Course Structure",
+      "summary": "10 comprehensive lessons covering Prolegomena, Theology Proper, Anthropology, Soteriology, Ecclesiology, and Eschatology. Includes theological analysis, biblical foundations, and practical implications of doctrine.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "call_to_action",
+      "title": "Ready to Begin?",
+      "summary": "Enroll now and develop a comprehensive understanding of Christian theology. Build a strong theological foundation that will deepen your faith and equip you for effective ministry and spiritual leadership.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    }
+  ]
+}

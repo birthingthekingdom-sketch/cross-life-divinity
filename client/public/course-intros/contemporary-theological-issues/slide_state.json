@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "title": "Contemporary Theological Issues",
+    "created": 1767722537.3167682,
+    "last_updated": 1767722624.9268043,
+    "total_slides": 8
+  },
+  "slides": {
+    "title_slide": "edited",
+    "course_overview": "edited",
+    "learning_outcomes": "edited",
+    "major_topics": "edited",
+    "theological_movements": "edited",
+    "pedagogical_approach": "edited",
+    "significance": "edited",
+    "closing": "edited"
+  },
+  "outline": [
+    {
+      "id": "title_slide",
+      "title": "Contemporary Theological Issues",
+      "summary": "A seminar exploring pressing theological questions and challenges facing the contemporary church, including justice, pluralism, technology, environment, gender, and the role of Christianity in a secular society.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "course_overview",
+      "title": "Course Overview",
+      "summary": "Examine how classical Christian theology addresses contemporary issues while remaining open to new insights. Engage current theological discourse and develop informed Christian responses to modern challenges.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "learning_outcomes",
+      "title": "Learning Outcomes",
+      "summary": "Students will identify contemporary theological issues, understand diverse perspectives, develop informed responses, engage in theological dialogue, and apply reflection to Christian practice.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "major_topics",
+      "title": "Major Topics",
+      "summary": "Justice and reconciliation, pluralism and interfaith dialogue, gender and sexuality, environmental theology, technology and digital ethics, church and society, and global Christianity.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "theological_movements",
+      "title": "Theological Movements",
+      "summary": "Liberation theology, feminist theology, womanist theology, queer theology, and creation care theology provide frameworks for engaging contemporary issues.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "pedagogical_approach",
+      "title": "How We Learn",
+      "summary": "Case studies, theological debates, guest speakers, student research projects, and interfaith engagement create dynamic learning experiences.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "significance",
+      "title": "Why This Matters",
+      "summary": "This course prepares graduates for prophetic, contextual ministry in the 21st century, developing theological imagination and pastoral sensitivity to community concerns.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "closing",
+      "title": "Theology in Action",
+      "summary": "Contemporary theological issues are not abstract debates but urgent challenges requiring faithful Christian response grounded in tradition and attentive to the present moment.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    }
+  ]
+}

@@ -57,6 +57,8 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
     'DIV112': '/course-intros/christology',
     'DIV113': '/course-intros/contemporary-theological-issues',
     'DIV102': '/course-intros/deliverance-ministry',
+    'BIB101': '/course-intros/old-testament-survey',
+    'BIB102': '/course-intros/new-testament-survey',
   };
 
   const basePath = slideshowMap[courseId] || `/course-intros/${courseId.toLowerCase()}`;
