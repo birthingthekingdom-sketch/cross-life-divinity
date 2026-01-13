@@ -3117,3 +3117,9 @@ All components built and integrated. Ready for:
 - [x] Fix course intro slides not displaying (generated individual slide files for all 20 courses)
 - [ ] Fix missing quizzes for all courses
 - [x] Reduce brightness of place cards in admin dashboard (implemented getMutedColor function and applied to Admin.tsx and AssignCoursesDialog.tsx)
+
+## BUGS TO FIX
+- [x] Fixed toggle-role page access - admins can now access /toggle-role to switch roles (Jan 12, 2025)
+- [ ] Role toggle mutation not updating user role in database or auth context (Jan 12, 2025)
+- [ ] Student dashboard not displaying after role toggle (Jan 12, 2025)
+- [ ] My Courses page shows edit options instead of course content (Jan 12, 2025)
