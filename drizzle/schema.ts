@@ -1,817 +1,980 @@
-import { mysqlTable, mysqlSchema, AnyMySqlColumn, int, timestamp, index, varchar, text, mysqlEnum, json, foreignKey, decimal, datetime, date, tinyint } from "drizzle-orm/mysql-core"
-import { sql } from "drizzle-orm"
+import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, boolean } from "drizzle-orm/mysql-core";
 
-export const accessCodeCourses = mysqlTable("access_code_courses", {
-	id: int().autoincrement().notNull(),
-	accessCodeId: int().notNull(),
-	courseId: int().notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-});
-
-export const accessCodes = mysqlTable("access_codes", {
-	id: int().autoincrement().notNull(),
-	code: varchar({ length: 64 }).notNull(),
-	isActive: tinyint().default(1).notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-},
-(table) => [
-	index("access_codes_code_unique").on(table.code),
-]);
-
-export const affiliateClicks = mysqlTable("affiliate_clicks", {
-	id: int().autoincrement().notNull(),
-	affiliateId: int().notNull(),
-	affiliateCode: varchar({ length: 50 }).notNull(),
-	ipAddress: varchar({ length: 45 }),
-	userAgent: text(),
-	referrerUrl: text(),
-	landingPage: text(),
-	clickedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-});
-
-export const affiliateCommissions = mysqlTable("affiliate_commissions", {
-	id: int().autoincrement().notNull(),
-	affiliateId: int().notNull(),
-	referralId: int().notNull(),
-	orderId: varchar({ length: 255 }),
-	amount: int().notNull(),
-	type: mysqlEnum(['subscription','course','bundle']).notNull(),
-	status: mysqlEnum(['pending','approved','paid','cancelled']).default('pending').notNull(),
-	description: text(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	approvedAt: timestamp({ mode: 'string' }),
-	paidAt: timestamp({ mode: 'string' }),
-});
-
-export const affiliatePayouts = mysqlTable("affiliate_payouts", {
-	id: int().autoincrement().notNull(),
-	affiliateId: int().notNull(),
-	amount: int().notNull(),
-	payoutMethod: mysqlEnum(['paypal','bank_transfer','check']).notNull(),
-	payoutEmail: varchar({ length: 320 }),
-	status: mysqlEnum(['pending','processing','completed','failed']).default('pending').notNull(),
-	transactionId: varchar({ length: 255 }),
-	notes: text(),
-	requestedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	processedAt: timestamp({ mode: 'string' }),
-	completedAt: timestamp({ mode: 'string' }),
-});
-
-export const affiliateReferrals = mysqlTable("affiliate_referrals", {
-	id: int().autoincrement().notNull(),
-	affiliateId: int().notNull(),
-	referredUserId: int().notNull(),
-	referralCode: varchar({ length: 50 }).notNull(),
-	status: mysqlEnum(['pending','converted','cancelled']).default('pending').notNull(),
-	referralDate: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	conversionDate: timestamp({ mode: 'string' }),
-	ipAddress: varchar({ length: 45 }),
-	userAgent: text(),
-});
-
-export const affiliates = mysqlTable("affiliates", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	affiliateCode: varchar({ length: 50 }).notNull(),
-	status: mysqlEnum(['pending','active','suspended','inactive']).default('pending').notNull(),
-	subscriptionCommissionRate: int().default(25).notNull(),
-	courseCommissionRate: int().default(35).notNull(),
-	payoutEmail: varchar({ length: 320 }),
-	payoutMethod: mysqlEnum(['paypal','bank_transfer','check']).default('paypal'),
-	totalEarnings: int().default(0).notNull(),
-	pendingEarnings: int().default(0).notNull(),
-	paidEarnings: int().default(0).notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-	approvedAt: timestamp({ mode: 'string' }),
-	organizationName: varchar({ length: 255 }),
-	organizationType: mysqlEnum(['church','ministry','nonprofit','individual','other']),
-	website: varchar({ length: 500 }),
-	description: text(),
-	expectedReferrals: varchar({ length: 255 }),
-	paymentDetails: text(),
-	rejectionReason: text(),
-	suspensionReason: text(),
-},
-(table) => [
-	index("affiliateCode").on(table.affiliateCode),
-]);
-
-export const assignmentGrades = mysqlTable("assignment_grades", {
-	id: int().autoincrement().notNull(),
-	submissionId: int().notNull(),
-	grade: int().notNull(),
-	feedback: text().notNull(),
-	rubricScores: text(),
-	gradedBy: int().notNull(),
-	gradedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-});
-
-export const assignmentSubmissions = mysqlTable("assignment_submissions", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	lessonId: int().notNull(),
-	fileUrl: text().notNull(),
-	fileName: varchar({ length: 255 }).notNull(),
-	fileSize: int(),
-	status: mysqlEnum(['submitted','graded','returned']).default('submitted').notNull(),
-	submittedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-	notes: text(),
-});
-
-export const assignmentVersions = mysqlTable("assignment_versions", {
-	id: int().autoincrement().notNull(),
-	submissionId: int().notNull(),
-	versionNumber: int().notNull(),
-	fileUrl: text().notNull(),
-	fileName: varchar({ length: 255 }).notNull(),
-	notes: text(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-});
-
-export const bridgeAcademyPracticeAnswers = mysqlTable("bridge_academy_practice_answers", {
-	id: int().autoincrement().notNull(),
-	attemptId: int().notNull(),
-	questionId: int().notNull(),
-	userAnswer: text().notNull(),
-	isCorrect: tinyint().notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-});
-
-export const bridgeAcademyPracticeAttempts = mysqlTable("bridge_academy_practice_attempts", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	topicId: int().notNull(),
-	courseId: int().notNull(),
-	attemptNumber: int().notNull(),
-	score: int().notNull(),
-	totalQuestions: int().notNull(),
-	percentage: int().notNull(),
-	difficulty: mysqlEnum(['easy','medium','hard']).default('medium').notNull(),
-	submittedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-});
-
-export const bridgeAcademyPracticeQuestions = mysqlTable("bridge_academy_practice_questions", {
-	id: int().autoincrement().notNull(),
-	topicId: int().notNull(),
-	question: text().notNull(),
-	questionType: mysqlEnum(['multiple_choice','true_false','short_answer']).notNull(),
-	options: json(),
-	correctAnswer: text().notNull(),
-	explanation: text(),
-	difficulty: mysqlEnum(['easy','medium','hard']).default('medium').notNull(),
-	variationGroup: varchar({ length: 64 }),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-});
-
-export const bridgeAcademyQuizAnswers = mysqlTable("bridge_academy_quiz_answers", {
-	id: int().autoincrement().notNull(),
-	submissionId: int().notNull().references(() => bridgeAcademyQuizSubmissions.id, { onDelete: "cascade" } ),
-	questionId: int().notNull().references(() => bridgeAcademyQuizQuestions.id, { onDelete: "cascade" } ),
-	studentAnswer: varchar({ length: 255 }),
-	isCorrect: tinyint(),
-	pointsEarned: int(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP'),
-});
-
-export const bridgeAcademyQuizQuestions = mysqlTable("bridge_academy_quiz_questions", {
-	id: int().autoincrement().notNull(),
-	topicId: int().notNull().references(() => bridgeAcademyTopics.id, { onDelete: "cascade" } ),
-	questionNumber: int().notNull(),
-	questionText: text().notNull(),
-	questionType: varchar({ length: 50 }).notNull(),
-	options: json(),
-	correctAnswer: varchar({ length: 255 }),
-	explanation: text(),
-	difficultyLevel: varchar({ length: 20 }).default('medium'),
-	estimatedTime: int().default(2),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP'),
-});
-
-export const bridgeAcademyQuizSubmissions = mysqlTable("bridge_academy_quiz_submissions", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull().references(() => users.id, { onDelete: "cascade" } ),
-	topicId: int().notNull().references(() => bridgeAcademyTopics.id, { onDelete: "cascade" } ),
-	startedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP'),
-	submittedAt: timestamp({ mode: 'string' }),
-	score: int(),
-	percentageScore: decimal({ precision: 5, scale: 2 }),
-	timeSpent: int(),
-	status: varchar({ length: 50 }).default('in_progress'),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP'),
-});
-
-export const bridgeAcademyStudentDifficultyProfiles = mysqlTable("bridge_academy_student_difficulty_profiles", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	topicId: int().notNull(),
-	courseId: int().notNull(),
-	currentDifficulty: mysqlEnum(['easy','medium','hard']).default('easy').notNull(),
-	averageScore: int().default(0).notNull(),
-	attemptCount: int().default(0).notNull(),
-	bestScore: int().default(0).notNull(),
-	improvementTrend: int().default(0),
-	lastAttemptAt: timestamp({ mode: 'string' }),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-});
-
-export const bridgeAcademyTopics = mysqlTable("bridge_academy_topics", {
-	id: int().autoincrement().notNull(),
-	subjectCode: varchar({ length: 50 }).notNull(),
-	subjectName: varchar({ length: 255 }).notNull(),
-	topicNumber: int().notNull(),
-	topicName: varchar({ length: 255 }).notNull(),
-	description: text(),
-	estimatedHours: int().default(2),
-	difficultyLevel: varchar({ length: 20 }).default('medium'),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP'),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow(),
-},
-(table) => [
-	index("unique_topic").on(table.subjectCode, table.topicNumber),
-]);
-
-export const bundleCourses = mysqlTable("bundle_courses", {
-	id: int().autoincrement().notNull(),
-	bundleId: int().notNull(),
-	courseId: int().notNull(),
-	courseOrder: int().default(0).notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-});
-
-export const bundlePurchases = mysqlTable("bundle_purchases", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	bundleId: int().notNull(),
-	stripePaymentIntentId: varchar({ length: 255 }),
-	amount: int().notNull(),
-	currency: varchar({ length: 10 }).default('usd'),
-	status: mysqlEnum(['pending','completed','failed','refunded']).default('pending'),
-	purchasedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP'),
-},
-(table) => [
-	index("idx_user_bundle").on(table.userId, table.bundleId),
-	index("idx_stripe_payment").on(table.stripePaymentIntentId),
-]);
-
-export const certificates = mysqlTable("certificates", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	courseId: int().notNull(),
-	certificateNumber: varchar({ length: 50 }).notNull(),
-	issuedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	completionDate: timestamp({ mode: 'string' }).notNull(),
-	verificationToken: varchar({ length: 64 }).notNull(),
-	cpdHours: int().notNull(),
-},
-(table) => [
-	index("certificates_certificateNumber_unique").on(table.certificateNumber),
-	index("certificates_verificationToken_unique").on(table.verificationToken),
-]);
-
-export const chaplaincyApplications = mysqlTable("chaplaincy_applications", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	fullName: varchar({ length: 255 }).notNull(),
-	email: varchar({ length: 320 }).notNull(),
-	phone: varchar({ length: 50 }).notNull(),
-	address: text().notNull(),
-	dateOfBirth: varchar({ length: 20 }).notNull(),
-	currentMinistryRole: varchar({ length: 255 }),
-	yearsInMinistry: int().notNull(),
-	ordainedStatus: mysqlEnum(['ordained','licensed','not_ordained']).notNull(),
-	denominationAffiliation: varchar({ length: 255 }),
-	ministryExperienceDescription: text().notNull(),
-	chaplaincyInterest: mysqlEnum("chaplaincy_interest", ['healthcare','military','correctional','corporate','educational','other']).notNull(),
-	chaplaincyInterestOther: varchar("chaplaincy_interest_other", { length: 255 }),
-	motivationStatement: text().notNull(),
-	reference1Name: varchar({ length: 255 }).notNull(),
-	reference1Email: varchar({ length: 320 }).notNull(),
-	reference1Phone: varchar({ length: 50 }).notNull(),
-	reference1Relationship: varchar({ length: 255 }).notNull(),
-	reference2Name: varchar({ length: 255 }).notNull(),
-	reference2Email: varchar({ length: 320 }).notNull(),
-	reference2Phone: varchar({ length: 50 }).notNull(),
-	reference2Relationship: varchar({ length: 255 }).notNull(),
-	backgroundCheckConsent: tinyint().notNull(),
-	backgroundCheckCompleted: tinyint().default(0).notNull(),
-	backgroundCheckDate: timestamp({ mode: 'string' }),
-	backgroundCheckStatus: mysqlEnum(['pending','clear','review_required','failed']).default('pending'),
-	status: mysqlEnum(['pending','under_review','approved','rejected']).default('pending').notNull(),
-	reviewedBy: int(),
-	reviewNotes: text(),
-	rejectionReason: text(),
-	submittedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	reviewedAt: timestamp({ mode: 'string' }),
-	approvedAt: timestamp({ mode: 'string' }),
-});
-
-export const chatMessages = mysqlTable("chat_messages", {
-	id: int().autoincrement().notNull(),
-	sessionId: int().notNull(),
-	senderId: int(),
-	senderType: mysqlEnum(['visitor','admin']).notNull(),
-	message: text().notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-});
-
-export const chatSessions = mysqlTable("chat_sessions", {
-	id: int().autoincrement().notNull(),
-	visitorName: varchar({ length: 255 }),
-	visitorEmail: varchar({ length: 320 }),
-	userId: int(),
-	status: mysqlEnum(['active','closed']).default('active').notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-});
-
-export const courseBundles = mysqlTable("course_bundles", {
-	id: int().autoincrement().notNull(),
-	name: varchar({ length: 255 }).notNull(),
-	description: text(),
-	icon: varchar({ length: 64 }).default('BookOpen'),
-	colorTheme: varchar({ length: 32 }).default('blue'),
-	displayOrder: int().default(0).notNull(),
-	isActive: tinyint().default(1).notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-	price: int().default(0),
-	discountPercentage: int().default(0),
-	stripeProductId: varchar({ length: 255 }),
-	stripePriceId: varchar({ length: 255 }),
-});
-
-export const courseEnrollments = mysqlTable("course_enrollments", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	courseId: int().notNull(),
-	accessCodeId: int().notNull(),
-	enrolledAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	idVerificationDeadlineAt: timestamp({ mode: 'string' }),
-	idVerificationCompletedAt: timestamp({ mode: 'string' }),
-	accessSuspendedAt: timestamp({ mode: 'string' }),
-},
-(table) => [
-	index("idx_enrollments_user_course").on(table.userId, table.courseId),
-]);
-
-export const coursePrerequisites = mysqlTable("course_prerequisites", {
-	id: int().autoincrement().notNull(),
-	courseId: int().notNull().references(() => courses.id, { onDelete: "cascade" } ),
-	prerequisiteCourseId: int().notNull().references(() => courses.id, { onDelete: "cascade" } ),
-	required: tinyint().default(1),
-	createdAt: datetime({ mode: 'string'}).default('CURRENT_TIMESTAMP'),
-},
-(table) => [
-	index("unique_prerequisite").on(table.courseId, table.prerequisiteCourseId),
-	index("idx_prerequisites_course").on(table.courseId),
-]);
-
-export const coursePreviews = mysqlTable("course_previews", {
-	id: int().autoincrement().notNull(),
-	courseId: int().notNull(),
-	previewLessonId: int().notNull(),
-	studyGuideUrl: text(),
-	isActive: tinyint().default(1).notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-},
-(table) => [
-	index("course_previews_courseId_unique").on(table.courseId),
-]);
-
-export const coursePurchases = mysqlTable("course_purchases", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	courseId: int().notNull(),
-	stripeCustomerId: varchar({ length: 255 }),
-	stripePaymentIntentId: varchar({ length: 255 }),
-	amount: int().notNull(),
-	status: mysqlEnum(['pending','completed','failed','refunded']).default('pending').notNull(),
-	accessCodeId: int(),
-	purchasedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-},
-(table) => [
-	index("stripePaymentIntentId").on(table.stripePaymentIntentId),
-]);
-
-export const courses = mysqlTable("courses", {
-	id: int().autoincrement().notNull(),
-	code: varchar({ length: 32 }).notNull(),
-	title: varchar({ length: 255 }).notNull(),
-	description: text(),
-	colorTheme: varchar({ length: 32 }).notNull(),
-	totalLessons: int().default(0).notNull(),
-	displayOrder: int().default(0).notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-	cpdHours: int().default(0).notNull(),
-	introVideoUrl: text(),
-	price: int().default(89).notNull(),
-	requiresBackgroundCheck: tinyint().default(0).notNull(),
-	backgroundCheckFee: int().default(0).notNull(),
-	courseType: mysqlEnum(['theological', 'ged']).default('theological').notNull(),
-},
-(table) => [
-	index("courses_code_unique").on(table.code),
-]);
-
-export const emailNotifications = mysqlTable("email_notifications", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	type: mysqlEnum(['enrollment','lesson_completion','certificate','assignment_deadline','progress_summary','forum_reply']).notNull(),
-	subject: varchar({ length: 255 }).notNull(),
-	content: text().notNull(),
-	status: mysqlEnum(['pending','sent','failed']).default('pending'),
-	sentAt: timestamp({ mode: 'string' }),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP'),
-	metadata: json(),
-},
-(table) => [
-	index("idx_user_status").on(table.userId, table.status),
-	index("idx_type_status").on(table.type, table.status),
-	index("idx_created").on(table.createdAt),
-]);
-
-export const emailPreferences = mysqlTable("email_preferences", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	enrollmentEmails: tinyint().default(1),
-	lessonCompletionEmails: tinyint().default(1),
-	certificateEmails: tinyint().default(1),
-	assignmentDeadlineEmails: tinyint().default(1),
-	progressSummaryEmails: tinyint().default(1),
-	forumReplyEmails: tinyint().default(1),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow(),
-},
-(table) => [
-	index("idx_user").on(table.userId),
-	index("userId").on(table.userId),
-]);
-
-export const emailSettings = mysqlTable("email_settings", {
-	id: int().autoincrement().notNull(),
-	smtpHost: varchar({ length: 255 }).notNull(),
-	smtpPort: int().notNull(),
-	smtpUser: varchar({ length: 255 }).notNull(),
-	smtpPassword: varchar({ length: 255 }).notNull(),
-	fromEmail: varchar({ length: 320 }).notNull(),
-	fromName: varchar({ length: 255 }).notNull(),
-	isActive: tinyint().default(1).notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-});
-
-export const enrollments = mysqlTable("enrollments", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	accessCodeId: int().notNull(),
-	enrolledAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-});
-
-export const followUps = mysqlTable("follow_ups", {
-	id: int().autoincrement().notNull(),
-	studentId: int().notNull(),
-	adminId: int().notNull(),
-	title: varchar({ length: 255 }).notNull(),
-	notes: text(),
-	status: mysqlEnum(['pending','completed','cancelled']).default('pending').notNull(),
-	priority: mysqlEnum(['low','medium','high']).default('medium').notNull(),
-	dueDate: timestamp({ mode: 'string' }),
-	completedAt: timestamp({ mode: 'string' }),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-});
-
-export const forumReplies = mysqlTable("forum_replies", {
-	id: int().autoincrement().notNull(),
-	topicId: int().notNull(),
-	userId: int().notNull(),
-	content: text().notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-});
-
-export const forumTopics = mysqlTable("forum_topics", {
-	id: int().autoincrement().notNull(),
-	courseId: int().notNull(),
-	userId: int().notNull(),
-	title: varchar({ length: 255 }).notNull(),
-	content: text().notNull(),
-	isPinned: tinyint().default(0).notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-});
-
-export const learningPathCertificates = mysqlTable("learning_path_certificates", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	learningPathId: int().notNull(),
-	certificateNumber: varchar({ length: 100 }).notNull(),
-	verificationToken: varchar({ length: 255 }).notNull(),
-	// you can use { mode: 'date' }, if you want to have Date as type for this column
-	completionDate: date({ mode: 'string' }).notNull(),
-	issuedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP'),
-},
-(table) => [
-	index("idx_user_path").on(table.userId, table.learningPathId),
-	index("idx_verification").on(table.verificationToken),
-	index("certificateNumber").on(table.certificateNumber),
-	index("verificationToken").on(table.verificationToken),
-]);
-
-export const learningPathCourses = mysqlTable("learning_path_courses", {
-	id: int().autoincrement().notNull(),
-	pathId: int().notNull().references(() => learningPaths.id, { onDelete: "cascade" } ),
-	courseId: int().notNull().references(() => courses.id, { onDelete: "cascade" } ),
-	orderIndex: int().default(0).notNull(),
-	createdAt: datetime({ mode: 'string'}).default('CURRENT_TIMESTAMP'),
-},
-(table) => [
-	index("unique_path_course").on(table.pathId, table.courseId),
-]);
-
-export const learningPathEnrollments = mysqlTable("learning_path_enrollments", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	learningPathId: int().notNull(),
-	enrolledAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	completedAt: timestamp({ mode: 'string' }),
-	isActive: tinyint().default(1).notNull(),
-},
-(table) => [
-	index("learning_path_enrollments_unique").on(table.userId, table.learningPathId),
-]);
-
-export const learningPaths = mysqlTable("learning_paths", {
-	id: int().autoincrement().notNull(),
-	name: varchar({ length: 255 }).notNull(),
-	description: text(),
-	goal: text(),
-	duration: varchar({ length: 64 }),
-	level: mysqlEnum(['beginner','intermediate','advanced']).default('beginner'),
-	icon: varchar({ length: 64 }).default('Map'),
-	colorTheme: varchar({ length: 32 }).default('purple'),
-	displayOrder: int().default(0).notNull(),
-	isActive: tinyint().default(1).notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-});
-
-export const lessons = mysqlTable("lessons", {
-	id: int().autoincrement().notNull(),
-	courseId: int().notNull(),
-	title: varchar({ length: 255 }).notNull(),
-	content: text().notNull(),
-	scripture: text(),
-	lessonOrder: int().notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-	videoUrl: text(),
-	readingMaterial: text(),
-	assignment: text(),
-	assignmentDueDate: timestamp({ mode: 'string' }),
-});
-
-export const loginHistory = mysqlTable("login_history", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	ipAddress: varchar({ length: 45 }),
-	userAgent: text(),
-	loginMethod: varchar({ length: 64 }).default('email'),
-	success: tinyint().default(1).notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-});
-
-export const pathCourses = mysqlTable("path_courses", {
-	id: int().autoincrement().notNull(),
-	pathId: int().notNull(),
-	courseId: int().notNull(),
-	courseOrder: int().notNull(),
-	isRequired: tinyint().default(1).notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-});
-
-export const paymentPlanTransactions = mysqlTable("payment_plan_transactions", {
-	id: int().autoincrement().notNull(),
-	planId: int().notNull().references(() => paymentPlans.id, { onDelete: "cascade" } ),
-	amount: int().notNull(),
-	status: mysqlEnum(['pending','completed','failed']).default('pending').notNull(),
-	paymentDate: datetime({ mode: 'string'}).notNull(),
-	stripePaymentIntentId: varchar({ length: 255 }),
-	failureReason: text(),
-	createdAt: datetime({ mode: 'string'}).default('CURRENT_TIMESTAMP'),
-	updatedAt: datetime({ mode: 'string'}).default(sql`(CURRENT_TIMESTAMP)`),
-},
-(table) => [
-	index("idx_planId").on(table.planId),
-	index("idx_status").on(table.status),
-	index("idx_paymentDate").on(table.paymentDate),
-]);
-
-export const paymentPlans = mysqlTable("payment_plans", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull().references(() => users.id, { onDelete: "cascade" } ),
-	bundleId: int().notNull().references(() => courseBundles.id, { onDelete: "cascade" } ),
-	totalAmount: int().notNull(),
-	monthlyAmount: int().notNull(),
-	paymentsTotal: int().default(6).notNull(),
-	paymentsCompleted: int().default(0).notNull(),
-	status: mysqlEnum(['active','completed','cancelled','failed']).default('active').notNull(),
-	startDate: datetime({ mode: 'string'}).notNull(),
-	nextPaymentDate: datetime({ mode: 'string'}).notNull(),
-	stripeCustomerId: varchar({ length: 255 }),
-	stripePaymentMethodId: varchar({ length: 255 }),
-	createdAt: datetime({ mode: 'string'}).default('CURRENT_TIMESTAMP'),
-	updatedAt: datetime({ mode: 'string'}).default(sql`(CURRENT_TIMESTAMP)`),
-},
-(table) => [
-	index("idx_userId").on(table.userId),
-	index("idx_status").on(table.status),
-	index("idx_nextPaymentDate").on(table.nextPaymentDate),
-]);
-
-export const peerReviewFeedback = mysqlTable("peer_review_feedback", {
-	id: int().autoincrement().notNull(),
-	peerReviewId: int().notNull(),
-	strengthsComment: text().notNull(),
-	improvementComment: text().notNull(),
-	theologicalDepthRating: int().notNull(),
-	contentQualityRating: int().notNull(),
-	writingQualityRating: int().notNull(),
-	overallComment: text(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-});
-
-export const peerReviews = mysqlTable("peer_reviews", {
-	id: int().autoincrement().notNull(),
-	submissionId: int().notNull(),
-	reviewerId: int().notNull(),
-	status: mysqlEnum(['pending','completed']).default('pending').notNull(),
-	assignedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	completedAt: timestamp({ mode: 'string' }),
-});
-
-export const pendingWrittenAnswers = mysqlTable("pending_written_answers", {
-	id: int().autoincrement().notNull(),
-	quizSubmissionId: int().notNull(),
-	userId: int().notNull(),
-	lessonId: int().notNull(),
-	courseId: int().notNull(),
-	questionId: int().notNull(),
-	questionText: text().notNull(),
-	studentAnswer: text().notNull(),
-	status: mysqlEnum(['pending','graded','skipped']).default('pending').notNull(),
-	adminScore: int(),
-	adminFeedback: text(),
-	gradedAt: timestamp({ mode: 'string' }),
-	gradedBy: int(),
-	submittedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-});
-
-export const plagiarismReports = mysqlTable("plagiarism_reports", {
-	id: int().autoincrement().notNull(),
-	submissionId: int().notNull(),
-	similarityScore: int().notNull(),
-	status: mysqlEnum(['pending','completed','failed']).default('pending').notNull(),
-	reportData: text(),
-	checkedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-});
-
-export const previewQuizAttempts = mysqlTable("preview_quiz_attempts", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	courseId: int().notNull(),
-	lessonId: int().notNull(),
-	score: int().notNull(),
-	totalQuestions: int().notNull(),
-	attemptedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-});
-
-export const quizAnswers = mysqlTable("quiz_answers", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	questionId: int().notNull(),
-	answer: text().notNull(),
-	isCorrect: tinyint().default(0).notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-});
-
-export const quizQuestions = mysqlTable("quiz_questions", {
-	id: int().autoincrement().notNull(),
-	lessonId: int().notNull(),
-	question: text().notNull(),
-	questionType: mysqlEnum(['multiple_choice','true_false','short_answer']).notNull(),
-	options: text(),
-	correctAnswer: text().notNull(),
-	questionOrder: int().notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-});
-
-export const quizSubmissions = mysqlTable("quiz_submissions", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	lessonId: int().notNull(),
-	score: int().notNull(),
-	totalQuestions: int().notNull(),
-	passed: tinyint().notNull(),
-	submittedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-});
-
-export const stripeCustomers = mysqlTable("stripe_customers", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	stripeCustomerId: varchar({ length: 255 }).notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-},
-(table) => [
-	index("userId").on(table.userId),
-	index("stripeCustomerId").on(table.stripeCustomerId),
-]);
-
-export const studentProgress = mysqlTable("student_progress", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	courseId: int().notNull(),
-	lessonId: int().notNull(),
-	completed: tinyint().default(0).notNull(),
-	completedAt: timestamp({ mode: 'string' }),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-});
-
-export const subscriptions = mysqlTable("subscriptions", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	stripeCustomerId: varchar({ length: 255 }).notNull(),
-	stripeSubscriptionId: varchar({ length: 255 }).notNull(),
-	status: mysqlEnum(['active','canceled','past_due','unpaid','suspended']).default('active').notNull(),
-	currentPeriodStart: timestamp({ mode: 'string' }).notNull(),
-	currentPeriodEnd: timestamp({ mode: 'string' }).notNull(),
-	cancelAtPeriodEnd: tinyint().default(0).notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-	failedPaymentAttempts: int().default(0).notNull(),
-	lastFailedPaymentDate: timestamp({ mode: 'string' }),
-	nextRetryDate: timestamp({ mode: 'string' }),
-	accessSuspendedAt: timestamp({ mode: 'string' }),
-	lastPaymentFailureReason: text(),
-},
-(table) => [
-	index("stripeSubscriptionId").on(table.stripeSubscriptionId),
-]);
-
+/**
+ * Core user table backing auth flow.
+ * Extend this file with additional tables as your product grows.
+ * Columns use camelCase to match both database fields and generated types.
+ */
 export const users = mysqlTable("users", {
-	id: int().autoincrement().notNull(),
-	openId: varchar({ length: 64 }),
-	name: text(),
-	email: varchar({ length: 320 }),
-	loginMethod: varchar({ length: 64 }).default('email'),
-	role: mysqlEnum(['user','admin']).default('user').notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-	lastSignedIn: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	password: varchar({ length: 255 }),
-	passwordResetToken: varchar({ length: 255 }),
-	passwordResetExpiry: timestamp({ mode: 'string' }),
-	emailVerified: tinyint().default(0).notNull(),
-	emailVerificationToken: varchar({ length: 255 }),
-	emailVerificationExpiry: timestamp({ mode: 'string' }),
-	stripeCustomerId: varchar({ length: 255 }),
-},
-(table) => [
-	index("users_openId_unique").on(table.openId),
-	index("users_email_unique").on(table.email),
-]);
-
-export const webinarRegistrations = mysqlTable("webinar_registrations", {
-	id: int().autoincrement().notNull(),
-	userId: int().notNull(),
-	webinarId: int().notNull(),
-	registeredAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	attended: tinyint().default(0).notNull(),
-	attendedAt: timestamp({ mode: 'string' }),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
+  /**
+   * Surrogate primary key. Auto-incremented numeric value managed by the database.
+   * Use this for relations between tables.
+   */
+  id: int("id").autoincrement().primaryKey(),
+  /** Manus OAuth identifier (openId) returned from the OAuth callback. Unique per user. */
+  openId: varchar("openId", { length: 64 }).unique(),
+  /** Hashed password for email/password authentication */
+  password: varchar("password", { length: 255 }),
+  /** Token for password reset flow */
+  passwordResetToken: varchar("passwordResetToken", { length: 255 }),
+  /** Expiry timestamp for password reset token */
+  passwordResetExpiry: timestamp("passwordResetExpiry"),
+  /** Email verification status */
+  emailVerified: boolean("emailVerified").default(false).notNull(),
+  /** Token for email verification */
+  emailVerificationToken: varchar("emailVerificationToken", { length: 255 }),
+  /** Expiry timestamp for email verification token */
+  emailVerificationExpiry: timestamp("emailVerificationExpiry"),
+  name: text("name"),
+  email: varchar("email", { length: 320 }).unique(),
+  loginMethod: varchar("loginMethod", { length: 64 }).default("email"),
+  role: mysqlEnum("role", ["user", "admin"]).default("user").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull(),
 });
 
+export type User = typeof users.$inferSelect;
+export type InsertUser = typeof users.$inferInsert;
+
+/**
+ * Access codes for student enrollment
+ */
+export const accessCodes = mysqlTable("access_codes", {
+  id: int("id").autoincrement().primaryKey(),
+  code: varchar("code", { length: 64 }).notNull().unique(),
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type AccessCode = typeof accessCodes.$inferSelect;
+export type InsertAccessCode = typeof accessCodes.$inferInsert;
+
+/**
+ * Junction table linking access codes to courses (many-to-many)
+ */
+export const accessCodeCourses = mysqlTable("access_code_courses", {
+  id: int("id").autoincrement().primaryKey(),
+  accessCodeId: int("accessCodeId").notNull(),
+  courseId: int("courseId").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type AccessCodeCourse = typeof accessCodeCourses.$inferSelect;
+export type InsertAccessCodeCourse = typeof accessCodeCourses.$inferInsert;
+
+/**
+ * Student course enrollments
+ */
+export const courseEnrollments = mysqlTable("course_enrollments", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  courseId: int("courseId").notNull(),
+  accessCodeId: int("accessCodeId").notNull(),
+  enrolledAt: timestamp("enrolledAt").defaultNow().notNull(),
+});
+
+export type CourseEnrollment = typeof courseEnrollments.$inferSelect;
+export type InsertCourseEnrollment = typeof courseEnrollments.$inferInsert;
+
+/**
+ * Courses table
+ */
+export const courses = mysqlTable("courses", {
+  id: int("id").autoincrement().primaryKey(),
+  code: varchar("code", { length: 32 }).notNull().unique(),
+  title: varchar("title", { length: 255 }).notNull(),
+  description: text("description"),
+  colorTheme: varchar("colorTheme", { length: 32 }).notNull(),
+  totalLessons: int("totalLessons").default(0).notNull(),
+  cpdHours: int("cpdHours").default(0).notNull(),
+  displayOrder: int("displayOrder").default(0).notNull(),
+  introVideoUrl: text("introVideoUrl"), // YouTube, Vimeo, or direct video URL
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Course = typeof courses.$inferSelect;
+export type InsertCourse = typeof courses.$inferInsert;
+
+/**
+ * Lessons table
+ */
+export const lessons = mysqlTable("lessons", {
+  id: int("id").autoincrement().primaryKey(),
+  courseId: int("courseId").notNull(),
+  title: varchar("title", { length: 255 }).notNull(),
+  content: text("content").notNull(),
+  assignment: text("assignment"), // Written assignment prompt
+  assignmentDueDate: timestamp("assignmentDueDate"), // Due date for assignment submission
+  lessonOrder: int("lessonOrder").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Lesson = typeof lessons.$inferSelect;
+export type InsertLesson = typeof lessons.$inferInsert;
+
+/**
+ * Quiz questions table
+ */
+export const quizQuestions = mysqlTable("quiz_questions", {
+  id: int("id").autoincrement().primaryKey(),
+  lessonId: int("lessonId").notNull(),
+  question: text("question").notNull(),
+  questionType: mysqlEnum("questionType", ["multiple_choice", "true_false", "short_answer"]).notNull(),
+  options: text("options"),
+  correctAnswer: text("correctAnswer").notNull(),
+  questionOrder: int("questionOrder").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type QuizQuestion = typeof quizQuestions.$inferSelect;
+export type InsertQuizQuestion = typeof quizQuestions.$inferInsert;
+
+/**
+ * Student progress tracking
+ */
+export const studentProgress = mysqlTable("student_progress", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  courseId: int("courseId").notNull(),
+  lessonId: int("lessonId").notNull(),
+  completed: boolean("completed").default(false).notNull(),
+  completedAt: timestamp("completedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type StudentProgress = typeof studentProgress.$inferSelect;
+export type InsertStudentProgress = typeof studentProgress.$inferInsert;
+
+/**
+ * Quiz answers submitted by students
+ */
+export const quizAnswers = mysqlTable("quiz_answers", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  questionId: int("questionId").notNull(),
+  answer: text("answer").notNull(),
+  isCorrect: boolean("isCorrect").default(false).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type QuizAnswer = typeof quizAnswers.$inferSelect;
+export type InsertQuizAnswer = typeof quizAnswers.$inferInsert;
+
+/**
+ * Student enrollments (tracks which students used which access codes)
+ */
+export const enrollments = mysqlTable("enrollments", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  accessCodeId: int("accessCodeId").notNull(),
+  enrolledAt: timestamp("enrolledAt").defaultNow().notNull(),
+});
+
+export type Enrollment = typeof enrollments.$inferSelect;
+export type InsertEnrollment = typeof enrollments.$inferInsert;
+
+/**
+ * Quiz submissions (complete quiz attempts with scores)
+ */
+export const quizSubmissions = mysqlTable("quiz_submissions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  lessonId: int("lessonId").notNull(),
+  score: int("score").notNull(),
+  totalQuestions: int("totalQuestions").notNull(),
+  passed: boolean("passed").notNull(),
+  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+});
+
+export type QuizSubmission = typeof quizSubmissions.$inferSelect;
+export type InsertQuizSubmission = typeof quizSubmissions.$inferInsert;
+
+/**
+ * Course completion certificates
+ */
+export const certificates = mysqlTable("certificates", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  courseId: int("courseId").notNull(),
+  certificateNumber: varchar("certificateNumber", { length: 50 }).notNull().unique(),
+  verificationToken: varchar("verificationToken", { length: 64 }).notNull().unique(),
+  cpdHours: int("cpdHours").notNull(),
+  issuedAt: timestamp("issuedAt").defaultNow().notNull(),
+  completionDate: timestamp("completionDate").notNull(),
+});
+
+export type Certificate = typeof certificates.$inferSelect;
+export type InsertCertificate = typeof certificates.$inferInsert;
+
+/**
+ * Course bundles (grouped courses for thematic learning)
+ */
+export const courseBundles = mysqlTable("course_bundles", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  icon: varchar("icon", { length: 64 }).default("BookOpen"),
+  colorTheme: varchar("colorTheme", { length: 32 }).default("blue"),
+  displayOrder: int("displayOrder").default(0).notNull(),
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type CourseBundle = typeof courseBundles.$inferSelect;
+export type InsertCourseBundle = typeof courseBundles.$inferInsert;
+
+/**
+ * Junction table linking bundles to courses (many-to-many)
+ */
+export const bundleCourses = mysqlTable("bundle_courses", {
+  id: int("id").autoincrement().primaryKey(),
+  bundleId: int("bundleId").notNull(),
+  courseId: int("courseId").notNull(),
+  courseOrder: int("courseOrder").default(0).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BundleCourse = typeof bundleCourses.$inferSelect;
+export type InsertBundleCourse = typeof bundleCourses.$inferInsert;
+
+/**
+ * Learning paths (recommended course sequences for specific goals)
+ */
+export const learningPaths = mysqlTable("learning_paths", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  goal: text("goal"), // What the student will achieve
+  duration: varchar("duration", { length: 64 }), // e.g., "3 months", "6 weeks"
+  level: mysqlEnum("level", ["beginner", "intermediate", "advanced"]).default("beginner"),
+  icon: varchar("icon", { length: 64 }).default("Map"),
+  colorTheme: varchar("colorTheme", { length: 32 }).default("purple"),
+  displayOrder: int("displayOrder").default(0).notNull(),
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type LearningPath = typeof learningPaths.$inferSelect;
+export type InsertLearningPath = typeof learningPaths.$inferInsert;
+
+/**
+ * Junction table linking learning paths to courses (many-to-many with order)
+ */
+export const pathCourses = mysqlTable("path_courses", {
+  id: int("id").autoincrement().primaryKey(),
+  pathId: int("pathId").notNull(),
+  courseId: int("courseId").notNull(),
+  courseOrder: int("courseOrder").notNull(), // Order in the learning path
+  isRequired: boolean("isRequired").default(true).notNull(), // Required or optional course
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PathCourse = typeof pathCourses.$inferSelect;
+export type InsertPathCourse = typeof pathCourses.$inferInsert;
+
+/**
+ * Discussion forum topics (one per course)
+ */
+export const forumTopics = mysqlTable("forum_topics", {
+  id: int("id").autoincrement().primaryKey(),
+  courseId: int("courseId").notNull(),
+  userId: int("userId").notNull(),
+  title: varchar("title", { length: 255 }).notNull(),
+  content: text("content").notNull(),
+  isPinned: boolean("isPinned").default(false).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ForumTopic = typeof forumTopics.$inferSelect;
+export type InsertForumTopic = typeof forumTopics.$inferInsert;
+
+/**
+ * Discussion forum replies
+ */
+export const forumReplies = mysqlTable("forum_replies", {
+  id: int("id").autoincrement().primaryKey(),
+  topicId: int("topicId").notNull(),
+  userId: int("userId").notNull(),
+  content: text("content").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ForumReply = typeof forumReplies.$inferSelect;
+export type InsertForumReply = typeof forumReplies.$inferInsert;
+
+/**
+ * Live webinars/online sessions
+ */
 export const webinars = mysqlTable("webinars", {
-	id: int().autoincrement().notNull(),
-	courseId: int(),
-	title: varchar({ length: 255 }).notNull(),
-	description: text(),
-	meetingUrl: text().notNull(),
-	scheduledAt: timestamp({ mode: 'string' }).notNull(),
-	duration: int().default(60).notNull(),
-	recordingUrl: text(),
-	isActive: tinyint().default(1).notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+  id: int("id").autoincrement().primaryKey(),
+  courseId: int("courseId"), // Optional: link to specific course, null for general webinars
+  title: varchar("title", { length: 255 }).notNull(),
+  description: text("description"),
+  meetingUrl: text("meetingUrl").notNull(), // Zoom, Google Meet, or other meeting link
+  scheduledAt: timestamp("scheduledAt").notNull(), // When the webinar is scheduled
+  duration: int("duration").default(60).notNull(), // Duration in minutes
+  recordingUrl: text("recordingUrl"), // Link to recording after webinar ends
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
+
+export type Webinar = typeof webinars.$inferSelect;
+export type InsertWebinar = typeof webinars.$inferInsert;
+
+/**
+ * Student follow-ups for tracking engagement and outreach
+ */
+export const followUps = mysqlTable("follow_ups", {
+  id: int("id").autoincrement().primaryKey(),
+  studentId: int("studentId").notNull(), // User ID of the student
+  adminId: int("adminId").notNull(), // User ID of the admin creating the follow-up
+  title: varchar("title", { length: 255 }).notNull(),
+  notes: text("notes"),
+  status: mysqlEnum("status", ["pending", "completed", "cancelled"]).default("pending").notNull(),
+  priority: mysqlEnum("priority", ["low", "medium", "high"]).default("medium").notNull(),
+  dueDate: timestamp("dueDate"),
+  completedAt: timestamp("completedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type FollowUp = typeof followUps.$inferSelect;
+export type InsertFollowUp = typeof followUps.$inferInsert;
+
+/**
+ * Assignment submissions from students
+ */
+export const assignmentSubmissions = mysqlTable("assignment_submissions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  lessonId: int("lessonId").notNull(),
+  fileUrl: text("fileUrl").notNull(), // URL to uploaded file (PDF/Word)
+  fileName: varchar("fileName", { length: 255 }).notNull(),
+  notes: text("notes"), // Optional student notes
+  status: mysqlEnum("status", ["submitted", "graded", "returned"]).default("submitted").notNull(),
+  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type AssignmentSubmission = typeof assignmentSubmissions.$inferSelect;
+export type InsertAssignmentSubmission = typeof assignmentSubmissions.$inferInsert;
+
+/**
+ * Grades and feedback for assignment submissions
+ */
+export const assignmentGrades = mysqlTable("assignment_grades", {
+  id: int("id").autoincrement().primaryKey(),
+  submissionId: int("submissionId").notNull(),
+  grade: int("grade").notNull(), // 0-100
+  feedback: text("feedback").notNull(), // Detailed feedback from grader
+  rubricScores: text("rubricScores"), // JSON string of rubric scores
+  gradedBy: int("gradedBy").notNull(), // Admin user ID who graded
+  gradedAt: timestamp("gradedAt").defaultNow().notNull(),
+});
+
+export type AssignmentGrade = typeof assignmentGrades.$inferSelect;
+export type InsertAssignmentGrade = typeof assignmentGrades.$inferInsert;
+
+
+/**
+ * Peer review assignments - tracks which student reviews which submission
+ */
+export const peerReviews = mysqlTable("peer_reviews", {
+  id: int("id").autoincrement().primaryKey(),
+  submissionId: int("submissionId").notNull(), // The submission being reviewed
+  reviewerId: int("reviewerId").notNull(), // Student assigned to review
+  status: mysqlEnum("status", ["pending", "completed"]).default("pending").notNull(),
+  assignedAt: timestamp("assignedAt").defaultNow().notNull(),
+  completedAt: timestamp("completedAt"),
+});
+
+export type PeerReview = typeof peerReviews.$inferSelect;
+export type InsertPeerReview = typeof peerReviews.$inferInsert;
+
+/**
+ * Peer review feedback from students
+ */
+export const peerReviewFeedback = mysqlTable("peer_review_feedback", {
+  id: int("id").autoincrement().primaryKey(),
+  peerReviewId: int("peerReviewId").notNull(), // Links to peer_reviews table
+  strengthsComment: text("strengthsComment").notNull(), // What the student did well
+  improvementComment: text("improvementComment").notNull(), // Areas for improvement
+  theologicalDepthRating: int("theologicalDepthRating").notNull(), // 1-5 rating
+  contentQualityRating: int("contentQualityRating").notNull(), // 1-5 rating
+  writingQualityRating: int("writingQualityRating").notNull(), // 1-5 rating
+  overallComment: text("overallComment"), // Optional overall feedback
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PeerReviewFeedback = typeof peerReviewFeedback.$inferSelect;
+export type InsertPeerReviewFeedback = typeof peerReviewFeedback.$inferInsert;
+
+
+/**
+ * Assignment submission versions for tracking revisions
+ */
+export const assignmentVersions = mysqlTable("assignment_versions", {
+  id: int("id").autoincrement().primaryKey(),
+  submissionId: int("submissionId").notNull(), // Original submission ID
+  versionNumber: int("versionNumber").notNull(), // 1, 2, 3, etc.
+  fileUrl: text("fileUrl").notNull(),
+  fileName: varchar("fileName", { length: 255 }).notNull(),
+  notes: text("notes"), // Student notes about this revision
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type AssignmentVersion = typeof assignmentVersions.$inferSelect;
+export type InsertAssignmentVersion = typeof assignmentVersions.$inferInsert;
+
+
+/**
+ * Plagiarism detection reports
+ */
+export const plagiarismReports = mysqlTable("plagiarism_reports", {
+  id: int("id").autoincrement().primaryKey(),
+  submissionId: int("submissionId").notNull(),
+  similarityScore: int("similarityScore").notNull(), // 0-100 percentage
+  status: mysqlEnum("status", ["pending", "completed", "failed"]).default("pending").notNull(),
+  reportData: text("reportData"), // JSON string with detailed results
+  checkedAt: timestamp("checkedAt").defaultNow().notNull(),
+});
+
+export type PlagiarismReport = typeof plagiarismReports.$inferSelect;
+export type InsertPlagiarismReport = typeof plagiarismReports.$inferInsert;
+
+
+/**
+ * User subscriptions for all-access plan
+ */
+export const subscriptions = mysqlTable("subscriptions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  stripeCustomerId: varchar("stripeCustomerId", { length: 255 }).notNull(),
+  stripeSubscriptionId: varchar("stripeSubscriptionId", { length: 255 }).notNull().unique(),
+  status: mysqlEnum("status", ["active", "canceled", "past_due", "unpaid"]).default("active").notNull(),
+  currentPeriodStart: timestamp("currentPeriodStart").notNull(),
+  currentPeriodEnd: timestamp("currentPeriodEnd").notNull(),
+  cancelAtPeriodEnd: boolean("cancelAtPeriodEnd").default(false).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Subscription = typeof subscriptions.$inferSelect;
+export type InsertSubscription = typeof subscriptions.$inferInsert;
+
+/**
+ * Individual course purchases
+ */
+export const coursePurchases = mysqlTable("course_purchases", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  courseId: int("courseId").notNull(),
+  stripeCustomerId: varchar("stripeCustomerId", { length: 255 }),
+  stripePaymentIntentId: varchar("stripePaymentIntentId", { length: 255 }).unique(),
+  amount: int("amount").notNull(), // Amount in cents
+  status: mysqlEnum("status", ["pending", "completed", "failed", "refunded"]).default("pending").notNull(),
+  accessCodeId: int("accessCodeId"), // Generated access code for this purchase
+  purchasedAt: timestamp("purchasedAt").defaultNow().notNull(),
+});
+
+export type CoursePurchase = typeof coursePurchases.$inferSelect;
+export type InsertCoursePurchase = typeof coursePurchases.$inferInsert;
+
+/**
+ * Stripe customer mapping
+ */
+export const stripeCustomers = mysqlTable("stripe_customers", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull().unique(),
+  stripeCustomerId: varchar("stripeCustomerId", { length: 255 }).notNull().unique(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type StripeCustomer = typeof stripeCustomers.$inferSelect;
+export type InsertStripeCustomer = typeof stripeCustomers.$inferInsert;
+
+/**
+ * Blog categories for organizing posts
+ */
+export const blogCategories = mysqlTable("blog_categories", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull().unique(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+  description: text("description"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BlogCategory = typeof blogCategories.$inferSelect;
+export type InsertBlogCategory = typeof blogCategories.$inferInsert;
+
+/**
+ * Blog posts for news, articles, and updates
+ */
+export const blogPosts = mysqlTable("blog_posts", {
+  id: int("id").autoincrement().primaryKey(),
+  title: varchar("title", { length: 500 }).notNull(),
+  slug: varchar("slug", { length: 500 }).notNull().unique(),
+  content: text("content").notNull(),
+  excerpt: text("excerpt"),
+  featuredImage: varchar("featuredImage", { length: 500 }),
+  authorId: int("authorId").notNull(),
+  categoryId: int("categoryId"),
+  status: mysqlEnum("status", ["draft", "published", "archived"]).default("draft").notNull(),
+  publishedAt: timestamp("publishedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertBlogPost = typeof blogPosts.$inferInsert;
+
+/**
+ * Chat sessions for tracking conversations
+ */
+export const chatSessions = mysqlTable("chat_sessions", {
+  id: int("id").autoincrement().primaryKey(),
+  visitorName: varchar("visitorName", { length: 255 }),
+  visitorEmail: varchar("visitorEmail", { length: 320 }),
+  userId: int("userId"), // Null for anonymous visitors
+  status: mysqlEnum("status", ["active", "closed"]).default("active").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ChatSession = typeof chatSessions.$inferSelect;
+export type InsertChatSession = typeof chatSessions.$inferInsert;
+
+/**
+ * Chat messages within sessions
+ */
+export const chatMessages = mysqlTable("chat_messages", {
+  id: int("id").autoincrement().primaryKey(),
+  sessionId: int("sessionId").notNull(),
+  senderId: int("senderId"), // User ID if logged in, null for visitors
+  senderType: mysqlEnum("senderType", ["visitor", "admin"]).notNull(),
+  message: text("message").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ChatMessage = typeof chatMessages.$inferSelect;
+export type InsertChatMessage = typeof chatMessages.$inferInsert;
+
+/**
+ * Email SMTP settings for sending notifications
+ */
+export const emailSettings = mysqlTable("email_settings", {
+  id: int("id").autoincrement().primaryKey(),
+  smtpHost: varchar("smtpHost", { length: 255 }).notNull(),
+  smtpPort: int("smtpPort").notNull(),
+  smtpUser: varchar("smtpUser", { length: 255 }).notNull(),
+  smtpPassword: varchar("smtpPassword", { length: 255 }).notNull(),
+  fromEmail: varchar("fromEmail", { length: 320 }).notNull(),
+  fromName: varchar("fromName", { length: 255 }).notNull(),
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type EmailSettings = typeof emailSettings.$inferSelect;
+export type InsertEmailSettings = typeof emailSettings.$inferInsert;
+
+/**
+ * Affiliate Program Tables
+ */
+
+/**
+ * Affiliates - Partners who refer students
+ */
+export const affiliates = mysqlTable("affiliates", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(), // Links to users table
+  affiliateCode: varchar("affiliateCode", { length: 50 }).notNull().unique(),
+  organizationName: varchar("organizationName", { length: 255 }),
+  organizationType: mysqlEnum("organizationType", ["church", "ministry", "nonprofit", "individual", "other"]),
+  website: varchar("website", { length: 500 }),
+  description: text("description"),
+  expectedReferrals: varchar("expectedReferrals", { length: 255 }),
+  paymentDetails: text("paymentDetails"),
+  rejectionReason: text("rejectionReason"),
+  suspensionReason: text("suspensionReason"),
+  status: mysqlEnum("status", ["pending", "active", "suspended", "inactive", "rejected"]).default("pending").notNull(),
+  subscriptionCommissionRate: int("subscriptionCommissionRate").default(25).notNull(), // Percentage (e.g., 25 = 25%)
+  courseCommissionRate: int("courseCommissionRate").default(35).notNull(), // Percentage (e.g., 35 = 35%)
+  payoutEmail: varchar("payoutEmail", { length: 320 }),
+  payoutMethod: mysqlEnum("payoutMethod", ["paypal", "bank_transfer", "check"]).default("paypal"),
+  totalEarnings: int("totalEarnings").default(0).notNull(), // In cents
+  pendingEarnings: int("pendingEarnings").default(0).notNull(), // In cents
+  paidEarnings: int("paidEarnings").default(0).notNull(), // In cents
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  approvedAt: timestamp("approvedAt"),
+});
+
+export type Affiliate = typeof affiliates.$inferSelect;
+export type InsertAffiliate = typeof affiliates.$inferInsert;
+
+/**
+ * Affiliate Referrals - Tracks which users were referred by affiliates
+ */
+export const affiliateReferrals = mysqlTable("affiliate_referrals", {
+  id: int("id").autoincrement().primaryKey(),
+  affiliateId: int("affiliateId").notNull(),
+  referredUserId: int("referredUserId").notNull(),
+  referralCode: varchar("referralCode", { length: 50 }).notNull(), // The affiliate code used
+  status: mysqlEnum("status", ["pending", "converted", "cancelled"]).default("pending").notNull(),
+  referralDate: timestamp("referralDate").defaultNow().notNull(),
+  conversionDate: timestamp("conversionDate"),
+  ipAddress: varchar("ipAddress", { length: 45 }),
+  userAgent: text("userAgent"),
+});
+
+export type AffiliateReferral = typeof affiliateReferrals.$inferSelect;
+export type InsertAffiliateReferral = typeof affiliateReferrals.$inferInsert;
+
+/**
+ * Affiliate Commissions - Individual commission records
+ */
+export const affiliateCommissions = mysqlTable("affiliate_commissions", {
+  id: int("id").autoincrement().primaryKey(),
+  affiliateId: int("affiliateId").notNull(),
+  referralId: int("referralId").notNull(),
+  orderId: varchar("orderId", { length: 255 }), // Stripe payment ID or subscription ID
+  amount: int("amount").notNull(), // Commission amount in cents
+  type: mysqlEnum("type", ["subscription", "course", "bundle"]).notNull(),
+  status: mysqlEnum("status", ["pending", "approved", "paid", "cancelled"]).default("pending").notNull(),
+  description: text("description"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  approvedAt: timestamp("approvedAt"),
+  paidAt: timestamp("paidAt"),
+});
+
+export type AffiliateCommission = typeof affiliateCommissions.$inferSelect;
+export type InsertAffiliateCommission = typeof affiliateCommissions.$inferInsert;
+
+/**
+ * Affiliate Payouts - Batch payments to affiliates
+ */
+export const affiliatePayouts = mysqlTable("affiliate_payouts", {
+  id: int("id").autoincrement().primaryKey(),
+  affiliateId: int("affiliateId").notNull(),
+  amount: int("amount").notNull(), // Payout amount in cents
+  payoutMethod: mysqlEnum("payoutMethod", ["paypal", "bank_transfer", "check"]).notNull(),
+  payoutEmail: varchar("payoutEmail", { length: 320 }),
+  status: mysqlEnum("status", ["pending", "processing", "completed", "failed"]).default("pending").notNull(),
+  transactionId: varchar("transactionId", { length: 255 }), // PayPal transaction ID, check number, etc.
+  notes: text("notes"),
+  requestedAt: timestamp("requestedAt").defaultNow().notNull(),
+  processedAt: timestamp("processedAt"),
+  completedAt: timestamp("completedAt"),
+});
+
+export type AffiliatePayout = typeof affiliatePayouts.$inferSelect;
+export type InsertAffiliatePayout = typeof affiliatePayouts.$inferInsert;
+
+/**
+ * Affiliate Clicks - Track affiliate link clicks for analytics
+ */
+export const affiliateClicks = mysqlTable("affiliate_clicks", {
+  id: int("id").autoincrement().primaryKey(),
+  affiliateId: int("affiliateId").notNull(),
+  affiliateCode: varchar("affiliateCode", { length: 50 }).notNull(),
+  ipAddress: varchar("ipAddress", { length: 45 }),
+  userAgent: text("userAgent"),
+  referrerUrl: text("referrerUrl"),
+  landingPage: text("landingPage"),
+  clickedAt: timestamp("clickedAt").defaultNow().notNull(),
+});
+
+export type AffiliateClick = typeof affiliateClicks.$inferSelect;
+export type InsertAffiliateClick = typeof affiliateClicks.$inferInsert;
+
+
+/**
+ * Payment Plans - Cross Life Tuition Assistance
+ */
+export const paymentPlans = mysqlTable("payment_plans", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  planType: mysqlEnum("planType", ["LEARNING_PATH", "BUNDLE_3_COURSE", "CHAPLAINCY_TRAINING"]).notNull(),
+  bundleId: int("bundleId"), // Reference to bundle if applicable
+  learningPathId: int("learningPathId"), // Reference to learning path if applicable
+  totalAmount: int("totalAmount").notNull(), // Total amount in cents
+  monthlyAmount: int("monthlyAmount").notNull(), // Monthly payment in cents
+  paymentsTotal: int("paymentsTotal").default(6).notNull(), // Total number of payments (6 months)
+  paymentsCompleted: int("paymentsCompleted").default(0).notNull(), // Number of completed payments
+  paymentsRemaining: int("paymentsRemaining").default(6).notNull(), // Remaining payments
+  nextPaymentDate: timestamp("nextPaymentDate").notNull(),
+  status: mysqlEnum("status", ["active", "paused", "completed", "cancelled"]).default("active").notNull(),
+  stripeSubscriptionId: varchar("stripeSubscriptionId", { length: 255 }).unique(),
+  stripeCustomerId: varchar("stripeCustomerId", { length: 255 }).notNull(),
+  agreementAcceptedAt: timestamp("agreementAcceptedAt").notNull(), // When user accepted tuition agreement
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  completedAt: timestamp("completedAt"), // When plan was fully paid
+  cancelledAt: timestamp("cancelledAt"), // When plan was cancelled
+});
+
+export type PaymentPlan = typeof paymentPlans.$inferSelect;
+export type InsertPaymentPlan = typeof paymentPlans.$inferInsert;
+
+/**
+ * Payment History - Track all payment transactions
+ */
+export const paymentHistory = mysqlTable("payment_history", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  paymentPlanId: int("paymentPlanId"), // Null for one-time payments
+  amount: int("amount").notNull(), // Amount in cents
+  paymentNumber: int("paymentNumber"), // Which payment in the plan (1-6)
+  paymentDate: timestamp("paymentDate").defaultNow().notNull(),
+  status: mysqlEnum("status", ["succeeded", "failed", "refunded", "pending"]).default("pending").notNull(),
+  stripePaymentIntentId: varchar("stripePaymentIntentId", { length: 255 }).unique(),
+  stripeInvoiceId: varchar("stripeInvoiceId", { length: 255 }),
+  failureReason: text("failureReason"), // Reason if payment failed
+  refundedAt: timestamp("refundedAt"), // When refund was processed
+  refundAmount: int("refundAmount"), // Refund amount in cents
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PaymentHistory = typeof paymentHistory.$inferSelect;
+export type InsertPaymentHistory = typeof paymentHistory.$inferInsert;
+
+/**
+ * Bridge Academy Topics - Organize GED subjects into topics
+ */
+export const bridgeAcademyTopics = mysqlTable("bridge_academy_topics", {
+  id: int("id").autoincrement().primaryKey(),
+  courseId: int("courseId").notNull(), // Links to GED subject course
+  title: varchar("title", { length: 255 }).notNull(),
+  description: text("description"),
+  topicOrder: int("topicOrder").notNull(),
+  khanaAcademyPlaylistId: varchar("khanaAcademyPlaylistId", { length: 255 }), // Khan Academy playlist ID
+  khanaAcademyVideoIds: text("khanaAcademyVideoIds"), // JSON array of Khan Academy video IDs
+  studyGuideUrl: text("studyGuideUrl"), // URL to downloadable PDF study guide
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BridgeAcademyTopic = typeof bridgeAcademyTopics.$inferSelect;
+export type InsertBridgeAcademyTopic = typeof bridgeAcademyTopics.$inferInsert;
+
+/**
+ * Bridge Academy Quiz Questions - 10+ questions per topic
+ */
+export const bridgeAcademyQuizQuestions = mysqlTable("bridge_academy_quiz_questions", {
+  id: int("id").autoincrement().primaryKey(),
+  topicId: int("topicId").notNull(),
+  question: text("question").notNull(),
+  questionType: mysqlEnum("questionType", ["multiple_choice", "true_false", "short_answer"]).notNull(),
+  options: text("options"), // JSON array for multiple choice
+  correctAnswer: text("correctAnswer").notNull(),
+  explanation: text("explanation"), // Explanation for correct answer
+  questionOrder: int("questionOrder").notNull(),
+  difficulty: mysqlEnum("difficulty", ["easy", "medium", "hard"]).default("medium"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BridgeAcademyQuizQuestion = typeof bridgeAcademyQuizQuestions.$inferSelect;
+export type InsertBridgeAcademyQuizQuestion = typeof bridgeAcademyQuizQuestions.$inferInsert;
+
+/**
+ * Bridge Academy Quiz Submissions - Track student quiz attempts
+ */
+export const bridgeAcademyQuizSubmissions = mysqlTable("bridge_academy_quiz_submissions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  topicId: int("topicId").notNull(),
+  courseId: int("courseId").notNull(),
+  score: int("score").notNull(), // Number of correct answers
+  totalQuestions: int("totalQuestions").notNull(),
+  percentage: int("percentage").notNull(), // Percentage score
+  passed: boolean("passed").notNull(), // true if >= 70%
+  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+});
+
+export type BridgeAcademyQuizSubmission = typeof bridgeAcademyQuizSubmissions.$inferSelect;
+export type InsertBridgeAcademyQuizSubmission = typeof bridgeAcademyQuizSubmissions.$inferInsert;
+
+/**
+ * Bridge Academy Quiz Answers - Track individual question answers
+ */
+export const bridgeAcademyQuizAnswers = mysqlTable("bridge_academy_quiz_answers", {
+  id: int("id").autoincrement().primaryKey(),
+  submissionId: int("submissionId").notNull(),
+  questionId: int("questionId").notNull(),
+  userAnswer: text("userAnswer").notNull(),
+  isCorrect: boolean("isCorrect").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BridgeAcademyQuizAnswer = typeof bridgeAcademyQuizAnswers.$inferSelect;
+export type InsertBridgeAcademyQuizAnswer = typeof bridgeAcademyQuizAnswers.$inferInsert;
+
+/**
+ * Bridge Academy Enrollments - Track $19/month subscriptions for Bridge Academy
+ */
+export const bridgeAcademyEnrollments = mysqlTable("bridge_academy_enrollments", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  stripeSubscriptionId: varchar("stripeSubscriptionId", { length: 255 }).unique(),
+  status: mysqlEnum("status", ["active", "canceled", "past_due", "unpaid"]).default("active").notNull(),
+  currentPeriodStart: timestamp("currentPeriodStart").notNull(),
+  currentPeriodEnd: timestamp("currentPeriodEnd").notNull(),
+  cancelAtPeriodEnd: boolean("cancelAtPeriodEnd").default(false).notNull(),
+  enrolledAt: timestamp("enrolledAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BridgeAcademyEnrollment = typeof bridgeAcademyEnrollments.$inferSelect;
+export type InsertBridgeAcademyEnrollment = typeof bridgeAcademyEnrollments.$inferInsert;
+
+/**
+ * Referral Credits - Track $50 credits earned from referrals
+ */
+export const referralCredits = mysqlTable("referral_credits", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(), // User who earned the credit
+  referralId: int("referralId").notNull(), // Link to affiliate_referrals table
+  creditAmount: int("creditAmount").notNull(), // Amount in cents (e.g., 5000 = $50)
+  creditType: mysqlEnum("creditType", ["referrer_bonus", "referred_bonus"]).notNull(), // Who earned it
+  status: mysqlEnum("status", ["pending", "available", "applied", "expired"]).default("available").notNull(),
+  appliedToOrderId: varchar("appliedToOrderId", { length: 255 }), // Which order/subscription used this credit
+  appliedAt: timestamp("appliedAt"),
+  expiresAt: timestamp("expiresAt"), // Optional expiration date
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ReferralCredit = typeof referralCredits.$inferSelect;
+export type InsertReferralCredit = typeof referralCredits.$inferInsert;
+
+/**
+ * Bridge Academy Progress - Track student progress through courses
+ */
+export const bridgeAcademyProgress = mysqlTable("bridge_academy_progress", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  courseId: int("courseId").notNull(), // GED subject
+  topicsCompleted: int("topicsCompleted").default(0).notNull(),
+  totalTopics: int("totalTopics").notNull(),
+  averageScore: int("averageScore").default(0).notNull(), // Average quiz score
+  lastActivityAt: timestamp("lastActivityAt"),
+  completedAt: timestamp("completedAt"), // When all topics completed
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BridgeAcademyProgress = typeof bridgeAcademyProgress.$inferSelect;
+export type InsertBridgeAcademyProgress = typeof bridgeAcademyProgress.$inferInsert;
+
+/**
+ * Bridge Academy Certificates - GED Prep Completion Certificates
+ */
+export const bridgeAcademyCertificates = mysqlTable("bridge_academy_certificates", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  certificateNumber: varchar("certificateNumber", { length: 50 }).notNull().unique(),
+  verificationToken: varchar("verificationToken", { length: 64 }).notNull().unique(),
+  completionDate: timestamp("completionDate").notNull(),
+  averageScore: int("averageScore").notNull(), // Average score across all 4 subjects
+  issuedAt: timestamp("issuedAt").defaultNow().notNull(),
+});
+
+export type BridgeAcademyCertificate = typeof bridgeAcademyCertificates.$inferSelect;
+export type InsertBridgeAcademyCertificate = typeof bridgeAcademyCertificates.$inferInsert;
+
+/**
+ * Bridge Academy Transcripts - Detailed course records with scores
+ */
+export const bridgeAcademyTranscripts = mysqlTable("bridge_academy_transcripts", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  certificateId: int("certificateId").notNull(), // Links to bridgeAcademyCertificates
+  courseId: int("courseId").notNull(), // GED subject
+  courseName: varchar("courseName", { length: 255 }).notNull(), // e.g., "Reasoning Through Language Arts"
+  courseCode: varchar("courseCode", { length: 32 }).notNull(), // e.g., "GED-RLA"
+  topicsCompleted: int("topicsCompleted").notNull(),
+  totalTopics: int("totalTopics").notNull(),
+  averageScore: int("averageScore").notNull(), // Average quiz score (0-100)
+  completionDate: timestamp("completionDate").notNull(),
+  studyHours: int("studyHours").default(0).notNull(), // Estimated hours spent
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BridgeAcademyTranscript = typeof bridgeAcademyTranscripts.$inferSelect;
+export type InsertBridgeAcademyTranscript = typeof bridgeAcademyTranscripts.$inferInsert;
+
+/**
+ * Bridge Academy Subject Certificates - Individual subject completion certificates
+ */
+export const bridgeAcademySubjectCertificates = mysqlTable("bridge_academy_subject_certificates", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  courseId: int("courseId").notNull(), // GED subject
+  courseName: varchar("courseName", { length: 255 }).notNull(),
+  courseCode: varchar("courseCode", { length: 32 }).notNull(),
+  certificateNumber: varchar("certificateNumber", { length: 50 }).notNull().unique(),
+  verificationToken: varchar("verificationToken", { length: 64 }).notNull().unique(),
+  score: int("score").notNull(), // Final score for this subject
+  completionDate: timestamp("completionDate").notNull(),
+  issuedAt: timestamp("issuedAt").defaultNow().notNull(),
+});
+
+export type BridgeAcademySubjectCertificate = typeof bridgeAcademySubjectCertificates.$inferSelect;
+export type InsertBridgeAcademySubjectCertificate = typeof bridgeAcademySubjectCertificates.$inferInsert;
+
+
+/**
+ * Free Trial Tracking
+ * Tracks 7-day free trials for Bridge Academy, Subscription, Learning Paths, and 3-Course Bundles
+ */
+export const freeTrials = mysqlTable("free_trials", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  trialType: mysqlEnum("trialType", ["bridge_academy", "subscription", "learning_path", "bundle"]).notNull(),
+  courseId: int("courseId"), // For learning path or bundle trials
+  bundleId: int("bundleId"), // For bundle trials
+  startDate: timestamp("startDate").defaultNow().notNull(),
+  endDate: timestamp("endDate").notNull(), // 7 days from start
+  autoChargeDate: timestamp("autoChargeDate").notNull(), // Date when subscription will auto-charge
+  status: mysqlEnum("status", ["active", "cancelled", "converted_to_paid", "expired"]).default("active").notNull(),
+  cancelledAt: timestamp("cancelledAt"), // When user cancelled the trial
+  chargedAt: timestamp("chargedAt"), // When auto-charge occurred
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type FreeTrial = typeof freeTrials.$inferSelect;
+export type InsertFreeTrial = typeof freeTrials.$inferInsert;
+
+/**
+ * Trial Content Protection Log
+ * Tracks content access during trials for security and analytics
+ */
+export const trialContentAccess = mysqlTable("trial_content_access", {
+  id: int("id").autoincrement().primaryKey(),
+  trialId: int("trialId").notNull(),
+  userId: int("userId").notNull(),
+  lessonId: int("lessonId"),
+  quizId: int("quizId"),
+  contentType: mysqlEnum("contentType", ["lesson", "quiz", "assignment"]).notNull(),
+  accessedAt: timestamp("accessedAt").defaultNow().notNull(),
+  copyAttempted: boolean("copyAttempted").default(false).notNull(), // Tracks if user tried to copy content
+  screenshotAttempted: boolean("screenshotAttempted").default(false).notNull(), // Tracks if user tried to screenshot
+});
+
+export type TrialContentAccess = typeof trialContentAccess.$inferSelect;
+export type InsertTrialContentAccess = typeof trialContentAccess.$inferInsert;

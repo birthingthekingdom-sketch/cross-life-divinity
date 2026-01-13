@@ -78,11 +78,6 @@ export function Footer() {
                   Study Groups
                 </Link>
               </li>
-              <li>
-                <Link href="/affiliate/apply" className="text-white/80 hover:text-white transition-colors">
-                  Affiliate Program
-                </Link>
-              </li>
             </ul>
           </div>
 

@@ -36,27 +36,6 @@ async function getTransporter() {
   });
 }
 
-/**
- * Generic email sending function
- */
-export async function sendEmail(options: { to: string; subject: string; html: string }) {
-  const transporter = await getTransporter();
-  if (!transporter) return false;
-
-  try {
-    await transporter.sendMail({
-      from: emailConfig!.user,
-      to: options.to,
-      subject: options.subject,
-      html: options.html,
-    });
-    return true;
-  } catch (error) {
-    console.error('[Email] Failed to send email:', error);
-    return false;
-  }
-}
-
 export async function sendWelcomeEmail(to: string, studentName: string, courseTitles: string[]) {
   const transporter = await getTransporter();
   if (!transporter) return false;

@@ -8,10 +8,4 @@ export const ENV = {
   forgeApiUrl: process.env.BUILT_IN_FORGE_API_URL ?? "",
   forgeApiKey: process.env.BUILT_IN_FORGE_API_KEY ?? "",
   baseUrl: process.env.BASE_URL ?? "https://3000-in6dlyalf6bx57i3abj51-4bcd928b.manusvm.computer",
-  // Email configuration
-  emailHost: process.env.SMTP_HOST ?? "smtp.gmail.com",
-  emailPort: parseInt(process.env.SMTP_PORT ?? "587"),
-  emailSecure: process.env.SMTP_SECURE === "true" ? true : false,
-  emailUser: process.env.SMTP_USER ?? "",
-  emailPass: process.env.SMTP_PASS ?? "",
 };

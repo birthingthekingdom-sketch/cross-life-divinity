@@ -11,15 +11,15 @@ export default function Webinars() {
   const { user } = useAuth();
   const [, setLocation] = useLocation();
   
-  const { data: upcomingWebinars, isLoading: loadingUpcoming } = trpc.webinars.listWebinars.useQuery({ upcomingOnly: true });
-  const { data: allWebinars, isLoading: loadingAll } = trpc.webinars.listWebinars.useQuery({ upcomingOnly: false });
+  const { data: upcomingWebinars, isLoading: loadingUpcoming } = trpc.webinars.getUpcoming.useQuery();
+  const { data: allWebinars, isLoading: loadingAll } = trpc.webinars.getAll.useQuery();
 
   if (!user) {
     setLocation('/');
     return null;
   }
 
-  const pastWebinars = allWebinars?.filter((w: any) => {
+  const pastWebinars = allWebinars?.filter(w => {
     const scheduledDate = new Date(w.scheduledAt);
     const endTime = new Date(scheduledDate.getTime() + (w.duration * 60000));
     return endTime < new Date();
@@ -77,7 +77,7 @@ export default function Webinars() {
             </div>
           ) : upcomingWebinars && upcomingWebinars.length > 0 ? (
             <div className="grid gap-4">
-              {upcomingWebinars.map((webinar: any) => (
+              {upcomingWebinars.map((webinar) => (
                 <Card key={webinar.id} className="hover:shadow-md transition-shadow">
                   <CardHeader>
                     <div className="flex items-start justify-between">
@@ -136,7 +136,7 @@ export default function Webinars() {
           <div>
             <h2 className="text-2xl font-semibold mb-4">Past Sessions & Recordings</h2>
             <div className="grid gap-4">
-              {pastWebinars.map((webinar: any) => (
+              {pastWebinars.map((webinar) => (
                 <Card key={webinar.id}>
                   <CardHeader>
                     <div className="flex items-start justify-between">

@@ -1,9 +1,0 @@
-{
-  "query": "INSERT INTO course_enrollments (userId, courseId, accessCodeId) SELECT 2, id, 1 FROM courses LIMIT 1;",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO course_enrollments (userId, courseId, accessCodeId) SELECT 2, id, 1 FROM courses LIMIT 1;",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 101
-}

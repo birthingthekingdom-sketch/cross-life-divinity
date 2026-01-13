@@ -140,7 +140,7 @@ export default function LearningPaths() {
                           </Badge>
                         )}
                         <Badge className="bg-green-600 hover:bg-green-700 text-white">
-                          $399
+                          $199
                         </Badge>
                       </div>
                       <CardTitle className="text-2xl mb-2">{path.name}</CardTitle>

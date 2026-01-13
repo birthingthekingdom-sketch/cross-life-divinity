@@ -9,7 +9,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'sonner';
 import { Loader2, Users, DollarSign, TrendingUp, CheckCircle } from 'lucide-react';
-import { PublicNav } from '@/components/PublicNav';
 
 export default function AffiliateApply() {
   const [, setLocation] = useLocation();
@@ -48,7 +47,6 @@ export default function AffiliateApply() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      <PublicNav currentPage="about" />
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <div className="max-w-4xl mx-auto mb-12 text-center">

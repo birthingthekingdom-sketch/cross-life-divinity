@@ -48,7 +48,7 @@ export default function Referrals() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold">Referral Program</h1>
-            <p className="text-muted-foreground">Share your referral link with friends. When they sign up, you get $50 in credits</p>
+            <p className="text-muted-foreground">Earn $50 for every friend who joins</p>
           </div>
           <Link href="/dashboard">
             <Button variant="outline">Back to Dashboard</Button>
@@ -102,7 +102,7 @@ export default function Referrals() {
           <CardHeader>
             <CardTitle>Your Referral Link</CardTitle>
             <CardDescription>
-              Share this link with friends. You'll earn $50 in credits when they sign up and enroll in their first course or subscription.
+              Share this link with friends. You'll earn $50 when they register and make their first purchase.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -126,8 +126,8 @@ export default function Referrals() {
               <p className="text-sm font-medium mb-2">How it works:</p>
               <ol className="text-sm text-muted-foreground space-y-1 list-decimal list-inside">
                 <li>Share your unique referral link with friends</li>
-                <li>They register and enroll in their first course or subscription</li>
-                <li>You earn $50 in credits immediately</li>
+                <li>They register using your link</li>
+                <li>When they purchase their first course or subscription, you earn $50</li>
                 <li>Credits can be applied to your future course purchases</li>
               </ol>
             </div>
@@ -166,12 +166,12 @@ export default function Referrals() {
                         {referral.status === 'completed' ? (
                           <>
                             <CheckCircle className="h-3 w-3 mr-1" />
-                            $50 Earned
+                            Earned $50
                           </>
                         ) : (
                           <>
                             <Clock className="h-3 w-3 mr-1" />
-                            Pending Enrollment
+                            Pending
                           </>
                         )}
                       </Badge>

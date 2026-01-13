@@ -114,8 +114,8 @@ export default function Courses() {
                 key={course.id}
                 className={`border-2 ${
                   enrolled || purchased || hasActiveSubscription
-                    ? "border-green-700 bg-green-900/40"
-                    : "border-slate-700 bg-slate-800/70"
+                    ? "border-green-700 bg-green-900/20"
+                    : "border-slate-700 bg-slate-800/50"
                 } backdrop-blur hover:shadow-xl transition-shadow`}
               >
                 <CardHeader>

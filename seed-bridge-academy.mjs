@@ -1,70 +1,149 @@
 import mysql from 'mysql2/promise';
 
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
+const connection = await mysql.createConnection({
+  host: process.env.DATABASE_HOST || 'localhost',
+  user: process.env.DATABASE_USER || 'root',
+  password: process.env.DATABASE_PASSWORD || '',
+  database: process.env.DATABASE_NAME || 'cross_life_divinity',
 });
 
-const QUESTIONS_DATA = {
-  'MATH-1': {
-    quiz: [
-      { q: "What is 0.75 as a fraction?", opts: ["1/2", "3/4", "2/3", "4/5"], ans: "3/4", exp: "0.75 = 75/100 = 3/4 when simplified" },
-      { q: "Calculate: 25% of 80", opts: ["15", "20", "25", "30"], ans: "20", exp: "25% × 80 = 0.25 × 80 = 20" },
-      { q: "What is 3/5 as a decimal?", opts: ["0.5", "0.6", "0.75", "0.8"], ans: "0.6", exp: "3 ÷ 5 = 0.6" },
-      { q: "Simplify: 12/18", opts: ["1/2", "2/3", "3/4", "4/5"], ans: "2/3", exp: "GCD(12,18)=6, so 12/18 = 2/3" },
-      { q: "What is 1.5 × 4?", opts: ["5", "6", "6.5", "7"], ans: "6", exp: "1.5 × 4 = 6" },
-      { q: "Calculate: 100 ÷ 0.5", opts: ["50", "100", "200", "500"], ans: "200", exp: "100 ÷ 0.5 = 100 × 2 = 200" },
-      { q: "What is 20% of 150?", opts: ["20", "30", "40", "50"], ans: "30", exp: "20% × 150 = 0.2 × 150 = 30" },
-      { q: "Simplify: 8/12", opts: ["1/2", "2/3", "3/4", "4/5"], ans: "2/3", exp: "GCD(8,12)=4, so 8/12 = 2/3" },
-      { q: "What is 2/3 + 1/3?", opts: ["1/2", "2/3", "1", "4/3"], ans: "1", exp: "2/3 + 1/3 = 3/3 = 1" },
-      { q: "Calculate: 15% of 200", opts: ["20", "25", "30", "35"], ans: "30", exp: "15% × 200 = 0.15 × 200 = 30" }
-    ]
-  }
+// Bridge Academy Courses
+const courses = [
+  {
+    code: 'BA-RLA',
+    title: 'Reasoning Through Language Arts (RLA)',
+    description: 'Master reading comprehension, grammar, writing, and vocabulary for the GED test.',
+    colorTheme: 'blue',
+    totalLessons: 8,
+    cpdHours: 40,
+    displayOrder: 1,
+  },
+  {
+    code: 'BA-MATH',
+    title: 'Mathematical Reasoning',
+    description: 'Learn algebra, geometry, data analysis, and problem-solving for the GED test.',
+    colorTheme: 'purple',
+    totalLessons: 8,
+    cpdHours: 40,
+    displayOrder: 2,
+  },
+  {
+    code: 'BA-SCIENCE',
+    title: 'Science',
+    description: 'Explore life science, physical science, and earth science for the GED test.',
+    colorTheme: 'green',
+    totalLessons: 8,
+    cpdHours: 40,
+    displayOrder: 3,
+  },
+  {
+    code: 'BA-SOCIAL-STUDIES',
+    title: 'Social Studies',
+    description: 'Study U.S. history, civics, economics, and geography for the GED test.',
+    colorTheme: 'amber',
+    totalLessons: 8,
+    cpdHours: 40,
+    displayOrder: 4,
+  },
+];
+
+// Topics for each course
+const topics = {
+  'BA-RLA': [
+    { title: 'Reading Comprehension Basics', order: 1, khanaPlaylist: 'reading-foundations' },
+    { title: 'Identifying Main Ideas & Details', order: 2, khanaPlaylist: 'reading-main-idea' },
+    { title: 'Inference & Context Clues', order: 3, khanaPlaylist: 'reading-inference' },
+    { title: 'Grammar Fundamentals', order: 4, khanaPlaylist: 'grammar-parts-of-speech' },
+    { title: 'Sentence Structure & Punctuation', order: 5, khanaPlaylist: 'grammar-sentence-structure' },
+    { title: 'Writing & Editing', order: 6, khanaPlaylist: 'writing-essay' },
+    { title: 'Vocabulary & Word Usage', order: 7, khanaPlaylist: 'vocabulary-academic' },
+    { title: 'Extended Response Writing', order: 8, khanaPlaylist: 'writing-extended-response' },
+  ],
+  'BA-MATH': [
+    { title: 'Number Operations & Sense', order: 1, khanaPlaylist: 'arithmetic-whole-numbers' },
+    { title: 'Fractions, Decimals & Percentages', order: 2, khanaPlaylist: 'fractions-percentages' },
+    { title: 'Ratios, Rates & Proportions', order: 3, khanaPlaylist: 'ratios-proportions' },
+    { title: 'Algebra Foundations', order: 4, khanaPlaylist: 'algebra1-intro' },
+    { title: 'Linear Equations & Graphing', order: 5, khanaPlaylist: 'algebra1-linear-equations' },
+    { title: 'Geometry Basics', order: 6, khanaPlaylist: 'geometry-shapes' },
+    { title: 'Data Analysis & Probability', order: 7, khanaPlaylist: 'statistics-probability' },
+    { title: 'Word Problems & Applications', order: 8, khanaPlaylist: 'algebra1-word-problems' },
+  ],
+  'BA-SCIENCE': [
+    { title: 'Life Science: Cells & Genetics', order: 1, khanaPlaylist: 'biology-cells' },
+    { title: 'Life Science: Evolution & Ecology', order: 2, khanaPlaylist: 'biology-evolution' },
+    { title: 'Physical Science: Energy & Motion', order: 3, khanaPlaylist: 'physics-energy' },
+    { title: 'Physical Science: Waves & Sound', order: 4, khanaPlaylist: 'physics-waves' },
+    { title: 'Chemistry Basics', order: 5, khanaPlaylist: 'chemistry-atoms' },
+    { title: 'Earth & Space Science', order: 6, khanaPlaylist: 'earth-science' },
+    { title: 'Scientific Method & Inquiry', order: 7, khanaPlaylist: 'science-method' },
+    { title: 'Science Applications & Analysis', order: 8, khanaPlaylist: 'science-analysis' },
+  ],
+  'BA-SOCIAL-STUDIES': [
+    { title: 'U.S. History: Foundations to 1865', order: 1, khanaPlaylist: 'us-history-colonial' },
+    { title: 'U.S. History: 1865 to Present', order: 2, khanaPlaylist: 'us-history-modern' },
+    { title: 'Civics & Government', order: 3, khanaPlaylist: 'civics-government' },
+    { title: 'U.S. Constitution & Rights', order: 4, khanaPlaylist: 'civics-constitution' },
+    { title: 'Economics Basics', order: 5, khanaPlaylist: 'economics-supply-demand' },
+    { title: 'World Geography', order: 6, khanaPlaylist: 'geography-maps' },
+    { title: 'Global History & Cultures', order: 7, khanaPlaylist: 'world-history' },
+    { title: 'Social Studies Analysis & Interpretation', order: 8, khanaPlaylist: 'social-studies-analysis' },
+  ],
 };
 
-async function seedQuestions() {
-  const connection = await pool.getConnection();
-  
-  try {
-    console.log('Starting Bridge Academy question seeding...');
-    
-    // Get topic IDs
-    const [topics] = await connection.query('SELECT id, subjectCode, topicNumber FROM bridge_academy_topics ORDER BY id');
-    
-    const topicMap = {};
-    topics.forEach(topic => {
-      const key = `${topic.subjectCode}-${topic.topicNumber}`;
-      topicMap[key] = topic.id;
-    });
-    
-    let quizCount = 0;
-    
-    // Seed sample MATH-1 questions
-    const topicId = topicMap['MATH-1'];
-    const questions = QUESTIONS_DATA['MATH-1'];
-    
-    for (const q of questions.quiz) {
-      const optionsJson = JSON.stringify(q.opts);
-      await connection.query(
-        'INSERT INTO bridge_academy_quiz_questions (topicId, questionNumber, questionText, questionType, options, correctAnswer, explanation, difficultyLevel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-        [topicId, quizCount + 1, q.q, 'mc', optionsJson, q.ans, q.exp, 'medium']
-      );
-      quizCount++;
-    }
-    
-    console.log(`✅ Seeded ${quizCount} quiz questions for MATH-1`);
-    
-  } catch (error) {
-    console.error('Error seeding questions:', error);
-  } finally {
-    await connection.end();
-    await pool.end();
-  }
-}
+try {
+  console.log('🌱 Seeding Bridge Academy courses...');
 
-seedQuestions();
+  // Insert courses
+  for (const course of courses) {
+    const [result] = await connection.execute(
+      'INSERT INTO courses (code, title, description, colorTheme, totalLessons, cpdHours, displayOrder) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [course.code, course.title, course.description, course.colorTheme, course.totalLessons, course.cpdHours, course.displayOrder]
+    );
+    
+    const courseId = result.insertId;
+    console.log(`✅ Created course: ${course.title} (ID: ${courseId})`);
+
+    // Insert topics as lessons for this course
+    const courseTopics = topics[course.code];
+    if (courseTopics) {
+      for (const topic of courseTopics) {
+        const lessonContent = `
+# ${topic.title}
+
+## Khan Academy Videos
+This topic covers the following Khan Academy content:
+- Playlist: ${topic.khanaPlaylist}
+- Watch all videos in this playlist to learn the concepts
+
+## Key Concepts
+- Understanding the fundamentals
+- Practice problems
+- Real-world applications
+
+## Study Guide
+Download the study guide PDF for this topic to review key concepts and practice problems.
+
+## Quiz
+After watching the Khan Academy videos, take the 10+ question quiz to test your understanding. You need 70% to pass.
+        `.trim();
+
+        const [lessonResult] = await connection.execute(
+          'INSERT INTO lessons (courseId, title, content, lessonOrder) VALUES (?, ?, ?, ?)',
+          [courseId, topic.title, lessonContent, topic.order]
+        );
+
+        console.log(`  📝 Created topic: ${topic.title} (Lesson ID: ${lessonResult.insertId})`);
+      }
+    }
+  }
+
+  console.log('\n✅ Bridge Academy seeding complete!');
+  console.log('📊 Created 4 GED subjects with 8 topics each (32 total topics)');
+  
+} catch (error) {
+  console.error('❌ Error seeding Bridge Academy:', error);
+  process.exit(1);
+} finally {
+  await connection.end();
+}

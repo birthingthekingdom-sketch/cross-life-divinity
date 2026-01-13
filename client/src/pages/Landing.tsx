@@ -40,9 +40,6 @@ export default function Landing() {
               <Link href="/about" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
                 About
               </Link>
-              <Link href="/affiliate/apply" className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium">
-                Affiliate
-              </Link>
             </div>
             
             {/* Mobile Menu Button */}
@@ -100,11 +97,6 @@ export default function Landing() {
                 <Link href="/faq">
                   <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
                     FAQ
-                  </div>
-                </Link>
-                <Link href="/affiliate/apply">
-                  <div className="px-4 py-2 hover:bg-accent/10 transition-colors cursor-pointer font-medium" onClick={() => setMobileMenuOpen(false)}>
-                    Affiliate Program
                   </div>
                 </Link>
                 <div className="px-4 pt-4 pb-2 border-t border-border space-y-2">
