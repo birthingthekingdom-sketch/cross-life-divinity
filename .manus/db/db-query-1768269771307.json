@@ -1,0 +1,130 @@
+{
+  "query": "SELECT id, email, role, createdAt FROM users LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, email, role, createdAt FROM users LIMIT 20;",
+  "rows": [
+    {
+      "id": "1",
+      "email": "birthingthekingdom@gmail.com",
+      "role": "admin",
+      "createdAt": "2025-12-02 03:53:54"
+    },
+    {
+      "id": "6690003",
+      "email": "Studio6817@yahoo.com",
+      "role": "admin",
+      "createdAt": "2025-12-09 15:14:36"
+    },
+    {
+      "id": "6900001",
+      "email": "deidratarver@gmail.com",
+      "role": "user",
+      "createdAt": "2025-12-09 18:16:26"
+    },
+    {
+      "id": "6990001",
+      "email": "marymuh@hotmail.com",
+      "role": "user",
+      "createdAt": "2025-12-09 23:21:28"
+    },
+    {
+      "id": "6990015",
+      "email": "marymuh@yahoo.com",
+      "role": "user",
+      "createdAt": "2025-12-09 23:27:32"
+    },
+    {
+      "id": "8520002",
+      "email": "fisherelijah37@gmail.com",
+      "role": "admin",
+      "createdAt": "2025-12-12 23:47:58"
+    },
+    {
+      "id": "11700001",
+      "email": "reneejacob2018@gmail.com",
+      "role": "user",
+      "createdAt": "2025-12-23 01:36:39"
+    },
+    {
+      "id": "12270001",
+      "email": "drlpickett@yahoo.com",
+      "role": "user",
+      "createdAt": "2025-12-23 17:51:20"
+    },
+    {
+      "id": "12960001",
+      "email": "angiewestbrook47@gmail.com",
+      "role": "user",
+      "createdAt": "2025-12-24 14:28:13"
+    },
+    {
+      "id": "14670064",
+      "email": "csv-student-1766992584908@test.com",
+      "role": "user",
+      "createdAt": "2025-12-29 07:16:25"
+    },
+    {
+      "id": "14670065",
+      "email": "test-enhancements-1766992584857@example.com",
+      "role": "user",
+      "createdAt": "2025-12-29 07:16:25"
+    },
+    {
+      "id": "14670066",
+      "email": "test-1766992584849@example.com",
+      "role": "user",
+      "createdAt": "2025-12-29 07:16:25"
+    },
+    {
+      "id": "14670067",
+      "email": "student-1766992586035@test.com",
+      "role": "user",
+      "createdAt": "2025-12-29 07:16:26"
+    },
+    {
+      "id": "14670068",
+      "email": "admin-1766992586176@test.com",
+      "role": "admin",
+      "createdAt": "2025-12-29 07:16:26"
+    },
+    {
+      "id": "14670069",
+      "email": "bulkadmin@test.com",
+      "role": "admin",
+      "createdAt": "2025-12-29 07:16:26"
+    },
+    {
+      "id": "14670070",
+      "email": "bulkstudent1@test.com",
+      "role": "user",
+      "createdAt": "2025-12-29 07:16:26"
+    },
+    {
+      "id": "14670071",
+      "email": "bulkstudent2@test.com",
+      "role": "user",
+      "createdAt": "2025-12-29 07:16:26"
+    },
+    {
+      "id": "14670072",
+      "email": "bulkstudent3@test.com",
+      "role": "user",
+      "createdAt": "2025-12-29 07:16:26"
+    },
+    {
+      "id": "14670073",
+      "email": "admin@test.com",
+      "role": "admin",
+      "createdAt": "2025-12-29 07:16:27"
+    },
+    {
+      "id": "14670074",
+      "email": "student@test.com",
+      "role": "user",
+      "createdAt": "2025-12-29 07:16:27"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\trole\tcreatedAt\n1\tbirthingthekingdom@gmail.com\tadmin\t2025-12-02 03:53:54\n6690003\tStudio6817@yahoo.com\tadmin\t2025-12-09 15:14:36\n6900001\tdeidratarver@gmail.com\tuser\t2025-12-09 18:16:26\n6990001\tmarymuh@hotmail.com\tuser\t2025-12-09 23:21:28\n6990015\tmarymuh@yahoo.com\tuser\t2025-12-09 23:27:32\n8520002\tfisherelijah37@gmail.com\tadmin\t2025-12-12 23:47:58\n11700001\treneejacob2018@gmail.com\tuser\t2025-12-23 01:36:39\n12270001\tdrlpickett@yahoo.com\tuser\t2025-12-23 17:51:20\n12960001\tangiewestbrook47@gmail.com\tuser\t2025-12-24 14:28:13\n14670064\tcsv-student-1766992584908@test.com\tuser\t2025-12-29 07:16:25\n14670065\ttest-enhancements-1766992584857@example.com\tuser\t2025-12-29 07:16:25\n14670066\ttest-1766992584849@example.com\tuser\t2025-12-29 07:16:25\n14670067\tstudent-1766992586035@test.com\tuser\t2025-12-29 07:16:26\n14670068\tadmin-1766992586176@test.com\tadmin\t2025-12-29 07:16:26\n14670069\tbulkadmin@test.com\tadmin\t2025-12-29 07:16:26\n14670070\tbulkstudent1@test.com\tuser\t2025-12-29 07:16:26\n14670071\tbulkstudent2@test.com\tuser\t2025-12-29 07:16:26\n14670072\tbulkstudent3@test.com\tuser\t2025-12-29 07:16:26\n14670073\tadmin@test.com\tadmin\t2025-12-29 07:16:27\n14670074\tstudent@test.com\tuser\t2025-12-29 07:16:27\n",
+  "stderr": "",
+  "execution_time_ms": 419
+}

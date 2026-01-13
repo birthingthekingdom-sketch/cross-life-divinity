@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPR201: Discovering Spiritual Gifts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            padding-top: 60px;
+        }
+        
+        .header-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 80px;
+            margin-bottom: 30px;
+        }
+        
+        .course-meta {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .course-code {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            color: #e94560;
+            font-weight: 700;
+        }
+        
+        .cpd-info {
+            background: #1a1a2e;
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .title-section {
+            text-align: center;
+            padding: 0 80px;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #e94560;
+            padding-bottom: 20px;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 44px;
+            color: #1a1a2e;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .content-section {
+            display: flex;
+            flex: 1;
+            padding: 0 80px;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .description-box {
+            text-align: center;
+            max-width: 850px;
+            margin-bottom: 40px;
+        }
+        
+        .description {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            color: #16213e;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .lessons-info {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            color: #e94560;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .lessons-info::before {
+            content: "📚";
+            font-size: 18px;
+        }
+        
+        .gifts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+            width: 100%;
+        }
+        
+        .gift-category {
+            background: #f0f0f0;
+            padding: 25px;
+            border-top: 4px solid #e94560;
+        }
+        
+        .gift-category h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .gift-list {
+            list-style: none;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 13px;
+            color: #16213e;
+            line-height: 1.8;
+        }
+        
+        .gift-list li::before {
+            content: "▸ ";
+            color: #e94560;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-section">
+            <div class="course-meta">
+                <div class="course-code">SPR201</div>
+                <div class="cpd-info">25 CPD HOURS</div>
+            </div>
+        </div>
+        
+        <div class="title-section">
+            <h1>Discovering Spiritual Gifts</h1>
+        </div>
+        
+        <div class="content-section">
+            <div class="description-box">
+                <p class="description">This empowering course provides a comprehensive exploration of spiritual gifts and their role in the life and ministry of the church. Students will examine biblical teachings on charismata, explore various gift categories, and learn to identify and develop their personal spiritual gifts. The course emphasizes that every believer is gifted for service and equips students to build gift-based ministry teams that maximize kingdom impact.</p>
+                <div class="lessons-info">10 Lessons</div>
+            </div>
+            
+            <div class="gifts-grid">
+                <div class="gift-category">
+                    <h3>Motivational Gifts</h3>
+                    <ul class="gift-list">
+                        <li>Prophecy</li>
+                        <li>Service</li>
+                        <li>Teaching</li>
+                        <li>Exhortation</li>
+                        <li>Giving</li>
+                        <li>Leadership</li>
+                        <li>Mercy</li>
+                    </ul>
+                </div>
+                
+                <div class="gift-category">
+                    <h3>Ministry Gifts</h3>
+                    <ul class="gift-list">
+                        <li>Apostle</li>
+                        <li>Prophet</li>
+                        <li>Evangelist</li>
+                        <li>Pastor</li>
+                        <li>Teacher</li>
+                        <li>Equipper</li>
+                        <li>Steward</li>
+                    </ul>
+                </div>
+                
+                <div class="gift-category">
+                    <h3>Manifestation Gifts</h3>
+                    <ul class="gift-list">
+                        <li>Word of Wisdom</li>
+                        <li>Word of Knowledge</li>
+                        <li>Faith</li>
+                        <li>Healing</li>
+                        <li>Miracles</li>
+                        <li>Prophecy</li>
+                        <li>Discernment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

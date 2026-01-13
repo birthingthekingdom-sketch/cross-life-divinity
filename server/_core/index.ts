@@ -3,13 +3,15 @@ import express from "express";
 import { createServer } from "http";
 import net from "net";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
-import { registerOAuthRoutes } from "./oauth";
+// import { registerOAuthRoutes } from "./oauth"; // DISABLED: OAuth removed to use custom auth only
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { generateCertificate } from "../certificate-generator";
 import * as db from "../db";
 import { sdk } from "./sdk";
+import { setEmailConfig } from "../email";
+import { ENV } from "./env";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -31,13 +33,28 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
 }
 
 async function startServer() {
+  // Initialize email configuration at startup
+  if (ENV.emailUser && ENV.emailPass) {
+    setEmailConfig({
+      host: ENV.emailHost,
+      port: ENV.emailPort,
+      secure: ENV.emailSecure,
+      user: ENV.emailUser,
+      pass: ENV.emailPass,
+    });
+    console.log('[Email] Email service configured successfully');
+  } else {
+    console.warn('[Email] Email credentials not configured. Password reset emails will not be sent.');
+    console.warn('[Email] Please set SMTP_USER and SMTP_PASS environment variables.');
+  }
+
   const app = express();
   const server = createServer(app);
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
-  // OAuth callback under /api/oauth/callback
-  registerOAuthRoutes(app);
+  // OAuth callback under /api/oauth/callback - DISABLED
+  // registerOAuthRoutes(app); // DISABLED: OAuth removed to use custom auth only
   
   // Certificate download endpoint
   app.get("/api/certificate/:certificateNumber", async (req, res) => {

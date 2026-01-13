@@ -1,0 +1,67 @@
+{
+  "query": "SELECT DISTINCT colorTheme FROM courses ORDER BY colorTheme;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT DISTINCT colorTheme FROM courses ORDER BY colorTheme;",
+  "rows": [
+    {
+      "colorTheme": "#10b981"
+    },
+    {
+      "colorTheme": "#1e40af"
+    },
+    {
+      "colorTheme": "#3b82f6"
+    },
+    {
+      "colorTheme": "#8b5cf6"
+    },
+    {
+      "colorTheme": "#f59e0b"
+    },
+    {
+      "colorTheme": "amber"
+    },
+    {
+      "colorTheme": "blue"
+    },
+    {
+      "colorTheme": "cyan"
+    },
+    {
+      "colorTheme": "emerald"
+    },
+    {
+      "colorTheme": "from-purple-600 to-pink-600"
+    },
+    {
+      "colorTheme": "gold"
+    },
+    {
+      "colorTheme": "orange"
+    },
+    {
+      "colorTheme": "pink"
+    },
+    {
+      "colorTheme": "purple"
+    },
+    {
+      "colorTheme": "red"
+    },
+    {
+      "colorTheme": "rose"
+    },
+    {
+      "colorTheme": "sky"
+    },
+    {
+      "colorTheme": "slate"
+    },
+    {
+      "colorTheme": "teal"
+    }
+  ],
+  "messages": [],
+  "stdout": "colorTheme\n#10b981\n#1e40af\n#3b82f6\n#8b5cf6\n#f59e0b\namber\nblue\ncyan\nemerald\nfrom-purple-600 to-pink-600\ngold\norange\npink\npurple\nred\nrose\nsky\nslate\nteal\n",
+  "stderr": "",
+  "execution_time_ms": 399
+}

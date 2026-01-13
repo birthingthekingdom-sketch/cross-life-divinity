@@ -1,17 +1,24 @@
-import { useAuth } from "@/_core/hooks/useAuth";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { PullToRefresh } from "@/components/PullToRefresh";
 import { trpc } from "@/lib/trpc";
-import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, RefreshCw, Settings, CreditCard } from "lucide-react";
-import { Fragment } from "react";
-import { Link } from "wouter";
-import { useMemo } from "react";
+import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, CreditCard, Zap, Target, RefreshCw } from "lucide-react";
+
+import { Link, useLocation } from "wouter";
+import { useMemo, useEffect } from "react";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { Button } from "@/components/ui/button";
 
 export default function Dashboard() {
-  const { user, logout } = useAuth();
+  const { user, logout } = useAuth({ redirectOnUnauthenticated: true });
+  const [, navigate] = useLocation();
+  
+  // Redirect admin users to admin panel
+  if (user?.role === 'admin') {
+    navigate('/admin');
+    return null;
+  }
   const utils = trpc.useUtils();
   const { data: courses, isLoading: coursesLoading } = trpc.courses.list.useQuery();
   const { data: recommendations } = trpc.courses.getRecommendations.useQuery();
@@ -74,8 +81,7 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <Fragment key="webinars-btn">
-                <Link href="/webinars">
+              <Link href="/webinars">
                   <Button
                     variant="outline"
                     size="sm"
@@ -85,9 +91,7 @@ export default function Dashboard() {
                     Webinars
                   </Button>
                 </Link>
-              </Fragment>
-              <Fragment key="progress-btn">
-                <Link href="/progress">
+              <Link href="/progress">
                   <Button
                     variant="outline"
                     size="sm"
@@ -97,9 +101,7 @@ export default function Dashboard() {
                     My Progress
                   </Button>
                 </Link>
-              </Fragment>
-              <Fragment key="certificates-btn">
-                <Link href="/certificates">
+              <Link href="/certificates">
                   <Button
                     variant="outline"
                     size="sm"
@@ -109,9 +111,7 @@ export default function Dashboard() {
                     My Certificates
                   </Button>
                 </Link>
-              </Fragment>
-              <Fragment key="payments-btn">
-                <Link href="/my-payments">
+              <Link href="/my-payments">
                   <Button
                     variant="outline"
                     size="sm"
@@ -121,47 +121,26 @@ export default function Dashboard() {
                     My Payments
                   </Button>
                 </Link>
-              </Fragment>
-              {user?.role === 'admin' && (
-                <Fragment key="admin-btn">
-                  <Link href="/admin">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="bg-green-500/20 border-green-400/30 text-primary-foreground hover:bg-green-500/30"
-                    >
-                      <Settings className="h-4 w-4 mr-2" />
-                      Admin
-                    </Button>
-                  </Link>
-                </Fragment>
-              )}
-              {user?.email === 'birthingthekingdom@gmail.com' && (
-                <Fragment key="toggle-btn">
-                  <Link href="/toggle-role">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="bg-blue-500/20 border-blue-400/30 text-primary-foreground hover:bg-blue-500/30"
-                      title={`Switch to ${user?.role === 'admin' ? 'Student' : 'Admin'} View`}
-                    >
-                      <RefreshCw className="h-4 w-4 mr-2" />
-                      {user?.role === 'admin' ? 'Student' : 'Admin'} View
-                    </Button>
-                  </Link>
-                </Fragment>
-              )}
-              <Fragment key="logout-btn">
+              <Link href="/toggle-role">
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => logout()}
-                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
+                  className="bg-blue-500/20 border-blue-400/30 text-primary-foreground hover:bg-blue-500/30"
+                  title={user?.role === 'admin' ? "Switch to Student View" : "Switch to Admin View"}
                 >
-                  <LogOut className="h-4 w-4 mr-2" />
-                  Logout
+                  <RefreshCw className="h-4 w-4 mr-2" />
+                  <span className="hidden md:inline">{user?.role === 'admin' ? 'Student View' : 'Admin View'}</span>
                 </Button>
-              </Fragment>
+              </Link>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => logout()}
+                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20"
+              >
+                <LogOut className="h-4 w-4 mr-2" />
+                Logout
+              </Button>
             </div>
           </div>
         </div>
@@ -188,8 +167,8 @@ export default function Dashboard() {
               Recommended for You
             </h2>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {recommendations.slice(0, 3).map((rec: any) => (
-                <Card key={rec.id} className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
+              {recommendations.slice(0, 3).map((rec: any, idx: number) => (
+                <Card key={`rec-${rec.id}-${idx}`} className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
                   <CardHeader className="bg-gradient-to-br from-yellow-50 to-orange-50">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
@@ -334,8 +313,8 @@ export default function Dashboard() {
               </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {paths.slice(0, 3).map((path: any) => (
-                <Link key={path.id} href="/learning-paths">
+              {paths.slice(0, 3).map((path: any, idx: number) => (
+                <Link key={`path-${path.id}-${idx}`} href="/learning-paths">
                   <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer border-2 hover:border-primary/50">
                     <CardHeader className="bg-gradient-to-br from-purple-50 to-blue-50">
                       <div className="flex items-center gap-2 mb-2">
@@ -368,7 +347,7 @@ export default function Dashboard() {
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-foreground mb-6">Course Bundles</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {bundles.map((bundle: any) => {
+              {bundles.map((bundle: any, bundleIdx: number) => {
                 // Calculate bundle progress
                 const bundleCourseIds = bundle.courses.map((c: any) => c.id);
                 const enrolledBundleCourses = courses?.filter((c: any) => bundleCourseIds.includes(c.id)) || [];
@@ -386,7 +365,7 @@ export default function Dashboard() {
                 const bundleProgress = totalLessons > 0 ? (completedLessons / totalLessons) * 100 : 0;
 
                 return (
-                  <Card key={bundle.id} className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50">
+                  <Card key={`bundle-${bundle.id}-${bundleIdx}`} className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50">
                     <CardHeader className="bg-gradient-to-br from-primary/5 to-accent/5">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="p-2 bg-primary/10 rounded-lg">
@@ -414,8 +393,8 @@ export default function Dashboard() {
                           </div>
                         )}
                         <div className="space-y-1">
-                          {bundle.courses.slice(0, 3).map((course: any) => (
-                            <Link key={course.id} href={`/course/${course.id}`}>
+                          {bundle.courses.slice(0, 3).map((course: any, courseIdx: number) => (
+                            <Link key={`bundle-course-${course.id}-${courseIdx}`} href={`/course/${course.id}`}>
                               <div className="text-xs text-muted-foreground hover:text-primary transition-colors cursor-pointer flex items-center gap-1">
                                 <span>→</span>
                                 <span className="line-clamp-1">{course.title}</span>
@@ -437,16 +416,56 @@ export default function Dashboard() {
           </div>
         )}
 
+        {/* Bridge Academy GED Prep Section */}
+        <div className="mb-12 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h2 className="text-2xl font-bold text-foreground mb-2 flex items-center gap-2">
+                <Target className="w-6 h-6 text-blue-600" />
+                Bridge Academy GED Prep
+              </h2>
+              <p className="text-muted-foreground">Practice unlimited GED quizzes across all subjects</p>
+            </div>
+            <Button
+              onClick={() => navigate("/bridge-academy/student-dashboard")}
+              className="bg-blue-600 hover:bg-blue-700"
+              size="lg"
+            >
+              <Zap className="w-4 h-4 mr-2" />
+              Go to Dashboard
+            </Button>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+            {[
+              { code: "MATH", name: "Mathematical Reasoning", icon: "📐" },
+              { code: "LANG", name: "Language Arts", icon: "📝" },
+              { code: "SCI", name: "Science", icon: "🔬" },
+              { code: "SOCIAL", name: "Social Studies", icon: "🌍" },
+            ].map((subject, subIdx) => (
+              <Card key={`subject-${subject.code}-${subIdx}`} className="hover:shadow-md transition-shadow cursor-pointer" onClick={() => navigate(`/bridge-academy/practice-quiz/${subject.code}`)}>
+                <CardContent className="pt-6 text-center">
+                  <div className="text-3xl mb-2">{subject.icon}</div>
+                  <p className="font-semibold text-sm mb-1">{subject.name}</p>
+                  <Button variant="outline" size="sm" className="w-full mt-3">
+                    Start Quiz
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
         {/* All Courses Grid */}
         <h2 className="text-2xl font-bold text-foreground mb-6">All Courses</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {courses?.map((course: any) => {
+          {courses?.map((course: any, courseIdx: number) => {
             const progress = courseProgress[course.id] || { completed: 0, total: course.totalLessons };
             const progressPercent = progress.total > 0 ? (progress.completed / progress.total) * 100 : 0;
             const isEnrolled = course.isEnrolled;
 
             return (
-              <Card key={course.id} className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50">
+              <Card key={`course-${course.id}-${courseIdx}`} className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50">
                 <CardHeader 
                   className="text-card-foreground min-h-[140px] relative overflow-hidden"
                   style={{ backgroundColor: '#1e40af' }}

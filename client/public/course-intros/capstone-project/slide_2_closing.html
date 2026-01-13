@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Begin Your Capstone Journey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #F5F1E8 0%, #FAF8F3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        
+            transform-origin: top left;
+            transform: scale(1);
+        }
+        
+        .decorative-left {
+            flex: 0 0 400px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #8B4513 0%, #D4A574 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .circle-accent-1 {
+            width: 180px;
+            height: 180px;
+            border: 3px solid #F5F1E8;
+            border-radius: 50%;
+            position: absolute;
+            top: 80px;
+            left: 80px;
+            opacity: 0.4;
+        }
+        
+        .circle-accent-2 {
+            width: 140px;
+            height: 140px;
+            border: 2px solid #F5F1E8;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 100px;
+            left: 120px;
+            opacity: 0.6;
+        }
+        
+        .accent-line-left {
+            position: absolute;
+            width: 4px;
+            height: 100px;
+            background: #F5F1E8;
+            top: 300px;
+            left: 60px;
+        }
+        
+        .content-right {
+            flex: 1;
+            padding-right: 80px;
+            padding-left: 60px;
+            z-index: 10;
+            text-align: center;
+        }
+        
+        .content-right h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: #2C1810;
+            line-height: 1.2;
+            margin-bottom: 30px;
+        }
+        
+        .content-right p {
+            font-family: 'Lato', sans-serif;
+            font-size: 18px;
+            color: #5C3D2E;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .cta-text {
+            font-family: 'Lato', sans-serif;
+            font-size: 16px;
+            color: #8B4513;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .contact-info {
+            font-family: 'Lato', sans-serif;
+            font-size: 15px;
+            color: #5C3D2E;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="decorative-left">
+            <div class="circle-accent-1"></div>
+            <div class="circle-accent-2"></div>
+            <div class="accent-line-left"></div>
+        </div>
+        
+        <div class="content-right">
+            <h1>Begin Your<br>Capstone Journey</h1>
+            <p>The Capstone Project represents the culmination of your theological education and the beginning of your professional ministry. Your project will demonstrate the depth of your learning and prepare you for meaningful service in God's kingdom.</p>
+            
+            <div class="cta-section">
+                <div class="cta-text">Ready to Start?</div>
+                <div class="contact-info">
+                    Contact our admissions office to learn more about the Capstone Project and begin your M.Div. journey today.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

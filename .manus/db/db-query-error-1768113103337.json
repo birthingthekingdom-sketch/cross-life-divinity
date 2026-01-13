@@ -1,0 +1,8 @@
+{
+  "query": "SELECT \n  subjectCode,\n  COUNT(*) as question_count\nFROM bridge_academy_practice_questions\nGROUP BY subjectCode\nORDER BY subjectCode;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT \n  subjectCode,\n  COUNT(*) as question_count\nFROM bridge_academy_practice_questions\nGROUP BY subjectCode\nORDER BY subjectCode;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'subjectcode' in 'group statement'"
+  ]
+}

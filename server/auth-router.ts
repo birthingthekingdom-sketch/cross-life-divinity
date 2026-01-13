@@ -2,6 +2,8 @@ import { z } from 'zod';
 import { publicProcedure, protectedProcedure, router } from './_core/trpc';
 import * as authService from './auth-service';
 import * as emailService from './email';
+import { eq } from 'drizzle-orm';
+import * as db from './db';
 
 export const authRouter = router({
   /**
@@ -10,14 +12,15 @@ export const authRouter = router({
   register: publicProcedure
     .input(
       z.object({
-        email: z.string().email('Invalid email address'),
+        email: z.string().email('Invalid email address').optional().or(z.literal('')),
         password: z.string().min(8, 'Password must be at least 8 characters'),
         name: z.string().min(1, 'Name is required'),
       })
     )
     .mutation(async ({ input }) => {
       try {
-        const user = await authService.registerUser(input.email, input.password, input.name);
+        const email = input.email && input.email.trim() ? input.email : undefined;
+        const user = await authService.registerUser(email, input.password, input.name);
         
         // Email verification disabled - users are auto-verified
         
@@ -49,9 +52,37 @@ export const authRouter = router({
         password: z.string().min(1, 'Password is required'),
       })
     )
-    .mutation(async ({ input }) => {
+    .mutation(async ({ input, ctx }) => {
       try {
+        console.log('[Auth] Login attempt for:', input.email);
         const user = await authService.authenticateUser(input.email, input.password);
+        console.log('[Auth] User authenticated:', user.id, user.email);
+        
+        // Create and set session cookie
+        const { sdk } = await import('./_core/sdk');
+        const { getSessionCookieOptions } = await import('./_core/cookies');
+        const { COOKIE_NAME, ONE_YEAR_MS } = await import('@shared/const');
+        
+        // For email/password users without openId, generate a temporary openId
+        const openIdForSession = user.openId || `local-user-${user.id}`;
+        
+        // If openId was generated, save it to the database
+        if (!user.openId) {
+          const { users } = await import('../drizzle/schema');
+          const dbInstance = await (await import('./db')).getDb();
+          if (dbInstance) {
+            await dbInstance.update(users).set({ openId: openIdForSession }).where(eq(users.id, user.id));
+          }
+        }
+        
+        const sessionToken = await sdk.createSessionToken(openIdForSession, {
+          name: user.name || '',
+          expiresInMs: ONE_YEAR_MS,
+        });
+        
+        const cookieOptions = getSessionCookieOptions(ctx.req);
+        ctx.res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
+        
         return {
           success: true,
           user: {
@@ -59,10 +90,11 @@ export const authRouter = router({
             email: user.email,
             name: user.name,
             role: user.role,
-            openId: user.openId,
+            openId: openIdForSession,
           },
         };
       } catch (error) {
+        console.error('[Auth] Login error:', error);
         if (error instanceof Error) {
           throw new Error(error.message);
         }
@@ -146,7 +178,11 @@ export const authRouter = router({
   /**
    * Get current user info
    */
-  me: protectedProcedure.query(async ({ ctx }) => {
+  me: publicProcedure.query(async ({ ctx }) => {
+    // Return null if not authenticated
+    if (!ctx.user) {
+      return null;
+    }
     return {
       id: ctx.user.id,
       email: ctx.user.email,
@@ -156,54 +192,5 @@ export const authRouter = router({
     };
   }),
 
-  /**
-   * Verify email using token
-   */
-  verifyEmail: publicProcedure
-    .input(
-      z.object({
-        token: z.string().min(1, 'Verification token is required'),
-      })
-    )
-    .mutation(async ({ input }) => {
-      try {
-        await authService.verifyEmail(input.token);
-        return { success: true, message: 'Email verified successfully' };
-      } catch (error) {
-        if (error instanceof Error) {
-          throw new Error(error.message);
-        }
-        throw new Error('Email verification failed');
-      }
-    }),
-
-  /**
-   * Resend verification email
-   */
-  resendVerification: publicProcedure
-    .input(
-      z.object({
-        email: z.string().email('Invalid email address'),
-      })
-    )
-    .mutation(async ({ input }) => {
-      try {
-        const result = await authService.resendVerificationEmail(input.email);
-        
-        if (result.verificationToken) {
-          try {
-            await emailService.sendEmailVerification(input.email, result.userName || 'Student', result.verificationToken);
-          } catch (emailError) {
-            console.error('Failed to send verification email:', emailError);
-          }
-        }
-
-        return { success: true, message: 'Verification email has been sent' };
-      } catch (error) {
-        if (error instanceof Error) {
-          throw new Error(error.message);
-        }
-        throw new Error('Failed to resend verification email');
-      }
-    }),
+  // Email verification endpoints disabled - all users are auto-verified on registration
 });

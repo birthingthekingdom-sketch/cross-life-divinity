@@ -1,0 +1,40 @@
+{
+  "query": "SELECT id, title, code, colorTheme FROM courses WHERE title LIKE '%Pastoral%' OR title LIKE '%Church%' OR title LIKE '%Homiletics%' OR title LIKE '%Spiritual%' OR title LIKE '%Worship%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, title, code, colorTheme FROM courses WHERE title LIKE '%Pastoral%' OR title LIKE '%Church%' OR title LIKE '%Homiletics%' OR title LIKE '%Spiritual%' OR title LIKE '%Worship%';",
+  "rows": [
+    {
+      "id": "150011",
+      "title": "Pastoral Counseling",
+      "code": "PAS201",
+      "colorTheme": "rose"
+    },
+    {
+      "id": "150012",
+      "title": "Church Administration",
+      "code": "PAS301",
+      "colorTheme": "slate"
+    },
+    {
+      "id": "150013",
+      "title": "Homiletics",
+      "code": "PAS101",
+      "colorTheme": "emerald"
+    },
+    {
+      "id": "150014",
+      "title": "Discovering Spiritual Gifts",
+      "code": "SPR201",
+      "colorTheme": "sky"
+    },
+    {
+      "id": "360001",
+      "title": "Biblical Worship",
+      "code": "WOR101",
+      "colorTheme": "from-purple-600 to-pink-600"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tcode\tcolorTheme\n150011\tPastoral Counseling\tPAS201\trose\n150012\tChurch Administration\tPAS301\tslate\n150013\tHomiletics\tPAS101\temerald\n150014\tDiscovering Spiritual Gifts\tSPR201\tsky\n360001\tBiblical Worship\tWOR101\tfrom-purple-600 to-pink-600\n",
+  "stderr": "",
+  "execution_time_ms": 101
+}

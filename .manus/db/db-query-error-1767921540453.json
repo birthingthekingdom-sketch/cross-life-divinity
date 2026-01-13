@@ -1,0 +1,8 @@
+{
+  "query": "INSERT INTO courses (code, title, description, totalLessons, cpdHours, price, courseType) VALUES ('BIB101', 'Old Testament Survey', 'A comprehensive survey of the Old Testament covering the historical, poetic, and prophetic books.', 10, 20, 89, 'theological');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO courses (code, title, description, totalLessons, cpdHours, price, courseType) VALUES ('BIB101', 'Old Testament Survey', 'A comprehensive survey of the Old Testament covering the historical, poetic, and prophetic books.', 10, 20, 89, 'theological');",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1364 (HY000) at line 1: Field 'colorTheme' doesn't have a default value"
+  ]
+}

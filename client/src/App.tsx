@@ -55,6 +55,7 @@ import AdminEmailNotifications from './pages/AdminEmailNotifications';
 import AdminEmailExport from './pages/AdminEmailExport';
 import CohortGroups from './pages/CohortGroups';
 import About from './pages/About';
+import WhyOnlineLearning from './pages/WhyOnlineLearning';
 import FAQ from './pages/FAQ';
 import SuccessStories from './pages/SuccessStories';
 import Resources from './pages/Resources';
@@ -64,7 +65,11 @@ import BundleSelection from './pages/BundleSelection';
 import Logout from './pages/Logout';
 import AffiliateApply from './pages/AffiliateApply';
 import AffiliateDashboard from './pages/AffiliateDashboard';
-import ChaplaincyTraining from './pages/ChaplaincyTraining';
+import ChaplaincyTraining from './pages/ChaplaincyTrainingEnhanced';
+import CPEReadinessAssessment from './pages/CPEReadinessAssessment';
+import CPEGlossary from './pages/CPEGlossary';
+import CPECaseStudies from './pages/CPECaseStudies';
+import CPEPathwayMap from './pages/CPEPathwayMap';
 import { PaymentPlanCheckout } from './pages/PaymentPlanCheckout';
 import MyPayments from './pages/MyPayments';
 import StudentHandbook from './pages/StudentHandbook';
@@ -79,6 +84,18 @@ import EnrollmentVerification from './pages/EnrollmentVerification';
 import RefundPolicy from './pages/RefundPolicy';
 import HelpCenter from './pages/HelpCenter';
 import Contact from './pages/Contact';
+import AdminBridgeAcademyCourses from './pages/AdminBridgeAcademyCourses';
+import AdminBridgeAcademyStudents from './pages/AdminBridgeAcademyStudents';
+import AdminBridgeAcademyAnalytics from './pages/AdminBridgeAcademyAnalytics';
+import AdminStudents from './pages/AdminStudents';
+import BridgeAcademyDashboard from './pages/BridgeAcademyDashboard';
+import BridgeAcademyStudentDashboard from './pages/BridgeAcademyStudentDashboard';
+import BridgeAcademyCourseDetail from './pages/BridgeAcademyCourseDetail';
+import BridgeAcademyPracticeQuiz from './pages/BridgeAcademyPracticeQuiz';
+import BridgeAcademyPracticeTests from './pages/BridgeAcademyPracticeTests';
+import BridgeAcademyStudySchedule from './pages/BridgeAcademyStudySchedule';
+import CPESupervisorDirectory from './pages/CPESupervisorDirectory';
+import ChaplainancyFinancialAid from './pages/ChaplainancyFinancialAid';
 
 function Router() {
   return (
@@ -89,6 +106,10 @@ function Router() {
       <Route path="/affiliate/apply" component={AffiliateApply} />
       <Route path="/affiliate/dashboard" component={AffiliateDashboard} />
       <Route path="/chaplaincy-training" component={ChaplaincyTraining} />
+      <Route path="/cpe-readiness" component={CPEReadinessAssessment} />
+      <Route path="/cpe-glossary" component={CPEGlossary} />
+      <Route path="/cpe-case-studies" component={CPECaseStudies} />
+      <Route path="/cpe-pathway" component={CPEPathwayMap} />
       <Route path="/register" component={Register} />
       <Route path="/signup" component={Register} />
       <Route path="/forgot-password" component={ForgotPassword} />
@@ -116,6 +137,10 @@ function Router() {
       <Route path="/admin/email-config" component={AdminEmailConfig} />
       <Route path="/admin/email-notifications" component={AdminEmailNotifications} />
           <Route path="/admin/grading" component={AdminGrading} />
+      <Route path="/admin/students" component={AdminStudents} />
+      <Route path="/admin/bridge-academy/courses" component={AdminBridgeAcademyCourses} />
+      <Route path="/admin/bridge-academy/students" component={AdminBridgeAcademyStudents} />
+      <Route path="/admin/bridge-academy/analytics" component={AdminBridgeAcademyAnalytics} />
         <Route path="/peer-reviews" component={PeerReviews} />
         <Route path="/calendar" component={AssignmentCalendar} />
       <Route path="/webinars" component={Webinars} />
@@ -128,6 +153,7 @@ function Router() {
       <Route path="/learning-paths" component={LearningPaths} />
       <Route path="/cohorts" component={CohortGroups} />
       <Route path="/about" component={About} />
+      <Route path="/why-online-learning" component={WhyOnlineLearning} />
       <Route path="/faq" component={FAQ} />
       <Route path="/success-stories" component={SuccessStories} />
       <Route path="/resources" component={Resources} />
@@ -144,12 +170,21 @@ function Router() {
       <Route path="/student-handbook" component={StudentHandbook} />
       <Route path="/bridge-academy" component={BridgeAcademy} />
       <Route path="/bridge-academy/:subject" component={BridgeAcademy} />
+      <Route path="/bridge-academy/dashboard" component={BridgeAcademyDashboard} />
+      <Route path="/bridge-academy/student-dashboard" component={BridgeAcademyStudentDashboard} />
+      <Route path="/bridge-academy/course/:courseId" component={BridgeAcademyCourseDetail} />
+      <Route path="/bridge-academy/practice-quiz/:subjectCode" component={BridgeAcademyPracticeQuiz} />
+      <Route path="/bridge-academy/practice-tests" component={BridgeAcademyPracticeTests} />
+      <Route path="/bridge-academy/practice-test/:testId" component={BridgeAcademyPracticeTests} />
+      <Route path="/bridge-academy/study-schedule" component={BridgeAcademyStudySchedule} />
       <Route path="/bridge-academy/diplomas" component={BridgeAcademyDiplomas} />
       <Route path="/verify-bridge-academy/:token" component={VerifyBridgeAcademyCertificate} />
       <Route path="/accreditation" component={Accreditation} />
       <Route path="/credits" component={CreditsAndCertification} />
       <Route path="/life-experience" component={LifeExperienceCredits} />
       <Route path="/financial-aid" component={FinancialAid} />
+      <Route path="/chaplaincy-financial-aid" component={ChaplainancyFinancialAid} />
+      <Route path="/cpe-supervisors" component={CPESupervisorDirectory} />
       <Route path="/enrollment-verification" component={EnrollmentVerification} />
       <Route path="/refund-policy" component={RefundPolicy} />
       <Route path="/knowledge-base" component={HelpCenter} />

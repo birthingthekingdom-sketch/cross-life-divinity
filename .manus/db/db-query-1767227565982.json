@@ -1,0 +1,105 @@
+{
+  "query": "SELECT id, code, title FROM courses;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code, title FROM courses;",
+  "rows": [
+    {
+      "id": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology"
+    },
+    {
+      "id": "150004",
+      "code": "BIB201",
+      "title": "Biblical Hermeneutics"
+    },
+    {
+      "id": "150005",
+      "code": "THE301",
+      "title": "Fundamentals of Apologetics"
+    },
+    {
+      "id": "150006",
+      "code": "MIN101",
+      "title": "Evangelism and Discipleship"
+    },
+    {
+      "id": "150007",
+      "code": "MIN102",
+      "title": "Discipleship Training"
+    },
+    {
+      "id": "150008",
+      "code": "SPR101",
+      "title": "Prayer and Intercession"
+    },
+    {
+      "id": "150009",
+      "code": "LED201",
+      "title": "Christian Leadership"
+    },
+    {
+      "id": "150011",
+      "code": "PAS201",
+      "title": "Pastoral Counseling"
+    },
+    {
+      "id": "150012",
+      "code": "PAS301",
+      "title": "Church Administration"
+    },
+    {
+      "id": "150013",
+      "code": "PAS101",
+      "title": "Homiletics"
+    },
+    {
+      "id": "150014",
+      "code": "SPR201",
+      "title": "Discovering Spiritual Gifts"
+    },
+    {
+      "id": "180001",
+      "code": "DIV101",
+      "title": "Understanding Prophecy"
+    },
+    {
+      "id": "180002",
+      "code": "MIN301",
+      "title": "Deliverance Ministry"
+    },
+    {
+      "id": "180003",
+      "code": "MIN201",
+      "title": "The Fivefold Ministry"
+    },
+    {
+      "id": "360001",
+      "code": "WOR101",
+      "title": "Biblical Worship"
+    },
+    {
+      "id": "390001",
+      "code": "GED-MATH",
+      "title": "Mathematical Reasoning"
+    },
+    {
+      "id": "390002",
+      "code": "GED-LANG",
+      "title": "Reasoning Through Language Arts"
+    },
+    {
+      "id": "390003",
+      "code": "GED-SCI",
+      "title": "Science"
+    },
+    {
+      "id": "390004",
+      "code": "GED-SOCIAL",
+      "title": "Social Studies"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\n150003\tTHE201\tSystematic Theology\n150004\tBIB201\tBiblical Hermeneutics\n150005\tTHE301\tFundamentals of Apologetics\n150006\tMIN101\tEvangelism and Discipleship\n150007\tMIN102\tDiscipleship Training\n150008\tSPR101\tPrayer and Intercession\n150009\tLED201\tChristian Leadership\n150011\tPAS201\tPastoral Counseling\n150012\tPAS301\tChurch Administration\n150013\tPAS101\tHomiletics\n150014\tSPR201\tDiscovering Spiritual Gifts\n180001\tDIV101\tUnderstanding Prophecy\n180002\tMIN301\tDeliverance Ministry\n180003\tMIN201\tThe Fivefold Ministry\n360001\tWOR101\tBiblical Worship\n390001\tGED-MATH\tMathematical Reasoning\n390002\tGED-LANG\tReasoning Through Language Arts\n390003\tGED-SCI\tScience\n390004\tGED-SOCIAL\tSocial Studies\n",
+  "stderr": "",
+  "execution_time_ms": 145
+}

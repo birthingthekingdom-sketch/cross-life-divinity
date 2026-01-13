@@ -1,0 +1,42 @@
+{
+  "query": "SELECT id, code, title, description, colorTheme, displayOrder FROM courses WHERE code LIKE 'GED-%' ORDER BY displayOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code, title, description, colorTheme, displayOrder FROM courses WHERE code LIKE 'GED-%' ORDER BY displayOrder;",
+  "rows": [
+    {
+      "id": "390001",
+      "code": "GED-MATH",
+      "title": "Mathematical Reasoning",
+      "description": "Master mathematical concepts and problem-solving skills required for the GED Mathematical Reasoning exam. This course covers algebra, geometry, statistics, and data analysis.",
+      "colorTheme": "#3b82f6",
+      "displayOrder": "0"
+    },
+    {
+      "id": "390002",
+      "code": "GED-LANG",
+      "title": "Reasoning Through Language Arts",
+      "description": "Develop reading comprehension, writing, and grammar skills for the GED Language Arts exam. Learn to analyze texts, write persuasive essays, and master grammar rules.",
+      "colorTheme": "#8b5cf6",
+      "displayOrder": "0"
+    },
+    {
+      "id": "390003",
+      "code": "GED-SCI",
+      "title": "Science",
+      "description": "Explore life science, physical science, and earth science concepts tested on the GED Science exam. Understand scientific processes, data interpretation, and real-world applications.",
+      "colorTheme": "#10b981",
+      "displayOrder": "0"
+    },
+    {
+      "id": "390004",
+      "code": "GED-SOCIAL",
+      "title": "Social Studies",
+      "description": "Study U.S. history, civics, economics, and geography for the GED Social Studies exam. Analyze historical documents, understand government systems, and interpret maps and charts.",
+      "colorTheme": "#f59e0b",
+      "displayOrder": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\tdescription\tcolorTheme\tdisplayOrder\n390001\tGED-MATH\tMathematical Reasoning\tMaster mathematical concepts and problem-solving skills required for the GED Mathematical Reasoning exam. This course covers algebra, geometry, statistics, and data analysis.\t#3b82f6\t0\n390002\tGED-LANG\tReasoning Through Language Arts\tDevelop reading comprehension, writing, and grammar skills for the GED Language Arts exam. Learn to analyze texts, write persuasive essays, and master grammar rules.\t#8b5cf6\t0\n390003\tGED-SCI\tScience\tExplore life science, physical science, and earth science concepts tested on the GED Science exam. Understand scientific processes, data interpretation, and real-world applications.\t#10b981\t0\n390004\tGED-SOCIAL\tSocial Studies\tStudy U.S. history, civics, economics, and geography for the GED Social Studies exam. Analyze historical documents, understand government systems, and interpret maps and charts.\t#f59e0b\t0\n",
+  "stderr": "",
+  "execution_time_ms": 83
+}

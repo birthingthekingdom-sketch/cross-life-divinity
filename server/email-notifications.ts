@@ -501,3 +501,262 @@ export async function updateEmailPreferences(
     );
   }
 }
+
+/**
+ * Send ID approval email to student
+ */
+export async function sendIdApprovalEmail(userId: number): Promise<void> {
+  try {
+    const user = await db.getUserById(userId);
+    if (!user || !user.email) {
+      console.warn(`Cannot send ID approval email: user ${userId} not found or has no email`);
+      return;
+    }
+
+    const config = getEmailConfig();
+    if (!config) {
+      console.warn("Email configuration not available");
+      return;
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: config.host,
+      port: config.port,
+      secure: config.secure,
+      auth: {
+        user: config.user,
+        pass: config.pass,
+      },
+    });
+
+    const subject = "ID Verification Approved - Welcome to Cross Life School of Divinity";
+    const html = `
+      <h2>ID Verification Approved</h2>
+      <p>Dear ${user.name || 'Student'},</p>
+      <p>Great news! Your ID has been successfully verified and approved. Your enrollment is now complete.</p>
+      <p>You can now:</p>
+      <ul>
+        <li>Access all your enrolled courses</li>
+        <li>Download course materials</li>
+        <li>Submit assignments and take quizzes</li>
+        <li>Earn your CLAC certificate upon completion</li>
+      </ul>
+      <p>Welcome to the Cross Life School of Divinity community!</p>
+      <p>Best regards,<br/>The Cross Life School of Divinity Team</p>
+    `;
+
+    await transporter.sendMail({
+      from: config.user,
+      to: user.email,
+      subject,
+      html,
+    });
+
+    console.log(`ID approval email sent to ${user.email}`);
+  } catch (error) {
+    console.error("Failed to send ID approval email:", error);
+  }
+}
+
+/**
+ * Send ID rejection email to student
+ */
+export async function sendIdRejectionEmail(
+  userId: number,
+  rejectionReason: string
+): Promise<void> {
+  try {
+    const user = await db.getUserById(userId);
+    if (!user || !user.email) {
+      console.warn(`Cannot send ID rejection email: user ${userId} not found or has no email`);
+      return;
+    }
+
+    const config = getEmailConfig();
+    if (!config) {
+      console.warn("Email configuration not available");
+      return;
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: config.host,
+      port: config.port,
+      secure: config.secure,
+      auth: {
+        user: config.user,
+        pass: config.pass,
+      },
+    });
+
+    const subject = "ID Verification - Resubmission Required";
+    const html = `
+      <h2>ID Verification - Resubmission Required</h2>
+      <p>Dear ${user.name || 'Student'},</p>
+      <p>We received your ID submission, but we were unable to verify it at this time.</p>
+      <p><strong>Reason:</strong> ${rejectionReason}</p>
+      <p>Please resubmit a clear, legible copy of your government-issued ID. Make sure:</p>
+      <ul>
+        <li>The entire ID is visible in the image</li>
+        <li>All text is clear and readable</li>
+        <li>The file format is JPG, PNG, or PDF</li>
+        <li>The file size is under 10MB</li>
+      </ul>
+      <p>You can resubmit your ID anytime from your enrollment dashboard.</p>
+      <p>If you have questions, please contact our support team.</p>
+      <p>Best regards,<br/>The Cross Life School of Divinity Team</p>
+    `;
+
+    await transporter.sendMail({
+      from: config.user,
+      to: user.email,
+      subject,
+      html,
+    });
+
+    console.log(`ID rejection email sent to ${user.email}`);
+  } catch (error) {
+    console.error("Failed to send ID rejection email:", error);
+  }
+}
+
+
+/**
+ * Send ID verification reminder email
+ */
+export async function sendIdVerificationReminderEmail(
+  userId: number,
+  daysRemaining: number | null
+): Promise<void> {
+  try {
+    const user = await db.getUserById(userId);
+    if (!user || !user.email) {
+      console.warn(`Cannot send ID verification reminder: user ${userId} not found or has no email`);
+      return;
+    }
+
+    const config = getEmailConfig();
+    if (!config) {
+      console.warn("Email configuration not available");
+      return;
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: config.host,
+      port: config.port,
+      secure: config.secure,
+      auth: {
+        user: config.user,
+        pass: config.pass,
+      },
+    });
+
+    const subject = daysRemaining 
+      ? `Reminder: Complete Your ID Verification (${daysRemaining} days left)`
+      : `Reminder: Complete Your ID Verification`;
+    
+    let html = '';
+    if (daysRemaining) {
+      html = `
+        <h2>ID Verification Reminder</h2>
+        <p>Dear ${user.name || 'Student'},</p>
+        <p>This is a friendly reminder that you have <strong>${daysRemaining} days remaining</strong> to complete your ID verification.</p>
+        <p>After 7 days from your enrollment, your course access will be suspended until you complete ID verification.</p>
+        <p>To complete your ID verification:</p>
+        <ol>
+          <li>Log in to your student dashboard</li>
+          <li>Click on "Complete ID Verification"</li>
+          <li>Upload a clear photo of your government-issued ID</li>
+          <li>Our team will review and approve your ID within 24-48 hours</li>
+        </ol>
+        <p>If you have any questions, please contact our support team.</p>
+        <p>Best regards,<br/>The Cross Life School of Divinity Team</p>
+      `;
+    } else {
+      html = `
+        <h2>ID Verification Status Update</h2>
+        <p>Dear ${user.name || 'Student'},</p>
+        <p>Your ID verification is still pending review. Our admin team is working on approving your submission.</p>
+        <p>You have full access to all your enrolled courses while we review your ID.</p>
+        <p>To complete your ID verification:</p>
+        <ol>
+          <li>Log in to your student dashboard</li>
+          <li>Click on "Complete ID Verification"</li>
+          <li>Upload a clear photo of your government-issued ID</li>
+          <li>Our team will review and approve your ID within 72 hours</li>
+        </ol>
+        <p>If you have any questions, please contact our support team.</p>
+        <p>Best regards,<br/>The Cross Life School of Divinity Team</p>
+      `;
+    }
+
+    await transporter.sendMail({
+      from: config.user,
+      to: user.email,
+      subject,
+      html,
+    });
+
+    console.log(`ID verification reminder email sent to ${user.email}`);
+  } catch (error) {
+    console.error("Failed to send ID verification reminder email:", error);
+  }
+}
+
+/**
+ * Send access suspension email
+ */
+export async function sendAccessSuspensionEmail(userId: number): Promise<void> {
+  try {
+    const user = await db.getUserById(userId);
+    if (!user || !user.email) {
+      console.warn(`Cannot send access suspension email: user ${userId} not found or has no email`);
+      return;
+    }
+
+    const config = getEmailConfig();
+    if (!config) {
+      console.warn("Email configuration not available");
+      return;
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: config.host,
+      port: config.port,
+      secure: config.secure,
+      auth: {
+        user: config.user,
+        pass: config.pass,
+      },
+    });
+
+    const subject = "Course Access Suspended - ID Verification Required";
+    const html = `
+      <h2>Course Access Suspended</h2>
+      <p>Dear ${user.name || 'Student'},</p>
+      <p>Your course access has been suspended because your 7-day grace period for ID verification has ended.</p>
+      <p><strong>What happened:</strong> You enrolled in a course but did not complete ID verification within 7 days.</p>
+      <p><strong>What you need to do:</strong> Complete your ID verification to regain access to your courses.</p>
+      <p>To restore your access:</p>
+      <ol>
+        <li>Log in to your student dashboard</li>
+        <li>Click on "Complete ID Verification"</li>
+        <li>Upload a clear photo of your government-issued ID (driver's license, passport, or state ID)</li>
+        <li>Our team will review and approve your ID within 24-48 hours</li>
+        <li>Your course access will be restored immediately upon approval</li>
+      </ol>
+      <p>If you have any questions or need assistance, please contact our support team.</p>
+      <p>Best regards,<br/>The Cross Life School of Divinity Team</p>
+    `;
+
+    await transporter.sendMail({
+      from: config.user,
+      to: user.email,
+      subject,
+      html,
+    });
+
+    console.log(`Access suspension email sent to ${user.email}`);
+  } catch (error) {
+    console.error("Failed to send access suspension email:", error);
+  }
+}

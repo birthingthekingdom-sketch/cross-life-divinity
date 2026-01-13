@@ -1,14 +1,19 @@
 export const COOKIE_NAME = "app_session_id";
 export const ONE_YEAR_MS = 1000 * 60 * 60 * 24 * 365;
 export const AXIOS_TIMEOUT_MS = 30_000;
-export const UNAUTHED_ERR_MSG = 'Please login (10001)';
-export const NOT_ADMIN_ERR_MSG = 'You do not have required permission (10002)';
+export const UNAUTHED_ERR_MSG = 'Please sign in to continue';
+export const NOT_ADMIN_ERR_MSG = 'You do not have permission to access this resource';
+
+// Error Messages
+export const REGISTRATION_ERROR_MSG = 'Unable to create account. Please try again.';
+export const LOGIN_ERROR_MSG = 'Invalid email or password. Please try again.';
+export const SESSION_EXPIRED_MSG = 'Your session has expired. Please sign in again.';
 
 // Pricing Constants
 export const PRICING = {
   LEARNING_PATH: 399.00,
   BUNDLE_3_COURSE: 299.00,
-  CHAPLAINCY_TRAINING: 275.00,
+  CHAPLAINCY_TRAINING: 325.00, // $275 course + $50 background check
   PAYMENT_PLAN_MONTHS: 6,
 } as const;
 

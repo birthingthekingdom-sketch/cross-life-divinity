@@ -1,0 +1,30 @@
+{
+  "query": "SELECT \n  c.code, \n  COUNT(l.id) as lesson_count\nFROM courses c\nLEFT JOIN lessons l ON c.id = l.courseId\nWHERE c.code IN ('DIV102', 'LED202', 'DIV111', 'DIV112', 'DIV113')\nGROUP BY c.id, c.code\nORDER BY c.code;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT \n  c.code, \n  COUNT(l.id) as lesson_count\nFROM courses c\nLEFT JOIN lessons l ON c.id = l.courseId\nWHERE c.code IN ('DIV102', 'LED202', 'DIV111', 'DIV112', 'DIV113')\nGROUP BY c.id, c.code\nORDER BY c.code;",
+  "rows": [
+    {
+      "code": "DIV102",
+      "lesson_count": "20"
+    },
+    {
+      "code": "DIV111",
+      "lesson_count": "16"
+    },
+    {
+      "code": "DIV112",
+      "lesson_count": "20"
+    },
+    {
+      "code": "DIV113",
+      "lesson_count": "20"
+    },
+    {
+      "code": "LED202",
+      "lesson_count": "20"
+    }
+  ],
+  "messages": [],
+  "stdout": "code\tlesson_count\nDIV102\t20\nDIV111\t16\nDIV112\t20\nDIV113\t20\nLED202\t20\n",
+  "stderr": "",
+  "execution_time_ms": 493
+}

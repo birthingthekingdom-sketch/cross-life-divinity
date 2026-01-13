@@ -20,14 +20,24 @@ import { cohortRouter } from './cohort-router';
 import { bundlePurchaseRouter } from './bundle-purchase-router';
 import { emailNotificationRouter } from './email-notification-router';
 import { adminEmailRouter } from './admin-email-router';
-import * as referralSystem from './referral-router.js';
+import * as referralSystem from './referral-router';
 import { blogRouter } from './blog-router';
 import { chatRouter } from './chat-router';
 import { affiliateRouter } from './affiliate-router';
 import { chaplaincyRouter } from './chaplaincy-router';
 import { installmentPlanRouter } from './installment-plan-router';
 import { paymentPlanRouter } from './payment-plan-router';
+import { practiceQuizRouter } from './practice-quiz-router';
+import { idVerificationRouter } from './id-verification-router';
+import { webinarRouter } from './webinar-router';
+import { coursePreviewRouter } from './course-preview-router';
+import { attendanceRouter } from './attendance-router';
+import { previewAnalyticsRouter } from './preview-analytics-router';
+import { webinarNotificationsRouter } from './webinar-notifications-router';
+import { advancedAnalyticsRouter } from './advanced-analytics-router';
 import { TRPCError } from "@trpc/server";
+
+// Import Bridge Academy database functions are already available via db.* namespace
 
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
   if (ctx.user.role !== 'admin') {
@@ -48,8 +58,14 @@ export const appRouter = router({
   chaplaincy: chaplaincyRouter,
   installmentPlan: installmentPlanRouter,
   paymentPlan: paymentPlanRouter,
-
-  // Merge custom auth router with existing auth endpoints
+  practiceQuiz: practiceQuizRouter,
+  idVerification: idVerificationRouter,
+  webinars: webinarRouter,
+  coursePreviews: coursePreviewRouter,
+  attendance: attendanceRouter,
+  previewAnalytics: previewAnalyticsRouter,
+  webinarNotifications: webinarNotificationsRouter,
+  advancedAnalytics: advancedAnalyticsRouter,
   auth: router({
     ...authRouter._def.procedures,
     logout: publicProcedure.mutation(({ ctx }) => {
@@ -147,6 +163,10 @@ export const appRouter = router({
     
     listAll: publicProcedure.query(async () => {
       return db.getAllCourses();
+    }),
+    
+    listGed: publicProcedure.query(async () => {
+      return db.getAllGedCourses();
     }),
     
     checkEnrollment: protectedProcedure
@@ -1085,29 +1105,42 @@ export const appRouter = router({
         const result: any = await dbConn.execute(query);
         return Array.isArray(result) ? result : result.rows || [];
       }),
-  }),
-  
-  webinars: router({
-    getAll: protectedProcedure.query(async () => {
-      return db.getAllWebinars();
+    
+    // Bridge Academy Management
+    getBridgeAcademyCourses: adminProcedure.query(async () => {
+      return db.getAllBridgeAcademyCoursesWithTopics();
     }),
     
-    getUpcoming: protectedProcedure.query(async () => {
-      return db.getUpcomingWebinars();
-    }),
-    
-    getById: protectedProcedure
-      .input(z.object({ id: z.number() }))
-      .query(async ({ input }) => {
-        return db.getWebinarById(input.id);
-      }),
-    
-    getByCourse: protectedProcedure
+    getBridgeAcademyCourse: adminProcedure
       .input(z.object({ courseId: z.number() }))
       .query(async ({ input }) => {
-        return db.getWebinarsByCourse(input.courseId);
+        return db.getBridgeAcademyCourseWithTopics(input.courseId);
+      }),
+    
+    getBridgeAcademyTopics: adminProcedure
+      .input(z.object({ courseId: z.number() }))
+      .query(async ({ input }) => {
+        return db.getBridgeAcademyTopics(input.courseId);
+      }),
+    
+    getEnrolledStudents: adminProcedure.query(async () => {
+      return db.getEnrolledStudents();
+    }),
+    
+    getStudentEnrollments: adminProcedure
+      .input(z.object({ studentId: z.number() }))
+      .query(async ({ input }) => {
+        return db.getStudentEnrollments(input.studentId);
+      }),
+    
+    getStudentProgress: adminProcedure
+      .input(z.object({ studentId: z.number(), courseId: z.number() }))
+      .query(async ({ input }) => {
+        return db.getStudentCourseProgress(input.studentId, input.courseId);
       }),
   }),
+  
+
 
   forum: router({
     getTopicsByCourse: protectedProcedure

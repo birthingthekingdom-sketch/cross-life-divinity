@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS bridge_academy_practice_questions (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  topicId INT NOT NULL,\n  questionNumber INT NOT NULL,\n  questionText TEXT NOT NULL,\n  questionType VARCHAR(50) NOT NULL,\n  options JSON,\n  correctAnswer VARCHAR(255),\n  explanation TEXT,\n  difficultyLevel VARCHAR(20) NOT NULL,\n  estimatedTime INT DEFAULT 1,\n  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  FOREIGN KEY (topicId) REFERENCES bridge_academy_topics(id) ON DELETE CASCADE\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute CREATE TABLE IF NOT EXISTS bridge_academy_practice_questions (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  topicId INT NOT NULL,\n  questionNumber INT NOT NULL,\n  questionText TEXT NOT NULL,\n  questionType VARCHAR(50) NOT NULL,\n  options JSON,\n  correctAnswer VARCHAR(255),\n  explanation TEXT,\n  difficultyLevel VARCHAR(20) NOT NULL,\n  estimatedTime INT DEFAULT 1,\n  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  FOREIGN KEY (topicId) REFERENCES bridge_academy_topics(id) ON DELETE CASCADE\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 60
+}

@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "title": "Capstone Project",
+    "created": 1767722229.4517586,
+    "last_updated": 1767722354.422963,
+    "total_slides": 7
+  },
+  "slides": {
+    "title_slide": "edited",
+    "course_overview": "edited",
+    "learning_outcomes": "edited",
+    "project_options": "edited",
+    "course_structure": "edited",
+    "assessment": "edited",
+    "closing": "edited"
+  },
+  "outline": [
+    {
+      "id": "title_slide",
+      "title": "Capstone Project",
+      "summary": "The culminating experience in the Master of Divinity program, where students synthesize theological learning and demonstrate scholarly competency through an independent project.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "course_overview",
+      "title": "Course Overview",
+      "summary": "Capstone Project bridges academic study and vocational ministry, allowing students to apply theological education to real-world contexts or scholarly inquiry with faculty mentorship.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "learning_outcomes",
+      "title": "Learning Outcomes",
+      "summary": "Students will synthesize M.Div. knowledge, conduct rigorous research, develop professional projects, present findings, and reflect critically on theological formation and vocational calling.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "project_options",
+      "title": "Four Project Options",
+      "summary": "Choose from theological thesis, ministry project, scholarly article, or integrated project combining research, creative work, and practical application.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "course_structure",
+      "title": "Course Structure & Requirements",
+      "summary": "8-16 weeks duration with 3-6 credit hours, requiring completion of core M.Div. courses and faculty mentorship throughout the project development process.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "assessment",
+      "title": "Assessment Criteria",
+      "summary": "Projects are evaluated on theological depth, research quality, professional presentation, integration of M.Div. learning, and practical applicability to ministry.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "closing",
+      "title": "Begin Your Capstone Journey",
+      "summary": "The Capstone Project represents the culmination of your theological education and the beginning of your professional ministry. Start planning your project today.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    }
+  ]
+}

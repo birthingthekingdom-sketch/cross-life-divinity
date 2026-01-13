@@ -43,7 +43,7 @@ const sections: HandbookSection[] = [
       },
       {
         title: 'Enrollment Options',
-        content: 'You can enroll in courses through several options: Individual Courses ($89 each), 3-Course Bundles ($299), Learning Paths ($199 for structured sequences), or All-Access Subscription ($49/month). Payment plans are available with 0% interest over 6 months.'
+        content: 'You can enroll in courses through several options: Individual Courses ($89 each), 3-Course Bundles ($299), Learning Paths ($399 for structured sequences), or All-Access Subscription ($49/month). Plus, get Bridge Academy GED prep FREE with any enrollment! Payment plans are available with 0% interest over 6 months.'
       },
       {
         title: 'Payment Methods',
@@ -131,7 +131,7 @@ const sections: HandbookSection[] = [
     subsections: [
       {
         title: 'Pricing Options',
-        content: 'Individual Courses: $89 per course (lifetime access), 3-Course Bundles: $299 (save $88), Learning Paths: $199 per path (4-6 courses), All-Access Subscription: $49/month (unlimited access to all courses), Chaplain Training: $325 (specialized program), and Payment Plans: 0% interest, 6-month installments available for all options.'
+        content: 'Individual Courses: $89 per course (lifetime access), 3-Course Bundles: $299 (save $88), Learning Paths: $399 per path (4-6 courses), All-Access Subscription: $49/month (unlimited access to all courses), Chaplain Training: $325 (specialized program), Bridge Academy GED Prep: FREE with any enrollment, and Payment Plans: 0% interest, 6-month installments available for all options.'
       },
       {
         title: 'Payment Methods',

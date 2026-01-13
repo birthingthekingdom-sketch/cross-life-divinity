@@ -1,0 +1,28 @@
+{
+  "query": "SELECT id, code, title, courseType FROM courses WHERE code IN ('DIV111', 'DIV112', 'DIV113') ORDER BY code;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code, title, courseType FROM courses WHERE code IN ('DIV111', 'DIV112', 'DIV113') ORDER BY code;",
+  "rows": [
+    {
+      "id": "570004",
+      "code": "DIV111",
+      "title": "Capstone Project",
+      "courseType": "theological"
+    },
+    {
+      "id": "570005",
+      "code": "DIV112",
+      "title": "Christology",
+      "courseType": "theological"
+    },
+    {
+      "id": "570006",
+      "code": "DIV113",
+      "title": "Contemporary Theological Issues",
+      "courseType": "theological"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\tcourseType\n570004\tDIV111\tCapstone Project\ttheological\n570005\tDIV112\tChristology\ttheological\n570006\tDIV113\tContemporary Theological Issues\ttheological\n",
+  "stderr": "",
+  "execution_time_ms": 106
+}

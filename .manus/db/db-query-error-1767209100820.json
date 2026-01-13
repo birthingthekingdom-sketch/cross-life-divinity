@@ -1,0 +1,8 @@
+{
+  "query": "SELECT \n  c.id, \n  c.code, \n  c.title, \n  COUNT(l.id) as lesson_count,\n  c.description\nFROM bridge_academy_courses c\nLEFT JOIN bridge_academy_lessons l ON c.id = l.course_id\nGROUP BY c.id, c.code, c.title, c.description\nORDER BY c.code;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT \n  c.id, \n  c.code, \n  c.title, \n  COUNT(l.id) as lesson_count,\n  c.description\nFROM bridge_academy_courses c\nLEFT JOIN bridge_academy_lessons l ON c.id = l.course_id\nGROUP BY c.id, c.code, c.title, c.description\nORDER BY c.code;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1146 (42S02) at line 1: Table 'p2dpw9mqsmxzduqcfgjv6b.bridge_academy_courses' doesn't exist"
+  ]
+}
