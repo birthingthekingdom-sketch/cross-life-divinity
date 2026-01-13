@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS extendedResponsePrompts (id INT PRIMARY KEY AUTO_INCREMENT, courseId INT NOT NULL, title VARCHAR(255) NOT NULL, prompt TEXT NOT NULL, instructions TEXT, rubricCriteria JSON, exampleEssay TEXT, exampleScore INT, createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (courseId) REFERENCES courses(id)); CREATE TABLE IF NOT EXISTS studentEssaySubmissions (id INT PRIMARY KEY AUTO_INCREMENT, userId INT NOT NULL, promptId INT NOT NULL, essayText TEXT NOT NULL, score INT, feedback TEXT, submittedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (userId) REFERENCES users(id), FOREIGN KEY (promptId) REFERENCES extendedResponsePrompts(id));",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute CREATE TABLE IF NOT EXISTS extendedResponsePrompts (id INT PRIMARY KEY AUTO_INCREMENT, courseId INT NOT NULL, title VARCHAR(255) NOT NULL, prompt TEXT NOT NULL, instructions TEXT, rubricCriteria JSON, exampleEssay TEXT, exampleScore INT, createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (courseId) REFERENCES courses(id)); CREATE TABLE IF NOT EXISTS studentEssaySubmissions (id INT PRIMARY KEY AUTO_INCREMENT, userId INT NOT NULL, promptId INT NOT NULL, essayText TEXT NOT NULL, score INT, feedback TEXT, submittedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (userId) REFERENCES users(id), FOREIGN KEY (promptId) REFERENCES extendedResponsePrompts(id));",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 534
+}
