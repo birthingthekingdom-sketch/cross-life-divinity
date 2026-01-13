@@ -199,11 +199,11 @@ export default function RefundPolicy() {
             {/* Learning Paths */}
             <Card>
               <CardHeader className="bg-primary/5">
-                <CardTitle className="text-xl">Learning Paths ($399)</CardTitle>
+                <CardTitle className="text-xl">Learning Paths ($199)</CardTitle>
               </CardHeader>
               <CardContent className="pt-6 space-y-3">
                 <p className="text-foreground">
-                  <strong>Refund Amount:</strong> Full path price ($399) refunded to original payment method
+                  <strong>Refund Amount:</strong> Full path price ($199) refunded to original payment method
                 </p>
                 <p className="text-foreground">
                   <strong>Eligibility:</strong> 14 days from enrollment date, or if the path is cancelled

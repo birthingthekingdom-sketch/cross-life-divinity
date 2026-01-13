@@ -198,8 +198,8 @@ export async function getAllCourses(): Promise<Course[]> {
   const db = await getDb();
   if (!db) return [];
   
-  // Return only theological courses, exclude GED
-  return db.select().from(courses).where(eq(courses.courseType, 'theological')).orderBy(courses.displayOrder);
+  // Return both theological and GED courses
+  return db.select().from(courses).orderBy(courses.displayOrder);
 }
 
 export async function getAllGedCourses(): Promise<Course[]> {
@@ -1727,58 +1727,8 @@ export async function getStudentBridgeAcademyProgress(userId: number) {
  * Get student's progress for a specific course
  */
 export async function getStudentCourseProgress(userId: number, courseId: number) {
-  const db = await getDb();
-  if (!db) return null;
-  
-  // Get course info
-  const courseData = await db
-    .select()
-    .from(courses)
-    .where(eq(courses.id, courseId));
-  
-  if (!courseData.length) return null;
-  
-  const course = courseData[0];
-  
-  // Get all lessons in the course
-  const courseLessons = await db
-    .select()
-    .from(lessons)
-    .where(eq(lessons.courseId, courseId))
-    .orderBy(asc(lessons.displayOrder));
-  
-  // Get student progress for each lesson
-  const progressData = await Promise.all(
-    courseLessons.map(async (lesson) => {
-      const progress = await db
-        .select()
-        .from(studentProgress)
-        .where(
-          and(
-            eq(studentProgress.userId, userId),
-            eq(studentProgress.lessonId, lesson.id)
-          )
-        );
-      
-      return {
-        lesson,
-        completed: progress.length > 0 && progress[0].completed === 1,
-        completedAt: progress.length > 0 ? progress[0].completedAt : null,
-      };
-    })
-  );
-  
-  const completedLessons = progressData.filter(p => p.completed).length;
-  const totalLessons = courseLessons.length;
-  const progressPercentage = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
-  
-  return {
-    course,
-    totalLessons,
-    completedLessons,
-    progressPercentage,
-    lessons: progressData,
-  };
+  // TODO: bridgeAcademyProgress table not yet implemented
+  return null;
 }
 
 /**
@@ -1933,11 +1883,3 @@ export async function getStudentBridgeAcademyDashboard(userId: number) {
     certificates,
   };
 }
-
-
-// ===== STUDENT MONITORING & ENROLLMENT TRACKING =====
-// These functions are already implemented above:
-// - getEnrolledStudents() at line 1940
-// - getStudentEnrollments() at line 1976
-// - getStudentCourseProgress() at line 1729 (updated implementation)
-// - getStudentQuizProgress() - use getStudentCourseQuizSubmissions() instead

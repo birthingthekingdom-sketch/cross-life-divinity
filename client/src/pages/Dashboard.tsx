@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -8,7 +9,6 @@ import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, CreditCard, 
 import { Link, useLocation } from "wouter";
 import { useMemo, useEffect } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
-import { Button } from "@/components/ui/button";
 
 export default function Dashboard() {
   const { user, logout } = useAuth({ redirectOnUnauthenticated: true });

@@ -1,8 +1,0 @@
-{
-  "query": "SELECT id, code, title, description, lessons_count, cpd_hours, courseType FROM courses WHERE courseType = 'ged' ORDER BY code;",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code, title, description, lessons_count, cpd_hours, courseType FROM courses WHERE courseType = 'ged' ORDER BY code;",
-  "returncode": 1,
-  "logs": [
-    "ERROR 1054 (42S22) at line 1: Unknown column 'lessons_count' in 'field list'"
-  ]
-}
