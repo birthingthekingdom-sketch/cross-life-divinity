@@ -14,9 +14,14 @@ export default function Dashboard() {
   const { user, logout } = useAuth({ redirectOnUnauthenticated: true });
   const [, navigate] = useLocation();
   
-  // Redirect admin users to admin panel
+  // Redirect admin users to admin panel using useEffect to avoid render-phase navigation
+  useEffect(() => {
+    if (user?.role === 'admin') {
+      navigate('/admin');
+    }
+  }, [user?.role, navigate]);
+
   if (user?.role === 'admin') {
-    navigate('/admin');
     return null;
   }
   const utils = trpc.useUtils();
