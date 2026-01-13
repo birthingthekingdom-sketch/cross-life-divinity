@@ -308,7 +308,7 @@ export default function CoursePage() {
       <div className="container py-8">
         {/* Course Introduction Slideshow */}
         <div className="mb-8">
-          <CourseIntroSlideshow courseId={actualCourseId} />
+          <CourseIntroSlideshow courseId={course.code} courseName={course.title} />
         </div>
 
         {/* Lessons Grid */}

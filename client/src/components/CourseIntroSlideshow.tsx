@@ -29,42 +29,35 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [hasStarted, setHasStarted] = useState(false);
   const [slidesAvailable, setSlidesAvailable] = useState(true);
-  const [slides, setSlides] = useState<Array<{ id: string; title: string }>>([]);
+  const [slides, setSlides] = useState<Array<{ id: string; title: string; slideNumber: number }>>([]);
   const [loading, setLoading] = useState(true);
 
-  // Map course IDs to their slideshow paths
-  const slideshowMap: { [key: string]: string } = {
-    // GED Courses
-    'GED-MATH': '/course-intros/ged-math',
-    'GED-LANG': '/course-intros/ged-lang',
-    'GED-SCI': '/course-intros/ged-science',
-    'GED-SOCIAL': '/course-intros/ged-social-studies',
-    // Ministry Courses
-    'DIV101': '/course-intros/understanding-prophecy',
-    'MIN201': '/course-intros/fivefold-ministry',
-    'MIN301': '/course-intros/deliverance-ministry',
-    'THE201': '/course-intros/systematic-theology',
-    'BIB201': '/course-intros/biblical-hermeneutics',
-    'THE301': '/course-intros/fundamentals-of-apologetics',
-    'MIN101': '/course-intros/evangelism-and-discipleship',
-    'MIN102': '/course-intros/discipleship-training',
-    'SPR101': '/course-intros/prayer-and-intercession',
-    'LED201': '/course-intros/christian-leadership',
-    'LED202': '/course-intros/christian-leadership',
-    'PAS201': '/course-intros/pastoral-counseling',
-    'PAS301': '/course-intros/church-administration',
-    'PAS101': '/course-intros/homiletics',
-    'SPR201': '/course-intros/discovering-spiritual-gifts',
-    'DIV111': '/course-intros/capstone-project',
-    'DIV112': '/course-intros/christology',
-    'DIV113': '/course-intros/contemporary-theological-issues',
-    'DIV102': '/course-intros/deliverance-ministry',
-    'BIB101': '/course-intros/old-testament-survey',
-    'BIB102': '/course-intros/new-testament-survey',
+  // Map course codes to their slide IDs in the all-courses presentation
+  const courseSlideMap: { [key: string]: string } = {
+    'BIB101': 'bib101_old_testament',
+    'BIB102': 'bib102_new_testament',
+    'THE201': 'the201_systematic_theology',
+    'BIB201': 'bib201_biblical_hermeneutics',
+    'DIV101': 'div101_understanding_prophecy',
+    'THE301': 'the301_fundamentals_apologetics',
+    'DIV102': 'div102_deliverance_ministry',
+    'MIN101': 'min101_evangelism_discipleship',
+    'MIN102': 'min102_discipleship_training',
+    'SPR101': 'spr101_prayer_intercession',
+    'LED202': 'led202_christian_leadership',
+    'PAS201': 'pas201_pastoral_counseling',
+    'PAS301': 'pas301_church_administration',
+    'PAS101': 'pas101_homiletics',
+    'SPR201': 'spr201_spiritual_gifts',
+    'WOR101': 'wor101_biblical_worship',
+    'DIV111': 'div111_capstone_project',
+    'DIV112': 'div112_christology',
+    'DIV113': 'div113_contemporary_theological',
   };
 
-  const basePath = slideshowMap[courseIdStr] || `/course-intros/${courseIdStr.toLowerCase()}`;
-  const voiceoverPath = `${basePath}/intro-voiceover.wav`;
+  const basePath = '/course-intros/all-courses';
+  const courseSlideId = courseSlideMap[courseIdStr];
+  const voiceoverPath = `${basePath}/${courseIdStr}_voiceover.wav`;
 
   // Load slide state from JSON
   useEffect(() => {
@@ -80,11 +73,30 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
         
         const slideState: SlideState = await response.json();
         
-        // Build slides array from outline
-        const slidesArray = slideState.outline.map((item) => ({
-          id: item.id,
-          title: item.title,
-        }));
+        // Find the course slide in the outline
+        if (!courseSlideId) {
+          console.warn(`No slide mapping found for course: ${courseIdStr}`);
+          setSlidesAvailable(false);
+          setLoading(false);
+          return;
+        }
+
+        // Find the slide number for this course
+        const courseSlideIndex = slideState.outline.findIndex(slide => slide.id === courseSlideId);
+        if (courseSlideIndex === -1) {
+          console.warn(`Course slide not found in outline: ${courseSlideId}`);
+          setSlidesAvailable(false);
+          setLoading(false);
+          return;
+        }
+
+        // Create a single-slide array for this course
+        const courseSlide = slideState.outline[courseSlideIndex];
+        const slidesArray = [{
+          id: courseSlide.id,
+          title: courseSlide.title,
+          slideNumber: courseSlideIndex + 1, // 1-based index
+        }];
         
         setSlides(slidesArray);
         setSlidesAvailable(true);
@@ -97,20 +109,18 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
     };
 
     loadSlideState();
-  }, [basePath]);
+  }, [basePath, courseSlideId, courseIdStr]);
 
   // Check if current slide file exists
   useEffect(() => {
     if (slides.length === 0) return;
     
-    // Construct the slide filename using the pattern: slide_{number}_{id}.html
-  // where number is 1-based index and id is from the outline
-  const currentSlideId = slides[currentSlide]?.id || '';
-  const currentSlideFile = `${basePath}/slide_${currentSlide + 1}_${currentSlideId}.html`;
+    const currentSlide = slides[0];
+    const currentSlideFile = `${basePath}/slide_${currentSlide.slideNumber}_${currentSlide.id}.html`;
     fetch(currentSlideFile, { method: 'HEAD' })
       .then(res => setSlidesAvailable(res.ok))
       .catch(() => setSlidesAvailable(false));
-  }, [currentSlide, slides, basePath]);
+  }, [slides, basePath]);
 
   // Initialize audio element on mount
   useEffect(() => {
@@ -177,14 +187,6 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
     audioRef.current.muted = isMuted;
   }, [isMuted]);
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
-
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
   };
@@ -222,13 +224,17 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
     );
   }
 
-  // Construct the slide filename using the pattern: slide_{number}_{id}.html
-  // where number is 1-based index and id is from the outline
-  const currentSlideId = slides[currentSlide]?.id || '';
-  const currentSlideFile = `${basePath}/slide_${currentSlide + 1}_${currentSlideId}.html`;
+  // Get the course slide
+  const courseSlide = slides[0];
+  const currentSlideFile = `${basePath}/slide_${courseSlide.slideNumber}_${courseSlide.id}.html`;
 
   return (
     <div className="w-full bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+      {/* Lesson Header */}
+      <div className="bg-primary text-white px-6 py-3">
+        <h3 className="text-lg font-semibold">{courseIdStr}: Course Introduction</h3>
+      </div>
+
       {/* Slideshow Container */}
       <div className="relative bg-white" style={{ aspectRatio: '16 / 9', overflow: 'hidden' }}>
         <iframe
@@ -236,7 +242,7 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
           src={currentSlideFile}
           className="w-full h-full"
           style={{ border: 'none', display: 'block' }}
-          title={`${courseName} - ${slides[currentSlide].title}`}
+          title={`${courseName} - ${courseSlide.title}`}
           sandbox="allow-same-origin"
         />
       </div>
@@ -244,41 +250,19 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
       {/* Controls */}
       <div className="bg-primary text-white p-4">
         <div className="flex items-center justify-between gap-4">
-          {/* Navigation */}
+          {/* Navigation - Hidden since there's only one slide per course */}
           <div className="flex items-center gap-2">
-            <button
-              onClick={prevSlide}
-              className="p-2 hover:bg-primary/80 rounded transition-colors"
-              title="Previous slide"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-
             <div className="text-sm font-medium">
-              {currentSlide + 1} / {slides.length}
+              1 / 1
             </div>
-
-            <button
-              onClick={nextSlide}
-              className="p-2 hover:bg-primary/80 rounded transition-colors"
-              title="Next slide"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
           </div>
 
-          {/* Slide Indicators */}
+          {/* Slide Indicators - Hidden since there's only one slide */}
           <div className="flex gap-1">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`h-2 rounded-full transition-all ${
-                  index === currentSlide ? 'bg-white w-6' : 'bg-white/50 w-2'
-                }`}
-                title={`Go to slide ${index + 1}`}
-              />
-            ))}
+            <button
+              className="h-2 rounded-full bg-white w-6"
+              title="Course introduction slide"
+            />
           </div>
 
           {/* Audio Controls */}
@@ -311,7 +295,7 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
 
         {/* Slide Title */}
         <div className="mt-3 text-center text-sm font-medium">
-          {slides[currentSlide]?.title || 'Course Introduction'}
+          {courseSlide.title}
         </div>
       </div>
     </div>
