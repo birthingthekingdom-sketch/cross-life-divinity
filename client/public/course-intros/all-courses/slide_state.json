@@ -3,7 +3,7 @@
     "title": "Theological Courses Catalog",
     "created": 1768119348.7032928,
     "last_updated": 1768119548.2064772,
-    "total_slides": 20
+    "total_slides": 19
   },
   "slides": {
     "title_slide": "edited",
@@ -17,7 +17,7 @@
     "min101_evangelism_discipleship": "edited",
     "min102_discipleship_training": "edited",
     "spr101_prayer_intercession": "edited",
-    "led202_christian_leadership": "edited",
+
     "pas201_pastoral_counseling": "edited",
     "pas301_church_administration": "edited",
     "pas101_homiletics": "edited",
@@ -105,13 +105,7 @@
       "image_plan": "Use a suitable image if needed",
       "slide_template_key": ""
     },
-    {
-      "id": "led202_christian_leadership",
-      "title": "LED202: Christian Leadership",
-      "summary": "Practical training in Christian leadership principles, servant leadership models, vision casting, and team development. 30 CPD, 10 lessons.",
-      "image_plan": "Use a suitable image if needed",
-      "slide_template_key": ""
-    },
+
     {
       "id": "pas201_pastoral_counseling",
       "title": "PAS201: Pastoral Counseling",

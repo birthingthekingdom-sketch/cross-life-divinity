@@ -35,6 +35,8 @@
 - [x] Updated Catalog page to fetch theological and GED courses separately
 
 ## ACTIVE TASKS (IN PROGRESS)
+- [x] Add Preview Course button to admin panel for course review in presentations - Jan 12, 2025
+- [x] Fix CourseIntroSlideshow to handle numeric courseIds - Jan 12, 2025
 - [x] Fix Admin Dashboard course count showing 20 instead of 19 (Leadership course removed but count not updated) - Added visibility change listener to refetch courses
 - [x] Fix student dashboard navigation - clicking student tab shows role toggle instead of student content
 - [x] Restore courses list section to admin page

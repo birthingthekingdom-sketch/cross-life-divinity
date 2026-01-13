@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, AlertCircle } from 'lucide-react';
 
 interface CourseIntroSlideshowProps {
-  courseId: string;
+  courseId: string | number;
   courseName: string;
   autoPlay?: boolean;
 }
@@ -21,6 +21,8 @@ interface SlideState {
 }
 
 export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: CourseIntroSlideshowProps) {
+  // Ensure courseId is a string
+  const courseIdStr = String(courseId);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
@@ -61,7 +63,7 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
     'BIB102': '/course-intros/new-testament-survey',
   };
 
-  const basePath = slideshowMap[courseId] || `/course-intros/${courseId.toLowerCase()}`;
+  const basePath = slideshowMap[courseIdStr] || `/course-intros/${courseIdStr.toLowerCase()}`;
   const voiceoverPath = `${basePath}/intro-voiceover.wav`;
 
   // Load slide state from JSON
