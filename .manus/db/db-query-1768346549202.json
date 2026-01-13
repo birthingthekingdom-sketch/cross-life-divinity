@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO achievements (name, description, badgeIcon, pointsReward) VALUES ('First Lesson', 'Complete your first lesson', '🎓', 10), ('Lesson Streak', 'Complete lessons on 7 consecutive days', '🔥', 50), ('Practice Master', 'Complete 5 practice tests', '📚', 100), ('Perfect Score', 'Score 100% on a practice test', '⭐', 150), ('Course Completer', 'Complete an entire GED course', '🏆', 200), ('Knowledge Seeker', 'Complete 50 lessons', '🧠', 75), ('Test Taker', 'Complete your first practice test', '✅', 25), ('Study Buddy', 'Refer a friend who completes a course', '👥', 125);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO achievements (name, description, badgeIcon, pointsReward) VALUES ('First Lesson', 'Complete your first lesson', '🎓', 10), ('Lesson Streak', 'Complete lessons on 7 consecutive days', '🔥', 50), ('Practice Master', 'Complete 5 practice tests', '📚', 100), ('Perfect Score', 'Score 100% on a practice test', '⭐', 150), ('Course Completer', 'Complete an entire GED course', '🏆', 200), ('Knowledge Seeker', 'Complete 50 lessons', '🧠', 75), ('Test Taker', 'Complete your first practice test', '✅', 25), ('Study Buddy', 'Refer a friend who completes a course', '👥', 125);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 64
+}
