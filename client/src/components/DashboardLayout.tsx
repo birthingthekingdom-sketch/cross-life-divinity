@@ -166,7 +166,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <nav className="flex gap-1">
             {navItems.map((item) => {
               const Icon = item.icon;
-              const isActive = location === item.href;
+              const isActive = (item.href === "/dashboard" ? (location === "/dashboard" || location.startsWith("/dashboard?")) : (item.href === "/admin" ? (location === "/admin" || location.startsWith("/admin")) : location === item.href));
               
               return (
                 <Link key={item.href} href={item.href}>
