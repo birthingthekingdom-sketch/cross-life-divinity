@@ -14,7 +14,7 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { toast } from 'sonner';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { PublicNav } from '@/components/PublicNav';
 
 export default function AffiliateDashboard() {
@@ -29,11 +29,10 @@ export default function AffiliateDashboard() {
   const isLoading = affiliateLoading || statsLoading;
 
   // If no affiliate account, redirect to apply page
-  useEffect(() => {
-    if (!isLoading && !affiliate) {
-      setLocation('/affiliate/apply');
-    }
-  }, [isLoading, affiliate, setLocation]);
+  if (!isLoading && !affiliate) {
+    setLocation('/affiliate/apply');
+    return null;
+  }
 
   const copyAffiliateLink = () => {
     if (affiliate) {
@@ -65,10 +64,6 @@ export default function AffiliateDashboard() {
         </div>
       </div>
     );
-  }
-
-  if (!isLoading && !affiliate) {
-    return null;
   }
 
   const stats = dashboardData?.stats;
