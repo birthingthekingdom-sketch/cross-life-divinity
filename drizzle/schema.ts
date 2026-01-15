@@ -562,20 +562,20 @@ export const learningPaths = mysqlTable("learning_paths", {
 	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
 });
 
-export const lessons = mysqlTable("lessons", {
-	id: int().autoincrement().notNull(),
-	courseId: int().notNull(),
-	title: varchar({ length: 255 }).notNull(),
-	content: text().notNull(),
-	scripture: text(),
-	lessonOrder: int().notNull(),
-	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
-	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
-	videoUrl: text(),
-	readingMaterial: text(),
-	assignment: text(),
-	assignmentDueDate: timestamp({ mode: 'string' }),
-});
+	export const lessons = mysqlTable("lessons", {
+		id: int().autoincrement().notNull(),
+		courseId: int().notNull(),
+		title: varchar({ length: 255 }).notNull(),
+		content: text().notNull(),
+		scripture: text(),
+		lessonOrder: int().notNull(),
+		createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
+		updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+		videoUrl: text(),
+		readingMaterial: text(),
+		assignment: text(),
+		assignmentDueDate: timestamp({ mode: 'string' }),
+	});
 
 export const loginHistory = mysqlTable("login_history", {
 	id: int().autoincrement().notNull(),

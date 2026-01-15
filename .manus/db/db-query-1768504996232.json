@@ -1,0 +1,76 @@
+{
+  "query": "SELECT id, questionType, question, SUBSTRING(question, 1, 50) as question_preview\nFROM quiz_questions \nWHERE lessonId = 600001\nORDER BY questionOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, questionType, question, SUBSTRING(question, 1, 50) as question_preview\nFROM quiz_questions \nWHERE lessonId = 600001\nORDER BY questionOrder;",
+  "rows": [
+    {
+      "id": "390001",
+      "questionType": "multiple_choice",
+      "question": "Question 1 for Lesson 1",
+      "question_preview": "Question 1 for Lesson 1"
+    },
+    {
+      "id": "390002",
+      "questionType": "multiple_choice",
+      "question": "Question 2 for Lesson 1",
+      "question_preview": "Question 2 for Lesson 1"
+    },
+    {
+      "id": "390003",
+      "questionType": "multiple_choice",
+      "question": "Question 3 for Lesson 1",
+      "question_preview": "Question 3 for Lesson 1"
+    },
+    {
+      "id": "390004",
+      "questionType": "multiple_choice",
+      "question": "Question 4 for Lesson 1",
+      "question_preview": "Question 4 for Lesson 1"
+    },
+    {
+      "id": "390005",
+      "questionType": "multiple_choice",
+      "question": "Question 5 for Lesson 1",
+      "question_preview": "Question 5 for Lesson 1"
+    },
+    {
+      "id": "390006",
+      "questionType": "multiple_choice",
+      "question": "Question 6 for Lesson 1",
+      "question_preview": "Question 6 for Lesson 1"
+    },
+    {
+      "id": "390007",
+      "questionType": "multiple_choice",
+      "question": "Question 7 for Lesson 1",
+      "question_preview": "Question 7 for Lesson 1"
+    },
+    {
+      "id": "390008",
+      "questionType": "multiple_choice",
+      "question": "Question 8 for Lesson 1",
+      "question_preview": "Question 8 for Lesson 1"
+    },
+    {
+      "id": "390009",
+      "questionType": "multiple_choice",
+      "question": "Question 9 for Lesson 1",
+      "question_preview": "Question 9 for Lesson 1"
+    },
+    {
+      "id": "390010",
+      "questionType": "multiple_choice",
+      "question": "Question 10 for Lesson 1",
+      "question_preview": "Question 10 for Lesson 1"
+    },
+    {
+      "id": "390011",
+      "questionType": "short_answer",
+      "question": "Written question for Lesson 1",
+      "question_preview": "Written question for Lesson 1"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tquestionType\tquestion\tquestion_preview\n390001\tmultiple_choice\tQuestion 1 for Lesson 1\tQuestion 1 for Lesson 1\n390002\tmultiple_choice\tQuestion 2 for Lesson 1\tQuestion 2 for Lesson 1\n390003\tmultiple_choice\tQuestion 3 for Lesson 1\tQuestion 3 for Lesson 1\n390004\tmultiple_choice\tQuestion 4 for Lesson 1\tQuestion 4 for Lesson 1\n390005\tmultiple_choice\tQuestion 5 for Lesson 1\tQuestion 5 for Lesson 1\n390006\tmultiple_choice\tQuestion 6 for Lesson 1\tQuestion 6 for Lesson 1\n390007\tmultiple_choice\tQuestion 7 for Lesson 1\tQuestion 7 for Lesson 1\n390008\tmultiple_choice\tQuestion 8 for Lesson 1\tQuestion 8 for Lesson 1\n390009\tmultiple_choice\tQuestion 9 for Lesson 1\tQuestion 9 for Lesson 1\n390010\tmultiple_choice\tQuestion 10 for Lesson 1\tQuestion 10 for Lesson 1\n390011\tshort_answer\tWritten question for Lesson 1\tWritten question for Lesson 1\n",
+  "stderr": "",
+  "execution_time_ms": 51
+}
