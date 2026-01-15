@@ -1,0 +1,27 @@
+{
+  "query": "SELECT id, title, content FROM lessons WHERE id = 600001 LIMIT 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, title, content FROM lessons WHERE id = 600001 LIMIT 1;",
+  "rows": [
+    {
+      "id": "600001",
+      "title": "Introduction to the Old Testament",
+      "content": "The Old Testament, also known as Hebrew Scripture or Tanakh, forms the foundation of biblical faith and represents approximately 1,000 years of Jewish history and religious development. Composed of 39 books in the Christian canon, the Old Testament chronicles God's relationship with humanity from creation through the restoration period following the Babylonian exile. Understanding the Old Testament requires familiarity with its historical context, literary genres, and theological themes that continue to shape religious thought today. The Old Testament was written primarily in Hebrew with some Aramaic portions and reflects the experiences, beliefs, and spiritual journey of ancient Israel. These sacred texts have been preserved, interpreted, and transmitted through centuries of Jewish and Christian tradition, making them essential for understanding the development of monotheistic faith and biblical theology."
+    }
+  ],
+  "messages": [
+    "Key Points:",
+    "- The Old Testament contains 39 books divided into four main sections: the Torah (5 books), Historical Books (12 books), Wisdom Literature (5 books), and Prophetic Books (17 books)",
+    "- Written primarily in Hebrew over approximately 1,000 years (12th-2nd centuries BCE)",
+    "- Reflects the history of ancient Israel from patriarchal times through the post-exilic period",
+    "- Contains multiple literary genres including narrative, poetry, wisdom literature, and prophecy",
+    "- Emphasizes God's covenant relationship with Israel and humanity's response to divine revelation",
+    "- Provides historical, cultural, and theological context for understanding the New Testament",
+    "- Includes accounts of creation, the patriarchs, the exodus, the wilderness wandering, the conquest of Canaan, the monarchy, exile, and restoration",
+    "- Addresses themes of faith, obedience, justice, redemption, and God's faithfulness",
+    "---",
+    "**Licensed to Larry Fisher Fisher**"
+  ],
+  "stdout": "id\ttitle\tcontent\n600001\tIntroduction to the Old Testament\tThe Old Testament, also known as Hebrew Scripture or Tanakh, forms the foundation of biblical faith and represents approximately 1,000 years of Jewish history and religious development. Composed of 39 books in the Christian canon, the Old Testament chronicles God's relationship with humanity from creation through the restoration period following the Babylonian exile. Understanding the Old Testament requires familiarity with its historical context, literary genres, and theological themes that continue to shape religious thought today. The Old Testament was written primarily in Hebrew with some Aramaic portions and reflects the experiences, beliefs, and spiritual journey of ancient Israel. These sacred texts have been preserved, interpreted, and transmitted through centuries of Jewish and Christian tradition, making them essential for understanding the development of monotheistic faith and biblical theology.\n\nKey Points:\n- The Old Testament contains 39 books divided into four main sections: the Torah (5 books), Historical Books (12 books), Wisdom Literature (5 books), and Prophetic Books (17 books)\n- Written primarily in Hebrew over approximately 1,000 years (12th-2nd centuries BCE)\n- Reflects the history of ancient Israel from patriarchal times through the post-exilic period\n- Contains multiple literary genres including narrative, poetry, wisdom literature, and prophecy\n- Emphasizes God's covenant relationship with Israel and humanity's response to divine revelation\n- Provides historical, cultural, and theological context for understanding the New Testament\n- Includes accounts of creation, the patriarchs, the exodus, the wilderness wandering, the conquest of Canaan, the monarchy, exile, and restoration\n- Addresses themes of faith, obedience, justice, redemption, and God's faithfulness\n\n---\n\n**Licensed to Larry Fisher Fisher**\n",
+  "stderr": "",
+  "execution_time_ms": 97
+}
