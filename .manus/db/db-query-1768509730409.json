@@ -1,0 +1,60 @@
+{
+  "query": "SELECT l.id, l.title, l.lessonOrder FROM lessons l JOIN courses c ON l.courseId = c.id WHERE c.code = 'BIB101' ORDER BY l.lessonOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT l.id, l.title, l.lessonOrder FROM lessons l JOIN courses c ON l.courseId = c.id WHERE c.code = 'BIB101' ORDER BY l.lessonOrder;",
+  "rows": [
+    {
+      "id": "570001",
+      "title": "Introduction to the Old Testament",
+      "lessonOrder": "1"
+    },
+    {
+      "id": "600001",
+      "title": "Introduction to the Old Testament",
+      "lessonOrder": "1"
+    },
+    {
+      "id": "570002",
+      "title": "The Torah: Books of Moses",
+      "lessonOrder": "2"
+    },
+    {
+      "id": "600002",
+      "title": "The Torah: Books of Moses",
+      "lessonOrder": "2"
+    },
+    {
+      "id": "570003",
+      "title": "The Historical Books",
+      "lessonOrder": "3"
+    },
+    {
+      "id": "600003",
+      "title": "The Historical Books",
+      "lessonOrder": "3"
+    },
+    {
+      "id": "570004",
+      "title": "Poetry and Wisdom Literature",
+      "lessonOrder": "4"
+    },
+    {
+      "id": "600004",
+      "title": "Poetry and Wisdom Literature",
+      "lessonOrder": "4"
+    },
+    {
+      "id": "570005",
+      "title": "Major Prophets: Isaiah",
+      "lessonOrder": "5"
+    },
+    {
+      "id": "600005",
+      "title": "Major Prophets: Isaiah",
+      "lessonOrder": "5"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tlessonOrder\n570001\tIntroduction to the Old Testament\t1\n600001\tIntroduction to the Old Testament\t1\n570002\tThe Torah: Books of Moses\t2\n600002\tThe Torah: Books of Moses\t2\n570003\tThe Historical Books\t3\n600003\tThe Historical Books\t3\n570004\tPoetry and Wisdom Literature\t4\n600004\tPoetry and Wisdom Literature\t4\n570005\tMajor Prophets: Isaiah\t5\n600005\tMajor Prophets: Isaiah\t5\n",
+  "stderr": "",
+  "execution_time_ms": 56
+}

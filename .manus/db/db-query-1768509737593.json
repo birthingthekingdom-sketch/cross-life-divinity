@@ -1,0 +1,136 @@
+{
+  "query": "SELECT c.id, c.code, c.title, COUNT(l.id) as lesson_count FROM courses c LEFT JOIN lessons l ON c.id = l.courseId GROUP BY c.id, c.code, c.title HAVING COUNT(l.id) > 10 ORDER BY lesson_count DESC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT c.id, c.code, c.title, COUNT(l.id) as lesson_count FROM courses c LEFT JOIN lessons l ON c.id = l.courseId GROUP BY c.id, c.code, c.title HAVING COUNT(l.id) > 10 ORDER BY lesson_count DESC;",
+  "rows": [
+    {
+      "id": "690001",
+      "code": "DIV102",
+      "title": "Deliverance Ministry",
+      "lesson_count": "30"
+    },
+    {
+      "id": "690002",
+      "code": "LED202",
+      "title": "Christian Leadership",
+      "lesson_count": "30"
+    },
+    {
+      "id": "570006",
+      "code": "DIV113",
+      "title": "Contemporary Theological Issues",
+      "lesson_count": "30"
+    },
+    {
+      "id": "570005",
+      "code": "DIV112",
+      "title": "Christology",
+      "lesson_count": "30"
+    },
+    {
+      "id": "570004",
+      "code": "DIV111",
+      "title": "Capstone Project",
+      "lesson_count": "26"
+    },
+    {
+      "id": "150012",
+      "code": "PAS301",
+      "title": "Church Administration",
+      "lesson_count": "20"
+    },
+    {
+      "id": "150013",
+      "code": "PAS101",
+      "title": "Homiletics",
+      "lesson_count": "20"
+    },
+    {
+      "id": "150007",
+      "code": "MIN102",
+      "title": "Discipleship Training",
+      "lesson_count": "20"
+    },
+    {
+      "id": "150014",
+      "code": "SPR201",
+      "title": "Discovering Spiritual Gifts",
+      "lesson_count": "20"
+    },
+    {
+      "id": "180001",
+      "code": "DIV101",
+      "title": "Understanding Prophecy",
+      "lesson_count": "20"
+    },
+    {
+      "id": "150008",
+      "code": "SPR101",
+      "title": "Prayer and Intercession",
+      "lesson_count": "20"
+    },
+    {
+      "id": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology",
+      "lesson_count": "20"
+    },
+    {
+      "id": "150005",
+      "code": "THE301",
+      "title": "Fundamentals of Apologetics",
+      "lesson_count": "20"
+    },
+    {
+      "id": "150011",
+      "code": "PAS201",
+      "title": "Pastoral Counseling",
+      "lesson_count": "20"
+    },
+    {
+      "id": "150004",
+      "code": "BIB201",
+      "title": "Biblical Hermeneutics",
+      "lesson_count": "20"
+    },
+    {
+      "id": "150006",
+      "code": "MIN101",
+      "title": "Evangelism and Discipleship",
+      "lesson_count": "20"
+    },
+    {
+      "id": "780002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "lesson_count": "20"
+    },
+    {
+      "id": "660004",
+      "code": "GED-LANG",
+      "title": "GED Language Arts",
+      "lesson_count": "12"
+    },
+    {
+      "id": "660003",
+      "code": "GED-MATH",
+      "title": "GED Mathematics",
+      "lesson_count": "12"
+    },
+    {
+      "id": "660006",
+      "code": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "lesson_count": "12"
+    },
+    {
+      "id": "660005",
+      "code": "GED-SCI",
+      "title": "GED Science",
+      "lesson_count": "12"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\tlesson_count\n690001\tDIV102\tDeliverance Ministry\t30\n690002\tLED202\tChristian Leadership\t30\n570006\tDIV113\tContemporary Theological Issues\t30\n570005\tDIV112\tChristology\t30\n570004\tDIV111\tCapstone Project\t26\n150012\tPAS301\tChurch Administration\t20\n150013\tPAS101\tHomiletics\t20\n150007\tMIN102\tDiscipleship Training\t20\n150014\tSPR201\tDiscovering Spiritual Gifts\t20\n180001\tDIV101\tUnderstanding Prophecy\t20\n150008\tSPR101\tPrayer and Intercession\t20\n150003\tTHE201\tSystematic Theology\t20\n150005\tTHE301\tFundamentals of Apologetics\t20\n150011\tPAS201\tPastoral Counseling\t20\n150004\tBIB201\tBiblical Hermeneutics\t20\n150006\tMIN101\tEvangelism and Discipleship\t20\n780002\tBIB102\tNew Testament Survey\t20\n660004\tGED-LANG\tGED Language Arts\t12\n660003\tGED-MATH\tGED Mathematics\t12\n660006\tGED-SOCIAL\tGED Social Studies\t12\n660005\tGED-SCI\tGED Science\t12\n",
+  "stderr": "",
+  "execution_time_ms": 61
+}
