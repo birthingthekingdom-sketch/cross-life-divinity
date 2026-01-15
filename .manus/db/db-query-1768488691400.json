@@ -1,0 +1,22 @@
+{
+  "query": "SELECT id, code, title, introVideoUrl FROM courses WHERE id IN (780001, 780002, 780003) LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code, title, introVideoUrl FROM courses WHERE id IN (780001, 780002, 780003) LIMIT 5;",
+  "rows": [
+    {
+      "id": "780001",
+      "code": "BIB101",
+      "title": "Old Testament Survey",
+      "introVideoUrl": "/course-intros/old-testament-survey/"
+    },
+    {
+      "id": "780002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "introVideoUrl": "/course-intros/new-testament-survey/"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\tintroVideoUrl\n780001\tBIB101\tOld Testament Survey\t/course-intros/old-testament-survey/\n780002\tBIB102\tNew Testament Survey\t/course-intros/new-testament-survey/\n",
+  "stderr": "",
+  "execution_time_ms": 80
+}

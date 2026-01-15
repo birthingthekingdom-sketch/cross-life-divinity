@@ -27,6 +27,16 @@
 ---
 
 ## ACTIVE TASKS (IN PROGRESS)
+### Database Restoration (CRITICAL - Jan 15, 2025)
+- [x] Extract all lessons data from live database
+- [x] Restore lessons to dev database (244 lessons restored)
+- [x] Remove CPE card from theology courses (keep only for chaplaincy)
+- [x] Fix header card styling for legibility
+- [x] Verify intro slides and voiceovers working
+- [x] Verify all quizzes functional
+- [ ] Deploy to live and test
+
+## PREVIOUS ACTIVE TASKS
 - [x] Add Financial Aid link to main navigation menu for better discoverability and enrollment conversion
 - [x] Debug login issue - admin account (studio6817@yahoo.com) cannot login - FIXED
 - [x] Debug login issue - student account (Studio6817@yahoo.com) cannot login - FIXED

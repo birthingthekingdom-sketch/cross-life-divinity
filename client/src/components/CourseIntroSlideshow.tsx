@@ -25,26 +25,40 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
 
   // Map course IDs to their slideshow paths
   const slideshowMap: { [key: string]: string } = {
+    // Bible Courses
+    'BIB101': '/course-intros/old-testament-survey',
+    'BIB102': '/course-intros/new-testament-survey',
+    'BIB201': '/course-intros/biblical-hermeneutics',
+    'BIB301': '/course-intros/advanced-biblical-studies',
+    // Theology Courses
+    'THE201': '/course-intros/systematic-theology',
+    'THE301': '/course-intros/fundamentals-apologetics',
+    // Divinity Courses
+    'DIV101': '/course-intros/understanding-prophecy',
+    'DIV102': '/course-intros/deliverance-ministry',
+    // Ministry Courses
+    'MIN101': '/course-intros/evangelism-discipleship',
+    'MIN102': '/course-intros/discipleship-training',
+    'MIN201': '/course-intros/fivefold-ministry',
+    'MIN301': '/course-intros/deliverance-ministry',
+    // Spiritual Courses
+    'SPR101': '/course-intros/prayer-intercession',
+    'SPR201': '/course-intros/discovering-spiritual-gifts',
+    'SPR301': '/course-intros/spiritual-warfare',
+    'SPR302': '/course-intros/prophetic-intercession',
+    // Leadership Courses
+    'LED201': '/course-intros/christian-leadership',
+    // Pastoral Courses
+    'PAS101': '/course-intros/homiletics',
+    'PAS201': '/course-intros/pastoral-counseling',
+    'PAS301': '/course-intros/church-administration',
+    // Chaplaincy
+    'CHAP101': '/course-intros/chaplaincy-training',
     // GED Courses
     'GED-MATH': '/course-intros/ged-math',
     'GED-LANG': '/course-intros/ged-lang',
     'GED-SCI': '/course-intros/ged-science',
     'GED-SOCIAL': '/course-intros/ged-social-studies',
-    // Ministry Courses
-    'DIV101': '/course-intros/understanding-prophecy',
-    'MIN201': '/course-intros/fivefold-ministry',
-    'MIN301': '/course-intros/deliverance-ministry',
-    'THE201': '/course-intros/systematic-theology',
-    'BIB201': '/course-intros/biblical-hermeneutics',
-    'THE301': '/course-intros/fundamentals-apologetics',
-    'MIN101': '/course-intros/evangelism-discipleship',
-    'MIN102': '/course-intros/discipleship-training',
-    'SPR101': '/course-intros/prayer-intercession',
-    'LED201': '/course-intros/christian-leadership',
-    'PAS201': '/course-intros/pastoral-counseling',
-    'PAS301': '/course-intros/church-administration',
-    'PAS101': '/course-intros/homiletics',
-    'SPR201': '/course-intros/discovering-spiritual-gifts',
   };
 
   const basePath = slideshowMap[courseId] || `/course-intros/${courseId.toLowerCase()}`;

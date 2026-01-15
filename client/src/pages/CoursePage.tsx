@@ -135,12 +135,15 @@ export default function CoursePage() {
                 <h1 className="text-4xl font-bold mb-3">{course.title}</h1>
                 <p className="text-white/90 text-lg max-w-3xl">{course.description}</p>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 min-w-[200px]">
-                <div className="text-sm text-white/80 mb-2">Total Lessons</div>
-                <div className="text-3xl font-bold mb-2">
+              <div className="bg-white/20 backdrop-blur-sm rounded-lg p-6 min-w-[220px] border border-white/30 shadow-lg">
+                <div className="text-sm font-semibold text-white/90 mb-2 uppercase tracking-wide">Course Progress</div>
+                <div className="text-4xl font-bold text-white mb-3">
                   {lessons?.length || 0}
                 </div>
-                <div className="text-sm text-white/80">CPD Hours: {course.cpdHours}</div>
+                <div className="text-sm text-white/80 font-medium">Total Lessons</div>
+                <div className="text-xs text-white/70 mt-3 pt-3 border-t border-white/20">
+                  CPD Hours: <span className="font-semibold text-white">{course.cpdHours}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -149,11 +152,13 @@ export default function CoursePage() {
         {/* Course Info for Non-Logged-In Users */}
         <div className="container py-8">
           <div className="max-w-4xl mx-auto">
-          {/* CPE Accreditation Badge */}
-          <CPEAccreditationBadge 
-            cpeHours={course.cpdHours || 2.5}
-            colorTheme={course.colorTheme}
-          />
+          {/* CPE Accreditation Badge - Only for Chaplaincy */}
+          {course.code === 'CHAP101' && (
+            <CPEAccreditationBadge 
+              cpeHours={course.cpdHours || 2.5}
+              colorTheme={course.colorTheme}
+            />
+          )}
 
           {/* Course Introduction Slideshow */}
           <Card className="mb-8">
@@ -318,12 +323,13 @@ export default function CoursePage() {
               <h1 className="text-4xl font-bold mb-3">{course.title}</h1>
               <p className="text-white/90 text-lg max-w-3xl">{course.description}</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 min-w-[200px]">
-              <div className="text-sm text-white/80 mb-2">Course Progress</div>
-              <div className="text-3xl font-bold mb-2">
+            <div className="bg-white/20 backdrop-blur-sm rounded-lg p-6 min-w-[220px] border border-white/30 shadow-lg">
+              <div className="text-sm font-semibold text-white/90 mb-2 uppercase tracking-wide">Course Progress</div>
+              <div className="text-4xl font-bold text-white mb-3">
                 {completedLessons.size} / {lessons?.length || 0}
               </div>
               <Progress value={progressPercent} className="h-2 bg-white/30" />
+              <div className="text-xs text-white/70 mt-3 font-medium">{Math.round(progressPercent)}% Complete</div>
             </div>
           </div>
         </div>
@@ -332,11 +338,13 @@ export default function CoursePage() {
       {/* Lessons List */}
       <div className="container py-8">
         <div className="max-w-4xl mx-auto">
-          {/* CPE Accreditation Badge */}
-          <CPEAccreditationBadge 
-            cpeHours={course.cpdHours || 2.5}
-            colorTheme={course.colorTheme}
-          />
+          {/* CPE Accreditation Badge - Only for Chaplaincy */}
+          {course.code === 'CHAP101' && (
+            <CPEAccreditationBadge 
+              cpeHours={course.cpdHours || 2.5}
+              colorTheme={course.colorTheme}
+            />
+          )}
 
           {/* Course Introduction Slideshow */}
           <Card className="mb-8">

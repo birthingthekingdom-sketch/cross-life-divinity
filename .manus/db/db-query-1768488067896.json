@@ -1,0 +1,13 @@
+{
+  "query": "SELECT COUNT(*) as lesson_count FROM lessons WHERE courseId = 780002;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT COUNT(*) as lesson_count FROM lessons WHERE courseId = 780002;",
+  "rows": [
+    {
+      "lesson_count": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "lesson_count\n0\n",
+  "stderr": "",
+  "execution_time_ms": 121
+}
