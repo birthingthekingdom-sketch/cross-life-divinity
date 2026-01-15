@@ -1,0 +1,25 @@
+{
+  "query": "SELECT COUNT(*) as quiz_questions_count FROM quiz_questions; SELECT COUNT(*) as quiz_submissions_count FROM quiz_submissions; SELECT COUNT(*) as quiz_answers_count FROM quiz_answers;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT COUNT(*) as quiz_questions_count FROM quiz_questions; SELECT COUNT(*) as quiz_submissions_count FROM quiz_submissions; SELECT COUNT(*) as quiz_answers_count FROM quiz_answers;",
+  "rows": [
+    {
+      "quiz_questions_count": "0"
+    },
+    {
+      "quiz_questions_count": "quiz_submissions_count"
+    },
+    {
+      "quiz_questions_count": "0"
+    },
+    {
+      "quiz_questions_count": "quiz_answers_count"
+    },
+    {
+      "quiz_questions_count": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "quiz_questions_count\n0\nquiz_submissions_count\n0\nquiz_answers_count\n0\n",
+  "stderr": "",
+  "execution_time_ms": 147
+}
