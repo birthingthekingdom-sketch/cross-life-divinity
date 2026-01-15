@@ -1,0 +1,22 @@
+{
+  "query": "SELECT COUNT(*) as total_courses FROM courses; SELECT id, title FROM courses WHERE title LIKE '%Leadership%' OR title LIKE '%leadership%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT COUNT(*) as total_courses FROM courses; SELECT id, title FROM courses WHERE title LIKE '%Leadership%' OR title LIKE '%leadership%';",
+  "rows": [
+    {
+      "total_courses": "24"
+    },
+    {
+      "total_courses": "id\ttitle"
+    },
+    {
+      "total_courses": "150009\tLeadership"
+    },
+    {
+      "total_courses": "690002\tChristian Leadership"
+    }
+  ],
+  "messages": [],
+  "stdout": "total_courses\n24\nid\ttitle\n150009\tLeadership\n690002\tChristian Leadership\n",
+  "stderr": "",
+  "execution_time_ms": 69
+}

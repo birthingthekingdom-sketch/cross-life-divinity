@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theological Courses Catalog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-left {
+            flex: 1;
+            padding-left: 80px;
+            z-index: 2;
+        }
+        
+        .content-right {
+            flex: 1;
+            padding-right: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            color: #1a1a2e;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 30px;
+        }
+        
+        .subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 24px;
+            color: #e94560;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+        
+        .description {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            color: #16213e;
+            line-height: 1.8;
+            max-width: 400px;
+            margin-bottom: 30px;
+        }
+        
+        .highlight-box {
+            background: #16213e;
+            color: #ffffff;
+            padding: 20px 30px;
+            border-radius: 4px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .accent-shape {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: #e94560;
+            opacity: 0.1;
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            z-index: 1;
+        }
+        
+        .accent-line {
+            position: absolute;
+            width: 4px;
+            height: 200px;
+            background: #e94560;
+            left: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="accent-shape"></div>
+        <div class="accent-line"></div>
+        
+        <div class="content-left">
+            <h1>Theological Courses Catalog</h1>
+        </div>
+        
+        <div class="content-right">
+            <div class="subtitle">19 Comprehensive Courses</div>
+            <p class="description">Explore our complete theological education program, offering rigorous training in biblical studies, systematic theology, ministry skills, and spiritual formation. Each course is designed to equip believers for effective Christian leadership and service.</p>
+            <div class="highlight-box">CROSS LIFE SCHOOL OF DIVINITY</div>
+        </div>
+    </div>
+</body>
+</html>

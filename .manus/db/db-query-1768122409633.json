@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO quiz_questions (lessonId, question, questionType, options, correctAnswer, questionOrder, createdAt, updatedAt) \nSELECT l.id, CONCAT('Question 1: ', l.title, '?'), 'multiple_choice', '[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]', 'Option A', 1, NOW(), NOW() FROM lessons l\nUNION ALL SELECT l.id, CONCAT('Question 2: ', l.title, '?'), 'multiple_choice', '[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]', 'Option B', 2, NOW(), NOW() FROM lessons l\nUNION ALL SELECT l.id, CONCAT('Question 3: ', l.title, '?'), 'multiple_choice', '[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]', 'Option C', 3, NOW(), NOW() FROM lessons l;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO quiz_questions (lessonId, question, questionType, options, correctAnswer, questionOrder, createdAt, updatedAt) \nSELECT l.id, CONCAT('Question 1: ', l.title, '?'), 'multiple_choice', '[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]', 'Option A', 1, NOW(), NOW() FROM lessons l\nUNION ALL SELECT l.id, CONCAT('Question 2: ', l.title, '?'), 'multiple_choice', '[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]', 'Option B', 2, NOW(), NOW() FROM lessons l\nUNION ALL SELECT l.id, CONCAT('Question 3: ', l.title, '?'), 'multiple_choice', '[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]', 'Option C', 3, NOW(), NOW() FROM lessons l;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 85
+}

@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { getContrastColor, getMutedColor } from "@/lib/colorUtils";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
@@ -30,7 +31,6 @@ export default function AssignCoursesDialog({
   onSuccess,
 }: AssignCoursesDialogProps) {
   const [selectedCourses, setSelectedCourses] = useState<number[]>([]);
-
   const { data: allCourses } = trpc.courses.listAll.useQuery();
   const { data: assignedCourses } = trpc.admin.getAccessCodeCourses.useQuery(
     { accessCodeId },
@@ -92,7 +92,6 @@ export default function AssignCoursesDialog({
             Select which courses can be accessed with code <span className="font-mono font-bold">{accessCode}</span>
           </DialogDescription>
         </DialogHeader>
-
         <div className="space-y-4 py-4">
           <div className="flex gap-2">
             <Button variant="outline" size="sm" onClick={handleSelectAll}>
@@ -102,7 +101,6 @@ export default function AssignCoursesDialog({
               Deselect All
             </Button>
           </div>
-
           <div className="grid grid-cols-1 gap-3 max-h-96 overflow-y-auto">
             {allCourses?.map((course) => (
               <div
@@ -120,8 +118,11 @@ export default function AssignCoursesDialog({
                 >
                   <div className="flex items-center gap-3">
                     <div
-                      className="w-10 h-10 rounded flex items-center justify-center text-white text-sm font-bold"
-                      style={{ backgroundColor: course.colorTheme }}
+                      className="w-10 h-10 rounded flex items-center justify-center text-sm font-bold"
+                      style={{ 
+                        backgroundColor: getMutedColor(course.colorTheme),
+                        color: getContrastColor(getMutedColor(course.colorTheme))
+                      }}
                     >
                       {course.code.substring(3)}
                     </div>
@@ -136,7 +137,6 @@ export default function AssignCoursesDialog({
               </div>
             ))}
           </div>
-
           <div className="text-sm text-muted-foreground">
             {selectedCourses.length === 0 && "No courses selected"}
             {selectedCourses.length === 1 && "1 course selected"}
@@ -144,7 +144,6 @@ export default function AssignCoursesDialog({
             {selectedCourses.length === allCourses?.length && " (Full Suite)"}
           </div>
         </div>
-
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Cancel
