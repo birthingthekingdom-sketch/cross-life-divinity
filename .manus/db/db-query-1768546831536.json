@@ -1,0 +1,13 @@
+{
+  "query": "SELECT id FROM courses WHERE code = 'BIB102';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id FROM courses WHERE code = 'BIB102';",
+  "rows": [
+    {
+      "id": "780002"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\n780002\n",
+  "stderr": "",
+  "execution_time_ms": 54
+}
