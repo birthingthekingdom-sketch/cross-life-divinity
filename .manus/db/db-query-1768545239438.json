@@ -1,0 +1,70 @@
+{
+  "query": "SELECT lessonId, COUNT(*) as question_count, \n       SUM(CASE WHEN questionType = 'multiple_choice' THEN 1 ELSE 0 END) as mc_count,\n       SUM(CASE WHEN questionType = 'short_answer' THEN 1 ELSE 0 END) as sa_count\nFROM quiz_questions \nWHERE lessonId BETWEEN 690001 AND 690010 \nGROUP BY lessonId \nORDER BY lessonId;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT lessonId, COUNT(*) as question_count, \n       SUM(CASE WHEN questionType = 'multiple_choice' THEN 1 ELSE 0 END) as mc_count,\n       SUM(CASE WHEN questionType = 'short_answer' THEN 1 ELSE 0 END) as sa_count\nFROM quiz_questions \nWHERE lessonId BETWEEN 690001 AND 690010 \nGROUP BY lessonId \nORDER BY lessonId;",
+  "rows": [
+    {
+      "lessonId": "690001",
+      "question_count": "11",
+      "mc_count": "10",
+      "sa_count": "1"
+    },
+    {
+      "lessonId": "690002",
+      "question_count": "11",
+      "mc_count": "10",
+      "sa_count": "1"
+    },
+    {
+      "lessonId": "690003",
+      "question_count": "11",
+      "mc_count": "10",
+      "sa_count": "1"
+    },
+    {
+      "lessonId": "690004",
+      "question_count": "11",
+      "mc_count": "10",
+      "sa_count": "1"
+    },
+    {
+      "lessonId": "690005",
+      "question_count": "11",
+      "mc_count": "10",
+      "sa_count": "1"
+    },
+    {
+      "lessonId": "690006",
+      "question_count": "11",
+      "mc_count": "10",
+      "sa_count": "1"
+    },
+    {
+      "lessonId": "690007",
+      "question_count": "11",
+      "mc_count": "10",
+      "sa_count": "1"
+    },
+    {
+      "lessonId": "690008",
+      "question_count": "11",
+      "mc_count": "10",
+      "sa_count": "1"
+    },
+    {
+      "lessonId": "690009",
+      "question_count": "11",
+      "mc_count": "10",
+      "sa_count": "1"
+    },
+    {
+      "lessonId": "690010",
+      "question_count": "11",
+      "mc_count": "10",
+      "sa_count": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "lessonId\tquestion_count\tmc_count\tsa_count\n690001\t11\t10\t1\n690002\t11\t10\t1\n690003\t11\t10\t1\n690004\t11\t10\t1\n690005\t11\t10\t1\n690006\t11\t10\t1\n690007\t11\t10\t1\n690008\t11\t10\t1\n690009\t11\t10\t1\n690010\t11\t10\t1\n",
+  "stderr": "",
+  "execution_time_ms": 59
+}

@@ -1,0 +1,100 @@
+{
+  "query": "SELECT id, lessonOrder, title, LENGTH(content) as content_length FROM lessons WHERE courseId = (SELECT id FROM courses WHERE code = 'BIB101') ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, lessonOrder, title, LENGTH(content) as content_length FROM lessons WHERE courseId = (SELECT id FROM courses WHERE code = 'BIB101') ORDER BY id;",
+  "rows": [
+    {
+      "id": "600001",
+      "lessonOrder": "1",
+      "title": "Introduction to the Old Testament",
+      "content_length": "1849"
+    },
+    {
+      "id": "600002",
+      "lessonOrder": "2",
+      "title": "The Torah: Books of Moses",
+      "content_length": "1864"
+    },
+    {
+      "id": "600003",
+      "lessonOrder": "3",
+      "title": "The Historical Books",
+      "content_length": "1908"
+    },
+    {
+      "id": "600004",
+      "lessonOrder": "4",
+      "title": "Poetry and Wisdom Literature",
+      "content_length": "2119"
+    },
+    {
+      "id": "600005",
+      "lessonOrder": "5",
+      "title": "Major Prophets: Isaiah",
+      "content_length": "1933"
+    },
+    {
+      "id": "660001",
+      "lessonOrder": "1",
+      "title": "Introduction to the Old Testament",
+      "content_length": "1303"
+    },
+    {
+      "id": "660002",
+      "lessonOrder": "2",
+      "title": "The Torah: Books of Moses",
+      "content_length": "1213"
+    },
+    {
+      "id": "660003",
+      "lessonOrder": "3",
+      "title": "The Historical Books",
+      "content_length": "1138"
+    },
+    {
+      "id": "660004",
+      "lessonOrder": "4",
+      "title": "Poetry and Wisdom Literature",
+      "content_length": "1108"
+    },
+    {
+      "id": "660005",
+      "lessonOrder": "5",
+      "title": "Major Prophets: Isaiah",
+      "content_length": "1209"
+    },
+    {
+      "id": "660006",
+      "lessonOrder": "6",
+      "title": "Major Prophets: Jeremiah and Lamentations",
+      "content_length": "1181"
+    },
+    {
+      "id": "660007",
+      "lessonOrder": "7",
+      "title": "Major Prophets: Ezekiel and Daniel",
+      "content_length": "1261"
+    },
+    {
+      "id": "660008",
+      "lessonOrder": "8",
+      "title": "Minor Prophets - Part 1",
+      "content_length": "1242"
+    },
+    {
+      "id": "660009",
+      "lessonOrder": "9",
+      "title": "Minor Prophets - Part 2",
+      "content_length": "1290"
+    },
+    {
+      "id": "660010",
+      "lessonOrder": "10",
+      "title": "Old Testament Themes and Fulfillment",
+      "content_length": "1549"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tlessonOrder\ttitle\tcontent_length\n600001\t1\tIntroduction to the Old Testament\t1849\n600002\t2\tThe Torah: Books of Moses\t1864\n600003\t3\tThe Historical Books\t1908\n600004\t4\tPoetry and Wisdom Literature\t2119\n600005\t5\tMajor Prophets: Isaiah\t1933\n660001\t1\tIntroduction to the Old Testament\t1303\n660002\t2\tThe Torah: Books of Moses\t1213\n660003\t3\tThe Historical Books\t1138\n660004\t4\tPoetry and Wisdom Literature\t1108\n660005\t5\tMajor Prophets: Isaiah\t1209\n660006\t6\tMajor Prophets: Jeremiah and Lamentations\t1181\n660007\t7\tMajor Prophets: Ezekiel and Daniel\t1261\n660008\t8\tMinor Prophets - Part 1\t1242\n660009\t9\tMinor Prophets - Part 2\t1290\n660010\t10\tOld Testament Themes and Fulfillment\t1549\n",
+  "stderr": "",
+  "execution_time_ms": 54
+}
