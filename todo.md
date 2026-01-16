@@ -3193,3 +3193,7 @@ All components built and integrated. Ready for:
 - [x] Fix redirect after Chaplaincy enrollment - should redirect to student dashboard to view enrollment
   - Fixed CHAPLAINCY_COURSE_ID from 999 to 840001 (actual CHAP101 ID)
   - Updated return_url to redirect to /dashboard?chaplaincy=success
+
+- [ ] Fix 404 error on dashboard after Chaplaincy enrollment
+
+- [x] CRITICAL: Restore original Chaplaincy Training page with $325 enrollment button (COMPLETED Jan 16, 2026)

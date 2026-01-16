@@ -65,7 +65,7 @@ import BundleSelection from './pages/BundleSelection';
 import Logout from './pages/Logout';
 import AffiliateApply from './pages/AffiliateApply';
 import AffiliateDashboard from './pages/AffiliateDashboard';
-import ChaplaincyTraining from './pages/ChaplaincyTrainingEnhanced';
+import ChaplaincyTraining from './pages/ChaplaincyTraining';
 import CPEReadinessAssessment from './pages/CPEReadinessAssessment';
 import CPEGlossary from './pages/CPEGlossary';
 import CPECaseStudies from './pages/CPECaseStudies';

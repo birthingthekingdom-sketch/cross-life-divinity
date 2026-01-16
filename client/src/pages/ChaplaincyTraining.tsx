@@ -88,8 +88,7 @@ export default function ChaplaincyTraining() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-20">
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-          <div className="text-center md:text-left">
+          <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-4 bg-primary-foreground/20 text-primary-foreground border-primary-foreground/30">
               Professional Certification Program
             </Badge>
@@ -101,9 +100,9 @@ export default function ChaplaincyTraining() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <div className="text-center">
-                <div className="text-sm text-primary-foreground/80 line-through mb-1">$400</div>
                 <div className="text-4xl font-bold mb-2">$325</div>
-                <div className="text-sm text-primary-foreground/80">$275 course + $50 background check</div>
+                <div className="text-sm text-primary-foreground/80 line-through">Regular: $400</div>
+                <div className="text-xs text-primary-foreground/70">$275 Course + $50 Background Check</div>
               </div>
               <Button 
                 size="lg" 
@@ -114,14 +113,6 @@ export default function ChaplaincyTraining() {
                 {createPaymentMutation.isPending ? "Loading..." : "Enroll Now"} <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
-          </div>
-          <div>
-            <img 
-              src="/chaplain-promo.png" 
-              alt="Chaplaincy Training Certification" 
-              className="rounded-lg shadow-2xl w-full"
-            />
-          </div>
           </div>
         </div>
       </section>
@@ -280,27 +271,25 @@ export default function ChaplaincyTraining() {
               <CardHeader>
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <DollarSign className="h-8 w-8 text-primary" />
-                  <div className="flex items-baseline gap-2">
-                    <div className="text-2xl text-muted-foreground line-through">$400</div>
-                    <div className="text-5xl font-bold text-primary">$325</div>
-                  </div>
+                  <div className="text-5xl font-bold text-primary">$325</div>
                 </div>
                 <CardDescription className="text-lg">
-                  <span className="text-muted-foreground">Reduced from $400 • $275 course + $50 background check</span>
+                  <span className="line-through text-muted-foreground">Regular: $400</span>
+                  <span className="ml-2 text-green-600 font-semibold">Save $125!</span>
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="text-left space-y-2">
                   <div className="flex justify-between">
                     <span>Chaplaincy Training Course</span>
-                    <span className="font-semibold">$275</span>
+                    <span className="font-semibold">$350</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Background Check Fee</span>
                     <span className="font-semibold">$50</span>
                   </div>
                   <div className="border-t pt-2 flex justify-between text-lg font-bold">
-                    <span>Total Cost</span>
+                    <span>Special Price (All Inclusive)</span>
                     <span className="text-primary">$325</span>
                   </div>
                 </div>
@@ -317,56 +306,6 @@ export default function ChaplaincyTraining() {
                 </p>
               </CardContent>
             </Card>
-          </div>
-        </section>
-
-        {/* Testimonials Section */}
-        <section className="py-16 bg-accent/5">
-          <div className="container">
-            <h2 className="text-3xl font-bold text-center mb-4">What Our Graduates Say</h2>
-            <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-              Hear from certified chaplains who have completed our program
-            </p>
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="text-4xl mb-4">"</div>
-                  <p className="text-muted-foreground mb-6 italic">
-                    This program prepared me for real-world chaplaincy in ways I never expected. The practical training and biblical foundation gave me confidence to serve in a hospital setting.
-                  </p>
-                  <div>
-                    <p className="font-semibold">Rev. Michael Thompson</p>
-                    <p className="text-sm text-muted-foreground">Hospital Chaplain, Chicago</p>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="text-4xl mb-4">"</div>
-                  <p className="text-muted-foreground mb-6 italic">
-                    The flexibility of online learning allowed me to complete the program while serving full-time in ministry. The certification opened doors I didn't know existed.
-                  </p>
-                  <div>
-                    <p className="font-semibold">Pastor Sarah Williams</p>
-                    <p className="text-sm text-muted-foreground">Correctional Facility Chaplain</p>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="text-4xl mb-4">"</div>
-                  <p className="text-muted-foreground mb-6 italic">
-                    Outstanding program! The instructors are experienced chaplains who provide real-world insights. I'm now serving as a military chaplain thanks to this training.
-                  </p>
-                  <div>
-                    <p className="font-semibold">Chaplain David Martinez</p>
-                    <p className="text-sm text-muted-foreground">U.S. Military Chaplain</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
           </div>
         </section>
 
