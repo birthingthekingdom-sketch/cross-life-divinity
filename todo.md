@@ -3125,3 +3125,17 @@ All components built and integrated. Ready for:
 - [ ] Role toggle mutation not updating user role in database or auth context (Jan 12, 2025)
 - [ ] Student dashboard not displaying after role toggle (Jan 12, 2025)
 - [ ] My Courses page shows edit options instead of course content (Jan 12, 2025)
+
+
+## URGENT - INCOMPLETE COURSES (Jan 16, 2026 Audit)
+
+### Courses Missing Lessons AND Quizzes:
+- [ ] WOR101: Biblical Worship - 0 lessons, 0 quizzes (NEEDS EVERYTHING)
+
+### Courses Missing Quizzes Only:
+- [ ] DIV111: Capstone Project - 1 lesson, 0 quizzes (NEEDS MORE LESSONS + QUIZZES)
+- [x] DIV112: Christology - 10 lessons, 110 quizzes (COMPLETED Jan 16, 2026)
+- [ ] DIV113: Contemporary Theological Issues - 2 lessons, 0 quizzes (NEEDS MORE LESSONS + QUIZZES)
+- [ ] GED-MATH: GED Mathematics - 10 lessons, 0 quizzes (NEEDS QUIZZES)
+- [ ] GED-SCI: GED Science - 10 lessons, 0 quizzes (NEEDS QUIZZES)
+- [ ] GED-SOCIAL: GED Social Studies - 10 lessons, 0 quizzes (NEEDS QUIZZES)
