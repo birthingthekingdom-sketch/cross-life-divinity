@@ -207,19 +207,7 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
   }
 
   if (!slidesAvailable || slides.length === 0) {
-    return (
-      <div className="w-full bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-        <div className="relative bg-white p-8">
-          <div className="flex items-center gap-3 text-amber-600 mb-4">
-            <AlertCircle className="h-5 w-5" />
-            <p className="font-medium">Course introduction slides not yet available</p>
-          </div>
-          <p className="text-muted-foreground">
-            The interactive introduction slides for this course are being prepared. Please check back soon!
-          </p>
-        </div>
-      </div>
-    );
+    return null;
   }
 
   // Construct the slide filename using the pattern: slide_{number}_{id}.html
