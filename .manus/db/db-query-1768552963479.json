@@ -1,0 +1,60 @@
+{
+  "query": "SELECT id, title, lessonOrder FROM lessons WHERE courseId = 180001 ORDER BY lessonOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, title, lessonOrder FROM lessons WHERE courseId = 180001 ORDER BY lessonOrder;",
+  "rows": [
+    {
+      "id": "360101",
+      "title": "Introduction to Biblical Prophecy - The Prophetic Office and Gift",
+      "lessonOrder": "1"
+    },
+    {
+      "id": "360102",
+      "title": "The Old Testament Prophets - God's Covenant Messengers",
+      "lessonOrder": "2"
+    },
+    {
+      "id": "360103",
+      "title": "The Gift of Prophecy in the New Testament Church",
+      "lessonOrder": "3"
+    },
+    {
+      "id": "360104",
+      "title": "Testing and Discerning Prophetic Words",
+      "lessonOrder": "4"
+    },
+    {
+      "id": "360105",
+      "title": "The Prophetic Ministry of Jesus Christ",
+      "lessonOrder": "5"
+    },
+    {
+      "id": "750014",
+      "title": "Prophetic Literature and Interpretation",
+      "lessonOrder": "6"
+    },
+    {
+      "id": "750015",
+      "title": "Messianic Prophecy and Fulfillment",
+      "lessonOrder": "7"
+    },
+    {
+      "id": "750016",
+      "title": "Eschatological Prophecy - End Times",
+      "lessonOrder": "8"
+    },
+    {
+      "id": "750017",
+      "title": "The Prophetic Voice in the Church Today",
+      "lessonOrder": "9"
+    },
+    {
+      "id": "750018",
+      "title": "Living as Prophetic People",
+      "lessonOrder": "10"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tlessonOrder\n360101\tIntroduction to Biblical Prophecy - The Prophetic Office and Gift\t1\n360102\tThe Old Testament Prophets - God's Covenant Messengers\t2\n360103\tThe Gift of Prophecy in the New Testament Church\t3\n360104\tTesting and Discerning Prophetic Words\t4\n360105\tThe Prophetic Ministry of Jesus Christ\t5\n750014\tProphetic Literature and Interpretation\t6\n750015\tMessianic Prophecy and Fulfillment\t7\n750016\tEschatological Prophecy - End Times\t8\n750017\tThe Prophetic Voice in the Church Today\t9\n750018\tLiving as Prophetic People\t10\n",
+  "stderr": "",
+  "execution_time_ms": 57
+}

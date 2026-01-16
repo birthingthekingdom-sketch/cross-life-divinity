@@ -1,0 +1,40 @@
+{
+  "query": "-- Get lesson IDs first\nSELECT id FROM lessons WHERE courseId = 150013 ORDER BY lessonOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute -- Get lesson IDs first\nSELECT id FROM lessons WHERE courseId = 150013 ORDER BY lessonOrder;",
+  "rows": [
+    {
+      "id": "360091"
+    },
+    {
+      "id": "360092"
+    },
+    {
+      "id": "360093"
+    },
+    {
+      "id": "360094"
+    },
+    {
+      "id": "360095"
+    },
+    {
+      "id": "750024"
+    },
+    {
+      "id": "750025"
+    },
+    {
+      "id": "750026"
+    },
+    {
+      "id": "750027"
+    },
+    {
+      "id": "750028"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\n360091\n360092\n360093\n360094\n360095\n750024\n750025\n750026\n750027\n750028\n",
+  "stderr": "",
+  "execution_time_ms": 59
+}

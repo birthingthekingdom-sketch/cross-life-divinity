@@ -1,0 +1,30 @@
+{
+  "query": "SELECT l.id, l.title, l.lessonOrder FROM lessons l\nJOIN courses c ON l.courseId = c.id\nWHERE c.code = 'DIV102'\nORDER BY l.lessonOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT l.id, l.title, l.lessonOrder FROM lessons l\nJOIN courses c ON l.courseId = c.id\nWHERE c.code = 'DIV102'\nORDER BY l.lessonOrder;",
+  "rows": [
+    {
+      "id": "480001",
+      "title": "Introduction to Deliverance Ministry",
+      "lessonOrder": "1"
+    },
+    {
+      "id": "480002",
+      "title": "Spiritual Authority and Power",
+      "lessonOrder": "2"
+    },
+    {
+      "id": "480003",
+      "title": "Identifying Spiritual Bondage",
+      "lessonOrder": "3"
+    },
+    {
+      "id": "480004",
+      "title": "Prayer and Intercession in Deliverance",
+      "lessonOrder": "4"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tlessonOrder\n480001\tIntroduction to Deliverance Ministry\t1\n480002\tSpiritual Authority and Power\t2\n480003\tIdentifying Spiritual Bondage\t3\n480004\tPrayer and Intercession in Deliverance\t4\n",
+  "stderr": "",
+  "execution_time_ms": 53
+}

@@ -1,0 +1,80 @@
+{
+  "query": "SELECT c.id as courseId, c.code, l.id as lessonId, l.title, l.lessonOrder\nFROM courses c\nLEFT JOIN lessons l ON c.id = l.courseId\nWHERE c.code = 'SPR101'\nORDER BY l.lessonOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT c.id as courseId, c.code, l.id as lessonId, l.title, l.lessonOrder\nFROM courses c\nLEFT JOIN lessons l ON c.id = l.courseId\nWHERE c.code = 'SPR101'\nORDER BY l.lessonOrder;",
+  "rows": [
+    {
+      "courseId": "150008",
+      "code": "SPR101",
+      "lessonId": "360061",
+      "title": "Foundations of Prayer - Biblical Theology",
+      "lessonOrder": "1"
+    },
+    {
+      "courseId": "150008",
+      "code": "SPR101",
+      "lessonId": "510025",
+      "title": "Lesson 1: Prayer and Intercession",
+      "lessonOrder": "1"
+    },
+    {
+      "courseId": "150008",
+      "code": "SPR101",
+      "lessonId": "360062",
+      "title": "The Lord's Prayer - A Model for All Prayer",
+      "lessonOrder": "2"
+    },
+    {
+      "courseId": "150008",
+      "code": "SPR101",
+      "lessonId": "510101",
+      "title": "Lesson 2: Prayer and Intercession",
+      "lessonOrder": "2"
+    },
+    {
+      "courseId": "150008",
+      "code": "SPR101",
+      "lessonId": "360063",
+      "title": "Developing a Personal Prayer Life",
+      "lessonOrder": "3"
+    },
+    {
+      "courseId": "150008",
+      "code": "SPR101",
+      "lessonId": "510044",
+      "title": "Lesson 3: Prayer and Intercession",
+      "lessonOrder": "3"
+    },
+    {
+      "courseId": "150008",
+      "code": "SPR101",
+      "lessonId": "360064",
+      "title": "Intercessory Prayer - Standing in the Gap",
+      "lessonOrder": "4"
+    },
+    {
+      "courseId": "150008",
+      "code": "SPR101",
+      "lessonId": "510120",
+      "title": "Lesson 4: Prayer and Intercession",
+      "lessonOrder": "4"
+    },
+    {
+      "courseId": "150008",
+      "code": "SPR101",
+      "lessonId": "360065",
+      "title": "Fasting and Prayer",
+      "lessonOrder": "5"
+    },
+    {
+      "courseId": "150008",
+      "code": "SPR101",
+      "lessonId": "510082",
+      "title": "Lesson 5: Prayer and Intercession",
+      "lessonOrder": "5"
+    }
+  ],
+  "messages": [],
+  "stdout": "courseId\tcode\tlessonId\ttitle\tlessonOrder\n150008\tSPR101\t360061\tFoundations of Prayer - Biblical Theology\t1\n150008\tSPR101\t510025\tLesson 1: Prayer and Intercession\t1\n150008\tSPR101\t360062\tThe Lord's Prayer - A Model for All Prayer\t2\n150008\tSPR101\t510101\tLesson 2: Prayer and Intercession\t2\n150008\tSPR101\t360063\tDeveloping a Personal Prayer Life\t3\n150008\tSPR101\t510044\tLesson 3: Prayer and Intercession\t3\n150008\tSPR101\t360064\tIntercessory Prayer - Standing in the Gap\t4\n150008\tSPR101\t510120\tLesson 4: Prayer and Intercession\t4\n150008\tSPR101\t360065\tFasting and Prayer\t5\n150008\tSPR101\t510082\tLesson 5: Prayer and Intercession\t5\n",
+  "stderr": "",
+  "execution_time_ms": 58
+}
