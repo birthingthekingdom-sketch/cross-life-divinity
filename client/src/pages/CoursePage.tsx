@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { VideoPlayer } from "@/components/VideoPlayer";
-import { CourseIntroSlideshow } from "@/components/CourseIntroSlideshow";
 import { CPEAccreditationBadge } from "@/components/CPEAccreditationBadge";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
@@ -306,11 +305,6 @@ export default function CoursePage() {
 
       {/* Course Content */}
       <div className="container py-8">
-        {/* Course Introduction Slideshow */}
-        <div className="mb-8">
-          <CourseIntroSlideshow courseId={actualCourseId} />
-        </div>
-
         {/* Lessons Grid */}
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
           <BookOpen className="h-6 w-6" />

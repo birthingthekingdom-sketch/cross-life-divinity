@@ -1,0 +1,80 @@
+{
+  "query": "SELECT l.id, l.title, l.lessonOrder, LENGTH(l.content) as content_length, (SELECT COUNT(*) FROM quiz_questions q WHERE q.lessonId = l.id) as quiz_count FROM lessons l WHERE l.courseId = (SELECT id FROM courses WHERE code = 'THE201') ORDER BY l.lessonOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT l.id, l.title, l.lessonOrder, LENGTH(l.content) as content_length, (SELECT COUNT(*) FROM quiz_questions q WHERE q.lessonId = l.id) as quiz_count FROM lessons l WHERE l.courseId = (SELECT id FROM courses WHERE code = 'THE201') ORDER BY l.lessonOrder;",
+  "rows": [
+    {
+      "id": "360011",
+      "title": "Prolegomena - The Nature and Method of Theology",
+      "lessonOrder": "1",
+      "content_length": "14723",
+      "quiz_count": "0"
+    },
+    {
+      "id": "510027",
+      "title": "Lesson 1: Systematic Theology",
+      "lessonOrder": "1",
+      "content_length": "49",
+      "quiz_count": "0"
+    },
+    {
+      "id": "360012",
+      "title": "Theology Proper - The Doctrine of God",
+      "lessonOrder": "2",
+      "content_length": "12799",
+      "quiz_count": "0"
+    },
+    {
+      "id": "510103",
+      "title": "Lesson 2: Systematic Theology",
+      "lessonOrder": "2",
+      "content_length": "49",
+      "quiz_count": "0"
+    },
+    {
+      "id": "360013",
+      "title": "Christology - The Person and Work of Christ",
+      "lessonOrder": "3",
+      "content_length": "11070",
+      "quiz_count": "0"
+    },
+    {
+      "id": "510046",
+      "title": "Lesson 3: Systematic Theology",
+      "lessonOrder": "3",
+      "content_length": "49",
+      "quiz_count": "0"
+    },
+    {
+      "id": "360014",
+      "title": "Pneumatology - The Doctrine of the Holy Spirit",
+      "lessonOrder": "4",
+      "content_length": "15790",
+      "quiz_count": "0"
+    },
+    {
+      "id": "510122",
+      "title": "Lesson 4: Systematic Theology",
+      "lessonOrder": "4",
+      "content_length": "49",
+      "quiz_count": "0"
+    },
+    {
+      "id": "360015",
+      "title": "Anthropology - The Doctrine of Humanity and Sin",
+      "lessonOrder": "5",
+      "content_length": "11936",
+      "quiz_count": "0"
+    },
+    {
+      "id": "510084",
+      "title": "Lesson 5: Systematic Theology",
+      "lessonOrder": "5",
+      "content_length": "49",
+      "quiz_count": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tlessonOrder\tcontent_length\tquiz_count\n360011\tProlegomena - The Nature and Method of Theology\t1\t14723\t0\n510027\tLesson 1: Systematic Theology\t1\t49\t0\n360012\tTheology Proper - The Doctrine of God\t2\t12799\t0\n510103\tLesson 2: Systematic Theology\t2\t49\t0\n360013\tChristology - The Person and Work of Christ\t3\t11070\t0\n510046\tLesson 3: Systematic Theology\t3\t49\t0\n360014\tPneumatology - The Doctrine of the Holy Spirit\t4\t15790\t0\n510122\tLesson 4: Systematic Theology\t4\t49\t0\n360015\tAnthropology - The Doctrine of Humanity and Sin\t5\t11936\t0\n510084\tLesson 5: Systematic Theology\t5\t49\t0\n",
+  "stderr": "",
+  "execution_time_ms": 65
+}
