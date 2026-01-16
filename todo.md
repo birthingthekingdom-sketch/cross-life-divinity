@@ -3174,3 +3174,9 @@ All components built and integrated. Ready for:
 - [x] GED-SOCIAL: GED Social Studies - 10 lessons, 110 quizzes (COMPLETED Jan 16, 2026)
 
 **Total:** 24 complete courses, 0 incomplete courses
+
+
+## Jan 16, 2026 - Remove Duplicate Course
+- [x] Remove BIB201 (duplicate Biblical Hermeneutics) - keep BIB103 (DONE - was already removed)
+
+- [x] Restore CHAP101 Chaplaincy Training course - 10 lessons, 110 quizzes (COMPLETED Jan 16, 2026)
