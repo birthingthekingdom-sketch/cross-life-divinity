@@ -3187,3 +3187,9 @@ All components built and integrated. Ready for:
 - [x] Expand original content with comprehensive lesson material (300+ words per lesson)
 - [x] Add quiz questions matching original framework
 - [x] Verify in admin dashboard preview (COMPLETED - Original framework restored)
+
+
+## Jan 16, 2026 - Bug Fix
+- [x] Fix redirect after Chaplaincy enrollment - should redirect to student dashboard to view enrollment
+  - Fixed CHAPLAINCY_COURSE_ID from 999 to 840001 (actual CHAP101 ID)
+  - Updated return_url to redirect to /dashboard?chaplaincy=success

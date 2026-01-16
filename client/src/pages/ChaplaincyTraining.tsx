@@ -31,7 +31,7 @@ function CheckoutForm({ clientSecret, onSuccess }: { clientSecret: string; onSuc
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${window.location.origin}/payment-success?type=chaplaincy`,
+        return_url: `${window.location.origin}/dashboard?chaplaincy=success`,
       },
     });
 
@@ -78,10 +78,8 @@ export default function ChaplaincyTraining() {
   };
 
   const handlePaymentSuccess = () => {
-    toast.success("Enrollment successful! Check your email for next steps.");
-    setTimeout(() => {
-      setLocation("/dashboard");
-    }, 2000);
+    toast.success("Enrollment successful! Redirecting to your dashboard...");
+    setLocation("/dashboard?chaplaincy=success");
   };
 
   return (

@@ -9,7 +9,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 
 const CHAPLAINCY_PRICE = 27500; // $275 in cents
-const CHAPLAINCY_COURSE_ID = 999; // Special course ID for chaplaincy
+const CHAPLAINCY_COURSE_ID = 840001; // CHAP101 course ID
 
 export const chaplaincyRouter = router({
   // Create payment intent for chaplaincy training
