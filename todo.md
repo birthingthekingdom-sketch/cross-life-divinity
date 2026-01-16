@@ -3180,3 +3180,10 @@ All components built and integrated. Ready for:
 - [x] Remove BIB201 (duplicate Biblical Hermeneutics) - keep BIB103 (DONE - was already removed)
 
 - [x] Restore CHAP101 Chaplaincy Training course - 10 lessons, 110 quizzes (COMPLETED Jan 16, 2026)
+
+
+## Jan 16, 2026 - Restore Original Chaplaincy Framework
+- [x] Replace current CHAP101 lessons with original framework (Healthcare, Military, Correctional, Corporate chaplaincy settings)
+- [x] Expand original content with comprehensive lesson material (300+ words per lesson)
+- [x] Add quiz questions matching original framework
+- [x] Verify in admin dashboard preview (COMPLETED - Original framework restored)
