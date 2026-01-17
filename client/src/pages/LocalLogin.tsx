@@ -1,20 +1,20 @@
 import { useState } from "react";
-import { useLocation } from "wouter";
+import { useNavigate } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { trpc } from "@/lib/trpc";
 
-export default function Login() {
+export default function LocalLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [, setLocation] = useLocation();
+  const [, navigate] = useNavigate();
 
   const loginMutation = trpc.auth.login.useMutation({
     onSuccess: () => {
-      setLocation("/dashboard");
+      navigate("/dashboard");
     },
     onError: (error) => {
       setError(error.message || "Login failed. Please check your credentials.");

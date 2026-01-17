@@ -1,23 +1,25 @@
 import { useState } from "react";
-import { useLocation } from "wouter";
+import { useNavigate } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { trpc } from "@/lib/trpc";
 
-export default function Login() {
+export default function LocalRegister() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [, setLocation] = useLocation();
+  const [, navigate] = useNavigate();
 
-  const loginMutation = trpc.auth.login.useMutation({
+  const registerMutation = trpc.auth.register.useMutation({
     onSuccess: () => {
-      setLocation("/dashboard");
+      navigate("/dashboard");
     },
     onError: (error) => {
-      setError(error.message || "Login failed. Please check your credentials.");
+      setError(error.message || "Registration failed. Please try again.");
       setIsLoading(false);
     },
   });
@@ -27,22 +29,34 @@ export default function Login() {
     setError("");
     setIsLoading(true);
 
-    if (!email || !password) {
-      setError("Please enter both email and password");
+    if (!name || !email || !password || !confirmPassword) {
+      setError("Please fill in all fields");
       setIsLoading(false);
       return;
     }
 
-    loginMutation.mutate({ email, password });
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      setIsLoading(false);
+      return;
+    }
+
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters");
+      setIsLoading(false);
+      return;
+    }
+
+    registerMutation.mutate({ name, email, password });
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-2">
-          <CardTitle className="text-2xl">Sign In</CardTitle>
+          <CardTitle className="text-2xl">Create Account</CardTitle>
           <CardDescription>
-            Enter your email and password to access your account
+            Sign up to access all courses and start learning
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -52,6 +66,20 @@ export default function Login() {
                 {error}
               </div>
             )}
+
+            <div className="space-y-2">
+              <label htmlFor="name" className="text-sm font-medium">
+                Full Name
+              </label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="John Doe"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                disabled={isLoading}
+              />
+            </div>
 
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium">
@@ -81,20 +109,34 @@ export default function Login() {
               />
             </div>
 
+            <div className="space-y-2">
+              <label htmlFor="confirmPassword" className="text-sm font-medium">
+                Confirm Password
+              </label>
+              <Input
+                id="confirmPassword"
+                type="password"
+                placeholder="••••••••"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                disabled={isLoading}
+              />
+            </div>
+
             <Button
               type="submit"
               className="w-full"
               disabled={isLoading}
             >
-              {isLoading ? "Signing in..." : "Sign In"}
+              {isLoading ? "Creating account..." : "Sign Up"}
             </Button>
           </form>
 
           <div className="mt-4 text-center text-sm">
             <p className="text-gray-600">
-              Don't have an account?{" "}
-              <a href="/register" className="text-blue-600 hover:underline font-medium">
-                Sign up
+              Already have an account?{" "}
+              <a href="/login" className="text-blue-600 hover:underline font-medium">
+                Sign in
               </a>
             </p>
           </div>

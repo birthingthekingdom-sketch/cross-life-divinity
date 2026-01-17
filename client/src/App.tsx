@@ -32,6 +32,8 @@ import VerifyCertificate from "./pages/VerifyCertificate";
 import Progress from "./pages/Progress";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import LocalLogin from "./pages/LocalLogin";
+import LocalRegister from "./pages/LocalRegister";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from './pages/ResetPassword';
 import VerifyEmail from './pages/VerifyEmail';
