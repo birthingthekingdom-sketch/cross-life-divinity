@@ -15,6 +15,7 @@ import LessonPage from "./pages/LessonPage";
 import Admin from "./pages/Admin";
 import AdminChat from "./pages/AdminChat";
 import AdminCourseDetail from "./pages/AdminCourseDetail";
+import AdminPreviewCourse from "./pages/AdminPreviewCourse";
 import AdminEditLesson from "./pages/AdminEditLesson";
 import AdminBulkImport from "./pages/AdminBulkImport";
 import CourseForum from "./pages/CourseForum";
@@ -123,6 +124,7 @@ function Router() {
       <Route path="/admin/chat" component={AdminChat} />
       <Route path="/admin/email-export" component={AdminEmailExport} />
       <Route path="/admin/course/:id" component={AdminCourseDetail} />
+      <Route path="/admin/preview-course/:id" component={AdminPreviewCourse} />
       <Route path="/admin/lesson/:id" component={AdminEditLesson} />
       <Route path="/admin/bulk-import" component={AdminBulkImport} />
       <Route path="/course/:id/forum" component={CourseForum} />

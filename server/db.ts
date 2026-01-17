@@ -299,6 +299,20 @@ export async function getQuizQuestionsByLessonId(lessonId: number): Promise<Quiz
   return db.select().from(quizQuestions).where(eq(quizQuestions.lessonId, lessonId)).orderBy(quizQuestions.questionOrder);
 }
 
+export async function getQuizQuestionsByCourseId(courseId: number): Promise<QuizQuestion[]> {
+  const db = await getDb();
+  if (!db) return [];
+  
+  // Get all lessons for the course
+  const courseLessons = await db.select().from(lessons).where(eq(lessons.courseId, courseId));
+  const lessonIds = courseLessons.map(l => l.id);
+  
+  if (lessonIds.length === 0) return [];
+  
+  // Get all quiz questions for those lessons
+  return db.select().from(quizQuestions).where(inArray(quizQuestions.lessonId, lessonIds)).orderBy(quizQuestions.questionOrder);
+}
+
 export async function updateQuizQuestion(id: number, updates: Partial<InsertQuizQuestion>) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
