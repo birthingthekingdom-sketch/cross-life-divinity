@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { PullToRefresh } from "@/components/PullToRefresh";
 import { trpc } from "@/lib/trpc";
-import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, CreditCard, Zap, Target, RefreshCw } from "lucide-react";
+import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, CreditCard, Zap, Target } from "lucide-react";
 
 import { Link, useLocation } from "wouter";
 import { useMemo, useEffect } from "react";
@@ -20,6 +20,15 @@ export default function Dashboard() {
       navigate('/admin');
     }
   }, [user?.role, navigate]);
+  
+  // Handle course enrollment redirect after OAuth login
+  useEffect(() => {
+    const courseId = sessionStorage.getItem('enrollmentCourseId');
+    if (courseId && user?.id) {
+      navigate(`/courses/${courseId}/enroll`);
+      sessionStorage.removeItem('enrollmentCourseId');
+    }
+  }, [user?.id, navigate]);
   const utils = trpc.useUtils();
   const { data: courses, isLoading: coursesLoading } = trpc.courses.list.useQuery();
   const { data: recommendations } = trpc.courses.getRecommendations.useQuery();
@@ -122,17 +131,7 @@ export default function Dashboard() {
                     My Payments
                   </Button>
                 </Link>
-              <Link href="/toggle-role">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-blue-500/20 border-blue-400/30 text-primary-foreground hover:bg-blue-500/30"
-                  title={user?.role === 'admin' ? "Switch to Student View" : "Switch to Admin View"}
-                >
-                  <RefreshCw className="h-4 w-4 mr-2" />
-                  <span className="hidden md:inline">{user?.role === 'admin' ? 'Student View' : 'Admin View'}</span>
-                </Button>
-              </Link>
+
               <Button
                 variant="outline"
                 size="sm"

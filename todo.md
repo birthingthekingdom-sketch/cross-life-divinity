@@ -3273,3 +3273,10 @@ All components built and integrated. Ready for:
   - Students now redirected to Manus OAuth login page, not homepage
   - OAuth callback properly configured to return to site
   - Student enrollment now possible
+
+
+## Jan 16, 2026 - Enrollment Flow Fix
+- [ ] Fix "Enroll Now" button flow - should redirect to login then to Stripe checkout
+  - Currently: Enroll button → OAuth login → stops
+  - Should be: Enroll button → OAuth login → Stripe checkout page
+  - Need to pass course context through OAuth callback

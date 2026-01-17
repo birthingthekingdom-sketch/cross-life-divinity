@@ -126,7 +126,7 @@ export default function Catalog() {
                       </div>
                     )}
                   </div>
-                  <Link href="/register">
+                  <Link href={`/register?courseId=${course.id}`}>
                     <Button variant="outline" className="w-full">
                       Enroll Now
                       <ArrowRight className="h-4 w-4 ml-2" />
@@ -184,7 +184,7 @@ export default function Catalog() {
                       </div>
                     )}
                   </div>
-                  <Link href="/register">
+                  <Link href={`/register?courseId=${course.id}`}>
                     <Button variant="outline" className="w-full">
                       Enroll Now
                       <ArrowRight className="h-4 w-4 ml-2" />
