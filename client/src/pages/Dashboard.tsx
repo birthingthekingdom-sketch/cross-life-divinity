@@ -15,10 +15,11 @@ export default function Dashboard() {
   const [, navigate] = useLocation();
   
   // Redirect admin users to admin panel
-  if (user?.role === 'admin') {
-    navigate('/admin');
-    return null;
-  }
+  useEffect(() => {
+    if (user?.role === 'admin') {
+      navigate('/admin');
+    }
+  }, [user?.role, navigate]);
   const utils = trpc.useUtils();
   const { data: courses, isLoading: coursesLoading } = trpc.courses.list.useQuery();
   const { data: recommendations } = trpc.courses.getRecommendations.useQuery();
