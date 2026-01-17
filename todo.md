@@ -3197,3 +3197,11 @@ All components built and integrated. Ready for:
 - [ ] Fix 404 error on dashboard after Chaplaincy enrollment
 
 - [x] CRITICAL: Restore original Chaplaincy Training page with $325 enrollment button (COMPLETED Jan 16, 2026)
+
+
+## Jan 16, 2026 - CRITICAL AUTHENTICATION ISSUE
+- [x] CRITICAL: Register and Login pages now redirect to Manus OAuth (FIXED Jan 16, 2026)
+  - Updated /register and /login to redirect to Manus OAuth portal
+  - Updated getLoginUrl() to generate proper OAuth redirect URL
+  - Students can now sign up and enroll in courses
+  - Chaplaincy enrollment testing now possible
