@@ -11,5 +11,9 @@ export const getLoginUrl = () => {
     return '/login';
   }
   
-  return `${oauthPortalUrl}?app_id=${appId}&redirect_uri=${encodeURIComponent(redirectUri)}`;
+  // Ensure we're using the OAuth authorization endpoint, not the homepage
+  const baseUrl = oauthPortalUrl.endsWith('/') ? oauthPortalUrl.slice(0, -1) : oauthPortalUrl;
+  const oauthEndpoint = baseUrl.includes('/oauth') ? baseUrl : `${baseUrl}/oauth/authorize`;
+  
+  return `${oauthEndpoint}?app_id=${appId}&redirect_uri=${encodeURIComponent(redirectUri)}`;
 };

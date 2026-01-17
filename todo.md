@@ -3205,3 +3205,71 @@ All components built and integrated. Ready for:
   - Updated getLoginUrl() to generate proper OAuth redirect URL
   - Students can now sign up and enroll in courses
   - Chaplaincy enrollment testing now possible
+
+
+## POST-LAUNCH CHECKLIST (After Publishing)
+
+### Authentication & Access
+- [ ] Test student signup with new Manus account
+- [ ] Verify OAuth redirect works correctly
+- [ ] Confirm student dashboard loads after login
+- [ ] Test admin login still works
+- [ ] Verify role-based access (admin vs student)
+
+### Chaplaincy Enrollment Flow
+- [ ] Navigate to Chaplaincy Training page
+- [ ] Click "Enroll Now" button
+- [ ] Verify Stripe checkout page loads
+- [ ] Complete test payment with card: 4242 4242 4242 4242
+- [ ] Verify payment success page displays
+- [ ] Confirm redirect to dashboard after payment
+- [ ] Verify Chaplaincy course appears in student's enrolled courses
+
+### Course Access & Content
+- [ ] Access enrolled Chaplaincy course
+- [ ] Verify all 10 lessons load correctly
+- [ ] Verify lesson content displays (300+ words per lesson)
+- [ ] Verify quiz questions load (11 per lesson)
+- [ ] Test quiz submission and scoring
+
+### Dashboard & Progress Tracking
+- [ ] Verify student dashboard shows enrolled courses
+- [ ] Check progress tracking (lessons completed)
+- [ ] Verify certificate generation after course completion
+- [ ] Test course filtering/search functionality
+
+### Subscription Flow (Optional)
+- [ ] Test $49/month All-Access subscription
+- [ ] Verify subscription checkout works
+- [ ] Confirm student gains access to all courses after subscription
+
+### Admin Dashboard
+- [ ] Log in as admin
+- [ ] Verify all 24 courses display
+- [ ] Check course statistics and enrollment numbers
+- [ ] Verify payment/enrollment records are logged
+
+### Error Handling
+- [ ] Test incomplete payment (cancel Stripe checkout)
+- [ ] Verify error messages display correctly
+- [ ] Test network error scenarios if possible
+- [ ] Verify 404 pages for invalid routes
+
+### Performance & Monitoring
+- [ ] Check page load times
+- [ ] Monitor for JavaScript errors in browser console
+- [ ] Verify analytics are tracking (if enabled)
+- [ ] Check email notifications for new enrollments
+
+### Stripe Integration
+- [ ] Verify Stripe webhook events are being received
+- [ ] Check Stripe dashboard for successful payments
+- [ ] Confirm payment records in database match Stripe
+
+
+## CRITICAL BUG - POST-PUBLISH
+- [x] CRITICAL: Sign Up button redirects to Manus.im homepage instead of /register page (FIXED Jan 16, 2026)
+  - Fixed getLoginUrl() to use correct OAuth authorization endpoint
+  - Students now redirected to Manus OAuth login page, not homepage
+  - OAuth callback properly configured to return to site
+  - Student enrollment now possible
