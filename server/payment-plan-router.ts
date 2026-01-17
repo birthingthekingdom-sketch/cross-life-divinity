@@ -98,7 +98,7 @@ export const paymentPlanRouter = router({
             },
             quantity: 1,
           }],
-          success_url: `${baseUrl}/payment-success?session_id={CHECKOUT_SESSION_ID}&plan_type=${input.planType}`,
+          success_url: `${baseUrl}/payment/success?session_id={CHECKOUT_SESSION_ID}&plan_type=${input.planType}`,
           cancel_url: `${baseUrl}/payment-cancel`,
           metadata,
         });
@@ -124,7 +124,7 @@ export const paymentPlanRouter = router({
             },
             quantity: 1,
           }],
-          success_url: `${baseUrl}/payment-success?session_id={CHECKOUT_SESSION_ID}&plan_type=${input.planType}`,
+          success_url: `${baseUrl}/payment/success?session_id={CHECKOUT_SESSION_ID}&plan_type=${input.planType}`,
           cancel_url: `${baseUrl}/payment-cancel`,
           metadata,
         });
