@@ -241,20 +241,12 @@ export default function AdminCourseDetail() {
                 Back to Admin
               </Button>
             </Link>
-            <div className="flex gap-2">
-              <Link href={`/admin/preview-course/${course.id}`}>
-                <Button variant="default" size="sm">
-                  <Eye className="h-4 w-4 mr-2" />
-                  Preview All Lessons
-                </Button>
-              </Link>
-              <Link href={`/course/${course.id}`}>
-                <Button variant="outline" size="sm">
-                  <Eye className="h-4 w-4 mr-2" />
-                  Student View
-                </Button>
-              </Link>
-            </div>
+            <Link href={`/course/${course.id}`}>
+              <Button variant="default" size="sm">
+                <Eye className="h-4 w-4 mr-2" />
+                Preview Course
+              </Button>
+            </Link>
           </div>
           <h1 className="text-3xl font-bold">{course.title}</h1>
           <p className="text-muted-foreground mt-1">

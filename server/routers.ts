@@ -346,12 +346,6 @@ export const appRouter = router({
   }),
 
   quizzes: router({
-    getByCourse: protectedProcedure
-      .input(z.object({ courseId: z.number() }))
-      .query(async ({ input }) => {
-        return db.getQuizQuestionsByCourseId(input.courseId);
-      }),
-    
     getByLesson: protectedProcedure
       .input(z.object({ lessonId: z.number() }))
       .query(async ({ input }) => {
@@ -474,12 +468,6 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         await db.deleteQuizQuestion(input.id);
         return { success: true };
-      }),
-    
-    getAllByCourse: publicProcedure
-      .input(z.object({ courseId: z.number() }))
-      .query(async ({ input }) => {
-        return db.getQuizQuestionsByCourseId(input.courseId);
       }),
   }),
 
