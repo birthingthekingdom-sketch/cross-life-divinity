@@ -1,0 +1,202 @@
+{
+  "query": "SELECT c.id, c.code, c.title, c.totalLessons, COUNT(l.id) as actual_lessons, CASE WHEN COUNT(l.id) = 0 THEN 'NO LESSONS' WHEN COUNT(l.id) < c.totalLessons THEN 'INCOMPLETE' ELSE 'COMPLETE' END as status FROM courses c LEFT JOIN lessons l ON c.id = l.courseId GROUP BY c.id ORDER BY c.displayOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT c.id, c.code, c.title, c.totalLessons, COUNT(l.id) as actual_lessons, CASE WHEN COUNT(l.id) = 0 THEN 'NO LESSONS' WHEN COUNT(l.id) < c.totalLessons THEN 'INCOMPLETE' ELSE 'COMPLETE' END as status FROM courses c LEFT JOIN lessons l ON c.id = l.courseId GROUP BY c.id ORDER BY c.displayOrder;",
+  "rows": [
+    {
+      "id": "840001",
+      "code": "CHAP101",
+      "title": "Chaplaincy Training",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "780001",
+      "code": "BIB101",
+      "title": "Old Testament Survey",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "780002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "660004",
+      "code": "GED-LANG",
+      "title": "GED Language Arts",
+      "totalLessons": "12",
+      "actual_lessons": "10",
+      "status": "INCOMPLETE"
+    },
+    {
+      "id": "660003",
+      "code": "GED-MATH",
+      "title": "GED Mathematics",
+      "totalLessons": "12",
+      "actual_lessons": "10",
+      "status": "INCOMPLETE"
+    },
+    {
+      "id": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology",
+      "totalLessons": "10",
+      "actual_lessons": "8",
+      "status": "INCOMPLETE"
+    },
+    {
+      "id": "810001",
+      "code": "BIB103",
+      "title": "Biblical Hermeneutics",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "660005",
+      "code": "GED-SCI",
+      "title": "GED Science",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "660006",
+      "code": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "180001",
+      "code": "DIV101",
+      "title": "Understanding Prophecy",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "150005",
+      "code": "THE301",
+      "title": "Fundamentals of Apologetics",
+      "totalLessons": "10",
+      "actual_lessons": "5",
+      "status": "INCOMPLETE"
+    },
+    {
+      "id": "690001",
+      "code": "DIV102",
+      "title": "Deliverance Ministry",
+      "totalLessons": "10",
+      "actual_lessons": "4",
+      "status": "INCOMPLETE"
+    },
+    {
+      "id": "150006",
+      "code": "MIN101",
+      "title": "Evangelism and Discipleship",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "150007",
+      "code": "MIN102",
+      "title": "Discipleship Training",
+      "totalLessons": "10",
+      "actual_lessons": "5",
+      "status": "INCOMPLETE"
+    },
+    {
+      "id": "150008",
+      "code": "SPR101",
+      "title": "Prayer and Intercession",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "690002",
+      "code": "LED202",
+      "title": "Christian Leadership",
+      "totalLessons": "10",
+      "actual_lessons": "2",
+      "status": "INCOMPLETE"
+    },
+    {
+      "id": "150011",
+      "code": "PAS201",
+      "title": "Pastoral Counseling",
+      "totalLessons": "10",
+      "actual_lessons": "5",
+      "status": "INCOMPLETE"
+    },
+    {
+      "id": "150012",
+      "code": "PAS301",
+      "title": "Church Administration",
+      "totalLessons": "10",
+      "actual_lessons": "5",
+      "status": "INCOMPLETE"
+    },
+    {
+      "id": "150013",
+      "code": "PAS101",
+      "title": "Homiletics",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "150014",
+      "code": "SPR201",
+      "title": "Discovering Spiritual Gifts",
+      "totalLessons": "10",
+      "actual_lessons": "5",
+      "status": "INCOMPLETE"
+    },
+    {
+      "id": "360001",
+      "code": "WOR101",
+      "title": "Biblical Worship",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "570004",
+      "code": "DIV111",
+      "title": "Capstone Project",
+      "totalLessons": "8",
+      "actual_lessons": "10",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "570005",
+      "code": "DIV112",
+      "title": "Christology",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "570006",
+      "code": "DIV113",
+      "title": "Contemporary Theological Issues",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "status": "COMPLETE"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\ttotalLessons\tactual_lessons\tstatus\n840001\tCHAP101\tChaplaincy Training\t10\t10\tCOMPLETE\n780001\tBIB101\tOld Testament Survey\t10\t10\tCOMPLETE\n780002\tBIB102\tNew Testament Survey\t10\t10\tCOMPLETE\n660004\tGED-LANG\tGED Language Arts\t12\t10\tINCOMPLETE\n660003\tGED-MATH\tGED Mathematics\t12\t10\tINCOMPLETE\n150003\tTHE201\tSystematic Theology\t10\t8\tINCOMPLETE\n810001\tBIB103\tBiblical Hermeneutics\t10\t10\tCOMPLETE\n660005\tGED-SCI\tGED Science\t10\t10\tCOMPLETE\n660006\tGED-SOCIAL\tGED Social Studies\t10\t10\tCOMPLETE\n180001\tDIV101\tUnderstanding Prophecy\t10\t10\tCOMPLETE\n150005\tTHE301\tFundamentals of Apologetics\t10\t5\tINCOMPLETE\n690001\tDIV102\tDeliverance Ministry\t10\t4\tINCOMPLETE\n150006\tMIN101\tEvangelism and Discipleship\t10\t10\tCOMPLETE\n150007\tMIN102\tDiscipleship Training\t10\t5\tINCOMPLETE\n150008\tSPR101\tPrayer and Intercession\t10\t10\tCOMPLETE\n690002\tLED202\tChristian Leadership\t10\t2\tINCOMPLETE\n150011\tPAS201\tPastoral Counseling\t10\t5\tINCOMPLETE\n150012\tPAS301\tChurch Administration\t10\t5\tINCOMPLETE\n150013\tPAS101\tHomiletics\t10\t10\tCOMPLETE\n150014\tSPR201\tDiscovering Spiritual Gifts\t10\t5\tINCOMPLETE\n360001\tWOR101\tBiblical Worship\t10\t10\tCOMPLETE\n570004\tDIV111\tCapstone Project\t8\t10\tCOMPLETE\n570005\tDIV112\tChristology\t10\t10\tCOMPLETE\n570006\tDIV113\tContemporary Theological Issues\t10\t10\tCOMPLETE\n",
+  "stderr": "",
+  "execution_time_ms": 146
+}

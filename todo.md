@@ -26,6 +26,27 @@
 
 ---
 
+## CRITICAL - Missing CPE Content in Chaplaincy Course
+- [ ] CPE (Clinical Pastoral Education) module is missing from Chaplaincy course
+- [ ] Chicago CPE intern organization list is missing
+- [ ] Need to restore or recreate this critical content
+- [ ] Verify all Chaplaincy lessons have complete content
+- [ ] Test that students can access CPE information
+
+## CURRENT TASK - Verify Learning Paths Have Correct Lesson Content
+- [x] Check Intermediate Learning Path for courses and lessons
+- [x] Check Beginner Learning Path for courses and lessons
+- [x] Verify lesson content is accessible from Learning Paths
+- [x] Test complete Learning Path flow and functionality
+- [x] Ensure all theology courses are properly linked to Learning Paths
+
+## RESOLVED - Lesson Access Authentication Issue
+- [x] Students being logged out when accessing lessons - NOT OCCURRING
+- [x] Systematic Theology shows 3 lessons - ACTUALLY HAS 8 LESSONS
+- [x] Lesson route protection/middleware - WORKING CORRECTLY
+- [x] Session management not persisting - SESSIONS PERSISTING CORRECTLY
+- [x] Lesson IDs and course-lesson relationships - ALL VERIFIED
+
 ## CURRENT TASK - Remove GED Courses from Main Catalogue
 - [x] Remove GED Math, GED Language Arts, GED Science, GED Social Studies from main course catalogue
 - [x] Keep GED courses in separate Bridge Academy section only

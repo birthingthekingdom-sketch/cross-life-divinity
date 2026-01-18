@@ -1,0 +1,28 @@
+{
+  "query": "SELECT lp.id, lp.name, lp.level, COUNT(lpc.courseId) as course_count FROM learning_paths lp LEFT JOIN learning_path_courses lpc ON lp.id = lpc.pathId WHERE lp.level IN ('beginner', 'intermediate') GROUP BY lp.id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT lp.id, lp.name, lp.level, COUNT(lpc.courseId) as course_count FROM learning_paths lp LEFT JOIN learning_path_courses lpc ON lp.id = lpc.pathId WHERE lp.level IN ('beginner', 'intermediate') GROUP BY lp.id;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "New Believer Foundation",
+      "level": "beginner",
+      "course_count": "3"
+    },
+    {
+      "id": "2",
+      "name": "Ministry Preparation Track",
+      "level": "intermediate",
+      "course_count": "2"
+    },
+    {
+      "id": "30001",
+      "name": "Gospel Studies Intensive",
+      "level": "intermediate",
+      "course_count": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tlevel\tcourse_count\n1\tNew Believer Foundation\tbeginner\t3\n2\tMinistry Preparation Track\tintermediate\t2\n30001\tGospel Studies Intensive\tintermediate\t0\n",
+  "stderr": "",
+  "execution_time_ms": 52
+}

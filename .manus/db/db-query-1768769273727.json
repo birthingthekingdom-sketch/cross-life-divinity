@@ -1,0 +1,130 @@
+{
+  "query": "SELECT c.id, c.code, c.title, c.totalLessons, COUNT(l.id) as actual_lessons, GROUP_CONCAT(l.title SEPARATOR ' | ') as lesson_titles FROM courses c LEFT JOIN lessons l ON c.id = l.courseId WHERE c.code IN ('CHAP101', 'BIB101', 'BIB102', 'THE201', 'BIB103', 'DIV101', 'THE301', 'DIV102', 'MIN101', 'MIN102', 'SPR101', 'LED201', 'PAS201', 'PAS301', 'PAS101', 'SPR201', 'MIN201', 'MIN301', 'THE101', 'THE102') GROUP BY c.id ORDER BY c.displayOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT c.id, c.code, c.title, c.totalLessons, COUNT(l.id) as actual_lessons, GROUP_CONCAT(l.title SEPARATOR ' | ') as lesson_titles FROM courses c LEFT JOIN lessons l ON c.id = l.courseId WHERE c.code IN ('CHAP101', 'BIB101', 'BIB102', 'THE201', 'BIB103', 'DIV101', 'THE301', 'DIV102', 'MIN101', 'MIN102', 'SPR101', 'LED201', 'PAS201', 'PAS301', 'PAS101', 'SPR201', 'MIN201', 'MIN301', 'THE101', 'THE102') GROUP BY c.id ORDER BY c.displayOrder;",
+  "rows": [
+    {
+      "id": "780001",
+      "code": "BIB101",
+      "title": "Old Testament Survey",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "lesson_titles": "Introduction to the Old Testament | The Torah: Books of Moses | The Historical Books | Poetry and Wisdom Literature | Major Prophets: Isaiah | Major Prophets: Jeremiah and Lamentations | Major Prophets: Ezekiel and Daniel | Minor Prophets - Part 1 | Minor Prophets - Part 2 | Old Testament Themes and Fulfillment"
+    },
+    {
+      "id": "780002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "lesson_titles": "Introduction to the New Testament | The Four Gospels: Matthew and Mark | The Four Gospels: Luke and John | Acts and the Early Church | Paul's Epistles: Romans and Corinthians | Paul's Later Epistles: Galatians through Philemon | Hebrews and the General Epistles | The Johannine Epistles | The Book of Revelation | New Testament Theology and Application"
+    },
+    {
+      "id": "840001",
+      "code": "CHAP101",
+      "title": "Chaplaincy Training",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "lesson_titles": "Introduction to Chaplaincy Ministry | Theological Foundations of Chaplaincy | Healthcare Chaplaincy | Military Chaplaincy | Correctional Chaplaincy | Corporate and Workplace Chaplaincy | Pastoral Care Skills and Crisis Intervention | Interfaith Sensitivity and Cultural Competence | Professional Development and Certification | Capstone: Integrating Chaplaincy Competencies"
+    },
+    {
+      "id": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology",
+      "totalLessons": "10",
+      "actual_lessons": "8",
+      "lesson_titles": "Prolegomena - The Nature and Method of Theology | Theology Proper - The Doctrine of God | Christology - The Person and Work of Christ | Pneumatology - The Doctrine of the Holy Spirit | Anthropology - The Doctrine of Humanity and Sin | Soteriology - The Doctrine of Salvation | Ecclesiology - The Doctrine of the Church | Eschatology - The Doctrine of Last Things"
+    },
+    {
+      "id": "810001",
+      "code": "BIB103",
+      "title": "Biblical Hermeneutics",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "lesson_titles": "Introduction to Biblical Hermeneutics | The History of Biblical Interpretation | The Nature and Authority of Scripture | The Grammatical-Historical Method | Understanding Literary Genres | Interpreting Old Testament Narrative | Interpreting the Psalms and Wisdom Literature | Interpreting Prophecy and Apocalyptic | Interpreting the New Testament | Application and Communication of Scripture"
+    },
+    {
+      "id": "180001",
+      "code": "DIV101",
+      "title": "Understanding Prophecy",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "lesson_titles": "Introduction to Biblical Prophecy - The Prophetic Office and Gift | The Old Testament Prophets - God's Covenant Messengers | The Gift of Prophecy in the New Testament Church | Testing and Discerning Prophetic Words | The Prophetic Ministry of Jesus Christ | Prophetic Literature and Interpretation | Messianic Prophecy and Fulfillment | Eschatological Prophecy - End Times | The Prophetic Voice in the Church Today | Living as Prophetic People"
+    },
+    {
+      "id": "150005",
+      "code": "THE301",
+      "title": "Fundamentals of Apologetics",
+      "totalLessons": "10",
+      "actual_lessons": "5",
+      "lesson_titles": "Introduction to Christian Apologetics | The Existence of God - Classical Arguments | The Problem of Evil and Suffering | The Reliability of the New Testament | The Resurrection of Jesus Christ"
+    },
+    {
+      "id": "690001",
+      "code": "DIV102",
+      "title": "Deliverance Ministry",
+      "totalLessons": "10",
+      "actual_lessons": "4",
+      "lesson_titles": "Introduction to Deliverance Ministry | Spiritual Authority and Power | Identifying Spiritual Bondage | Prayer and Intercession in Deliverance"
+    },
+    {
+      "id": "150006",
+      "code": "MIN101",
+      "title": "Evangelism and Discipleship",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "lesson_titles": "Biblical Foundation for Evangelism | The Gospel Message - Content and Clarity | Personal Evangelism Methods | Lifestyle Evangelism and Witness | Overcoming Fear and Objections | Discipleship Foundations and Philosophy | Discipleship Relationships and Methods | Spiritual Formation and Growth | Multiplication and Reproduction | Evangelism and Discipleship Integration"
+    },
+    {
+      "id": "150007",
+      "code": "MIN102",
+      "title": "Discipleship Training",
+      "totalLessons": "10",
+      "actual_lessons": "5",
+      "lesson_titles": "The Biblical Mandate for Discipleship | Jesus' Model of Discipleship | Spiritual Formation and Growth | Developing Spiritual Disciplines | One-on-One Discipleship"
+    },
+    {
+      "id": "150008",
+      "code": "SPR101",
+      "title": "Prayer and Intercession",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "lesson_titles": "Foundations of Prayer - Biblical Theology | The Lord's Prayer - A Model for All Prayer | Developing a Personal Prayer Life | Intercessory Prayer - Standing in the Gap | Fasting and Prayer | Spiritual Warfare and Prayer | Corporate Prayer and Prayer Movements | Contemplative Prayer and Listening to God | Prayer and Revival | Developing a Lifestyle of Prayer"
+    },
+    {
+      "id": "150011",
+      "code": "PAS201",
+      "title": "Pastoral Counseling",
+      "totalLessons": "10",
+      "actual_lessons": "5",
+      "lesson_titles": "Biblical Foundations of Pastoral Care | The Shepherd's Heart - Character of a Pastor | Pastoral Counseling Basics | Crisis Intervention and Trauma Care | Grief and Loss - Ministry to the Bereaved"
+    },
+    {
+      "id": "150012",
+      "code": "PAS301",
+      "title": "Church Administration",
+      "totalLessons": "10",
+      "actual_lessons": "5",
+      "lesson_titles": "Biblical Principles of Church Administration | Church Governance Models | Financial Management and Stewardship | Legal Issues in Church Administration | Human Resources and Staff Management"
+    },
+    {
+      "id": "150013",
+      "code": "PAS101",
+      "title": "Homiletics",
+      "totalLessons": "10",
+      "actual_lessons": "10",
+      "lesson_titles": "Biblical Theology of Preaching | Expository Preaching - Principles and Practice | Sermon Preparation - From Text to Message | Sermon Structure and Organization | Illustrations and Application | Sermon Delivery and Communication | Preaching Different Genres | Topical and Thematic Preaching | Preaching for Transformation | The Preacher's Life and Ministry"
+    },
+    {
+      "id": "150014",
+      "code": "SPR201",
+      "title": "Discovering Spiritual Gifts",
+      "totalLessons": "10",
+      "actual_lessons": "5",
+      "lesson_titles": "Biblical Foundation of Spiritual Gifts | The Motivational Gifts - Romans 12 | The Ministry Gifts - 1 Corinthians 12 | The Leadership Gifts - Ephesians 4 | Discovering Your Spiritual Gifts"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\ttotalLessons\tactual_lessons\tlesson_titles\n780001\tBIB101\tOld Testament Survey\t10\t10\tIntroduction to the Old Testament | The Torah: Books of Moses | The Historical Books | Poetry and Wisdom Literature | Major Prophets: Isaiah | Major Prophets: Jeremiah and Lamentations | Major Prophets: Ezekiel and Daniel | Minor Prophets - Part 1 | Minor Prophets - Part 2 | Old Testament Themes and Fulfillment\n780002\tBIB102\tNew Testament Survey\t10\t10\tIntroduction to the New Testament | The Four Gospels: Matthew and Mark | The Four Gospels: Luke and John | Acts and the Early Church | Paul's Epistles: Romans and Corinthians | Paul's Later Epistles: Galatians through Philemon | Hebrews and the General Epistles | The Johannine Epistles | The Book of Revelation | New Testament Theology and Application\n840001\tCHAP101\tChaplaincy Training\t10\t10\tIntroduction to Chaplaincy Ministry | Theological Foundations of Chaplaincy | Healthcare Chaplaincy | Military Chaplaincy | Correctional Chaplaincy | Corporate and Workplace Chaplaincy | Pastoral Care Skills and Crisis Intervention | Interfaith Sensitivity and Cultural Competence | Professional Development and Certification | Capstone: Integrating Chaplaincy Competencies\n150003\tTHE201\tSystematic Theology\t10\t8\tProlegomena - The Nature and Method of Theology | Theology Proper - The Doctrine of God | Christology - The Person and Work of Christ | Pneumatology - The Doctrine of the Holy Spirit | Anthropology - The Doctrine of Humanity and Sin | Soteriology - The Doctrine of Salvation | Ecclesiology - The Doctrine of the Church | Eschatology - The Doctrine of Last Things\n810001\tBIB103\tBiblical Hermeneutics\t10\t10\tIntroduction to Biblical Hermeneutics | The History of Biblical Interpretation | The Nature and Authority of Scripture | The Grammatical-Historical Method | Understanding Literary Genres | Interpreting Old Testament Narrative | Interpreting the Psalms and Wisdom Literature | Interpreting Prophecy and Apocalyptic | Interpreting the New Testament | Application and Communication of Scripture\n180001\tDIV101\tUnderstanding Prophecy\t10\t10\tIntroduction to Biblical Prophecy - The Prophetic Office and Gift | The Old Testament Prophets - God's Covenant Messengers | The Gift of Prophecy in the New Testament Church | Testing and Discerning Prophetic Words | The Prophetic Ministry of Jesus Christ | Prophetic Literature and Interpretation | Messianic Prophecy and Fulfillment | Eschatological Prophecy - End Times | The Prophetic Voice in the Church Today | Living as Prophetic People\n150005\tTHE301\tFundamentals of Apologetics\t10\t5\tIntroduction to Christian Apologetics | The Existence of God - Classical Arguments | The Problem of Evil and Suffering | The Reliability of the New Testament | The Resurrection of Jesus Christ\n690001\tDIV102\tDeliverance Ministry\t10\t4\tIntroduction to Deliverance Ministry | Spiritual Authority and Power | Identifying Spiritual Bondage | Prayer and Intercession in Deliverance\n150006\tMIN101\tEvangelism and Discipleship\t10\t10\tBiblical Foundation for Evangelism | The Gospel Message - Content and Clarity | Personal Evangelism Methods | Lifestyle Evangelism and Witness | Overcoming Fear and Objections | Discipleship Foundations and Philosophy | Discipleship Relationships and Methods | Spiritual Formation and Growth | Multiplication and Reproduction | Evangelism and Discipleship Integration\n150007\tMIN102\tDiscipleship Training\t10\t5\tThe Biblical Mandate for Discipleship | Jesus' Model of Discipleship | Spiritual Formation and Growth | Developing Spiritual Disciplines | One-on-One Discipleship\n150008\tSPR101\tPrayer and Intercession\t10\t10\tFoundations of Prayer - Biblical Theology | The Lord's Prayer - A Model for All Prayer | Developing a Personal Prayer Life | Intercessory Prayer - Standing in the Gap | Fasting and Prayer | Spiritual Warfare and Prayer | Corporate Prayer and Prayer Movements | Contemplative Prayer and Listening to God | Prayer and Revival | Developing a Lifestyle of Prayer\n150011\tPAS201\tPastoral Counseling\t10\t5\tBiblical Foundations of Pastoral Care | The Shepherd's Heart - Character of a Pastor | Pastoral Counseling Basics | Crisis Intervention and Trauma Care | Grief and Loss - Ministry to the Bereaved\n150012\tPAS301\tChurch Administration\t10\t5\tBiblical Principles of Church Administration | Church Governance Models | Financial Management and Stewardship | Legal Issues in Church Administration | Human Resources and Staff Management\n150013\tPAS101\tHomiletics\t10\t10\tBiblical Theology of Preaching | Expository Preaching - Principles and Practice | Sermon Preparation - From Text to Message | Sermon Structure and Organization | Illustrations and Application | Sermon Delivery and Communication | Preaching Different Genres | Topical and Thematic Preaching | Preaching for Transformation | The Preacher's Life and Ministry\n150014\tSPR201\tDiscovering Spiritual Gifts\t10\t5\tBiblical Foundation of Spiritual Gifts | The Motivational Gifts - Romans 12 | The Ministry Gifts - 1 Corinthians 12 | The Leadership Gifts - Ephesians 4 | Discovering Your Spiritual Gifts\n",
+  "stderr": "",
+  "execution_time_ms": 56
+}
