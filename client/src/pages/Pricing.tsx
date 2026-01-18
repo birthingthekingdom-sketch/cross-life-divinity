@@ -425,7 +425,7 @@ export default function Pricing() {
             </CardContent>
             <CardFooter>
               <Button
-                onClick={() => navigate("/checkout/payment-plan?type=LEARNING_PATH")}
+                onClick={() => navigate("/learning-paths")}
                 className="w-full bg-green-600 hover:bg-green-700 text-white"
                 size="lg"
               >

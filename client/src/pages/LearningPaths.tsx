@@ -157,7 +157,7 @@ export default function LearningPaths() {
                         </Button>
                       ) : (
                         <Button
-                          onClick={() => setLocation('/pricing')}
+                          onClick={() => setLocation(`/checkout/payment-plan?type=LEARNING_PATH&itemId=${path.id}`)}
                         >
                           Start This Path
                         </Button>
