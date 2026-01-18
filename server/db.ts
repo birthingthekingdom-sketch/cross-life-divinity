@@ -1,4 +1,4 @@
-import { eq, and, desc, inArray, sql, isNotNull } from "drizzle-orm";
+import { eq, and, ne, desc, inArray, sql, isNotNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { 
   InsertUser, users, 
@@ -198,8 +198,8 @@ export async function getAllCourses(): Promise<Course[]> {
   const db = await getDb();
   if (!db) return [];
   
-  // Return only theological courses, exclude GED
-  return db.select().from(courses).where(eq(courses.courseType, 'theological')).orderBy(courses.displayOrder);
+  // Return only theological courses, exclude GED and Chaplaincy
+  return db.select().from(courses).where(and(eq(courses.courseType, 'theological'), ne(courses.code, 'CHAP101'))).orderBy(courses.displayOrder);
 }
 
 export async function getAllGedCourses(): Promise<Course[]> {
@@ -208,6 +208,15 @@ export async function getAllGedCourses(): Promise<Course[]> {
   
   // Return only GED courses
   return db.select().from(courses).where(eq(courses.courseType, 'ged')).orderBy(courses.displayOrder);
+}
+
+export async function getChaplaincy(): Promise<Course | undefined> {
+  const db = await getDb();
+  if (!db) return undefined;
+  
+  // Return the Chaplaincy course
+  const result = await db.select().from(courses).where(eq(courses.code, 'CHAP101')).limit(1);
+  return result[0];
 }
 
 export async function getCourseById(id: number): Promise<Course | undefined> {

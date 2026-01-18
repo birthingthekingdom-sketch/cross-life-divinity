@@ -3280,3 +3280,10 @@ All components built and integrated. Ready for:
   - Currently: Enroll button → OAuth login → stops
   - Should be: Enroll button → OAuth login → Stripe checkout page
   - Need to pass course context through OAuth callback
+
+## CURRENT ISSUE - Remove Chaplaincy from Theology Courses
+- [x] Remove Chaplaincy Training (CHAP101) from theology courses section
+- [x] Keep Chaplaincy as separate professional certification offering
+- [x] Update course filtering to exclude Chaplaincy from theology courses
+- [x] Update dashboard to show Chaplaincy separately from theology courses
+- [x] Test course display on student and admin dashboards
