@@ -309,6 +309,161 @@ export default function ChaplaincyTraining() {
           </div>
         </section>
 
+        {/* CPE Information Section */}
+        <section className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 rounded-2xl p-8 md:p-12">
+          <h2 className="text-3xl font-bold text-center mb-4">Clinical Pastoral Education (CPE) Focus</h2>
+          <p className="text-center text-lg text-muted-foreground mb-12 max-w-3xl mx-auto">
+            This program is designed with Clinical Pastoral Education (CPE) standards in mind, preparing you for professional CPE internships and certification.
+          </p>
+          
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {/* CPE Requirements */}
+            <Card className="border-2">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Award className="h-6 w-6 text-primary" />
+                  CPE Requirements
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-2">CPE Units</h4>
+                  <p className="text-muted-foreground mb-3">One standard CPE unit requires 400 hours of supervised clinical work. This program provides foundational knowledge to pursue CPE internships.</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Core Competencies</h4>
+                  <ul className="space-y-1 text-sm text-muted-foreground">
+                    <li>• Self-awareness and personal growth</li>
+                    <li>• Pastoral care and counseling skills</li>
+                    <li>• Theological reflection</li>
+                    <li>• Professional ethics and boundaries</li>
+                    <li>• Interfaith sensitivity</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* CPE Training Model */}
+            <Card className="border-2">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <BookOpen className="h-6 w-6 text-primary" />
+                  CPE Training Model
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-2">Our Approach</h4>
+                  <p className="text-muted-foreground mb-3">We integrate the CPE learning model: action, reflection, theological interpretation, and integration.</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Certification Pathway</h4>
+                  <ol className="space-y-1 text-sm text-muted-foreground">
+                    <li>1. Complete this foundational course</li>
+                    <li>2. Pursue CPE internship (400+ hours)</li>
+                    <li>3. Earn CPE certification</li>
+                    <li>4. Pursue professional endorsement</li>
+                  </ol>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Professional Organizations */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold text-center mb-8">CPE Professional Organizations</h3>
+            <div className="grid md:grid-cols-4 gap-4">
+              {[
+                {
+                  name: "ACPE",
+                  full: "Association for Clinical Pastoral Education",
+                  desc: "Accredits CPE programs nationwide"
+                },
+                {
+                  name: "APC",
+                  full: "American Protestant Correctional Chaplains Association",
+                  desc: "Specializes in correctional chaplaincy"
+                },
+                {
+                  name: "NACC",
+                  full: "National Association of Catholic Chaplains",
+                  desc: "Supports Catholic chaplains in all settings"
+                },
+                {
+                  name: "NAJC",
+                  full: "National Association of Jewish Chaplains",
+                  desc: "Represents Jewish chaplaincy professionals"
+                }
+              ].map((org, index) => (
+                <Card key={index} className="text-center">
+                  <CardHeader>
+                    <CardTitle className="text-lg text-primary">{org.name}</CardTitle>
+                    <CardDescription className="text-xs">{org.full}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">{org.desc}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Chicago CPE Organizations */}
+          <div>
+            <h3 className="text-2xl font-bold text-center mb-8">Chicago Area CPE Intern Organizations</h3>
+            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+              After completing this program, you can pursue CPE internships at these recognized Chicago-area organizations:
+            </p>
+            <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+              {[
+                {
+                  name: "Advocate Christ Medical Center",
+                  location: "Oak Lawn, IL",
+                  focus: "Healthcare Chaplaincy"
+                },
+                {
+                  name: "Northwestern Memorial Hospital",
+                  location: "Chicago, IL",
+                  focus: "Hospital Chaplaincy"
+                },
+                {
+                  name: "Stroger Hospital of Cook County",
+                  location: "Chicago, IL",
+                  focus: "Urban Healthcare Chaplaincy"
+                },
+                {
+                  name: "Illinois Department of Corrections",
+                  location: "Multiple Locations",
+                  focus: "Correctional Chaplaincy"
+                },
+                {
+                  name: "Loyola University Medical Center",
+                  location: "Maywood, IL",
+                  focus: "Healthcare & Hospice Chaplaincy"
+                },
+                {
+                  name: "Presence Resurrection Medical Center",
+                  location: "Chicago, IL",
+                  focus: "Hospital Chaplaincy"
+                }
+              ].map((org, index) => (
+                <Card key={index}>
+                  <CardHeader>
+                    <CardTitle className="text-lg">{org.name}</CardTitle>
+                    <CardDescription>{org.location}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Badge variant="secondary">{org.focus}</Badge>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-8">
+              Contact these organizations directly to inquire about CPE internship opportunities. Our program prepares you with the foundational knowledge needed for successful CPE training.
+            </p>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section>
           <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>

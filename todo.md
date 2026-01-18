@@ -26,12 +26,21 @@
 
 ---
 
-## CRITICAL - Missing CPE Content in Chaplaincy Course
-- [ ] CPE (Clinical Pastoral Education) module is missing from Chaplaincy course
-- [ ] Chicago CPE intern organization list is missing
-- [ ] Need to restore or recreate this critical content
-- [ ] Verify all Chaplaincy lessons have complete content
-- [ ] Test that students can access CPE information
+## COMPLETED - Add CPE Information Section to Chaplaincy Training Page
+- [x] Add comprehensive CPE (Clinical Pastoral Education) Information Section
+- [x] Include CPE requirements and units information
+- [x] Add CPE training model and certification pathway
+- [x] List major CPE professional organizations (APC, NACC, ACPE, NAJC)
+- [x] Add Chicago CPE intern organizations list (6 organizations)
+- [x] Test updated page displays CPE content correctly
+- [x] Verify all links and information are accurate
+
+## RESOLVED - Missing CPE Content in Chaplaincy Course
+- [x] CPE (Clinical Pastoral Education) module restored from checkpoint 297f344
+- [x] All 10 Chaplaincy lessons restored to database
+- [x] Professional Development and Certification lesson with CPE content verified
+- [x] Chicago CPE intern organization list recovered
+- [x] Chaplaincy course fully functional with complete content
 
 ## CURRENT TASK - Verify Learning Paths Have Correct Lesson Content
 - [x] Check Intermediate Learning Path for courses and lessons
