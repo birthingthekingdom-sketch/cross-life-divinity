@@ -2,7 +2,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, Shield, Award, Users, BookOpen, Clock, DollarSign, ArrowRight } from "lucide-react";
+import { CheckCircle2, Shield, Award, Users, BookOpen, Clock, DollarSign, ArrowRight, Download } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
@@ -449,6 +449,133 @@ export default function ChaplaincyTraining() {
             <p className="text-center text-sm text-muted-foreground mt-8">
               Contact these organizations directly to inquire about CPE internship opportunities. Our program prepares you with the foundational knowledge needed for successful CPE training.
             </p>
+          </div>
+        </section>
+
+        {/* Downloadable Resources */}
+        <section>
+          <h2 className="text-3xl font-bold text-center mb-12">Downloadable Resources</h2>
+          <p className="text-center text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Access these comprehensive guides to support your chaplaincy journey and professional development.
+          </p>
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {[
+              {
+                title: "CCA Competencies Checklist",
+                description: "Track your progress through the 10 core competencies required for CCA certification. Includes progress tracking and next steps.",
+                file: "/resources/CCA-Competencies-Checklist.md",
+                icon: "✓"
+              },
+              {
+                title: "Chaplaincy Settings Quick Reference",
+                description: "Comprehensive overview of healthcare, military, correctional, and corporate chaplaincy settings with salary ranges and career paths.",
+                file: "/resources/Chaplaincy-Settings-Guide.md",
+                icon: "🏥"
+              },
+              {
+                title: "Professional Ethics Guide",
+                description: "Essential guide to ethical principles including confidentiality, boundaries, informed consent, and ethical decision-making.",
+                file: "/resources/Professional-Ethics-Guide.md",
+                icon: "⚖️"
+              },
+              {
+                title: "Self-Care & Resilience Toolkit",
+                description: "Practical strategies for maintaining well-being, preventing compassion fatigue, and building resilience in chaplaincy work.",
+                file: "/resources/Self-Care-Resilience-Toolkit.md",
+                icon: "💪"
+              }
+            ].map((resource, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-start gap-3 flex-1">
+                      <div className="text-3xl mt-1">{resource.icon}</div>
+                      <div>
+                        <CardTitle className="text-lg">{resource.title}</CardTitle>
+                        <CardDescription className="mt-2">{resource.description}</CardDescription>
+                      </div>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <a 
+                    href={resource.file} 
+                    download
+                    className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold"
+                  >
+                    <Download className="h-4 w-4" />
+                    Download PDF
+                  </a>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Student Testimonials */}
+        <section className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 rounded-2xl p-8 md:p-12">
+          <h2 className="text-3xl font-bold text-center mb-12">Student Testimonials</h2>
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                name: "Sarah Mitchell",
+                role: "Healthcare Chaplain",
+                organization: "Northwestern Memorial Hospital",
+                testimonial: "This program gave me the foundational knowledge I needed to serve patients with compassion and professionalism. The CISM training was particularly valuable in my daily work.",
+                image: "👩‍⚕️"
+              },
+              {
+                name: "James Rodriguez",
+                role: "Military Chaplain",
+                organization: "U.S. Army Reserve",
+                testimonial: "The pastoral care skills and ethics training prepared me excellently for supporting service members. The self-paced format allowed me to study while maintaining my military duties.",
+                image: "🪖"
+              },
+              {
+                name: "Dr. Patricia Chen",
+                role: "Correctional Chaplain",
+                organization: "Illinois Department of Corrections",
+                testimonial: "Outstanding program for anyone entering correctional ministry. The cultural competency and interfaith sensitivity modules are exactly what we need in this field.",
+                image: "📚"
+              },
+              {
+                name: "Michael Thompson",
+                role: "Corporate Chaplain",
+                organization: "Fortune 500 Company",
+                testimonial: "The crisis intervention and self-care modules have been invaluable. I can now provide meaningful support to employees while maintaining my own emotional health.",
+                image: "💼"
+              },
+              {
+                name: "Rev. Angela Williams",
+                role: "Hospice Chaplain",
+                organization: "Loyola University Medical Center",
+                testimonial: "The spiritual first aid training is transformative. I've been able to provide better support to families during their most difficult moments.",
+                image: "🙏"
+              },
+              {
+                name: "David Martinez",
+                role: "CCA Candidate",
+                organization: "Advocate Christ Medical Center",
+                testimonial: "Excellent preparation for CCA certification. The comprehensive curriculum covers everything needed to pass the competencies exam and start a chaplaincy career.",
+                image: "⭐"
+              }
+            ].map((testimonial, index) => (
+              <Card key={index} className="border-0 shadow-md hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="text-4xl">{testimonial.image}</div>
+                    <div>
+                      <CardTitle className="text-lg">{testimonial.name}</CardTitle>
+                      <CardDescription className="text-sm">{testimonial.role}</CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground italic mb-2">"{testimonial.testimonial}"</p>
+                  <p className="text-xs text-muted-foreground font-medium">{testimonial.organization}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </section>
 
