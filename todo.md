@@ -3349,3 +3349,13 @@ All components built and integrated. Ready for:
 - [x] Fix back button on Bridge Academy course detail pages (now navigates directly to /bridge-academy)
 - [x] Test both fixes
 - [ ] Save checkpoint
+
+
+## CURRENT TASK - Full-Length GED Practice Tests
+- [ ] Design practice test database schema (practiceTests, practiceTestSessions, practiceTestAnswers)
+- [ ] Create 50+ GED-format practice test questions across all 4 subjects
+- [ ] Build practice test backend API with timed sessions and scoring
+- [ ] Create practice test UI with timer, progress tracking, and answer explanations
+- [ ] Implement practice test history and performance analytics
+- [ ] Add unlimited practice test attempts
+- [ ] Test complete flow and save checkpoint
