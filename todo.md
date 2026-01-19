@@ -3375,3 +3375,15 @@ All components built and integrated. Ready for:
 - [ ] Hide or remove Chaplaincy from Professional Certifications section on student dashboard
 - [ ] Verify Chaplaincy lessons are accessible with working quizzes and auto-grading
 - [ ] Test all fixes and save checkpoint
+
+
+## COMPLETED - Certificate Preview & Progress Notifications
+- [x] Create certificate preview component with sample CLAC certificate
+- [x] Generate QR code for certificate verification
+- [x] Implement 7-day inactivity check for progress notifications
+- [x] Create progress notification email template with recommendations
+- [x] Set up scheduled job to send notifications every 7 days (Sunday 9:00 AM)
+- [x] Add certificate preview component to project
+- [ ] Add certificate preview to course completion pages
+- [ ] Test certificate preview and notification emails
+- [ ] Save checkpoint
