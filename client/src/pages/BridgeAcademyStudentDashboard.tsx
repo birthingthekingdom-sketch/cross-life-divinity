@@ -287,14 +287,30 @@ export default function BridgeAcademyStudentDashboard() {
                           <div>
                             <div className="flex justify-between mb-2">
                               <span className="text-sm font-medium">Topic Progress</span>
-                              <span className="text-sm text-muted-foreground">
-                                {course.progress.topicsCompleted}/{course.progress.totalTopics}
+                              <span className="text-sm font-semibold text-primary">
+                                {Math.round((course.progress.topicsCompleted / course.progress.totalTopics) * 100)}%
                               </span>
                             </div>
                             <Progress
                               value={(course.progress.topicsCompleted / course.progress.totalTopics) * 100}
                               className="h-2"
                             />
+                            <p className="text-xs text-muted-foreground mt-1">
+                              {course.progress.topicsCompleted}/{course.progress.totalTopics} topics completed • ~{Math.round(course.progress.topicsCompleted * 45)} min spent
+                            </p>
+                          </div>
+
+                          {/* Estimated Time Remaining */}
+                          <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 p-3 rounded-lg">
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <p className="text-xs font-medium text-blue-900 dark:text-blue-100">Estimated Time Remaining</p>
+                                <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 mt-1">
+                                  {Math.max(0, Math.round((course.progress.totalTopics - course.progress.topicsCompleted) * 45))} minutes
+                                </p>
+                              </div>
+                              <Clock className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                            </div>
                           </div>
 
                           {/* Stats Grid */}

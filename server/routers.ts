@@ -28,6 +28,8 @@ import { chaplaincyRouter } from './chaplaincy-router';
 import { installmentPlanRouter } from './installment-plan-router';
 import { paymentPlanRouter } from './payment-plan-router';
 import { practiceQuizRouter } from './practice-quiz-router';
+import { sendQuizResultEmail } from './quiz-email';
+import { generateLearningPathRecommendation, calculateWeakAreas, getMotivationalMessage } from './adaptive-learning';
 import { idVerificationRouter } from './id-verification-router';
 import { webinarRouter } from './webinar-router';
 import { coursePreviewRouter } from './course-preview-router';
@@ -404,6 +406,27 @@ export const appRouter = router({
           await db.markLessonComplete(ctx.user.id, input.courseId, input.lessonId);
         }
         
+        // Send email notification with quiz results
+        try {
+          const user = await db.getUserById(ctx.user.id);
+          const lesson = await db.getLessonById(input.lessonId);
+          const course = await db.getCourseById(input.courseId);
+          
+          if (user?.email && lesson && course) {
+            await sendQuizResultEmail(
+              user.email,
+              user.name || user.email,
+              course.title,
+              lesson.title,
+              score,
+              totalQuestions,
+              passed
+            );
+          }
+        } catch (emailError) {
+          console.error('Error sending quiz result email:', emailError);
+        }
+        
         return {
           score,
           totalQuestions,
@@ -416,6 +439,58 @@ export const appRouter = router({
       .input(z.object({ lessonId: z.number() }))
       .query(async ({ ctx, input }) => {
         return db.getQuizSubmissionByUserAndLesson(ctx.user.id, input.lessonId);
+      }),
+
+    getRecommendation: protectedProcedure
+      .input(z.object({ courseId: z.number() }))
+      .query(async ({ ctx, input }) => {
+        try {
+          const lessons = await db.getLessonsByCourse(input.courseId);
+          const totalTopics = lessons.length;
+          const topicScores = await Promise.all(
+            lessons.map(async (lesson) => {
+              const submission = await db.getQuizSubmissionByUserAndLesson(ctx.user.id, lesson.id);
+              return {
+                topicId: lesson.id,
+                topicTitle: lesson.title,
+                averageScore: submission ? Math.round((submission.score / submission.totalQuestions) * 100) : 0,
+                completed: !!submission,
+              };
+            })
+          );
+          const completedTopics = topicScores.filter((t) => t.completed).length;
+          const averageCourseScore = topicScores.length > 0
+            ? Math.round(topicScores.reduce((sum, t) => sum + t.averageScore, 0) / topicScores.length)
+            : 0;
+          const weakAreas = calculateWeakAreas(topicScores);
+          const latestSubmission = await db.getLatestQuizSubmissionByUser(ctx.user.id);
+          const currentScore = latestSubmission
+            ? Math.round((latestSubmission.score / latestSubmission.totalQuestions) * 100)
+            : 0;
+          const recommendation = generateLearningPathRecommendation(
+            currentScore,
+            completedTopics,
+            totalTopics,
+            averageCourseScore,
+            weakAreas
+          );
+          const completionPercentage = Math.round((completedTopics / totalTopics) * 100);
+          const motivationalMessage = getMotivationalMessage(averageCourseScore, completionPercentage);
+          return {
+            recommendation,
+            motivationalMessage,
+            stats: {
+              averageCourseScore,
+              completedTopics,
+              totalTopics,
+              completionPercentage,
+            },
+            weakAreas: weakAreas.slice(0, 3),
+          };
+        } catch (error) {
+          console.error('Error generating learning recommendation:', error);
+          return null;
+        }
       }),
     
     submitAnswer: protectedProcedure
