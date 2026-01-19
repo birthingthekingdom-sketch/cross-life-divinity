@@ -3327,3 +3327,18 @@ All components built and integrated. Ready for:
 - [x] Update course filtering to exclude Chaplaincy from theology courses
 - [x] Update dashboard to show Chaplaincy separately from theology courses
 - [x] Test course display on student and admin dashboards
+
+
+## COMPLETED - Update CLAC Certification Branding and Certificate System
+- [x] Update Chaplaincy Training page to emphasize CLSOD Certified Chaplain Assistant (CLAC) credential
+- [x] Update course description to highlight CLAC as primary credential
+- [x] Replace CCA references with CLAC where appropriate
+- [x] Update CCA Requirements section to CLAC Requirements section
+- [x] Verify automatic grading system for course completion
+- [x] Update certificate generation format from CPD to CLAC
+- [x] Update MyCertificates page to show CLAC credentials
+- [x] Verify certificate displays CLAC credential and Cross Life Accreditation Counsel
+- [ ] Implement certificate generation with QR code and unique URL
+- [ ] Add certificate button to student dashboard
+- [ ] Test complete certificate workflow (enrollment → completion → certificate)
+- [ ] Save checkpoint with CLAC updates

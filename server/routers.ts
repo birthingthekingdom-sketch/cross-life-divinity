@@ -541,9 +541,9 @@ export const appRouter = router({
           throw new TRPCError({ code: 'BAD_REQUEST', message: 'Course not completed' });
         }
         
-        // Generate CPD-format certificate number
+        // Generate CLAC-format certificate number
         const timestamp = Date.now();
-        const certificateNumber = `CPD-CLSD-${new Date().getFullYear()}-${course.code}-${timestamp.toString().slice(-5)}`;
+        const certificateNumber = `CLAC-${new Date().getFullYear()}-${course.code}-${timestamp.toString().slice(-5)}`;
         
         // Generate unique verification token
         const verificationToken = `${timestamp}-${ctx.user.id}-${input.courseId}-${Math.random().toString(36).substring(2, 15)}`;

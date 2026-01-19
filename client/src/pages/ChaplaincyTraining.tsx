@@ -346,41 +346,41 @@ export default function ChaplaincyTraining() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BookOpen className="h-6 w-6 text-primary" />
-                  CCA Certification Pathway
+                  CLAC Certification Pathway
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
                   <h4 className="font-semibold mb-2">Program Focus</h4>
-                  <p className="text-muted-foreground mb-3">This course provides comprehensive training in CISM, spiritual first aid, ethics, and chaplaincy practice - all essential skills for CCA certification.</p>
+                  <p className="text-muted-foreground mb-3">This course provides comprehensive training in CISM, spiritual first aid, ethics, and chaplaincy practice - all essential skills for CLAC certification.</p>
                 </div>
                 <div>
                   <h4 className="font-semibold mb-2">Next Steps</h4>
                   <ol className="space-y-1 text-sm text-muted-foreground">
-                    <li>1. Complete this comprehensive course</li>
-                    <li>2. Apply for CCA certification with ACCC</li>
-                    <li>3. Pass CCA competencies exam</li>
-                    <li>4. Earn your CCA credential</li>
+                    <li>1. Complete all 10 lessons in this course</li>
+                    <li>2. Pass competency assessments with automatic grading</li>
+                    <li>3. Receive your CLAC certificate with QR code</li>
+                    <li>4. Download and print your credential</li>
                   </ol>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* CCA Professional Organizations */}
+          {/* CLAC Accreditation */}
           <div className="mb-12">
-            <h3 className="text-2xl font-bold text-center mb-8">CCA Professional Organizations</h3>
+            <h3 className="text-2xl font-bold text-center mb-8">CLAC Accreditation & Recognition</h3>
             <div className="grid md:grid-cols-2 gap-4">
               {[
                 {
-                  name: "ACCC",
-                  full: "Association of Certified Christian Chaplains",
-                  desc: "Issues CCA (Certified Chaplain Assistant) credentials for those with high school diploma"
+                  name: "CLAC",
+                  full: "Cross Life Accreditation Counsel",
+                  desc: "Issues CLAC (CLSOD Certified Chaplain Assistant) credentials for professional chaplaincy practice"
                 },
                 {
-                  name: "ACPE",
-                  full: "Association for Clinical Pastoral Education",
-                  desc: "Provides advanced CPE training for those pursuing full chaplain certification"
+                  name: "CLSOD",
+                  full: "Cross Life School of Divinity",
+                  desc: "Provides comprehensive chaplaincy training and CLAC certification pathway"
                 }
               ].map((org, index) => (
                 <Card key={index} className="text-center">
@@ -396,11 +396,11 @@ export default function ChaplaincyTraining() {
             </div>
           </div>
 
-          {/* Chicago Area CCA Employer Organizations */}
+          {/* Chicago Area Chaplaincy Employers */}
           <div>
             <h3 className="text-2xl font-bold text-center mb-8">Chicago Area Chaplaincy Employers</h3>
             <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
-              After earning your CCA certification, you can work as a Certified Chaplain Assistant at these recognized Chicago-area organizations:
+              After earning your CLAC credential, you can work as a Certified Chaplain Assistant at these recognized Chicago-area organizations:
             </p>
             <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
               {[
