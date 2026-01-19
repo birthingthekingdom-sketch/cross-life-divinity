@@ -37,11 +37,7 @@ export default function BridgeAcademyCourseDetail() {
   const [match, params] = useRoute("/bridge-academy/course/:courseId");
   
   const handleBack = () => {
-    if (window.history.length > 1) {
-      window.history.back();
-    } else {
-      navigate("/bridge-academy");
-    }
+    navigate("/bridge-academy");
   };
   const [courseData, setCourseData] = useState<any>(null);
   const [topics, setTopics] = useState<Topic[]>([]);

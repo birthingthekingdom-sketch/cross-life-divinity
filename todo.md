@@ -3342,3 +3342,10 @@ All components built and integrated. Ready for:
 - [ ] Add certificate button to student dashboard
 - [ ] Test complete certificate workflow (enrollment → completion → certificate)
 - [ ] Save checkpoint with CLAC updates
+
+
+## COMPLETED - Fix Bridge Academy Issues
+- [x] Remove 7-day trial messaging from Bridge Academy pages
+- [x] Fix back button on Bridge Academy course detail pages (now navigates directly to /bridge-academy)
+- [x] Test both fixes
+- [ ] Save checkpoint
