@@ -26,6 +26,16 @@
 
 ---
 
+## COMPLETED - Convert Chaplaincy Training from CPE to CCA (Certified Chaplain Assistant)
+- [x] Update main banner to "Become a Certified Chaplain Assistant"
+- [x] Update course description with CISM, critical incident stress management, spiritual first aid, confidentiality, ethics
+- [x] Replace CPE Information Section with CCA Information Section
+- [x] Update CCA requirements (high school diploma + some college credit)
+- [x] Update CCA professional organizations (ACCC)
+- [x] Update Chicago area CCA organizations/endorsers
+- [x] Test updated page displays correctly
+- [x] Save checkpoint after CCA conversion
+
 ## COMPLETED - Add CPE Information Section to Chaplaincy Training Page
 - [x] Add comprehensive CPE (Clinical Pastoral Education) Information Section
 - [x] Include CPE requirements and units information

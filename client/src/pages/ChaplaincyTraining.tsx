@@ -93,10 +93,10 @@ export default function ChaplaincyTraining() {
               Professional Certification Program
             </Badge>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Chaplaincy Training & Certification
+              Become a Certified Chaplain Assistant
             </h1>
             <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8">
-              Become a certified chaplain and serve in hospitals, military, correctional facilities, and corporate settings
+              Professional chaplaincy certification with just a high school diploma. Master crisis intervention, spiritual first aid, CISM, and ethical chaplaincy practice.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <div className="text-center">
@@ -149,33 +149,33 @@ export default function ChaplaincyTraining() {
             {[
               {
                 icon: Shield,
-                title: "Crisis Intervention",
-                description: "Learn to provide emotional and spiritual support during emergencies and traumatic events"
+                title: "Critical Incident Stress Management (CISM)",
+                description: "Learn evidence-based techniques for managing acute stress reactions and supporting individuals after traumatic events"
               },
               {
                 icon: Users,
-                title: "Pastoral Care",
-                description: "Develop skills for one-on-one counseling and group ministry in institutional settings"
+                title: "Spiritual First Aid",
+                description: "Develop skills to provide immediate spiritual and emotional support during crises and emergencies"
               },
               {
                 icon: BookOpen,
-                title: "Theological Foundations",
-                description: "Build a strong theological framework for multi-faith chaplaincy work"
+                title: "Pastoral Care & Counseling",
+                description: "Master one-on-one counseling and group ministry techniques in institutional settings"
               },
               {
                 icon: Award,
-                title: "Ethics & Boundaries",
-                description: "Understand professional ethics, confidentiality, and appropriate boundaries"
+                title: "Ethics & Confidentiality",
+                description: "Understand professional ethics, legal confidentiality requirements, and appropriate professional boundaries"
               },
               {
                 icon: Users,
-                title: "Cultural Competency",
-                description: "Minister effectively across diverse religious, cultural, and ethnic backgrounds"
+                title: "Cultural & Interfaith Competency",
+                description: "Minister effectively across diverse religious, cultural, and ethnic backgrounds with sensitivity and respect"
               },
               {
                 icon: Clock,
-                title: "Self-Care Practices",
-                description: "Maintain your own spiritual and emotional health while serving others"
+                title: "Self-Care & Resilience",
+                description: "Maintain your own spiritual and emotional health while providing compassionate care to others"
               }
             ].map((item, index) => (
               <Card key={index} className="border-2 hover:border-primary/50 transition-colors">
@@ -246,13 +246,13 @@ export default function ChaplaincyTraining() {
           <h2 className="text-3xl font-bold text-center mb-12">Program Benefits</h2>
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {[
-              "CPD-accredited certification recognized by chaplaincy organizations",
-              "Comprehensive curriculum covering all aspects of chaplaincy ministry",
+              "CCA (Certified Chaplain Assistant) certification pathway - high school diploma only requirement",
+              "Comprehensive curriculum covering CISM, spiritual first aid, ethics, and chaplaincy practice",
               "Background check included in tuition ($50 value)",
               "Flexible online learning - study at your own pace",
               "Lifetime access to course materials and updates",
               "Certificate of completion upon finishing the program",
-              "Preparation for professional chaplaincy endorsement",
+              "Preparation for CCA professional certification with ACCC",
               "Ongoing support from experienced chaplaincy instructors"
             ].map((benefit, index) => (
               <div key={index} className="flex items-start gap-3">
@@ -309,90 +309,78 @@ export default function ChaplaincyTraining() {
           </div>
         </section>
 
-        {/* CPE Information Section */}
-        <section className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 rounded-2xl p-8 md:p-12">
-          <h2 className="text-3xl font-bold text-center mb-4">Clinical Pastoral Education (CPE) Focus</h2>
-          <p className="text-center text-lg text-muted-foreground mb-12 max-w-3xl mx-auto">
-            This program is designed with Clinical Pastoral Education (CPE) standards in mind, preparing you for professional CPE internships and certification.
-          </p>
+            {/* Certified Chaplain Assistant (CCA) Focus */}
+        <section className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-950/20 dark:to-blue-950/20 rounded-2xl p-8 md:p-12">
+          <h2 className="text-3xl font-bold text-center mb-12">Certified Chaplain Assistant (CCA) Certification</h2>
+          <p className="text-center text-lg text-muted-foreground mb-8">This program prepares you for professional CCA (Certified Chaplain Assistant) certification with the Association of Certified Christian Chaplains (ACCC). Perfect for those with a high school diploma who want to become certified chaplains.</p>
           
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {/* CPE Requirements */}
+            {/* CCA Requirements */}
             <Card className="border-2">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Award className="h-6 w-6 text-primary" />
-                  CPE Requirements
+                  CCA Requirements
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <h4 className="font-semibold mb-2">CPE Units</h4>
-                  <p className="text-muted-foreground mb-3">One standard CPE unit requires 400 hours of supervised clinical work. This program provides foundational knowledge to pursue CPE internships.</p>
+                  <h4 className="font-semibold mb-2">Education Requirement</h4>
+                  <p className="text-muted-foreground mb-3">High school diploma with some college credit. No bachelor's degree required - making professional chaplaincy certification accessible to more people.</p>
                 </div>
                 <div>
                   <h4 className="font-semibold mb-2">Core Competencies</h4>
                   <ul className="space-y-1 text-sm text-muted-foreground">
-                    <li>• Self-awareness and personal growth</li>
-                    <li>• Pastoral care and counseling skills</li>
-                    <li>• Theological reflection</li>
-                    <li>• Professional ethics and boundaries</li>
-                    <li>• Interfaith sensitivity</li>
+                    <li>• Crisis intervention and CISM</li>
+                    <li>• Spiritual first aid and pastoral care</li>
+                    <li>• Ethical practice and confidentiality</li>
+                    <li>• Professional boundaries</li>
+                    <li>• Interfaith and cultural sensitivity</li>
                   </ul>
                 </div>
               </CardContent>
             </Card>
 
-            {/* CPE Training Model */}
+            {/* CCA Certification Pathway */}
             <Card className="border-2">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BookOpen className="h-6 w-6 text-primary" />
-                  CPE Training Model
+                  CCA Certification Pathway
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <h4 className="font-semibold mb-2">Our Approach</h4>
-                  <p className="text-muted-foreground mb-3">We integrate the CPE learning model: action, reflection, theological interpretation, and integration.</p>
+                  <h4 className="font-semibold mb-2">Program Focus</h4>
+                  <p className="text-muted-foreground mb-3">This course provides comprehensive training in CISM, spiritual first aid, ethics, and chaplaincy practice - all essential skills for CCA certification.</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-2">Certification Pathway</h4>
+                  <h4 className="font-semibold mb-2">Next Steps</h4>
                   <ol className="space-y-1 text-sm text-muted-foreground">
-                    <li>1. Complete this foundational course</li>
-                    <li>2. Pursue CPE internship (400+ hours)</li>
-                    <li>3. Earn CPE certification</li>
-                    <li>4. Pursue professional endorsement</li>
+                    <li>1. Complete this comprehensive course</li>
+                    <li>2. Apply for CCA certification with ACCC</li>
+                    <li>3. Pass CCA competencies exam</li>
+                    <li>4. Earn your CCA credential</li>
                   </ol>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* Professional Organizations */}
+          {/* CCA Professional Organizations */}
           <div className="mb-12">
-            <h3 className="text-2xl font-bold text-center mb-8">CPE Professional Organizations</h3>
-            <div className="grid md:grid-cols-4 gap-4">
+            <h3 className="text-2xl font-bold text-center mb-8">CCA Professional Organizations</h3>
+            <div className="grid md:grid-cols-2 gap-4">
               {[
+                {
+                  name: "ACCC",
+                  full: "Association of Certified Christian Chaplains",
+                  desc: "Issues CCA (Certified Chaplain Assistant) credentials for those with high school diploma"
+                },
                 {
                   name: "ACPE",
                   full: "Association for Clinical Pastoral Education",
-                  desc: "Accredits CPE programs nationwide"
-                },
-                {
-                  name: "APC",
-                  full: "American Protestant Correctional Chaplains Association",
-                  desc: "Specializes in correctional chaplaincy"
-                },
-                {
-                  name: "NACC",
-                  full: "National Association of Catholic Chaplains",
-                  desc: "Supports Catholic chaplains in all settings"
-                },
-                {
-                  name: "NAJC",
-                  full: "National Association of Jewish Chaplains",
-                  desc: "Represents Jewish chaplaincy professionals"
+                  desc: "Provides advanced CPE training for those pursuing full chaplain certification"
                 }
               ].map((org, index) => (
                 <Card key={index} className="text-center">
@@ -408,11 +396,11 @@ export default function ChaplaincyTraining() {
             </div>
           </div>
 
-          {/* Chicago CPE Organizations */}
+          {/* Chicago Area CCA Employer Organizations */}
           <div>
-            <h3 className="text-2xl font-bold text-center mb-8">Chicago Area CPE Intern Organizations</h3>
+            <h3 className="text-2xl font-bold text-center mb-8">Chicago Area Chaplaincy Employers</h3>
             <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
-              After completing this program, you can pursue CPE internships at these recognized Chicago-area organizations:
+              After earning your CCA certification, you can work as a Certified Chaplain Assistant at these recognized Chicago-area organizations:
             </p>
             <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
               {[
