@@ -3367,3 +3367,11 @@ All components built and integrated. Ready for:
 - [ ] Create performance analytics dashboard for practice tests
 - [ ] Implement diagnostic pre-assessment test (15 questions)
 - [ ] Test all features and save checkpoint
+
+
+## CURRENT TASK - Fix Bridge Academy & Chaplaincy Course Issues
+- [ ] Fix Bridge Academy course access after payment - ensure all 4 GED courses become available
+- [ ] Fix student dashboard to show lessons instead of 'Start Quiz' for GED courses
+- [ ] Hide or remove Chaplaincy from Professional Certifications section on student dashboard
+- [ ] Verify Chaplaincy lessons are accessible with working quizzes and auto-grading
+- [ ] Test all fixes and save checkpoint

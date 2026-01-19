@@ -275,8 +275,23 @@ export default function BridgeAcademyCourseDetail() {
                           </div>
                         )}
 
+                        {/* Lesson Content Preview */}
+                        <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 p-3 rounded-lg mb-3">
+                          <p className="text-sm font-medium text-blue-900 dark:text-blue-100 mb-2">Lesson Content</p>
+                          <p className="text-sm text-blue-800 dark:text-blue-200">
+                            {topic.description || 'Study the key concepts and materials for this topic before taking the quiz.'}
+                          </p>
+                        </div>
+
                         {/* Action Buttons */}
                         <div className="flex gap-2 flex-wrap">
+                          <Button
+                            size="sm"
+                            onClick={() => navigate(`/bridge-academy/lesson/${topic.id}`)}
+                          >
+                            <BookOpen className="w-4 h-4 mr-2" />
+                            View Lesson
+                          </Button>
                           <Button
                             size="sm"
                             onClick={() => navigate(`/bridge-academy/quiz/${topic.id}`)}

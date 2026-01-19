@@ -363,7 +363,7 @@ export default function BridgeAcademyStudentDashboard() {
                         size="lg"
                       >
                         <Zap className="w-4 h-4 mr-2" />
-                        {course.progress ? "Continue Learning" : "Start Course"}
+                        {course.progress ? "Continue Learning" : "Start Lesson"}
                       </Button>
                     </CardContent>
                   </Card>
