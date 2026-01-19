@@ -256,6 +256,14 @@ export function StudentDashboard() {
               <BookOpen className="w-4 h-4" />
               Continue Learning
             </Button>
+            <Button
+              variant="outline"
+              onClick={() => navigate('/referral-dashboard')}
+              className="gap-2"
+            >
+              <TrendingUp className="w-4 h-4" />
+              Earn Referral Credits
+            </Button>
           </div>
         </div>
       </div>

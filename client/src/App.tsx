@@ -52,6 +52,7 @@ import Catalog from './pages/Catalog';
 import PathCertificate from './pages/PathCertificate';
 import EmailSettings from './pages/EmailSettings';
 import Referrals from './pages/Referrals';
+import ReferralDashboard from './pages/ReferralDashboard';
 import AdminEmailConfig from './pages/AdminEmailConfig';
 import AdminEmailNotifications from './pages/AdminEmailNotifications';
 import AdminEmailExport from './pages/AdminEmailExport';
@@ -151,6 +152,7 @@ function Router() {
       <Route path="/path-certificate/:pathId" component={PathCertificate} />
           <Route path="/email-settings" component={EmailSettings} />
           <Route path="/referrals" component={Referrals} />
+        <Route path="/referral-dashboard" component={ReferralDashboard} />
       <Route path="/progress" component={Progress} />
       <Route path="/learning-paths" component={LearningPaths} />
       <Route path="/cohorts" component={CohortGroups} />
