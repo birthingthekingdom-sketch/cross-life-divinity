@@ -506,6 +506,82 @@ export default function Pricing() {
               </Button>
             </CardFooter>
           </Card>
+
+          {/* Bridge Academy */}
+          <Card className="relative border-2 border-amber-600 bg-gradient-to-br from-amber-900/20 to-slate-800/50 backdrop-blur">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+              <Badge className="bg-amber-500 text-white px-6 py-1 text-sm font-bold">
+                FREE BONUS
+              </Badge>
+            </div>
+            <CardHeader className="pt-8">
+              <div className="flex items-center justify-between mb-2">
+                <BookOpen className="w-8 h-8 text-amber-400" />
+                <Badge variant="outline" className="text-amber-300 border-amber-600">
+                  All 4 GED Subjects
+                </Badge>
+              </div>
+              <CardTitle className="text-3xl text-white">Bridge Academy</CardTitle>
+              <CardDescription className="text-slate-300 text-lg">
+                Complete GED preparation program
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-baseline gap-3">
+                  <span className="text-3xl text-slate-500 line-through">$199</span>
+                  <span className="text-5xl font-bold text-white">FREE</span>
+                </div>
+                <p className="text-sm text-green-400 font-semibold">Included with any course enrollment</p>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">
+                    <strong className="text-white">All 4 GED subjects:</strong> Reading, Math, Science, Social Studies
+                  </span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">50+ full-length practice tests with instant scoring</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">Detailed answer explanations for every question</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">Unlimited quiz retakes with different questions</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">GED Prep Completion Certificate</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">Lifetime access to all materials</span>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-amber-700/50">
+                <div className="flex items-center gap-2 text-amber-300">
+                  <GraduationCap className="w-5 h-5" />
+                  <span className="font-semibold">Prepare for the official GED exam</span>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button
+                onClick={() => navigate("/courses")}
+                className="w-full bg-amber-600 hover:bg-amber-700 text-white"
+                size="lg"
+              >
+                <BookOpen className="w-4 h-4 mr-2" />
+                Enroll in a Course (Get Bridge Academy FREE)
+              </Button>
+            </CardFooter>
+          </Card>
         </div>
 
         {/* Upgrade Option */}
