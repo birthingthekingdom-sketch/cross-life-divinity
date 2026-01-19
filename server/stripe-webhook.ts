@@ -34,6 +34,12 @@ export async function handleStripeWebhook(req: Request, res: Response) {
     switch (event.type) {
       case "checkout.session.completed":
         await handleCheckoutSessionCompleted(event.data.object as Stripe.Checkout.Session);
+        // Grant Bridge Academy access for ANY successful payment
+        const session = event.data.object as Stripe.Checkout.Session;
+        const userId = parseInt(session.metadata?.userId || "0");
+        if (userId && session.payment_status === "paid") {
+          await grantBridgeAcademyAccess(userId);
+        }
         break;
 
       case "customer.subscription.created":
@@ -597,5 +603,41 @@ async function handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
       plan.monthlyAmount / 100,
       'Payment method declined'
     );
+  }
+}
+
+
+/**
+ * Grant Bridge Academy access to a user
+ * Called for ANY successful payment to ensure students get free Bridge Academy access
+ */
+async function grantBridgeAcademyAccess(userId: number) {
+  try {
+    const dbConn = await db.getDb();
+    if (!dbConn) {
+      console.error("Database not available for Bridge Academy enrollment");
+      return;
+    }
+
+    // Check if user already has Bridge Academy access
+    const existing: any = await dbConn.execute(
+      sql`SELECT id FROM bridge_academy_enrollments WHERE userId = ${userId} AND status = 'active'`
+    );
+    const enrollments = Array.isArray(existing) ? existing : (existing.rows || []);
+    
+    if (enrollments.length > 0) {
+      console.log(`User ${userId} already has Bridge Academy access`);
+      return;
+    }
+
+    // Grant Bridge Academy access
+    await dbConn.execute(
+      sql`INSERT INTO bridge_academy_enrollments (userId, enrolledAt, status)
+          VALUES (${userId}, NOW(), 'active')
+          ON DUPLICATE KEY UPDATE status = 'active', enrolledAt = NOW()`
+    );
+    console.log(`Bridge Academy access granted to user ${userId} via payment`);
+  } catch (err: any) {
+    console.error(`Failed to grant Bridge Academy access: ${err.message}`);
   }
 }
