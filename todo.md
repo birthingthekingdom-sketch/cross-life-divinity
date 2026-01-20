@@ -74,6 +74,12 @@
 - [x] Created listGed endpoint for Bridge Academy
 - [x] Updated Catalog page to fetch theological and GED courses separately
 
+## CURRENT SESSION - Jan 19, 2026
+- [x] Fix Bridge Academy standalone enrollment - students can now enroll in GED without purchasing theological courses
+- [x] Implement email confirmation for Bridge Academy enrollments
+- [x] Test complete signup + Bridge Academy enrollment flow
+- [ ] Fix Chaplaincy lesson access control - prevent unauthenticated users from accessing lessons 4-10
+
 ## ACTIVE TASKS (IN PROGRESS)
 - [x] Add Preview Course button to admin panel for course review in presentations - Jan 12, 2025
 - [x] Fix CourseIntroSlideshow to handle numeric courseIds - Jan 12, 2025
@@ -3419,3 +3425,9 @@ All components built and integrated. Ready for:
 - [x] Referral system awards $50 credits to referring student (not new student)
 - [ ] Test referral flow end-to-end
 - [ ] Save checkpoint
+
+
+## CURRENT SESSION ISSUES (Jan 19, 2025)
+- [ ] Fix Chaplaincy lesson access control - implement preview (first 3 lessons) vs enrolled (lessons 4-10)
+- [ ] Fix Bridge Academy standalone enrollment - students should be able to enroll in GED alone without theological courses
+- [ ] Verify Chaplaincy lesson 404 error resolution

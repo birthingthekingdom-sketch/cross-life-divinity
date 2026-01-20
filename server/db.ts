@@ -1707,9 +1707,39 @@ export async function getAllBridgeAcademyCoursesWithTopics() {
 /**
  * Get student's Bridge Academy enrollment status
  */
-export async function getStudentBridgeAcademyEnrollment(userId: number) {
-  // TODO: bridgeAcademyEnrollments table not yet implemented
-  return null;
+export async function getUserBridgeAcademyEnrollment(userId: number) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  try {
+    const result: any = await db.execute(
+      sql`SELECT id, userId, enrolledAt, status FROM bridge_academy_enrollments WHERE userId = ${userId} AND status = 'active' LIMIT 1`
+    );
+    const enrollments = Array.isArray(result) ? result : (result.rows || []);
+    return enrollments.length > 0 ? enrollments[0] : null;
+  } catch (err) {
+    console.error("Error getting Bridge Academy enrollment:", err);
+    return null;
+  }
+}
+
+/**
+ * Create Bridge Academy enrollment for user
+ */
+export async function createBridgeAcademyEnrollment(data: { userId: number; enrolledAt: Date }) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  try {
+    await db.execute(
+      sql`INSERT INTO bridge_academy_enrollments (userId, enrolledAt, status)
+          VALUES (${data.userId}, ${data.enrolledAt}, 'active')
+          ON DUPLICATE KEY UPDATE status = 'active', enrolledAt = ${data.enrolledAt}`
+    );
+  } catch (err) {
+    console.error("Error creating Bridge Academy enrollment:", err);
+    throw err;
+  }
 }
 
 /**

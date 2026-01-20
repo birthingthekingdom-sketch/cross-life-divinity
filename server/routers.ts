@@ -300,11 +300,47 @@ export const appRouter = router({
     
     getById: publicProcedure
       .input(z.object({ id: z.number() }))
-      .query(async ({ input }) => {
+      .query(async ({ ctx, input }) => {
         const lesson = await db.getLessonById(input.id);
         if (!lesson) {
           throw new TRPCError({ code: 'NOT_FOUND', message: 'Lesson not found' });
         }
+        
+        // Get the course to check if it's a preview course
+        const course = await db.getCourseById(lesson.courseId);
+        if (!course) {
+          throw new TRPCError({ code: 'NOT_FOUND', message: 'Course not found' });
+        }
+        
+        // Get all lessons for this course ordered by lessonOrder
+        const allLessons = await db.getLessonsByCourseId(lesson.courseId);
+        const lessonIndex = allLessons.findIndex(l => l.id === lesson.id);
+        
+        // Check if this is a preview lesson (first 3 lessons)
+        const isPreviewLesson = lessonIndex >= 0 && lessonIndex < 3;
+        
+        // If it's a preview lesson, allow access to anyone
+        if (isPreviewLesson) {
+          return lesson;
+        }
+        
+        // For non-preview lessons, require authentication and enrollment
+        if (!ctx.user) {
+          throw new TRPCError({ 
+            code: 'UNAUTHORIZED', 
+            message: 'You must be logged in to access this lesson. Please sign up or log in to continue.' 
+          });
+        }
+        
+        // Check if user is enrolled in the course
+        const isEnrolled = await db.isUserEnrolledInCourse(ctx.user.id, lesson.courseId);
+        if (!isEnrolled) {
+          throw new TRPCError({ 
+            code: 'FORBIDDEN', 
+            message: 'You must be enrolled in this course to access this lesson. Please enroll to continue.' 
+          });
+        }
+        
         return lesson;
       }),
     

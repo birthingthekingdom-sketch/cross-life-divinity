@@ -815,3 +815,14 @@ export const webinars = mysqlTable("webinars", {
 	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
 	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
 });
+
+
+export const bridgeAcademyEnrollments = mysqlTable("bridge_academy_enrollments", {
+	id: int().autoincrement().notNull(),
+	userId: int().notNull(),
+	enrolledAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
+	status: mysqlEnum(['active', 'inactive', 'cancelled']).default('active').notNull(),
+},
+(table) => [
+	index("userId").on(table.userId),
+]);

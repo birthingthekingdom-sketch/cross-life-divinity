@@ -33,7 +33,7 @@ export default function Pricing() {
   const [, setLocation] = useLocation();
   const navigate = (path: string) => setLocation(path);
   const { user, isAuthenticated } = useAuth();
-  const [loading, setLoading] = useState<"subscription" | "course" | null>(null);
+  const [loading, setLoading] = useState<"subscription" | "course" | "bridgeAcademy" | null>(null);
 
   const { data: courses } = trpc.courses.listAll.useQuery();
   const { data: subscription } = trpc.payment.getSubscriptionStatus.useQuery(undefined, {
@@ -51,6 +51,18 @@ export default function Pricing() {
     },
     onError: (error: any) => {
       toast.error(error.message || "Failed to create checkout session");
+      setLoading(null);
+    },
+  });
+
+  const enrollBridgeAcademyFree = trpc.payment.enrollBridgeAcademyFree.useMutation({
+    onSuccess: (data: any) => {
+      toast.success("Successfully enrolled in Bridge Academy!");
+      setLoading(null);
+      setTimeout(() => navigate("/bridge-academy"), 1000);
+    },
+    onError: (error: any) => {
+      toast.error(error.message || "Failed to enroll in Bridge Academy");
       setLoading(null);
     },
   });
@@ -73,6 +85,16 @@ export default function Pricing() {
 
   const handleBrowseCourses = () => {
     navigate("/courses");
+  };
+
+  const handleEnrollBridgeAcademy = () => {
+    if (!isAuthenticated) {
+      toast.error("Please log in to enroll in Bridge Academy");
+      navigate("/login");
+      return;
+    }
+    setLoading("bridgeAcademy");
+    enrollBridgeAcademyFree.mutate();
   };
 
   const hasActiveSub = !!subscription && subscription.status === "active";
@@ -573,12 +595,13 @@ export default function Pricing() {
             </CardContent>
             <CardFooter>
               <Button
-                onClick={() => navigate("/courses")}
+                onClick={handleEnrollBridgeAcademy}
+                disabled={loading === "bridgeAcademy"}
                 className="w-full bg-amber-600 hover:bg-amber-700 text-white"
                 size="lg"
               >
                 <BookOpen className="w-4 h-4 mr-2" />
-                Enroll in a Course (Get Bridge Academy FREE)
+                {loading === "bridgeAcademy" ? "Enrolling..." : "Enroll in Bridge Academy FREE"}
               </Button>
             </CardFooter>
           </Card>

@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { PublicNav } from "@/components/PublicNav";
 import { BookOpen, CheckCircle, Users, Award, ArrowRight, Share2, ArrowLeft } from "lucide-react";
+import { trpc } from "@/lib/trpc";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { toast } from "sonner";
 
 export function BridgeAcademy() {
   const [, navigate] = useLocation();
@@ -11,6 +14,25 @@ export function BridgeAcademy() {
   const [selectedCourse, setSelectedCourse] = useState<string | null>(params?.subject || null);
   const [courseDetails, setCourseDetails] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const { isAuthenticated } = useAuth();
+
+  const enrollBridgeAcademyFree = trpc.payment.enrollBridgeAcademyFree.useMutation({
+    onSuccess: () => {
+      toast.success("Successfully enrolled in Bridge Academy!");
+      setTimeout(() => navigate("/bridge-academy"), 1000);
+    },
+    onError: (error: any) => {
+      toast.error(error.message || "Failed to enroll in Bridge Academy");
+    },
+  });
+
+  const handleEnrollBridgeAcademy = () => {
+    if (!isAuthenticated) {
+      navigate("/pricing");
+      return;
+    }
+    enrollBridgeAcademyFree.mutate();
+  };
 
   useEffect(() => {
     if (params?.subject) {

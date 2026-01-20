@@ -851,3 +851,89 @@ export async function sendFullPaymentReceiptEmail(
     return false;
   }
 }
+
+
+/**
+ * Send Bridge Academy enrollment confirmation email
+ */
+export async function sendBridgeAcademyEnrollmentEmail(to: string, studentName: string) {
+  const transporter = await getTransporter();
+  if (!transporter) return false;
+
+  try {
+    await transporter.sendMail({
+      from: emailConfig!.user,
+      to,
+      subject: 'Welcome to Bridge Academy - Free GED Prep Program',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%); padding: 30px; border-radius: 8px 8px 0 0; text-align: center;">
+            <h2 style="color: white; margin: 0;">🎓 Welcome to Bridge Academy!</h2>
+            <p style="color: #dbeafe; margin: 10px 0 0 0; font-size: 16px;">Your Free GED Preparation Program</p>
+          </div>
+          
+          <div style="padding: 30px; background-color: #f9fafb;">
+            <p>Dear ${studentName},</p>
+            
+            <p>Congratulations! You now have access to <strong>Bridge Academy</strong>, our comprehensive GED preparation program - completely FREE!</p>
+            
+            <div style="background-color: #eff6ff; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #1e40af;">
+              <h3 style="color: #1e40af; margin-top: 0;">What You Get Access To:</h3>
+              <ul style="line-height: 1.8; margin: 10px 0; padding-left: 20px;">
+                <li>✓ <strong>All 4 GED Subjects:</strong> Math, Language Arts, Science, Social Studies</li>
+                <li>✓ <strong>50+ Practice Tests:</strong> Full-length GED format exams</li>
+                <li>✓ <strong>Instant Scoring:</strong> Get immediate feedback on your performance</li>
+                <li>✓ <strong>Detailed Explanations:</strong> Understand every answer</li>
+                <li>✓ <strong>Unlimited Retakes:</strong> Practice as many times as you need</li>
+                <li>✓ <strong>GED Completion Certificate:</strong> Upon successful completion</li>
+                <li>✓ <strong>Lifetime Access:</strong> Study at your own pace, anytime</li>
+              </ul>
+            </div>
+            
+            <div style="background-color: #fef3c7; padding: 16px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #f59e0b;">
+              <p style="margin: 0; color: #78350f;"><strong>💡 Pro Tip:</strong> Start with the diagnostic pre-assessment to identify your strengths and areas for improvement!</p>
+            </div>
+            
+            <h3 style="color: #1e40af; margin-top: 30px;">Getting Started:</h3>
+            <ol style="line-height: 1.8; margin: 10px 0; padding-left: 20px;">
+              <li>Log in to your student dashboard</li>
+              <li>Navigate to "Bridge Academy GED Prep"</li>
+              <li>Choose a subject and start practicing</li>
+              <li>Track your progress and improve your score</li>
+            </ol>
+            
+            <p style="margin-top: 30px; text-align: center;">
+              <a href="https://cross-life-divinity.manus.space/dashboard" 
+                 style="background-color: #1e40af; color: white; padding: 12px 32px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
+                Go to Dashboard
+              </a>
+            </p>
+            
+            <div style="background-color: white; padding: 20px; margin: 30px 0; border-radius: 8px; border: 1px solid #e5e7eb;">
+              <p style="margin: 0; font-size: 14px; color: #6b7280;">
+                <strong>Need Help?</strong><br>
+                If you have any questions about Bridge Academy, contact us at 
+                <a href="mailto:studio6817@yahoo.com" style="color: #1e40af;">studio6817@yahoo.com</a> 
+                or call <a href="tel:+13123003295" style="color: #1e40af;">(312) 300-3295</a>
+              </p>
+            </div>
+            
+            <p style="margin-top: 30px; color: #666; font-size: 14px;">
+              Best of luck on your GED journey!<br>
+              <strong>Cross Life School of Divinity Team</strong>
+            </p>
+          </div>
+          
+          <div style="text-align: center; padding: 20px; background-color: #f3f4f6; color: #6b7280; font-size: 12px; border-radius: 0 0 8px 8px;">
+            <p style="margin: 0;">Cross Life School of Divinity</p>
+            <p style="margin: 5px 0 0 0;">Seminary-Level Theological Education</p>
+          </div>
+        </div>
+      `,
+    });
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send Bridge Academy enrollment email:', error);
+    return false;
+  }
+}

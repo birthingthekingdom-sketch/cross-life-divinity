@@ -60,6 +60,15 @@ export async function registerUser(email: string | undefined, password: string, 
   
   // Fetch and return the created user
   const newUser = await dbInstance.select().from(users).where(eq(users.id, userId)).limit(1);
+  
+  // Send Bridge Academy enrollment confirmation email
+  if (email && name) {
+    const { sendBridgeAcademyEnrollmentEmail } = await import('./email');
+    await sendBridgeAcademyEnrollmentEmail(email, name).catch(err => {
+      console.error('[Auth] Failed to send Bridge Academy enrollment email:', err);
+    });
+  }
+  
   return newUser[0];
 }
 
