@@ -78,6 +78,7 @@
 - [x] Fix Bridge Academy standalone enrollment - students can now enroll in GED without purchasing theological courses
 - [x] Implement email confirmation for Bridge Academy enrollments
 - [x] Test complete signup + Bridge Academy enrollment flow
+- [x] Add GED announcement banner to all pages - "Create an account and GET FREE GED PREP COURSES"
 - [ ] Fix Chaplaincy lesson access control - prevent unauthenticated users from accessing lessons 4-10
 
 ## ACTIVE TASKS (IN PROGRESS)

@@ -5,6 +5,7 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { InstallPrompt } from "./components/InstallPrompt";
 import { MobileNav } from "./components/MobileNav";
+import { GEDAnnouncement } from "./components/GEDAnnouncement";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
@@ -209,6 +210,7 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <InstallPrompt />
+          <GEDAnnouncement />
           <Router />
           <MobileNav />
         </TooltipProvider>
