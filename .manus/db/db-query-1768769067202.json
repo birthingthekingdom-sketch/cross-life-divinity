@@ -1,0 +1,15 @@
+{
+  "query": "SELECT COUNT(*) as total_courses, COUNT(CASE WHEN courseType = 'theological' THEN 1 END) as theological_courses, COUNT(CASE WHEN courseType = 'ged' THEN 1 END) as ged_courses FROM courses;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT COUNT(*) as total_courses, COUNT(CASE WHEN courseType = 'theological' THEN 1 END) as theological_courses, COUNT(CASE WHEN courseType = 'ged' THEN 1 END) as ged_courses FROM courses;",
+  "rows": [
+    {
+      "total_courses": "24",
+      "theological_courses": "20",
+      "ged_courses": "4"
+    }
+  ],
+  "messages": [],
+  "stdout": "total_courses\ttheological_courses\tged_courses\n24\t20\t4\n",
+  "stderr": "",
+  "execution_time_ms": 71
+}

@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE courses SET description = 'This comprehensive course explores the biblical foundations and practical applications of deliverance ministry. Students will study the nature of spiritual oppression, demonic influence, and the authority believers have in Christ to minister freedom and healing. The curriculum covers biblical case studies, theological frameworks, and practical protocols for conducting deliverance sessions with pastoral sensitivity and spiritual authority. Graduates will be equipped to identify spiritual bondage, minister effectively to those in need, and establish ongoing support systems for sustained freedom and spiritual growth.', cpdHours = 30 WHERE code = 'DIV102';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute UPDATE courses SET description = 'This comprehensive course explores the biblical foundations and practical applications of deliverance ministry. Students will study the nature of spiritual oppression, demonic influence, and the authority believers have in Christ to minister freedom and healing. The curriculum covers biblical case studies, theological frameworks, and practical protocols for conducting deliverance sessions with pastoral sensitivity and spiritual authority. Graduates will be equipped to identify spiritual bondage, minister effectively to those in need, and establish ongoing support systems for sustained freedom and spiritual growth.', cpdHours = 30 WHERE code = 'DIV102';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 176
+}

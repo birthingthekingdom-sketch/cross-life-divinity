@@ -156,7 +156,7 @@ export function StudentDashboard() {
             <CardContent>
               {courses.length > 0 ? (
                 <div className="space-y-6">
-                  {courses.map((course: any) => {
+                  {courses.filter((course: any) => !course.code?.startsWith('CHAP')).map((course: any) => {
                     const courseProgress = allProgress.filter(
                       (p: any) => p.courseId === course.id
                     );
@@ -255,6 +255,14 @@ export function StudentDashboard() {
             <Button variant="outline" className="gap-2">
               <BookOpen className="w-4 h-4" />
               Continue Learning
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => navigate('/referral-dashboard')}
+              className="gap-2"
+            >
+              <TrendingUp className="w-4 h-4" />
+              Earn Referral Credits
             </Button>
           </div>
         </div>

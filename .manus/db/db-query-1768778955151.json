@@ -1,0 +1,14 @@
+{
+  "query": "SELECT COUNT(*) as lesson_count, GROUP_CONCAT(title SEPARATOR ', ') as lesson_titles FROM lessons WHERE courseId = 150010;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT COUNT(*) as lesson_count, GROUP_CONCAT(title SEPARATOR ', ') as lesson_titles FROM lessons WHERE courseId = 150010;",
+  "rows": [
+    {
+      "lesson_count": "10",
+      "lesson_titles": "Introduction to Chaplaincy Ministry, Theological Foundations of Chaplaincy, Healthcare Chaplaincy, Military Chaplaincy, Correctional Chaplaincy, Corporate and Workplace Chaplaincy, Pastoral Care Skills and Crisis Intervention, Interfaith Sensitivity and Cultural Competence, Professional Development and Certification, Capstone: Integrating Chaplaincy Competencies"
+    }
+  ],
+  "messages": [],
+  "stdout": "lesson_count\tlesson_titles\n10\tIntroduction to Chaplaincy Ministry, Theological Foundations of Chaplaincy, Healthcare Chaplaincy, Military Chaplaincy, Correctional Chaplaincy, Corporate and Workplace Chaplaincy, Pastoral Care Skills and Crisis Intervention, Interfaith Sensitivity and Cultural Competence, Professional Development and Certification, Capstone: Integrating Chaplaincy Competencies\n",
+  "stderr": "",
+  "execution_time_ms": 53
+}

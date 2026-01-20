@@ -3,6 +3,7 @@ import * as db from './db';
 import * as email from './email';
 import * as idVerificationScheduler from './id-verification-scheduler';
 import * as webinarScheduler from './webinar-email-scheduler';
+import * as progressNotifications from './progress-notifications';
 
 /**
  * Scheduled task to send follow-up due date reminders
@@ -82,6 +83,18 @@ export function startFollowUpReminderScheduler() {
 
   // NOTE: No deadline enforcement - students have immediate access and are not penalized
   // Admin contacts students directly if there are verification issues
+
+  // Run progress notifications every 7 days (Sunday at 9:00 AM)
+  cron.schedule('0 9 * * 0', async () => {
+    console.log('[Scheduler] Running progress notifications for inactive students...');
+    try {
+      const result = await progressNotifications.sendProgressNotifications(7);
+      console.log(`[Scheduler] Progress notifications: ${result.sent} sent, ${result.failed} failed out of ${result.total} students`);
+    } catch (error) {
+      console.error('[Scheduler] Error in progress notification scheduler:', error);
+    }
+  });
+  console.log('[Scheduler] Progress notification scheduler started (runs weekly on Sunday at 9:00 AM)');
 }
 
 /**

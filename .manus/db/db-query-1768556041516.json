@@ -1,0 +1,14 @@
+{
+  "query": "SELECT \n  (SELECT COUNT(*) FROM lessons) as total_lessons,\n  (SELECT COUNT(DISTINCT lessonId) FROM quiz_questions) as lessons_with_quizzes;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT \n  (SELECT COUNT(*) FROM lessons) as total_lessons,\n  (SELECT COUNT(DISTINCT lessonId) FROM quiz_questions) as lessons_with_quizzes;",
+  "rows": [
+    {
+      "total_lessons": "159",
+      "lessons_with_quizzes": "152"
+    }
+  ],
+  "messages": [],
+  "stdout": "total_lessons\tlessons_with_quizzes\n159\t152\n",
+  "stderr": "",
+  "execution_time_ms": 55
+}

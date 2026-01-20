@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -9,12 +8,24 @@ import { Award, BookOpen, GraduationCap, LogOut, TrendingUp, Video, CreditCard, 
 import { Link, useLocation } from "wouter";
 import { useMemo, useEffect } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
+import { Button } from "@/components/ui/button";
 
 export default function Dashboard() {
   const { user, logout } = useAuth({ redirectOnUnauthenticated: true });
   const [, navigate] = useLocation();
+  
+  
+  // Handle course enrollment redirect after OAuth login
+  useEffect(() => {
+    const courseId = sessionStorage.getItem('enrollmentCourseId');
+    if (courseId && user?.id) {
+      navigate(`/courses/${courseId}/enroll`);
+      sessionStorage.removeItem('enrollmentCourseId');
+    }
+  }, [user?.id, navigate]);
   const utils = trpc.useUtils();
   const { data: courses, isLoading: coursesLoading } = trpc.courses.list.useQuery();
+  const { data: chaplaincy } = trpc.courses.getByCode.useQuery({ code: 'CHAP101' });
   const { data: recommendations } = trpc.courses.getRecommendations.useQuery();
   const { data: allProgress } = trpc.progress.getAll.useQuery();
   const { data: bundles } = trpc.bundles.getActiveBundles.useQuery();
@@ -115,17 +126,19 @@ export default function Dashboard() {
                     My Payments
                   </Button>
                 </Link>
-              <Link href="/toggle-role">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-blue-500/20 border-blue-400/30 text-primary-foreground hover:bg-blue-500/30"
-                  title={user?.role === 'admin' ? "Switch to Student View" : "Switch to Admin View"}
-                >
-                  <RefreshCw className="h-4 w-4 mr-2" />
-                  <span className="hidden md:inline">{user?.role === 'admin' ? 'Student View' : 'Admin View'}</span>
-                </Button>
-              </Link>
+              {user?.role === 'admin' && (
+                <Link href="/toggle-role">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="bg-blue-500/20 border-blue-400/30 text-primary-foreground hover:bg-blue-500/30"
+                    title={user?.role === 'admin' ? "Switch to Student View" : "Switch to Admin View"}
+                  >
+                    <RefreshCw className="h-4 w-4 mr-2" />
+                    <span className="hidden md:inline">{user?.role === 'admin' ? 'Student View' : 'Admin View'}</span>
+                  </Button>
+                </Link>
+              )}
               <Button
                 variant="outline"
                 size="sm"
@@ -449,6 +462,69 @@ export default function Dashboard() {
             ))}
           </div>
         </div>
+
+        {/* Professional Certifications Section */}
+        {chaplaincy && (
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+              <Award className="h-6 w-6 text-amber-600" />
+              Professional Certifications
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20">
+                <CardHeader 
+                  className="text-card-foreground min-h-[140px] relative overflow-hidden bg-gradient-to-r from-amber-600 to-orange-600"
+                >
+                  <div className="absolute top-3 right-3 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-white">
+                    {chaplaincy.code}
+                  </div>
+                  {!chaplaincy.isEnrolled && (
+                    <div className="absolute top-3 left-3 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      Available
+                    </div>
+                  )}
+                  <CardTitle className="text-white text-xl mb-2 pr-20">{chaplaincy.title}</CardTitle>
+                  {chaplaincy.isEnrolled && chaplaincy.totalLessons > 0 && (
+                    <div className="mt-auto">
+                      <div className="flex justify-between text-xs text-white/90 mb-1">
+                        <span>Progress</span>
+                        <span>{(allProgress?.filter(p => p.courseId === chaplaincy.id && p.completed).length || 0)} / {chaplaincy.totalLessons} lessons</span>
+                      </div>
+                      <Progress value={((allProgress?.filter(p => p.courseId === chaplaincy.id && p.completed).length || 0) / chaplaincy.totalLessons) * 100} className="h-2 bg-white/30" />
+                    </div>
+                  )}
+                </CardHeader>
+                <CardContent className="pt-4">
+                  <CardDescription className="text-sm mb-4 line-clamp-2">
+                    {chaplaincy.description}
+                  </CardDescription>
+                  <div className="flex items-center justify-between text-sm mb-3">
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <BookOpen className="h-4 w-4" />
+                      <span>{chaplaincy.totalLessons} lessons</span>
+                    </div>
+                    {chaplaincy.isEnrolled && (
+                      <span className="text-green-600 font-semibold">✓ Enrolled</span>
+                    )}
+                  </div>
+                  {chaplaincy.isEnrolled ? (
+                    <Link href={`/course/${chaplaincy.id}`}>
+                      <Button className="w-full">
+                        Continue Learning →
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Link href="/chaplaincy-training">
+                      <Button className="w-full" variant="outline">
+                        Learn More
+                      </Button>
+                    </Link>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        )}
 
         {/* All Courses Grid */}
         <h2 className="text-2xl font-bold text-foreground mb-6">All Courses</h2>

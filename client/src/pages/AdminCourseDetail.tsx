@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { trpc } from "@/lib/trpc";
-import { ArrowLeft, Award, Edit, Loader2, Video } from "lucide-react";
+import { ArrowLeft, Award, Edit, Loader2, Video, Eye } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
@@ -234,12 +234,20 @@ export default function AdminCourseDetail() {
       <div className="space-y-6">
         {/* Header */}
         <div>
-          <Link href="/admin">
-            <Button variant="ghost" size="sm" className="mb-2">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Admin
-            </Button>
-          </Link>
+          <div className="flex items-center justify-between mb-4">
+            <Link href="/admin">
+              <Button variant="ghost" size="sm">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Admin
+              </Button>
+            </Link>
+            <Link href={`/course/${course.id}`}>
+              <Button variant="default" size="sm">
+                <Eye className="h-4 w-4 mr-2" />
+                Preview Course
+              </Button>
+            </Link>
+          </div>
           <h1 className="text-3xl font-bold">{course.title}</h1>
           <p className="text-muted-foreground mt-1">
             {course.code} - {course.description}

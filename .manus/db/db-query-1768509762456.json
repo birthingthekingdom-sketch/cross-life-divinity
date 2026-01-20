@@ -1,0 +1,9 @@
+{
+  "query": "DELETE FROM lessons WHERE id NOT IN (\n  SELECT id FROM (\n    SELECT l.id FROM lessons l\n    JOIN courses c ON l.courseId = c.id\n    WHERE l.id IN (\n      SELECT id FROM (\n        SELECT l2.id, ROW_NUMBER() OVER (PARTITION BY l2.courseId ORDER BY l2.lessonOrder) as rn,\n               CASE WHEN c2.code = 'DIV111' THEN 8 ELSE 10 END as target\n        FROM lessons l2\n        JOIN courses c2 ON l2.courseId = c2.id\n      ) ranked\n      WHERE rn <= target\n    )\n  ) keep_ids\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute DELETE FROM lessons WHERE id NOT IN (\n  SELECT id FROM (\n    SELECT l.id FROM lessons l\n    JOIN courses c ON l.courseId = c.id\n    WHERE l.id IN (\n      SELECT id FROM (\n        SELECT l2.id, ROW_NUMBER() OVER (PARTITION BY l2.courseId ORDER BY l2.lessonOrder) as rn,\n               CASE WHEN c2.code = 'DIV111' THEN 8 ELSE 10 END as target\n        FROM lessons l2\n        JOIN courses c2 ON l2.courseId = c2.id\n      ) ranked\n      WHERE rn <= target\n    )\n  ) keep_ids\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 80
+}

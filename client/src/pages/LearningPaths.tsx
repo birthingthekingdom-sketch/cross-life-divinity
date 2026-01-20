@@ -140,7 +140,7 @@ export default function LearningPaths() {
                           </Badge>
                         )}
                         <Badge className="bg-green-600 hover:bg-green-700 text-white">
-                          $199
+                          $399
                         </Badge>
                       </div>
                       <CardTitle className="text-2xl mb-2">{path.name}</CardTitle>
@@ -157,7 +157,7 @@ export default function LearningPaths() {
                         </Button>
                       ) : (
                         <Button
-                          onClick={() => setLocation('/pricing')}
+                          onClick={() => setLocation(`/checkout/payment-plan?type=LEARNING_PATH&itemId=${path.id}`)}
                         >
                           Start This Path
                         </Button>

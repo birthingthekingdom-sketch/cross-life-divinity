@@ -1,0 +1,13 @@
+{
+  "query": "SELECT l.id, l.title, l.content, l.lessonOrder FROM lessons l JOIN courses c ON l.courseId = c.id WHERE c.code = 'BIB101' ORDER BY l.lessonOrder LIMIT 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT l.id, l.title, l.content, l.lessonOrder FROM lessons l JOIN courses c ON l.courseId = c.id WHERE c.code = 'BIB101' ORDER BY l.lessonOrder LIMIT 1;",
+  "rows": [],
+  "messages": [
+    "570001\tIntroduction to the Old Testament\tOverview of the Old Testament books, structure, and major themes.",
+    "---",
+    "**Licensed to Larry Fisher**\t1"
+  ],
+  "stdout": "id\ttitle\tcontent\tlessonOrder\n570001\tIntroduction to the Old Testament\tOverview of the Old Testament books, structure, and major themes.\n\n---\n\n**Licensed to Larry Fisher**\t1\n",
+  "stderr": "",
+  "execution_time_ms": 66
+}

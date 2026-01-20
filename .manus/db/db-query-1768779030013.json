@@ -1,0 +1,60 @@
+{
+  "query": "SELECT id, title, lessonOrder FROM lessons WHERE courseId = 150010 ORDER BY lessonOrder ASC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, title, lessonOrder FROM lessons WHERE courseId = 150010 ORDER BY lessonOrder ASC;",
+  "rows": [
+    {
+      "id": "870001",
+      "title": "Introduction to Chaplaincy Ministry",
+      "lessonOrder": "1"
+    },
+    {
+      "id": "870002",
+      "title": "Theological Foundations of Chaplaincy",
+      "lessonOrder": "2"
+    },
+    {
+      "id": "870003",
+      "title": "Healthcare Chaplaincy",
+      "lessonOrder": "3"
+    },
+    {
+      "id": "870004",
+      "title": "Military Chaplaincy",
+      "lessonOrder": "4"
+    },
+    {
+      "id": "870005",
+      "title": "Correctional Chaplaincy",
+      "lessonOrder": "5"
+    },
+    {
+      "id": "870006",
+      "title": "Corporate and Workplace Chaplaincy",
+      "lessonOrder": "6"
+    },
+    {
+      "id": "870007",
+      "title": "Pastoral Care Skills and Crisis Intervention",
+      "lessonOrder": "7"
+    },
+    {
+      "id": "870008",
+      "title": "Interfaith Sensitivity and Cultural Competence",
+      "lessonOrder": "8"
+    },
+    {
+      "id": "870009",
+      "title": "Professional Development and Certification",
+      "lessonOrder": "9"
+    },
+    {
+      "id": "870010",
+      "title": "Capstone: Integrating Chaplaincy Competencies",
+      "lessonOrder": "10"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tlessonOrder\n870001\tIntroduction to Chaplaincy Ministry\t1\n870002\tTheological Foundations of Chaplaincy\t2\n870003\tHealthcare Chaplaincy\t3\n870004\tMilitary Chaplaincy\t4\n870005\tCorrectional Chaplaincy\t5\n870006\tCorporate and Workplace Chaplaincy\t6\n870007\tPastoral Care Skills and Crisis Intervention\t7\n870008\tInterfaith Sensitivity and Cultural Competence\t8\n870009\tProfessional Development and Certification\t9\n870010\tCapstone: Integrating Chaplaincy Competencies\t10\n",
+  "stderr": "",
+  "execution_time_ms": 56
+}

@@ -1,0 +1,80 @@
+{
+  "query": "SELECT l.id, l.title, l.lessonOrder, l.courseId, l.content IS NOT NULL as has_content\nFROM lessons l \nWHERE l.courseId = (SELECT id FROM courses WHERE code = 'BIB102')\nORDER BY l.id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT l.id, l.title, l.lessonOrder, l.courseId, l.content IS NOT NULL as has_content\nFROM lessons l \nWHERE l.courseId = (SELECT id FROM courses WHERE code = 'BIB102')\nORDER BY l.id;",
+  "rows": [
+    {
+      "id": "570011",
+      "title": "Introduction to the New Testament",
+      "lessonOrder": "1",
+      "courseId": "780002",
+      "has_content": "1"
+    },
+    {
+      "id": "570012",
+      "title": "The Gospels: Matthew and Mark",
+      "lessonOrder": "2",
+      "courseId": "780002",
+      "has_content": "1"
+    },
+    {
+      "id": "570013",
+      "title": "The Gospels: Luke and John",
+      "lessonOrder": "3",
+      "courseId": "780002",
+      "has_content": "1"
+    },
+    {
+      "id": "570014",
+      "title": "Acts: The Early Church",
+      "lessonOrder": "4",
+      "courseId": "780002",
+      "has_content": "1"
+    },
+    {
+      "id": "570015",
+      "title": "Paul's Epistles: Romans and Corinthians",
+      "lessonOrder": "5",
+      "courseId": "780002",
+      "has_content": "1"
+    },
+    {
+      "id": "630001",
+      "title": "Introduction to the New Testament",
+      "lessonOrder": "1",
+      "courseId": "780002",
+      "has_content": "1"
+    },
+    {
+      "id": "630002",
+      "title": "The Four Gospels: Matthew and Mark",
+      "lessonOrder": "2",
+      "courseId": "780002",
+      "has_content": "1"
+    },
+    {
+      "id": "630003",
+      "title": "The Four Gospels: Luke and John",
+      "lessonOrder": "3",
+      "courseId": "780002",
+      "has_content": "1"
+    },
+    {
+      "id": "630004",
+      "title": "Acts and the Early Church",
+      "lessonOrder": "4",
+      "courseId": "780002",
+      "has_content": "1"
+    },
+    {
+      "id": "630005",
+      "title": "Paul's Epistles: Romans and Corinthians",
+      "lessonOrder": "5",
+      "courseId": "780002",
+      "has_content": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tlessonOrder\tcourseId\thas_content\n570011\tIntroduction to the New Testament\t1\t780002\t1\n570012\tThe Gospels: Matthew and Mark\t2\t780002\t1\n570013\tThe Gospels: Luke and John\t3\t780002\t1\n570014\tActs: The Early Church\t4\t780002\t1\n570015\tPaul's Epistles: Romans and Corinthians\t5\t780002\t1\n630001\tIntroduction to the New Testament\t1\t780002\t1\n630002\tThe Four Gospels: Matthew and Mark\t2\t780002\t1\n630003\tThe Four Gospels: Luke and John\t3\t780002\t1\n630004\tActs and the Early Church\t4\t780002\t1\n630005\tPaul's Epistles: Romans and Corinthians\t5\t780002\t1\n",
+  "stderr": "",
+  "execution_time_ms": 54
+}

@@ -1,24 +1,29 @@
 import { useEffect } from "react";
-import { useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { Loader2 } from "lucide-react";
 
 export default function Logout() {
-  const [, setLocation] = useLocation();
   const logoutMutation = trpc.auth.logout.useMutation({
     onSuccess: () => {
-      // Clear any local state
-      window.location.href = "/";
+      // Clear local storage
+      localStorage.removeItem("manus-runtime-user-info");
+      // Redirect to home page with a small delay to ensure cookies are cleared
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 100);
     },
     onError: () => {
-      // Even on error, redirect to home
-      window.location.href = "/";
+      // Even on error, clear local storage and redirect to home
+      localStorage.removeItem("manus-runtime-user-info");
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 100);
     },
   });
 
   useEffect(() => {
     logoutMutation.mutate();
-  }, []);
+  }, [logoutMutation]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary via-primary/90 to-primary/70 flex items-center justify-center">

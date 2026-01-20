@@ -5,6 +5,7 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { InstallPrompt } from "./components/InstallPrompt";
 import { MobileNav } from "./components/MobileNav";
+import { GEDAnnouncement } from "./components/GEDAnnouncement";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
@@ -32,6 +33,8 @@ import VerifyCertificate from "./pages/VerifyCertificate";
 import Progress from "./pages/Progress";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import LocalLogin from "./pages/LocalLogin";
+import LocalRegister from "./pages/LocalRegister";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from './pages/ResetPassword';
 import VerifyEmail from './pages/VerifyEmail';
@@ -50,6 +53,7 @@ import Catalog from './pages/Catalog';
 import PathCertificate from './pages/PathCertificate';
 import EmailSettings from './pages/EmailSettings';
 import Referrals from './pages/Referrals';
+import ReferralDashboard from './pages/ReferralDashboard';
 import AdminEmailConfig from './pages/AdminEmailConfig';
 import AdminEmailNotifications from './pages/AdminEmailNotifications';
 import AdminEmailExport from './pages/AdminEmailExport';
@@ -65,7 +69,7 @@ import BundleSelection from './pages/BundleSelection';
 import Logout from './pages/Logout';
 import AffiliateApply from './pages/AffiliateApply';
 import AffiliateDashboard from './pages/AffiliateDashboard';
-import ChaplaincyTraining from './pages/ChaplaincyTrainingEnhanced';
+import ChaplaincyTraining from './pages/ChaplaincyTraining';
 import CPEReadinessAssessment from './pages/CPEReadinessAssessment';
 import CPEGlossary from './pages/CPEGlossary';
 import CPECaseStudies from './pages/CPECaseStudies';
@@ -87,6 +91,7 @@ import Contact from './pages/Contact';
 import AdminBridgeAcademyCourses from './pages/AdminBridgeAcademyCourses';
 import AdminBridgeAcademyStudents from './pages/AdminBridgeAcademyStudents';
 import AdminBridgeAcademyAnalytics from './pages/AdminBridgeAcademyAnalytics';
+import AdminStudents from './pages/AdminStudents';
 import BridgeAcademyDashboard from './pages/BridgeAcademyDashboard';
 import BridgeAcademyStudentDashboard from './pages/BridgeAcademyStudentDashboard';
 import BridgeAcademyCourseDetail from './pages/BridgeAcademyCourseDetail';
@@ -136,6 +141,7 @@ function Router() {
       <Route path="/admin/email-config" component={AdminEmailConfig} />
       <Route path="/admin/email-notifications" component={AdminEmailNotifications} />
           <Route path="/admin/grading" component={AdminGrading} />
+      <Route path="/admin/students" component={AdminStudents} />
       <Route path="/admin/bridge-academy/courses" component={AdminBridgeAcademyCourses} />
       <Route path="/admin/bridge-academy/students" component={AdminBridgeAcademyStudents} />
       <Route path="/admin/bridge-academy/analytics" component={AdminBridgeAcademyAnalytics} />
@@ -147,6 +153,7 @@ function Router() {
       <Route path="/path-certificate/:pathId" component={PathCertificate} />
           <Route path="/email-settings" component={EmailSettings} />
           <Route path="/referrals" component={Referrals} />
+        <Route path="/referral-dashboard" component={ReferralDashboard} />
       <Route path="/progress" component={Progress} />
       <Route path="/learning-paths" component={LearningPaths} />
       <Route path="/cohorts" component={CohortGroups} />
@@ -203,6 +210,7 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <InstallPrompt />
+          <GEDAnnouncement />
           <Router />
           <MobileNav />
         </TooltipProvider>

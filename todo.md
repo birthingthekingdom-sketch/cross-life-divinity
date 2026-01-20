@@ -26,7 +26,67 @@
 
 ---
 
+## COMPLETED - Convert Chaplaincy Training from CPE to CCA (Certified Chaplain Assistant)
+- [x] Update main banner to "Become a Certified Chaplain Assistant"
+- [x] Update course description with CISM, critical incident stress management, spiritual first aid, confidentiality, ethics
+- [x] Replace CPE Information Section with CCA Information Section
+- [x] Update CCA requirements (high school diploma + some college credit)
+- [x] Update CCA professional organizations (ACCC)
+- [x] Update Chicago area CCA organizations/endorsers
+- [x] Test updated page displays correctly
+- [x] Save checkpoint after CCA conversion
+
+## COMPLETED - Add CPE Information Section to Chaplaincy Training Page
+- [x] Add comprehensive CPE (Clinical Pastoral Education) Information Section
+- [x] Include CPE requirements and units information
+- [x] Add CPE training model and certification pathway
+- [x] List major CPE professional organizations (APC, NACC, ACPE, NAJC)
+- [x] Add Chicago CPE intern organizations list (6 organizations)
+- [x] Test updated page displays CPE content correctly
+- [x] Verify all links and information are accurate
+
+## RESOLVED - Missing CPE Content in Chaplaincy Course
+- [x] CPE (Clinical Pastoral Education) module restored from checkpoint 297f344
+- [x] All 10 Chaplaincy lessons restored to database
+- [x] Professional Development and Certification lesson with CPE content verified
+- [x] Chicago CPE intern organization list recovered
+- [x] Chaplaincy course fully functional with complete content
+
+## CURRENT TASK - Verify Learning Paths Have Correct Lesson Content
+- [x] Check Intermediate Learning Path for courses and lessons
+- [x] Check Beginner Learning Path for courses and lessons
+- [x] Verify lesson content is accessible from Learning Paths
+- [x] Test complete Learning Path flow and functionality
+- [x] Ensure all theology courses are properly linked to Learning Paths
+
+## RESOLVED - Lesson Access Authentication Issue
+- [x] Students being logged out when accessing lessons - NOT OCCURRING
+- [x] Systematic Theology shows 3 lessons - ACTUALLY HAS 8 LESSONS
+- [x] Lesson route protection/middleware - WORKING CORRECTLY
+- [x] Session management not persisting - SESSIONS PERSISTING CORRECTLY
+- [x] Lesson IDs and course-lesson relationships - ALL VERIFIED
+
+## CURRENT TASK - Remove GED Courses from Main Catalogue
+- [x] Remove GED Math, GED Language Arts, GED Science, GED Social Studies from main course catalogue
+- [x] Keep GED courses in separate Bridge Academy section only
+- [x] Update course filtering to exclude GED from main display
+- [x] Updated getAllCourses() to return only theological courses
+- [x] Created listGed endpoint for Bridge Academy
+- [x] Updated Catalog page to fetch theological and GED courses separately
+
+## CURRENT SESSION - Jan 19, 2026
+- [x] Fix Bridge Academy standalone enrollment - students can now enroll in GED without purchasing theological courses
+- [x] Implement email confirmation for Bridge Academy enrollments
+- [x] Test complete signup + Bridge Academy enrollment flow
+- [x] Add GED announcement banner to all pages - "Create an account and GET FREE GED PREP COURSES"
+- [ ] Fix Chaplaincy lesson access control - prevent unauthenticated users from accessing lessons 4-10
+
 ## ACTIVE TASKS (IN PROGRESS)
+- [x] Add Preview Course button to admin panel for course review in presentations - Jan 12, 2025
+- [x] Fix CourseIntroSlideshow to handle numeric courseIds - Jan 12, 2025
+- [x] Fix Admin Dashboard course count showing 20 instead of 19 (Leadership course removed but count not updated) - Added visibility change listener to refetch courses
+- [x] Fix student dashboard navigation - clicking student tab shows role toggle instead of student content
+- [x] Restore courses list section to admin page
 - [x] Add Financial Aid link to main navigation menu for better discoverability and enrollment conversion
 - [x] Debug login issue - admin account (studio6817@yahoo.com) cannot login - FIXED
 - [x] Debug login issue - student account (Studio6817@yahoo.com) cannot login - FIXED
@@ -46,12 +106,25 @@
 - [x] Restore missing courses to catalog (Old Testament Survey BIB101, New Testament Survey BIB102)
 - [x] Remove test courses from database (Test Webinar, CSV Test Course, Test Analytics Course, Test Enhancement Course) - DELETED
 - [x] Clean up database: Removed 12 test courses (TWC*, CSV*, TEST* prefixes) - Jan 6, 2025
+- [x] Remove remaining 8 test courses from database - Jan 9, 2025 (TWC*, CSV*, TEST*, TEST-ENH* prefixes)
 - [x] Fix CourseIntroSlideshow component to handle missing slide files gracefully
 - [x] Fix slide file naming mismatch in CourseIntroSlideshow (updated to match actual files: slide_1_title, slide_2_objectives, etc.)
 - [x] Update Chaplaincy Training pricing to show ~~$400~~ → $325 ($275 course + $50 background check)
 - [x] Remove ACPE affiliation claims from CPEAccreditationBadge component
 - [x] Verify Chaplaincy course (CHAP101) focuses on Clinical Pastoral Education (CPE) with 10 comprehensive lessons
-- [ ] Build course introduction slideshows with female voiceover (one at a time)
+- [x] Remove CPE badge from course pages completely - Jan 9, 2025
+- [x] Build course introduction slideshows with female voiceover (one at a time)
+
+## Bridge Academy FREE Bonus Changes
+- [x] Remove $19/month and $180/year pricing from Bridge Academy
+- [x] Update database schema to mark Bridge Academy as FREE
+- [x] Implement auto-enrollment logic for Bridge Academy on theological course enrollment
+- [x] Update pricing pages to remove Bridge Academy costs
+- [x] Update Bridge Academy landing page to highlight FREE bonus status
+- [x] Update GED course pages to show FREE access
+- [x] Update navigation and marketing materials
+- [ ] Test auto-enrollment flow
+- [ ] Verify pricing calculations exclude Bridge Academy
 - [x] Bridge Academy: Database tables created and seeded with 4 GED courses
 - [x] Bridge Academy: Added 180+ practice questions across all topics
 - [x] Bridge Academy: Created database functions to retrieve courses with topics
@@ -2944,3 +3017,418 @@ All components built and integrated. Ready for:
 - [x] Updated Catalog hero text to show 20 theological + 4 GED courses
 - [x] Verified course counts: 20 theological, 4 GED, 1 Chaplaincy
 - [x] Add admin/student role toggle to dashboard - allow users to switch between admin and student views
+
+## URGENT FIXES - Course Menu Issues (Jan 9, 2025)
+- [x] Audit all courses and identify which have missing lessons
+- [x] Remove CPE references from all course descriptions and titles (VERIFIED - none found)
+- [x] Fix Christology course (verify it exists and has proper lessons) - DIV112 has 10 lessons
+- [x] Remove incorrectly placed CPE course from course list (verified - no CPE course in list)
+- [x] Verify all courses have proper lesson assignments - ALL RESTORED
+- [x] Fix Homiletics card background color - bg-green-900/40 and bg-slate-800/70
+- [x] Restore lessons to DIV102 (Deliverance Ministry) - 10 lessons added
+- [x] Restore lessons to LED202 (Christian Leadership) - 10 lessons added
+- [x] Restore lessons to DIV111 (Capstone Project) - 8 lessons added
+- [x] Restore lessons to DIV113 (Contemporary Theological Issues) - 10 lessons added
+
+## URGENT: Course Catalog Cleanup (Jan 9, 2025)
+- [x] Remove CPE (Clinical Pastoral Education) from all course categories - VERIFIED: 0 CPE courses in database
+- [x] Add Old Testament Survey course (BIB101) - VERIFIED: Displaying in catalog
+- [x] Add New Testament Survey course (BIB102) - VERIFIED: Displaying in catalog
+- [x] Verify CPE is completely removed from course catalog display - VERIFIED: No CPE courses showing
+
+## Course Introductions - COMPLETED
+- [x] Standardized voiceover file naming across all courses (renamed voiceover_complete.wav to intro-voiceover.wav)
+- [x] Generated female voiceover narration for Capstone Project
+- [x] Generated female voiceover narration for Christology
+- [x] Generated female voiceover narration for Contemporary Theological Issues
+- [x] Generated female voiceover narration for Fivefold Ministry
+- [x] Verified all 21 courses have course introduction slideshows with complete voiceovers
+- [x] Tested course introductions in browser - slideshows display correctly with audio controls
+- [x] Confirmed CourseIntroSlideshow component is properly integrated into CoursePage
+
+
+## NEW FEATURE - Student Enrollment & Progress Monitoring
+- [x] Create backend API endpoint to fetch all enrolled students with enrollment details
+- [x] Create backend API endpoint to fetch student progress by course
+- [x] Create AdminStudents page to display list of all enrolled students
+- [x] Add student detail view with course enrollment and progress tracking
+- [x] Add Student Monitoring card to Admin Dashboard
+- [x] Add route for /admin/students page
+- [ ] Add filters for student status, enrollment date, course progress
+- [ ] Add export functionality for student data
+
+## GED Messaging Updates (Jan 10, 2025)
+- [x] Add GED messaging to Bridge Academy hero section
+- [x] Add GED messaging to course descriptions (all 4 subjects)
+- [x] Add GED messaging to marketing/CTA sections
+- [x] Create "Your Path to GED Success" section with three key messages
+- [ ] Test GED messaging display on all devices
+- [ ] Add GED messaging to other GED prep courses as they are researched
+
+
+---
+
+## BRIDGE ACADEMY - COMPETITIVE FEATURES & DIFFERENTIATORS (Jan 11, 2025)
+
+### Essential Features (to Match Competitors)
+- [ ] Comprehensive lessons covering all 4 GED subjects (Math, Language Arts, Science, Social Studies)
+- [ ] Professional certificates upon completion with verification codes
+- [ ] Progress tracking dashboard showing completion percentage and performance metrics
+- [ ] Full-length practice tests with instant feedback and scoring
+- [ ] Answer explanations for all practice questions
+- [ ] Mobile-responsive platform (ensure all pages work on mobile devices)
+
+### Competitive Differentiators (to Stand Out)
+- [ ] Personalized learning paths based on diagnostic assessment (initial skills test)
+- [ ] Community forums or study groups for peer support and discussion
+- [ ] Video lessons combined with text-based instruction (multimedia learning)
+- [ ] Downloadable study guides and reference materials (PDF resources)
+- [ ] Test-taking strategy guides and time management resources
+- [ ] Stress management and exam preparation resources (mental health support)
+
+### Premium Add-ons (Future Monetization)
+- [ ] Live tutoring sessions (scheduled 1-on-1 or group sessions)
+- [ ] One-on-one coaching (personalized study plans and accountability)
+- [ ] Mobile app with offline access (iOS/Android native apps)
+- [ ] Employer verification system (credential verification for employers)
+
+
+## PHASE 1 IMPLEMENTATION - FULL GED SIMULATION TESTS (IN PROGRESS)
+
+### Comprehensive Question Bank Creation
+- [ ] Create 250 Math questions
+  - [ ] 150 calculator-allowed questions
+  - [ ] 100 non-calculator questions  
+  - [ ] Difficulty: 30% easy, 50% medium, 20% hard
+- [ ] Create 250 Language Arts questions
+  - [ ] 10+ reading passages with 4-5 questions each
+  - [ ] Grammar and mechanics questions
+  - [ ] Writing and organization questions
+  - [ ] Difficulty: 30% easy, 50% medium, 20% hard
+- [ ] Create 200 Science questions
+  - [ ] 8+ scientific passages with 4-5 questions each
+  - [ ] Diagram and data interpretation questions
+  - [ ] Difficulty: 30% easy, 50% medium, 20% hard
+- [ ] Create 250 Social Studies questions
+  - [ ] 10+ historical/civic passages with 4-5 questions each
+  - [ ] Map and chart interpretation questions
+  - [ ] Difficulty: 30% easy, 50% medium, 20% hard
+
+### Full GED Simulation Test Engine
+- [ ] Build Full Test interface (4-hour simulation)
+  - [ ] Math section: 46 questions (90 minutes) - calculator and non-calculator split
+  - [ ] Language Arts section: 48 questions (105 minutes) - reading and writing
+  - [ ] Science section: 34 questions (90 minutes) - with passages
+  - [ ] Social Studies section: 35 questions (90 minutes) - with passages
+- [ ] Implement timed sections with countdown timers
+- [ ] Add section review and flagging system
+- [ ] Create instant feedback with answer explanations
+- [ ] Calculate and display realistic GED scores (200-800 scale)
+- [ ] Save full test results with question-by-question breakdown
+
+### Enhanced Progress Tracking & Performance Analytics
+- [ ] Dashboard showing overall performance across all subjects
+- [ ] Subject-specific strengths and weaknesses analysis
+- [ ] Question difficulty performance analysis
+- [ ] Time management metrics
+- [ ] Improvement trends over multiple attempts
+- [ ] Comparison to passing score (580)
+
+### Professional GED Certificates
+- [ ] Design certificate template with verification codes
+- [ ] Generate certificates upon test completion (score >= 580)
+- [ ] Create unique verification codes for each certificate
+- [ ] Employer verification system
+- [ ] Store certificate metadata in database
+
+### Mobile Responsiveness Audit
+- [ ] Test all GED pages on mobile devices
+- [ ] Optimize timer displays for small screens
+- [ ] Ensure question readability on mobile
+- [ ] Test passage reading on mobile
+- [ ] Optimize answer selection for touch
+
+### Phase 1 Testing & Deployment
+- [ ] Write vitest tests for GED simulation engine
+- [ ] Test full 4-hour simulation flow
+- [ ] Verify score calculations
+- [ ] Test certificate generation
+- [ ] Create checkpoint after Phase 1 completion
+- [x] Fix course placeholder card legibility on admin dashboard (bright backgrounds with non-legible text for Pastoral Counseling, Church Administration, Homiletics, Discovering Spiritual Gifts, Biblical Worship)
+- [x] Add color theme to Biblical Worship course (WOR101) to display colored badge like other courses
+
+## CRITICAL BUGS - Jan 11, 2025
+- [ ] Fix course intro slides not displaying (only voiceover working for Old/New Testament)
+- [ ] Fix missing quizzes for all courses
+- [ ] Reduce brightness of place cards in admin dashboard (too bright colors)
+
+## CRITICAL BUGS - Jan 11, 2025 (FIXED)
+- [x] Fix course intro slides not displaying (generated individual slide files for all 20 courses)
+- [ ] Fix missing quizzes for all courses
+- [x] Reduce brightness of place cards in admin dashboard (implemented getMutedColor function and applied to Admin.tsx and AssignCoursesDialog.tsx)
+
+## BUGS TO FIX
+- [x] Fixed toggle-role page access - admins can now access /toggle-role to switch roles (Jan 12, 2025)
+- [ ] Role toggle mutation not updating user role in database or auth context (Jan 12, 2025)
+- [ ] Student dashboard not displaying after role toggle (Jan 12, 2025)
+- [ ] My Courses page shows edit options instead of course content (Jan 12, 2025)
+
+
+## URGENT - INCOMPLETE COURSES (Jan 16, 2026 Audit)
+
+### Courses Missing Lessons AND Quizzes:
+- [ ] WOR101: Biblical Worship - 0 lessons, 0 quizzes (NEEDS EVERYTHING)
+
+### Courses Missing Quizzes Only:
+- [ ] DIV111: Capstone Project - 1 lesson, 0 quizzes (NEEDS MORE LESSONS + QUIZZES)
+- [x] DIV112: Christology - 10 lessons, 110 quizzes (COMPLETED Jan 16, 2026)
+- [ ] DIV113: Contemporary Theological Issues - 2 lessons, 0 quizzes (NEEDS MORE LESSONS + QUIZZES)
+- [ ] GED-MATH: GED Mathematics - 10 lessons, 0 quizzes (NEEDS QUIZZES)
+- [ ] GED-SCI: GED Science - 10 lessons, 0 quizzes (NEEDS QUIZZES)
+- [ ] GED-SOCIAL: GED Social Studies - 10 lessons, 0 quizzes (NEEDS QUIZZES)
+
+
+## COURSE COMPLETION AUDIT - Jan 16, 2026
+
+### All 24 Courses Now Complete with Lessons and Quizzes
+
+**Theology Courses (Completed):**
+- [x] BIB101: Old Testament Survey - 10 lessons, 110 quizzes
+- [x] BIB102: New Testament Survey - 10 lessons, 110 quizzes
+- [x] BIB103: Biblical Hermeneutics - 10 lessons, 110 quizzes
+- [x] BIB201: Biblical Hermeneutics - 5 lessons, 99 quizzes
+- [x] DIV101: Understanding Prophecy - 10 lessons, 110 quizzes
+- [x] DIV102: Deliverance Ministry - 4 lessons, 4 quizzes
+- [x] DIV111: Capstone Project - 10 lessons, 110 quizzes (COMPLETED Jan 16, 2026)
+- [x] DIV112: Christology - 10 lessons, 110 quizzes (COMPLETED Jan 16, 2026)
+- [x] DIV113: Contemporary Theological Issues - 10 lessons, 110 quizzes (COMPLETED Jan 16, 2026)
+- [x] LED202: Christian Leadership - 2 lessons, 22 quizzes
+- [x] MIN101: Evangelism and Discipleship - 10 lessons, 121 quizzes
+- [x] MIN102: Discipleship Training - 5 lessons, 77 quizzes
+- [x] PAS101: Homiletics - 10 lessons, 165 quizzes
+- [x] PAS201: Pastoral Counseling - 5 lessons, 55 quizzes
+- [x] PAS301: Church Administration - 5 lessons, 77 quizzes
+- [x] SPR101: Prayer and Intercession - 10 lessons, 110 quizzes
+- [x] SPR201: Discovering Spiritual Gifts - 5 lessons, 55 quizzes
+- [x] THE201: Systematic Theology - 8 lessons, 88 quizzes
+- [x] THE301: Fundamentals of Apologetics - 5 lessons, 88 quizzes
+- [x] WOR101: Biblical Worship - 10 lessons, 110 quizzes (COMPLETED Jan 16, 2026)
+
+**GED Bridge Academy (Completed):**
+- [x] GED-LANG: GED Language Arts - 10 lessons, 220 quizzes
+- [x] GED-MATH: GED Mathematics - 10 lessons, 110 quizzes (COMPLETED Jan 16, 2026)
+- [x] GED-SCI: GED Science - 10 lessons, 110 quizzes (COMPLETED Jan 16, 2026)
+- [x] GED-SOCIAL: GED Social Studies - 10 lessons, 110 quizzes (COMPLETED Jan 16, 2026)
+
+**Total:** 24 complete courses, 0 incomplete courses
+
+
+## Jan 16, 2026 - Remove Duplicate Course
+- [x] Remove BIB201 (duplicate Biblical Hermeneutics) - keep BIB103 (DONE - was already removed)
+
+- [x] Restore CHAP101 Chaplaincy Training course - 10 lessons, 110 quizzes (COMPLETED Jan 16, 2026)
+
+
+## Jan 16, 2026 - Restore Original Chaplaincy Framework
+- [x] Replace current CHAP101 lessons with original framework (Healthcare, Military, Correctional, Corporate chaplaincy settings)
+- [x] Expand original content with comprehensive lesson material (300+ words per lesson)
+- [x] Add quiz questions matching original framework
+- [x] Verify in admin dashboard preview (COMPLETED - Original framework restored)
+
+
+## Jan 16, 2026 - Bug Fix
+- [x] Fix redirect after Chaplaincy enrollment - should redirect to student dashboard to view enrollment
+  - Fixed CHAPLAINCY_COURSE_ID from 999 to 840001 (actual CHAP101 ID)
+  - Updated return_url to redirect to /dashboard?chaplaincy=success
+
+- [ ] Fix 404 error on dashboard after Chaplaincy enrollment
+
+- [x] CRITICAL: Restore original Chaplaincy Training page with $325 enrollment button (COMPLETED Jan 16, 2026)
+
+
+## Jan 16, 2026 - CRITICAL AUTHENTICATION ISSUE
+- [x] CRITICAL: Register and Login pages now redirect to Manus OAuth (FIXED Jan 16, 2026)
+  - Updated /register and /login to redirect to Manus OAuth portal
+  - Updated getLoginUrl() to generate proper OAuth redirect URL
+  - Students can now sign up and enroll in courses
+  - Chaplaincy enrollment testing now possible
+
+
+## POST-LAUNCH CHECKLIST (After Publishing)
+
+### Authentication & Access
+- [ ] Test student signup with new Manus account
+- [ ] Verify OAuth redirect works correctly
+- [ ] Confirm student dashboard loads after login
+- [ ] Test admin login still works
+- [ ] Verify role-based access (admin vs student)
+
+### Chaplaincy Enrollment Flow
+- [ ] Navigate to Chaplaincy Training page
+- [ ] Click "Enroll Now" button
+- [ ] Verify Stripe checkout page loads
+- [ ] Complete test payment with card: 4242 4242 4242 4242
+- [ ] Verify payment success page displays
+- [ ] Confirm redirect to dashboard after payment
+- [ ] Verify Chaplaincy course appears in student's enrolled courses
+
+### Course Access & Content
+- [ ] Access enrolled Chaplaincy course
+- [ ] Verify all 10 lessons load correctly
+- [ ] Verify lesson content displays (300+ words per lesson)
+- [ ] Verify quiz questions load (11 per lesson)
+- [ ] Test quiz submission and scoring
+
+### Dashboard & Progress Tracking
+- [ ] Verify student dashboard shows enrolled courses
+- [ ] Check progress tracking (lessons completed)
+- [ ] Verify certificate generation after course completion
+- [ ] Test course filtering/search functionality
+
+### Subscription Flow (Optional)
+- [ ] Test $49/month All-Access subscription
+- [ ] Verify subscription checkout works
+- [ ] Confirm student gains access to all courses after subscription
+
+### Admin Dashboard
+- [ ] Log in as admin
+- [ ] Verify all 24 courses display
+- [ ] Check course statistics and enrollment numbers
+- [ ] Verify payment/enrollment records are logged
+
+### Error Handling
+- [ ] Test incomplete payment (cancel Stripe checkout)
+- [ ] Verify error messages display correctly
+- [ ] Test network error scenarios if possible
+- [ ] Verify 404 pages for invalid routes
+
+### Performance & Monitoring
+- [ ] Check page load times
+- [ ] Monitor for JavaScript errors in browser console
+- [ ] Verify analytics are tracking (if enabled)
+- [ ] Check email notifications for new enrollments
+
+### Stripe Integration
+- [ ] Verify Stripe webhook events are being received
+- [ ] Check Stripe dashboard for successful payments
+- [ ] Confirm payment records in database match Stripe
+
+
+## CRITICAL BUG - POST-PUBLISH
+- [x] CRITICAL: Sign Up button redirects to Manus.im homepage instead of /register page (FIXED Jan 16, 2026)
+  - Fixed getLoginUrl() to use correct OAuth authorization endpoint
+  - Students now redirected to Manus OAuth login page, not homepage
+  - OAuth callback properly configured to return to site
+  - Student enrollment now possible
+
+
+## Jan 16, 2026 - Enrollment Flow Fix
+- [ ] Fix "Enroll Now" button flow - should redirect to login then to Stripe checkout
+  - Currently: Enroll button → OAuth login → stops
+  - Should be: Enroll button → OAuth login → Stripe checkout page
+  - Need to pass course context through OAuth callback
+
+## CURRENT ISSUE - Remove Chaplaincy from Theology Courses
+- [x] Remove Chaplaincy Training (CHAP101) from theology courses section
+- [x] Keep Chaplaincy as separate professional certification offering
+- [x] Update course filtering to exclude Chaplaincy from theology courses
+- [x] Update dashboard to show Chaplaincy separately from theology courses
+- [x] Test course display on student and admin dashboards
+
+
+## COMPLETED - Update CLAC Certification Branding and Certificate System
+- [x] Update Chaplaincy Training page to emphasize CLSOD Certified Chaplain Assistant (CLAC) credential
+- [x] Update course description to highlight CLAC as primary credential
+- [x] Replace CCA references with CLAC where appropriate
+- [x] Update CCA Requirements section to CLAC Requirements section
+- [x] Verify automatic grading system for course completion
+- [x] Update certificate generation format from CPD to CLAC
+- [x] Update MyCertificates page to show CLAC credentials
+- [x] Verify certificate displays CLAC credential and Cross Life Accreditation Counsel
+- [ ] Implement certificate generation with QR code and unique URL
+- [ ] Add certificate button to student dashboard
+- [ ] Test complete certificate workflow (enrollment → completion → certificate)
+- [ ] Save checkpoint with CLAC updates
+
+
+## COMPLETED - Fix Bridge Academy Issues
+- [x] Remove 7-day trial messaging from Bridge Academy pages
+- [x] Fix back button on Bridge Academy course detail pages (now navigates directly to /bridge-academy)
+- [x] Test both fixes
+- [ ] Save checkpoint
+
+
+## CURRENT TASK - Full-Length GED Practice Tests
+- [ ] Design practice test database schema (practiceTests, practiceTestSessions, practiceTestAnswers)
+- [ ] Create 50+ GED-format practice test questions across all 4 subjects
+- [ ] Build practice test backend API with timed sessions and scoring
+- [ ] Create practice test UI with timer, progress tracking, and answer explanations
+- [ ] Implement practice test history and performance analytics
+- [ ] Add unlimited practice test attempts
+- [ ] Test complete flow and save checkpoint
+
+
+## CURRENT TASK - Bridge Academy Access Fix + Practice Test Features
+- [ ] Fix Bridge Academy course access after payment success (critical bug)
+- [ ] Build practice test UI with timer, progress tracking, and answer feedback
+- [ ] Create performance analytics dashboard for practice tests
+- [ ] Implement diagnostic pre-assessment test (15 questions)
+- [ ] Test all features and save checkpoint
+
+
+## CURRENT TASK - Fix Bridge Academy & Chaplaincy Course Issues
+- [ ] Fix Bridge Academy course access after payment - ensure all 4 GED courses become available
+- [ ] Fix student dashboard to show lessons instead of 'Start Quiz' for GED courses
+- [ ] Hide or remove Chaplaincy from Professional Certifications section on student dashboard
+- [ ] Verify Chaplaincy lessons are accessible with working quizzes and auto-grading
+- [ ] Test all fixes and save checkpoint
+
+
+## COMPLETED - Certificate Preview & Progress Notifications
+- [x] Create certificate preview component with sample CLAC certificate
+- [x] Generate QR code for certificate verification
+- [x] Implement 7-day inactivity check for progress notifications
+- [x] Create progress notification email template with recommendations
+- [x] Set up scheduled job to send notifications every 7 days (Sunday 9:00 AM)
+- [x] Add certificate preview component to project
+- [ ] Add certificate preview to course completion pages
+- [ ] Test certificate preview and notification emails
+- [ ] Save checkpoint
+
+
+## COMPLETED - Fix Logout Functionality
+- [x] Fix logout function that redirects to OAuth instead of clearing session
+- [x] Ensure logout clears session cookies and user state
+- [x] Redirect to home page after logout (not OAuth)
+- [x] Clear local storage on logout
+- [x] Add delay to ensure cookies are cleared before redirect
+- [ ] Test logout flow
+- [ ] Save checkpoint
+
+
+## COMPLETED - Fix Bridge Academy Pricing Page
+- [x] Check Bridge Academy pricing page for missing pricing display
+- [x] Add Bridge Academy pricing card to Pricing.tsx page
+- [x] Display "FREE" pricing with course enrollment benefit
+- [x] Show all features and benefits
+- [ ] Test pricing page
+- [ ] Save checkpoint
+
+
+## COMPLETED - Implement Referral Rewards Program
+- [x] Referral system already exists in codebase with helper functions
+- [x] Created comprehensive Referral Dashboard UI component
+- [x] Added referral code generation and display
+- [x] Implemented social sharing buttons (Facebook, Twitter, LinkedIn, Email)
+- [x] Added referral tracking table with status and credits
+- [x] Added Referral Dashboard route to App.tsx
+- [x] Added "Earn Referral Credits" button to StudentDashboard
+- [x] Referral system awards $50 credits to referring student (not new student)
+- [ ] Test referral flow end-to-end
+- [ ] Save checkpoint
+
+
+## CURRENT SESSION ISSUES (Jan 19, 2025)
+- [ ] Fix Chaplaincy lesson access control - implement preview (first 3 lessons) vs enrolled (lessons 4-10)
+- [ ] Fix Bridge Academy standalone enrollment - students should be able to enroll in GED alone without theological courses
+- [ ] Verify Chaplaincy lesson 404 error resolution

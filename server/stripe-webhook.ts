@@ -34,6 +34,12 @@ export async function handleStripeWebhook(req: Request, res: Response) {
     switch (event.type) {
       case "checkout.session.completed":
         await handleCheckoutSessionCompleted(event.data.object as Stripe.Checkout.Session);
+        // Grant Bridge Academy access for ANY successful payment
+        const session = event.data.object as Stripe.Checkout.Session;
+        const userId = parseInt(session.metadata?.userId || "0");
+        if (userId && session.payment_status === "paid") {
+          await grantBridgeAcademyAccess(userId);
+        }
         break;
 
       case "customer.subscription.created":
@@ -285,6 +291,59 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
       }
 
       console.log(`Bundle purchase completed: user ${userId}, courses ${courseIds.join(", ")}`);
+    }
+  } else if (type === "bridge_academy_purchase") {
+    // Handle Bridge Academy purchase
+    const dbConn = await db.getDb();
+    if (!dbConn) {
+      console.error("Database not available for Bridge Academy enrollment");
+      return;
+    }
+
+    // Create purchase record
+    await db.createCoursePurchase({
+      userId,
+      courseId: 0,
+      stripeCustomerId: session.customer as string,
+      stripePaymentIntentId: session.payment_intent as string,
+      amount: session.amount_total || 0,
+      status: "completed",
+    });
+
+    // Grant Bridge Academy access
+    try {
+      await dbConn.execute(
+        sql`INSERT INTO bridge_academy_enrollments (userId, enrolledAt, status)
+            VALUES (${userId}, NOW(), 'active')
+            ON DUPLICATE KEY UPDATE status = 'active', enrolledAt = NOW()`
+      );
+      console.log(`Bridge Academy enrollment granted: user ${userId}`);
+    } catch (err: any) {
+      console.error(`Failed to create Bridge Academy enrollment: ${err.message}`);
+    }
+
+    // Send enrollment confirmation email
+    try {
+      const user: any = await dbConn.execute(
+        sql`SELECT name, email FROM users WHERE id = ${userId}`
+      );
+      const users = Array.isArray(user) ? user : (user.rows || []);
+      
+      if (users.length > 0 && users[0].email) {
+        const userName = users[0].name || 'Student';
+        const userEmail = users[0].email;
+        
+        await sendFullPaymentReceiptEmail(
+          userEmail,
+          userName,
+          'BRIDGE_ACADEMY',
+          (session.amount_total || 0) / 100,
+          new Date(),
+          session.payment_intent as string || session.id
+        );
+      }
+    } catch (err: any) {
+      console.error(`Failed to send Bridge Academy enrollment email: ${err.message}`);
     }
   } else if (type === "course_purchase") {
     // Handle one-time course purchase
@@ -544,5 +603,41 @@ async function handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
       plan.monthlyAmount / 100,
       'Payment method declined'
     );
+  }
+}
+
+
+/**
+ * Grant Bridge Academy access to a user
+ * Called for ANY successful payment to ensure students get free Bridge Academy access
+ */
+async function grantBridgeAcademyAccess(userId: number) {
+  try {
+    const dbConn = await db.getDb();
+    if (!dbConn) {
+      console.error("Database not available for Bridge Academy enrollment");
+      return;
+    }
+
+    // Check if user already has Bridge Academy access
+    const existing: any = await dbConn.execute(
+      sql`SELECT id FROM bridge_academy_enrollments WHERE userId = ${userId} AND status = 'active'`
+    );
+    const enrollments = Array.isArray(existing) ? existing : (existing.rows || []);
+    
+    if (enrollments.length > 0) {
+      console.log(`User ${userId} already has Bridge Academy access`);
+      return;
+    }
+
+    // Grant Bridge Academy access
+    await dbConn.execute(
+      sql`INSERT INTO bridge_academy_enrollments (userId, enrolledAt, status)
+          VALUES (${userId}, NOW(), 'active')
+          ON DUPLICATE KEY UPDATE status = 'active', enrolledAt = NOW()`
+    );
+    console.log(`Bridge Academy access granted to user ${userId} via payment`);
+  } catch (err: any) {
+    console.error(`Failed to grant Bridge Academy access: ${err.message}`);
   }
 }

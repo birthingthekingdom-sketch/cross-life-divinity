@@ -1,0 +1,14 @@
+{
+  "query": "SELECT COUNT(*) as total_lessons, COUNT(DISTINCT courseId) as courses_with_lessons FROM lessons WHERE courseId IS NOT NULL;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT COUNT(*) as total_lessons, COUNT(DISTINCT courseId) as courses_with_lessons FROM lessons WHERE courseId IS NOT NULL;",
+  "rows": [
+    {
+      "total_lessons": "199",
+      "courses_with_lessons": "24"
+    }
+  ],
+  "messages": [],
+  "stdout": "total_lessons\tcourses_with_lessons\n199\t24\n",
+  "stderr": "",
+  "execution_time_ms": 59
+}

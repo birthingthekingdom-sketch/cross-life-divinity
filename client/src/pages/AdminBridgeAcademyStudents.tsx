@@ -19,6 +19,7 @@ interface StudentEnrollment {
   name: string;
   email: string;
   enrollmentDate: string;
+  trialStatus: 'active' | 'expired' | 'converted';
   subscriptionStatus: 'active' | 'cancelled' | 'failed';
   coursesEnrolled: number;
   coursesCompleted: number;
@@ -33,6 +34,7 @@ const mockStudents: StudentEnrollment[] = [
     name: 'John Smith',
     email: 'john@example.com',
     enrollmentDate: '2025-12-15',
+    trialStatus: 'converted',
     subscriptionStatus: 'active',
     coursesEnrolled: 3,
     coursesCompleted: 1,
@@ -45,6 +47,7 @@ const mockStudents: StudentEnrollment[] = [
     name: 'Sarah Johnson',
     email: 'sarah@example.com',
     enrollmentDate: '2025-12-18',
+    trialStatus: 'active',
     subscriptionStatus: 'active',
     coursesEnrolled: 2,
     coursesCompleted: 0,
@@ -57,6 +60,7 @@ const mockStudents: StudentEnrollment[] = [
     name: 'Michael Brown',
     email: 'michael@example.com',
     enrollmentDate: '2025-12-10',
+    trialStatus: 'expired',
     subscriptionStatus: 'cancelled',
     coursesEnrolled: 1,
     coursesCompleted: 0,
@@ -137,9 +141,9 @@ export default function AdminBridgeAcademyStudents() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-blue-600">
-                {mockStudents.filter(s => false).length}
+                {mockStudents.filter(s => s.trialStatus === 'active').length}
               </div>
-              <p className="text-xs text-muted-foreground">Free access for all students</p>
+              <p className="text-xs text-muted-foreground">7-day free trial</p>
             </CardContent>
           </Card>
 
@@ -197,7 +201,7 @@ export default function AdminBridgeAcademyStudents() {
                   <TableRow>
                     <TableHead>Name</TableHead>
                     <TableHead>Email</TableHead>
-                    <TableHead>Free Access</TableHead>
+                    <TableHead>Trial Status</TableHead>
                     <TableHead>Subscription</TableHead>
                     <TableHead className="text-right">Courses</TableHead>
                     <TableHead className="text-right">Progress</TableHead>
@@ -214,14 +218,14 @@ export default function AdminBridgeAcademyStudents() {
                       <TableCell>
                         <Badge
                           variant={
-                            true
+                            student.trialStatus === 'active'
                               ? 'default'
-                              : false
+                              : student.trialStatus === 'converted'
                               ? 'secondary'
                               : 'outline'
                           }
                         >
-                          
+                          {student.trialStatus}
                         </Badge>
                       </TableCell>
                       <TableCell>
@@ -281,8 +285,8 @@ export default function AdminBridgeAcademyStudents() {
                                     <p className="font-semibold">{student.enrollmentDate}</p>
                                   </div>
                                   <div>
-                                    <p className="text-sm text-muted-foreground">Free Access</p>
-                                    <Badge></Badge>
+                                    <p className="text-sm text-muted-foreground">Trial Status</p>
+                                    <Badge>{student.trialStatus}</Badge>
                                   </div>
                                   <div>
                                     <p className="text-sm text-muted-foreground">Subscription</p>

@@ -1,0 +1,52 @@
+{
+  "project_info": {
+    "title": "Old Testament Survey",
+    "created": 1766998413.4761672,
+    "last_updated": 1766998480.0405996,
+    "total_slides": 5
+  },
+  "slides": {
+    "slide_1_title": "edited",
+    "slide_2_course_overview": "edited",
+    "slide_3_course_structure": "edited",
+    "slide_4_learning_objectives": "edited",
+    "slide_5_call_to_action": "edited"
+  },
+  "outline": [
+    {
+      "id": "slide_1_title",
+      "title": "Old Testament Survey",
+      "summary": "Welcome to the Old Testament Survey course. This comprehensive survey covers the historical, poetic, and prophetic books of the Old Testament, exploring God's covenant relationship with Israel and the theological foundations of Christian faith.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_2_course_overview",
+      "title": "Course Overview",
+      "summary": "This course provides an in-depth exploration of the Old Testament, including the Pentateuch, historical books, wisdom literature, and prophetic books. You will gain understanding of the historical context, literary genres, and theological themes that shape the Old Testament narrative.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_3_course_structure",
+      "title": "Course Structure",
+      "summary": "The course consists of 10 comprehensive lessons organized by major sections of the Old Testament. Each lesson includes video content, reading materials, and interactive quizzes to reinforce your learning and deepen your understanding of Scripture.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_4_learning_objectives",
+      "title": "Learning Objectives",
+      "summary": "By the end of this course, you will understand the historical development of Israel, interpret Old Testament texts in their original context, recognize major theological themes, and apply Old Testament wisdom to contemporary Christian life and ministry.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_5_call_to_action",
+      "title": "Begin Your Journey",
+      "summary": "Dedicate time each week to engage with the material, reflect on the biblical principles, and apply them to your spiritual life. Upon completion, you will receive a CPD-accredited certificate recognizing your theological achievement.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    }
+  ]
+}

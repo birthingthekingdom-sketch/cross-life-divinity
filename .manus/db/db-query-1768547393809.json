@@ -1,0 +1,31 @@
+{
+  "query": "SHOW TABLES LIKE '%quiz%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SHOW TABLES LIKE '%quiz%';",
+  "rows": [
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b (%quiz%)": "bridge_academy_quiz_answers"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b (%quiz%)": "bridge_academy_quiz_questions"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b (%quiz%)": "bridge_academy_quiz_submissions"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b (%quiz%)": "preview_quiz_attempts"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b (%quiz%)": "quiz_answers"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b (%quiz%)": "quiz_questions"
+    },
+    {
+      "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b (%quiz%)": "quiz_submissions"
+    }
+  ],
+  "messages": [],
+  "stdout": "Tables_in_P2Dpw9MQsmxzdUQCfGjV6b (%quiz%)\nbridge_academy_quiz_answers\nbridge_academy_quiz_questions\nbridge_academy_quiz_submissions\npreview_quiz_attempts\nquiz_answers\nquiz_questions\nquiz_submissions\n",
+  "stderr": "",
+  "execution_time_ms": 51
+}

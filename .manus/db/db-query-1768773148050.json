@@ -1,0 +1,360 @@
+{
+  "query": "SELECT l.id, l.courseId, l.title, c.code, c.title as course_title FROM lessons l LEFT JOIN courses c ON l.courseId = c.id ORDER BY c.code, l.id LIMIT 50;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT l.id, l.courseId, l.title, c.code, c.title as course_title FROM lessons l LEFT JOIN courses c ON l.courseId = c.id ORDER BY c.code, l.id LIMIT 50;",
+  "rows": [
+    {
+      "id": "690001",
+      "courseId": "780001",
+      "title": "Introduction to the Old Testament",
+      "code": "BIB101",
+      "course_title": "Old Testament Survey"
+    },
+    {
+      "id": "690002",
+      "courseId": "780001",
+      "title": "The Torah: Books of Moses",
+      "code": "BIB101",
+      "course_title": "Old Testament Survey"
+    },
+    {
+      "id": "690003",
+      "courseId": "780001",
+      "title": "The Historical Books",
+      "code": "BIB101",
+      "course_title": "Old Testament Survey"
+    },
+    {
+      "id": "690004",
+      "courseId": "780001",
+      "title": "Poetry and Wisdom Literature",
+      "code": "BIB101",
+      "course_title": "Old Testament Survey"
+    },
+    {
+      "id": "690005",
+      "courseId": "780001",
+      "title": "Major Prophets: Isaiah",
+      "code": "BIB101",
+      "course_title": "Old Testament Survey"
+    },
+    {
+      "id": "690006",
+      "courseId": "780001",
+      "title": "Major Prophets: Jeremiah and Lamentations",
+      "code": "BIB101",
+      "course_title": "Old Testament Survey"
+    },
+    {
+      "id": "690007",
+      "courseId": "780001",
+      "title": "Major Prophets: Ezekiel and Daniel",
+      "code": "BIB101",
+      "course_title": "Old Testament Survey"
+    },
+    {
+      "id": "690008",
+      "courseId": "780001",
+      "title": "Minor Prophets - Part 1",
+      "code": "BIB101",
+      "course_title": "Old Testament Survey"
+    },
+    {
+      "id": "690009",
+      "courseId": "780001",
+      "title": "Minor Prophets - Part 2",
+      "code": "BIB101",
+      "course_title": "Old Testament Survey"
+    },
+    {
+      "id": "690010",
+      "courseId": "780001",
+      "title": "Old Testament Themes and Fulfillment",
+      "code": "BIB101",
+      "course_title": "Old Testament Survey"
+    },
+    {
+      "id": "630001",
+      "courseId": "780002",
+      "title": "Introduction to the New Testament",
+      "code": "BIB102",
+      "course_title": "New Testament Survey"
+    },
+    {
+      "id": "630002",
+      "courseId": "780002",
+      "title": "The Four Gospels: Matthew and Mark",
+      "code": "BIB102",
+      "course_title": "New Testament Survey"
+    },
+    {
+      "id": "630003",
+      "courseId": "780002",
+      "title": "The Four Gospels: Luke and John",
+      "code": "BIB102",
+      "course_title": "New Testament Survey"
+    },
+    {
+      "id": "630004",
+      "courseId": "780002",
+      "title": "Acts and the Early Church",
+      "code": "BIB102",
+      "course_title": "New Testament Survey"
+    },
+    {
+      "id": "630005",
+      "courseId": "780002",
+      "title": "Paul's Epistles: Romans and Corinthians",
+      "code": "BIB102",
+      "course_title": "New Testament Survey"
+    },
+    {
+      "id": "720001",
+      "courseId": "780002",
+      "title": "Paul's Later Epistles: Galatians through Philemon",
+      "code": "BIB102",
+      "course_title": "New Testament Survey"
+    },
+    {
+      "id": "720002",
+      "courseId": "780002",
+      "title": "Hebrews and the General Epistles",
+      "code": "BIB102",
+      "course_title": "New Testament Survey"
+    },
+    {
+      "id": "720003",
+      "courseId": "780002",
+      "title": "The Johannine Epistles",
+      "code": "BIB102",
+      "course_title": "New Testament Survey"
+    },
+    {
+      "id": "720004",
+      "courseId": "780002",
+      "title": "The Book of Revelation",
+      "code": "BIB102",
+      "course_title": "New Testament Survey"
+    },
+    {
+      "id": "720005",
+      "courseId": "780002",
+      "title": "New Testament Theology and Application",
+      "code": "BIB102",
+      "course_title": "New Testament Survey"
+    },
+    {
+      "id": "750004",
+      "courseId": "810001",
+      "title": "Introduction to Biblical Hermeneutics",
+      "code": "BIB103",
+      "course_title": "Biblical Hermeneutics"
+    },
+    {
+      "id": "750005",
+      "courseId": "810001",
+      "title": "The History of Biblical Interpretation",
+      "code": "BIB103",
+      "course_title": "Biblical Hermeneutics"
+    },
+    {
+      "id": "750006",
+      "courseId": "810001",
+      "title": "The Nature and Authority of Scripture",
+      "code": "BIB103",
+      "course_title": "Biblical Hermeneutics"
+    },
+    {
+      "id": "750007",
+      "courseId": "810001",
+      "title": "The Grammatical-Historical Method",
+      "code": "BIB103",
+      "course_title": "Biblical Hermeneutics"
+    },
+    {
+      "id": "750008",
+      "courseId": "810001",
+      "title": "Understanding Literary Genres",
+      "code": "BIB103",
+      "course_title": "Biblical Hermeneutics"
+    },
+    {
+      "id": "750009",
+      "courseId": "810001",
+      "title": "Interpreting Old Testament Narrative",
+      "code": "BIB103",
+      "course_title": "Biblical Hermeneutics"
+    },
+    {
+      "id": "750010",
+      "courseId": "810001",
+      "title": "Interpreting the Psalms and Wisdom Literature",
+      "code": "BIB103",
+      "course_title": "Biblical Hermeneutics"
+    },
+    {
+      "id": "750011",
+      "courseId": "810001",
+      "title": "Interpreting Prophecy and Apocalyptic",
+      "code": "BIB103",
+      "course_title": "Biblical Hermeneutics"
+    },
+    {
+      "id": "750012",
+      "courseId": "810001",
+      "title": "Interpreting the New Testament",
+      "code": "BIB103",
+      "course_title": "Biblical Hermeneutics"
+    },
+    {
+      "id": "750013",
+      "courseId": "810001",
+      "title": "Application and Communication of Scripture",
+      "code": "BIB103",
+      "course_title": "Biblical Hermeneutics"
+    },
+    {
+      "id": "840001",
+      "courseId": "840001",
+      "title": "Introduction to Chaplaincy Ministry",
+      "code": "CHAP101",
+      "course_title": "Chaplaincy Training"
+    },
+    {
+      "id": "840002",
+      "courseId": "840001",
+      "title": "Theological Foundations of Chaplaincy",
+      "code": "CHAP101",
+      "course_title": "Chaplaincy Training"
+    },
+    {
+      "id": "840003",
+      "courseId": "840001",
+      "title": "Healthcare Chaplaincy",
+      "code": "CHAP101",
+      "course_title": "Chaplaincy Training"
+    },
+    {
+      "id": "840004",
+      "courseId": "840001",
+      "title": "Military Chaplaincy",
+      "code": "CHAP101",
+      "course_title": "Chaplaincy Training"
+    },
+    {
+      "id": "840005",
+      "courseId": "840001",
+      "title": "Correctional Chaplaincy",
+      "code": "CHAP101",
+      "course_title": "Chaplaincy Training"
+    },
+    {
+      "id": "840006",
+      "courseId": "840001",
+      "title": "Corporate and Workplace Chaplaincy",
+      "code": "CHAP101",
+      "course_title": "Chaplaincy Training"
+    },
+    {
+      "id": "840007",
+      "courseId": "840001",
+      "title": "Pastoral Care Skills and Crisis Intervention",
+      "code": "CHAP101",
+      "course_title": "Chaplaincy Training"
+    },
+    {
+      "id": "840008",
+      "courseId": "840001",
+      "title": "Interfaith Sensitivity and Cultural Competence",
+      "code": "CHAP101",
+      "course_title": "Chaplaincy Training"
+    },
+    {
+      "id": "840009",
+      "courseId": "840001",
+      "title": "Professional Development and Certification",
+      "code": "CHAP101",
+      "course_title": "Chaplaincy Training"
+    },
+    {
+      "id": "840010",
+      "courseId": "840001",
+      "title": "Capstone: Integrating Chaplaincy Competencies",
+      "code": "CHAP101",
+      "course_title": "Chaplaincy Training"
+    },
+    {
+      "id": "360101",
+      "courseId": "180001",
+      "title": "Introduction to Biblical Prophecy - The Prophetic Office and Gift",
+      "code": "DIV101",
+      "course_title": "Understanding Prophecy"
+    },
+    {
+      "id": "360102",
+      "courseId": "180001",
+      "title": "The Old Testament Prophets - God's Covenant Messengers",
+      "code": "DIV101",
+      "course_title": "Understanding Prophecy"
+    },
+    {
+      "id": "360103",
+      "courseId": "180001",
+      "title": "The Gift of Prophecy in the New Testament Church",
+      "code": "DIV101",
+      "course_title": "Understanding Prophecy"
+    },
+    {
+      "id": "360104",
+      "courseId": "180001",
+      "title": "Testing and Discerning Prophetic Words",
+      "code": "DIV101",
+      "course_title": "Understanding Prophecy"
+    },
+    {
+      "id": "360105",
+      "courseId": "180001",
+      "title": "The Prophetic Ministry of Jesus Christ",
+      "code": "DIV101",
+      "course_title": "Understanding Prophecy"
+    },
+    {
+      "id": "750014",
+      "courseId": "180001",
+      "title": "Prophetic Literature and Interpretation",
+      "code": "DIV101",
+      "course_title": "Understanding Prophecy"
+    },
+    {
+      "id": "750015",
+      "courseId": "180001",
+      "title": "Messianic Prophecy and Fulfillment",
+      "code": "DIV101",
+      "course_title": "Understanding Prophecy"
+    },
+    {
+      "id": "750016",
+      "courseId": "180001",
+      "title": "Eschatological Prophecy - End Times",
+      "code": "DIV101",
+      "course_title": "Understanding Prophecy"
+    },
+    {
+      "id": "750017",
+      "courseId": "180001",
+      "title": "The Prophetic Voice in the Church Today",
+      "code": "DIV101",
+      "course_title": "Understanding Prophecy"
+    },
+    {
+      "id": "750018",
+      "courseId": "180001",
+      "title": "Living as Prophetic People",
+      "code": "DIV101",
+      "course_title": "Understanding Prophecy"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcourseId\ttitle\tcode\tcourse_title\n690001\t780001\tIntroduction to the Old Testament\tBIB101\tOld Testament Survey\n690002\t780001\tThe Torah: Books of Moses\tBIB101\tOld Testament Survey\n690003\t780001\tThe Historical Books\tBIB101\tOld Testament Survey\n690004\t780001\tPoetry and Wisdom Literature\tBIB101\tOld Testament Survey\n690005\t780001\tMajor Prophets: Isaiah\tBIB101\tOld Testament Survey\n690006\t780001\tMajor Prophets: Jeremiah and Lamentations\tBIB101\tOld Testament Survey\n690007\t780001\tMajor Prophets: Ezekiel and Daniel\tBIB101\tOld Testament Survey\n690008\t780001\tMinor Prophets - Part 1\tBIB101\tOld Testament Survey\n690009\t780001\tMinor Prophets - Part 2\tBIB101\tOld Testament Survey\n690010\t780001\tOld Testament Themes and Fulfillment\tBIB101\tOld Testament Survey\n630001\t780002\tIntroduction to the New Testament\tBIB102\tNew Testament Survey\n630002\t780002\tThe Four Gospels: Matthew and Mark\tBIB102\tNew Testament Survey\n630003\t780002\tThe Four Gospels: Luke and John\tBIB102\tNew Testament Survey\n630004\t780002\tActs and the Early Church\tBIB102\tNew Testament Survey\n630005\t780002\tPaul's Epistles: Romans and Corinthians\tBIB102\tNew Testament Survey\n720001\t780002\tPaul's Later Epistles: Galatians through Philemon\tBIB102\tNew Testament Survey\n720002\t780002\tHebrews and the General Epistles\tBIB102\tNew Testament Survey\n720003\t780002\tThe Johannine Epistles\tBIB102\tNew Testament Survey\n720004\t780002\tThe Book of Revelation\tBIB102\tNew Testament Survey\n720005\t780002\tNew Testament Theology and Application\tBIB102\tNew Testament Survey\n750004\t810001\tIntroduction to Biblical Hermeneutics\tBIB103\tBiblical Hermeneutics\n750005\t810001\tThe History of Biblical Interpretation\tBIB103\tBiblical Hermeneutics\n750006\t810001\tThe Nature and Authority of Scripture\tBIB103\tBiblical Hermeneutics\n750007\t810001\tThe Grammatical-Historical Method\tBIB103\tBiblical Hermeneutics\n750008\t810001\tUnderstanding Literary Genres\tBIB103\tBiblical Hermeneutics\n750009\t810001\tInterpreting Old Testament Narrative\tBIB103\tBiblical Hermeneutics\n750010\t810001\tInterpreting the Psalms and Wisdom Literature\tBIB103\tBiblical Hermeneutics\n750011\t810001\tInterpreting Prophecy and Apocalyptic\tBIB103\tBiblical Hermeneutics\n750012\t810001\tInterpreting the New Testament\tBIB103\tBiblical Hermeneutics\n750013\t810001\tApplication and Communication of Scripture\tBIB103\tBiblical Hermeneutics\n840001\t840001\tIntroduction to Chaplaincy Ministry\tCHAP101\tChaplaincy Training\n840002\t840001\tTheological Foundations of Chaplaincy\tCHAP101\tChaplaincy Training\n840003\t840001\tHealthcare Chaplaincy\tCHAP101\tChaplaincy Training\n840004\t840001\tMilitary Chaplaincy\tCHAP101\tChaplaincy Training\n840005\t840001\tCorrectional Chaplaincy\tCHAP101\tChaplaincy Training\n840006\t840001\tCorporate and Workplace Chaplaincy\tCHAP101\tChaplaincy Training\n840007\t840001\tPastoral Care Skills and Crisis Intervention\tCHAP101\tChaplaincy Training\n840008\t840001\tInterfaith Sensitivity and Cultural Competence\tCHAP101\tChaplaincy Training\n840009\t840001\tProfessional Development and Certification\tCHAP101\tChaplaincy Training\n840010\t840001\tCapstone: Integrating Chaplaincy Competencies\tCHAP101\tChaplaincy Training\n360101\t180001\tIntroduction to Biblical Prophecy - The Prophetic Office and Gift\tDIV101\tUnderstanding Prophecy\n360102\t180001\tThe Old Testament Prophets - God's Covenant Messengers\tDIV101\tUnderstanding Prophecy\n360103\t180001\tThe Gift of Prophecy in the New Testament Church\tDIV101\tUnderstanding Prophecy\n360104\t180001\tTesting and Discerning Prophetic Words\tDIV101\tUnderstanding Prophecy\n360105\t180001\tThe Prophetic Ministry of Jesus Christ\tDIV101\tUnderstanding Prophecy\n750014\t180001\tProphetic Literature and Interpretation\tDIV101\tUnderstanding Prophecy\n750015\t180001\tMessianic Prophecy and Fulfillment\tDIV101\tUnderstanding Prophecy\n750016\t180001\tEschatological Prophecy - End Times\tDIV101\tUnderstanding Prophecy\n750017\t180001\tThe Prophetic Voice in the Church Today\tDIV101\tUnderstanding Prophecy\n750018\t180001\tLiving as Prophetic People\tDIV101\tUnderstanding Prophecy\n",
+  "stderr": "",
+  "execution_time_ms": 57
+}

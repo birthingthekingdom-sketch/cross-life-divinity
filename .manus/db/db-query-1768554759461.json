@@ -1,0 +1,696 @@
+{
+  "query": "SELECT c.code, c.title as course_title, l.id as lesson_id, l.title as lesson_title, l.lessonOrder\nFROM lessons l\nJOIN courses c ON l.courseId = c.id\nLEFT JOIN quiz_questions q ON l.id = q.lessonId\nWHERE q.id IS NULL\nORDER BY c.code, l.lessonOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT c.code, c.title as course_title, l.id as lesson_id, l.title as lesson_title, l.lessonOrder\nFROM lessons l\nJOIN courses c ON l.courseId = c.id\nLEFT JOIN quiz_questions q ON l.id = q.lessonId\nWHERE q.id IS NULL\nORDER BY c.code, l.lessonOrder;",
+  "rows": [
+    {
+      "code": "DIV102",
+      "course_title": "Deliverance Ministry",
+      "lesson_id": "480001",
+      "lesson_title": "Introduction to Deliverance Ministry",
+      "lessonOrder": "1"
+    },
+    {
+      "code": "DIV102",
+      "course_title": "Deliverance Ministry",
+      "lesson_id": "480021",
+      "lesson_title": "Introduction to Deliverance Ministry",
+      "lessonOrder": "1"
+    },
+    {
+      "code": "DIV102",
+      "course_title": "Deliverance Ministry",
+      "lesson_id": "480002",
+      "lesson_title": "Spiritual Authority and Power",
+      "lessonOrder": "2"
+    },
+    {
+      "code": "DIV102",
+      "course_title": "Deliverance Ministry",
+      "lesson_id": "480022",
+      "lesson_title": "Spiritual Authority and Power",
+      "lessonOrder": "2"
+    },
+    {
+      "code": "DIV102",
+      "course_title": "Deliverance Ministry",
+      "lesson_id": "480003",
+      "lesson_title": "Identifying Spiritual Bondage",
+      "lessonOrder": "3"
+    },
+    {
+      "code": "DIV102",
+      "course_title": "Deliverance Ministry",
+      "lesson_id": "480023",
+      "lesson_title": "Identifying Spiritual Bondage",
+      "lessonOrder": "3"
+    },
+    {
+      "code": "DIV102",
+      "course_title": "Deliverance Ministry",
+      "lesson_id": "480004",
+      "lesson_title": "Prayer and Intercession in Deliverance",
+      "lessonOrder": "4"
+    },
+    {
+      "code": "DIV111",
+      "course_title": "Capstone Project",
+      "lesson_id": "480069",
+      "lesson_title": "Introduction to the Capstone Project",
+      "lessonOrder": "1"
+    },
+    {
+      "code": "DIV111",
+      "course_title": "Capstone Project",
+      "lesson_id": "480041",
+      "lesson_title": "Introduction to the Capstone Project",
+      "lessonOrder": "1"
+    },
+    {
+      "code": "DIV111",
+      "course_title": "Capstone Project",
+      "lesson_id": "480042",
+      "lesson_title": "Selecting Your Capstone Topic",
+      "lessonOrder": "2"
+    },
+    {
+      "code": "DIV111",
+      "course_title": "Capstone Project",
+      "lesson_id": "480070",
+      "lesson_title": "Selecting Your Capstone Topic",
+      "lessonOrder": "2"
+    },
+    {
+      "code": "DIV111",
+      "course_title": "Capstone Project",
+      "lesson_id": "480071",
+      "lesson_title": "Research Methods and Resources",
+      "lessonOrder": "3"
+    },
+    {
+      "code": "DIV112",
+      "course_title": "Christology",
+      "lesson_id": "480077",
+      "lesson_title": "Introduction to Christology",
+      "lessonOrder": "1"
+    },
+    {
+      "code": "DIV112",
+      "course_title": "Christology",
+      "lesson_id": "480049",
+      "lesson_title": "Introduction to Christology",
+      "lessonOrder": "1"
+    },
+    {
+      "code": "DIV112",
+      "course_title": "Christology",
+      "lesson_id": "480078",
+      "lesson_title": "The Incarnation",
+      "lessonOrder": "2"
+    },
+    {
+      "code": "DIV112",
+      "course_title": "Christology",
+      "lesson_id": "480050",
+      "lesson_title": "The Incarnation",
+      "lessonOrder": "2"
+    },
+    {
+      "code": "DIV112",
+      "course_title": "Christology",
+      "lesson_id": "480051",
+      "lesson_title": "The Life and Ministry of Jesus",
+      "lessonOrder": "3"
+    },
+    {
+      "code": "DIV112",
+      "course_title": "Christology",
+      "lesson_id": "480079",
+      "lesson_title": "The Life and Ministry of Jesus",
+      "lessonOrder": "3"
+    },
+    {
+      "code": "DIV112",
+      "course_title": "Christology",
+      "lesson_id": "480080",
+      "lesson_title": "The Death and Resurrection of Christ",
+      "lessonOrder": "4"
+    },
+    {
+      "code": "DIV113",
+      "course_title": "Contemporary Theological Issues",
+      "lesson_id": "480087",
+      "lesson_title": "Introduction to Contemporary Theology",
+      "lessonOrder": "1"
+    },
+    {
+      "code": "DIV113",
+      "course_title": "Contemporary Theological Issues",
+      "lesson_id": "480059",
+      "lesson_title": "Introduction to Contemporary Theology",
+      "lessonOrder": "1"
+    },
+    {
+      "code": "DIV113",
+      "course_title": "Contemporary Theological Issues",
+      "lesson_id": "480088",
+      "lesson_title": "Science and Faith",
+      "lessonOrder": "2"
+    },
+    {
+      "code": "DIV113",
+      "course_title": "Contemporary Theological Issues",
+      "lesson_id": "480060",
+      "lesson_title": "Science and Faith",
+      "lessonOrder": "2"
+    },
+    {
+      "code": "DIV113",
+      "course_title": "Contemporary Theological Issues",
+      "lesson_id": "480061",
+      "lesson_title": "Religious Pluralism",
+      "lessonOrder": "3"
+    },
+    {
+      "code": "DIV113",
+      "course_title": "Contemporary Theological Issues",
+      "lesson_id": "480089",
+      "lesson_title": "Religious Pluralism",
+      "lessonOrder": "3"
+    },
+    {
+      "code": "DIV113",
+      "course_title": "Contemporary Theological Issues",
+      "lesson_id": "480090",
+      "lesson_title": "Gender and Sexuality",
+      "lessonOrder": "4"
+    },
+    {
+      "code": "GED-LANG",
+      "course_title": "GED Language Arts",
+      "lesson_id": "540001",
+      "lesson_title": "Close Reading Strategies",
+      "lessonOrder": "9"
+    },
+    {
+      "code": "GED-LANG",
+      "course_title": "GED Language Arts",
+      "lesson_id": "540002",
+      "lesson_title": "Inference and Analysis",
+      "lessonOrder": "10"
+    },
+    {
+      "code": "GED-LANG",
+      "course_title": "GED Language Arts",
+      "lesson_id": "540003",
+      "lesson_title": "Author Purpose and Tone",
+      "lessonOrder": "11"
+    },
+    {
+      "code": "GED-LANG",
+      "course_title": "GED Language Arts",
+      "lesson_id": "540004",
+      "lesson_title": "Extended Response Format",
+      "lessonOrder": "12"
+    },
+    {
+      "code": "GED-LANG",
+      "course_title": "GED Language Arts",
+      "lesson_id": "540005",
+      "lesson_title": "Extended Response Practice",
+      "lessonOrder": "13"
+    },
+    {
+      "code": "GED-LANG",
+      "course_title": "GED Language Arts",
+      "lesson_id": "540006",
+      "lesson_title": "Complex Texts Analysis",
+      "lessonOrder": "14"
+    },
+    {
+      "code": "GED-LANG",
+      "course_title": "GED Language Arts",
+      "lesson_id": "540007",
+      "lesson_title": "Standard English Conventions",
+      "lessonOrder": "15"
+    },
+    {
+      "code": "GED-LANG",
+      "course_title": "GED Language Arts",
+      "lesson_id": "540008",
+      "lesson_title": "Writing for Different Purposes",
+      "lessonOrder": "16"
+    },
+    {
+      "code": "GED-LANG",
+      "course_title": "GED Language Arts",
+      "lesson_id": "540009",
+      "lesson_title": "RLA Test-Taking Strategies",
+      "lessonOrder": "17"
+    },
+    {
+      "code": "GED-LANG",
+      "course_title": "GED Language Arts",
+      "lesson_id": "540010",
+      "lesson_title": "RLA Practice and Review",
+      "lessonOrder": "18"
+    },
+    {
+      "code": "GED-MATH",
+      "course_title": "GED Mathematics",
+      "lesson_id": "540011",
+      "lesson_title": "Advanced Algebra",
+      "lessonOrder": "9"
+    },
+    {
+      "code": "GED-MATH",
+      "course_title": "GED Mathematics",
+      "lesson_id": "540012",
+      "lesson_title": "Functions and Graphing",
+      "lessonOrder": "10"
+    },
+    {
+      "code": "GED-MATH",
+      "course_title": "GED Mathematics",
+      "lesson_id": "540013",
+      "lesson_title": "Statistics and Probability",
+      "lessonOrder": "11"
+    },
+    {
+      "code": "GED-MATH",
+      "course_title": "GED Mathematics",
+      "lesson_id": "540014",
+      "lesson_title": "Measurement and Conversions",
+      "lessonOrder": "12"
+    },
+    {
+      "code": "GED-MATH",
+      "course_title": "GED Mathematics",
+      "lesson_id": "540015",
+      "lesson_title": "Calculator Strategies",
+      "lessonOrder": "13"
+    },
+    {
+      "code": "GED-MATH",
+      "course_title": "GED Mathematics",
+      "lesson_id": "540016",
+      "lesson_title": "Non-Calculator Problem Solving",
+      "lessonOrder": "14"
+    },
+    {
+      "code": "GED-MATH",
+      "course_title": "GED Mathematics",
+      "lesson_id": "540017",
+      "lesson_title": "Multi-Step Problem Solving",
+      "lessonOrder": "15"
+    },
+    {
+      "code": "GED-MATH",
+      "course_title": "GED Mathematics",
+      "lesson_id": "540018",
+      "lesson_title": "Real-World Applications",
+      "lessonOrder": "16"
+    },
+    {
+      "code": "GED-MATH",
+      "course_title": "GED Mathematics",
+      "lesson_id": "540019",
+      "lesson_title": "Math Test-Taking Strategies",
+      "lessonOrder": "17"
+    },
+    {
+      "code": "GED-MATH",
+      "course_title": "GED Mathematics",
+      "lesson_id": "540020",
+      "lesson_title": "Math Practice and Review",
+      "lessonOrder": "18"
+    },
+    {
+      "code": "GED-SCI",
+      "course_title": "GED Science",
+      "lesson_id": "540021",
+      "lesson_title": "Cells and Organisms",
+      "lessonOrder": "9"
+    },
+    {
+      "code": "GED-SCI",
+      "course_title": "GED Science",
+      "lesson_id": "540022",
+      "lesson_title": "Heredity and Evolution",
+      "lessonOrder": "10"
+    },
+    {
+      "code": "GED-SCI",
+      "course_title": "GED Science",
+      "lesson_id": "540023",
+      "lesson_title": "Ecosystems and Biodiversity",
+      "lessonOrder": "11"
+    },
+    {
+      "code": "GED-SCI",
+      "course_title": "GED Science",
+      "lesson_id": "540024",
+      "lesson_title": "Chemical Reactions",
+      "lessonOrder": "12"
+    },
+    {
+      "code": "GED-SCI",
+      "course_title": "GED Science",
+      "lesson_id": "540025",
+      "lesson_title": "Waves and Sound",
+      "lessonOrder": "13"
+    },
+    {
+      "code": "GED-SCI",
+      "course_title": "GED Science",
+      "lesson_id": "540026",
+      "lesson_title": "Earth Structure and Processes",
+      "lessonOrder": "14"
+    },
+    {
+      "code": "GED-SCI",
+      "course_title": "GED Science",
+      "lesson_id": "540027",
+      "lesson_title": "Space and Astronomy",
+      "lessonOrder": "15"
+    },
+    {
+      "code": "GED-SCI",
+      "course_title": "GED Science",
+      "lesson_id": "540028",
+      "lesson_title": "Data Interpretation in Science",
+      "lessonOrder": "16"
+    },
+    {
+      "code": "GED-SCI",
+      "course_title": "GED Science",
+      "lesson_id": "540029",
+      "lesson_title": "Science Test-Taking Strategies",
+      "lessonOrder": "17"
+    },
+    {
+      "code": "GED-SCI",
+      "course_title": "GED Science",
+      "lesson_id": "540030",
+      "lesson_title": "Science Practice and Review",
+      "lessonOrder": "18"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "course_title": "GED Social Studies",
+      "lesson_id": "540031",
+      "lesson_title": "Colonial America and Independence",
+      "lessonOrder": "9"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "course_title": "GED Social Studies",
+      "lesson_id": "540032",
+      "lesson_title": "Civil War and Reconstruction",
+      "lessonOrder": "10"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "course_title": "GED Social Studies",
+      "lesson_id": "540033",
+      "lesson_title": "Modern America (1900-Present)",
+      "lessonOrder": "11"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "course_title": "GED Social Studies",
+      "lesson_id": "540034",
+      "lesson_title": "Constitutional Rights and Amendments",
+      "lessonOrder": "12"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "course_title": "GED Social Studies",
+      "lesson_id": "540035",
+      "lesson_title": "Branches of Government",
+      "lessonOrder": "13"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "course_title": "GED Social Studies",
+      "lesson_id": "540036",
+      "lesson_title": "Global Economics and Trade",
+      "lessonOrder": "14"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "course_title": "GED Social Studies",
+      "lesson_id": "540037",
+      "lesson_title": "World History and Cultures",
+      "lessonOrder": "15"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "course_title": "GED Social Studies",
+      "lesson_id": "540038",
+      "lesson_title": "Document Analysis and Primary Sources",
+      "lessonOrder": "16"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "course_title": "GED Social Studies",
+      "lesson_id": "540039",
+      "lesson_title": "Social Studies Test-Taking Strategies",
+      "lessonOrder": "17"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "course_title": "GED Social Studies",
+      "lesson_id": "540040",
+      "lesson_title": "Social Studies Practice and Review",
+      "lessonOrder": "18"
+    },
+    {
+      "code": "LED202",
+      "course_title": "Christian Leadership",
+      "lesson_id": "480031",
+      "lesson_title": "Biblical Foundations of Leadership",
+      "lessonOrder": "1"
+    },
+    {
+      "code": "LED202",
+      "course_title": "Christian Leadership",
+      "lesson_id": "480011",
+      "lesson_title": "Biblical Foundations of Leadership",
+      "lessonOrder": "1"
+    },
+    {
+      "code": "LED202",
+      "course_title": "Christian Leadership",
+      "lesson_id": "480032",
+      "lesson_title": "Developing Your Leadership Vision",
+      "lessonOrder": "2"
+    },
+    {
+      "code": "LED202",
+      "course_title": "Christian Leadership",
+      "lesson_id": "480012",
+      "lesson_title": "Developing Your Leadership Vision",
+      "lessonOrder": "2"
+    },
+    {
+      "code": "LED202",
+      "course_title": "Christian Leadership",
+      "lesson_id": "480013",
+      "lesson_title": "Building and Leading Teams",
+      "lessonOrder": "3"
+    },
+    {
+      "code": "LED202",
+      "course_title": "Christian Leadership",
+      "lesson_id": "480033",
+      "lesson_title": "Building and Leading Teams",
+      "lessonOrder": "3"
+    },
+    {
+      "code": "LED202",
+      "course_title": "Christian Leadership",
+      "lesson_id": "480034",
+      "lesson_title": "Emotional Intelligence in Leadership",
+      "lessonOrder": "4"
+    },
+    {
+      "code": "MIN102",
+      "course_title": "Discipleship Training",
+      "lesson_id": "360051",
+      "lesson_title": "The Biblical Mandate for Discipleship",
+      "lessonOrder": "1"
+    },
+    {
+      "code": "MIN102",
+      "course_title": "Discipleship Training",
+      "lesson_id": "360052",
+      "lesson_title": "Jesus' Model of Discipleship",
+      "lessonOrder": "2"
+    },
+    {
+      "code": "MIN102",
+      "course_title": "Discipleship Training",
+      "lesson_id": "360053",
+      "lesson_title": "Spiritual Formation and Growth",
+      "lessonOrder": "3"
+    },
+    {
+      "code": "MIN102",
+      "course_title": "Discipleship Training",
+      "lesson_id": "360054",
+      "lesson_title": "Developing Spiritual Disciplines",
+      "lessonOrder": "4"
+    },
+    {
+      "code": "MIN102",
+      "course_title": "Discipleship Training",
+      "lesson_id": "360055",
+      "lesson_title": "One-on-One Discipleship",
+      "lessonOrder": "5"
+    },
+    {
+      "code": "PAS201",
+      "course_title": "Pastoral Counseling",
+      "lesson_id": "360171",
+      "lesson_title": "Biblical Foundations of Pastoral Care",
+      "lessonOrder": "1"
+    },
+    {
+      "code": "PAS201",
+      "course_title": "Pastoral Counseling",
+      "lesson_id": "360172",
+      "lesson_title": "The Shepherd's Heart - Character of a Pastor",
+      "lessonOrder": "2"
+    },
+    {
+      "code": "PAS201",
+      "course_title": "Pastoral Counseling",
+      "lesson_id": "360173",
+      "lesson_title": "Pastoral Counseling Basics",
+      "lessonOrder": "3"
+    },
+    {
+      "code": "PAS201",
+      "course_title": "Pastoral Counseling",
+      "lesson_id": "360174",
+      "lesson_title": "Crisis Intervention and Trauma Care",
+      "lessonOrder": "4"
+    },
+    {
+      "code": "PAS201",
+      "course_title": "Pastoral Counseling",
+      "lesson_id": "360175",
+      "lesson_title": "Grief and Loss - Ministry to the Bereaved",
+      "lessonOrder": "5"
+    },
+    {
+      "code": "PAS301",
+      "course_title": "Church Administration",
+      "lesson_id": "360081",
+      "lesson_title": "Biblical Principles of Church Administration",
+      "lessonOrder": "1"
+    },
+    {
+      "code": "PAS301",
+      "course_title": "Church Administration",
+      "lesson_id": "360082",
+      "lesson_title": "Church Governance Models",
+      "lessonOrder": "2"
+    },
+    {
+      "code": "PAS301",
+      "course_title": "Church Administration",
+      "lesson_id": "360083",
+      "lesson_title": "Financial Management and Stewardship",
+      "lessonOrder": "3"
+    },
+    {
+      "code": "PAS301",
+      "course_title": "Church Administration",
+      "lesson_id": "360084",
+      "lesson_title": "Legal Issues in Church Administration",
+      "lessonOrder": "4"
+    },
+    {
+      "code": "PAS301",
+      "course_title": "Church Administration",
+      "lesson_id": "360085",
+      "lesson_title": "Human Resources and Staff Management",
+      "lessonOrder": "5"
+    },
+    {
+      "code": "SPR201",
+      "course_title": "Discovering Spiritual Gifts",
+      "lesson_id": "360181",
+      "lesson_title": "Biblical Foundation of Spiritual Gifts",
+      "lessonOrder": "1"
+    },
+    {
+      "code": "SPR201",
+      "course_title": "Discovering Spiritual Gifts",
+      "lesson_id": "360182",
+      "lesson_title": "The Motivational Gifts - Romans 12",
+      "lessonOrder": "2"
+    },
+    {
+      "code": "SPR201",
+      "course_title": "Discovering Spiritual Gifts",
+      "lesson_id": "360183",
+      "lesson_title": "The Ministry Gifts - 1 Corinthians 12",
+      "lessonOrder": "3"
+    },
+    {
+      "code": "SPR201",
+      "course_title": "Discovering Spiritual Gifts",
+      "lesson_id": "360184",
+      "lesson_title": "The Leadership Gifts - Ephesians 4",
+      "lessonOrder": "4"
+    },
+    {
+      "code": "SPR201",
+      "course_title": "Discovering Spiritual Gifts",
+      "lesson_id": "360185",
+      "lesson_title": "Discovering Your Spiritual Gifts",
+      "lessonOrder": "5"
+    },
+    {
+      "code": "THE301",
+      "course_title": "Fundamentals of Apologetics",
+      "lesson_id": "360031",
+      "lesson_title": "Introduction to Christian Apologetics",
+      "lessonOrder": "1"
+    },
+    {
+      "code": "THE301",
+      "course_title": "Fundamentals of Apologetics",
+      "lesson_id": "360032",
+      "lesson_title": "The Existence of God - Classical Arguments",
+      "lessonOrder": "2"
+    },
+    {
+      "code": "THE301",
+      "course_title": "Fundamentals of Apologetics",
+      "lesson_id": "360033",
+      "lesson_title": "The Problem of Evil and Suffering",
+      "lessonOrder": "3"
+    },
+    {
+      "code": "THE301",
+      "course_title": "Fundamentals of Apologetics",
+      "lesson_id": "360034",
+      "lesson_title": "The Reliability of the New Testament",
+      "lessonOrder": "4"
+    },
+    {
+      "code": "THE301",
+      "course_title": "Fundamentals of Apologetics",
+      "lesson_id": "360035",
+      "lesson_title": "The Resurrection of Jesus Christ",
+      "lessonOrder": "5"
+    }
+  ],
+  "messages": [],
+  "stdout": "code\tcourse_title\tlesson_id\tlesson_title\tlessonOrder\nDIV102\tDeliverance Ministry\t480001\tIntroduction to Deliverance Ministry\t1\nDIV102\tDeliverance Ministry\t480021\tIntroduction to Deliverance Ministry\t1\nDIV102\tDeliverance Ministry\t480002\tSpiritual Authority and Power\t2\nDIV102\tDeliverance Ministry\t480022\tSpiritual Authority and Power\t2\nDIV102\tDeliverance Ministry\t480003\tIdentifying Spiritual Bondage\t3\nDIV102\tDeliverance Ministry\t480023\tIdentifying Spiritual Bondage\t3\nDIV102\tDeliverance Ministry\t480004\tPrayer and Intercession in Deliverance\t4\nDIV111\tCapstone Project\t480069\tIntroduction to the Capstone Project\t1\nDIV111\tCapstone Project\t480041\tIntroduction to the Capstone Project\t1\nDIV111\tCapstone Project\t480042\tSelecting Your Capstone Topic\t2\nDIV111\tCapstone Project\t480070\tSelecting Your Capstone Topic\t2\nDIV111\tCapstone Project\t480071\tResearch Methods and Resources\t3\nDIV112\tChristology\t480077\tIntroduction to Christology\t1\nDIV112\tChristology\t480049\tIntroduction to Christology\t1\nDIV112\tChristology\t480078\tThe Incarnation\t2\nDIV112\tChristology\t480050\tThe Incarnation\t2\nDIV112\tChristology\t480051\tThe Life and Ministry of Jesus\t3\nDIV112\tChristology\t480079\tThe Life and Ministry of Jesus\t3\nDIV112\tChristology\t480080\tThe Death and Resurrection of Christ\t4\nDIV113\tContemporary Theological Issues\t480087\tIntroduction to Contemporary Theology\t1\nDIV113\tContemporary Theological Issues\t480059\tIntroduction to Contemporary Theology\t1\nDIV113\tContemporary Theological Issues\t480088\tScience and Faith\t2\nDIV113\tContemporary Theological Issues\t480060\tScience and Faith\t2\nDIV113\tContemporary Theological Issues\t480061\tReligious Pluralism\t3\nDIV113\tContemporary Theological Issues\t480089\tReligious Pluralism\t3\nDIV113\tContemporary Theological Issues\t480090\tGender and Sexuality\t4\nGED-LANG\tGED Language Arts\t540001\tClose Reading Strategies\t9\nGED-LANG\tGED Language Arts\t540002\tInference and Analysis\t10\nGED-LANG\tGED Language Arts\t540003\tAuthor Purpose and Tone\t11\nGED-LANG\tGED Language Arts\t540004\tExtended Response Format\t12\nGED-LANG\tGED Language Arts\t540005\tExtended Response Practice\t13\nGED-LANG\tGED Language Arts\t540006\tComplex Texts Analysis\t14\nGED-LANG\tGED Language Arts\t540007\tStandard English Conventions\t15\nGED-LANG\tGED Language Arts\t540008\tWriting for Different Purposes\t16\nGED-LANG\tGED Language Arts\t540009\tRLA Test-Taking Strategies\t17\nGED-LANG\tGED Language Arts\t540010\tRLA Practice and Review\t18\nGED-MATH\tGED Mathematics\t540011\tAdvanced Algebra\t9\nGED-MATH\tGED Mathematics\t540012\tFunctions and Graphing\t10\nGED-MATH\tGED Mathematics\t540013\tStatistics and Probability\t11\nGED-MATH\tGED Mathematics\t540014\tMeasurement and Conversions\t12\nGED-MATH\tGED Mathematics\t540015\tCalculator Strategies\t13\nGED-MATH\tGED Mathematics\t540016\tNon-Calculator Problem Solving\t14\nGED-MATH\tGED Mathematics\t540017\tMulti-Step Problem Solving\t15\nGED-MATH\tGED Mathematics\t540018\tReal-World Applications\t16\nGED-MATH\tGED Mathematics\t540019\tMath Test-Taking Strategies\t17\nGED-MATH\tGED Mathematics\t540020\tMath Practice and Review\t18\nGED-SCI\tGED Science\t540021\tCells and Organisms\t9\nGED-SCI\tGED Science\t540022\tHeredity and Evolution\t10\nGED-SCI\tGED Science\t540023\tEcosystems and Biodiversity\t11\nGED-SCI\tGED Science\t540024\tChemical Reactions\t12\nGED-SCI\tGED Science\t540025\tWaves and Sound\t13\nGED-SCI\tGED Science\t540026\tEarth Structure and Processes\t14\nGED-SCI\tGED Science\t540027\tSpace and Astronomy\t15\nGED-SCI\tGED Science\t540028\tData Interpretation in Science\t16\nGED-SCI\tGED Science\t540029\tScience Test-Taking Strategies\t17\nGED-SCI\tGED Science\t540030\tScience Practice and Review\t18\nGED-SOCIAL\tGED Social Studies\t540031\tColonial America and Independence\t9\nGED-SOCIAL\tGED Social Studies\t540032\tCivil War and Reconstruction\t10\nGED-SOCIAL\tGED Social Studies\t540033\tModern America (1900-Present)\t11\nGED-SOCIAL\tGED Social Studies\t540034\tConstitutional Rights and Amendments\t12\nGED-SOCIAL\tGED Social Studies\t540035\tBranches of Government\t13\nGED-SOCIAL\tGED Social Studies\t540036\tGlobal Economics and Trade\t14\nGED-SOCIAL\tGED Social Studies\t540037\tWorld History and Cultures\t15\nGED-SOCIAL\tGED Social Studies\t540038\tDocument Analysis and Primary Sources\t16\nGED-SOCIAL\tGED Social Studies\t540039\tSocial Studies Test-Taking Strategies\t17\nGED-SOCIAL\tGED Social Studies\t540040\tSocial Studies Practice and Review\t18\nLED202\tChristian Leadership\t480031\tBiblical Foundations of Leadership\t1\nLED202\tChristian Leadership\t480011\tBiblical Foundations of Leadership\t1\nLED202\tChristian Leadership\t480032\tDeveloping Your Leadership Vision\t2\nLED202\tChristian Leadership\t480012\tDeveloping Your Leadership Vision\t2\nLED202\tChristian Leadership\t480013\tBuilding and Leading Teams\t3\nLED202\tChristian Leadership\t480033\tBuilding and Leading Teams\t3\nLED202\tChristian Leadership\t480034\tEmotional Intelligence in Leadership\t4\nMIN102\tDiscipleship Training\t360051\tThe Biblical Mandate for Discipleship\t1\nMIN102\tDiscipleship Training\t360052\tJesus' Model of Discipleship\t2\nMIN102\tDiscipleship Training\t360053\tSpiritual Formation and Growth\t3\nMIN102\tDiscipleship Training\t360054\tDeveloping Spiritual Disciplines\t4\nMIN102\tDiscipleship Training\t360055\tOne-on-One Discipleship\t5\nPAS201\tPastoral Counseling\t360171\tBiblical Foundations of Pastoral Care\t1\nPAS201\tPastoral Counseling\t360172\tThe Shepherd's Heart - Character of a Pastor\t2\nPAS201\tPastoral Counseling\t360173\tPastoral Counseling Basics\t3\nPAS201\tPastoral Counseling\t360174\tCrisis Intervention and Trauma Care\t4\nPAS201\tPastoral Counseling\t360175\tGrief and Loss - Ministry to the Bereaved\t5\nPAS301\tChurch Administration\t360081\tBiblical Principles of Church Administration\t1\nPAS301\tChurch Administration\t360082\tChurch Governance Models\t2\nPAS301\tChurch Administration\t360083\tFinancial Management and Stewardship\t3\nPAS301\tChurch Administration\t360084\tLegal Issues in Church Administration\t4\nPAS301\tChurch Administration\t360085\tHuman Resources and Staff Management\t5\nSPR201\tDiscovering Spiritual Gifts\t360181\tBiblical Foundation of Spiritual Gifts\t1\nSPR201\tDiscovering Spiritual Gifts\t360182\tThe Motivational Gifts - Romans 12\t2\nSPR201\tDiscovering Spiritual Gifts\t360183\tThe Ministry Gifts - 1 Corinthians 12\t3\nSPR201\tDiscovering Spiritual Gifts\t360184\tThe Leadership Gifts - Ephesians 4\t4\nSPR201\tDiscovering Spiritual Gifts\t360185\tDiscovering Your Spiritual Gifts\t5\nTHE301\tFundamentals of Apologetics\t360031\tIntroduction to Christian Apologetics\t1\nTHE301\tFundamentals of Apologetics\t360032\tThe Existence of God - Classical Arguments\t2\nTHE301\tFundamentals of Apologetics\t360033\tThe Problem of Evil and Suffering\t3\nTHE301\tFundamentals of Apologetics\t360034\tThe Reliability of the New Testament\t4\nTHE301\tFundamentals of Apologetics\t360035\tThe Resurrection of Jesus Christ\t5\n",
+  "stderr": "",
+  "execution_time_ms": 59
+}
