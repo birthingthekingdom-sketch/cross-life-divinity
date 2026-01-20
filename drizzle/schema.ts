@@ -577,6 +577,18 @@ export const learningPaths = mysqlTable("learning_paths", {
 		assignmentDueDate: timestamp({ mode: 'string' }),
 	});
 
+export const lessonProgress = mysqlTable("lesson_progress", {
+	id: int().autoincrement().notNull(),
+	userId: int().notNull(),
+	lessonId: int().notNull(),
+	courseId: int().notNull(),
+	isCompleted: tinyint().default(0).notNull(),
+	completedAt: timestamp({ mode: 'string' }),
+	timeSpent: int().default(0).notNull(),
+	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
+	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+});
+
 export const loginHistory = mysqlTable("login_history", {
 	id: int().autoincrement().notNull(),
 	userId: int().notNull(),

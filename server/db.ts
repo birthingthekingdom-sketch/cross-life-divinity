@@ -1980,3 +1980,126 @@ export async function getStudentBridgeAcademyDashboard(userId: number) {
 // - getStudentEnrollments() at line 1976
 // - getStudentCourseProgress() at line 1729 (updated implementation)
 // - getStudentQuizProgress() - use getStudentCourseQuizSubmissions() instead
+
+
+// ===== LESSON PROGRESS TRACKING (GED COURSES) =====
+
+/**
+ * Mark a GED lesson as completed
+ */
+export async function markGedLessonComplete(userId: number, lessonId: number, courseId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database connection failed");
+
+  const result = await db.raw(
+    `INSERT INTO lesson_progress (userId, lessonId, courseId, isCompleted, completedAt)
+     VALUES (?, ?, ?, 1, NOW())
+     ON DUPLICATE KEY UPDATE 
+       isCompleted = 1,
+       completedAt = NOW(),
+       updatedAt = NOW()`,
+    [userId, lessonId, courseId]
+  );
+
+  return result;
+}
+
+/**
+ * Get lesson progress for a specific course
+ */
+export async function getCourseLessonProgress(userId: number, courseId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database connection failed");
+
+  const result = await db.raw(
+    `SELECT 
+       lp.id,
+       lp.userId,
+       lp.lessonId,
+       lp.courseId,
+       lp.isCompleted,
+       lp.completedAt,
+       lp.timeSpent,
+       l.title,
+       l.lessonOrder,
+       l.content
+     FROM lesson_progress lp
+     LEFT JOIN lessons l ON lp.lessonId = l.id
+     WHERE lp.userId = ? AND lp.courseId = ?
+     ORDER BY l.lessonOrder ASC`,
+    [userId, courseId]
+  );
+
+  return result;
+}
+
+/**
+ * Get course completion stats (total lessons and completed lessons)
+ */
+export async function getCourseCompletionStats(userId: number, courseId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database connection failed");
+
+  const result = await db.raw(
+    `SELECT 
+       COUNT(DISTINCT l.id) as totalLessons,
+       COUNT(DISTINCT CASE WHEN lp.isCompleted = 1 THEN lp.lessonId END) as completedLessons,
+       ROUND(
+         COUNT(DISTINCT CASE WHEN lp.isCompleted = 1 THEN lp.lessonId END) * 100 / 
+         COUNT(DISTINCT l.id)
+       ) as completionPercentage
+     FROM lessons l
+     LEFT JOIN lesson_progress lp ON l.id = lp.lessonId AND lp.userId = ?
+     WHERE l.courseId = ?`,
+    [userId, courseId]
+  );
+
+  return result[0] || { totalLessons: 0, completedLessons: 0, completionPercentage: 0 };
+}
+
+/**
+ * Get all GED course completion stats for a user
+ */
+export async function getAllGedCourseStats(userId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database connection failed");
+
+  const result = await db.raw(
+    `SELECT 
+       c.id,
+       c.code,
+       c.title,
+       COUNT(DISTINCT l.id) as totalLessons,
+       COUNT(DISTINCT CASE WHEN lp.isCompleted = 1 THEN lp.lessonId END) as completedLessons,
+       ROUND(
+         COUNT(DISTINCT CASE WHEN lp.isCompleted = 1 THEN lp.lessonId END) * 100 / 
+         COUNT(DISTINCT l.id)
+       ) as completionPercentage
+     FROM courses c
+     LEFT JOIN lessons l ON c.id = l.courseId
+     LEFT JOIN lesson_progress lp ON l.id = lp.lessonId AND lp.userId = ?
+     WHERE c.code LIKE 'GED%'
+     GROUP BY c.id, c.code, c.title
+     ORDER BY c.code`,
+    [userId]
+  );
+
+  return result;
+}
+
+/**
+ * Check if a GED lesson is completed
+ */
+export async function isGedLessonCompleted(userId: number, lessonId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database connection failed");
+
+  const result = await db.raw(
+    `SELECT isCompleted FROM lesson_progress 
+     WHERE userId = ? AND lessonId = ?`,
+    [userId, lessonId]
+  );
+
+  return result.length > 0 ? result[0].isCompleted === 1 : false;
+}
+

@@ -3432,3 +3432,18 @@ All components built and integrated. Ready for:
 - [ ] Fix Chaplaincy lesson access control - implement preview (first 3 lessons) vs enrolled (lessons 4-10)
 - [ ] Fix Bridge Academy standalone enrollment - students should be able to enroll in GED alone without theological courses
 - [ ] Verify Chaplaincy lesson 404 error resolution
+
+
+## NEW - GED Lesson Progress Tracking Feature (Jan 20, 2026)
+- [x] Create lesson_progress table in database schema
+- [x] Add database migration for lesson_progress table
+- [x] Create backend API endpoint to track lesson completion
+- [x] Create backend API endpoint to get lesson progress for a course
+- [x] Create ProgressBar component with visual completion indicator
+- [x] Create BridgeAcademyProgressTracking page component
+- [ ] Add route for progress tracking page in App.tsx
+- [ ] Add link to progress tracking from Bridge Academy dashboard
+- [ ] Add lesson completion tracking on lesson view
+- [ ] Test progress tracking across all 4 GED courses
+- [ ] Verify progress persists after page refresh
+- [ ] Test progress bar visual updates in real-time

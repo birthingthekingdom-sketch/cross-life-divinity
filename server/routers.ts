@@ -1424,6 +1424,38 @@ export const appRouter = router({
         return { success: true };
       }),
   }),
+
+  lessonProgress: router({
+    markComplete: protectedProcedure
+      .input(z.object({ lessonId: z.number(), courseId: z.number() }))
+      .mutation(async ({ input, ctx }) => {
+        await db.markGedLessonComplete(ctx.user.id, input.lessonId, input.courseId);
+        return { success: true };
+      }),
+
+    getCourseLessons: protectedProcedure
+      .input(z.object({ courseId: z.number() }))
+      .query(async ({ input, ctx }) => {
+        return await db.getCourseLessonProgress(ctx.user.id, input.courseId);
+      }),
+
+    getCourseStats: protectedProcedure
+      .input(z.object({ courseId: z.number() }))
+      .query(async ({ input, ctx }) => {
+        return await db.getCourseCompletionStats(ctx.user.id, input.courseId);
+      }),
+
+    getAllGedStats: protectedProcedure
+      .query(async ({ ctx }) => {
+        return await db.getAllGedCourseStats(ctx.user.id);
+      }),
+
+    isLessonCompleted: protectedProcedure
+      .input(z.object({ lessonId: z.number() }))
+      .query(async ({ input, ctx }) => {
+        return await db.isGedLessonCompleted(ctx.user.id, input.lessonId);
+      }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;

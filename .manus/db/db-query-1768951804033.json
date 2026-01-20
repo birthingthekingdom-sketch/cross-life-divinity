@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS lesson_progress (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  userId INT NOT NULL,\n  lessonId INT NOT NULL,\n  courseId INT NOT NULL,\n  isCompleted TINYINT DEFAULT 0 NOT NULL,\n  completedAt TIMESTAMP NULL,\n  timeSpent INT DEFAULT 0 NOT NULL,\n  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,\n  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,\n  UNIQUE KEY unique_user_lesson (userId, lessonId),\n  INDEX idx_user_course (userId, courseId),\n  INDEX idx_lesson (lessonId)\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute CREATE TABLE IF NOT EXISTS lesson_progress (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  userId INT NOT NULL,\n  lessonId INT NOT NULL,\n  courseId INT NOT NULL,\n  isCompleted TINYINT DEFAULT 0 NOT NULL,\n  completedAt TIMESTAMP NULL,\n  timeSpent INT DEFAULT 0 NOT NULL,\n  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,\n  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,\n  UNIQUE KEY unique_user_lesson (userId, lessonId),\n  INDEX idx_user_course (userId, courseId),\n  INDEX idx_lesson (lessonId)\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 541
+}
