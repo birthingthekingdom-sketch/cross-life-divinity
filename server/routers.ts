@@ -28,8 +28,6 @@ import { chaplaincyRouter } from './chaplaincy-router';
 import { installmentPlanRouter } from './installment-plan-router';
 import { paymentPlanRouter } from './payment-plan-router';
 import { practiceQuizRouter } from './practice-quiz-router';
-import { sendQuizResultEmail } from './quiz-email';
-import { generateLearningPathRecommendation, calculateWeakAreas, getMotivationalMessage } from './adaptive-learning';
 import { idVerificationRouter } from './id-verification-router';
 import { webinarRouter } from './webinar-router';
 import { coursePreviewRouter } from './course-preview-router';
@@ -167,10 +165,6 @@ export const appRouter = router({
       return db.getAllCourses();
     }),
     
-    listGed: publicProcedure.query(async () => {
-      return db.getAllGedCourses();
-    }),
-    
     checkEnrollment: protectedProcedure
       .input(z.object({ courseId: z.number() }))
       .query(async ({ ctx, input }) => {
@@ -300,47 +294,11 @@ export const appRouter = router({
     
     getById: publicProcedure
       .input(z.object({ id: z.number() }))
-      .query(async ({ ctx, input }) => {
+      .query(async ({ input }) => {
         const lesson = await db.getLessonById(input.id);
         if (!lesson) {
           throw new TRPCError({ code: 'NOT_FOUND', message: 'Lesson not found' });
         }
-        
-        // Get the course to check if it's a preview course
-        const course = await db.getCourseById(lesson.courseId);
-        if (!course) {
-          throw new TRPCError({ code: 'NOT_FOUND', message: 'Course not found' });
-        }
-        
-        // Get all lessons for this course ordered by lessonOrder
-        const allLessons = await db.getLessonsByCourseId(lesson.courseId);
-        const lessonIndex = allLessons.findIndex(l => l.id === lesson.id);
-        
-        // Check if this is a preview lesson (first 3 lessons)
-        const isPreviewLesson = lessonIndex >= 0 && lessonIndex < 3;
-        
-        // If it's a preview lesson, allow access to anyone
-        if (isPreviewLesson) {
-          return lesson;
-        }
-        
-        // For non-preview lessons, require authentication and enrollment
-        if (!ctx.user) {
-          throw new TRPCError({ 
-            code: 'UNAUTHORIZED', 
-            message: 'You must be logged in to access this lesson. Please sign up or log in to continue.' 
-          });
-        }
-        
-        // Check if user is enrolled in the course
-        const isEnrolled = await db.isUserEnrolledInCourse(ctx.user.id, lesson.courseId);
-        if (!isEnrolled) {
-          throw new TRPCError({ 
-            code: 'FORBIDDEN', 
-            message: 'You must be enrolled in this course to access this lesson. Please enroll to continue.' 
-          });
-        }
-        
         return lesson;
       }),
     
@@ -442,27 +400,6 @@ export const appRouter = router({
           await db.markLessonComplete(ctx.user.id, input.courseId, input.lessonId);
         }
         
-        // Send email notification with quiz results
-        try {
-          const user = await db.getUserById(ctx.user.id);
-          const lesson = await db.getLessonById(input.lessonId);
-          const course = await db.getCourseById(input.courseId);
-          
-          if (user?.email && lesson && course) {
-            await sendQuizResultEmail(
-              user.email,
-              user.name || user.email,
-              course.title,
-              lesson.title,
-              score,
-              totalQuestions,
-              passed
-            );
-          }
-        } catch (emailError) {
-          console.error('Error sending quiz result email:', emailError);
-        }
-        
         return {
           score,
           totalQuestions,
@@ -475,58 +412,6 @@ export const appRouter = router({
       .input(z.object({ lessonId: z.number() }))
       .query(async ({ ctx, input }) => {
         return db.getQuizSubmissionByUserAndLesson(ctx.user.id, input.lessonId);
-      }),
-
-    getRecommendation: protectedProcedure
-      .input(z.object({ courseId: z.number() }))
-      .query(async ({ ctx, input }) => {
-        try {
-          const lessons = await db.getLessonsByCourse(input.courseId);
-          const totalTopics = lessons.length;
-          const topicScores = await Promise.all(
-            lessons.map(async (lesson) => {
-              const submission = await db.getQuizSubmissionByUserAndLesson(ctx.user.id, lesson.id);
-              return {
-                topicId: lesson.id,
-                topicTitle: lesson.title,
-                averageScore: submission ? Math.round((submission.score / submission.totalQuestions) * 100) : 0,
-                completed: !!submission,
-              };
-            })
-          );
-          const completedTopics = topicScores.filter((t) => t.completed).length;
-          const averageCourseScore = topicScores.length > 0
-            ? Math.round(topicScores.reduce((sum, t) => sum + t.averageScore, 0) / topicScores.length)
-            : 0;
-          const weakAreas = calculateWeakAreas(topicScores);
-          const latestSubmission = await db.getLatestQuizSubmissionByUser(ctx.user.id);
-          const currentScore = latestSubmission
-            ? Math.round((latestSubmission.score / latestSubmission.totalQuestions) * 100)
-            : 0;
-          const recommendation = generateLearningPathRecommendation(
-            currentScore,
-            completedTopics,
-            totalTopics,
-            averageCourseScore,
-            weakAreas
-          );
-          const completionPercentage = Math.round((completedTopics / totalTopics) * 100);
-          const motivationalMessage = getMotivationalMessage(averageCourseScore, completionPercentage);
-          return {
-            recommendation,
-            motivationalMessage,
-            stats: {
-              averageCourseScore,
-              completedTopics,
-              totalTopics,
-              completionPercentage,
-            },
-            weakAreas: weakAreas.slice(0, 3),
-          };
-        } catch (error) {
-          console.error('Error generating learning recommendation:', error);
-          return null;
-        }
       }),
     
     submitAnswer: protectedProcedure
@@ -652,9 +537,9 @@ export const appRouter = router({
           throw new TRPCError({ code: 'BAD_REQUEST', message: 'Course not completed' });
         }
         
-        // Generate CLAC-format certificate number
+        // Generate CPD-format certificate number
         const timestamp = Date.now();
-        const certificateNumber = `CLAC-${new Date().getFullYear()}-${course.code}-${timestamp.toString().slice(-5)}`;
+        const certificateNumber = `CPD-CLSD-${new Date().getFullYear()}-${course.code}-${timestamp.toString().slice(-5)}`;
         
         // Generate unique verification token
         const verificationToken = `${timestamp}-${ctx.user.id}-${input.courseId}-${Math.random().toString(36).substring(2, 15)}`;
@@ -1233,25 +1118,8 @@ export const appRouter = router({
       .query(async ({ input }) => {
         return db.getBridgeAcademyTopics(input.courseId);
       }),
-    
-    getEnrolledStudents: adminProcedure.query(async () => {
-      return db.getEnrolledStudents();
-    }),
-    
-    getStudentEnrollments: adminProcedure
-      .input(z.object({ studentId: z.number() }))
-      .query(async ({ input }) => {
-        return db.getStudentEnrollments(input.studentId);
-      }),
-    
-    getStudentProgress: adminProcedure
-      .input(z.object({ studentId: z.number(), courseId: z.number() }))
-      .query(async ({ input }) => {
-        return db.getStudentCourseProgress(input.studentId, input.courseId);
-      }),
   }),
   
-
 
   forum: router({
     getTopicsByCourse: protectedProcedure

@@ -74,11 +74,11 @@ export default function AdminBridgeAcademyAnalytics() {
 
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium">Active Students</CardTitle>
+              <CardTitle className="text-sm font-medium">Active Subscriptions</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-green-600">156</div>
-              <p className="text-xs text-muted-foreground">FREE with enrollment</p>
+              <div className="text-2xl font-bold text-blue-600">124</div>
+              <p className="text-xs text-muted-foreground">$19/month each</p>
             </CardContent>
           </Card>
         </div>
@@ -138,14 +138,14 @@ export default function AdminBridgeAcademyAnalytics() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle>Trial to Paid Conversion</CardTitle>
-              <CardDescription>7-day trial conversion metrics</CardDescription>
+              <CardTitle>free access to Paid Conversion</CardTitle>
+              <CardDescription>Free access conversion metrics</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div>
                   <div className="flex justify-between mb-2">
-                    <span className="text-sm font-semibold">Trials Started</span>
+                    <span className="text-sm font-semibold">free accesss Started</span>
                     <span className="text-sm font-bold">156</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
@@ -172,7 +172,7 @@ export default function AdminBridgeAcademyAnalytics() {
 
                 <div className="pt-4 border-t">
                   <p className="text-xs text-muted-foreground">
-                    Strong conversion indicates effective trial experience and course value
+                    Strong conversion indicates effective free access experience and course value
                   </p>
                 </div>
               </div>

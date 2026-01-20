@@ -1,4 +1,4 @@
-import { eq, and, ne, desc, inArray, sql, isNotNull } from "drizzle-orm";
+import { eq, and, desc, inArray, sql, isNotNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { 
   InsertUser, users, 
@@ -198,8 +198,8 @@ export async function getAllCourses(): Promise<Course[]> {
   const db = await getDb();
   if (!db) return [];
   
-  // Return only theological courses, exclude GED and Chaplaincy
-  return db.select().from(courses).where(and(eq(courses.courseType, 'theological'), ne(courses.code, 'CHAP101'))).orderBy(courses.displayOrder);
+  // Return both theological and GED courses
+  return db.select().from(courses).orderBy(courses.displayOrder);
 }
 
 export async function getAllGedCourses(): Promise<Course[]> {
@@ -208,15 +208,6 @@ export async function getAllGedCourses(): Promise<Course[]> {
   
   // Return only GED courses
   return db.select().from(courses).where(eq(courses.courseType, 'ged')).orderBy(courses.displayOrder);
-}
-
-export async function getChaplaincy(): Promise<Course | undefined> {
-  const db = await getDb();
-  if (!db) return undefined;
-  
-  // Return the Chaplaincy course
-  const result = await db.select().from(courses).where(eq(courses.code, 'CHAP101')).limit(1);
-  return result[0];
 }
 
 export async function getCourseById(id: number): Promise<Course | undefined> {
@@ -1707,39 +1698,9 @@ export async function getAllBridgeAcademyCoursesWithTopics() {
 /**
  * Get student's Bridge Academy enrollment status
  */
-export async function getUserBridgeAcademyEnrollment(userId: number) {
-  const db = await getDb();
-  if (!db) return null;
-  
-  try {
-    const result: any = await db.execute(
-      sql`SELECT id, userId, enrolledAt, status FROM bridge_academy_enrollments WHERE userId = ${userId} AND status = 'active' LIMIT 1`
-    );
-    const enrollments = Array.isArray(result) ? result : (result.rows || []);
-    return enrollments.length > 0 ? enrollments[0] : null;
-  } catch (err) {
-    console.error("Error getting Bridge Academy enrollment:", err);
-    return null;
-  }
-}
-
-/**
- * Create Bridge Academy enrollment for user
- */
-export async function createBridgeAcademyEnrollment(data: { userId: number; enrolledAt: Date }) {
-  const db = await getDb();
-  if (!db) throw new Error("Database not available");
-  
-  try {
-    await db.execute(
-      sql`INSERT INTO bridge_academy_enrollments (userId, enrolledAt, status)
-          VALUES (${data.userId}, ${data.enrolledAt}, 'active')
-          ON DUPLICATE KEY UPDATE status = 'active', enrolledAt = ${data.enrolledAt}`
-    );
-  } catch (err) {
-    console.error("Error creating Bridge Academy enrollment:", err);
-    throw err;
-  }
+export async function getStudentBridgeAcademyEnrollment(userId: number) {
+  // TODO: bridgeAcademyEnrollments table not yet implemented
+  return null;
 }
 
 /**
@@ -1766,58 +1727,8 @@ export async function getStudentBridgeAcademyProgress(userId: number) {
  * Get student's progress for a specific course
  */
 export async function getStudentCourseProgress(userId: number, courseId: number) {
-  const db = await getDb();
-  if (!db) return null;
-  
-  // Get course info
-  const courseData = await db
-    .select()
-    .from(courses)
-    .where(eq(courses.id, courseId));
-  
-  if (!courseData.length) return null;
-  
-  const course = courseData[0];
-  
-  // Get all lessons in the course
-  const courseLessons = await db
-    .select()
-    .from(lessons)
-    .where(eq(lessons.courseId, courseId))
-    .orderBy(asc(lessons.displayOrder));
-  
-  // Get student progress for each lesson
-  const progressData = await Promise.all(
-    courseLessons.map(async (lesson) => {
-      const progress = await db
-        .select()
-        .from(studentProgress)
-        .where(
-          and(
-            eq(studentProgress.userId, userId),
-            eq(studentProgress.lessonId, lesson.id)
-          )
-        );
-      
-      return {
-        lesson,
-        completed: progress.length > 0 && progress[0].completed === 1,
-        completedAt: progress.length > 0 ? progress[0].completedAt : null,
-      };
-    })
-  );
-  
-  const completedLessons = progressData.filter(p => p.completed).length;
-  const totalLessons = courseLessons.length;
-  const progressPercentage = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
-  
-  return {
-    course,
-    totalLessons,
-    completedLessons,
-    progressPercentage,
-    lessons: progressData,
-  };
+  // TODO: bridgeAcademyProgress table not yet implemented
+  return null;
 }
 
 /**
@@ -1972,11 +1883,3 @@ export async function getStudentBridgeAcademyDashboard(userId: number) {
     certificates,
   };
 }
-
-
-// ===== STUDENT MONITORING & ENROLLMENT TRACKING =====
-// These functions are already implemented above:
-// - getEnrolledStudents() at line 1940
-// - getStudentEnrollments() at line 1976
-// - getStudentCourseProgress() at line 1729 (updated implementation)
-// - getStudentQuizProgress() - use getStudentCourseQuizSubmissions() instead

@@ -1,8 +1,0 @@
-{
-  "query": "SELECT lp.id, lp.name, lp.level, c.id as course_id, c.code, c.title, COUNT(l.id) as lesson_count FROM learning_paths lp LEFT JOIN learning_path_courses lpc ON lp.id = lpc.pathId LEFT JOIN courses c ON lpc.courseId = c.id LEFT JOIN lessons l ON c.id = l.courseId WHERE lp.level IN ('beginner', 'intermediate') GROUP BY lp.id, c.id ORDER BY lp.id, lpc.orderIndex;",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT lp.id, lp.name, lp.level, c.id as course_id, c.code, c.title, COUNT(l.id) as lesson_count FROM learning_paths lp LEFT JOIN learning_path_courses lpc ON lp.id = lpc.pathId LEFT JOIN courses c ON lpc.courseId = c.id LEFT JOIN lessons l ON c.id = l.courseId WHERE lp.level IN ('beginner', 'intermediate') GROUP BY lp.id, c.id ORDER BY lp.id, lpc.orderIndex;",
-  "returncode": 1,
-  "logs": [
-    "ERROR 1055 (42000) at line 1: Expression #2 of ORDER BY is not in GROUP BY clause and contains nonaggregated column '' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by"
-  ]
-}

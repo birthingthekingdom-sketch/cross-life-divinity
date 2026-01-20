@@ -1,9 +1,0 @@
-{
-  "query": "DELETE FROM lessons WHERE courseId = (SELECT id FROM courses WHERE code = 'BIB101') AND id > 600010;",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute DELETE FROM lessons WHERE courseId = (SELECT id FROM courses WHERE code = 'BIB101') AND id > 600010;",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 151
-}

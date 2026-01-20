@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { VideoPlayer } from "@/components/VideoPlayer";
+import { CourseIntroSlideshow } from "@/components/CourseIntroSlideshow";
 import { CoursePreviewModal } from "@/components/CoursePreviewModal";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
@@ -168,6 +169,23 @@ export default function CoursePageEnhanced() {
           {/* Course Info for Non-Logged-In Users */}
           <div className="container py-8">
             <div className="max-w-4xl mx-auto">
+              {/* Course Introduction Slideshow */}
+              <Card className="mb-8">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Video className="h-5 w-5 text-primary" />
+                    Course Introduction
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CourseIntroSlideshow 
+                    courseId={course.code} 
+                    courseName={course.title}
+                    autoPlay={true}
+                  />
+                </CardContent>
+              </Card>
+
               {/* Intro Video Section */}
               {course.introVideoUrl && (
                 <Card className="mb-8">

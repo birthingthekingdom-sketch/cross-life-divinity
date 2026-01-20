@@ -1,9 +1,0 @@
-{
-  "query": "INSERT INTO course_enrollments (userId, courseId, accessCodeId, enrolledAt)\nSELECT u.id, c.id, 1, NOW()\nFROM users u, courses c\nWHERE u.email = 'teststudent@crosslife.test' \nAND c.id NOT IN (\n  SELECT courseId FROM course_enrollments \n  WHERE userId = u.id\n)\nLIMIT 10;",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO course_enrollments (userId, courseId, accessCodeId, enrolledAt)\nSELECT u.id, c.id, 1, NOW()\nFROM users u, courses c\nWHERE u.email = 'teststudent@crosslife.test' \nAND c.id NOT IN (\n  SELECT courseId FROM course_enrollments \n  WHERE userId = u.id\n)\nLIMIT 10;",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 73
-}

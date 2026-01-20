@@ -2,7 +2,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, Shield, Award, Users, BookOpen, Clock, DollarSign, ArrowRight, Download } from "lucide-react";
+import { CheckCircle2, Shield, Award, Users, BookOpen, Clock, DollarSign, ArrowRight } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
@@ -31,7 +31,7 @@ function CheckoutForm({ clientSecret, onSuccess }: { clientSecret: string; onSuc
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${window.location.origin}/dashboard?chaplaincy=success`,
+        return_url: `${window.location.origin}/payment-success?type=chaplaincy`,
       },
     });
 
@@ -78,8 +78,10 @@ export default function ChaplaincyTraining() {
   };
 
   const handlePaymentSuccess = () => {
-    toast.success("Enrollment successful! Redirecting to your dashboard...");
-    setLocation("/dashboard?chaplaincy=success");
+    toast.success("Enrollment successful! Check your email for next steps.");
+    setTimeout(() => {
+      setLocation("/dashboard");
+    }, 2000);
   };
 
   return (
@@ -88,21 +90,22 @@ export default function ChaplaincyTraining() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-20">
         <div className="container">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          <div className="text-center md:text-left">
             <Badge className="mb-4 bg-primary-foreground/20 text-primary-foreground border-primary-foreground/30">
               Professional Certification Program
             </Badge>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Become a Certified Chaplain Assistant
+              Chaplaincy Training & Certification
             </h1>
             <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8">
-              Professional chaplaincy certification with just a high school diploma. Master crisis intervention, spiritual first aid, CISM, and ethical chaplaincy practice.
+              Become a certified chaplain and serve in hospitals, military, correctional facilities, and corporate settings
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <div className="text-center">
+                <div className="text-sm text-primary-foreground/80 line-through mb-1">$400</div>
                 <div className="text-4xl font-bold mb-2">$325</div>
-                <div className="text-sm text-primary-foreground/80 line-through">Regular: $400</div>
-                <div className="text-xs text-primary-foreground/70">$275 Course + $50 Background Check</div>
+                <div className="text-sm text-primary-foreground/80">$275 course + $50 background check</div>
               </div>
               <Button 
                 size="lg" 
@@ -113,6 +116,14 @@ export default function ChaplaincyTraining() {
                 {createPaymentMutation.isPending ? "Loading..." : "Enroll Now"} <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
+          </div>
+          <div>
+            <img 
+              src="/chaplain-promo.png" 
+              alt="Chaplaincy Training Certification" 
+              className="rounded-lg shadow-2xl w-full"
+            />
+          </div>
           </div>
         </div>
       </section>
@@ -149,33 +160,33 @@ export default function ChaplaincyTraining() {
             {[
               {
                 icon: Shield,
-                title: "Critical Incident Stress Management (CISM)",
-                description: "Learn evidence-based techniques for managing acute stress reactions and supporting individuals after traumatic events"
+                title: "Crisis Intervention",
+                description: "Learn to provide emotional and spiritual support during emergencies and traumatic events"
               },
               {
                 icon: Users,
-                title: "Spiritual First Aid",
-                description: "Develop skills to provide immediate spiritual and emotional support during crises and emergencies"
+                title: "Pastoral Care",
+                description: "Develop skills for one-on-one counseling and group ministry in institutional settings"
               },
               {
                 icon: BookOpen,
-                title: "Pastoral Care & Counseling",
-                description: "Master one-on-one counseling and group ministry techniques in institutional settings"
+                title: "Theological Foundations",
+                description: "Build a strong theological framework for multi-faith chaplaincy work"
               },
               {
                 icon: Award,
-                title: "Ethics & Confidentiality",
-                description: "Understand professional ethics, legal confidentiality requirements, and appropriate professional boundaries"
+                title: "Ethics & Boundaries",
+                description: "Understand professional ethics, confidentiality, and appropriate boundaries"
               },
               {
                 icon: Users,
-                title: "Cultural & Interfaith Competency",
-                description: "Minister effectively across diverse religious, cultural, and ethnic backgrounds with sensitivity and respect"
+                title: "Cultural Competency",
+                description: "Minister effectively across diverse religious, cultural, and ethnic backgrounds"
               },
               {
                 icon: Clock,
-                title: "Self-Care & Resilience",
-                description: "Maintain your own spiritual and emotional health while providing compassionate care to others"
+                title: "Self-Care Practices",
+                description: "Maintain your own spiritual and emotional health while serving others"
               }
             ].map((item, index) => (
               <Card key={index} className="border-2 hover:border-primary/50 transition-colors">
@@ -246,13 +257,13 @@ export default function ChaplaincyTraining() {
           <h2 className="text-3xl font-bold text-center mb-12">Program Benefits</h2>
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {[
-              "CCA (Certified Chaplain Assistant) certification pathway - high school diploma only requirement",
-              "Comprehensive curriculum covering CISM, spiritual first aid, ethics, and chaplaincy practice",
+              "CPD-accredited certification recognized by chaplaincy organizations",
+              "Comprehensive curriculum covering all aspects of chaplaincy ministry",
               "Background check included in tuition ($50 value)",
               "Flexible online learning - study at your own pace",
               "Lifetime access to course materials and updates",
               "Certificate of completion upon finishing the program",
-              "Preparation for CCA professional certification with ACCC",
+              "Preparation for professional chaplaincy endorsement",
               "Ongoing support from experienced chaplaincy instructors"
             ].map((benefit, index) => (
               <div key={index} className="flex items-start gap-3">
@@ -271,25 +282,27 @@ export default function ChaplaincyTraining() {
               <CardHeader>
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <DollarSign className="h-8 w-8 text-primary" />
-                  <div className="text-5xl font-bold text-primary">$325</div>
+                  <div className="flex items-baseline gap-2">
+                    <div className="text-2xl text-muted-foreground line-through">$400</div>
+                    <div className="text-5xl font-bold text-primary">$325</div>
+                  </div>
                 </div>
                 <CardDescription className="text-lg">
-                  <span className="line-through text-muted-foreground">Regular: $400</span>
-                  <span className="ml-2 text-green-600 font-semibold">Save $125!</span>
+                  <span className="text-muted-foreground">Reduced from $400 • $275 course + $50 background check</span>
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="text-left space-y-2">
                   <div className="flex justify-between">
                     <span>Chaplaincy Training Course</span>
-                    <span className="font-semibold">$350</span>
+                    <span className="font-semibold">$275</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Background Check Fee</span>
                     <span className="font-semibold">$50</span>
                   </div>
                   <div className="border-t pt-2 flex justify-between text-lg font-bold">
-                    <span>Special Price (All Inclusive)</span>
+                    <span>Total Cost</span>
                     <span className="text-primary">$325</span>
                   </div>
                 </div>
@@ -309,273 +322,53 @@ export default function ChaplaincyTraining() {
           </div>
         </section>
 
-            {/* Certified Chaplain Assistant (CCA) Focus */}
-        <section className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-950/20 dark:to-blue-950/20 rounded-2xl p-8 md:p-12">
-          <h2 className="text-3xl font-bold text-center mb-12">Certified Chaplain Assistant (CCA) Certification</h2>
-          <p className="text-center text-lg text-muted-foreground mb-8">This program prepares you for professional CCA (Certified Chaplain Assistant) certification with the Association of Certified Christian Chaplains (ACCC). Perfect for those with a high school diploma who want to become certified chaplains.</p>
-          
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {/* CCA Requirements */}
-            <Card className="border-2">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Award className="h-6 w-6 text-primary" />
-                  CCA Requirements
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Education Requirement</h4>
-                  <p className="text-muted-foreground mb-3">High school diploma with some college credit. No bachelor's degree required - making professional chaplaincy certification accessible to more people.</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Core Competencies</h4>
-                  <ul className="space-y-1 text-sm text-muted-foreground">
-                    <li>• Crisis intervention and CISM</li>
-                    <li>• Spiritual first aid and pastoral care</li>
-                    <li>• Ethical practice and confidentiality</li>
-                    <li>• Professional boundaries</li>
-                    <li>• Interfaith and cultural sensitivity</li>
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* CCA Certification Pathway */}
-            <Card className="border-2">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <BookOpen className="h-6 w-6 text-primary" />
-                  CLAC Certification Pathway
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Program Focus</h4>
-                  <p className="text-muted-foreground mb-3">This course provides comprehensive training in CISM, spiritual first aid, ethics, and chaplaincy practice - all essential skills for CLAC certification.</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Next Steps</h4>
-                  <ol className="space-y-1 text-sm text-muted-foreground">
-                    <li>1. Complete all 10 lessons in this course</li>
-                    <li>2. Pass competency assessments with automatic grading</li>
-                    <li>3. Receive your CLAC certificate with QR code</li>
-                    <li>4. Download and print your credential</li>
-                  </ol>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* CLAC Accreditation */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-bold text-center mb-8">CLAC Accreditation & Recognition</h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              {[
-                {
-                  name: "CLAC",
-                  full: "Cross Life Accreditation Counsel",
-                  desc: "Issues CLAC (CLSOD Certified Chaplain Assistant) credentials for professional chaplaincy practice"
-                },
-                {
-                  name: "CLSOD",
-                  full: "Cross Life School of Divinity",
-                  desc: "Provides comprehensive chaplaincy training and CLAC certification pathway"
-                }
-              ].map((org, index) => (
-                <Card key={index} className="text-center">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-primary">{org.name}</CardTitle>
-                    <CardDescription className="text-xs">{org.full}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">{org.desc}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Chicago Area Chaplaincy Employers */}
-          <div>
-            <h3 className="text-2xl font-bold text-center mb-8">Chicago Area Chaplaincy Employers</h3>
-            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
-              After earning your CLAC credential, you can work as a Certified Chaplain Assistant at these recognized Chicago-area organizations:
+        {/* Testimonials Section */}
+        <section className="py-16 bg-accent/5">
+          <div className="container">
+            <h2 className="text-3xl font-bold text-center mb-4">What Our Graduates Say</h2>
+            <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+              Hear from certified chaplains who have completed our program
             </p>
-            <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
-              {[
-                {
-                  name: "Advocate Christ Medical Center",
-                  location: "Oak Lawn, IL",
-                  focus: "Healthcare Chaplaincy"
-                },
-                {
-                  name: "Northwestern Memorial Hospital",
-                  location: "Chicago, IL",
-                  focus: "Hospital Chaplaincy"
-                },
-                {
-                  name: "Stroger Hospital of Cook County",
-                  location: "Chicago, IL",
-                  focus: "Urban Healthcare Chaplaincy"
-                },
-                {
-                  name: "Illinois Department of Corrections",
-                  location: "Multiple Locations",
-                  focus: "Correctional Chaplaincy"
-                },
-                {
-                  name: "Loyola University Medical Center",
-                  location: "Maywood, IL",
-                  focus: "Healthcare & Hospice Chaplaincy"
-                },
-                {
-                  name: "Presence Resurrection Medical Center",
-                  location: "Chicago, IL",
-                  focus: "Hospital Chaplaincy"
-                }
-              ].map((org, index) => (
-                <Card key={index}>
-                  <CardHeader>
-                    <CardTitle className="text-lg">{org.name}</CardTitle>
-                    <CardDescription>{org.location}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Badge variant="secondary">{org.focus}</Badge>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-            <p className="text-center text-sm text-muted-foreground mt-8">
-              Contact these organizations directly to inquire about CPE internship opportunities. Our program prepares you with the foundational knowledge needed for successful CPE training.
-            </p>
-          </div>
-        </section>
-
-        {/* Downloadable Resources */}
-        <section>
-          <h2 className="text-3xl font-bold text-center mb-12">Downloadable Resources</h2>
-          <p className="text-center text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Access these comprehensive guides to support your chaplaincy journey and professional development.
-          </p>
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {[
-              {
-                title: "CCA Competencies Checklist",
-                description: "Track your progress through the 10 core competencies required for CCA certification. Includes progress tracking and next steps.",
-                file: "/resources/CCA-Competencies-Checklist.md",
-                icon: "✓"
-              },
-              {
-                title: "Chaplaincy Settings Quick Reference",
-                description: "Comprehensive overview of healthcare, military, correctional, and corporate chaplaincy settings with salary ranges and career paths.",
-                file: "/resources/Chaplaincy-Settings-Guide.md",
-                icon: "🏥"
-              },
-              {
-                title: "Professional Ethics Guide",
-                description: "Essential guide to ethical principles including confidentiality, boundaries, informed consent, and ethical decision-making.",
-                file: "/resources/Professional-Ethics-Guide.md",
-                icon: "⚖️"
-              },
-              {
-                title: "Self-Care & Resilience Toolkit",
-                description: "Practical strategies for maintaining well-being, preventing compassion fatigue, and building resilience in chaplaincy work.",
-                file: "/resources/Self-Care-Resilience-Toolkit.md",
-                icon: "💪"
-              }
-            ].map((resource, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-start gap-3 flex-1">
-                      <div className="text-3xl mt-1">{resource.icon}</div>
-                      <div>
-                        <CardTitle className="text-lg">{resource.title}</CardTitle>
-                        <CardDescription className="mt-2">{resource.description}</CardDescription>
-                      </div>
-                    </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-4xl mb-4">"</div>
+                  <p className="text-muted-foreground mb-6 italic">
+                    This program prepared me for real-world chaplaincy in ways I never expected. The practical training and biblical foundation gave me confidence to serve in a hospital setting.
+                  </p>
+                  <div>
+                    <p className="font-semibold">Rev. Michael Thompson</p>
+                    <p className="text-sm text-muted-foreground">Hospital Chaplain, Chicago</p>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <a 
-                    href={resource.file} 
-                    download
-                    className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold"
-                  >
-                    <Download className="h-4 w-4" />
-                    Download PDF
-                  </a>
                 </CardContent>
               </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* Student Testimonials */}
-        <section className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 rounded-2xl p-8 md:p-12">
-          <h2 className="text-3xl font-bold text-center mb-12">Student Testimonials</h2>
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              {
-                name: "Sarah Mitchell",
-                role: "Healthcare Chaplain",
-                organization: "Northwestern Memorial Hospital",
-                testimonial: "This program gave me the foundational knowledge I needed to serve patients with compassion and professionalism. The CISM training was particularly valuable in my daily work.",
-                image: "👩‍⚕️"
-              },
-              {
-                name: "James Rodriguez",
-                role: "Military Chaplain",
-                organization: "U.S. Army Reserve",
-                testimonial: "The pastoral care skills and ethics training prepared me excellently for supporting service members. The self-paced format allowed me to study while maintaining my military duties.",
-                image: "🪖"
-              },
-              {
-                name: "Dr. Patricia Chen",
-                role: "Correctional Chaplain",
-                organization: "Illinois Department of Corrections",
-                testimonial: "Outstanding program for anyone entering correctional ministry. The cultural competency and interfaith sensitivity modules are exactly what we need in this field.",
-                image: "📚"
-              },
-              {
-                name: "Michael Thompson",
-                role: "Corporate Chaplain",
-                organization: "Fortune 500 Company",
-                testimonial: "The crisis intervention and self-care modules have been invaluable. I can now provide meaningful support to employees while maintaining my own emotional health.",
-                image: "💼"
-              },
-              {
-                name: "Rev. Angela Williams",
-                role: "Hospice Chaplain",
-                organization: "Loyola University Medical Center",
-                testimonial: "The spiritual first aid training is transformative. I've been able to provide better support to families during their most difficult moments.",
-                image: "🙏"
-              },
-              {
-                name: "David Martinez",
-                role: "CCA Candidate",
-                organization: "Advocate Christ Medical Center",
-                testimonial: "Excellent preparation for CCA certification. The comprehensive curriculum covers everything needed to pass the competencies exam and start a chaplaincy career.",
-                image: "⭐"
-              }
-            ].map((testimonial, index) => (
-              <Card key={index} className="border-0 shadow-md hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="text-4xl">{testimonial.image}</div>
-                    <div>
-                      <CardTitle className="text-lg">{testimonial.name}</CardTitle>
-                      <CardDescription className="text-sm">{testimonial.role}</CardDescription>
-                    </div>
+              
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-4xl mb-4">"</div>
+                  <p className="text-muted-foreground mb-6 italic">
+                    The flexibility of online learning allowed me to complete the program while serving full-time in ministry. The certification opened doors I didn't know existed.
+                  </p>
+                  <div>
+                    <p className="font-semibold">Pastor Sarah Williams</p>
+                    <p className="text-sm text-muted-foreground">Correctional Facility Chaplain</p>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground italic mb-2">"{testimonial.testimonial}"</p>
-                  <p className="text-xs text-muted-foreground font-medium">{testimonial.organization}</p>
                 </CardContent>
               </Card>
-            ))}
+              
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-4xl mb-4">"</div>
+                  <p className="text-muted-foreground mb-6 italic">
+                    Outstanding program! The instructors are experienced chaplains who provide real-world insights. I'm now serving as a military chaplain thanks to this training.
+                  </p>
+                  <div>
+                    <p className="font-semibold">Chaplain David Martinez</p>
+                    <p className="text-sm text-muted-foreground">U.S. Military Chaplain</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </section>
 

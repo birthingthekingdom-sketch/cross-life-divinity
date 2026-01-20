@@ -1,9 +1,0 @@
-{
-  "query": "INSERT INTO lessons (courseId, title, lessonOrder, content) VALUES\n(780002, 'Paul''s Later Epistles: Galatians through Philemon', 6, 'Lesson content for Paul''s Later Epistles'),\n(780002, 'Hebrews and the General Epistles', 7, 'Lesson content for Hebrews and General Epistles'),\n(780002, 'The Johannine Epistles', 8, 'Lesson content for Johannine Epistles'),\n(780002, 'The Book of Revelation', 9, 'Lesson content for Revelation'),\n(780002, 'New Testament Theology and Application', 10, 'Lesson content for NT Theology');",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO lessons (courseId, title, lessonOrder, content) VALUES\n(780002, 'Paul''s Later Epistles: Galatians through Philemon', 6, 'Lesson content for Paul''s Later Epistles'),\n(780002, 'Hebrews and the General Epistles', 7, 'Lesson content for Hebrews and General Epistles'),\n(780002, 'The Johannine Epistles', 8, 'Lesson content for Johannine Epistles'),\n(780002, 'The Book of Revelation', 9, 'Lesson content for Revelation'),\n(780002, 'New Testament Theology and Application', 10, 'Lesson content for NT Theology');",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 62
-}

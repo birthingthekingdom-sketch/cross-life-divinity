@@ -1,9 +1,0 @@
-{
-  "query": "SELECT l.id, l.title, l.lessonOrder FROM lessons l \nJOIN courses c ON l.courseId = c.id \nWHERE c.code = 'WOR101' ORDER BY l.lessonOrder;",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT l.id, l.title, l.lessonOrder FROM lessons l \nJOIN courses c ON l.courseId = c.id \nWHERE c.code = 'WOR101' ORDER BY l.lessonOrder;",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 55
-}

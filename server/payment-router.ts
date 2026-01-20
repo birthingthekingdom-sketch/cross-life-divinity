@@ -4,7 +4,6 @@ import Stripe from "stripe";
 import * as db from "./db";
 import { STRIPE_PRODUCTS } from "./stripe-products";
 import { TRPCError } from "@trpc/server";
-import { sendBridgeAcademyEnrollmentEmail } from "./email";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-11-17.clover",
@@ -352,36 +351,6 @@ export const paymentRouter = router({
       url: session.url,
       creditAmount,
       creditDisplay: `$${(creditAmount / 100).toFixed(2)}`,
-    };
-  }),
-
-  /**
-   * Free enrollment in Bridge Academy (GED)
-   */
-  enrollBridgeAcademyFree: protectedProcedure.mutation(async ({ ctx }) => {
-    const user = ctx.user;
-
-    // Check if user already has Bridge Academy access
-    const hasAccess = await db.getUserBridgeAcademyEnrollment(user.id);
-    if (hasAccess) {
-      throw new TRPCError({ code: "BAD_REQUEST", message: "You already have access to Bridge Academy" });
-    }
-
-    // Create enrollment record
-    await db.createBridgeAcademyEnrollment({
-      userId: user.id,
-      enrolledAt: new Date(),
-    });
-
-    // Send confirmation email
-    if (user.email && user.name) {
-      await sendBridgeAcademyEnrollmentEmail(user.email, user.name);
-    }
-
-    return {
-      success: true,
-      message: "Successfully enrolled in Bridge Academy!",
-      redirectUrl: "/bridge-academy",
     };
   }),
 });

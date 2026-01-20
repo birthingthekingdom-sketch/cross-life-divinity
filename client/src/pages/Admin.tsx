@@ -1,7 +1,6 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import DashboardLayout from "@/components/DashboardLayout";
 import { useLocation } from "wouter";
-import { getContrastColor, getMutedColor } from "@/lib/colorUtils";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -24,21 +23,20 @@ export default function Admin() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [assignDialogOpen, setAssignDialogOpen] = useState(false);
   const [selectedAccessCode, setSelectedAccessCode] = useState<{ id: number; code: string } | null>(null);
-  const { data: courses, refetch: refetchCourses } = trpc.courses.listAll.useQuery();
+
+  const { data: courses } = trpc.courses.listAll.useQuery();
   const { data: accessCodes, refetch: refetchAccessCodes } = trpc.admin.getAccessCodes.useQuery();
   const { data: allFollowUps } = trpc.admin.getAllFollowUps.useQuery();
-  const utils = trpc.useUtils();
   
   // Calculate follow-up metrics
   const now = new Date();
-  const pendingFollowUps = allFollowUps?.filter((fu) => {
-    const dueDate = new Date(fu.dueDate);
-    return dueDate > now && !fu.completed;
-  }) || [];
-  
-  const overdueFollowUps = allFollowUps?.filter((fu) => {
-    const dueDate = new Date(fu.dueDate);
-    return dueDate <= now && !fu.completed;
+  const pendingFollowUps = allFollowUps?.filter(f => f.status === 'pending') || [];
+  const overdueFollowUps = pendingFollowUps.filter(f => f.dueDate && new Date(f.dueDate) < now);
+  const completedThisWeek = allFollowUps?.filter(f => {
+    if (f.status !== 'completed' || !f.completedAt) return false;
+    const completedDate = new Date(f.completedAt);
+    const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+    return completedDate >= weekAgo;
   }) || [];
 
   const createAccessCodeMutation = trpc.admin.createAccessCode.useMutation({
@@ -58,9 +56,6 @@ export default function Admin() {
       toast.success("Access code updated!");
       refetchAccessCodes();
     },
-    onError: (error) => {
-      toast.error(error.message || "Failed to update access code");
-    },
   });
 
   // Protect admin page - only admins can access (useEffect after all hooks)
@@ -69,17 +64,6 @@ export default function Admin() {
       setLocation('/dashboard');
     }
   }, [user, setLocation]);
-
-  // Refetch courses when page becomes visible (to catch any changes made elsewhere)
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (!document.hidden) {
-        refetchCourses();
-      }
-    };
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, [refetchCourses]);
 
   // Show loading or redirect state
   if (!user || user.role !== 'admin') {
@@ -113,7 +97,7 @@ export default function Admin() {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">Total Courses</CardTitle>
@@ -123,7 +107,6 @@ export default function Admin() {
               <p className="text-xs text-muted-foreground mt-1">Active courses</p>
             </CardContent>
           </Card>
-
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">Access Codes</CardTitle>
@@ -133,7 +116,6 @@ export default function Admin() {
               <p className="text-xs text-muted-foreground mt-1">Available codes</p>
             </CardContent>
           </Card>
-
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">Pending Follow-ups</CardTitle>
@@ -143,7 +125,6 @@ export default function Admin() {
               <p className="text-xs text-muted-foreground mt-1">Awaiting action</p>
             </CardContent>
           </Card>
-
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">Overdue Follow-ups</CardTitle>
@@ -153,82 +134,7 @@ export default function Admin() {
               <p className="text-xs text-muted-foreground mt-1">Requires attention</p>
             </CardContent>
           </Card>
-
-          <Link href="/admin/students">
-            <Card className="cursor-pointer hover:bg-accent transition-colors">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">All Students</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center justify-between">
-                  <Users className="h-8 w-8 text-primary" />
-                  <p className="text-xs text-muted-foreground">View & track</p>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-
-          <Link href="/admin/paid-students">
-            <Card className="cursor-pointer hover:bg-accent transition-colors">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">Paid Students</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center justify-between">
-                  <DollarSign className="h-8 w-8 text-green-600" />
-                  <p className="text-xs text-muted-foreground">Active accounts</p>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
         </div>
-
-        {/* Courses List */}
-        <Card>
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle>Courses</CardTitle>
-                <CardDescription>All available courses in the system</CardDescription>
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-2">
-              {courses?.map((course) => (
-                <div
-                  key={course.id}
-                  className="flex items-center justify-between p-4 border rounded-lg hover:bg-accent/5 transition-colors"
-                >
-                  <div className="flex items-center gap-4">
-                    <div
-                      className="w-12 h-12 rounded-lg flex items-center justify-center font-bold"
-                      style={{ 
-                        backgroundColor: getMutedColor(course.colorTheme),
-                        color: getContrastColor(getMutedColor(course.colorTheme))
-                      }}
-                    >
-                      {course.code.substring(3)}
-                    </div>
-                    <div>
-                      <h3 className="font-semibold">{course.title}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {course.code} • {course.totalLessons} lessons
-                      </p>
-                    </div>
-                  </div>
-                  <div>
-                    <Link href={`/admin/course/${course.id}`}>
-                      <Button variant="ghost" size="sm">
-                        View
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
 
         {/* Access Codes Section */}
         <Card>

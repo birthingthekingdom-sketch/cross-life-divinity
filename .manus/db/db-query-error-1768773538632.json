@@ -1,8 +1,0 @@
-{
-  "query": "SELECT lp.id, lp.title, lp.description, COUNT(lpc.courseId) as course_count FROM learning_paths lp LEFT JOIN learning_path_courses lpc ON lp.id = lpc.learningPathId WHERE lp.title IN ('Intermediate', 'Beginner') GROUP BY lp.id;",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT lp.id, lp.title, lp.description, COUNT(lpc.courseId) as course_count FROM learning_paths lp LEFT JOIN learning_path_courses lpc ON lp.id = lpc.learningPathId WHERE lp.title IN ('Intermediate', 'Beginner') GROUP BY lp.id;",
-  "returncode": 1,
-  "logs": [
-    "ERROR 1054 (42S22) at line 1: Unknown column 'lpc.learningpathid' in 'on clause'"
-  ]
-}

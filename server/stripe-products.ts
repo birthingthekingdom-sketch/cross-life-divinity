@@ -47,14 +47,6 @@ export const STRIPE_PRODUCTS = {
     amount: 27500, // $275.00 in cents
     currency: "usd",
   },
-
-  // Bridge Academy (GED) - Standalone
-  BRIDGE_ACADEMY: {
-    name: "Bridge Academy - GED Preparation",
-    description: "Complete GED preparation program with all 4 subjects",
-    amount: 0, // FREE - but can be purchased standalone
-    currency: "usd",
-  },
 } as const;
 
 /**

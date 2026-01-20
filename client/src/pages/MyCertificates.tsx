@@ -51,7 +51,7 @@ export default function MyCertificates() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold font-serif">My Certificates</h1>
-              <p className="text-blue-100 mt-1">View and download your CLAC credentials</p>
+              <p className="text-blue-100 mt-1">View and download your CPD-accredited certificates</p>
             </div>
             <Link href="/dashboard">
               <Button variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
@@ -70,7 +70,7 @@ export default function MyCertificates() {
               <div>
                 <CardTitle className="text-2xl">Certificate Portfolio</CardTitle>
                 <CardDescription>
-                  You have earned {certificates?.length || 0} CLAC credential(s)
+                  You have earned {certificates?.length || 0} CPD-accredited certificate(s)
                 </CardDescription>
               </div>
               {certificates && certificates.length > 0 && (
@@ -86,7 +86,7 @@ export default function MyCertificates() {
               <div className="flex items-center gap-4 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <Award className="w-4 h-4 text-amber-600" />
-                  <span>Total Hours: {certificates.reduce((sum, cert) => sum + (cert.cpdHours || 0), 0)}</span>
+                  <span>Total CPD Hours: {certificates.reduce((sum, cert) => sum + (cert.cpdHours || 0), 0)}</span>
                 </div>
               </div>
             </CardContent>
