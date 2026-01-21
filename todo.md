@@ -3447,3 +3447,15 @@ All components built and integrated. Ready for:
 - [ ] Test progress tracking across all 4 GED courses
 - [ ] Verify progress persists after page refresh
 - [ ] Test progress bar visual updates in real-time
+
+
+## GED Quiz Questions Restoration (Jan 20, 2026)
+- [x] Verify GED quiz questions exist in database
+- [x] Restore GED Math quiz questions (110 questions)
+- [ ] Restore GED Language Arts quiz questions
+- [ ] Restore GED Science quiz questions
+- [ ] Restore GED Social Studies quiz questions
+- [ ] Create quiz progress tracking endpoints
+- [ ] Create quiz attempt tracking in database
+- [ ] Create quiz UI component for taking quizzes
+- [ ] Integrate quiz tracking with lesson progress
