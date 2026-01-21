@@ -1,0 +1,38 @@
+{
+  "query": "SELECT \n  c.id,\n  c.code,\n  c.title,\n  COUNT(DISTINCT l.id) as lesson_count,\n  COUNT(DISTINCT qq.id) as quiz_count\nFROM courses c\nLEFT JOIN lessons l ON c.id = l.courseId\nLEFT JOIN quiz_questions qq ON l.id = qq.lessonId\nWHERE c.code LIKE 'GED%'\nGROUP BY c.id, c.code, c.title\nORDER BY c.code;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT \n  c.id,\n  c.code,\n  c.title,\n  COUNT(DISTINCT l.id) as lesson_count,\n  COUNT(DISTINCT qq.id) as quiz_count\nFROM courses c\nLEFT JOIN lessons l ON c.id = l.courseId\nLEFT JOIN quiz_questions qq ON l.id = qq.lessonId\nWHERE c.code LIKE 'GED%'\nGROUP BY c.id, c.code, c.title\nORDER BY c.code;",
+  "rows": [
+    {
+      "id": "660004",
+      "code": "GED-LANG",
+      "title": "GED Language Arts",
+      "lesson_count": "10",
+      "quiz_count": "220"
+    },
+    {
+      "id": "660003",
+      "code": "GED-MATH",
+      "title": "GED Mathematics",
+      "lesson_count": "10",
+      "quiz_count": "220"
+    },
+    {
+      "id": "660005",
+      "code": "GED-SCI",
+      "title": "GED Science",
+      "lesson_count": "10",
+      "quiz_count": "330"
+    },
+    {
+      "id": "660006",
+      "code": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "lesson_count": "10",
+      "quiz_count": "330"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\tlesson_count\tquiz_count\n660004\tGED-LANG\tGED Language Arts\t10\t220\n660003\tGED-MATH\tGED Mathematics\t10\t220\n660005\tGED-SCI\tGED Science\t10\t330\n660006\tGED-SOCIAL\tGED Social Studies\t10\t330\n",
+  "stderr": "",
+  "execution_time_ms": 374
+}
