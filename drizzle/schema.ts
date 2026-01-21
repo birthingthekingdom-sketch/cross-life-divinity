@@ -838,3 +838,52 @@ export const bridgeAcademyEnrollments = mysqlTable("bridge_academy_enrollments",
 (table) => [
 	index("userId").on(table.userId),
 ]);
+
+
+export const practiceTests = mysqlTable("practice_tests", {
+	id: int().autoincrement().notNull(),
+	courseId: int().notNull(),
+	title: varchar({ length: 255 }).notNull(),
+	description: text(),
+	totalQuestions: int().notNull(),
+	timeLimit: int().notNull(),
+	passingScore: int().default(70).notNull(),
+	isActive: tinyint().default(1).notNull(),
+	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
+	updatedAt: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+});
+
+export const practiceTestQuestions = mysqlTable("practice_test_questions", {
+	id: int().autoincrement().notNull(),
+	practiceTestId: int().notNull(),
+	questionId: int().notNull(),
+	questionOrder: int().notNull(),
+	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
+});
+
+export const practiceTestAttempts = mysqlTable("practice_test_attempts", {
+	id: int().autoincrement().notNull(),
+	userId: int().notNull(),
+	practiceTestId: int().notNull(),
+	score: int().notNull(),
+	totalQuestions: int().notNull(),
+	passed: tinyint().notNull(),
+	timeSpent: int().notNull(),
+	attemptedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
+});
+
+export const gedCertificates = mysqlTable("ged_certificates", {
+	id: int().autoincrement().notNull(),
+	userId: int().notNull(),
+	courseId: int().notNull(),
+	certificateNumber: varchar({ length: 50 }).notNull(),
+	verificationCode: varchar({ length: 100 }).notNull(),
+	issuedAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
+	expiresAt: timestamp({ mode: 'string' }),
+	createdAt: timestamp({ mode: 'string' }).default('CURRENT_TIMESTAMP').notNull(),
+},
+(table) => [
+	index("certificateNumber").on(table.certificateNumber),
+	index("verificationCode").on(table.verificationCode),
+	index("userId").on(table.userId),
+]);

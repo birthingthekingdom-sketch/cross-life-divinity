@@ -2123,3 +2123,88 @@ export async function getUserEmailPreference(
   // For now, return true by default
   return true;
 }
+
+
+// ========== QUIZ SUBMISSION TRACKING ==========
+
+export async function getQuizSubmissionHistory(userId: number, lessonId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db
+    .select()
+    .from(quizSubmissions)
+    .where(and(eq(quizSubmissions.userId, userId), eq(quizSubmissions.lessonId, lessonId)))
+    .orderBy(desc(quizSubmissions.submittedAt));
+}
+
+export async function getQuizSubmissionDetails(submissionId: number) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const submission = await db
+    .select()
+    .from(quizSubmissions)
+    .where(eq(quizSubmissions.id, submissionId));
+
+  return submission[0] || null;
+}
+
+// ========== PRACTICE TESTS ==========
+
+export async function getPracticeTestsByCourseid(courseId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db
+    .select()
+    .from(practiceTests)
+    .where(and(eq(practiceTests.courseId, courseId), eq(practiceTests.isActive, 1)));
+}
+
+export async function getPracticeTestById(practiceTestId: number) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const result = await db
+    .select()
+    .from(practiceTests)
+    .where(eq(practiceTests.id, practiceTestId));
+  
+  return result[0] || null;
+}
+
+// ========== GED CERTIFICATES ==========
+
+export async function getUserGedCertificates(userId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db
+    .select()
+    .from(gedCertificates)
+    .where(eq(gedCertificates.userId, userId))
+    .orderBy(desc(gedCertificates.issuedAt));
+}
+
+export async function verifyCertificate(verificationCode: string) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const cert = await db
+    .select()
+    .from(gedCertificates)
+    .where(eq(gedCertificates.verificationCode, verificationCode));
+
+  if (cert.length === 0) return null;
+
+  const certificate = cert[0];
+  const user = await db.select().from(users).where(eq(users.id, certificate.userId));
+  const course = await db.select().from(courses).where(eq(courses.id, certificate.courseId));
+
+  return {
+    certificate,
+    user: user[0],
+    course: course[0],
+  };
+}
