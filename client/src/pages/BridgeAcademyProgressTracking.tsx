@@ -3,6 +3,7 @@ import { useLocation } from 'wouter';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { LessonProgressBar, MultiCourseProgress } from '@/components/LessonProgressBar';
+import { AchievementBadges } from '@/components/AchievementBadges';
 import { trpc } from '@/lib/trpc';
 import { ArrowLeft, BookOpen, TrendingUp } from 'lucide-react';
 
@@ -139,6 +140,22 @@ export default function BridgeAcademyProgressTracking() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Achievement Badges Section */}
+        {courseStats.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-foreground mb-4">Your Achievements</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {courseStats.map((course) => (
+                <AchievementBadges
+                  key={course.courseId}
+                  courseName={course.courseName}
+                  progressPercentage={course.progressPercentage}
+                />
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Course Progress Cards */}
         {error ? (

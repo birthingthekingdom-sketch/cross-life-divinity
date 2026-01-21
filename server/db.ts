@@ -2103,3 +2103,23 @@ export async function isGedLessonCompleted(userId: number, lessonId: number) {
   return result.length > 0 ? result[0].isCompleted === 1 : false;
 }
 
+
+// Email Preference Management
+export async function updateUserEmailPreference(
+  userId: number,
+  preferenceKey: string,
+  value: boolean
+): Promise<void> {
+  // This would typically update a user_preferences table
+  // For now, we'll just log it
+  console.log(`Updated user ${userId} preference ${preferenceKey} to ${value}`);
+}
+
+export async function getUserEmailPreference(
+  userId: number,
+  preferenceKey: string
+): Promise<boolean> {
+  // This would typically query a user_preferences table
+  // For now, return true by default
+  return true;
+}

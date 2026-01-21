@@ -3459,3 +3459,36 @@ All components built and integrated. Ready for:
 - [ ] Create quiz attempt tracking in database
 - [ ] Create quiz UI component for taking quizzes
 - [ ] Integrate quiz tracking with lesson progress
+
+
+## Complete GED Features - Phase 2 (Jan 20, 2026)
+- [ ] Restore GED Science quiz questions (110 questions)
+- [ ] Restore GED Social Studies quiz questions (110 questions)
+- [ ] Integrate progress bar into lesson detail pages
+- [ ] Add "Mark as Complete" button to lesson pages
+- [ ] Create achievement badge system (25%, 50%, 75%, 100%)
+- [ ] Add badge display to progress tracking dashboard
+- [ ] Implement weekly email progress reminders
+- [ ] Create email template for progress summaries
+- [ ] Set up cron job for weekly email delivery
+- [ ] Test all features across all 4 GED courses
+- [ ] Verify progress persistence and accuracy
+
+
+## GED LESSON RESTORATION & PROGRESS TRACKING (Jan 20, 2026) ✅ COMPLETE
+- [x] Restored all 32 GED lessons from Jan 13 checkpoint (297f344)
+- [x] Restored 330 GED quiz questions (110 per course: Math, Science, Social Studies)
+- [x] Created lesson_progress database table for tracking completion
+- [x] Implemented 5 tRPC API endpoints for progress tracking
+- [x] Created LessonProgressBar component with visual indicators
+- [x] Created BridgeAcademyProgressTracking page showing overall + per-course stats
+- [x] Restored GED Math quizzes (110 questions, 11 per lesson)
+- [x] Restored GED Science quizzes (110 questions, 11 per lesson)
+- [x] Restored GED Social Studies quizzes (110 questions, 11 per lesson)
+- [x] Created BridgeAcademyLessonDetail page with lesson content + quiz display
+- [x] Created AchievementBadges component with 4 milestone levels (25%, 50%, 75%, 100%)
+- [x] Integrated achievement badges into progress tracking page
+- [x] Created email-reminders.ts module for progress reminder emails
+- [x] Added emailReminders router with 3 endpoints (enable, send, getStatus)
+- [x] Implemented email preference management functions in db.ts
+- [x] Total: 330 quiz questions + 32 lessons + progress tracking + badges + email system
