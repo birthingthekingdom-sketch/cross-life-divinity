@@ -88,6 +88,10 @@
 - [x] Create BridgeAcademyProgressTracking page with overall + per-course stats
 - [x] Verify all 4 GED courses have complete quiz coverage (11 questions per lesson)
 
+## URGENT FIXES - Landing Page (Jan 21, 2026)
+- [ ] Fix Chaplain's Training Program pricing: $325 training, $275 alternative, $50 background check
+- [ ] Replace incorrect logo with correct Cross Life School of Divinity logo on Chaplain's graphic
+
 ## ACTIVE TASKS (IN PROGRESS)
 - [x] Add Preview Course button to admin panel for course review in presentations - Jan 12, 2025
 - [x] Fix CourseIntroSlideshow to handle numeric courseIds - Jan 12, 2025
