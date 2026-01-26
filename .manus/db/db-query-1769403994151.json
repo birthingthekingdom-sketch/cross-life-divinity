@@ -1,0 +1,60 @@
+{
+  "query": "SELECT id, email, role FROM users WHERE email IN ('teststudent@crosslife.test') OR role = 'admin' LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, email, role FROM users WHERE email IN ('teststudent@crosslife.test') OR role = 'admin' LIMIT 10;",
+  "rows": [
+    {
+      "id": "1",
+      "email": "birthingthekingdom@gmail.com",
+      "role": "admin"
+    },
+    {
+      "id": "14670068",
+      "email": "admin-1766992586176@test.com",
+      "role": "admin"
+    },
+    {
+      "id": "14670069",
+      "email": "bulkadmin@test.com",
+      "role": "admin"
+    },
+    {
+      "id": "14670073",
+      "email": "admin@test.com",
+      "role": "admin"
+    },
+    {
+      "id": "14670079",
+      "email": "admin-1766992597970@test.com",
+      "role": "admin"
+    },
+    {
+      "id": "14670090",
+      "email": "admin-1766992619249@test.com",
+      "role": "admin"
+    },
+    {
+      "id": "15270005",
+      "email": "admin-1767217559226@test.com",
+      "role": "admin"
+    },
+    {
+      "id": "15720005",
+      "email": "admin-1767298994953@test.com",
+      "role": "admin"
+    },
+    {
+      "id": "16530042",
+      "email": "admin-1767577613384@test.com",
+      "role": "admin"
+    },
+    {
+      "id": "16530053",
+      "email": "admin-1767577638393@test.com",
+      "role": "admin"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\trole\n1\tbirthingthekingdom@gmail.com\tadmin\n14670068\tadmin-1766992586176@test.com\tadmin\n14670069\tbulkadmin@test.com\tadmin\n14670073\tadmin@test.com\tadmin\n14670079\tadmin-1766992597970@test.com\tadmin\n14670090\tadmin-1766992619249@test.com\tadmin\n15270005\tadmin-1767217559226@test.com\tadmin\n15720005\tadmin-1767298994953@test.com\tadmin\n16530042\tadmin-1767577613384@test.com\tadmin\n16530053\tadmin-1767577638393@test.com\tadmin\n",
+  "stderr": "",
+  "execution_time_ms": 52
+}

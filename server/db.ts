@@ -1914,9 +1914,30 @@ export async function getStudentBridgeAcademyDashboard(userId: number) {
   // Get enrollment status - TODO: bridgeAcademyEnrollments table not yet implemented
   const enrollment = null;
 
-  // Get all courses
+  // Get only enrolled courses for this user
+  const enrolledCourses = await db.select({ courseId: courseEnrollments.courseId })
+    .from(courseEnrollments)
+    .where(eq(courseEnrollments.userId, userId));
+
+  const enrolledCourseIds = enrolledCourses.map(e => e.courseId);
+
+  // If no enrollments, return empty dashboard
+  if (enrolledCourseIds.length === 0) {
+    return {
+      enrollment,
+      coursesWithProgress: [],
+      recentQuizzes: [],
+      recentPractice: [],
+      certificates: [],
+    };
+  }
+
+  // Get all enrolled courses that are GED courses
   const allCourses = await db.select().from(courses)
-    .where(sql`code LIKE 'GED-%'`)
+    .where(and(
+      sql`code LIKE 'GED-%'`,
+      inArray(courses.id, enrolledCourseIds)
+    ))
     .orderBy(courses.displayOrder);
 
   // Get progress for each course

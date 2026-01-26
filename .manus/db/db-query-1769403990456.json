@@ -1,0 +1,106 @@
+{
+  "query": "SELECT id, title FROM courses LIMIT 50;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, title FROM courses LIMIT 50;",
+  "rows": [
+    {
+      "id": "150003",
+      "title": "Systematic Theology"
+    },
+    {
+      "id": "150005",
+      "title": "Fundamentals of Apologetics"
+    },
+    {
+      "id": "150006",
+      "title": "Evangelism and Discipleship"
+    },
+    {
+      "id": "150007",
+      "title": "Discipleship Training"
+    },
+    {
+      "id": "150008",
+      "title": "Prayer and Intercession"
+    },
+    {
+      "id": "150011",
+      "title": "Pastoral Counseling"
+    },
+    {
+      "id": "150012",
+      "title": "Church Administration"
+    },
+    {
+      "id": "150013",
+      "title": "Homiletics"
+    },
+    {
+      "id": "150014",
+      "title": "Discovering Spiritual Gifts"
+    },
+    {
+      "id": "180001",
+      "title": "Understanding Prophecy"
+    },
+    {
+      "id": "360001",
+      "title": "Biblical Worship"
+    },
+    {
+      "id": "570004",
+      "title": "Capstone Project"
+    },
+    {
+      "id": "570005",
+      "title": "Christology"
+    },
+    {
+      "id": "570006",
+      "title": "Contemporary Theological Issues"
+    },
+    {
+      "id": "660003",
+      "title": "GED Mathematics"
+    },
+    {
+      "id": "660004",
+      "title": "GED Language Arts"
+    },
+    {
+      "id": "660005",
+      "title": "GED Science"
+    },
+    {
+      "id": "660006",
+      "title": "GED Social Studies"
+    },
+    {
+      "id": "690001",
+      "title": "Deliverance Ministry"
+    },
+    {
+      "id": "690002",
+      "title": "Christian Leadership"
+    },
+    {
+      "id": "780001",
+      "title": "Old Testament Survey"
+    },
+    {
+      "id": "780002",
+      "title": "New Testament Survey"
+    },
+    {
+      "id": "810001",
+      "title": "Biblical Hermeneutics"
+    },
+    {
+      "id": "840001",
+      "title": "Chaplaincy Training"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\n150003\tSystematic Theology\n150005\tFundamentals of Apologetics\n150006\tEvangelism and Discipleship\n150007\tDiscipleship Training\n150008\tPrayer and Intercession\n150011\tPastoral Counseling\n150012\tChurch Administration\n150013\tHomiletics\n150014\tDiscovering Spiritual Gifts\n180001\tUnderstanding Prophecy\n360001\tBiblical Worship\n570004\tCapstone Project\n570005\tChristology\n570006\tContemporary Theological Issues\n660003\tGED Mathematics\n660004\tGED Language Arts\n660005\tGED Science\n660006\tGED Social Studies\n690001\tDeliverance Ministry\n690002\tChristian Leadership\n780001\tOld Testament Survey\n780002\tNew Testament Survey\n810001\tBiblical Hermeneutics\n840001\tChaplaincy Training\n",
+  "stderr": "",
+  "execution_time_ms": 57
+}
