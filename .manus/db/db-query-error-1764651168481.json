@@ -1,8 +1,0 @@
-{
-  "query": "-- First, delete quiz questions for these lessons\nDELETE FROM quiz_questions WHERE lesson_id IN (\n  SELECT id FROM lessons WHERE (course_id = 4 AND `order` IN (8, 9)) OR (course_id = 6 AND `order` = 9)\n);\n\n-- Delete the lessons\nDELETE FROM lessons WHERE (course_id = 4 AND `order` IN (8, 9)) OR (course_id = 6 AND `order` = 9);\n\n-- Update course totals\nUPDATE courses SET total_lessons = 7 WHERE id = 4;\nUPDATE courses SET total_lessons = 8 WHERE id = 6;",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute -- First, delete quiz questions for these lessons\nDELETE FROM quiz_questions WHERE lesson_id IN (\n  SELECT id FROM lessons WHERE (course_id = 4 AND `order` IN (8, 9)) OR (course_id = 6 AND `order` = 9)\n);\n\n-- Delete the lessons\nDELETE FROM lessons WHERE (course_id = 4 AND `order` IN (8, 9)) OR (course_id = 6 AND `order` = 9);\n\n-- Update course totals\nUPDATE courses SET total_lessons = 7 WHERE id = 4;\nUPDATE courses SET total_lessons = 8 WHERE id = 6;",
-  "returncode": 1,
-  "logs": [
-    "ERROR 1054 (42S22) at line 2: Unknown column 'lesson_id' in 'where clause'"
-  ]
-}

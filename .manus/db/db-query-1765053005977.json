@@ -1,9 +1,0 @@
-{
-  "query": "CREATE TABLE IF NOT EXISTS email_preferences (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  userId INT NOT NULL UNIQUE,\n  enrollmentEmails BOOLEAN DEFAULT true,\n  lessonCompletionEmails BOOLEAN DEFAULT true,\n  certificateEmails BOOLEAN DEFAULT true,\n  assignmentDeadlineEmails BOOLEAN DEFAULT true,\n  progressSummaryEmails BOOLEAN DEFAULT true,\n  forumReplyEmails BOOLEAN DEFAULT true,\n  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  INDEX idx_user (userId)\n)",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute CREATE TABLE IF NOT EXISTS email_preferences (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  userId INT NOT NULL UNIQUE,\n  enrollmentEmails BOOLEAN DEFAULT true,\n  lessonCompletionEmails BOOLEAN DEFAULT true,\n  certificateEmails BOOLEAN DEFAULT true,\n  assignmentDeadlineEmails BOOLEAN DEFAULT true,\n  progressSummaryEmails BOOLEAN DEFAULT true,\n  forumReplyEmails BOOLEAN DEFAULT true,\n  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  INDEX idx_user (userId)\n)",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 176
-}

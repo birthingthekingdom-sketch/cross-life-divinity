@@ -1,9 +1,0 @@
-{
-  "query": "UPDATE courses SET cpdHours = \n  CASE \n    WHEN code = 'DIV101' THEN 8\n    WHEN code = 'DIV102' THEN 6\n    WHEN code = 'DIV103' THEN 10\n    WHEN code = 'DIV104' THEN 9\n    WHEN code = 'DIV105' THEN 9\n    WHEN code = 'DIV106' THEN 9\n    WHEN code = 'DIV107' THEN 6\n    WHEN code = 'DIV108' THEN 6\n    WHEN code = 'DIV109' THEN 5\n    WHEN code = 'DIV110' THEN 7\n    ELSE 0\n  END\nWHERE code IN ('DIV101', 'DIV102', 'DIV103', 'DIV104', 'DIV105', 'DIV106', 'DIV107', 'DIV108', 'DIV109', 'DIV110');",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute UPDATE courses SET cpdHours = \n  CASE \n    WHEN code = 'DIV101' THEN 8\n    WHEN code = 'DIV102' THEN 6\n    WHEN code = 'DIV103' THEN 10\n    WHEN code = 'DIV104' THEN 9\n    WHEN code = 'DIV105' THEN 9\n    WHEN code = 'DIV106' THEN 9\n    WHEN code = 'DIV107' THEN 6\n    WHEN code = 'DIV108' THEN 6\n    WHEN code = 'DIV109' THEN 5\n    WHEN code = 'DIV110' THEN 7\n    ELSE 0\n  END\nWHERE code IN ('DIV101', 'DIV102', 'DIV103', 'DIV104', 'DIV105', 'DIV106', 'DIV107', 'DIV108', 'DIV109', 'DIV110');",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 92
-}

@@ -1,8 +1,0 @@
-{
-  "query": "SELECT qs.id, qs.submittedAt, COUNT(qa.id) as answerCount FROM quiz_submissions qs LEFT JOIN quiz_answers qa ON qs.id = qa.submissionId WHERE qs.userId = (SELECT id FROM users WHERE name = 'Roddy Barksdale') GROUP BY qs.id;",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT qs.id, qs.submittedAt, COUNT(qa.id) as answerCount FROM quiz_submissions qs LEFT JOIN quiz_answers qa ON qs.id = qa.submissionId WHERE qs.userId = (SELECT id FROM users WHERE name = 'Roddy Barksdale') GROUP BY qs.id;",
-  "returncode": 1,
-  "logs": [
-    "ERROR 1054 (42S22) at line 1: Unknown column 'qa.submissionid' in 'on clause'"
-  ]
-}

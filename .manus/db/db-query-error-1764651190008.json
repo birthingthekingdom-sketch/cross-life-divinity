@@ -1,8 +1,0 @@
-{
-  "query": "-- First, get the lesson IDs to delete\nSELECT id FROM lessons WHERE (courseId = 4 AND `order` IN (8, 9)) OR (courseId = 6 AND `order` = 9);\n\n-- Delete quiz questions for these lessons  \nDELETE FROM quiz_questions WHERE lessonId IN (\n  SELECT id FROM lessons WHERE (courseId = 4 AND `order` IN (8, 9)) OR (courseId = 6 AND `order` = 9)\n);\n\n-- Delete the lessons\nDELETE FROM lessons WHERE (courseId = 4 AND `order` IN (8, 9)) OR (courseId = 6 AND `order` = 9);\n\n-- Update course totals\nUPDATE courses SET totalLessons = 7 WHERE id = 4;\nUPDATE courses SET totalLessons = 8 WHERE id = 6;",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute -- First, get the lesson IDs to delete\nSELECT id FROM lessons WHERE (courseId = 4 AND `order` IN (8, 9)) OR (courseId = 6 AND `order` = 9);\n\n-- Delete quiz questions for these lessons  \nDELETE FROM quiz_questions WHERE lessonId IN (\n  SELECT id FROM lessons WHERE (courseId = 4 AND `order` IN (8, 9)) OR (courseId = 6 AND `order` = 9)\n);\n\n-- Delete the lessons\nDELETE FROM lessons WHERE (courseId = 4 AND `order` IN (8, 9)) OR (courseId = 6 AND `order` = 9);\n\n-- Update course totals\nUPDATE courses SET totalLessons = 7 WHERE id = 4;\nUPDATE courses SET totalLessons = 8 WHERE id = 6;",
-  "returncode": 1,
-  "logs": [
-    "ERROR 1054 (42S22) at line 2: Unknown column 'order' in 'where clause'"
-  ]
-}

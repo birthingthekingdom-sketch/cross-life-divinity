@@ -1,9 +1,0 @@
-{
-  "query": "DELETE FROM courses WHERE title LIKE '%TEST%' OR title LIKE '%Test%' OR code LIKE '%TEST%';",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute DELETE FROM courses WHERE title LIKE '%TEST%' OR title LIKE '%Test%' OR code LIKE '%TEST%';",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 67
-}
