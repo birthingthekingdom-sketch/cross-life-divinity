@@ -202,17 +202,7 @@ export default function Landing() {
                 <div className="space-y-3">
                   <div className="flex items-baseline gap-3">
                     <span className="text-lg font-semibold text-foreground">Training:</span>
-                    <span className="text-3xl font-bold text-accent">$325</span>
-                  </div>
-                  <div className="flex items-baseline gap-3">
-                    <span className="text-lg font-semibold text-foreground">Background Check:</span>
-                    <span className="text-3xl font-bold text-accent">$50</span>
-                  </div>
-                  <div className="border-t border-border pt-3 mt-3">
-                    <div className="flex items-baseline gap-3">
-                      <span className="text-lg font-semibold text-foreground">Total:</span>
-                      <span className="text-4xl font-bold text-primary">$375</span>
-                    </div>
+                    <span className="text-4xl font-bold text-primary">$325</span>
                   </div>
                 </div>
                 <p className="text-foreground/80 mt-4">One-time payment - Includes professional certification</p>

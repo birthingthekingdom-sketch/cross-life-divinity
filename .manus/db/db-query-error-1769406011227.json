@@ -1,0 +1,8 @@
+{
+  "query": "SELECT ce.id, ce.userId, ce.courseId, c.id, c.title FROM courseEnrollments ce JOIN courses c ON ce.courseId = c.id WHERE ce.userId = (SELECT id FROM users WHERE email = 'teststudent@crosslife.test') ORDER BY c.title;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT ce.id, ce.userId, ce.courseId, c.id, c.title FROM courseEnrollments ce JOIN courses c ON ce.courseId = c.id WHERE ce.userId = (SELECT id FROM users WHERE email = 'teststudent@crosslife.test') ORDER BY c.title;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1146 (42S02) at line 1: Table 'p2dpw9mqsmxzduqcfgjv6b.courseEnrollments' doesn't exist"
+  ]
+}

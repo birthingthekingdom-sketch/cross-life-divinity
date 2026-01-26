@@ -308,8 +308,8 @@ export default function Dashboard() {
           </div>
         )}
 
-        {/* Learning Paths Section */}
-        {paths && paths.length > 0 && (
+        {/* Learning Paths Section - Only show if student is enrolled in courses within the path */}
+        {paths && paths.length > 0 && (user?.role === 'admin' || paths.some((path: any) => path.courses?.some((c: any) => c.isEnrolled))) && (
           <div className="mb-12">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-foreground">Learning Paths</h2>
@@ -350,7 +350,7 @@ export default function Dashboard() {
         )}
 
         {/* Course Bundles Section */}
-        {bundles && bundles.length > 0 && (
+        {bundles && bundles.length > 0 && (user?.role === 'admin' || bundles.some((bundle: any) => bundle.courses?.some((c: any) => c.isEnrolled))) && (
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-foreground mb-6">Course Bundles</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -423,7 +423,8 @@ export default function Dashboard() {
           </div>
         )}
 
-        {/* Bridge Academy GED Prep Section */}
+        {/* Bridge Academy GED Prep Section - Only show if student is enrolled in a GED course or is admin */}
+        {(user?.role === 'admin' || courses?.some((c: any) => c.isEnrolled && (c.code?.includes('MATH') || c.code?.includes('LANG') || c.code?.includes('SCI') || c.code?.includes('SOCIAL')))) && (
         <div className="mb-12 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
           <div className="flex items-center justify-between mb-4">
             <div>
@@ -462,9 +463,10 @@ export default function Dashboard() {
             ))}
           </div>
         </div>
+        )}
 
         {/* Professional Certifications Section */}
-        {chaplaincy && (
+        {chaplaincy && (user?.role === 'admin' || chaplaincy.isEnrolled) && (
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
               <Award className="h-6 w-6 text-amber-600" />
@@ -529,7 +531,7 @@ export default function Dashboard() {
         {/* All Courses Grid */}
         <h2 className="text-2xl font-bold text-foreground mb-6">All Courses</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {courses?.map((course: any, courseIdx: number) => {
+          {courses?.filter((course: any) => user?.role === 'admin' || course.isEnrolled).map((course: any, courseIdx: number) => {
             const progress = courseProgress[course.id] || { completed: 0, total: course.totalLessons };
             const progressPercent = progress.total > 0 ? (progress.completed / progress.total) * 100 : 0;
             const isEnrolled = course.isEnrolled;
