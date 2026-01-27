@@ -1,0 +1,25 @@
+{
+  "query": "SELECT id, name, level FROM learning_paths ORDER BY level;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, name, level FROM learning_paths ORDER BY level;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "New Believer Foundation",
+      "level": "beginner"
+    },
+    {
+      "id": "2",
+      "name": "Ministry Preparation Track",
+      "level": "intermediate"
+    },
+    {
+      "id": "3",
+      "name": "Advanced Theological Studies",
+      "level": "advanced"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tlevel\n1\tNew Believer Foundation\tbeginner\n2\tMinistry Preparation Track\tintermediate\n3\tAdvanced Theological Studies\tadvanced\n",
+  "stderr": "",
+  "execution_time_ms": 52
+}

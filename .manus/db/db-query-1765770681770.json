@@ -1,0 +1,50 @@
+{
+  "query": "SELECT * FROM learning_path_enrollments ORDER BY enrolledAt DESC LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT * FROM learning_path_enrollments ORDER BY enrolledAt DESC LIMIT 5;",
+  "rows": [
+    {
+      "id": "1",
+      "userId": "1",
+      "learningPathId": "2",
+      "enrolledAt": "2025-12-13 06:12:57",
+      "completedAt": "NULL",
+      "isActive": "1"
+    },
+    {
+      "id": "60001",
+      "userId": "1",
+      "learningPathId": "3",
+      "enrolledAt": "2025-12-13 06:06:51",
+      "completedAt": "NULL",
+      "isActive": "1"
+    },
+    {
+      "id": "120001",
+      "userId": "6690003",
+      "learningPathId": "3",
+      "enrolledAt": "2025-12-13 03:46:30",
+      "completedAt": "NULL",
+      "isActive": "1"
+    },
+    {
+      "id": "180001",
+      "userId": "6990001",
+      "learningPathId": "3",
+      "enrolledAt": "2025-12-09 23:31:39",
+      "completedAt": "NULL",
+      "isActive": "1"
+    },
+    {
+      "id": "4",
+      "userId": "1",
+      "learningPathId": "1",
+      "enrolledAt": "2025-12-07 05:40:44",
+      "completedAt": "NULL",
+      "isActive": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tuserId\tlearningPathId\tenrolledAt\tcompletedAt\tisActive\n1\t1\t2\t2025-12-13 06:12:57\tNULL\t1\n60001\t1\t3\t2025-12-13 06:06:51\tNULL\t1\n120001\t6690003\t3\t2025-12-13 03:46:30\tNULL\t1\n180001\t6990001\t3\t2025-12-09 23:31:39\tNULL\t1\n4\t1\t1\t2025-12-07 05:40:44\tNULL\t1\n",
+  "stderr": "",
+  "execution_time_ms": 103
+}

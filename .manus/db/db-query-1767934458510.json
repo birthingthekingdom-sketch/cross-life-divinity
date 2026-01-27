@@ -1,0 +1,18 @@
+{
+  "query": "SELECT id, email, role, name, openId, password FROM users WHERE email = 'studio6817@yahoo.com' LIMIT 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, email, role, name, openId, password FROM users WHERE email = 'studio6817@yahoo.com' LIMIT 1;",
+  "rows": [
+    {
+      "id": "6690003",
+      "email": "Studio6817@yahoo.com",
+      "role": "user",
+      "name": "Larry",
+      "openId": "gYgBDobhvEHWcosmP9gGNb",
+      "password": "$2b$10$ySgb.jjXQugqUjvrBiC9j.F268vYHu2uAqxzu9UvvOCpUMt1brlJi"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\trole\tname\topenId\tpassword\n6690003\tStudio6817@yahoo.com\tuser\tLarry\tgYgBDobhvEHWcosmP9gGNb\t$2b$10$ySgb.jjXQugqUjvrBiC9j.F268vYHu2uAqxzu9UvvOCpUMt1brlJi\n",
+  "stderr": "",
+  "execution_time_ms": 403
+}

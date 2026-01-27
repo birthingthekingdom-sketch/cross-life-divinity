@@ -1,0 +1,52 @@
+{
+  "project_info": {
+    "title": "Pastoral Counseling",
+    "created": 1767374837.1470678,
+    "last_updated": 1767374837.1470683,
+    "total_slides": 5
+  },
+  "slides": {
+    "title_slide": "edit_pending",
+    "course_overview": "edit_pending",
+    "learning_objectives": "edit_pending",
+    "course_structure": "edit_pending",
+    "call_to_action": "edit_pending"
+  },
+  "outline": [
+    {
+      "id": "title_slide",
+      "title": "Pastoral Counseling",
+      "summary": "Welcome to Pastoral Counseling. Develop biblical counseling skills to help your congregation. Learn to provide compassionate, Christ-centered counsel for life's challenges.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "course_overview",
+      "title": "Course Overview",
+      "summary": "Develop biblical counseling skills to help your congregation. This course develops your ability to provide compassionate, Christ-centered counsel for life's challenges.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "learning_objectives",
+      "title": "What You'll Learn",
+      "summary": "Master biblical counseling foundations and listening skills. Learn to address grief, crisis, and trauma. Develop skills in marriage and family counseling. Recognize when to refer to professionals.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "course_structure",
+      "title": "Course Structure",
+      "summary": "10 comprehensive lessons covering foundations, listening skills, crisis counseling, grief and loss, marriage counseling, family counseling, addiction, mental health, boundaries, and integration.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "call_to_action",
+      "title": "Ready to Begin?",
+      "summary": "Enroll now and develop pastoral counseling skills. Provide compassionate, Christ-centered care to your congregation and community.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    }
+  ]
+}

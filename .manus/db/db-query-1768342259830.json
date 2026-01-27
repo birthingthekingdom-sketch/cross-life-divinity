@@ -1,0 +1,38 @@
+{
+  "query": "SELECT id, code, title, courseType, totalLessons FROM courses WHERE courseType = 'ged' ORDER BY code;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code, title, courseType, totalLessons FROM courses WHERE courseType = 'ged' ORDER BY code;",
+  "rows": [
+    {
+      "id": "660004",
+      "code": "GED-LANG",
+      "title": "GED Language Arts",
+      "courseType": "ged",
+      "totalLessons": "12"
+    },
+    {
+      "id": "660003",
+      "code": "GED-MATH",
+      "title": "GED Mathematics",
+      "courseType": "ged",
+      "totalLessons": "12"
+    },
+    {
+      "id": "660005",
+      "code": "GED-SCI",
+      "title": "GED Science",
+      "courseType": "ged",
+      "totalLessons": "10"
+    },
+    {
+      "id": "660006",
+      "code": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "courseType": "ged",
+      "totalLessons": "10"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\tcourseType\ttotalLessons\n660004\tGED-LANG\tGED Language Arts\tged\t12\n660003\tGED-MATH\tGED Mathematics\tged\t12\n660005\tGED-SCI\tGED Science\tged\t10\n660006\tGED-SOCIAL\tGED Social Studies\tged\t10\n",
+  "stderr": "",
+  "execution_time_ms": 63
+}

@@ -1,0 +1,8 @@
+{
+  "query": "ALTER TABLE lessons ADD COLUMN assignment TEXT NULL",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute ALTER TABLE lessons ADD COLUMN assignment TEXT NULL",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1060 (42S21) at line 1: Duplicate column name 'assignment'"
+  ]
+}

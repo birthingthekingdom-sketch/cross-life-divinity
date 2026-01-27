@@ -1,0 +1,64 @@
+{
+  "query": "SELECT b.id as bundle_id, b.name as bundle_name, c.id as course_id, c.title as course_title \nFROM course_bundles b, courses c \nWHERE (b.name = 'Biblical Foundations' AND c.title IN ('Old Testament Survey', 'New Testament Survey', 'Biblical Hermeneutics'))\n   OR (b.name = 'Spiritual Warfare & Deliverance' AND c.title IN ('Deliverance Ministry', 'Understanding Prophecy', 'Prayer and Intercession'))\n   OR (b.name = 'Ministry Leadership Track' AND c.title IN ('The Fivefold Ministry', 'Christian Leadership', 'Church Administration'))\nORDER BY b.id, c.id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT b.id as bundle_id, b.name as bundle_name, c.id as course_id, c.title as course_title \nFROM course_bundles b, courses c \nWHERE (b.name = 'Biblical Foundations' AND c.title IN ('Old Testament Survey', 'New Testament Survey', 'Biblical Hermeneutics'))\n   OR (b.name = 'Spiritual Warfare & Deliverance' AND c.title IN ('Deliverance Ministry', 'Understanding Prophecy', 'Prayer and Intercession'))\n   OR (b.name = 'Ministry Leadership Track' AND c.title IN ('The Fivefold Ministry', 'Christian Leadership', 'Church Administration'))\nORDER BY b.id, c.id;",
+  "rows": [
+    {
+      "bundle_id": "1",
+      "bundle_name": "Ministry Leadership Track",
+      "course_id": "150009",
+      "course_title": "Christian Leadership"
+    },
+    {
+      "bundle_id": "1",
+      "bundle_name": "Ministry Leadership Track",
+      "course_id": "150012",
+      "course_title": "Church Administration"
+    },
+    {
+      "bundle_id": "1",
+      "bundle_name": "Ministry Leadership Track",
+      "course_id": "180003",
+      "course_title": "The Fivefold Ministry"
+    },
+    {
+      "bundle_id": "2",
+      "bundle_name": "Spiritual Warfare & Deliverance",
+      "course_id": "150008",
+      "course_title": "Prayer and Intercession"
+    },
+    {
+      "bundle_id": "2",
+      "bundle_name": "Spiritual Warfare & Deliverance",
+      "course_id": "180001",
+      "course_title": "Understanding Prophecy"
+    },
+    {
+      "bundle_id": "2",
+      "bundle_name": "Spiritual Warfare & Deliverance",
+      "course_id": "180002",
+      "course_title": "Deliverance Ministry"
+    },
+    {
+      "bundle_id": "3",
+      "bundle_name": "Biblical Foundations",
+      "course_id": "150001",
+      "course_title": "Old Testament Survey"
+    },
+    {
+      "bundle_id": "3",
+      "bundle_name": "Biblical Foundations",
+      "course_id": "150002",
+      "course_title": "New Testament Survey"
+    },
+    {
+      "bundle_id": "3",
+      "bundle_name": "Biblical Foundations",
+      "course_id": "150004",
+      "course_title": "Biblical Hermeneutics"
+    }
+  ],
+  "messages": [],
+  "stdout": "bundle_id\tbundle_name\tcourse_id\tcourse_title\n1\tMinistry Leadership Track\t150009\tChristian Leadership\n1\tMinistry Leadership Track\t150012\tChurch Administration\n1\tMinistry Leadership Track\t180003\tThe Fivefold Ministry\n2\tSpiritual Warfare & Deliverance\t150008\tPrayer and Intercession\n2\tSpiritual Warfare & Deliverance\t180001\tUnderstanding Prophecy\n2\tSpiritual Warfare & Deliverance\t180002\tDeliverance Ministry\n3\tBiblical Foundations\t150001\tOld Testament Survey\n3\tBiblical Foundations\t150002\tNew Testament Survey\n3\tBiblical Foundations\t150004\tBiblical Hermeneutics\n",
+  "stderr": "",
+  "execution_time_ms": 50
+}

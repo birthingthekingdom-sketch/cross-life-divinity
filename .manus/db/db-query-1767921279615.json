@@ -1,0 +1,40 @@
+{
+  "query": "SELECT id, code, title, courseType FROM courses WHERE code LIKE 'TEST%' OR code LIKE 'TWC%' OR code LIKE 'CSV%' OR title LIKE '%Test%' ORDER BY code;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code, title, courseType FROM courses WHERE code LIKE 'TEST%' OR code LIKE 'TWC%' OR code LIKE 'CSV%' OR title LIKE '%Test%' ORDER BY code;",
+  "rows": [
+    {
+      "id": "510001",
+      "code": "BIB101",
+      "title": "Old Testament Survey",
+      "courseType": "theological"
+    },
+    {
+      "id": "510002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "courseType": "theological"
+    },
+    {
+      "id": "600001",
+      "code": "TEST-ENH-1767843706476",
+      "title": "Test Enhancement Course",
+      "courseType": "theological"
+    },
+    {
+      "id": "600005",
+      "code": "TEST-ENH-1767843742245",
+      "title": "Test Enhancement Course",
+      "courseType": "theological"
+    },
+    {
+      "id": "600004",
+      "code": "TWC1767843709883",
+      "title": "Test Webinar Course",
+      "courseType": "theological"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\tcourseType\n510001\tBIB101\tOld Testament Survey\ttheological\n510002\tBIB102\tNew Testament Survey\ttheological\n600001\tTEST-ENH-1767843706476\tTest Enhancement Course\ttheological\n600005\tTEST-ENH-1767843742245\tTest Enhancement Course\ttheological\n600004\tTWC1767843709883\tTest Webinar Course\ttheological\n",
+  "stderr": "",
+  "execution_time_ms": 442
+}

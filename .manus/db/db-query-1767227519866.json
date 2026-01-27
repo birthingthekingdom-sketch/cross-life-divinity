@@ -1,0 +1,18 @@
+{
+  "query": "SELECT id, code FROM courses WHERE code IN ('GED-MATH', 'GED-RLA', 'GED-SCI', 'GED-SS');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code FROM courses WHERE code IN ('GED-MATH', 'GED-RLA', 'GED-SCI', 'GED-SS');",
+  "rows": [
+    {
+      "id": "390001",
+      "code": "GED-MATH"
+    },
+    {
+      "id": "390003",
+      "code": "GED-SCI"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\n390001\tGED-MATH\n390003\tGED-SCI\n",
+  "stderr": "",
+  "execution_time_ms": 57
+}

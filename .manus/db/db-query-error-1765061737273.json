@@ -1,0 +1,17 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS referrals (\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  referrer_user_id INTEGER NOT NULL,\n  referred_user_id INTEGER,\n  referral_code VARCHAR(50) UNIQUE NOT NULL,\n  status VARCHAR(20) DEFAULT 'pending',\n  credit_amount DECIMAL(10,2) DEFAULT 50.00,\n  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,\n  completed_at DATETIME,\n  FOREIGN KEY (referrer_user_id) REFERENCES users(id),\n  FOREIGN KEY (referred_user_id) REFERENCES users(id)\n);\n\nCREATE TABLE IF NOT EXISTS user_credits (\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  user_id INTEGER NOT NULL UNIQUE,\n  total_credits DECIMAL(10,2) DEFAULT 0.00,\n  used_credits DECIMAL(10,2) DEFAULT 0.00,\n  available_credits DECIMAL(10,2) DEFAULT 0.00,\n  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,\n  FOREIGN KEY (user_id) REFERENCES users(id)\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute CREATE TABLE IF NOT EXISTS referrals (\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  referrer_user_id INTEGER NOT NULL,\n  referred_user_id INTEGER,\n  referral_code VARCHAR(50) UNIQUE NOT NULL,\n  status VARCHAR(20) DEFAULT 'pending',\n  credit_amount DECIMAL(10,2) DEFAULT 50.00,\n  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,\n  completed_at DATETIME,\n  FOREIGN KEY (referrer_user_id) REFERENCES users(id),\n  FOREIGN KEY (referred_user_id) REFERENCES users(id)\n);\n\nCREATE TABLE IF NOT EXISTS user_credits (\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  user_id INTEGER NOT NULL UNIQUE,\n  total_credits DECIMAL(10,2) DEFAULT 0.00,\n  used_credits DECIMAL(10,2) DEFAULT 0.00,\n  available_credits DECIMAL(10,2) DEFAULT 0.00,\n  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,\n  FOREIGN KEY (user_id) REFERENCES users(id)\n);",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1064 (42000) at line 1: You have an error in your SQL syntax; check the manual that corresponds to your TiDB version for the right syntax to use line 2 column 39 near \"AUTOINCREMENT,",
+    "  referrer_user_id INTEGER NOT NULL,",
+    "  referred_user_id INTEGER,",
+    "  referral_code VARCHAR(50) UNIQUE NOT NULL,",
+    "  status VARCHAR(20) DEFAULT 'pending',",
+    "  credit_amount DECIMAL(10,2) DEFAULT 50.00,",
+    "  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,",
+    "  completed_at DATETIME,",
+    "  FOREIGN KEY (referrer_user_id) REFERENCES users(id),",
+    "  FOREIGN KEY (referred_user"
+  ]
+}

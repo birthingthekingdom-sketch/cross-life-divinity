@@ -1,0 +1,60 @@
+{
+  "query": "SELECT id, email, role FROM users LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, email, role FROM users LIMIT 10;",
+  "rows": [
+    {
+      "id": "1",
+      "email": "birthingthekingdom@gmail.com",
+      "role": "admin"
+    },
+    {
+      "id": "6690003",
+      "email": "Studio6817@yahoo.com",
+      "role": "user"
+    },
+    {
+      "id": "6900001",
+      "email": "deidratarver@gmail.com",
+      "role": "user"
+    },
+    {
+      "id": "6990001",
+      "email": "marymuh@hotmail.com",
+      "role": "user"
+    },
+    {
+      "id": "6990015",
+      "email": "marymuh@yahoo.com",
+      "role": "user"
+    },
+    {
+      "id": "8520002",
+      "email": "fisherelijah37@gmail.com",
+      "role": "admin"
+    },
+    {
+      "id": "11700001",
+      "email": "reneejacob2018@gmail.com",
+      "role": "user"
+    },
+    {
+      "id": "12270001",
+      "email": "drlpickett@yahoo.com",
+      "role": "user"
+    },
+    {
+      "id": "12960001",
+      "email": "angiewestbrook47@gmail.com",
+      "role": "user"
+    },
+    {
+      "id": "14670064",
+      "email": "csv-student-1766992584908@test.com",
+      "role": "user"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\trole\n1\tbirthingthekingdom@gmail.com\tadmin\n6690003\tStudio6817@yahoo.com\tuser\n6900001\tdeidratarver@gmail.com\tuser\n6990001\tmarymuh@hotmail.com\tuser\n6990015\tmarymuh@yahoo.com\tuser\n8520002\tfisherelijah37@gmail.com\tadmin\n11700001\treneejacob2018@gmail.com\tuser\n12270001\tdrlpickett@yahoo.com\tuser\n12960001\tangiewestbrook47@gmail.com\tuser\n14670064\tcsv-student-1766992584908@test.com\tuser\n",
+  "stderr": "",
+  "execution_time_ms": 498
+}

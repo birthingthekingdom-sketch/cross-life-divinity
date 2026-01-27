@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "title": "Christology",
+    "created": 1767722374.4542835,
+    "last_updated": 1767722518.2006154,
+    "total_slides": 8
+  },
+  "slides": {
+    "title_slide": "edited",
+    "course_overview": "edited",
+    "learning_outcomes": "edited",
+    "biblical_foundations": "edited",
+    "historical_development": "edited",
+    "contemporary_perspectives": "edited",
+    "pastoral_application": "edited",
+    "closing": "edited"
+  },
+  "outline": [
+    {
+      "id": "title_slide",
+      "title": "Christology",
+      "summary": "A systematic study of the person and work of Jesus Christ, examining biblical foundations, historical doctrine, and contemporary theological perspectives on Christ's incarnation, atonement, and significance.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "course_overview",
+      "title": "Course Overview",
+      "summary": "Explore the central Christian claim that Jesus Christ is God incarnate, investigating how this claim has been understood throughout Christian history and how it applies to faith and practice today.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "learning_outcomes",
+      "title": "Learning Outcomes",
+      "summary": "Students will articulate biblical foundations for understanding Christ, trace historical christological development, analyze major theological models, and apply Christology to worship and mission.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "biblical_foundations",
+      "title": "Biblical Foundations",
+      "summary": "Examine messianic expectation in the Old Testament, Jesus' self-understanding, and apostolic proclamation of Christ in the New Testament as the foundation for Christian Christology.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "historical_development",
+      "title": "Historical Development",
+      "summary": "Trace the development of christological doctrine from the early church councils (Nicaea, Chalcedon) through medieval, Reformation, and modern theological perspectives.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "contemporary_perspectives",
+      "title": "Contemporary Challenges",
+      "summary": "Engage contemporary theological movements including feminist Christology, process theology, pluralism, and Christology in non-Western contexts.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "pastoral_application",
+      "title": "Pastoral Application",
+      "summary": "Apply christological understanding to Christian worship, preaching, pastoral counseling, ethics, and the church's mission in the world.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "closing",
+      "title": "Christ at the Center",
+      "summary": "Christology is not merely academic study but the heart of Christian faith and practice. Understanding Christ shapes how we worship, serve, and witness.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    }
+  ]
+}

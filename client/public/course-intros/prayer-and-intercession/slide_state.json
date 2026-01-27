@@ -1,0 +1,52 @@
+{
+  "project_info": {
+    "title": "Prayer and Intercession",
+    "created": 1767374180.5115924,
+    "last_updated": 1767374501.0417483,
+    "total_slides": 5
+  },
+  "slides": {
+    "title_slide": "edited",
+    "course_overview": "edit_pending",
+    "learning_objectives": "edit_pending",
+    "course_structure": "edit_pending",
+    "call_to_action": "edit_pending"
+  },
+  "outline": [
+    {
+      "id": "title_slide",
+      "title": "Prayer and Intercession",
+      "summary": "Welcome to Prayer and Intercession. Deepen your prayer life and develop an intercessory ministry. Learn biblical principles of prayer, intercession, and spiritual warfare through prayer.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "course_overview",
+      "title": "Course Overview",
+      "summary": "Deepen your prayer life and develop an intercessory ministry. This course develops your ability to pray effectively and intercede for others with power and authority.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "learning_objectives",
+      "title": "What You'll Learn",
+      "summary": "Master types of prayer and intercession. Learn spiritual warfare prayer and fasting. Develop prayer journaling and corporate intercession. Overcome hindrances and recognize answered prayer.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "course_structure",
+      "title": "Course Structure",
+      "summary": "10 comprehensive lessons covering foundations of prayer, types of prayer, intercessory prayer, prayer warfare, fasting and prayer, prayer journaling, prayer groups, hindrances, answered prayer, and integration.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "call_to_action",
+      "title": "Ready to Begin?",
+      "summary": "Enroll now and deepen your prayer life. Develop an intercessory ministry that transforms your church and community through the power of prayer.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    }
+  ]
+}

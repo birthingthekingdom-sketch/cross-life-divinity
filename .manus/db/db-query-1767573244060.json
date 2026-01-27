@@ -1,0 +1,28 @@
+{
+  "query": "SELECT * FROM users WHERE email = 'roddybarksdale6@gmail.com';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT * FROM users WHERE email = 'roddybarksdale6@gmail.com';",
+  "rows": [
+    {
+      "id": "16410014",
+      "openId": "NULL",
+      "name": "roddybarksdale6",
+      "email": "roddybarksdale6@gmail.com",
+      "loginMethod": "email",
+      "role": "user",
+      "createdAt": "2026-01-04 22:58:47",
+      "updatedAt": "2026-01-04 23:33:52",
+      "lastSignedIn": "2026-01-04 23:33:53",
+      "password": "$2b$10$4E./y6JzTKdhrlDhaUCrveLmALECxfLAMpZiyQI7dK8gYlaCn49AC",
+      "passwordResetToken": "NULL",
+      "passwordResetExpiry": "NULL",
+      "emailVerified": "1",
+      "emailVerificationToken": "NULL",
+      "emailVerificationExpiry": "NULL",
+      "stripeCustomerId": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\topenId\tname\temail\tloginMethod\trole\tcreatedAt\tupdatedAt\tlastSignedIn\tpassword\tpasswordResetToken\tpasswordResetExpiry\temailVerified\temailVerificationToken\temailVerificationExpiry\tstripeCustomerId\n16410014\tNULL\troddybarksdale6\troddybarksdale6@gmail.com\temail\tuser\t2026-01-04 22:58:47\t2026-01-04 23:33:52\t2026-01-04 23:33:53\t$2b$10$4E./y6JzTKdhrlDhaUCrveLmALECxfLAMpZiyQI7dK8gYlaCn49AC\tNULL\tNULL\t1\tNULL\tNULL\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 60
+}

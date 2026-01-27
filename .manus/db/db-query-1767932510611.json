@@ -1,0 +1,190 @@
+{
+  "query": "SELECT id, email, name, role, emailVerified, loginMethod, createdAt FROM users ORDER BY createdAt DESC LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, email, name, role, emailVerified, loginMethod, createdAt FROM users ORDER BY createdAt DESC LIMIT 20;",
+  "rows": [
+    {
+      "id": "17370008",
+      "email": "integration-test-1767916114@example.com",
+      "name": "Integration Test User",
+      "role": "user",
+      "emailVerified": "1",
+      "loginMethod": "email",
+      "createdAt": "2026-01-08 23:48:34"
+    },
+    {
+      "id": "17370007",
+      "email": "integration-test-1767916108@example.com",
+      "name": "Integration Test User",
+      "role": "user",
+      "emailVerified": "1",
+      "loginMethod": "email",
+      "createdAt": "2026-01-08 23:48:29"
+    },
+    {
+      "id": "17220013",
+      "email": "test-enhancements-1767843741721@example.com",
+      "name": "Test Enhancement User",
+      "role": "user",
+      "emailVerified": "0",
+      "loginMethod": "email",
+      "createdAt": "2026-01-08 03:42:22"
+    },
+    {
+      "id": "17220015",
+      "email": "csv-student-1767843742275@test.com",
+      "name": "CSV Test Student",
+      "role": "user",
+      "emailVerified": "0",
+      "loginMethod": "email",
+      "createdAt": "2026-01-08 03:42:22"
+    },
+    {
+      "id": "17220014",
+      "email": "test-1767843741273@example.com",
+      "name": "Test User",
+      "role": "user",
+      "emailVerified": "1",
+      "loginMethod": "email",
+      "createdAt": "2026-01-08 03:42:22"
+    },
+    {
+      "id": "17220005",
+      "email": "student-1767843709110@test.com",
+      "name": "Test Student",
+      "role": "user",
+      "emailVerified": "0",
+      "loginMethod": "email",
+      "createdAt": "2026-01-08 03:41:49"
+    },
+    {
+      "id": "17220006",
+      "email": "admin-1767843709510@test.com",
+      "name": "Test Admin",
+      "role": "admin",
+      "emailVerified": "0",
+      "loginMethod": "email",
+      "createdAt": "2026-01-08 03:41:49"
+    },
+    {
+      "id": "17220004",
+      "email": "test-1767843705938@example.com",
+      "name": "Test User",
+      "role": "user",
+      "emailVerified": "1",
+      "loginMethod": "email",
+      "createdAt": "2026-01-08 03:41:46"
+    },
+    {
+      "id": "17220002",
+      "email": "test-enhancements-1767843706016@example.com",
+      "name": "Test Enhancement User",
+      "role": "user",
+      "emailVerified": "0",
+      "loginMethod": "email",
+      "createdAt": "2026-01-08 03:41:46"
+    },
+    {
+      "id": "17220003",
+      "email": "csv-student-1767843706407@test.com",
+      "name": "CSV Test Student",
+      "role": "user",
+      "emailVerified": "0",
+      "loginMethod": "email",
+      "createdAt": "2026-01-08 03:41:46"
+    },
+    {
+      "id": "17100001",
+      "email": "roddybarksdale6@gmail.com",
+      "name": "roddybarksdale6",
+      "role": "user",
+      "emailVerified": "0",
+      "loginMethod": "email",
+      "createdAt": "2026-01-07 04:41:37"
+    },
+    {
+      "id": "17070001",
+      "email": "pastorreneea@yahoo.com",
+      "name": "Dr. Renee Allison",
+      "role": "user",
+      "emailVerified": "1",
+      "loginMethod": "email",
+      "createdAt": "2026-01-07 03:58:40"
+    },
+    {
+      "id": "17040002",
+      "email": "carldharper46@gmail.com",
+      "name": "Carl Harper",
+      "role": "user",
+      "emailVerified": "1",
+      "loginMethod": "email",
+      "createdAt": "2026-01-07 02:14:23"
+    },
+    {
+      "id": "16740013",
+      "email": "testpastor@example.com",
+      "name": "Test Pastor",
+      "role": "user",
+      "emailVerified": "1",
+      "loginMethod": "email",
+      "createdAt": "2026-01-06 17:33:33"
+    },
+    {
+      "id": "16530064",
+      "email": "admin-1767577662770@test.com",
+      "name": "Test Admin",
+      "role": "admin",
+      "emailVerified": "0",
+      "loginMethod": "email",
+      "createdAt": "2026-01-05 01:47:42"
+    },
+    {
+      "id": "16530063",
+      "email": "student-1767577662671@test.com",
+      "name": "Test Student",
+      "role": "user",
+      "emailVerified": "0",
+      "loginMethod": "email",
+      "createdAt": "2026-01-05 01:47:42"
+    },
+    {
+      "id": "16530061",
+      "email": "csv-student-1767577661514@test.com",
+      "name": "CSV Test Student",
+      "role": "user",
+      "emailVerified": "0",
+      "loginMethod": "email",
+      "createdAt": "2026-01-05 01:47:41"
+    },
+    {
+      "id": "16530060",
+      "email": "test-enhancements-1767577661317@example.com",
+      "name": "Test Enhancement User",
+      "role": "user",
+      "emailVerified": "0",
+      "loginMethod": "email",
+      "createdAt": "2026-01-05 01:47:41"
+    },
+    {
+      "id": "16530062",
+      "email": "test-1767577661214@example.com",
+      "name": "Test User",
+      "role": "user",
+      "emailVerified": "1",
+      "loginMethod": "email",
+      "createdAt": "2026-01-05 01:47:41"
+    },
+    {
+      "id": "16530053",
+      "email": "admin-1767577638393@test.com",
+      "name": "Test Admin",
+      "role": "admin",
+      "emailVerified": "0",
+      "loginMethod": "email",
+      "createdAt": "2026-01-05 01:47:18"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\tname\trole\temailVerified\tloginMethod\tcreatedAt\n17370008\tintegration-test-1767916114@example.com\tIntegration Test User\tuser\t1\temail\t2026-01-08 23:48:34\n17370007\tintegration-test-1767916108@example.com\tIntegration Test User\tuser\t1\temail\t2026-01-08 23:48:29\n17220013\ttest-enhancements-1767843741721@example.com\tTest Enhancement User\tuser\t0\temail\t2026-01-08 03:42:22\n17220015\tcsv-student-1767843742275@test.com\tCSV Test Student\tuser\t0\temail\t2026-01-08 03:42:22\n17220014\ttest-1767843741273@example.com\tTest User\tuser\t1\temail\t2026-01-08 03:42:22\n17220005\tstudent-1767843709110@test.com\tTest Student\tuser\t0\temail\t2026-01-08 03:41:49\n17220006\tadmin-1767843709510@test.com\tTest Admin\tadmin\t0\temail\t2026-01-08 03:41:49\n17220004\ttest-1767843705938@example.com\tTest User\tuser\t1\temail\t2026-01-08 03:41:46\n17220002\ttest-enhancements-1767843706016@example.com\tTest Enhancement User\tuser\t0\temail\t2026-01-08 03:41:46\n17220003\tcsv-student-1767843706407@test.com\tCSV Test Student\tuser\t0\temail\t2026-01-08 03:41:46\n17100001\troddybarksdale6@gmail.com\troddybarksdale6\tuser\t0\temail\t2026-01-07 04:41:37\n17070001\tpastorreneea@yahoo.com\tDr. Renee Allison\tuser\t1\temail\t2026-01-07 03:58:40\n17040002\tcarldharper46@gmail.com\tCarl Harper\tuser\t1\temail\t2026-01-07 02:14:23\n16740013\ttestpastor@example.com\tTest Pastor\tuser\t1\temail\t2026-01-06 17:33:33\n16530064\tadmin-1767577662770@test.com\tTest Admin\tadmin\t0\temail\t2026-01-05 01:47:42\n16530063\tstudent-1767577662671@test.com\tTest Student\tuser\t0\temail\t2026-01-05 01:47:42\n16530061\tcsv-student-1767577661514@test.com\tCSV Test Student\tuser\t0\temail\t2026-01-05 01:47:41\n16530060\ttest-enhancements-1767577661317@example.com\tTest Enhancement User\tuser\t0\temail\t2026-01-05 01:47:41\n16530062\ttest-1767577661214@example.com\tTest User\tuser\t1\temail\t2026-01-05 01:47:41\n16530053\tadmin-1767577638393@test.com\tTest Admin\tadmin\t0\temail\t2026-01-05 01:47:18\n",
+  "stderr": "",
+  "execution_time_ms": 388
+}

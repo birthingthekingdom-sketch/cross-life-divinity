@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO courses (code, title, description, totalLessons, cpdHours, price, courseType, colorTheme) VALUES ('GED-MATH', 'GED Mathematics', 'Comprehensive preparation for the GED Mathematics test covering algebra, geometry, and data analysis.', 12, 24, 79, 'ged', '#7c3aed');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO courses (code, title, description, totalLessons, cpdHours, price, courseType, colorTheme) VALUES ('GED-MATH', 'GED Mathematics', 'Comprehensive preparation for the GED Mathematics test covering algebra, geometry, and data analysis.', 12, 24, 79, 'ged', '#7c3aed');",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 412
+}
