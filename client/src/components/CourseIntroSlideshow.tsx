@@ -2,26 +2,35 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, AlertCircle } from 'lucide-react';
 
 interface CourseIntroSlideshowProps {
-  courseId: string;
+  courseId: string | number;
   courseName: string;
   autoPlay?: boolean;
 }
 
+interface SlideState {
+  project_info: {
+    title: string;
+    total_slides: number;
+  };
+  slides: { [key: string]: string };
+  outline: Array<{
+    id: string;
+    title: string;
+    summary: string;
+  }>;
+}
+
 export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: CourseIntroSlideshowProps) {
+  // Ensure courseId is a string
+  const courseIdStr = String(courseId);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [hasStarted, setHasStarted] = useState(false);
   const [slidesAvailable, setSlidesAvailable] = useState(true);
-
-  const slides = [
-    { id: 'slide_1_title', title: 'Course Introduction' },
-    { id: 'slide_2_objectives', title: 'Course Overview' },
-    { id: 'slide_3_topics', title: 'Learning Objectives' },
-    { id: 'slide_4_structure', title: 'Course Structure' },
-    { id: 'slide_5_commitment', title: 'Get Started' },
-  ];
+  const [slides, setSlides] = useState<Array<{ id: string; title: string }>>([]);
+  const [loading, setLoading] = useState(true);
 
   // Map course IDs to their slideshow paths
   const slideshowMap: { [key: string]: string } = {
@@ -36,27 +45,72 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
     'MIN301': '/course-intros/deliverance-ministry',
     'THE201': '/course-intros/systematic-theology',
     'BIB201': '/course-intros/biblical-hermeneutics',
-    'THE301': '/course-intros/fundamentals-apologetics',
-    'MIN101': '/course-intros/evangelism-discipleship',
+    'THE301': '/course-intros/fundamentals-of-apologetics',
+    'MIN101': '/course-intros/evangelism-and-discipleship',
     'MIN102': '/course-intros/discipleship-training',
-    'SPR101': '/course-intros/prayer-intercession',
+    'SPR101': '/course-intros/prayer-and-intercession',
     'LED201': '/course-intros/christian-leadership',
+    'LED202': '/course-intros/christian-leadership',
     'PAS201': '/course-intros/pastoral-counseling',
     'PAS301': '/course-intros/church-administration',
     'PAS101': '/course-intros/homiletics',
     'SPR201': '/course-intros/discovering-spiritual-gifts',
+    'DIV111': '/course-intros/capstone-project',
+    'DIV112': '/course-intros/christology',
+    'DIV113': '/course-intros/contemporary-theological-issues',
+    'DIV102': '/course-intros/deliverance-ministry',
+    'BIB101': '/course-intros/old-testament-survey',
+    'BIB102': '/course-intros/new-testament-survey',
   };
 
-  const basePath = slideshowMap[courseId] || `/course-intros/${courseId.toLowerCase()}`;
-  const currentSlideFile = `${basePath}/${slides[currentSlide].id}.html`;
+  const basePath = slideshowMap[courseIdStr] || `/course-intros/${courseIdStr.toLowerCase()}`;
   const voiceoverPath = `${basePath}/intro-voiceover.wav`;
 
-  // Check if slides are available
+  // Load slide state from JSON
   useEffect(() => {
+    const loadSlideState = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`${basePath}/slide_state.json`);
+        if (!response.ok) {
+          setSlidesAvailable(false);
+          setLoading(false);
+          return;
+        }
+        
+        const slideState: SlideState = await response.json();
+        
+        // Build slides array from outline
+        const slidesArray = slideState.outline.map((item) => ({
+          id: item.id,
+          title: item.title,
+        }));
+        
+        setSlides(slidesArray);
+        setSlidesAvailable(true);
+      } catch (error) {
+        console.error('Error loading slide state:', error);
+        setSlidesAvailable(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadSlideState();
+  }, [basePath]);
+
+  // Check if current slide file exists
+  useEffect(() => {
+    if (slides.length === 0) return;
+    
+    // Construct the slide filename using the pattern: slide_{number}_{id}.html
+  // where number is 1-based index and id is from the outline
+  const currentSlideId = slides[currentSlide]?.id || '';
+  const currentSlideFile = `${basePath}/slide_${currentSlide + 1}_${currentSlideId}.html`;
     fetch(currentSlideFile, { method: 'HEAD' })
       .then(res => setSlidesAvailable(res.ok))
       .catch(() => setSlidesAvailable(false));
-  }, [currentSlideFile]);
+  }, [currentSlide, slides, basePath]);
 
   // Initialize audio element on mount
   useEffect(() => {
@@ -139,27 +193,34 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
     setIsMuted(!isMuted);
   };
 
-  if (!slidesAvailable) {
+  if (loading) {
     return (
       <div className="w-full bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-        <div className="relative bg-white p-8">
-          <div className="flex items-center gap-3 text-amber-600 mb-4">
-            <AlertCircle className="h-5 w-5" />
-            <p className="font-medium">Course introduction slides not yet available</p>
+        <div className="relative bg-white p-8 flex items-center justify-center" style={{ aspectRatio: '16 / 9' }}>
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading course introduction...</p>
           </div>
-          <p className="text-muted-foreground">
-            The interactive introduction slides for this course are being prepared. Please check back soon!
-          </p>
         </div>
       </div>
     );
   }
+
+  if (!slidesAvailable || slides.length === 0) {
+    return null;
+  }
+
+  // Construct the slide filename using the pattern: slide_{number}_{id}.html
+  // where number is 1-based index and id is from the outline
+  const currentSlideId = slides[currentSlide]?.id || '';
+  const currentSlideFile = `${basePath}/slide_${currentSlide + 1}_${currentSlideId}.html`;
 
   return (
     <div className="w-full bg-gray-50 rounded-lg overflow-hidden shadow-lg">
       {/* Slideshow Container */}
       <div className="relative bg-white" style={{ aspectRatio: '16 / 9', overflow: 'hidden' }}>
         <iframe
+          key={currentSlideFile}
           src={currentSlideFile}
           className="w-full h-full"
           style={{ border: 'none', display: 'block' }}
@@ -238,7 +299,7 @@ export function CourseIntroSlideshow({ courseId, courseName, autoPlay = true }: 
 
         {/* Slide Title */}
         <div className="mt-3 text-center text-sm font-medium">
-          {slides[currentSlide].title}
+          {slides[currentSlide]?.title || 'Course Introduction'}
         </div>
       </div>
     </div>

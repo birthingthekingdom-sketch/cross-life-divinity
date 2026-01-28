@@ -1,0 +1,90 @@
+{
+  "query": "SELECT c.id as course_id, c.code, c.title, l.id as lesson_id, l.title as lesson_title, l.lessonOrder\nFROM courses c\nLEFT JOIN lessons l ON c.id = l.courseId\nWHERE c.code = 'BIB102'\nORDER BY l.lessonOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT c.id as course_id, c.code, c.title, l.id as lesson_id, l.title as lesson_title, l.lessonOrder\nFROM courses c\nLEFT JOIN lessons l ON c.id = l.courseId\nWHERE c.code = 'BIB102'\nORDER BY l.lessonOrder;",
+  "rows": [
+    {
+      "course_id": "780002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "lesson_id": "570011",
+      "lesson_title": "Introduction to the New Testament",
+      "lessonOrder": "1"
+    },
+    {
+      "course_id": "780002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "lesson_id": "630001",
+      "lesson_title": "Introduction to the New Testament",
+      "lessonOrder": "1"
+    },
+    {
+      "course_id": "780002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "lesson_id": "570012",
+      "lesson_title": "The Gospels: Matthew and Mark",
+      "lessonOrder": "2"
+    },
+    {
+      "course_id": "780002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "lesson_id": "630002",
+      "lesson_title": "The Four Gospels: Matthew and Mark",
+      "lessonOrder": "2"
+    },
+    {
+      "course_id": "780002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "lesson_id": "570013",
+      "lesson_title": "The Gospels: Luke and John",
+      "lessonOrder": "3"
+    },
+    {
+      "course_id": "780002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "lesson_id": "630003",
+      "lesson_title": "The Four Gospels: Luke and John",
+      "lessonOrder": "3"
+    },
+    {
+      "course_id": "780002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "lesson_id": "570014",
+      "lesson_title": "Acts: The Early Church",
+      "lessonOrder": "4"
+    },
+    {
+      "course_id": "780002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "lesson_id": "630004",
+      "lesson_title": "Acts and the Early Church",
+      "lessonOrder": "4"
+    },
+    {
+      "course_id": "780002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "lesson_id": "570015",
+      "lesson_title": "Paul's Epistles: Romans and Corinthians",
+      "lessonOrder": "5"
+    },
+    {
+      "course_id": "780002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "lesson_id": "630005",
+      "lesson_title": "Paul's Epistles: Romans and Corinthians",
+      "lessonOrder": "5"
+    }
+  ],
+  "messages": [],
+  "stdout": "course_id\tcode\ttitle\tlesson_id\tlesson_title\tlessonOrder\n780002\tBIB102\tNew Testament Survey\t570011\tIntroduction to the New Testament\t1\n780002\tBIB102\tNew Testament Survey\t630001\tIntroduction to the New Testament\t1\n780002\tBIB102\tNew Testament Survey\t570012\tThe Gospels: Matthew and Mark\t2\n780002\tBIB102\tNew Testament Survey\t630002\tThe Four Gospels: Matthew and Mark\t2\n780002\tBIB102\tNew Testament Survey\t570013\tThe Gospels: Luke and John\t3\n780002\tBIB102\tNew Testament Survey\t630003\tThe Four Gospels: Luke and John\t3\n780002\tBIB102\tNew Testament Survey\t570014\tActs: The Early Church\t4\n780002\tBIB102\tNew Testament Survey\t630004\tActs and the Early Church\t4\n780002\tBIB102\tNew Testament Survey\t570015\tPaul's Epistles: Romans and Corinthians\t5\n780002\tBIB102\tNew Testament Survey\t630005\tPaul's Epistles: Romans and Corinthians\t5\n",
+  "stderr": "",
+  "execution_time_ms": 100
+}

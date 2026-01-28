@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE courses SET description = 'This practical course provides comprehensive training in Christian leadership principles and practices. Students will explore servant leadership models, vision casting, team development, organizational management, and strategic decision-making. The curriculum integrates biblical foundations with contemporary leadership best practices, addressing ethical challenges, cultural sensitivity, and adaptive leadership in diverse ministry contexts. Graduates will be equipped to lead with integrity, develop strong teams, navigate organizational change, and advance God''s kingdom purposes through effective Christian leadership.', cpdHours = 30 WHERE code = 'LED202';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute UPDATE courses SET description = 'This practical course provides comprehensive training in Christian leadership principles and practices. Students will explore servant leadership models, vision casting, team development, organizational management, and strategic decision-making. The curriculum integrates biblical foundations with contemporary leadership best practices, addressing ethical challenges, cultural sensitivity, and adaptive leadership in diverse ministry contexts. Graduates will be equipped to lead with integrity, develop strong teams, navigate organizational change, and advance God''s kingdom purposes through effective Christian leadership.', cpdHours = 30 WHERE code = 'LED202';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 58
+}

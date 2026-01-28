@@ -1,0 +1,38 @@
+{
+  "query": "SELECT c.code, GROUP_CONCAT(l.id ORDER BY l.lessonOrder) as lessonIds\nFROM courses c\nJOIN lessons l ON l.courseId = c.id\nWHERE l.id NOT IN (SELECT DISTINCT lessonId FROM quiz_questions)\nGROUP BY c.code\nORDER BY c.code;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT c.code, GROUP_CONCAT(l.id ORDER BY l.lessonOrder) as lessonIds\nFROM courses c\nJOIN lessons l ON l.courseId = c.id\nWHERE l.id NOT IN (SELECT DISTINCT lessonId FROM quiz_questions)\nGROUP BY c.code\nORDER BY c.code;",
+  "rows": [
+    {
+      "code": "DIV102",
+      "lessonIds": "480001,480002,480003,480004"
+    },
+    {
+      "code": "DIV111",
+      "lessonIds": "480042"
+    },
+    {
+      "code": "DIV112",
+      "lessonIds": "480050,480051"
+    },
+    {
+      "code": "DIV113",
+      "lessonIds": "480060,480061"
+    },
+    {
+      "code": "GED-MATH",
+      "lessonIds": "540011,540012,540013,540014,540015,540016,540017,540018,540019,540020"
+    },
+    {
+      "code": "GED-SCI",
+      "lessonIds": "540021,540022,540023,540024,540025,540026,540027,540028,540029,540030"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "lessonIds": "540031,540032,540033,540034,540035,540036,540037,540038,540039,540040"
+    }
+  ],
+  "messages": [],
+  "stdout": "code\tlessonIds\nDIV102\t480001,480002,480003,480004\nDIV111\t480042\nDIV112\t480050,480051\nDIV113\t480060,480061\nGED-MATH\t540011,540012,540013,540014,540015,540016,540017,540018,540019,540020\nGED-SCI\t540021,540022,540023,540024,540025,540026,540027,540028,540029,540030\nGED-SOCIAL\t540031,540032,540033,540034,540035,540036,540037,540038,540039,540040\n",
+  "stderr": "",
+  "execution_time_ms": 66
+}

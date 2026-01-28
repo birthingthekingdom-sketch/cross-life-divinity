@@ -1,0 +1,80 @@
+{
+  "query": "SELECT l.id, l.courseId, l.title, l.readingMaterial, COUNT(q.id) as quiz_count FROM lessons l LEFT JOIN quiz_questions q ON l.id = q.lessonId GROUP BY l.id LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT l.id, l.courseId, l.title, l.readingMaterial, COUNT(q.id) as quiz_count FROM lessons l LEFT JOIN quiz_questions q ON l.id = q.lessonId GROUP BY l.id LIMIT 10;",
+  "rows": [
+    {
+      "id": "510139",
+      "courseId": "150008",
+      "title": "Lesson 7: Prayer and Intercession",
+      "readingMaterial": "NULL",
+      "quiz_count": "3"
+    },
+    {
+      "id": "480068",
+      "courseId": "570006",
+      "title": "Conclusion: Doing Theology Today",
+      "readingMaterial": "NULL",
+      "quiz_count": "4"
+    },
+    {
+      "id": "480071",
+      "courseId": "570004",
+      "title": "Research Methods and Resources",
+      "readingMaterial": "NULL",
+      "quiz_count": "4"
+    },
+    {
+      "id": "360012",
+      "courseId": "150003",
+      "title": "Theology Proper - The Doctrine of God",
+      "readingMaterial": "NULL",
+      "quiz_count": "7"
+    },
+    {
+      "id": "360176",
+      "courseId": "150011",
+      "title": "Marriage and Family Counseling",
+      "readingMaterial": "NULL",
+      "quiz_count": "9"
+    },
+    {
+      "id": "360037",
+      "courseId": "150005",
+      "title": "Responding to Atheism and Skepticism",
+      "readingMaterial": "NULL",
+      "quiz_count": "7"
+    },
+    {
+      "id": "510076",
+      "courseId": "690002",
+      "title": "Lesson 5: Christian Leadership",
+      "readingMaterial": "NULL",
+      "quiz_count": "3"
+    },
+    {
+      "id": "480095",
+      "courseId": "570006",
+      "title": "Prosperity Gospel and Suffering",
+      "readingMaterial": "NULL",
+      "quiz_count": "3"
+    },
+    {
+      "id": "510119",
+      "courseId": "150012",
+      "title": "Lesson 4: Church Administration",
+      "readingMaterial": "NULL",
+      "quiz_count": "3"
+    },
+    {
+      "id": "510039",
+      "courseId": "150006",
+      "title": "Lesson 3: Evangelism and Discipleship",
+      "readingMaterial": "NULL",
+      "quiz_count": "3"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcourseId\ttitle\treadingMaterial\tquiz_count\n510139\t150008\tLesson 7: Prayer and Intercession\tNULL\t3\n480068\t570006\tConclusion: Doing Theology Today\tNULL\t4\n480071\t570004\tResearch Methods and Resources\tNULL\t4\n360012\t150003\tTheology Proper - The Doctrine of God\tNULL\t7\n360176\t150011\tMarriage and Family Counseling\tNULL\t9\n360037\t150005\tResponding to Atheism and Skepticism\tNULL\t7\n510076\t690002\tLesson 5: Christian Leadership\tNULL\t3\n480095\t570006\tProsperity Gospel and Suffering\tNULL\t3\n510119\t150012\tLesson 4: Church Administration\tNULL\t3\n510039\t150006\tLesson 3: Evangelism and Discipleship\tNULL\t3\n",
+  "stderr": "",
+  "execution_time_ms": 499
+}

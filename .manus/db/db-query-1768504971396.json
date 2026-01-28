@@ -1,0 +1,87 @@
+{
+  "query": "SELECT id, lessonId, questionType, question, correctAnswer\nFROM quiz_questions \nWHERE lessonId = 600001\nORDER BY questionOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, lessonId, questionType, question, correctAnswer\nFROM quiz_questions \nWHERE lessonId = 600001\nORDER BY questionOrder;",
+  "rows": [
+    {
+      "id": "390001",
+      "lessonId": "600001",
+      "questionType": "multiple_choice",
+      "question": "Question 1 for Lesson 1",
+      "correctAnswer": "Option A"
+    },
+    {
+      "id": "390002",
+      "lessonId": "600001",
+      "questionType": "multiple_choice",
+      "question": "Question 2 for Lesson 1",
+      "correctAnswer": "Option A"
+    },
+    {
+      "id": "390003",
+      "lessonId": "600001",
+      "questionType": "multiple_choice",
+      "question": "Question 3 for Lesson 1",
+      "correctAnswer": "Option A"
+    },
+    {
+      "id": "390004",
+      "lessonId": "600001",
+      "questionType": "multiple_choice",
+      "question": "Question 4 for Lesson 1",
+      "correctAnswer": "Option A"
+    },
+    {
+      "id": "390005",
+      "lessonId": "600001",
+      "questionType": "multiple_choice",
+      "question": "Question 5 for Lesson 1",
+      "correctAnswer": "Option A"
+    },
+    {
+      "id": "390006",
+      "lessonId": "600001",
+      "questionType": "multiple_choice",
+      "question": "Question 6 for Lesson 1",
+      "correctAnswer": "Option A"
+    },
+    {
+      "id": "390007",
+      "lessonId": "600001",
+      "questionType": "multiple_choice",
+      "question": "Question 7 for Lesson 1",
+      "correctAnswer": "Option A"
+    },
+    {
+      "id": "390008",
+      "lessonId": "600001",
+      "questionType": "multiple_choice",
+      "question": "Question 8 for Lesson 1",
+      "correctAnswer": "Option A"
+    },
+    {
+      "id": "390009",
+      "lessonId": "600001",
+      "questionType": "multiple_choice",
+      "question": "Question 9 for Lesson 1",
+      "correctAnswer": "Option A"
+    },
+    {
+      "id": "390010",
+      "lessonId": "600001",
+      "questionType": "multiple_choice",
+      "question": "Question 10 for Lesson 1",
+      "correctAnswer": "Option A"
+    },
+    {
+      "id": "390011",
+      "lessonId": "600001",
+      "questionType": "short_answer",
+      "question": "Written question for Lesson 1",
+      "correctAnswer": ""
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tlessonId\tquestionType\tquestion\tcorrectAnswer\n390001\t600001\tmultiple_choice\tQuestion 1 for Lesson 1\tOption A\n390002\t600001\tmultiple_choice\tQuestion 2 for Lesson 1\tOption A\n390003\t600001\tmultiple_choice\tQuestion 3 for Lesson 1\tOption A\n390004\t600001\tmultiple_choice\tQuestion 4 for Lesson 1\tOption A\n390005\t600001\tmultiple_choice\tQuestion 5 for Lesson 1\tOption A\n390006\t600001\tmultiple_choice\tQuestion 6 for Lesson 1\tOption A\n390007\t600001\tmultiple_choice\tQuestion 7 for Lesson 1\tOption A\n390008\t600001\tmultiple_choice\tQuestion 8 for Lesson 1\tOption A\n390009\t600001\tmultiple_choice\tQuestion 9 for Lesson 1\tOption A\n390010\t600001\tmultiple_choice\tQuestion 10 for Lesson 1\tOption A\n390011\t600001\tshort_answer\tWritten question for Lesson 1\t\n",
+  "stderr": "",
+  "execution_time_ms": 72
+}

@@ -19,7 +19,7 @@ interface ContentProtectionProps {
 export function ContentProtection({ children, studentName, className = "" }: ContentProtectionProps) {
   const { user } = useAuth();
   const contentRef = useRef<HTMLDivElement>(null);
-  const displayName = studentName || user?.name || "Student";
+  const displayName = studentName || user?.name || "Larry Fisher";
 
   useEffect(() => {
     const contentElement = contentRef.current;

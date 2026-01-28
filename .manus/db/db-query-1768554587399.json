@@ -1,0 +1,100 @@
+{
+  "query": "SELECT c.code, c.id as course_id, GROUP_CONCAT(l.id ORDER BY l.lessonOrder) as lesson_ids, COUNT(l.id) as lesson_count\nFROM courses c \nJOIN lessons l ON c.id = l.courseId \nLEFT JOIN quiz_questions q ON l.id = q.lessonId\nWHERE q.id IS NULL\nGROUP BY c.id, c.code\nORDER BY c.code;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT c.code, c.id as course_id, GROUP_CONCAT(l.id ORDER BY l.lessonOrder) as lesson_ids, COUNT(l.id) as lesson_count\nFROM courses c \nJOIN lessons l ON c.id = l.courseId \nLEFT JOIN quiz_questions q ON l.id = q.lessonId\nWHERE q.id IS NULL\nGROUP BY c.id, c.code\nORDER BY c.code;",
+  "rows": [
+    {
+      "code": "BIB201",
+      "course_id": "150004",
+      "lesson_ids": "360021,360022,360023,360024,360025",
+      "lesson_count": "5"
+    },
+    {
+      "code": "DIV102",
+      "course_id": "690001",
+      "lesson_ids": "480001,480021,480022,480002,480003,480023,480004",
+      "lesson_count": "7"
+    },
+    {
+      "code": "DIV111",
+      "course_id": "570004",
+      "lesson_ids": "480069,480041,480042,480070,480071",
+      "lesson_count": "5"
+    },
+    {
+      "code": "DIV112",
+      "course_id": "570005",
+      "lesson_ids": "480077,480049,480078,480050,480051,480079,480080",
+      "lesson_count": "7"
+    },
+    {
+      "code": "DIV113",
+      "course_id": "570006",
+      "lesson_ids": "480087,480059,480088,480060,480061,480089,480090",
+      "lesson_count": "7"
+    },
+    {
+      "code": "GED-LANG",
+      "course_id": "660004",
+      "lesson_ids": "540001,540002,540003,540004,540005,540006,540007,540008,540009,540010",
+      "lesson_count": "10"
+    },
+    {
+      "code": "GED-MATH",
+      "course_id": "660003",
+      "lesson_ids": "540011,540012,540013,540014,540015,540016,540017,540018,540019,540020",
+      "lesson_count": "10"
+    },
+    {
+      "code": "GED-SCI",
+      "course_id": "660005",
+      "lesson_ids": "540021,540022,540023,540024,540025,540026,540027,540028,540029,540030",
+      "lesson_count": "10"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "course_id": "660006",
+      "lesson_ids": "540031,540032,540033,540034,540035,540036,540037,540038,540039,540040",
+      "lesson_count": "10"
+    },
+    {
+      "code": "LED202",
+      "course_id": "690002",
+      "lesson_ids": "480031,480011,480032,480012,480013,480033,480034",
+      "lesson_count": "7"
+    },
+    {
+      "code": "MIN102",
+      "course_id": "150007",
+      "lesson_ids": "360051,360052,360053,360054,360055",
+      "lesson_count": "5"
+    },
+    {
+      "code": "PAS201",
+      "course_id": "150011",
+      "lesson_ids": "360171,360172,360173,360174,360175",
+      "lesson_count": "5"
+    },
+    {
+      "code": "PAS301",
+      "course_id": "150012",
+      "lesson_ids": "360081,360082,360083,360084,360085",
+      "lesson_count": "5"
+    },
+    {
+      "code": "SPR201",
+      "course_id": "150014",
+      "lesson_ids": "360181,360182,360183,360184,360185",
+      "lesson_count": "5"
+    },
+    {
+      "code": "THE301",
+      "course_id": "150005",
+      "lesson_ids": "360031,360032,360033,360034,360035",
+      "lesson_count": "5"
+    }
+  ],
+  "messages": [],
+  "stdout": "code\tcourse_id\tlesson_ids\tlesson_count\nBIB201\t150004\t360021,360022,360023,360024,360025\t5\nDIV102\t690001\t480001,480021,480022,480002,480003,480023,480004\t7\nDIV111\t570004\t480069,480041,480042,480070,480071\t5\nDIV112\t570005\t480077,480049,480078,480050,480051,480079,480080\t7\nDIV113\t570006\t480087,480059,480088,480060,480061,480089,480090\t7\nGED-LANG\t660004\t540001,540002,540003,540004,540005,540006,540007,540008,540009,540010\t10\nGED-MATH\t660003\t540011,540012,540013,540014,540015,540016,540017,540018,540019,540020\t10\nGED-SCI\t660005\t540021,540022,540023,540024,540025,540026,540027,540028,540029,540030\t10\nGED-SOCIAL\t660006\t540031,540032,540033,540034,540035,540036,540037,540038,540039,540040\t10\nLED202\t690002\t480031,480011,480032,480012,480013,480033,480034\t7\nMIN102\t150007\t360051,360052,360053,360054,360055\t5\nPAS201\t150011\t360171,360172,360173,360174,360175\t5\nPAS301\t150012\t360081,360082,360083,360084,360085\t5\nSPR201\t150014\t360181,360182,360183,360184,360185\t5\nTHE301\t150005\t360031,360032,360033,360034,360035\t5\n",
+  "stderr": "",
+  "execution_time_ms": 58
+}

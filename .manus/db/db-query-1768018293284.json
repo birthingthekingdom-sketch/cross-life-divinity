@@ -1,0 +1,154 @@
+{
+  "query": "SELECT id, title, code, courseType FROM courses ORDER BY displayOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, title, code, courseType FROM courses ORDER BY displayOrder;",
+  "rows": [
+    {
+      "id": "660003",
+      "title": "GED Mathematics",
+      "code": "GED-MATH",
+      "courseType": "ged"
+    },
+    {
+      "id": "660004",
+      "title": "GED Language Arts",
+      "code": "GED-LANG",
+      "courseType": "ged"
+    },
+    {
+      "id": "660005",
+      "title": "GED Science",
+      "code": "GED-SCI",
+      "courseType": "ged"
+    },
+    {
+      "id": "660006",
+      "title": "GED Social Studies",
+      "code": "GED-SOCIAL",
+      "courseType": "ged"
+    },
+    {
+      "id": "660001",
+      "title": "Old Testament Survey",
+      "code": "BIB101",
+      "courseType": "theological"
+    },
+    {
+      "id": "660002",
+      "title": "New Testament Survey",
+      "code": "BIB102",
+      "courseType": "theological"
+    },
+    {
+      "id": "150003",
+      "title": "Systematic Theology",
+      "code": "THE201",
+      "courseType": "theological"
+    },
+    {
+      "id": "150004",
+      "title": "Biblical Hermeneutics",
+      "code": "BIB201",
+      "courseType": "theological"
+    },
+    {
+      "id": "180001",
+      "title": "Understanding Prophecy",
+      "code": "DIV101",
+      "courseType": "theological"
+    },
+    {
+      "id": "150005",
+      "title": "Fundamentals of Apologetics",
+      "code": "THE301",
+      "courseType": "theological"
+    },
+    {
+      "id": "690001",
+      "title": "Deliverance Ministry",
+      "code": "DIV102",
+      "courseType": "theological"
+    },
+    {
+      "id": "150006",
+      "title": "Evangelism and Discipleship",
+      "code": "MIN101",
+      "courseType": "theological"
+    },
+    {
+      "id": "150007",
+      "title": "Discipleship Training",
+      "code": "MIN102",
+      "courseType": "theological"
+    },
+    {
+      "id": "150008",
+      "title": "Prayer and Intercession",
+      "code": "SPR101",
+      "courseType": "theological"
+    },
+    {
+      "id": "150009",
+      "title": "Leadership",
+      "code": "LED201",
+      "courseType": "theological"
+    },
+    {
+      "id": "690002",
+      "title": "Christian Leadership",
+      "code": "LED202",
+      "courseType": "theological"
+    },
+    {
+      "id": "150011",
+      "title": "Pastoral Counseling",
+      "code": "PAS201",
+      "courseType": "theological"
+    },
+    {
+      "id": "150012",
+      "title": "Church Administration",
+      "code": "PAS301",
+      "courseType": "theological"
+    },
+    {
+      "id": "150013",
+      "title": "Homiletics",
+      "code": "PAS101",
+      "courseType": "theological"
+    },
+    {
+      "id": "150014",
+      "title": "Discovering Spiritual Gifts",
+      "code": "SPR201",
+      "courseType": "theological"
+    },
+    {
+      "id": "360001",
+      "title": "Biblical Worship",
+      "code": "WOR101",
+      "courseType": "theological"
+    },
+    {
+      "id": "570004",
+      "title": "Capstone Project",
+      "code": "DIV111",
+      "courseType": "theological"
+    },
+    {
+      "id": "570005",
+      "title": "Christology",
+      "code": "DIV112",
+      "courseType": "theological"
+    },
+    {
+      "id": "570006",
+      "title": "Contemporary Theological Issues",
+      "code": "DIV113",
+      "courseType": "theological"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tcode\tcourseType\n660003\tGED Mathematics\tGED-MATH\tged\n660004\tGED Language Arts\tGED-LANG\tged\n660005\tGED Science\tGED-SCI\tged\n660006\tGED Social Studies\tGED-SOCIAL\tged\n660001\tOld Testament Survey\tBIB101\ttheological\n660002\tNew Testament Survey\tBIB102\ttheological\n150003\tSystematic Theology\tTHE201\ttheological\n150004\tBiblical Hermeneutics\tBIB201\ttheological\n180001\tUnderstanding Prophecy\tDIV101\ttheological\n150005\tFundamentals of Apologetics\tTHE301\ttheological\n690001\tDeliverance Ministry\tDIV102\ttheological\n150006\tEvangelism and Discipleship\tMIN101\ttheological\n150007\tDiscipleship Training\tMIN102\ttheological\n150008\tPrayer and Intercession\tSPR101\ttheological\n150009\tLeadership\tLED201\ttheological\n690002\tChristian Leadership\tLED202\ttheological\n150011\tPastoral Counseling\tPAS201\ttheological\n150012\tChurch Administration\tPAS301\ttheological\n150013\tHomiletics\tPAS101\ttheological\n150014\tDiscovering Spiritual Gifts\tSPR201\ttheological\n360001\tBiblical Worship\tWOR101\ttheological\n570004\tCapstone Project\tDIV111\ttheological\n570005\tChristology\tDIV112\ttheological\n570006\tContemporary Theological Issues\tDIV113\ttheological\n",
+  "stderr": "",
+  "execution_time_ms": 181
+}

@@ -1,0 +1,25 @@
+{
+  "query": "SELECT DISTINCT courseId FROM lessons ORDER BY courseId LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT DISTINCT courseId FROM lessons ORDER BY courseId LIMIT 5;",
+  "rows": [
+    {
+      "courseId": "1"
+    },
+    {
+      "courseId": "2"
+    },
+    {
+      "courseId": "3"
+    },
+    {
+      "courseId": "4"
+    },
+    {
+      "courseId": "5"
+    }
+  ],
+  "messages": [],
+  "stdout": "courseId\n1\n2\n3\n4\n5\n",
+  "stderr": "",
+  "execution_time_ms": 51
+}

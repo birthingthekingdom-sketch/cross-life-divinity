@@ -65,7 +65,7 @@ import BundleSelection from './pages/BundleSelection';
 import Logout from './pages/Logout';
 import AffiliateApply from './pages/AffiliateApply';
 import AffiliateDashboard from './pages/AffiliateDashboard';
-import ChaplaincyTraining from './pages/ChaplaincyTrainingEnhanced';
+import ChaplaincyTraining from './pages/ChaplaincyTraining';
 import CPEReadinessAssessment from './pages/CPEReadinessAssessment';
 import CPEGlossary from './pages/CPEGlossary';
 import CPECaseStudies from './pages/CPECaseStudies';
@@ -87,6 +87,7 @@ import Contact from './pages/Contact';
 import AdminBridgeAcademyCourses from './pages/AdminBridgeAcademyCourses';
 import AdminBridgeAcademyStudents from './pages/AdminBridgeAcademyStudents';
 import AdminBridgeAcademyAnalytics from './pages/AdminBridgeAcademyAnalytics';
+import AdminStudents from './pages/AdminStudents';
 import BridgeAcademyDashboard from './pages/BridgeAcademyDashboard';
 import BridgeAcademyStudentDashboard from './pages/BridgeAcademyStudentDashboard';
 import BridgeAcademyCourseDetail from './pages/BridgeAcademyCourseDetail';
@@ -136,6 +137,7 @@ function Router() {
       <Route path="/admin/email-config" component={AdminEmailConfig} />
       <Route path="/admin/email-notifications" component={AdminEmailNotifications} />
           <Route path="/admin/grading" component={AdminGrading} />
+      <Route path="/admin/students" component={AdminStudents} />
       <Route path="/admin/bridge-academy/courses" component={AdminBridgeAcademyCourses} />
       <Route path="/admin/bridge-academy/students" component={AdminBridgeAcademyStudents} />
       <Route path="/admin/bridge-academy/analytics" component={AdminBridgeAcademyAnalytics} />

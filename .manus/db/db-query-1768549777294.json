@@ -1,0 +1,110 @@
+{
+  "query": "SELECT c.id as course_id, c.code, c.title, c.description, l.id as lesson_id, l.title as lesson_title, l.lessonOrder, LENGTH(l.content) as content_length FROM courses c LEFT JOIN lessons l ON c.id = l.courseId WHERE c.code = 'THE201' ORDER BY l.lessonOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT c.id as course_id, c.code, c.title, c.description, l.id as lesson_id, l.title as lesson_title, l.lessonOrder, LENGTH(l.content) as content_length FROM courses c LEFT JOIN lessons l ON c.id = l.courseId WHERE c.code = 'THE201' ORDER BY l.lessonOrder;",
+  "rows": [
+    {
+      "course_id": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology",
+      "description": "This foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.",
+      "lesson_id": "360011",
+      "lesson_title": "Prolegomena - The Nature and Method of Theology",
+      "lessonOrder": "1",
+      "content_length": "14723"
+    },
+    {
+      "course_id": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology",
+      "description": "This foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.",
+      "lesson_id": "510027",
+      "lesson_title": "Lesson 1: Systematic Theology",
+      "lessonOrder": "1",
+      "content_length": "49"
+    },
+    {
+      "course_id": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology",
+      "description": "This foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.",
+      "lesson_id": "360012",
+      "lesson_title": "Theology Proper - The Doctrine of God",
+      "lessonOrder": "2",
+      "content_length": "12799"
+    },
+    {
+      "course_id": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology",
+      "description": "This foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.",
+      "lesson_id": "510103",
+      "lesson_title": "Lesson 2: Systematic Theology",
+      "lessonOrder": "2",
+      "content_length": "49"
+    },
+    {
+      "course_id": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology",
+      "description": "This foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.",
+      "lesson_id": "360013",
+      "lesson_title": "Christology - The Person and Work of Christ",
+      "lessonOrder": "3",
+      "content_length": "11070"
+    },
+    {
+      "course_id": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology",
+      "description": "This foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.",
+      "lesson_id": "510046",
+      "lesson_title": "Lesson 3: Systematic Theology",
+      "lessonOrder": "3",
+      "content_length": "49"
+    },
+    {
+      "course_id": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology",
+      "description": "This foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.",
+      "lesson_id": "360014",
+      "lesson_title": "Pneumatology - The Doctrine of the Holy Spirit",
+      "lessonOrder": "4",
+      "content_length": "15790"
+    },
+    {
+      "course_id": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology",
+      "description": "This foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.",
+      "lesson_id": "510122",
+      "lesson_title": "Lesson 4: Systematic Theology",
+      "lessonOrder": "4",
+      "content_length": "49"
+    },
+    {
+      "course_id": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology",
+      "description": "This foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.",
+      "lesson_id": "360015",
+      "lesson_title": "Anthropology - The Doctrine of Humanity and Sin",
+      "lessonOrder": "5",
+      "content_length": "11936"
+    },
+    {
+      "course_id": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology",
+      "description": "This foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.",
+      "lesson_id": "510084",
+      "lesson_title": "Lesson 5: Systematic Theology",
+      "lessonOrder": "5",
+      "content_length": "49"
+    }
+  ],
+  "messages": [],
+  "stdout": "course_id\tcode\ttitle\tdescription\tlesson_id\tlesson_title\tlessonOrder\tcontent_length\n150003\tTHE201\tSystematic Theology\tThis foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.\t360011\tProlegomena - The Nature and Method of Theology\t1\t14723\n150003\tTHE201\tSystematic Theology\tThis foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.\t510027\tLesson 1: Systematic Theology\t1\t49\n150003\tTHE201\tSystematic Theology\tThis foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.\t360012\tTheology Proper - The Doctrine of God\t2\t12799\n150003\tTHE201\tSystematic Theology\tThis foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.\t510103\tLesson 2: Systematic Theology\t2\t49\n150003\tTHE201\tSystematic Theology\tThis foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.\t360013\tChristology - The Person and Work of Christ\t3\t11070\n150003\tTHE201\tSystematic Theology\tThis foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.\t510046\tLesson 3: Systematic Theology\t3\t49\n150003\tTHE201\tSystematic Theology\tThis foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.\t360014\tPneumatology - The Doctrine of the Holy Spirit\t4\t15790\n150003\tTHE201\tSystematic Theology\tThis foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.\t510122\tLesson 4: Systematic Theology\t4\t49\n150003\tTHE201\tSystematic Theology\tThis foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.\t360015\tAnthropology - The Doctrine of Humanity and Sin\t5\t11936\n150003\tTHE201\tSystematic Theology\tThis foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.\t510084\tLesson 5: Systematic Theology\t5\t49\n",
+  "stderr": "",
+  "execution_time_ms": 97
+}

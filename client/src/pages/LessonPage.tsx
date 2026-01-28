@@ -113,10 +113,7 @@ export default function LessonPage() {
         {/* Lesson Header */}
         <div 
           className="text-white shadow-lg"
-          style={{ 
-            backgroundColor: course?.colorTheme || "#1a365d",
-            textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
-          }}
+          style={{ backgroundColor: course?.colorTheme || "#1a365d" }}
         >
           <div className="container py-6">
             <Link href="/">
@@ -191,20 +188,17 @@ export default function LessonPage() {
       {/* Lesson Header */}
       <div 
         className="text-white shadow-lg"
-        style={{ 
-          backgroundColor: course?.colorTheme || "#1a365d",
-          textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
-        }}
+        style={{ backgroundColor: course?.colorTheme || "#1a365d" }}
       >
         <div className="container py-6">
-          <Link href="/dashboard">
+          <Link href={`/course/${lesson.courseId}`}>
             <Button 
               variant="ghost" 
               size="sm" 
               className="mb-4 text-white hover:bg-white/20"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Dashboard
+              Back to Course
             </Button>
           </Link>
           

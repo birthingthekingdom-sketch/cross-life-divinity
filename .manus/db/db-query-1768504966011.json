@@ -1,0 +1,80 @@
+{
+  "query": "SELECT lessonId, COUNT(*) as total, \n  SUM(CASE WHEN questionType = 'multiple_choice' THEN 1 ELSE 0 END) as mc_count,\n  SUM(CASE WHEN questionType = 'short_answer' THEN 1 ELSE 0 END) as short_answer_count,\n  SUM(CASE WHEN questionType = 'true_false' THEN 1 ELSE 0 END) as true_false_count\nFROM quiz_questions \nWHERE lessonId BETWEEN 600001 AND 600010\nGROUP BY lessonId\nORDER BY lessonId;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT lessonId, COUNT(*) as total, \n  SUM(CASE WHEN questionType = 'multiple_choice' THEN 1 ELSE 0 END) as mc_count,\n  SUM(CASE WHEN questionType = 'short_answer' THEN 1 ELSE 0 END) as short_answer_count,\n  SUM(CASE WHEN questionType = 'true_false' THEN 1 ELSE 0 END) as true_false_count\nFROM quiz_questions \nWHERE lessonId BETWEEN 600001 AND 600010\nGROUP BY lessonId\nORDER BY lessonId;",
+  "rows": [
+    {
+      "lessonId": "600001",
+      "total": "11",
+      "mc_count": "10",
+      "short_answer_count": "1",
+      "true_false_count": "0"
+    },
+    {
+      "lessonId": "600002",
+      "total": "11",
+      "mc_count": "10",
+      "short_answer_count": "1",
+      "true_false_count": "0"
+    },
+    {
+      "lessonId": "600003",
+      "total": "11",
+      "mc_count": "10",
+      "short_answer_count": "1",
+      "true_false_count": "0"
+    },
+    {
+      "lessonId": "600004",
+      "total": "11",
+      "mc_count": "10",
+      "short_answer_count": "1",
+      "true_false_count": "0"
+    },
+    {
+      "lessonId": "600005",
+      "total": "11",
+      "mc_count": "10",
+      "short_answer_count": "1",
+      "true_false_count": "0"
+    },
+    {
+      "lessonId": "600006",
+      "total": "11",
+      "mc_count": "10",
+      "short_answer_count": "1",
+      "true_false_count": "0"
+    },
+    {
+      "lessonId": "600007",
+      "total": "11",
+      "mc_count": "10",
+      "short_answer_count": "1",
+      "true_false_count": "0"
+    },
+    {
+      "lessonId": "600008",
+      "total": "11",
+      "mc_count": "10",
+      "short_answer_count": "1",
+      "true_false_count": "0"
+    },
+    {
+      "lessonId": "600009",
+      "total": "11",
+      "mc_count": "10",
+      "short_answer_count": "1",
+      "true_false_count": "0"
+    },
+    {
+      "lessonId": "600010",
+      "total": "11",
+      "mc_count": "10",
+      "short_answer_count": "1",
+      "true_false_count": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "lessonId\ttotal\tmc_count\tshort_answer_count\ttrue_false_count\n600001\t11\t10\t1\t0\n600002\t11\t10\t1\t0\n600003\t11\t10\t1\t0\n600004\t11\t10\t1\t0\n600005\t11\t10\t1\t0\n600006\t11\t10\t1\t0\n600007\t11\t10\t1\t0\n600008\t11\t10\t1\t0\n600009\t11\t10\t1\t0\n600010\t11\t10\t1\t0\n",
+  "stderr": "",
+  "execution_time_ms": 156
+}

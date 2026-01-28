@@ -1,0 +1,60 @@
+{
+  "query": "SELECT id, title, lessonOrder FROM lessons WHERE courseId = 810001 ORDER BY lessonOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, title, lessonOrder FROM lessons WHERE courseId = 810001 ORDER BY lessonOrder;",
+  "rows": [
+    {
+      "id": "750004",
+      "title": "Introduction to Biblical Hermeneutics",
+      "lessonOrder": "1"
+    },
+    {
+      "id": "750005",
+      "title": "The History of Biblical Interpretation",
+      "lessonOrder": "2"
+    },
+    {
+      "id": "750006",
+      "title": "The Nature and Authority of Scripture",
+      "lessonOrder": "3"
+    },
+    {
+      "id": "750007",
+      "title": "The Grammatical-Historical Method",
+      "lessonOrder": "4"
+    },
+    {
+      "id": "750008",
+      "title": "Understanding Literary Genres",
+      "lessonOrder": "5"
+    },
+    {
+      "id": "750009",
+      "title": "Interpreting Old Testament Narrative",
+      "lessonOrder": "6"
+    },
+    {
+      "id": "750010",
+      "title": "Interpreting the Psalms and Wisdom Literature",
+      "lessonOrder": "7"
+    },
+    {
+      "id": "750011",
+      "title": "Interpreting Prophecy and Apocalyptic",
+      "lessonOrder": "8"
+    },
+    {
+      "id": "750012",
+      "title": "Interpreting the New Testament",
+      "lessonOrder": "9"
+    },
+    {
+      "id": "750013",
+      "title": "Application and Communication of Scripture",
+      "lessonOrder": "10"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tlessonOrder\n750004\tIntroduction to Biblical Hermeneutics\t1\n750005\tThe History of Biblical Interpretation\t2\n750006\tThe Nature and Authority of Scripture\t3\n750007\tThe Grammatical-Historical Method\t4\n750008\tUnderstanding Literary Genres\t5\n750009\tInterpreting Old Testament Narrative\t6\n750010\tInterpreting the Psalms and Wisdom Literature\t7\n750011\tInterpreting Prophecy and Apocalyptic\t8\n750012\tInterpreting the New Testament\t9\n750013\tApplication and Communication of Scripture\t10\n",
+  "stderr": "",
+  "execution_time_ms": 56
+}

@@ -1,0 +1,283 @@
+{
+  "query": "SELECT c.code, c.title, l.id as lessonId, l.title as lessonTitle, \n       (SELECT COUNT(*) FROM quiz_questions q WHERE q.lessonId = l.id) as quizCount\nFROM courses c\nJOIN lessons l ON l.courseId = c.id\nWHERE (SELECT COUNT(*) FROM quiz_questions q WHERE q.lessonId = l.id) = 0\nORDER BY c.code, l.lessonOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT c.code, c.title, l.id as lessonId, l.title as lessonTitle, \n       (SELECT COUNT(*) FROM quiz_questions q WHERE q.lessonId = l.id) as quizCount\nFROM courses c\nJOIN lessons l ON l.courseId = c.id\nWHERE (SELECT COUNT(*) FROM quiz_questions q WHERE q.lessonId = l.id) = 0\nORDER BY c.code, l.lessonOrder;",
+  "rows": [
+    {
+      "code": "DIV102",
+      "title": "Deliverance Ministry",
+      "lessonId": "480001",
+      "lessonTitle": "Introduction to Deliverance Ministry",
+      "quizCount": "0"
+    },
+    {
+      "code": "DIV102",
+      "title": "Deliverance Ministry",
+      "lessonId": "480002",
+      "lessonTitle": "Spiritual Authority and Power",
+      "quizCount": "0"
+    },
+    {
+      "code": "DIV102",
+      "title": "Deliverance Ministry",
+      "lessonId": "480003",
+      "lessonTitle": "Identifying Spiritual Bondage",
+      "quizCount": "0"
+    },
+    {
+      "code": "DIV102",
+      "title": "Deliverance Ministry",
+      "lessonId": "480004",
+      "lessonTitle": "Prayer and Intercession in Deliverance",
+      "quizCount": "0"
+    },
+    {
+      "code": "DIV111",
+      "title": "Capstone Project",
+      "lessonId": "480042",
+      "lessonTitle": "Selecting Your Capstone Topic",
+      "quizCount": "0"
+    },
+    {
+      "code": "DIV112",
+      "title": "Christology",
+      "lessonId": "480050",
+      "lessonTitle": "The Incarnation",
+      "quizCount": "0"
+    },
+    {
+      "code": "DIV112",
+      "title": "Christology",
+      "lessonId": "480051",
+      "lessonTitle": "The Life and Ministry of Jesus",
+      "quizCount": "0"
+    },
+    {
+      "code": "DIV113",
+      "title": "Contemporary Theological Issues",
+      "lessonId": "480060",
+      "lessonTitle": "Science and Faith",
+      "quizCount": "0"
+    },
+    {
+      "code": "DIV113",
+      "title": "Contemporary Theological Issues",
+      "lessonId": "480061",
+      "lessonTitle": "Religious Pluralism",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-MATH",
+      "title": "GED Mathematics",
+      "lessonId": "540011",
+      "lessonTitle": "Advanced Algebra",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-MATH",
+      "title": "GED Mathematics",
+      "lessonId": "540012",
+      "lessonTitle": "Functions and Graphing",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-MATH",
+      "title": "GED Mathematics",
+      "lessonId": "540013",
+      "lessonTitle": "Statistics and Probability",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-MATH",
+      "title": "GED Mathematics",
+      "lessonId": "540014",
+      "lessonTitle": "Measurement and Conversions",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-MATH",
+      "title": "GED Mathematics",
+      "lessonId": "540015",
+      "lessonTitle": "Calculator Strategies",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-MATH",
+      "title": "GED Mathematics",
+      "lessonId": "540016",
+      "lessonTitle": "Non-Calculator Problem Solving",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-MATH",
+      "title": "GED Mathematics",
+      "lessonId": "540017",
+      "lessonTitle": "Multi-Step Problem Solving",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-MATH",
+      "title": "GED Mathematics",
+      "lessonId": "540018",
+      "lessonTitle": "Real-World Applications",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-MATH",
+      "title": "GED Mathematics",
+      "lessonId": "540019",
+      "lessonTitle": "Math Test-Taking Strategies",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-MATH",
+      "title": "GED Mathematics",
+      "lessonId": "540020",
+      "lessonTitle": "Math Practice and Review",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SCI",
+      "title": "GED Science",
+      "lessonId": "540021",
+      "lessonTitle": "Cells and Organisms",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SCI",
+      "title": "GED Science",
+      "lessonId": "540022",
+      "lessonTitle": "Heredity and Evolution",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SCI",
+      "title": "GED Science",
+      "lessonId": "540023",
+      "lessonTitle": "Ecosystems and Biodiversity",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SCI",
+      "title": "GED Science",
+      "lessonId": "540024",
+      "lessonTitle": "Chemical Reactions",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SCI",
+      "title": "GED Science",
+      "lessonId": "540025",
+      "lessonTitle": "Waves and Sound",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SCI",
+      "title": "GED Science",
+      "lessonId": "540026",
+      "lessonTitle": "Earth Structure and Processes",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SCI",
+      "title": "GED Science",
+      "lessonId": "540027",
+      "lessonTitle": "Space and Astronomy",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SCI",
+      "title": "GED Science",
+      "lessonId": "540028",
+      "lessonTitle": "Data Interpretation in Science",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SCI",
+      "title": "GED Science",
+      "lessonId": "540029",
+      "lessonTitle": "Science Test-Taking Strategies",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SCI",
+      "title": "GED Science",
+      "lessonId": "540030",
+      "lessonTitle": "Science Practice and Review",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "lessonId": "540031",
+      "lessonTitle": "Colonial America and Independence",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "lessonId": "540032",
+      "lessonTitle": "Civil War and Reconstruction",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "lessonId": "540033",
+      "lessonTitle": "Modern America (1900-Present)",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "lessonId": "540034",
+      "lessonTitle": "Constitutional Rights and Amendments",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "lessonId": "540035",
+      "lessonTitle": "Branches of Government",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "lessonId": "540036",
+      "lessonTitle": "Global Economics and Trade",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "lessonId": "540037",
+      "lessonTitle": "World History and Cultures",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "lessonId": "540038",
+      "lessonTitle": "Document Analysis and Primary Sources",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "lessonId": "540039",
+      "lessonTitle": "Social Studies Test-Taking Strategies",
+      "quizCount": "0"
+    },
+    {
+      "code": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "lessonId": "540040",
+      "lessonTitle": "Social Studies Practice and Review",
+      "quizCount": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "code\ttitle\tlessonId\tlessonTitle\tquizCount\nDIV102\tDeliverance Ministry\t480001\tIntroduction to Deliverance Ministry\t0\nDIV102\tDeliverance Ministry\t480002\tSpiritual Authority and Power\t0\nDIV102\tDeliverance Ministry\t480003\tIdentifying Spiritual Bondage\t0\nDIV102\tDeliverance Ministry\t480004\tPrayer and Intercession in Deliverance\t0\nDIV111\tCapstone Project\t480042\tSelecting Your Capstone Topic\t0\nDIV112\tChristology\t480050\tThe Incarnation\t0\nDIV112\tChristology\t480051\tThe Life and Ministry of Jesus\t0\nDIV113\tContemporary Theological Issues\t480060\tScience and Faith\t0\nDIV113\tContemporary Theological Issues\t480061\tReligious Pluralism\t0\nGED-MATH\tGED Mathematics\t540011\tAdvanced Algebra\t0\nGED-MATH\tGED Mathematics\t540012\tFunctions and Graphing\t0\nGED-MATH\tGED Mathematics\t540013\tStatistics and Probability\t0\nGED-MATH\tGED Mathematics\t540014\tMeasurement and Conversions\t0\nGED-MATH\tGED Mathematics\t540015\tCalculator Strategies\t0\nGED-MATH\tGED Mathematics\t540016\tNon-Calculator Problem Solving\t0\nGED-MATH\tGED Mathematics\t540017\tMulti-Step Problem Solving\t0\nGED-MATH\tGED Mathematics\t540018\tReal-World Applications\t0\nGED-MATH\tGED Mathematics\t540019\tMath Test-Taking Strategies\t0\nGED-MATH\tGED Mathematics\t540020\tMath Practice and Review\t0\nGED-SCI\tGED Science\t540021\tCells and Organisms\t0\nGED-SCI\tGED Science\t540022\tHeredity and Evolution\t0\nGED-SCI\tGED Science\t540023\tEcosystems and Biodiversity\t0\nGED-SCI\tGED Science\t540024\tChemical Reactions\t0\nGED-SCI\tGED Science\t540025\tWaves and Sound\t0\nGED-SCI\tGED Science\t540026\tEarth Structure and Processes\t0\nGED-SCI\tGED Science\t540027\tSpace and Astronomy\t0\nGED-SCI\tGED Science\t540028\tData Interpretation in Science\t0\nGED-SCI\tGED Science\t540029\tScience Test-Taking Strategies\t0\nGED-SCI\tGED Science\t540030\tScience Practice and Review\t0\nGED-SOCIAL\tGED Social Studies\t540031\tColonial America and Independence\t0\nGED-SOCIAL\tGED Social Studies\t540032\tCivil War and Reconstruction\t0\nGED-SOCIAL\tGED Social Studies\t540033\tModern America (1900-Present)\t0\nGED-SOCIAL\tGED Social Studies\t540034\tConstitutional Rights and Amendments\t0\nGED-SOCIAL\tGED Social Studies\t540035\tBranches of Government\t0\nGED-SOCIAL\tGED Social Studies\t540036\tGlobal Economics and Trade\t0\nGED-SOCIAL\tGED Social Studies\t540037\tWorld History and Cultures\t0\nGED-SOCIAL\tGED Social Studies\t540038\tDocument Analysis and Primary Sources\t0\nGED-SOCIAL\tGED Social Studies\t540039\tSocial Studies Test-Taking Strategies\t0\nGED-SOCIAL\tGED Social Studies\t540040\tSocial Studies Practice and Review\t0\n",
+  "stderr": "",
+  "execution_time_ms": 60
+}
