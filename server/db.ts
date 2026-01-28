@@ -1941,3 +1941,68 @@ export async function getStudentBridgeAcademyDashboard(userId: number) {
 // - getStudentEnrollments() at line 1976
 // - getStudentCourseProgress() at line 1729 (updated implementation)
 // - getStudentQuizProgress() - use getStudentCourseQuizSubmissions() instead
+
+
+// ===== ADMIN DASHBOARD FUNCTIONS =====
+
+export async function getUserByEmail(email: string) {
+  const db = await getDb();
+  return db.select().from(users).where(eq(users.email, email)).then(rows => rows[0]);
+}
+
+export async function getCourseStudentsProgress(courseId: number) {
+  const db = await getDb();
+  return db.select({
+    userId: enrollments.userId,
+    enrolledAt: enrollments.enrolledAt,
+    progressPercentage: studentProgress.progressPercentage,
+    completedLessons: studentProgress.completedLessons,
+    totalLessons: studentProgress.totalLessons
+  })
+    .from(enrollments)
+    .leftJoin(studentProgress, and(
+      eq(studentProgress.userId, enrollments.userId),
+      eq(studentProgress.courseId, courseId)
+    ))
+    .where(eq(enrollments.courseId, courseId));
+}
+
+export async function getCourseEnrollments(courseId: number) {
+  const db = await getDb();
+  return db.select({
+    userId: enrollments.userId,
+    userName: users.name,
+    userEmail: users.email,
+    enrolledAt: enrollments.enrolledAt,
+    progressPercentage: studentProgress.progressPercentage,
+    completedLessons: studentProgress.completedLessons,
+    totalLessons: studentProgress.totalLessons
+  })
+    .from(enrollments)
+    .innerJoin(users, eq(enrollments.userId, users.id))
+    .leftJoin(studentProgress, and(
+      eq(studentProgress.userId, enrollments.userId),
+      eq(studentProgress.courseId, courseId)
+    ))
+    .where(eq(enrollments.courseId, courseId));
+}
+
+export async function getStudentEnrollments(userId: number) {
+  const db = await getDb();
+  return db.select({
+    courseId: enrollments.courseId,
+    courseName: courses.title,
+    courseCode: courses.courseCode,
+    enrolledAt: enrollments.enrolledAt,
+    progressPercentage: studentProgress.progressPercentage,
+    completedLessons: studentProgress.completedLessons,
+    totalLessons: studentProgress.totalLessons
+  })
+    .from(enrollments)
+    .innerJoin(courses, eq(enrollments.courseId, courses.id))
+    .leftJoin(studentProgress, and(
+      eq(studentProgress.userId, userId),
+      eq(studentProgress.courseId, enrollments.courseId)
+    ))
+    .where(eq(enrollments.userId, userId));
+}

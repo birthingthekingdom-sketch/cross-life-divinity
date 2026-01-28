@@ -34,6 +34,20 @@
 - [x] Created listGed endpoint for Bridge Academy
 - [x] Updated Catalog page to fetch theological and GED courses separately
 
+## NEW TASKS - Admin Dashboard & UI Improvements
+- [ ] Add course progress indicators to catalog cards
+- [ ] Implement lesson preview thumbnails
+- [ ] Create student dashboard widgets (recent courses, recommended, achievements)
+- [ ] Create separate admin login page and authentication
+- [ ] Create admin user account in database
+- [ ] Build admin dashboard with student management
+- [ ] Build admin dashboard with course management
+- [ ] Display student: name, email, enrollment status, courses, progress %
+- [ ] Add course enable/disable functionality
+- [ ] Display enrollment numbers and student progress per course
+- [ ] Test all new admin features
+- [ ] Save checkpoint with admin dashboard
+
 ## ACTIVE TASKS (IN PROGRESS)
 - [x] Add Preview Course button to admin panel for course review in presentations - Jan 12, 2025
 - [x] Fix CourseIntroSlideshow to handle numeric courseIds - Jan 12, 2025

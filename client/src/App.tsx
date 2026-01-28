@@ -88,6 +88,8 @@ import AdminBridgeAcademyCourses from './pages/AdminBridgeAcademyCourses';
 import AdminBridgeAcademyStudents from './pages/AdminBridgeAcademyStudents';
 import AdminBridgeAcademyAnalytics from './pages/AdminBridgeAcademyAnalytics';
 import AdminStudents from './pages/AdminStudents';
+import AdminStudentManagement from './pages/AdminStudentManagement';
+import AdminCourseManagement from './pages/AdminCourseManagement';
 import BridgeAcademyDashboard from './pages/BridgeAcademyDashboard';
 import BridgeAcademyStudentDashboard from './pages/BridgeAcademyStudentDashboard';
 import BridgeAcademyCourseDetail from './pages/BridgeAcademyCourseDetail';
@@ -120,6 +122,8 @@ function Router() {
       <Route path="/course/:id" component={CoursePage} />
       <Route path="/lesson/:id" component={LessonPage} />
       <Route path="/admin" component={Admin} />
+      <Route path="/admin/students" component={AdminStudentManagement} />
+      <Route path="/admin/courses" component={AdminCourseManagement} />
       <Route path="/admin/chat" component={AdminChat} />
       <Route path="/admin/email-export" component={AdminEmailExport} />
       <Route path="/admin/course/:id" component={AdminCourseDetail} />

@@ -1138,6 +1138,38 @@ export const appRouter = router({
       .query(async ({ input }) => {
         return db.getStudentCourseProgress(input.studentId, input.courseId);
       }),
+    
+    // Student Management
+    getAllStudents: adminProcedure.query(async () => {
+      return db.getAllUsers();
+    }),
+    
+    getStudentDetails: adminProcedure
+      .input(z.object({ studentId: z.number() }))
+      .query(async ({ input }) => {
+        const student = await db.getUserById(input.studentId);
+        const enrollments = await db.getStudentEnrollments(input.studentId);
+        return { student, enrollments };
+      }),
+    
+    // Course Management
+    getAllCoursesWithStats: adminProcedure.query(async () => {
+      const courses = await db.getAllCourses();
+      return courses;
+    }),
+    
+    toggleCourseStatus: adminProcedure
+      .input(z.object({ courseId: z.number(), isActive: z.boolean() }))
+      .mutation(async ({ input }) => {
+        await db.updateCourse(input.courseId, { isActive: input.isActive });
+        return { success: true };
+      }),
+    
+    getCourseEnrollments: adminProcedure
+      .input(z.object({ courseId: z.number() }))
+      .query(async ({ input }) => {
+        return db.getCourseEnrollments(input.courseId);
+      }),
   }),
   
 
