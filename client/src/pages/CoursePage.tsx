@@ -10,6 +10,24 @@ import { Link, useParams } from "wouter";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
 
+// Helper function to determine if text should be dark or light based on background color
+function getTextColor(hexColor: string): { textColor: string; textClass: string } {
+  // Convert hex to RGB
+  const hex = hexColor.replace('#', '');
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  
+  // Calculate luminance (perceived brightness)
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  
+  // If background is light (luminance > 0.6), use dark text; otherwise use white
+  if (luminance > 0.6) {
+    return { textColor: '#1a1a1a', textClass: 'text-gray-900' };
+  }
+  return { textColor: '#ffffff', textClass: 'text-white' };
+}
+
 export default function CoursePage() {
   const params = useParams<{ id: string }>();
   const paramId = params.id || "0";
@@ -105,11 +123,12 @@ export default function CoursePage() {
 
   // If user is not logged in, show course info with sign up prompt
   if (!isAuthenticated) {
+    const textColorInfo = getTextColor(course.colorTheme || '#ffffff');
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">
         {/* Course Header */}
         <div 
-          className="text-white shadow-lg"
+          className={`${textColorInfo.textClass} shadow-lg`}
           style={{ backgroundColor: course.colorTheme }}
         >
           <div className="container py-8">
@@ -250,11 +269,12 @@ export default function CoursePage() {
   }
 
   // Logged-in user with enrollment - show full course content
+  const textColorInfo = getTextColor(course.colorTheme || '#ffffff');
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">
       {/* Course Header */}
       <div 
-        className="text-white shadow-lg"
+        className={`${textColorInfo.textClass} shadow-lg`}
         style={{ backgroundColor: course.colorTheme }}
       >
         <div className="container py-8">

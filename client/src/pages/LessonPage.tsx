@@ -13,6 +13,24 @@ import { Streamdown } from "streamdown";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { ContentProtection } from "@/components/ContentProtection";
 
+// Helper function to determine if text should be dark or light based on background color
+function getTextColor(hexColor: string): { textColor: string; textClass: string } {
+  // Convert hex to RGB
+  const hex = hexColor.replace('#', '');
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  
+  // Calculate luminance (perceived brightness)
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  
+  // If background is light (luminance > 0.6), use dark text; otherwise use white
+  if (luminance > 0.6) {
+    return { textColor: '#1a1a1a', textClass: 'text-gray-900' };
+  }
+  return { textColor: '#ffffff', textClass: 'text-white' };
+}
+
 export default function LessonPage() {
   const params = useParams<{ id: string }>();
   const lessonId = parseInt(params.id || "0");
@@ -108,11 +126,12 @@ export default function LessonPage() {
 
   // Preview mode for unauthenticated users
   if (!isAuthenticated) {
+    const textColorInfo = getTextColor(course?.colorTheme || '#1a365d');
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">
         {/* Lesson Header */}
         <div 
-          className="text-white shadow-lg"
+          className={`${textColorInfo.textClass} shadow-lg`}
           style={{ backgroundColor: course?.colorTheme || "#1a365d" }}
         >
           <div className="container py-6">
@@ -183,11 +202,12 @@ export default function LessonPage() {
   }
 
   // Authenticated user view
+  const textColorInfo = getTextColor(course?.colorTheme || '#1a365d');
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">
       {/* Lesson Header */}
       <div 
-        className="text-white shadow-lg"
+        className={`${textColorInfo.textClass} shadow-lg`}
         style={{ backgroundColor: course?.colorTheme || "#1a365d" }}
       >
         <div className="container py-6">
