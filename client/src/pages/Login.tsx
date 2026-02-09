@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "wouter";
+import { useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,11 +12,11 @@ export default function Login() {
   const [loginMethod, setLoginMethod] = useState<"email" | "oauth">("email");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [, navigate] = useNavigate();
+  const [, setLocation] = useLocation();
 
   const loginMutation = trpc.auth.login.useMutation({
     onSuccess: () => {
-      navigate("/");
+      setLocation("/");
     },
     onError: (error) => {
       setError(error.message || "Login failed. Please check your credentials.");
