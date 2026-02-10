@@ -32,21 +32,19 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <PublicNav currentPage="home" />
-      {/* Hero Section with Promotional Image */}
-      <section className="relative h-[600px] overflow-hidden">
-        <img 
-          src="/pricing-hero.jpg" 
-          alt="Study Theology Online at Your Own Pace" 
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center">
+      {/* Hero Section */}
+      <section className="relative h-[600px] overflow-hidden bg-gradient-to-r from-primary via-primary/90 to-primary/70">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent flex items-center">
           <div className="container max-w-7xl mx-auto px-4">
             <div className="max-w-2xl">
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-                Transform Your Ministry Through Biblical Excellence
+                Study Theology at Your Own Pace
               </h1>
+              <p className="text-2xl text-accent font-semibold mb-4">
+                CPD Accredited Courses
+              </p>
               <p className="text-xl text-white/90 mb-8">
-                CPD-accredited courses designed for ministry leaders. Study at your own pace with expert instruction.
+                Transform your ministry through biblical excellence. Access seminary-quality courses designed for ministry leaders worldwide.
               </p>
               <div className="flex gap-4">
                 <Link href="/pricing">

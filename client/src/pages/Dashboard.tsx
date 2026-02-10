@@ -9,6 +9,7 @@ import { Link, useLocation } from "wouter";
 import { useMemo, useEffect } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
+import { filterCoursesByAccess, getSubscriptionTierName } from "@shared/courseAccess";
 
 export default function Dashboard() {
   const { user, logout } = useAuth({ redirectOnUnauthenticated: true });
@@ -38,13 +39,20 @@ export default function Dashboard() {
     ]);
   };
 
+  // Filter courses based on subscription tier
+  const filteredCourses = useMemo(() => {
+    if (!courses || !user) return [];
+    const subscriptionTier = (user as any).subscription_tier || 'none';
+    return filterCoursesByAccess(courses, subscriptionTier);
+  }, [courses, user]);
+
   // Calculate progress for each course
   const courseProgress = useMemo(() => {
-    if (!courses || !allProgress) return {};
+    if (!filteredCourses || !allProgress) return {};
     
     const progressMap: Record<number, { completed: number; total: number }> = {};
     
-    courses.forEach(course => {
+    filteredCourses.forEach(course => {
       const completed = allProgress.filter(
         p => p.courseId === course.id && p.completed
       ).length;
@@ -55,7 +63,7 @@ export default function Dashboard() {
     });
     
     return progressMap;
-  }, [courses, allProgress]);
+  }, [filteredCourses, allProgress]);
 
   if (coursesLoading) {
     return (
@@ -465,7 +473,7 @@ export default function Dashboard() {
         {/* All Courses Grid */}
         <h2 className="text-2xl font-bold text-foreground mb-6">All Courses</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {courses?.map((course: any, courseIdx: number) => {
+          {filteredCourses?.map((course: any, courseIdx: number) => {
             const progress = courseProgress[course.id] || { completed: 0, total: course.totalLessons };
             const progressPercent = progress.total > 0 ? (progress.completed / progress.total) * 100 : 0;
             const isEnrolled = course.isEnrolled;
@@ -533,7 +541,7 @@ export default function Dashboard() {
           })}
         </div>
 
-        {courses?.length === 0 && (
+        {filteredCourses?.length === 0 && (
           <div className="text-center py-12">
             <BookOpen className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-foreground mb-2">No Courses Available</h3>

@@ -1,0 +1,16 @@
+{
+  "query": "SELECT id, email, subscription_tier, password FROM users WHERE email = 'bridge@crosslifeschoolofdivinity.org';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, email, subscription_tier, password FROM users WHERE email = 'bridge@crosslifeschoolofdivinity.org';",
+  "rows": [
+    {
+      "id": "20640008",
+      "email": "bridge@crosslifeschoolofdivinity.org",
+      "subscription_tier": "bridge_academy",
+      "password": "$2b$10$.CxUyhMdw4iyCwPHcH6pl.zdX.hwasf5GHd0pZ0Bv33SqWzTiul7O"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\tsubscription_tier\tpassword\n20640008\tbridge@crosslifeschoolofdivinity.org\tbridge_academy\t$2b$10$.CxUyhMdw4iyCwPHcH6pl.zdX.hwasf5GHd0pZ0Bv33SqWzTiul7O\n",
+  "stderr": "",
+  "execution_time_ms": 60
+}

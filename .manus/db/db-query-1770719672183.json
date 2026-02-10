@@ -1,0 +1,17 @@
+{
+  "query": "SELECT id, email, password, role, subscription_tier FROM users WHERE email = 'admin@crosslifeschoolofdivinity.org' LIMIT 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, email, password, role, subscription_tier FROM users WHERE email = 'admin@crosslifeschoolofdivinity.org' LIMIT 1;",
+  "rows": [
+    {
+      "id": "20640007",
+      "email": "admin@crosslifeschoolofdivinity.org",
+      "password": "$2b$10$oumlEefycojZUVjLYxTXzee138mtf3892a1Tv.dI62TfP2Wwq1WD2",
+      "role": "admin",
+      "subscription_tier": "admin"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\tpassword\trole\tsubscription_tier\n20640007\tadmin@crosslifeschoolofdivinity.org\t$2b$10$oumlEefycojZUVjLYxTXzee138mtf3892a1Tv.dI62TfP2Wwq1WD2\tadmin\tadmin\n",
+  "stderr": "",
+  "execution_time_ms": 86
+}

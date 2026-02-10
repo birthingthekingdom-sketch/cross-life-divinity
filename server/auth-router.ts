@@ -58,30 +58,33 @@ export const authRouter = router({
         const user = await authService.authenticateUser(input.email, input.password);
         console.log('[Auth] User authenticated:', user.id, user.email);
         
-        // Create and set session cookie
-        const { sdk } = await import('./_core/sdk');
+        // Create and set session cookie using JWT
+        const { SignJWT } = await import('jose');
         const { getSessionCookieOptions } = await import('./_core/cookies');
         const { COOKIE_NAME, ONE_YEAR_MS } = await import('@shared/const');
+        const jwtSecret = process.env.JWT_SECRET;
         
-        // For email/password users without openId, generate a temporary openId
-        const openIdForSession = user.openId || `local-user-${user.id}`;
-        
-        // If openId was generated, save it to the database
-        if (!user.openId) {
-          const { users } = await import('../drizzle/schema');
-          const dbInstance = await (await import('./db')).getDb();
-          if (dbInstance) {
-            await dbInstance.update(users).set({ openId: openIdForSession }).where(eq(users.id, user.id));
-          }
+        if (!jwtSecret) {
+          throw new Error('JWT_SECRET not configured');
         }
         
-        const sessionToken = await sdk.createSessionToken(openIdForSession, {
-          name: user.name || '',
-          expiresInMs: ONE_YEAR_MS,
-        });
+        // Create JWT token
+        const secret = new TextEncoder().encode(jwtSecret);
+        const sessionToken = await new SignJWT({
+          userId: user.id,
+          email: user.email,
+          name: user.name,
+          role: user.role,
+          subscription_tier: user.subscription_tier || 'none',
+        })
+          .setProtectedHeader({ alg: 'HS256' })
+          .setExpirationTime('1y')
+          .sign(secret);
         
         const cookieOptions = getSessionCookieOptions(ctx.req);
         ctx.res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
+        
+        console.log('[Auth] Session cookie set for user:', user.id);
         
         return {
           success: true,
@@ -90,7 +93,7 @@ export const authRouter = router({
             email: user.email,
             name: user.name,
             role: user.role,
-            openId: openIdForSession,
+            subscription_tier: user.subscription_tier || 'none',
           },
         };
       } catch (error) {
@@ -189,6 +192,7 @@ export const authRouter = router({
       name: ctx.user.name,
       role: ctx.user.role,
       emailVerified: ctx.user.emailVerified,
+      subscription_tier: ctx.user.subscription_tier,
     };
   }),
 

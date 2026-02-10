@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
-import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
@@ -14,16 +13,6 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [, setLocation] = useLocation();
 
-  const loginMutation = trpc.auth.login.useMutation({
-    onSuccess: () => {
-      setLocation("/");
-    },
-    onError: (error) => {
-      setError(error.message || "Login failed. Please check your credentials.");
-      setIsLoading(false);
-    },
-  });
-
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -35,7 +24,31 @@ export default function Login() {
       return;
     }
 
-    loginMutation.mutate({ email, password });
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+        credentials: "include",
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        setError(data.error || "Login failed. Please check your credentials.");
+        setIsLoading(false);
+        return;
+      }
+
+      // Login successful - redirect to home
+      setLocation("/");
+    } catch (error) {
+      console.error("Login error:", error);
+      setError("An error occurred during login. Please try again.");
+      setIsLoading(false);
+    }
   };
 
   const handleOAuthLogin = () => {

@@ -12,6 +12,7 @@ import * as db from "../db";
 import { sdk } from "./sdk";
 import { setEmailConfig } from "../email";
 import { ENV } from "./env";
+import loginApiRouter from "../login-api";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -55,6 +56,9 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   // OAuth callback under /api/oauth/callback - DISABLED
   // registerOAuthRoutes(app); // DISABLED: OAuth removed to use custom auth only
+  
+  // Login API endpoint
+  app.use("/api", loginApiRouter);
   
   // Certificate download endpoint
   app.get("/api/certificate/:certificateNumber", async (req, res) => {

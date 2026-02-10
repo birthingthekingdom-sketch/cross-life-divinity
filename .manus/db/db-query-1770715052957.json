@@ -1,0 +1,178 @@
+{
+  "query": "SELECT id, code, title, totalLessons, description FROM courses ORDER BY code LIMIT 50;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code, title, totalLessons, description FROM courses ORDER BY code LIMIT 50;",
+  "rows": [
+    {
+      "id": "780001",
+      "code": "BIB101",
+      "title": "Old Testament Survey",
+      "totalLessons": "10",
+      "description": "A comprehensive survey of the Old Testament, covering the major books, themes, and historical context of Hebrew Scripture. Students will explore the Torah, Historical Books, Wisdom Literature, and Prophetic Books."
+    },
+    {
+      "id": "780002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "totalLessons": "10",
+      "description": "An in-depth survey of the New Testament, examining the Gospels, Acts, Paul's epistles, and the Revelation. Students will study the life of Jesus, the early church, and apostolic teachings."
+    },
+    {
+      "id": "810001",
+      "code": "BIB103",
+      "title": "Biblical Hermeneutics",
+      "totalLessons": "10",
+      "description": "This foundational course introduces students to the principles and methods of biblical interpretation. Students will learn to read Scripture in its historical, literary, and theological contexts, applying sound hermeneutical principles to understand the original meaning of biblical texts and their contemporary application. The course covers the history of interpretation, literary genres, grammatical-historical method, and the role of the Holy Spirit in illumination. Students will develop skills for faithful exegesis that honors the authority of Scripture and equips them for effective teaching and preaching ministry."
+    },
+    {
+      "id": "840001",
+      "code": "CHAP101",
+      "title": "Chaplaincy Training",
+      "totalLessons": "10",
+      "description": "Comprehensive Clinical Pastoral Education (CPE) training for institutional chaplaincy. This course prepares students for ministry in hospitals, hospices, prisons, military, and corporate settings. Covers pastoral care theory, crisis intervention, spiritual assessment, interfaith sensitivity, and professional ethics."
+    },
+    {
+      "id": "180001",
+      "code": "DIV101",
+      "title": "Understanding Prophecy",
+      "totalLessons": "10",
+      "description": "The study of the office and the gift of prophecy, and its role in the life of a believer. This course explores the spiritual gift of receiving and communicating messages from God, including divine insight, future events, and spiritual guidance within a Christian theological framework."
+    },
+    {
+      "id": "690001",
+      "code": "DIV102",
+      "title": "Deliverance Ministry",
+      "totalLessons": "10",
+      "description": "This comprehensive course explores the biblical foundations and practical applications of deliverance ministry. Students will study the nature of spiritual oppression, demonic influence, and the authority believers have in Christ to minister freedom and healing. The curriculum covers biblical case studies, theological frameworks, and practical protocols for conducting deliverance sessions with pastoral sensitivity and spiritual authority. Graduates will be equipped to identify spiritual bondage, minister effectively to those in need, and establish ongoing support systems for sustained freedom and spiritual growth."
+    },
+    {
+      "id": "570004",
+      "code": "DIV111",
+      "title": "Capstone Project",
+      "totalLessons": "8",
+      "description": "Culminating course requiring students to integrate knowledge from previous courses into a comprehensive theological research project or ministry portfolio. Includes proposal development, research methodology, and final presentation."
+    },
+    {
+      "id": "570005",
+      "code": "DIV112",
+      "title": "Christology",
+      "totalLessons": "10",
+      "description": "In-depth study of the person and work of Jesus Christ. Examines biblical foundations, historical development of Christological doctrine, contemporary debates, and implications for Christian faith and practice."
+    },
+    {
+      "id": "570006",
+      "code": "DIV113",
+      "title": "Contemporary Theological Issues",
+      "totalLessons": "10",
+      "description": "Exploration of current theological challenges and developments in the modern church. Addresses topics such as religious pluralism, science and faith, social justice theology, and emerging theological movements."
+    },
+    {
+      "id": "660004",
+      "code": "GED-LANG",
+      "title": "GED Language Arts",
+      "totalLessons": "12",
+      "description": "Preparation for the GED Reasoning Through Language Arts test including reading, writing, and grammar."
+    },
+    {
+      "id": "660003",
+      "code": "GED-MATH",
+      "title": "GED Mathematics",
+      "totalLessons": "12",
+      "description": "Comprehensive preparation for the GED Mathematics test covering algebra, geometry, and data analysis."
+    },
+    {
+      "id": "660005",
+      "code": "GED-SCI",
+      "title": "GED Science",
+      "totalLessons": "10",
+      "description": "Comprehensive coverage of life science, physical science, and earth science topics for the GED exam."
+    },
+    {
+      "id": "660006",
+      "code": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "totalLessons": "10",
+      "description": "Preparation for the GED Social Studies test covering civics, history, geography, and economics."
+    },
+    {
+      "id": "690002",
+      "code": "LED202",
+      "title": "Christian Leadership",
+      "totalLessons": "10",
+      "description": "This practical course provides comprehensive training in Christian leadership principles and practices. Students will explore servant leadership models, vision casting, team development, organizational management, and strategic decision-making. The curriculum integrates biblical foundations with contemporary leadership best practices, addressing ethical challenges, cultural sensitivity, and adaptive leadership in diverse ministry contexts. Graduates will be equipped to lead with integrity, develop strong teams, navigate organizational change, and advance God's kingdom purposes through effective Christian leadership."
+    },
+    {
+      "id": "150006",
+      "code": "MIN101",
+      "title": "Evangelism and Discipleship",
+      "totalLessons": "10",
+      "description": "This practical theology course explores biblical foundations and effective strategies for sharing the gospel and making disciples. Students will examine Jesus' Great Commission, apostolic evangelistic methods, and contemporary approaches to personal and mass evangelism. The course covers gospel presentation, cultural sensitivity, relational evangelism, and the process of spiritual multiplication. Special emphasis is placed on developing sustainable discipleship systems that move new believers from conversion through spiritual maturity, equipping them to reproduce their faith in others and fulfill the mission of the church."
+    },
+    {
+      "id": "150007",
+      "code": "MIN102",
+      "title": "Discipleship Training",
+      "totalLessons": "10",
+      "description": "This transformative course provides a comprehensive framework for spiritual formation and leadership development within the body of Christ. Students will explore biblical models of discipleship, mentoring relationships, spiritual growth stages, and practical methods for guiding believers toward Christlikeness. The curriculum addresses character development, spiritual disciplines, accountability structures, and multiplication principles that create self-sustaining discipleship cultures. Graduates will be equipped to design and implement effective discipleship pathways that produce mature, reproducing disciples who impact their communities for the kingdom of God."
+    },
+    {
+      "id": "150013",
+      "code": "PAS101",
+      "title": "Homiletics",
+      "totalLessons": "10",
+      "description": "This essential course trains students in the art and craft of biblical preaching, equipping them to communicate God's Word with clarity, power, and relevance. Students will master sermon preparation methods, exegetical techniques, rhetorical strategies, and delivery skills. The curriculum covers various sermon forms including expository, topical, and narrative preaching, while addressing contemporary challenges such as cultural engagement, application, and preaching to diverse audiences. Through theological reflection, practical exercises, and constructive feedback, students will develop their unique preaching voice and learn to proclaim Scripture faithfully in ways that transform lives and build up the body of Christ."
+    },
+    {
+      "id": "150011",
+      "code": "PAS201",
+      "title": "Pastoral Counseling",
+      "totalLessons": "10",
+      "description": "This integrative course prepares students for the pastoral care and counseling dimensions of ministry by combining biblical wisdom, theological reflection, and counseling theory. Students will explore the pastor's role as shepherd and counselor, addressing common issues such as grief, trauma, marriage and family conflicts, addiction, mental health, and spiritual crises. The curriculum emphasizes biblical counseling approaches while incorporating insights from psychology and therapeutic best practices. Graduates will be equipped to provide compassionate, Christ-centered care that promotes healing, restoration, and spiritual growth within appropriate ethical and professional boundaries."
+    },
+    {
+      "id": "150012",
+      "code": "PAS301",
+      "title": "Church Administration",
+      "totalLessons": "10",
+      "description": "This practical course equips ministry leaders with essential skills for effective church management and organizational leadership. Students will study governance structures, financial stewardship, legal compliance, staff management, volunteer mobilization, facilities management, and strategic planning. The curriculum balances theological foundations with administrative best practices, addressing the unique challenges of leading nonprofit religious organizations. Special attention is given to developing systems that support the church's mission while maintaining accountability, sustainability, and kingdom-focused priorities. Graduates will be prepared to administrate church operations with excellence, integrity, and missional effectiveness."
+    },
+    {
+      "id": "150008",
+      "code": "SPR101",
+      "title": "Prayer and Intercession",
+      "totalLessons": "10",
+      "description": "This spiritually formative course delves into the theology and practice of prayer as the foundation of Christian life and ministry. Students will study biblical teachings on prayer, explore various prayer models and traditions, and develop a robust personal prayer life. The course examines intercessory prayer, spiritual warfare, corporate prayer, contemplative practices, and the role of prayer in revival and spiritual awakening. Through theological reflection and practical application, students will cultivate deeper intimacy with God and learn to mobilize prayer movements that release divine power for personal transformation, church renewal, and kingdom advancement."
+    },
+    {
+      "id": "150014",
+      "code": "SPR201",
+      "title": "Discovering Spiritual Gifts",
+      "totalLessons": "10",
+      "description": "This empowering course provides a comprehensive exploration of spiritual gifts and their role in the life and ministry of the church. Students will examine biblical teachings on charismata, explore various gift categories including motivational, ministry, and manifestation gifts, and learn to identify and develop their personal spiritual gifts. The curriculum addresses theological perspectives on gifts, practical assessment tools, and strategies for deploying gifts effectively in ministry contexts. The course emphasizes that every believer is gifted for service and equips students to build gift-based ministry teams that maximize kingdom impact and foster healthy, Spirit-empowered church communities."
+    },
+    {
+      "id": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology",
+      "totalLessons": "10",
+      "description": "This foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity."
+    },
+    {
+      "id": "150005",
+      "code": "THE301",
+      "title": "Fundamentals of Apologetics",
+      "totalLessons": "10",
+      "description": "This intellectually rigorous course equips students to defend the Christian faith through reasoned arguments, historical evidence, and philosophical inquiry. The curriculum addresses classical proofs for God's existence, the problem of evil, the reliability and authority of Scripture, the historical evidence for the resurrection, and responses to contemporary objections from atheism, skepticism, and alternative worldviews. Students will develop confidence in engaging critics graciously while providing compelling reasons for Christian belief, preparing them to give an answer for the hope within them with gentleness and respect."
+    },
+    {
+      "id": "360001",
+      "code": "WOR101",
+      "title": "Biblical Worship",
+      "totalLessons": "10",
+      "description": "This transformative course explores the biblical foundations and theology of Christian worship, equipping students to lead worship that honors God and transforms hearts. Students will examine worship throughout Scripture, study the theology of praise, explore various worship expressions and styles, and learn principles for creating authentic worship experiences. The curriculum addresses contemporary worship challenges including cultural sensitivity, theological depth, musical excellence, and spiritual authenticity. Through theological reflection, practical leadership skills, and case studies, students will develop a comprehensive understanding of worship as central to Christian discipleship and community formation, preparing them to lead congregations in meaningful, Spirit-empowered worship that glorifies God and builds up the body of Christ."
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\ttotalLessons\tdescription\n780001\tBIB101\tOld Testament Survey\t10\tA comprehensive survey of the Old Testament, covering the major books, themes, and historical context of Hebrew Scripture. Students will explore the Torah, Historical Books, Wisdom Literature, and Prophetic Books.\n780002\tBIB102\tNew Testament Survey\t10\tAn in-depth survey of the New Testament, examining the Gospels, Acts, Paul's epistles, and the Revelation. Students will study the life of Jesus, the early church, and apostolic teachings.\n810001\tBIB103\tBiblical Hermeneutics\t10\tThis foundational course introduces students to the principles and methods of biblical interpretation. Students will learn to read Scripture in its historical, literary, and theological contexts, applying sound hermeneutical principles to understand the original meaning of biblical texts and their contemporary application. The course covers the history of interpretation, literary genres, grammatical-historical method, and the role of the Holy Spirit in illumination. Students will develop skills for faithful exegesis that honors the authority of Scripture and equips them for effective teaching and preaching ministry.\n840001\tCHAP101\tChaplaincy Training\t10\tComprehensive Clinical Pastoral Education (CPE) training for institutional chaplaincy. This course prepares students for ministry in hospitals, hospices, prisons, military, and corporate settings. Covers pastoral care theory, crisis intervention, spiritual assessment, interfaith sensitivity, and professional ethics.\n180001\tDIV101\tUnderstanding Prophecy\t10\tThe study of the office and the gift of prophecy, and its role in the life of a believer. This course explores the spiritual gift of receiving and communicating messages from God, including divine insight, future events, and spiritual guidance within a Christian theological framework.\n690001\tDIV102\tDeliverance Ministry\t10\tThis comprehensive course explores the biblical foundations and practical applications of deliverance ministry. Students will study the nature of spiritual oppression, demonic influence, and the authority believers have in Christ to minister freedom and healing. The curriculum covers biblical case studies, theological frameworks, and practical protocols for conducting deliverance sessions with pastoral sensitivity and spiritual authority. Graduates will be equipped to identify spiritual bondage, minister effectively to those in need, and establish ongoing support systems for sustained freedom and spiritual growth.\n570004\tDIV111\tCapstone Project\t8\tCulminating course requiring students to integrate knowledge from previous courses into a comprehensive theological research project or ministry portfolio. Includes proposal development, research methodology, and final presentation.\n570005\tDIV112\tChristology\t10\tIn-depth study of the person and work of Jesus Christ. Examines biblical foundations, historical development of Christological doctrine, contemporary debates, and implications for Christian faith and practice.\n570006\tDIV113\tContemporary Theological Issues\t10\tExploration of current theological challenges and developments in the modern church. Addresses topics such as religious pluralism, science and faith, social justice theology, and emerging theological movements.\n660004\tGED-LANG\tGED Language Arts\t12\tPreparation for the GED Reasoning Through Language Arts test including reading, writing, and grammar.\n660003\tGED-MATH\tGED Mathematics\t12\tComprehensive preparation for the GED Mathematics test covering algebra, geometry, and data analysis.\n660005\tGED-SCI\tGED Science\t10\tComprehensive coverage of life science, physical science, and earth science topics for the GED exam.\n660006\tGED-SOCIAL\tGED Social Studies\t10\tPreparation for the GED Social Studies test covering civics, history, geography, and economics.\n690002\tLED202\tChristian Leadership\t10\tThis practical course provides comprehensive training in Christian leadership principles and practices. Students will explore servant leadership models, vision casting, team development, organizational management, and strategic decision-making. The curriculum integrates biblical foundations with contemporary leadership best practices, addressing ethical challenges, cultural sensitivity, and adaptive leadership in diverse ministry contexts. Graduates will be equipped to lead with integrity, develop strong teams, navigate organizational change, and advance God's kingdom purposes through effective Christian leadership.\n150006\tMIN101\tEvangelism and Discipleship\t10\tThis practical theology course explores biblical foundations and effective strategies for sharing the gospel and making disciples. Students will examine Jesus' Great Commission, apostolic evangelistic methods, and contemporary approaches to personal and mass evangelism. The course covers gospel presentation, cultural sensitivity, relational evangelism, and the process of spiritual multiplication. Special emphasis is placed on developing sustainable discipleship systems that move new believers from conversion through spiritual maturity, equipping them to reproduce their faith in others and fulfill the mission of the church.\n150007\tMIN102\tDiscipleship Training\t10\tThis transformative course provides a comprehensive framework for spiritual formation and leadership development within the body of Christ. Students will explore biblical models of discipleship, mentoring relationships, spiritual growth stages, and practical methods for guiding believers toward Christlikeness. The curriculum addresses character development, spiritual disciplines, accountability structures, and multiplication principles that create self-sustaining discipleship cultures. Graduates will be equipped to design and implement effective discipleship pathways that produce mature, reproducing disciples who impact their communities for the kingdom of God.\n150013\tPAS101\tHomiletics\t10\tThis essential course trains students in the art and craft of biblical preaching, equipping them to communicate God's Word with clarity, power, and relevance. Students will master sermon preparation methods, exegetical techniques, rhetorical strategies, and delivery skills. The curriculum covers various sermon forms including expository, topical, and narrative preaching, while addressing contemporary challenges such as cultural engagement, application, and preaching to diverse audiences. Through theological reflection, practical exercises, and constructive feedback, students will develop their unique preaching voice and learn to proclaim Scripture faithfully in ways that transform lives and build up the body of Christ.\n150011\tPAS201\tPastoral Counseling\t10\tThis integrative course prepares students for the pastoral care and counseling dimensions of ministry by combining biblical wisdom, theological reflection, and counseling theory. Students will explore the pastor's role as shepherd and counselor, addressing common issues such as grief, trauma, marriage and family conflicts, addiction, mental health, and spiritual crises. The curriculum emphasizes biblical counseling approaches while incorporating insights from psychology and therapeutic best practices. Graduates will be equipped to provide compassionate, Christ-centered care that promotes healing, restoration, and spiritual growth within appropriate ethical and professional boundaries.\n150012\tPAS301\tChurch Administration\t10\tThis practical course equips ministry leaders with essential skills for effective church management and organizational leadership. Students will study governance structures, financial stewardship, legal compliance, staff management, volunteer mobilization, facilities management, and strategic planning. The curriculum balances theological foundations with administrative best practices, addressing the unique challenges of leading nonprofit religious organizations. Special attention is given to developing systems that support the church's mission while maintaining accountability, sustainability, and kingdom-focused priorities. Graduates will be prepared to administrate church operations with excellence, integrity, and missional effectiveness.\n150008\tSPR101\tPrayer and Intercession\t10\tThis spiritually formative course delves into the theology and practice of prayer as the foundation of Christian life and ministry. Students will study biblical teachings on prayer, explore various prayer models and traditions, and develop a robust personal prayer life. The course examines intercessory prayer, spiritual warfare, corporate prayer, contemplative practices, and the role of prayer in revival and spiritual awakening. Through theological reflection and practical application, students will cultivate deeper intimacy with God and learn to mobilize prayer movements that release divine power for personal transformation, church renewal, and kingdom advancement.\n150014\tSPR201\tDiscovering Spiritual Gifts\t10\tThis empowering course provides a comprehensive exploration of spiritual gifts and their role in the life and ministry of the church. Students will examine biblical teachings on charismata, explore various gift categories including motivational, ministry, and manifestation gifts, and learn to identify and develop their personal spiritual gifts. The curriculum addresses theological perspectives on gifts, practical assessment tools, and strategies for deploying gifts effectively in ministry contexts. The course emphasizes that every believer is gifted for service and equips students to build gift-based ministry teams that maximize kingdom impact and foster healthy, Spirit-empowered church communities.\n150003\tTHE201\tSystematic Theology\t10\tThis foundational course offers a comprehensive study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, anthropology, hamartiology, soteriology, ecclesiology, and eschatology. Students will engage with classical theological formulations, contemporary debates, and biblical foundations to develop a coherent and unified system of belief. The course emphasizes how systematic theology informs faithful Christian practice, shapes pastoral ministry, and equips believers to articulate and defend essential doctrines with clarity, precision, and biblical fidelity.\n150005\tTHE301\tFundamentals of Apologetics\t10\tThis intellectually rigorous course equips students to defend the Christian faith through reasoned arguments, historical evidence, and philosophical inquiry. The curriculum addresses classical proofs for God's existence, the problem of evil, the reliability and authority of Scripture, the historical evidence for the resurrection, and responses to contemporary objections from atheism, skepticism, and alternative worldviews. Students will develop confidence in engaging critics graciously while providing compelling reasons for Christian belief, preparing them to give an answer for the hope within them with gentleness and respect.\n360001\tWOR101\tBiblical Worship\t10\tThis transformative course explores the biblical foundations and theology of Christian worship, equipping students to lead worship that honors God and transforms hearts. Students will examine worship throughout Scripture, study the theology of praise, explore various worship expressions and styles, and learn principles for creating authentic worship experiences. The curriculum addresses contemporary worship challenges including cultural sensitivity, theological depth, musical excellence, and spiritual authenticity. Through theological reflection, practical leadership skills, and case studies, students will develop a comprehensive understanding of worship as central to Christian discipleship and community formation, preparing them to lead congregations in meaningful, Spirit-empowered worship that glorifies God and builds up the body of Christ.\n",
+  "stderr": "",
+  "execution_time_ms": 63
+}
