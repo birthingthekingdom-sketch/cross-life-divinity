@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO users (email, name, password, role, createdAt, updatedAt) VALUES ('bridge@crosslifeschoolofdivinity.org', 'Bridge Academy Override', '$2b$10$.CxUyhMdw4iyCwPHcH6pl.zdX.hwasf5GHd0pZ0Bv33SqWzTiul7O', 'admin', NOW(), NOW()) ON DUPLICATE KEY UPDATE password = '$2b$10$.CxUyhMdw4iyCwPHcH6pl.zdX.hwasf5GHd0pZ0Bv33SqWzTiul7O';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO users (email, name, password, role, createdAt, updatedAt) VALUES ('bridge@crosslifeschoolofdivinity.org', 'Bridge Academy Override', '$2b$10$.CxUyhMdw4iyCwPHcH6pl.zdX.hwasf5GHd0pZ0Bv33SqWzTiul7O', 'admin', NOW(), NOW()) ON DUPLICATE KEY UPDATE password = '$2b$10$.CxUyhMdw4iyCwPHcH6pl.zdX.hwasf5GHd0pZ0Bv33SqWzTiul7O';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 61
+}
