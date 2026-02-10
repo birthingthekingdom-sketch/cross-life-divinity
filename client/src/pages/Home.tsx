@@ -33,8 +33,8 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <PublicNav currentPage="home" />
       {/* Hero Section */}
-      <section className="relative h-[600px] overflow-hidden bg-gradient-to-r from-primary via-primary/90 to-primary/70">
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent flex items-center">
+      <section className="relative w-full h-[500px] bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent flex items-center justify-start">
           <div className="container max-w-7xl mx-auto px-4">
             <div className="max-w-2xl">
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
