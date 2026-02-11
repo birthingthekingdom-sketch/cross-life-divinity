@@ -102,7 +102,7 @@ import ChaplainancyFinancialAid from './pages/ChaplainancyFinancialAid';
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Home} />
+      <Route path="/" component={Landing} />
       <Route path="/login" component={Login} />
       <Route path="/logout" component={Logout} />
       <Route path="/affiliate/apply" component={AffiliateApply} />
