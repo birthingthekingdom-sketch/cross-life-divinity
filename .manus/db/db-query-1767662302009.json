@@ -1,9 +1,0 @@
-{
-  "query": "SELECT ce.id, c.code, c.title, ce.enrolledAt FROM course_enrollments ce JOIN courses c ON ce.courseId = c.id WHERE ce.userId = (SELECT id FROM users WHERE name = 'Roddy Barksdale');",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT ce.id, c.code, c.title, ce.enrolledAt FROM course_enrollments ce JOIN courses c ON ce.courseId = c.id WHERE ce.userId = (SELECT id FROM users WHERE name = 'Roddy Barksdale');",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 1725
-}

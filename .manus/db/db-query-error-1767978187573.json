@@ -1,8 +1,0 @@
-{
-  "query": "SELECT \n  c.code, \n  c.name, \n  COUNT(l.id) as lesson_count\nFROM courses c\nLEFT JOIN lessons l ON c.id = l.courseId\nWHERE c.code IN ('DIV102', 'LED202', 'DIV111', 'DIV112', 'DIV113')\nGROUP BY c.id, c.code, c.name\nORDER BY c.code;",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT \n  c.code, \n  c.name, \n  COUNT(l.id) as lesson_count\nFROM courses c\nLEFT JOIN lessons l ON c.id = l.courseId\nWHERE c.code IN ('DIV102', 'LED202', 'DIV111', 'DIV112', 'DIV113')\nGROUP BY c.id, c.code, c.name\nORDER BY c.code;",
-  "returncode": 1,
-  "logs": [
-    "ERROR 1054 (42S22) at line 1: Unknown column 'c.name' in 'group statement'"
-  ]
-}

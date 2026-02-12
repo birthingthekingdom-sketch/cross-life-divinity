@@ -1,8 +1,0 @@
-{
-  "query": "INSERT INTO learning_path_courses (pathId, courseId, orderIndex) VALUES\n('2', 'cm4y8hqq40000qj6j7m6j7m6j', 1),  -- Christian Leadership\n('2', 'cm4y8hqq40001qj6j7m6j7m6k', 2),  -- Church Administration  \n('2', 'cm4y8hqq40002qj6j7m6j7m6l', 3),  -- Prayer and Intercession\n('2', 'cm4y8hqq40003qj6j7m6j7m6m', 4);  -- The Fivefold Ministry",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO learning_path_courses (pathId, courseId, orderIndex) VALUES\n('2', 'cm4y8hqq40000qj6j7m6j7m6j', 1),  -- Christian Leadership\n('2', 'cm4y8hqq40001qj6j7m6j7m6k', 2),  -- Church Administration  \n('2', 'cm4y8hqq40002qj6j7m6j7m6l', 3),  -- Prayer and Intercession\n('2', 'cm4y8hqq40003qj6j7m6j7m6m', 4);  -- The Fivefold Ministry",
-  "returncode": 1,
-  "logs": [
-    "ERROR 1366 (HY000) at line 1: Incorrect ? value: '?' for column 'courseId' at row 1"
-  ]
-}

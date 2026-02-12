@@ -1,1 +1,0 @@
-ALTER TABLE `courses` ADD `courseType` enum('theological','ged') DEFAULT 'theological' NOT NULL;

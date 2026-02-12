@@ -1,9 +1,0 @@
-{
-  "query": "CREATE TABLE IF NOT EXISTS bridge_academy_student_difficulty_profiles (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  userId INT NOT NULL,\n  topicId INT NOT NULL,\n  courseId INT NOT NULL,\n  currentDifficulty ENUM('easy', 'medium', 'hard') DEFAULT 'easy' NOT NULL,\n  averageScore INT DEFAULT 0 NOT NULL,\n  attemptCount INT DEFAULT 0 NOT NULL,\n  bestScore INT DEFAULT 0 NOT NULL,\n  improvementTrend INT DEFAULT 0,\n  lastAttemptAt TIMESTAMP,\n  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,\n  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL\n);",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute CREATE TABLE IF NOT EXISTS bridge_academy_student_difficulty_profiles (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  userId INT NOT NULL,\n  topicId INT NOT NULL,\n  courseId INT NOT NULL,\n  currentDifficulty ENUM('easy', 'medium', 'hard') DEFAULT 'easy' NOT NULL,\n  averageScore INT DEFAULT 0 NOT NULL,\n  attemptCount INT DEFAULT 0 NOT NULL,\n  bestScore INT DEFAULT 0 NOT NULL,\n  improvementTrend INT DEFAULT 0,\n  lastAttemptAt TIMESTAMP,\n  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,\n  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL\n);",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 215
-}

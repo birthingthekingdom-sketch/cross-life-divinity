@@ -1,8 +1,0 @@
-{
-  "query": "INSERT INTO courses (code, title, description, totalLessons, estimatedHours, cpdHours, colorTheme, isActive) VALUES \n('BIB101', 'Old Testament Survey', 'Comprehensive overview of Old Testament books, themes, and theological significance', 10, 40, 10, '#1e40af', true),\n('BIB102', 'New Testament Survey', 'In-depth study of New Testament gospels, epistles, and apocalyptic literature', 10, 40, 10, '#1e40af', true);",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO courses (code, title, description, totalLessons, estimatedHours, cpdHours, colorTheme, isActive) VALUES \n('BIB101', 'Old Testament Survey', 'Comprehensive overview of Old Testament books, themes, and theological significance', 10, 40, 10, '#1e40af', true),\n('BIB102', 'New Testament Survey', 'In-depth study of New Testament gospels, epistles, and apocalyptic literature', 10, 40, 10, '#1e40af', true);",
-  "returncode": 1,
-  "logs": [
-    "ERROR 1054 (42S22) at line 1: Unknown column 'estimatedHours' in 'field list'"
-  ]
-}

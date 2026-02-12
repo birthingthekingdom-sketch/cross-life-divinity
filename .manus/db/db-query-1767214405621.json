@@ -1,9 +1,0 @@
-{
-  "query": "CREATE TABLE IF NOT EXISTS bridge_academy_topics (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  subjectCode VARCHAR(50) NOT NULL,\n  subjectName VARCHAR(255) NOT NULL,\n  topicNumber INT NOT NULL,\n  topicName VARCHAR(255) NOT NULL,\n  description TEXT,\n  estimatedHours INT DEFAULT 2,\n  difficultyLevel VARCHAR(20) DEFAULT 'medium',\n  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  UNIQUE KEY unique_topic (subjectCode, topicNumber)\n);",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute CREATE TABLE IF NOT EXISTS bridge_academy_topics (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  subjectCode VARCHAR(50) NOT NULL,\n  subjectName VARCHAR(255) NOT NULL,\n  topicNumber INT NOT NULL,\n  topicName VARCHAR(255) NOT NULL,\n  description TEXT,\n  estimatedHours INT DEFAULT 2,\n  difficultyLevel VARCHAR(20) DEFAULT 'medium',\n  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  UNIQUE KEY unique_topic (subjectCode, topicNumber)\n);",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 247
-}

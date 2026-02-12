@@ -1,8 +1,0 @@
-{
-  "query": "UPDATE users SET emailVerified = 1, emailVerifiedAt = CURRENT_TIMESTAMP WHERE email = 'admin@clsd.edu'",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute UPDATE users SET emailVerified = 1, emailVerifiedAt = CURRENT_TIMESTAMP WHERE email = 'admin@clsd.edu'",
-  "returncode": 1,
-  "logs": [
-    "ERROR 1054 (42S22) at line 1: Unknown column 'emailVerifiedAt' in 'field list'"
-  ]
-}
