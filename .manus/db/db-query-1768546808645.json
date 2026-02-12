@@ -1,0 +1,70 @@
+{
+  "query": "-- First check which lessons have content\nSELECT id, title, lessonOrder, LENGTH(content) as content_length \nFROM lessons \nWHERE id IN (570011, 570012, 570013, 570014, 570015, 630001, 630002, 630003, 630004, 630005)\nORDER BY lessonOrder, id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute -- First check which lessons have content\nSELECT id, title, lessonOrder, LENGTH(content) as content_length \nFROM lessons \nWHERE id IN (570011, 570012, 570013, 570014, 570015, 630001, 630002, 630003, 630004, 630005)\nORDER BY lessonOrder, id;",
+  "rows": [
+    {
+      "id": "570011",
+      "title": "Introduction to the New Testament",
+      "lessonOrder": "1",
+      "content_length": "94"
+    },
+    {
+      "id": "630001",
+      "title": "Introduction to the New Testament",
+      "lessonOrder": "1",
+      "content_length": "1958"
+    },
+    {
+      "id": "570012",
+      "title": "The Gospels: Matthew and Mark",
+      "lessonOrder": "2",
+      "content_length": "100"
+    },
+    {
+      "id": "630002",
+      "title": "The Four Gospels: Matthew and Mark",
+      "lessonOrder": "2",
+      "content_length": "1817"
+    },
+    {
+      "id": "570013",
+      "title": "The Gospels: Luke and John",
+      "lessonOrder": "3",
+      "content_length": "89"
+    },
+    {
+      "id": "630003",
+      "title": "The Four Gospels: Luke and John",
+      "lessonOrder": "3",
+      "content_length": "1889"
+    },
+    {
+      "id": "570014",
+      "title": "Acts: The Early Church",
+      "lessonOrder": "4",
+      "content_length": "100"
+    },
+    {
+      "id": "630004",
+      "title": "Acts and the Early Church",
+      "lessonOrder": "4",
+      "content_length": "2009"
+    },
+    {
+      "id": "570015",
+      "title": "Paul's Epistles: Romans and Corinthians",
+      "lessonOrder": "5",
+      "content_length": "85"
+    },
+    {
+      "id": "630005",
+      "title": "Paul's Epistles: Romans and Corinthians",
+      "lessonOrder": "5",
+      "content_length": "2003"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tlessonOrder\tcontent_length\n570011\tIntroduction to the New Testament\t1\t94\n630001\tIntroduction to the New Testament\t1\t1958\n570012\tThe Gospels: Matthew and Mark\t2\t100\n630002\tThe Four Gospels: Matthew and Mark\t2\t1817\n570013\tThe Gospels: Luke and John\t3\t89\n630003\tThe Four Gospels: Luke and John\t3\t1889\n570014\tActs: The Early Church\t4\t100\n630004\tActs and the Early Church\t4\t2009\n570015\tPaul's Epistles: Romans and Corinthians\t5\t85\n630005\tPaul's Epistles: Romans and Corinthians\t5\t2003\n",
+  "stderr": "",
+  "execution_time_ms": 58
+}

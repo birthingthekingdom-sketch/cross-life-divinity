@@ -1,0 +1,238 @@
+{
+  "query": "SELECT l.courseId, c.code, c.title, COUNT(*) as lesson_count FROM lessons l LEFT JOIN courses c ON l.courseId = c.id GROUP BY l.courseId ORDER BY l.courseId;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT l.courseId, c.code, c.title, COUNT(*) as lesson_count FROM lessons l LEFT JOIN courses c ON l.courseId = c.id GROUP BY l.courseId ORDER BY l.courseId;",
+  "rows": [
+    {
+      "courseId": "1",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "12"
+    },
+    {
+      "courseId": "2",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "9"
+    },
+    {
+      "courseId": "3",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "6"
+    },
+    {
+      "courseId": "4",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "6"
+    },
+    {
+      "courseId": "5",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "6"
+    },
+    {
+      "courseId": "6",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "6"
+    },
+    {
+      "courseId": "7",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "6"
+    },
+    {
+      "courseId": "30001",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "3"
+    },
+    {
+      "courseId": "30002",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "3"
+    },
+    {
+      "courseId": "30003",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "3"
+    },
+    {
+      "courseId": "150001",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "150002",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "150003",
+      "code": "THE201",
+      "title": "Systematic Theology",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "150004",
+      "code": "BIB201",
+      "title": "Biblical Hermeneutics",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "150005",
+      "code": "THE301",
+      "title": "Fundamentals of Apologetics",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "150006",
+      "code": "MIN101",
+      "title": "Evangelism and Discipleship",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "150007",
+      "code": "MIN102",
+      "title": "Discipleship Training",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "150008",
+      "code": "SPR101",
+      "title": "Prayer and Intercession",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "150009",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "150010",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "150011",
+      "code": "PAS201",
+      "title": "Pastoral Counseling",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "150012",
+      "code": "PAS301",
+      "title": "Church Administration",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "150013",
+      "code": "PAS101",
+      "title": "Homiletics",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "150014",
+      "code": "SPR201",
+      "title": "Discovering Spiritual Gifts",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "180001",
+      "code": "DIV101",
+      "title": "Understanding Prophecy",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "180002",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "180003",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "240001",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "390001",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "16"
+    },
+    {
+      "courseId": "390002",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "8"
+    },
+    {
+      "courseId": "390003",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "16"
+    },
+    {
+      "courseId": "390004",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "8"
+    },
+    {
+      "courseId": "570004",
+      "code": "DIV111",
+      "title": "Capstone Project",
+      "lesson_count": "16"
+    },
+    {
+      "courseId": "570005",
+      "code": "DIV112",
+      "title": "Christology",
+      "lesson_count": "20"
+    },
+    {
+      "courseId": "570006",
+      "code": "DIV113",
+      "title": "Contemporary Theological Issues",
+      "lesson_count": "20"
+    },
+    {
+      "courseId": "630001",
+      "code": "NULL",
+      "title": "NULL",
+      "lesson_count": "10"
+    },
+    {
+      "courseId": "690001",
+      "code": "DIV102",
+      "title": "Deliverance Ministry",
+      "lesson_count": "20"
+    },
+    {
+      "courseId": "690002",
+      "code": "LED202",
+      "title": "Christian Leadership",
+      "lesson_count": "20"
+    }
+  ],
+  "messages": [],
+  "stdout": "courseId\tcode\ttitle\tlesson_count\n1\tNULL\tNULL\t12\n2\tNULL\tNULL\t9\n3\tNULL\tNULL\t6\n4\tNULL\tNULL\t6\n5\tNULL\tNULL\t6\n6\tNULL\tNULL\t6\n7\tNULL\tNULL\t6\n30001\tNULL\tNULL\t3\n30002\tNULL\tNULL\t3\n30003\tNULL\tNULL\t3\n150001\tNULL\tNULL\t10\n150002\tNULL\tNULL\t10\n150003\tTHE201\tSystematic Theology\t10\n150004\tBIB201\tBiblical Hermeneutics\t10\n150005\tTHE301\tFundamentals of Apologetics\t10\n150006\tMIN101\tEvangelism and Discipleship\t10\n150007\tMIN102\tDiscipleship Training\t10\n150008\tSPR101\tPrayer and Intercession\t10\n150009\tNULL\tNULL\t10\n150010\tNULL\tNULL\t10\n150011\tPAS201\tPastoral Counseling\t10\n150012\tPAS301\tChurch Administration\t10\n150013\tPAS101\tHomiletics\t10\n150014\tSPR201\tDiscovering Spiritual Gifts\t10\n180001\tDIV101\tUnderstanding Prophecy\t10\n180002\tNULL\tNULL\t10\n180003\tNULL\tNULL\t10\n240001\tNULL\tNULL\t10\n390001\tNULL\tNULL\t16\n390002\tNULL\tNULL\t8\n390003\tNULL\tNULL\t16\n390004\tNULL\tNULL\t8\n570004\tDIV111\tCapstone Project\t16\n570005\tDIV112\tChristology\t20\n570006\tDIV113\tContemporary Theological Issues\t20\n630001\tNULL\tNULL\t10\n690001\tDIV102\tDeliverance Ministry\t20\n690002\tLED202\tChristian Leadership\t20\n",
+  "stderr": "",
+  "execution_time_ms": 51
+}

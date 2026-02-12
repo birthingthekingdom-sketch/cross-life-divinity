@@ -1,0 +1,70 @@
+{
+  "query": "SELECT id, title, lessonOrder, LENGTH(content) as content_length \nFROM lessons \nWHERE courseId = 780002 \nORDER BY lessonOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, title, lessonOrder, LENGTH(content) as content_length \nFROM lessons \nWHERE courseId = 780002 \nORDER BY lessonOrder;",
+  "rows": [
+    {
+      "id": "630001",
+      "title": "Introduction to the New Testament",
+      "lessonOrder": "1",
+      "content_length": "1958"
+    },
+    {
+      "id": "630002",
+      "title": "The Four Gospels: Matthew and Mark",
+      "lessonOrder": "2",
+      "content_length": "1817"
+    },
+    {
+      "id": "630003",
+      "title": "The Four Gospels: Luke and John",
+      "lessonOrder": "3",
+      "content_length": "1889"
+    },
+    {
+      "id": "630004",
+      "title": "Acts and the Early Church",
+      "lessonOrder": "4",
+      "content_length": "2009"
+    },
+    {
+      "id": "630005",
+      "title": "Paul's Epistles: Romans and Corinthians",
+      "lessonOrder": "5",
+      "content_length": "2003"
+    },
+    {
+      "id": "720001",
+      "title": "Paul's Later Epistles: Galatians through Philemon",
+      "lessonOrder": "6",
+      "content_length": "40"
+    },
+    {
+      "id": "720002",
+      "title": "Hebrews and the General Epistles",
+      "lessonOrder": "7",
+      "content_length": "47"
+    },
+    {
+      "id": "720003",
+      "title": "The Johannine Epistles",
+      "lessonOrder": "8",
+      "content_length": "37"
+    },
+    {
+      "id": "720004",
+      "title": "The Book of Revelation",
+      "lessonOrder": "9",
+      "content_length": "29"
+    },
+    {
+      "id": "720005",
+      "title": "New Testament Theology and Application",
+      "lessonOrder": "10",
+      "content_length": "30"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tlessonOrder\tcontent_length\n630001\tIntroduction to the New Testament\t1\t1958\n630002\tThe Four Gospels: Matthew and Mark\t2\t1817\n630003\tThe Four Gospels: Luke and John\t3\t1889\n630004\tActs and the Early Church\t4\t2009\n630005\tPaul's Epistles: Romans and Corinthians\t5\t2003\n720001\tPaul's Later Epistles: Galatians through Philemon\t6\t40\n720002\tHebrews and the General Epistles\t7\t47\n720003\tThe Johannine Epistles\t8\t37\n720004\tThe Book of Revelation\t9\t29\n720005\tNew Testament Theology and Application\t10\t30\n",
+  "stderr": "",
+  "execution_time_ms": 60
+}

@@ -1,0 +1,52 @@
+{
+  "query": "SELECT id, name, email, role, openId FROM users ORDER BY createdAt ASC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, name, email, role, openId FROM users ORDER BY createdAt ASC;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Christ Family Network",
+      "email": "birthingthekingdom@gmail.com",
+      "role": "admin",
+      "openId": "c7kp4HQiLJNbTh3pgtotvS"
+    },
+    {
+      "id": "6690003",
+      "name": "Larry",
+      "email": "Studio6817@yahoo.com",
+      "role": "admin",
+      "openId": "gYgBDobhvEHWcosmP9gGNb"
+    },
+    {
+      "id": "6900001",
+      "name": "Deidra Tarver",
+      "email": "deidratarver@gmail.com",
+      "role": "user",
+      "openId": "66bYKbu9dDjqPqLPonC6Fg"
+    },
+    {
+      "id": "6990001",
+      "name": "Mary Muhammad",
+      "email": "marymuh@hotmail.com",
+      "role": "user",
+      "openId": "JMYVQtPTMSUggt2hCVFx6B"
+    },
+    {
+      "id": "6990015",
+      "name": "Mary Muhammad",
+      "email": "marymuh@yahoo.com",
+      "role": "user",
+      "openId": "NULL"
+    },
+    {
+      "id": "8520002",
+      "name": "Elijah Fisher",
+      "email": "fisherelijah37@gmail.com",
+      "role": "user",
+      "openId": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\temail\trole\topenId\n1\tChrist Family Network\tbirthingthekingdom@gmail.com\tadmin\tc7kp4HQiLJNbTh3pgtotvS\n6690003\tLarry\tStudio6817@yahoo.com\tadmin\tgYgBDobhvEHWcosmP9gGNb\n6900001\tDeidra Tarver\tdeidratarver@gmail.com\tuser\t66bYKbu9dDjqPqLPonC6Fg\n6990001\tMary Muhammad\tmarymuh@hotmail.com\tuser\tJMYVQtPTMSUggt2hCVFx6B\n6990015\tMary Muhammad\tmarymuh@yahoo.com\tuser\tNULL\n8520002\tElijah Fisher\tfisherelijah37@gmail.com\tuser\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 52
+}

@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS bridge_academy_practice_attempts (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  userId INT NOT NULL,\n  topicId INT NOT NULL,\n  startedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  completedAt TIMESTAMP NULL,\n  score INT,\n  percentageScore DECIMAL(5,2),\n  timeSpent INT,\n  questionsAttempted INT,\n  correctAnswers INT,\n  difficultyLevel VARCHAR(20),\n  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,\n  FOREIGN KEY (topicId) REFERENCES bridge_academy_topics(id) ON DELETE CASCADE\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute CREATE TABLE IF NOT EXISTS bridge_academy_practice_attempts (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  userId INT NOT NULL,\n  topicId INT NOT NULL,\n  startedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  completedAt TIMESTAMP NULL,\n  score INT,\n  percentageScore DECIMAL(5,2),\n  timeSpent INT,\n  questionsAttempted INT,\n  correctAnswers INT,\n  difficultyLevel VARCHAR(20),\n  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,\n  FOREIGN KEY (topicId) REFERENCES bridge_academy_topics(id) ON DELETE CASCADE\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 53
+}

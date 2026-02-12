@@ -1,0 +1,70 @@
+{
+  "query": "SELECT id, title, lessonOrder, LENGTH(content) as content_length \nFROM lessons \nWHERE courseId = 180001 \nORDER BY lessonOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, title, lessonOrder, LENGTH(content) as content_length \nFROM lessons \nWHERE courseId = 180001 \nORDER BY lessonOrder;",
+  "rows": [
+    {
+      "id": "360101",
+      "title": "Introduction to Biblical Prophecy - The Prophetic Office and Gift",
+      "lessonOrder": "1",
+      "content_length": "12395"
+    },
+    {
+      "id": "510014",
+      "title": "Lesson 1: Understanding Prophecy",
+      "lessonOrder": "1",
+      "content_length": "49"
+    },
+    {
+      "id": "360102",
+      "title": "The Old Testament Prophets - God's Covenant Messengers",
+      "lessonOrder": "2",
+      "content_length": "15035"
+    },
+    {
+      "id": "510090",
+      "title": "Lesson 2: Understanding Prophecy",
+      "lessonOrder": "2",
+      "content_length": "49"
+    },
+    {
+      "id": "360103",
+      "title": "The Gift of Prophecy in the New Testament Church",
+      "lessonOrder": "3",
+      "content_length": "13431"
+    },
+    {
+      "id": "510033",
+      "title": "Lesson 3: Understanding Prophecy",
+      "lessonOrder": "3",
+      "content_length": "49"
+    },
+    {
+      "id": "360104",
+      "title": "Testing and Discerning Prophetic Words",
+      "lessonOrder": "4",
+      "content_length": "12080"
+    },
+    {
+      "id": "510109",
+      "title": "Lesson 4: Understanding Prophecy",
+      "lessonOrder": "4",
+      "content_length": "49"
+    },
+    {
+      "id": "360105",
+      "title": "The Prophetic Ministry of Jesus Christ",
+      "lessonOrder": "5",
+      "content_length": "16130"
+    },
+    {
+      "id": "510071",
+      "title": "Lesson 5: Understanding Prophecy",
+      "lessonOrder": "5",
+      "content_length": "49"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tlessonOrder\tcontent_length\n360101\tIntroduction to Biblical Prophecy - The Prophetic Office and Gift\t1\t12395\n510014\tLesson 1: Understanding Prophecy\t1\t49\n360102\tThe Old Testament Prophets - God's Covenant Messengers\t2\t15035\n510090\tLesson 2: Understanding Prophecy\t2\t49\n360103\tThe Gift of Prophecy in the New Testament Church\t3\t13431\n510033\tLesson 3: Understanding Prophecy\t3\t49\n360104\tTesting and Discerning Prophetic Words\t4\t12080\n510109\tLesson 4: Understanding Prophecy\t4\t49\n360105\tThe Prophetic Ministry of Jesus Christ\t5\t16130\n510071\tLesson 5: Understanding Prophecy\t5\t49\n",
+  "stderr": "",
+  "execution_time_ms": 61
+}

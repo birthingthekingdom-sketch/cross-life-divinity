@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homiletics - Course Introduction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container { width: 100%; min-height: 100vh; background: linear-gradient(135deg, #1e3a8a 0%, #2c5aa0 100%); display: flex; align-items: center; justify-content: space-between; position: relative; overflow: hidden; 
+            transform-origin: top left;
+            transform: scale(1);
+        }
+        .accent-bar { position: absolute; left: 45%; top: 0; width: 8px; height: 100%; background: linear-gradient(180deg, #d4af37 0%, #f4d03f 50%, #d4af37 100%); box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+        .content-left { flex: 1; padding-left: 60px; padding-right: 40px; z-index: 2; }
+        .content-right { flex: 1; padding-left: 40px; padding-right: 60px; z-index: 2; }
+        .course-code { font-family: 'Open Sans', sans-serif; font-size: 14px; font-weight: 600; color: #d4af37; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; }
+        .main-title { font-family: 'Merriweather', serif; font-size: 64px; font-weight: 700; color: #ffffff; line-height: 1.2; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+        .subtitle { font-family: 'Merriweather', serif; font-size: 28px; font-weight: 400; color: #d4af37; line-height: 1.4; margin-bottom: 30px; }
+        .tagline { font-family: 'Open Sans', sans-serif; font-size: 18px; font-weight: 400; color: #f5f5f5; line-height: 1.6; margin-bottom: 40px; max-width: 500px; }
+        .key-topics { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
+        .topic-item { font-family: 'Open Sans', sans-serif; font-size: 14px; color: #f5f5f5; padding: 10px 15px; background: rgba(212, 175, 55, 0.1); border-left: 3px solid #d4af37; }
+        .topic-item strong { color: #d4af37; font-weight: 600; }
+        .decorative-circle { position: absolute; bottom: -50px; right: -50px; width: 300px; height: 300px; border: 2px solid rgba(212, 175, 55, 0.1); border-radius: 50%; }
+        .decorative-circle-2 { position: absolute; top: -100px; right: 10%; width: 200px; height: 200px; border: 2px solid rgba(212, 175, 55, 0.05); border-radius: 50%; }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="accent-bar"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle-2"></div>
+        <div class="content-left">
+            <div class="course-code">PAS101</div>
+            <h1 class="main-title">Homiletics</h1>
+            <p class="subtitle">The Art of Biblical Preaching</p>
+            <p class="tagline">Master the art and science of biblical preaching.</p>
+        </div>
+        <div class="content-right">
+            <div class="key-topics">
+                <div class="topic-item"><strong>Exegesis</strong> - Text analysis</div>
+                <div class="topic-item"><strong>Structure</strong> - Sermon organization</div>
+                <div class="topic-item"><strong>Delivery</strong> - Speaking skills</div>
+                <div class="topic-item"><strong>Application</strong> - Practical relevance</div>
+                <div class="topic-item"><strong>Illustration</strong> - Engaging stories</div>
+                <div class="topic-item"><strong>Preparation</strong> - Study methods</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

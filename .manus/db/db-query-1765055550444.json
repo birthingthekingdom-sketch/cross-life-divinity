@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO learning_path_courses (pathId, courseId, orderIndex)\nSELECT 1, c.id, \n  CASE c.title\n    WHEN 'Introduction to Theology' THEN 1\n    WHEN 'Biblical Hermeneutics' THEN 2\n    WHEN 'Christian Ethics' THEN 3\n  END\nFROM courses c\nWHERE c.title IN ('Introduction to Theology', 'Biblical Hermeneutics', 'Christian Ethics')",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO learning_path_courses (pathId, courseId, orderIndex)\nSELECT 1, c.id, \n  CASE c.title\n    WHEN 'Introduction to Theology' THEN 1\n    WHEN 'Biblical Hermeneutics' THEN 2\n    WHEN 'Christian Ethics' THEN 3\n  END\nFROM courses c\nWHERE c.title IN ('Introduction to Theology', 'Biblical Hermeneutics', 'Christian Ethics')",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 75
+}

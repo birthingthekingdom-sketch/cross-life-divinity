@@ -1,0 +1,19 @@
+{
+  "query": "SELECT id, code, title, description, price, cpdHours, totalLessons FROM courses WHERE code = 'CHAP101';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code, title, description, price, cpdHours, totalLessons FROM courses WHERE code = 'CHAP101';",
+  "rows": [
+    {
+      "id": "630001",
+      "code": "CHAP101",
+      "title": "Chaplain's Training",
+      "description": "This comprehensive course prepares students for effective chaplaincy ministry across various settings including hospitals, military, prisons, and corporate environments. Students will develop essential skills in pastoral care, crisis intervention, ethical decision-making, and spiritual counseling while learning to minister to diverse populations in institutional contexts. The curriculum covers theological foundations of chaplaincy, professional boundaries, trauma-informed care, and interfaith sensitivity. Through case studies and practical applications, students will gain competency in providing compassionate spiritual support during life transitions, grief, illness, and crisis situations.",
+      "price": "32500",
+      "cpdHours": "30",
+      "totalLessons": "10"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\tdescription\tprice\tcpdHours\ttotalLessons\n630001\tCHAP101\tChaplain's Training\tThis comprehensive course prepares students for effective chaplaincy ministry across various settings including hospitals, military, prisons, and corporate environments. Students will develop essential skills in pastoral care, crisis intervention, ethical decision-making, and spiritual counseling while learning to minister to diverse populations in institutional contexts. The curriculum covers theological foundations of chaplaincy, professional boundaries, trauma-informed care, and interfaith sensitivity. Through case studies and practical applications, students will gain competency in providing compassionate spiritual support during life transitions, grief, illness, and crisis situations.\t32500\t30\t10\n",
+  "stderr": "",
+  "execution_time_ms": 520
+}

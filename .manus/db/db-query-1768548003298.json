@@ -1,0 +1,35 @@
+{
+  "query": "SELECT id, name, email FROM users LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, name, email FROM users LIMIT 5;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Christ Family Network",
+      "email": "birthingthekingdom@gmail.com"
+    },
+    {
+      "id": "6690003",
+      "name": "Larry",
+      "email": "Studio6817@yahoo.com"
+    },
+    {
+      "id": "6900001",
+      "name": "Deidra Tarver",
+      "email": "deidratarver@gmail.com"
+    },
+    {
+      "id": "6990001",
+      "name": "Mary Muhammad",
+      "email": "marymuh@hotmail.com"
+    },
+    {
+      "id": "6990015",
+      "name": "Mary Muhammad",
+      "email": "marymuh@yahoo.com"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\temail\n1\tChrist Family Network\tbirthingthekingdom@gmail.com\n6690003\tLarry\tStudio6817@yahoo.com\n6900001\tDeidra Tarver\tdeidratarver@gmail.com\n6990001\tMary Muhammad\tmarymuh@hotmail.com\n6990015\tMary Muhammad\tmarymuh@yahoo.com\n",
+  "stderr": "",
+  "execution_time_ms": 60
+}

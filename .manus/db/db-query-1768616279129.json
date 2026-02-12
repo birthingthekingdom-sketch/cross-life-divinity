@@ -1,0 +1,178 @@
+{
+  "query": "SELECT \n  c.id,\n  c.code as courseCode,\n  c.title,\n  COUNT(DISTINCT l.id) as lesson_count,\n  COUNT(DISTINCT q.id) as quiz_count\nFROM courses c\nLEFT JOIN lessons l ON c.id = l.courseId\nLEFT JOIN quiz_questions q ON l.id = q.lessonId\nGROUP BY c.id, c.code, c.title\nORDER BY c.code",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT \n  c.id,\n  c.code as courseCode,\n  c.title,\n  COUNT(DISTINCT l.id) as lesson_count,\n  COUNT(DISTINCT q.id) as quiz_count\nFROM courses c\nLEFT JOIN lessons l ON c.id = l.courseId\nLEFT JOIN quiz_questions q ON l.id = q.lessonId\nGROUP BY c.id, c.code, c.title\nORDER BY c.code",
+  "rows": [
+    {
+      "id": "780001",
+      "courseCode": "BIB101",
+      "title": "Old Testament Survey",
+      "lesson_count": "10",
+      "quiz_count": "110"
+    },
+    {
+      "id": "780002",
+      "courseCode": "BIB102",
+      "title": "New Testament Survey",
+      "lesson_count": "10",
+      "quiz_count": "110"
+    },
+    {
+      "id": "810001",
+      "courseCode": "BIB103",
+      "title": "Biblical Hermeneutics",
+      "lesson_count": "10",
+      "quiz_count": "110"
+    },
+    {
+      "id": "840001",
+      "courseCode": "CHAP101",
+      "title": "Chaplaincy Training",
+      "lesson_count": "10",
+      "quiz_count": "110"
+    },
+    {
+      "id": "180001",
+      "courseCode": "DIV101",
+      "title": "Understanding Prophecy",
+      "lesson_count": "10",
+      "quiz_count": "110"
+    },
+    {
+      "id": "690001",
+      "courseCode": "DIV102",
+      "title": "Deliverance Ministry",
+      "lesson_count": "4",
+      "quiz_count": "4"
+    },
+    {
+      "id": "570004",
+      "courseCode": "DIV111",
+      "title": "Capstone Project",
+      "lesson_count": "10",
+      "quiz_count": "110"
+    },
+    {
+      "id": "570005",
+      "courseCode": "DIV112",
+      "title": "Christology",
+      "lesson_count": "10",
+      "quiz_count": "110"
+    },
+    {
+      "id": "570006",
+      "courseCode": "DIV113",
+      "title": "Contemporary Theological Issues",
+      "lesson_count": "10",
+      "quiz_count": "110"
+    },
+    {
+      "id": "660004",
+      "courseCode": "GED-LANG",
+      "title": "GED Language Arts",
+      "lesson_count": "10",
+      "quiz_count": "220"
+    },
+    {
+      "id": "660003",
+      "courseCode": "GED-MATH",
+      "title": "GED Mathematics",
+      "lesson_count": "10",
+      "quiz_count": "110"
+    },
+    {
+      "id": "660005",
+      "courseCode": "GED-SCI",
+      "title": "GED Science",
+      "lesson_count": "10",
+      "quiz_count": "110"
+    },
+    {
+      "id": "660006",
+      "courseCode": "GED-SOCIAL",
+      "title": "GED Social Studies",
+      "lesson_count": "10",
+      "quiz_count": "110"
+    },
+    {
+      "id": "690002",
+      "courseCode": "LED202",
+      "title": "Christian Leadership",
+      "lesson_count": "2",
+      "quiz_count": "22"
+    },
+    {
+      "id": "150006",
+      "courseCode": "MIN101",
+      "title": "Evangelism and Discipleship",
+      "lesson_count": "10",
+      "quiz_count": "121"
+    },
+    {
+      "id": "150007",
+      "courseCode": "MIN102",
+      "title": "Discipleship Training",
+      "lesson_count": "5",
+      "quiz_count": "77"
+    },
+    {
+      "id": "150013",
+      "courseCode": "PAS101",
+      "title": "Homiletics",
+      "lesson_count": "10",
+      "quiz_count": "165"
+    },
+    {
+      "id": "150011",
+      "courseCode": "PAS201",
+      "title": "Pastoral Counseling",
+      "lesson_count": "5",
+      "quiz_count": "55"
+    },
+    {
+      "id": "150012",
+      "courseCode": "PAS301",
+      "title": "Church Administration",
+      "lesson_count": "5",
+      "quiz_count": "77"
+    },
+    {
+      "id": "150008",
+      "courseCode": "SPR101",
+      "title": "Prayer and Intercession",
+      "lesson_count": "10",
+      "quiz_count": "110"
+    },
+    {
+      "id": "150014",
+      "courseCode": "SPR201",
+      "title": "Discovering Spiritual Gifts",
+      "lesson_count": "5",
+      "quiz_count": "55"
+    },
+    {
+      "id": "150003",
+      "courseCode": "THE201",
+      "title": "Systematic Theology",
+      "lesson_count": "8",
+      "quiz_count": "88"
+    },
+    {
+      "id": "150005",
+      "courseCode": "THE301",
+      "title": "Fundamentals of Apologetics",
+      "lesson_count": "5",
+      "quiz_count": "88"
+    },
+    {
+      "id": "360001",
+      "courseCode": "WOR101",
+      "title": "Biblical Worship",
+      "lesson_count": "10",
+      "quiz_count": "110"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcourseCode\ttitle\tlesson_count\tquiz_count\n780001\tBIB101\tOld Testament Survey\t10\t110\n780002\tBIB102\tNew Testament Survey\t10\t110\n810001\tBIB103\tBiblical Hermeneutics\t10\t110\n840001\tCHAP101\tChaplaincy Training\t10\t110\n180001\tDIV101\tUnderstanding Prophecy\t10\t110\n690001\tDIV102\tDeliverance Ministry\t4\t4\n570004\tDIV111\tCapstone Project\t10\t110\n570005\tDIV112\tChristology\t10\t110\n570006\tDIV113\tContemporary Theological Issues\t10\t110\n660004\tGED-LANG\tGED Language Arts\t10\t220\n660003\tGED-MATH\tGED Mathematics\t10\t110\n660005\tGED-SCI\tGED Science\t10\t110\n660006\tGED-SOCIAL\tGED Social Studies\t10\t110\n690002\tLED202\tChristian Leadership\t2\t22\n150006\tMIN101\tEvangelism and Discipleship\t10\t121\n150007\tMIN102\tDiscipleship Training\t5\t77\n150013\tPAS101\tHomiletics\t10\t165\n150011\tPAS201\tPastoral Counseling\t5\t55\n150012\tPAS301\tChurch Administration\t5\t77\n150008\tSPR101\tPrayer and Intercession\t10\t110\n150014\tSPR201\tDiscovering Spiritual Gifts\t5\t55\n150003\tTHE201\tSystematic Theology\t8\t88\n150005\tTHE301\tFundamentals of Apologetics\t5\t88\n360001\tWOR101\tBiblical Worship\t10\t110\n",
+  "stderr": "",
+  "execution_time_ms": 55
+}

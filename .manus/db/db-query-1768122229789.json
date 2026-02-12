@@ -1,0 +1,130 @@
+{
+  "query": "SELECT COUNT(*) as total_lessons FROM lessons; SELECT DISTINCT courseId FROM lessons ORDER BY courseId;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT COUNT(*) as total_lessons FROM lessons; SELECT DISTINCT courseId FROM lessons ORDER BY courseId;",
+  "rows": [
+    {
+      "total_lessons": "394"
+    },
+    {
+      "total_lessons": "courseId"
+    },
+    {
+      "total_lessons": "1"
+    },
+    {
+      "total_lessons": "2"
+    },
+    {
+      "total_lessons": "3"
+    },
+    {
+      "total_lessons": "4"
+    },
+    {
+      "total_lessons": "5"
+    },
+    {
+      "total_lessons": "6"
+    },
+    {
+      "total_lessons": "7"
+    },
+    {
+      "total_lessons": "30001"
+    },
+    {
+      "total_lessons": "30002"
+    },
+    {
+      "total_lessons": "30003"
+    },
+    {
+      "total_lessons": "150001"
+    },
+    {
+      "total_lessons": "150002"
+    },
+    {
+      "total_lessons": "150003"
+    },
+    {
+      "total_lessons": "150004"
+    },
+    {
+      "total_lessons": "150005"
+    },
+    {
+      "total_lessons": "150006"
+    },
+    {
+      "total_lessons": "150007"
+    },
+    {
+      "total_lessons": "150008"
+    },
+    {
+      "total_lessons": "150009"
+    },
+    {
+      "total_lessons": "150010"
+    },
+    {
+      "total_lessons": "150011"
+    },
+    {
+      "total_lessons": "150012"
+    },
+    {
+      "total_lessons": "150013"
+    },
+    {
+      "total_lessons": "150014"
+    },
+    {
+      "total_lessons": "180001"
+    },
+    {
+      "total_lessons": "180002"
+    },
+    {
+      "total_lessons": "180003"
+    },
+    {
+      "total_lessons": "240001"
+    },
+    {
+      "total_lessons": "390001"
+    },
+    {
+      "total_lessons": "390002"
+    },
+    {
+      "total_lessons": "390003"
+    },
+    {
+      "total_lessons": "390004"
+    },
+    {
+      "total_lessons": "570004"
+    },
+    {
+      "total_lessons": "570005"
+    },
+    {
+      "total_lessons": "570006"
+    },
+    {
+      "total_lessons": "630001"
+    },
+    {
+      "total_lessons": "690001"
+    },
+    {
+      "total_lessons": "690002"
+    }
+  ],
+  "messages": [],
+  "stdout": "total_lessons\n394\ncourseId\n1\n2\n3\n4\n5\n6\n7\n30001\n30002\n30003\n150001\n150002\n150003\n150004\n150005\n150006\n150007\n150008\n150009\n150010\n150011\n150012\n150013\n150014\n180001\n180002\n180003\n240001\n390001\n390002\n390003\n390004\n570004\n570005\n570006\n630001\n690001\n690002\n",
+  "stderr": "",
+  "execution_time_ms": 75
+}

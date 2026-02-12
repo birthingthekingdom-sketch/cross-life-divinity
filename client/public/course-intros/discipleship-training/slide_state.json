@@ -1,0 +1,52 @@
+{
+  "project_info": {
+    "title": "Discipleship Training",
+    "created": 1767374013.1076458,
+    "last_updated": 1767374072.1173158,
+    "total_slides": 5
+  },
+  "slides": {
+    "title_slide": "edited",
+    "course_overview": "edited",
+    "learning_objectives": "edited",
+    "course_structure": "edited",
+    "call_to_action": "edited"
+  },
+  "outline": [
+    {
+      "id": "title_slide",
+      "title": "Discipleship Training",
+      "summary": "Welcome to Discipleship Training. Equip believers for spiritual growth and maturity. This course provides frameworks and tools for effective disciple-making and spiritual formation.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "course_overview",
+      "title": "Course Overview",
+      "summary": "Learn to equip believers for spiritual growth and maturity. This course provides frameworks and tools for effective disciple-making and spiritual formation in your ministry.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "learning_objectives",
+      "title": "What You'll Learn",
+      "summary": "Master spiritual formation and growth stages. Assess spiritual maturity and design discipleship models. Develop one-on-one and group discipleship. Create accountability structures and reproduce disciples.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "course_structure",
+      "title": "Course Structure",
+      "summary": "10 comprehensive lessons covering foundations of discipleship, spiritual formation, assessing maturity, discipleship models, one-on-one discipleship, group discipleship, accountability structures, obstacles, reproducing disciples, and integration.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "call_to_action",
+      "title": "Ready to Begin?",
+      "summary": "Enroll now and equip believers for spiritual growth and maturity. Develop the skills and frameworks to effectively disciple others and see transformation in your church community.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    }
+  ]
+}

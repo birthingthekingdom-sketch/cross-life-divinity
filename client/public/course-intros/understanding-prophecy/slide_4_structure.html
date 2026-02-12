@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Structure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .slide-container {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #001f3f 0%, #003d5c 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        
+            transform-origin: top left;
+            transform: scale(1);
+        }
+
+        .content-wrapper {
+            max-width: 1000px;
+            width: 100%;
+            padding-top: 60px;
+            padding-left: 60px;
+            padding-right: 60px;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .slide-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+
+        .intro-text {
+            font-family: 'Merriweather', serif;
+            font-size: 20px;
+            font-weight: 400;
+            color: #E8E8E8;
+            line-height: 1.8;
+            margin-bottom: 50px;
+        }
+
+        .lessons-count {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #D4AF37;
+            margin-bottom: 40px;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .component-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .component-icon {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #D4AF37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .component-title {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #D4AF37;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .component-description {
+            font-family: 'Merriweather', serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        .reinforcement-statement {
+            font-family: 'Merriweather', serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: #FFFFFF;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 3px;
+            background: #D4AF37;
+            margin: 30px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <h2 class="slide-heading">Course Structure</h2>
+            
+            <p class="intro-text">Comprehensive theological education designed for deep learning and spiritual growth</p>
+
+            <div class="lessons-count">10 Lessons</div>
+
+            <div class="components-grid">
+                <div class="component-box">
+                    <div class="component-icon">🎥</div>
+                    <div class="component-title">Video Content</div>
+                    <p class="component-description">Engaging lectures and teachings</p>
+                </div>
+
+                <div class="component-box">
+                    <div class="component-icon">📚</div>
+                    <div class="component-title">Reading Materials</div>
+                    <p class="component-description">Scholarly resources and texts</p>
+                </div>
+
+                <div class="component-box">
+                    <div class="component-icon">✓</div>
+                    <div class="component-title">Interactive Quizzes</div>
+                    <p class="component-description">Reinforce your learning</p>
+                </div>
+            </div>
+
+            <div class="accent-line"></div>
+
+            <p class="reinforcement-statement">Each lesson integrates multiple learning modalities to ensure comprehensive understanding and retention of theological principles</p>
+        </div>
+    </div>
+</body>
+</html>

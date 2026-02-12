@@ -1,0 +1,46 @@
+{
+  "query": "SELECT id, code, title, description FROM courses WHERE title LIKE '%TEST%' OR title LIKE '%Test%' OR code LIKE '%TEST%' LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code, title, description FROM courses WHERE title LIKE '%TEST%' OR title LIKE '%Test%' OR code LIKE '%TEST%' LIMIT 20;",
+  "rows": [
+    {
+      "id": "330001",
+      "code": "BIB101",
+      "title": "Old Testament Survey",
+      "description": "Comprehensive overview of the Old Testament, covering the historical, wisdom, and prophetic books. Students will explore the major themes, key figures, and theological significance of the Hebrew scriptures, understanding how Old Testament narratives and prophecies connect to New Testament fulfillment and Christian theology."
+    },
+    {
+      "id": "330002",
+      "code": "BIB102",
+      "title": "New Testament Survey",
+      "description": "Comprehensive study of the New Testament Gospels, Acts, epistles, and Revelation. Students will examine the life and teachings of Jesus, the early church, apostolic writings, and eschatological themes, developing a thorough understanding of New Testament theology and its practical applications for Christian living and ministry."
+    },
+    {
+      "id": "420001",
+      "code": "CSV1767217558324",
+      "title": "CSV Test Course",
+      "description": "NULL"
+    },
+    {
+      "id": "420002",
+      "code": "TEST-ENH-1767217558328",
+      "title": "Test Enhancement Course",
+      "description": "Course for testing enhancements"
+    },
+    {
+      "id": "420003",
+      "code": "TEST1767217559235",
+      "title": "Test Analytics Course",
+      "description": "NULL"
+    },
+    {
+      "id": "420004",
+      "code": "TWC1767217559306",
+      "title": "Test Webinar Course",
+      "description": "Course for webinar testing"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\tdescription\n330001\tBIB101\tOld Testament Survey\tComprehensive overview of the Old Testament, covering the historical, wisdom, and prophetic books. Students will explore the major themes, key figures, and theological significance of the Hebrew scriptures, understanding how Old Testament narratives and prophecies connect to New Testament fulfillment and Christian theology.\n330002\tBIB102\tNew Testament Survey\tComprehensive study of the New Testament Gospels, Acts, epistles, and Revelation. Students will examine the life and teachings of Jesus, the early church, apostolic writings, and eschatological themes, developing a thorough understanding of New Testament theology and its practical applications for Christian living and ministry.\n420001\tCSV1767217558324\tCSV Test Course\tNULL\n420002\tTEST-ENH-1767217558328\tTest Enhancement Course\tCourse for testing enhancements\n420003\tTEST1767217559235\tTest Analytics Course\tNULL\n420004\tTWC1767217559306\tTest Webinar Course\tCourse for webinar testing\n",
+  "stderr": "",
+  "execution_time_ms": 59
+}

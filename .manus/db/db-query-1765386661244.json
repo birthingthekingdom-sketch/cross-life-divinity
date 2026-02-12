@@ -1,0 +1,16 @@
+{
+  "query": "SELECT \n  COUNT(*) as total_lessons,\n  SUM(CASE WHEN content IS NOT NULL AND LENGTH(content) > 2000 THEN 1 ELSE 0 END) as lessons_with_content,\n  SUM(CASE WHEN scripture IS NOT NULL THEN 1 ELSE 0 END) as lessons_with_scripture,\n  AVG(LENGTH(content)) as avg_content_length\nFROM lessons;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT \n  COUNT(*) as total_lessons,\n  SUM(CASE WHEN content IS NOT NULL AND LENGTH(content) > 2000 THEN 1 ELSE 0 END) as lessons_with_content,\n  SUM(CASE WHEN scripture IS NOT NULL THEN 1 ELSE 0 END) as lessons_with_scripture,\n  AVG(LENGTH(content)) as avg_content_length\nFROM lessons;",
+  "rows": [
+    {
+      "total_lessons": "240",
+      "lessons_with_content": "180",
+      "lessons_with_scripture": "240",
+      "avg_content_length": "10809.4292"
+    }
+  ],
+  "messages": [],
+  "stdout": "total_lessons\tlessons_with_content\tlessons_with_scripture\tavg_content_length\n240\t180\t240\t10809.4292\n",
+  "stderr": "",
+  "execution_time_ms": 65
+}

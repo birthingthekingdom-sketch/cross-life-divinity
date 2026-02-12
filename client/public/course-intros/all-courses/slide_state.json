@@ -1,0 +1,166 @@
+{
+  "project_info": {
+    "title": "Theological Courses Catalog",
+    "created": 1768119348.7032928,
+    "last_updated": 1768119548.2064772,
+    "total_slides": 19
+  },
+  "slides": {
+    "title_slide": "edited",
+    "bib101_old_testament": "edited",
+    "bib102_new_testament": "edited",
+    "the201_systematic_theology": "edited",
+    "bib201_biblical_hermeneutics": "edited",
+    "div101_understanding_prophecy": "edited",
+    "the301_fundamentals_apologetics": "edited",
+    "div102_deliverance_ministry": "edited",
+    "min101_evangelism_discipleship": "edited",
+    "min102_discipleship_training": "edited",
+    "spr101_prayer_intercession": "edited",
+
+    "pas201_pastoral_counseling": "edited",
+    "pas301_church_administration": "edited",
+    "pas101_homiletics": "edited",
+    "spr201_spiritual_gifts": "edited",
+    "wor101_biblical_worship": "edited",
+    "div111_capstone_project": "edited",
+    "div112_christology": "edited",
+    "div113_contemporary_theological": "edited"
+  },
+  "outline": [
+    {
+      "id": "title_slide",
+      "title": "Theological Courses Catalog",
+      "summary": "Welcome to the comprehensive theological courses program offering 19 courses covering essential ministry topics and Christian education.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "bib101_old_testament",
+      "title": "BIB101: Old Testament Survey",
+      "summary": "Comprehensive survey of the Old Testament covering historical, poetic, and prophetic books. 20 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "bib102_new_testament",
+      "title": "BIB102: New Testament Survey",
+      "summary": "In-depth survey of the New Testament including Gospels, Acts, Paul's epistles, and general epistles. 20 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "the201_systematic_theology",
+      "title": "THE201: Systematic Theology",
+      "summary": "Foundational study of Christian doctrine organized by major theological loci including theology proper, Christology, pneumatology, and eschatology. 45 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "bib201_biblical_hermeneutics",
+      "title": "BIB201: Biblical Hermeneutics",
+      "summary": "Training in biblical interpretation principles including grammatical-historical interpretation, genre analysis, and responsible application methods. 35 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "div101_understanding_prophecy",
+      "title": "DIV101: Understanding Prophecy",
+      "summary": "Study of the office and gift of prophecy and its role in the believer's life, including divine insight and spiritual guidance. 25 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "the301_fundamentals_apologetics",
+      "title": "THE301: Fundamentals of Apologetics",
+      "summary": "Intellectually rigorous course equipping students to defend the Christian faith through reasoned arguments and historical evidence. 35 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "div102_deliverance_ministry",
+      "title": "DIV102: Deliverance Ministry",
+      "summary": "Comprehensive exploration of biblical foundations and practical applications of deliverance ministry and spiritual freedom. 30 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "min101_evangelism_discipleship",
+      "title": "MIN101: Evangelism and Discipleship",
+      "summary": "Practical theology course exploring biblical foundations and effective strategies for gospel sharing and making disciples. 30 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "min102_discipleship_training",
+      "title": "MIN102: Discipleship Training",
+      "summary": "Comprehensive framework for spiritual formation and leadership development within the body of Christ. 35 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "spr101_prayer_intercession",
+      "title": "SPR101: Prayer and Intercession",
+      "summary": "Spiritually formative course on the theology and practice of prayer as foundation of Christian life and ministry. 30 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+
+    {
+      "id": "pas201_pastoral_counseling",
+      "title": "PAS201: Pastoral Counseling",
+      "summary": "Integrative course combining biblical wisdom, theological reflection, and counseling theory for pastoral care and counseling. 35 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "pas301_church_administration",
+      "title": "PAS301: Church Administration",
+      "summary": "Practical course equipping leaders with essential skills for effective church management and organizational leadership. 30 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "pas101_homiletics",
+      "title": "PAS101: Homiletics",
+      "summary": "Essential course training in biblical preaching, sermon preparation, exegetical techniques, and delivery skills. 35 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "spr201_spiritual_gifts",
+      "title": "SPR201: Discovering Spiritual Gifts",
+      "summary": "Comprehensive exploration of spiritual gifts and their role in church life and ministry, with practical assessment tools. 25 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "wor101_biblical_worship",
+      "title": "WOR101: Biblical Worship",
+      "summary": "Transformative course exploring biblical foundations and theology of Christian worship and authentic worship experiences. 30 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "div111_capstone_project",
+      "title": "DIV111: Capstone Project",
+      "summary": "Culminating course requiring integration of knowledge into comprehensive theological research project or ministry portfolio. 15 CPD, 8 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "div112_christology",
+      "title": "DIV112: Christology",
+      "summary": "In-depth study of the person and work of Jesus Christ, examining biblical foundations and historical Christological doctrine. 10 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "div113_contemporary_theological",
+      "title": "DIV113: Contemporary Theological Issues",
+      "summary": "Exploration of current theological challenges including religious pluralism, science and faith, and social justice theology. 25 CPD, 10 lessons.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    }
+  ]
+}

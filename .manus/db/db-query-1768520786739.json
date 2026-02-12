@@ -1,0 +1,60 @@
+{
+  "query": "SELECT id, lessonOrder, title FROM lessons WHERE courseId = (SELECT id FROM courses WHERE code = 'BIB101') ORDER BY lessonOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, lessonOrder, title FROM lessons WHERE courseId = (SELECT id FROM courses WHERE code = 'BIB101') ORDER BY lessonOrder;",
+  "rows": [
+    {
+      "id": "690001",
+      "lessonOrder": "1",
+      "title": "Introduction to the Old Testament"
+    },
+    {
+      "id": "690002",
+      "lessonOrder": "2",
+      "title": "The Torah: Books of Moses"
+    },
+    {
+      "id": "690003",
+      "lessonOrder": "3",
+      "title": "The Historical Books"
+    },
+    {
+      "id": "690004",
+      "lessonOrder": "4",
+      "title": "Poetry and Wisdom Literature"
+    },
+    {
+      "id": "690005",
+      "lessonOrder": "5",
+      "title": "Major Prophets: Isaiah"
+    },
+    {
+      "id": "690006",
+      "lessonOrder": "6",
+      "title": "Major Prophets: Jeremiah and Lamentations"
+    },
+    {
+      "id": "690007",
+      "lessonOrder": "7",
+      "title": "Major Prophets: Ezekiel and Daniel"
+    },
+    {
+      "id": "690008",
+      "lessonOrder": "8",
+      "title": "Minor Prophets - Part 1"
+    },
+    {
+      "id": "690009",
+      "lessonOrder": "9",
+      "title": "Minor Prophets - Part 2"
+    },
+    {
+      "id": "690010",
+      "lessonOrder": "10",
+      "title": "Old Testament Themes and Fulfillment"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tlessonOrder\ttitle\n690001\t1\tIntroduction to the Old Testament\n690002\t2\tThe Torah: Books of Moses\n690003\t3\tThe Historical Books\n690004\t4\tPoetry and Wisdom Literature\n690005\t5\tMajor Prophets: Isaiah\n690006\t6\tMajor Prophets: Jeremiah and Lamentations\n690007\t7\tMajor Prophets: Ezekiel and Daniel\n690008\t8\tMinor Prophets - Part 1\n690009\t9\tMinor Prophets - Part 2\n690010\t10\tOld Testament Themes and Fulfillment\n",
+  "stderr": "",
+  "execution_time_ms": 53
+}

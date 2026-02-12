@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Overview - Deliverance Ministry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .slide-container {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e3a8a 0%, #2c5aa0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 60px;
+        
+            transform-origin: top left;
+            transform: scale(1);
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        .left-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-family: 'Merriweather', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #d4af37;
+        }
+
+        .overview-text {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            color: #f5f5f5;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+        .right-section .section-title {
+            color: #ffffff;
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+        .right-section .section-title::after {
+            display: none;
+        }
+
+        .point-box {
+            background: rgba(212, 175, 55, 0.08);
+            border-left: 4px solid #d4af37;
+            padding: 18px 20px;
+            margin-bottom: 15px;
+            border-radius: 2px;
+        }
+
+        .point-box-title {
+            font-family: 'Merriweather', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 8px;
+        }
+
+        .point-box-text {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            color: #f5f5f5;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <div class="left-section">
+                <h2 class="section-title">Course Overview</h2>
+                <p class="overview-text">
+                    Understand the biblical basis for <span class="highlight">deliverance ministry</span> and learn to recognize signs of demonic oppression. This comprehensive course equips believers with knowledge, spiritual authority, and practical techniques for ministering freedom to those in bondage.
+                </p>
+                <p class="overview-text">
+                    Whether you're a pastor, counselor, or ministry worker, this course will provide you with biblical foundations, spiritual discernment, and proven protocols for effective deliverance ministry in various contexts.
+                </p>
+            </div>
+
+            <div class="right-section">
+                <h3 class="section-title">What You'll Discover</h3>
+                
+                <div class="point-box">
+                    <div class="point-box-title">Biblical Foundation</div>
+                    <div class="point-box-text">Scripture basis for deliverance ministry</div>
+                </div>
+
+                <div class="point-box">
+                    <div class="point-box-title">Spiritual Authority</div>
+                    <div class="point-box-text">Understanding power and authority in Christ</div>
+                </div>
+
+                <div class="point-box">
+                    <div class="point-box-title">Recognition & Discernment</div>
+                    <div class="point-box-text">Identifying demonic oppression and manifestations</div>
+                </div>
+
+                <div class="point-box">
+                    <div class="point-box-title">Practical Protocols</div>
+                    <div class="point-box-text">Proven techniques for effective deliverance</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

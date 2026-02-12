@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO bundle_courses (bundleId, courseId, courseOrder)\nSELECT 3, id,\n  CASE\n    WHEN title = 'The Fivefold Ministry' THEN 0\n    WHEN title = 'Christian Leadership' THEN 1\n    WHEN title = 'Church Administration' THEN 2\n  END\nFROM courses\nWHERE title IN ('The Fivefold Ministry', 'Christian Leadership', 'Church Administration');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO bundle_courses (bundleId, courseId, courseOrder)\nSELECT 3, id,\n  CASE\n    WHEN title = 'The Fivefold Ministry' THEN 0\n    WHEN title = 'Christian Leadership' THEN 1\n    WHEN title = 'Church Administration' THEN 2\n  END\nFROM courses\nWHERE title IN ('The Fivefold Ministry', 'Christian Leadership', 'Church Administration');",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 55
+}

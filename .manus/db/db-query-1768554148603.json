@@ -1,0 +1,60 @@
+{
+  "query": "SELECT id, title, lessonOrder FROM lessons WHERE courseId = 150008 ORDER BY lessonOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, title, lessonOrder FROM lessons WHERE courseId = 150008 ORDER BY lessonOrder;",
+  "rows": [
+    {
+      "id": "360061",
+      "title": "Foundations of Prayer - Biblical Theology",
+      "lessonOrder": "1"
+    },
+    {
+      "id": "360062",
+      "title": "The Lord's Prayer - A Model for All Prayer",
+      "lessonOrder": "2"
+    },
+    {
+      "id": "360063",
+      "title": "Developing a Personal Prayer Life",
+      "lessonOrder": "3"
+    },
+    {
+      "id": "360064",
+      "title": "Intercessory Prayer - Standing in the Gap",
+      "lessonOrder": "4"
+    },
+    {
+      "id": "360065",
+      "title": "Fasting and Prayer",
+      "lessonOrder": "5"
+    },
+    {
+      "id": "750029",
+      "title": "Spiritual Warfare and Prayer",
+      "lessonOrder": "6"
+    },
+    {
+      "id": "750030",
+      "title": "Corporate Prayer and Prayer Movements",
+      "lessonOrder": "7"
+    },
+    {
+      "id": "750031",
+      "title": "Contemplative Prayer and Listening to God",
+      "lessonOrder": "8"
+    },
+    {
+      "id": "750032",
+      "title": "Prayer and Revival",
+      "lessonOrder": "9"
+    },
+    {
+      "id": "750033",
+      "title": "Developing a Lifestyle of Prayer",
+      "lessonOrder": "10"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tlessonOrder\n360061\tFoundations of Prayer - Biblical Theology\t1\n360062\tThe Lord's Prayer - A Model for All Prayer\t2\n360063\tDeveloping a Personal Prayer Life\t3\n360064\tIntercessory Prayer - Standing in the Gap\t4\n360065\tFasting and Prayer\t5\n750029\tSpiritual Warfare and Prayer\t6\n750030\tCorporate Prayer and Prayer Movements\t7\n750031\tContemplative Prayer and Listening to God\t8\n750032\tPrayer and Revival\t9\n750033\tDeveloping a Lifestyle of Prayer\t10\n",
+  "stderr": "",
+  "execution_time_ms": 57
+}

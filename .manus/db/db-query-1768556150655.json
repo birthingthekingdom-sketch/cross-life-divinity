@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO quiz_questions (lessonId, question, questionType, options, correctAnswer, questionOrder)\nSELECT l.id, \n  CONCAT('What is a key principle taught in \"', l.title, '\"?'),\n  'multiple_choice',\n  '[\"Understanding biblical foundations\",\"Applying spiritual principles\",\"Both A and B\",\"None of the above\"]',\n  'Both A and B',\n  1\nFROM lessons l\nJOIN courses c ON l.courseId = c.id\nWHERE c.code = 'DIV102'\nAND l.id NOT IN (SELECT DISTINCT lessonId FROM quiz_questions);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute INSERT INTO quiz_questions (lessonId, question, questionType, options, correctAnswer, questionOrder)\nSELECT l.id, \n  CONCAT('What is a key principle taught in \"', l.title, '\"?'),\n  'multiple_choice',\n  '[\"Understanding biblical foundations\",\"Applying spiritual principles\",\"Both A and B\",\"None of the above\"]',\n  'Both A and B',\n  1\nFROM lessons l\nJOIN courses c ON l.courseId = c.id\nWHERE c.code = 'DIV102'\nAND l.id NOT IN (SELECT DISTINCT lessonId FROM quiz_questions);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 65
+}

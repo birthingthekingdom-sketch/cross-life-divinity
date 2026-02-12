@@ -1,0 +1,21 @@
+{
+  "query": "SELECT * FROM quiz_questions LIMIT 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT * FROM quiz_questions LIMIT 1;",
+  "rows": [
+    {
+      "id": "450001",
+      "lessonId": "570001",
+      "question": "How many books are in the Old Testament?",
+      "questionType": "multiple_choice",
+      "options": "NULL",
+      "correctAnswer": "39",
+      "questionOrder": "1",
+      "createdAt": "2026-01-15 22:11:04",
+      "updatedAt": "2026-01-15 22:11:04"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tlessonId\tquestion\tquestionType\toptions\tcorrectAnswer\tquestionOrder\tcreatedAt\tupdatedAt\n450001\t570001\tHow many books are in the Old Testament?\tmultiple_choice\tNULL\t39\t1\t2026-01-15 22:11:04\t2026-01-15 22:11:04\n",
+  "stderr": "",
+  "execution_time_ms": 70
+}

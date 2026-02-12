@@ -1,0 +1,28 @@
+{
+  "query": "SELECT \n  lp.name as learning_path,\n  lp.level,\n  COUNT(lpc.courseId) as course_count,\n  GROUP_CONCAT(c.title ORDER BY lpc.orderIndex SEPARATOR ', ') as courses\nFROM learning_paths lp\nLEFT JOIN learning_path_courses lpc ON lp.id = lpc.pathId\nLEFT JOIN courses c ON lpc.courseId = c.id\nGROUP BY lp.id, lp.name, lp.level\nORDER BY lp.id",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT \n  lp.name as learning_path,\n  lp.level,\n  COUNT(lpc.courseId) as course_count,\n  GROUP_CONCAT(c.title ORDER BY lpc.orderIndex SEPARATOR ', ') as courses\nFROM learning_paths lp\nLEFT JOIN learning_path_courses lpc ON lp.id = lpc.pathId\nLEFT JOIN courses c ON lpc.courseId = c.id\nGROUP BY lp.id, lp.name, lp.level\nORDER BY lp.id",
+  "rows": [
+    {
+      "learning_path": "New Believer Foundation",
+      "level": "beginner",
+      "course_count": "1",
+      "courses": "Biblical Hermeneutics"
+    },
+    {
+      "learning_path": "Ministry Preparation Track",
+      "level": "intermediate",
+      "course_count": "4",
+      "courses": "Christian Leadership, The Fivefold Ministry, Prayer and Intercession, Church Administration"
+    },
+    {
+      "learning_path": "Advanced Theological Studies",
+      "level": "advanced",
+      "course_count": "5",
+      "courses": "Systematic Theology, Old Testament Survey, New Testament Survey, Deliverance Ministry, Understanding Prophecy"
+    }
+  ],
+  "messages": [],
+  "stdout": "learning_path\tlevel\tcourse_count\tcourses\nNew Believer Foundation\tbeginner\t1\tBiblical Hermeneutics\nMinistry Preparation Track\tintermediate\t4\tChristian Leadership, The Fivefold Ministry, Prayer and Intercession, Church Administration\nAdvanced Theological Studies\tadvanced\t5\tSystematic Theology, Old Testament Survey, New Testament Survey, Deliverance Ministry, Understanding Prophecy\n",
+  "stderr": "",
+  "execution_time_ms": 138
+}

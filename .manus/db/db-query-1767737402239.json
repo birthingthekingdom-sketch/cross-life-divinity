@@ -1,0 +1,31 @@
+{
+  "query": "SELECT id, code, title, courseType, totalLessons FROM courses WHERE code IN ('DIV108', 'DIV109', 'DIV110') ORDER BY code;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2KiCrCqNDFcXt7P.577d1a63eeb5 --database P2Dpw9MQsmxzdUQCfGjV6b --execute SELECT id, code, title, courseType, totalLessons FROM courses WHERE code IN ('DIV108', 'DIV109', 'DIV110') ORDER BY code;",
+  "rows": [
+    {
+      "id": "570001",
+      "code": "DIV108",
+      "title": "Advanced Spiritual Warfare",
+      "courseType": "theological",
+      "totalLessons": "10"
+    },
+    {
+      "id": "570002",
+      "code": "DIV109",
+      "title": "Kingdom Authority and Power",
+      "courseType": "theological",
+      "totalLessons": "10"
+    },
+    {
+      "id": "570003",
+      "code": "DIV110",
+      "title": "Deliverance Ministry",
+      "courseType": "theological",
+      "totalLessons": "10"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\ttitle\tcourseType\ttotalLessons\n570001\tDIV108\tAdvanced Spiritual Warfare\ttheological\t10\n570002\tDIV109\tKingdom Authority and Power\ttheological\t10\n570003\tDIV110\tDeliverance Ministry\ttheological\t10\n",
+  "stderr": "",
+  "execution_time_ms": 53
+}
