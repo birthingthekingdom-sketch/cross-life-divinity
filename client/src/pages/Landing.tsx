@@ -128,7 +128,7 @@ export default function Landing() {
       {/* Hero Section with Promotional Image */}
       <section className="relative overflow-hidden">
         <img 
-          src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663030470828/SdrHGsVZVADeioPv.webp" 
+          src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663030470828/acgLQqQvlchTuUyN.webp" 
           alt="Study Theology at Your Own Pace - CPD Accredited Courses" 
           className="w-full h-auto object-cover"
         />
