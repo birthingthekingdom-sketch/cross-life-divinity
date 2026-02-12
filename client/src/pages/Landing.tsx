@@ -128,7 +128,7 @@ export default function Landing() {
       {/* Hero Section with Promotional Image */}
       <section className="relative overflow-hidden">
         <img 
-          src="/promo-hero-new.webp" 
+          src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663030470828/SdrHGsVZVADeioPv.webp" 
           alt="Study Theology at Your Own Pace - CPD Accredited Courses" 
           className="w-full h-auto object-cover"
         />
@@ -140,7 +140,7 @@ export default function Landing() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <img 
-                src="/promo-pricing.png" 
+                src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663030470828/nBKiYPNczHaYSTrS.png" 
                 alt="$49/Month All-Access Subscription" 
                 className="rounded-lg shadow-2xl"
               />
@@ -232,11 +232,11 @@ export default function Landing() {
             </div>
             <div>
               <Link href="/chaplaincy-training">
-                <img 
-                  src="/chaplain-promo.png" 
-                  alt="Chaplain's Training - Pastor / Minister you've been waiting long enough; now is the time!" 
-                  className="rounded-lg shadow-2xl w-full cursor-pointer hover:opacity-90 transition-opacity"
-                />
+              <img 
+                src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663030470828/WYPglJjVxtkLbihI.png" 
+                alt="Chaplain's Training - Pastor / Minister you've been waiting long enough; now is the time!" 
+                className="rounded-lg shadow-2xl w-full"
+              />
               </Link>
             </div>
           </div>
