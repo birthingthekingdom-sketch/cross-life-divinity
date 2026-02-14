@@ -3,7 +3,9 @@ import Stripe from "stripe";
 import { sql } from "drizzle-orm";
 import * as db from "./db";
 import { sendMonthlyPaymentReceiptEmail, sendFailedPaymentNotificationEmail, sendPaymentPlanCompletionEmail, sendPaymentPlanEnrollmentEmail, sendFullPaymentReceiptEmail } from './email';
-
+console.log("STRIPE_SECRET_KEY exists?", !!process.env.STRIPE_SECRET_KEY);
+console.log("STRIPE_SECRET_KEY value starts with:", process.env.STRIPE_SECRET_KEY?.substring(0, 10));
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-11-17.clover",
 });
