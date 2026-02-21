@@ -1,7 +1,9 @@
-// Simple test function first
-exports.handler = async function(event, context) {
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ message: "Function is working!" })
-  };
-};
+const express = require('express');
+const serverless = require('serverless-http');
+
+// Import your main Express app
+// This path should point to your compiled server file
+const app = require('../../dist/public/index.js');
+
+// Create the serverless handler
+exports.handler = serverless(app);
