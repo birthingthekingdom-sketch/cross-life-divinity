@@ -1,8 +1,7 @@
-const express = require('express');
-const serverless = require('serverless-http');
+[build]
+  publish = "."
 
-// Import your main Express app
-const app = require('../../dist/public/index.js');
-
-// Create the serverless handler
-exports.handler = serverless(app);
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
