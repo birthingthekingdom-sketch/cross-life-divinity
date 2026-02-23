@@ -1,17 +1,5 @@
 [build]
-  command = "npm run build"
-  publish = "dist/public"
-
-[build.environment]
-  NODE_VERSION = "18"
-
-[functions]
-  directory = "netlify/functions"
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/server/:splat"
-  status = 200
+  publish = "."
 
 [[redirects]]
   from = "/*"
