@@ -1,6 +1,6 @@
 [build]
-  command = "pnpm install --no-frozen-lockfile && npm run convert"
-  publish = "public"
+  command = "pnpm install --no-frozen-lockfile && pnpm run build"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "18"
