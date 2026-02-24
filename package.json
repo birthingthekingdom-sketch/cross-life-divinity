@@ -27,6 +27,11 @@
     "drizzle-orm": "^0.29.0",
     "drizzle-kit": "^0.20.0",
     "prettier": "^3.0.0",
-         "@tailwindcss/vite": "^4.2.1"
+         "@tailwindcss/vite": "^4.2.1",
+        "prettier": "^3.0.0",
+    "@tailwindcss/vite": "^4.2.1",
+    "@vitejs/plugin-react": "^4.3.4"
+  }
+}
   }
 }
