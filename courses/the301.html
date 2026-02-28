@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>THE301 - Fundamentals of Apologetics | Cross Life School of Divinity</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>/* same styles */</style>
+</head>
+<body>
+<div class="top-bar"><div class="container"><div class="contact-info"><span><i class="fas fa-phone-alt"></i> (555) 123-4567</span><span><i class="fas fa-envelope"></i> info@crosslife.edu</span></div><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div></div>
+<nav class="main-nav"><div class="container"><div class="logo"><a href="../index.html"><img src="/logo.png" alt="Cross Life School" style="height:50px;"></a></div><ul class="nav-menu"><li><a href="../index.html">Home</a></li><li><a href="../courses.html">Courses</a></li><li><a href="../theology.html">Theology</a></li><li><a href="../ged.html">GED</a></li><li><a href="../chaplaincy.html">Chaplaincy</a></li><li><a href="../accreditation.html">Accreditation</a></li><li><a href="../login.html" class="btn-login">Login</a></li><li><a href="../register.html" class="btn-signup">Sign Up</a></li></ul></div></nav>
+<div class="course-hero"><div class="container"><div class="course-header"><div class="course-image"><img src="/courses/the301.jpg" alt="Fundamentals of Apologetics" onerror="this.src='/logo-no-text.png'"></div><div class="course-info"><span style="background:rgba(255,255,255,0.2);padding:5px 15px;border-radius:30px;">THE301 • Theology</span><h1>Fundamentals of Apologetics</h1><p>Learn to defend the Christian faith with reason, evidence, and biblical truth.</p><div class="course-meta-large"><span><i class="fas fa-book"></i> 10 Lessons</span><span><i class="fas fa-clock"></i> 30 CPD Hours</span><span><i class="fas fa-signal"></i> Advanced Level</span></div></div></div></div></div>
+<div class="container" style="margin:40px auto;"><div style="display:grid;grid-template-columns:2fr 1fr;gap:40px;"><div><div class="content-tabs"><div class="tab active" onclick="switchTab('overview',event)">Overview</div><div class="tab" onclick="switchTab('lessons',event)">Lessons</div><div class="tab" onclick="switchTab('quizzes',event)">Quizzes</div></div>
+<div id="overview-content"><h2>Course Description</h2><p>This course equips students to defend the Christian faith through classical, evidential, and presuppositional approaches.</p><h3>What You'll Learn</h3><ul><li>Classical arguments for God's existence</li><li>The problem of evil</li><li>Reliability of Scripture</li></ul></div>
+<div id="lessons-content" style="display:none;"><h2>Course Lessons</h2><ul class="lesson-list">
+<li class="lesson-item"><div class="lesson-number">1</div><div><div class="lesson-title">Introduction to Apologetics</div></div></li>
+<li class="lesson-item"><div class="lesson-number">2</div><div><div class="lesson-title">Existence of God (Classical Arguments)</div></div></li>
+<li class="lesson-item"><div class="lesson-number">3</div><div><div class="lesson-title">The Problem of Evil</div></div></li>
+<li class="lesson-item"><div class="lesson-number">4</div><div><div class="lesson-title">Reliability of the Bible</div></div></li>
+<li class="lesson-item"><div class="lesson-number">5</div><div><div class="lesson-title">Resurrection of Jesus</div></div></li>
+<li class="lesson-item"><div class="lesson-number">6</div><div><div class="lesson-title">Comparative Religion</div></div></li>
+<li class="lesson-item"><div class="lesson-number">7</div><div><div class="lesson-title">Science and Faith</div></div></li>
+<li class="lesson-item"><div class="lesson-number">8</div><div><div class="lesson-title">Postmodernism and Truth</div></div></li>
+<li class="lesson-item"><div class="lesson-number">9</div><div><div class="lesson-title">Responding to Skepticism</div></div></li>
+<li class="lesson-item"><div class="lesson-number">10</div><div><div class="lesson-title">Practical Apologetics in Ministry</div></div></li>
+</ul></div>
+<div id="quizzes-content" style="display:none;"><h2>Quizzes</h2><p>10 lesson quizzes + final exam</p></div></div>
+<div><div class="enroll-card"><div class="enroll-price">$89 <span class="enroll-original">$129</span></div><a href="#" class="enroll-btn">Enroll Now</a></div></div></div></div>
+<footer><div class="container"><div class="footer-bottom"><p>&copy; 2024 Cross Life School of Divinity</p></div></div></footer>
+<script>function switchTab(tabName,event){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));event.target.classList.add('active');['overview','lessons','quizzes'].forEach(id=>document.getElementById(id+'-content').style.display='none');document.getElementById(tabName+'-content').style.display='block';}</script>
+</body>
+</html>
