@@ -5,7 +5,9 @@ import fs from "node:fs";
 import path from "path";
 import { defineConfig } from "vite";
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin()];
+// Temporarily disable tailwindcss plugin due to native binding issues on Netlify
+// const plugins = [react(), tailwindcss(), jsxLocPlugin()];
+const plugins = [react(), jsxLocPlugin()];
 
 export default defineConfig({
   plugins,
